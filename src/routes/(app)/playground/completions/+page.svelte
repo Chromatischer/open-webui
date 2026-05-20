@@ -1,5 +1,8 @@
-<script>
-	import Completions from '$lib/components/playground/Completions.svelte';
-</script>
+<script lang="ts">
+	import { goto } from '$app/navigation';
+	import { onMount } from 'svelte';
 
-<Completions />
+	onMount(() => {
+		goto('/');
+	});
+</script>

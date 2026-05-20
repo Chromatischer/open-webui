@@ -31,13 +31,11 @@
 		showSettings,
 		showShortcuts,
 		showChangelog,
-		temporaryChatEnabled,
 		toolServers,
 		terminalServers,
 		selectedTerminalId,
 		showSearch,
 		showSidebar,
-		showControls,
 		mobile
 	} from '$lib/stores';
 
@@ -288,18 +286,6 @@
 					console.log('Shortcut triggered: OPEN_MODEL_SELECTOR');
 					event.preventDefault();
 					document.getElementById('model-selector-0-button')?.click();
-				} else if (isShortcutMatch(event, shortcuts[Shortcut.NEW_TEMPORARY_CHAT])) {
-					console.log('Shortcut triggered: NEW_TEMPORARY_CHAT');
-					event.preventDefault();
-					if ($user?.role !== 'admin' && $user?.permissions?.chat?.temporary_enforced) {
-						temporaryChatEnabled.set(true);
-					} else {
-						temporaryChatEnabled.set(!$temporaryChatEnabled);
-					}
-					await goto('/');
-					setTimeout(() => {
-						document.getElementById('new-chat-button')?.click();
-					}, 0);
 				} else if (isShortcutMatch(event, shortcuts[Shortcut.GENERATE_MESSAGE_PAIR])) {
 					console.log('Shortcut triggered: GENERATE_MESSAGE_PAIR');
 					event.preventDefault();
@@ -320,16 +306,6 @@
 			showChangelog.set($settings?.version !== $config.version);
 		}
 
-		if ($user?.role === 'admin' || ($user?.permissions?.chat?.temporary ?? true)) {
-			if ($page.url.searchParams.get('temporary-chat') === 'true') {
-				temporaryChatEnabled.set(true);
-			}
-
-			if ($user?.role !== 'admin' && $user?.permissions?.chat?.temporary_enforced) {
-				temporaryChatEnabled.set(true);
-			}
-		}
-
 		// Check for version updates
 		if ($user?.role === 'admin' && $config?.features?.enable_version_update_check) {
 			// Check if the user has dismissed the update toast in the last 24 hours
@@ -344,13 +320,6 @@
 				checkForVersionUpdates();
 			}
 		}
-		// Persist showControls: track open/close state separately from saved size
-		// chatControlsSize always retains the last width for openPane()
-		await showControls.set(!$mobile ? localStorage.showControls === 'true' : false);
-		showControls.subscribe((value) => {
-			localStorage.showControls = value ? 'true' : 'false';
-		});
-
 		// Persist selectedTerminalId across page loads
 		selectedTerminalId.set(localStorage.selectedTerminalId ?? null);
 		selectedTerminalId.subscribe((value) => {

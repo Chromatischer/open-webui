@@ -14,10 +14,8 @@ type ShortcutRegistry = {
 export enum Shortcut {
 	//Chat
 	NEW_CHAT = 'newChat',
-	NEW_TEMPORARY_CHAT = 'newTemporaryChat',
 	DELETE_CHAT = 'deleteChat',
 	OPEN_MODEL_SELECTOR = 'openModelSelector',
-	TOGGLE_DICTATION = 'toggleDictation',
 
 	//Global
 	SEARCH = 'search',
@@ -50,11 +48,6 @@ export const shortcuts: ShortcutRegistry = {
 		keys: ['mod', 'shift', 'O'],
 		category: 'Chat'
 	},
-	[Shortcut.NEW_TEMPORARY_CHAT]: {
-		name: 'New Temporary Chat',
-		keys: ['mod', 'shift', `'`],
-		category: 'Chat'
-	},
 	[Shortcut.DELETE_CHAT]: {
 		name: 'Delete Chat',
 		keys: ['mod', 'shift', 'Backspace', 'Delete'],
@@ -65,12 +58,6 @@ export const shortcuts: ShortcutRegistry = {
 		keys: ['mod', 'shift', 'M'],
 		category: 'Chat'
 	},
-	[Shortcut.TOGGLE_DICTATION]: {
-		name: 'Toggle Dictation',
-		keys: ['mod', 'shift', 'L'],
-		category: 'Chat'
-	},
-
 	//Global
 	[Shortcut.SEARCH]: {
 		name: 'Search',

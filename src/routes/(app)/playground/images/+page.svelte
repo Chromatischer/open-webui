@@ -1,5 +1,8 @@
 <script lang="ts">
-	import Images from '$lib/components/playground/Images.svelte';
-</script>
+	import { goto } from '$app/navigation';
+	import { onMount } from 'svelte';
 
-<Images />
+	onMount(() => {
+		goto('/');
+	});
+</script>

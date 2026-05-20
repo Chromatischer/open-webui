@@ -1,7 +1,8 @@
 <script lang="ts">
-	import { page } from '$app/stores';
+	import { goto } from '$app/navigation';
+	import { onMount } from 'svelte';
 
-	import Channel from '$lib/components/channel/Channel.svelte';
+	onMount(() => {
+		goto('/');
+	});
 </script>
-
-<Channel id={$page.params.id} />

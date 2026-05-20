@@ -686,43 +686,11 @@
 		<div class="flex flex-col w-full">
 			<div class="flex w-full justify-between my-1">
 				<div class=" self-center text-xs font-medium">
-					{$i18n.t('Allow Speech to Text')}
-				</div>
-				<Switch bind:state={permissions.chat.stt} />
-			</div>
-			{#if defaultPermissions?.chat?.stt && !permissions.chat.stt}
-				<div>
-					<div class="text-xs text-gray-500">
-						{$i18n.t('This is a default user permission and will remain enabled.')}
-					</div>
-				</div>
-			{/if}
-		</div>
-
-		<div class="flex flex-col w-full">
-			<div class="flex w-full justify-between my-1">
-				<div class=" self-center text-xs font-medium">
 					{$i18n.t('Allow Text to Speech')}
 				</div>
 				<Switch bind:state={permissions.chat.tts} />
 			</div>
 			{#if defaultPermissions?.chat?.tts && !permissions.chat.tts}
-				<div>
-					<div class="text-xs text-gray-500">
-						{$i18n.t('This is a default user permission and will remain enabled.')}
-					</div>
-				</div>
-			{/if}
-		</div>
-
-		<div class="flex flex-col w-full">
-			<div class="flex w-full justify-between my-1">
-				<div class=" self-center text-xs font-medium">
-					{$i18n.t('Allow Call')}
-				</div>
-				<Switch bind:state={permissions.chat.call} />
-			</div>
-			{#if defaultPermissions?.chat?.call && !permissions.chat.call}
 				<div>
 					<div class="text-xs text-gray-500">
 						{$i18n.t('This is a default user permission and will remain enabled.')}
@@ -747,39 +715,6 @@
 			{/if}
 		</div>
 
-		<div class="flex flex-col w-full">
-			<div class="flex w-full justify-between my-1">
-				<div class=" self-center text-xs font-medium">
-					{$i18n.t('Allow Temporary Chat')}
-				</div>
-				<Switch bind:state={permissions.chat.temporary} />
-			</div>
-			{#if defaultPermissions?.chat?.temporary && !permissions.chat.temporary}
-				<div>
-					<div class="text-xs text-gray-500">
-						{$i18n.t('This is a default user permission and will remain enabled.')}
-					</div>
-				</div>
-			{/if}
-		</div>
-
-		{#if permissions.chat.temporary}
-			<div class="flex flex-col w-full">
-				<div class="flex w-full justify-between my-1">
-					<div class=" self-center text-xs font-medium">
-						{$i18n.t('Enforce Temporary Chat')}
-					</div>
-					<Switch bind:state={permissions.chat.temporary_enforced} />
-				</div>
-				{#if defaultPermissions?.chat?.temporary_enforced && !permissions.chat.temporary_enforced}
-					<div>
-						<div class="text-xs text-gray-500">
-							{$i18n.t('This is a default user permission and will remain enabled.')}
-						</div>
-					</div>
-				{/if}
-			</div>
-		{/if}
 	</div>
 
 	<hr class=" border-gray-100/30 dark:border-gray-850/30" />

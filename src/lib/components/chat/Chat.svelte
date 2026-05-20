@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { v4 as uuidv4 } from 'uuid';
 	import { toast } from 'svelte-sonner';
-	import { PaneGroup, Pane, PaneResizer } from 'paneforge';
 
 	import { getContext, onDestroy, onMount, tick } from 'svelte';
 	import { fade } from 'svelte/transition';
@@ -30,7 +29,6 @@
 		socket,
 		audioQueue,
 		showControls,
-		showCallOverlay,
 		currentChatPage,
 		temporaryChatEnabled,
 		mobile,
@@ -56,11 +54,9 @@
 	import {
 		convertMessagesToHistory,
 		copyToClipboard,
-		getMessageContentParts,
 		createMessagesList,
 		getPromptVariables,
 		processDetails,
-		removeAllDetails,
 		getCodeBlockContents,
 		isYoutubeUrl,
 		displayFileHandler
@@ -100,7 +96,6 @@
 	import MessageInput from '$lib/components/chat/MessageInput.svelte';
 	import Messages from '$lib/components/chat/Messages.svelte';
 	import Navbar from '$lib/components/chat/Navbar.svelte';
-	import ChatControls from './ChatControls.svelte';
 	import EventConfirmDialog from '../common/ConfirmDialog.svelte';
 	import DeleteConfirmDialog from '../common/ConfirmDialog.svelte';
 	import Placeholder from './Placeholder.svelte';
@@ -117,9 +112,6 @@
 	let loading = true;
 
 	const eventTarget = new EventTarget();
-	let controlPane: Pane | undefined;
-	let controlPaneComponent: ChatControls | undefined;
-
 	let messageInput: MessageInput | undefined;
 	let messagesRef: Messages | undefined;
 
@@ -764,20 +756,7 @@
 
 		const showControlsSubscribe = showControls.subscribe(async (value) => {
 			await tick();
-			if (controlPane && !$mobile) {
-				try {
-					if (value) {
-						controlPaneComponent?.openPane();
-					} else {
-						controlPane.collapse();
-					}
-				} catch (e) {
-					// ignore
-				}
-			}
-
 			if (!value) {
-				showCallOverlay.set(false);
 				showArtifacts.set(false);
 				showEmbeds.set(false);
 			}
@@ -1208,10 +1187,7 @@
 			}
 		}
 
-		if ($mobile) {
-			await showControls.set(false);
-		}
-		await showCallOverlay.set(false);
+		await showControls.set(false);
 		await showArtifacts.set(false);
 
 		if ($page.url.pathname.includes('/c/')) {
@@ -1277,25 +1253,12 @@
 			}
 		}
 
-		if ($page.url.searchParams.get('call') === 'true') {
-			showCallOverlay.set(true);
-			showControls.set(true);
-		}
-
 		// Consume one-shot desktop event (e.g. Spotlight query, call shortcut)
 		if ($desktopEvent) {
 			const event = $desktopEvent;
 			desktopEvent.set(null);
 
-			if (event.type === 'call') {
-				// Defer to next macrotask so the call overlay isn't clobbered by
-				// showControlsSubscribe's initial callback (value=false → set(false))
-				// which runs as a pending microtask after this function.
-				setTimeout(() => {
-					showCallOverlay.set(true);
-					showControls.set(true);
-				}, 0);
-			} else if (event.type === 'query') {
+			if (event.type === 'query') {
 				const query = event.data?.query;
 				const eventFiles = event.data?.files;
 
@@ -1761,30 +1724,6 @@
 						navigator.vibrate(5);
 					}
 
-					// Emit chat event for TTS (only when call overlay is active)
-					if ($showCallOverlay) {
-						const messageContentParts = getMessageContentParts(
-							removeAllDetails(message.content),
-							$config?.audio?.tts?.split_on ?? 'punctuation'
-						);
-						messageContentParts.pop();
-
-						// dispatch only last sentence and make sure it hasn't been dispatched before
-						if (
-							messageContentParts.length > 0 &&
-							messageContentParts[messageContentParts.length - 1] !== message.lastSentence
-						) {
-							message.lastSentence = messageContentParts[messageContentParts.length - 1];
-							eventTarget.dispatchEvent(
-								new CustomEvent('chat', {
-									detail: {
-										id: message.id,
-										content: messageContentParts[messageContentParts.length - 1]
-									}
-								})
-							);
-						}
-					}
 				}
 			}
 		}
@@ -1797,30 +1736,6 @@
 				navigator.vibrate(5);
 			}
 
-			// Emit chat event for TTS (only when call overlay is active)
-			if ($showCallOverlay) {
-				const messageContentParts = getMessageContentParts(
-					removeAllDetails(message.content),
-					$config?.audio?.tts?.split_on ?? 'punctuation'
-				);
-				messageContentParts.pop();
-
-				// dispatch only last sentence and make sure it hasn't been dispatched before
-				if (
-					messageContentParts.length > 0 &&
-					messageContentParts[messageContentParts.length - 1] !== message.lastSentence
-				) {
-					message.lastSentence = messageContentParts[messageContentParts.length - 1];
-					eventTarget.dispatchEvent(
-						new CustomEvent('chat', {
-							detail: {
-								id: message.id,
-								content: messageContentParts[messageContentParts.length - 1]
-							}
-						})
-					);
-				}
-			}
 		}
 
 		if (selected_model_id) {
@@ -1841,25 +1756,9 @@
 				copyToClipboard(message.content);
 			}
 
-			if ($settings.responseAutoPlayback && !$showCallOverlay) {
+			if ($settings.responseAutoPlayback) {
 				await tick();
 				document.getElementById(`speak-button-${message.id}`)?.click();
-			}
-
-			// Emit chat event for TTS (only when call overlay is active)
-			if ($showCallOverlay) {
-				let lastMessageContentPart =
-					getMessageContentParts(
-						removeAllDetails(message.content),
-						$config?.audio?.tts?.split_on ?? 'punctuation'
-					)?.at(-1) ?? '';
-				if (lastMessageContentPart) {
-					eventTarget.dispatchEvent(
-						new CustomEvent('chat', {
-							detail: { id: message.id, content: lastMessageContentPart }
-						})
-					);
-				}
 			}
 			eventTarget.dispatchEvent(
 				new CustomEvent('chat:finish', {
@@ -1941,11 +1840,8 @@
 
 		history.currentId = userMessageId;
 
-		// focus on chat input (skip during voice call to avoid triggering mobile keyboard)
-		if (!$showCallOverlay) {
-			const chatInput = document.getElementById('chat-input');
-			chatInput?.focus();
-		}
+		const chatInput = document.getElementById('chat-input');
+		chatInput?.focus();
 
 		saveSessionSelectedModels();
 
@@ -2182,7 +2078,7 @@
 
 		if ($config?.features)
 			features = {
-				voice: $showCallOverlay,
+				voice: false,
 				image_generation:
 					$config?.features?.enable_image_generation &&
 					($user?.role === 'admin' || $user?.permissions?.features?.image_generation)
@@ -2988,8 +2884,7 @@
 				/>
 			{/if}
 
-			<PaneGroup direction="horizontal" class="w-full h-full">
-				<Pane defaultSize={50} minSize={30} class="h-full flex relative max-w-full flex-col">
+			<div class="w-full h-full flex relative max-w-full flex-col">
 					<FilesOverlay show={dragged} />
 					<Navbar
 						bind:this={navbarElement}
@@ -3212,31 +3107,7 @@
 							</div>
 						{/if}
 					</div>
-				</Pane>
-
-				<ChatControls
-					bind:this={controlPaneComponent}
-					bind:history
-					bind:chatFiles
-					bind:params
-					bind:files
-					bind:pane={controlPane}
-					chatId={$chatId}
-					modelId={selectedModelIds?.at(0) ?? null}
-					models={selectedModelIds.reduce((a, e, i, arr) => {
-						const model = $models.find((m) => m.id === e);
-						if (model) {
-							return [...a, model];
-						}
-						return a;
-					}, [])}
-					submitPrompt={submitHandler}
-					{stopResponse}
-					{showMessage}
-					{eventTarget}
-					{codeInterpreterEnabled}
-				/>
-			</PaneGroup>
+			</div>
 		</div>
 	{:else if loading}
 		<div class=" flex items-center justify-center h-full w-full">

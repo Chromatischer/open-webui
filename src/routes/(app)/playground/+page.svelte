@@ -1,5 +1,8 @@
-<script>
-	import Chat from '$lib/components/playground/Chat.svelte';
-</script>
+<script lang="ts">
+	import { goto } from '$app/navigation';
+	import { onMount } from 'svelte';
 
-<Chat />
+	onMount(() => {
+		goto('/');
+	});
+</script>

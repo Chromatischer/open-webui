@@ -1,5 +1,8 @@
-<script>
-	import KnowledgeBase from '$lib/components/workspace/Knowledge/KnowledgeBase.svelte';
-</script>
+<script lang="ts">
+	import { goto } from '$app/navigation';
+	import { onMount } from 'svelte';
 
-<KnowledgeBase />
+	onMount(() => {
+		goto('/');
+	});
+</script>

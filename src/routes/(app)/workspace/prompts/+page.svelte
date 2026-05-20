@@ -1,5 +1,8 @@
-<script>
-	import Prompts from '$lib/components/workspace/Prompts.svelte';
-</script>
+<script lang="ts">
+	import { goto } from '$app/navigation';
+	import { onMount } from 'svelte';
 
-<Prompts />
+	onMount(() => {
+		goto('/');
+	});
+</script>

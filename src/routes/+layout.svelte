@@ -30,8 +30,6 @@
 		appInfo,
 		toolServers,
 		playingNotificationSound,
-		channels,
-		channelId,
 		terminalServers,
 		showControls,
 		showFileNavPath,
@@ -62,7 +60,7 @@
 		removeTerminalConnection
 	} from '$lib/utils/connections';
 
-	import { WEBUI_API_BASE_URL, WEBUI_BASE_URL, WEBUI_HOSTNAME } from '$lib/constants';
+	import { WEBUI_BASE_URL, WEBUI_HOSTNAME } from '$lib/constants';
 	import { bestMatchingLanguage, displayFileHandler, getUserTimezone } from '$lib/utils';
 	import { setTextScale } from '$lib/utils/text-scale';
 
@@ -72,7 +70,6 @@
 	import Spinner from '$lib/components/common/Spinner.svelte';
 	import { getUserSettings } from '$lib/apis/users';
 	import dayjs from 'dayjs';
-	import { getChannels } from '$lib/apis/channels';
 
 	const unregisterServiceWorkers = async () => {
 		if ('serviceWorker' in navigator) {
@@ -451,38 +448,6 @@
 		const type = event?.data?.type ?? null;
 		const data = event?.data?.data ?? null;
 
-		// Calendar alerts are not chat-scoped — handle before chat_id checks
-		if (type === 'calendar:alert' && data) {
-			const timeStr =
-				data.minutes_until <= 0
-					? $i18n.t('Starting now')
-					: data.minutes_until === 1
-						? $i18n.t('Starting in 1 minute')
-						: $i18n.t('Starting in {{count}} minutes', { count: data.minutes_until });
-
-			toast.custom(NotificationToast, {
-				componentProps: {
-					onClick: () => {
-						goto('/calendar');
-					},
-					title: data.title,
-					content: timeStr
-				},
-				duration: 30000,
-				unstyled: true
-			});
-
-			if ($isLastActiveTab) {
-				if ($settings?.notificationEnabled ?? false) {
-					new Notification(`${data.title} • Open WebUI`, {
-						body: timeStr,
-						icon: `${WEBUI_BASE_URL}/static/favicon.png`
-					});
-				}
-			}
-			return;
-		}
-
 		// Session-targeted RPC calls (code execution, tool calls, direct completion)
 		// must ALWAYS be processed regardless of active chat or tab visibility,
 		// because the backend's sio.call blocks waiting for our callback response.
@@ -629,108 +594,6 @@
 				await chats.set(await getChatList(localStorage.token, $currentChatPage));
 			} else if (type === 'chat:tags') {
 				tags.set(await getAllTags(localStorage.token));
-			}
-		}
-	};
-
-	const channelEventHandler = async (event) => {
-		console.log('channelEventHandler', event);
-		if (event.data?.type === 'typing') {
-			return;
-		}
-
-		// handle channel created event
-		if (event.data?.type === 'channel:created') {
-			const res = await getChannels(localStorage.token).catch(async (error) => {
-				return null;
-			});
-
-			if (res) {
-				await channels.set(
-					res.sort(
-						(a, b) =>
-							['', null, 'group', 'dm'].indexOf(a.type) - ['', null, 'group', 'dm'].indexOf(b.type)
-					)
-				);
-			}
-
-			return;
-		}
-
-		// check url path
-		const channel = $page.url.pathname.includes(`/channels/${event.channel_id}`);
-
-		let isInBackground = document.visibilityState !== 'visible';
-		if (window.electronAPI) {
-			const res = await window.electronAPI.send({
-				type: 'window:isFocused'
-			});
-			if (res) {
-				isInBackground = !res.isFocused;
-			}
-		}
-
-		if ((!channel || isInBackground) && event?.user?.id !== $user?.id) {
-			await tick();
-			const type = event?.data?.type ?? null;
-			const data = event?.data?.data ?? null;
-
-			if ($channels) {
-				if ($channels.find((ch) => ch.id === event.channel_id) && $channelId !== event.channel_id) {
-					channels.set(
-						$channels.map((ch) => {
-							if (ch.id === event.channel_id) {
-								if (type === 'message') {
-									return {
-										...ch,
-										unread_count: (ch.unread_count ?? 0) + 1,
-										last_message_at: event.created_at
-									};
-								}
-							}
-							return ch;
-						})
-					);
-				} else {
-					const res = await getChannels(localStorage.token).catch(async (error) => {
-						return null;
-					});
-
-					if (res) {
-						await channels.set(
-							res.sort(
-								(a, b) =>
-									['', null, 'group', 'dm'].indexOf(a.type) -
-									['', null, 'group', 'dm'].indexOf(b.type)
-							)
-						);
-					}
-				}
-			}
-
-			if (type === 'message') {
-				const title = `${data?.user?.name}${event?.channel?.type !== 'dm' ? ` (#${event?.channel?.name})` : ''}`;
-
-				if ($isLastActiveTab) {
-					if ($settings?.notificationEnabled ?? false) {
-						new Notification(`${title} • Open WebUI`, {
-							body: data?.content,
-							icon: `${WEBUI_API_BASE_URL}/users/${data?.user?.id}/profile/image`
-						});
-					}
-				}
-
-				toast.custom(NotificationToast, {
-					componentProps: {
-						onClick: () => {
-							goto(`/channels/${event.channel_id}`);
-						},
-						content: data?.content,
-						title: `${title}`
-					},
-					duration: 15000,
-					unstyled: true
-				});
 			}
 		}
 	};
@@ -963,11 +826,9 @@
 
 		user.subscribe(async (value) => {
 			if (value) {
-				$socket?.off('events', chatEventHandler);
-				$socket?.off('events:channel', channelEventHandler);
+					$socket?.off('events', chatEventHandler);
 
-				$socket?.on('events', chatEventHandler);
-				$socket?.on('events:channel', channelEventHandler);
+					$socket?.on('events', chatEventHandler);
 
 				const userSettings = await getUserSettings(localStorage.token);
 				if (userSettings) {
@@ -982,11 +843,10 @@
 					clearInterval(tokenTimer);
 				}
 				tokenTimer = setInterval(checkTokenExpiry, 15000);
-			} else {
-				$socket?.off('events', chatEventHandler);
-				$socket?.off('events:channel', channelEventHandler);
-			}
-		});
+				} else {
+					$socket?.off('events', chatEventHandler);
+				}
+			});
 
 		let backendConfig = null;
 		try {

@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Open WebUI Frontend Map</title>
+		<link rel="stylesheet" href="./styles.css" />
+	</head>
+	<body>
+		<div id="app">
+			<header class="topbar">
+				<div>
+					<h1>Open WebUI Frontend Map</h1>
+					<p>Screen, component, store, API, and function inventory from <code>src/routes</code> and <code>src/lib</code>.</p>
+				</div>
+				<div class="toolbar" aria-label="Map controls">
+					<button id="balanceButton" type="button">Auto Balance</button>
+					<button id="fitButton" type="button">Fit</button>
+					<button id="resetButton" type="button">Reset View</button>
+					<button id="exportButton" type="button">Export Markdown</button>
+					<button id="clearButton" type="button">Clear Annotations</button>
+				</div>
+			</header>
+
+			<main class="workspace">
+				<aside class="legend" aria-label="Map legend and inventory">
+					<div class="legend-section">
+						<h2>Inventory</h2>
+						<input id="searchInput" type="search" placeholder="Filter nodes and edges" />
+						<div id="stats" class="stats"></div>
+					</div>
+					<div class="legend-section">
+						<h2>Types</h2>
+						<div id="categoryFilters" class="category-filters"></div>
+					</div>
+					<div class="legend-section">
+						<h2>Notes</h2>
+						<p>Drag nodes to rearrange them. Drag empty canvas to pan. Hold Shift while using the wheel or trackpad to zoom.</p>
+						<p>Screenshots are intentionally empty until captured from a running local Open WebUI instance.</p>
+					</div>
+					<h2>Component Overview</h2>
+					<div id="nodeList" class="node-list"></div>
+				</aside>
+
+				<section id="mapViewport" class="map-viewport" aria-label="Navigable frontend flow chart">
+					<div id="mapSurface" class="map-surface">
+						<svg id="edgeLayer" class="edge-layer" aria-hidden="true"></svg>
+						<div id="nodeLayer" class="node-layer"></div>
+					</div>
+				</section>
+
+				<aside class="inspector" aria-label="Annotation inspector">
+					<div id="emptyInspector" class="empty-inspector">
+						<h2>Select a node or edge</h2>
+						<p>Annotations persist in this browser via localStorage and can be exported as Markdown.</p>
+					</div>
+					<div id="detailInspector" class="detail-inspector" hidden>
+						<div class="inspector-heading">
+							<span id="selectedType" class="pill"></span>
+							<h2 id="selectedTitle"></h2>
+						</div>
+						<p id="selectedDescription"></p>
+						<div id="selectedMeta" class="meta"></div>
+						<label for="annotationText">Annotation</label>
+						<textarea id="annotationText" rows="10" placeholder="Write notes, questions, risks, or follow-up tasks."></textarea>
+						<div class="inspector-actions">
+							<button id="saveAnnotationButton" type="button">Save</button>
+							<button id="removeAnnotationButton" type="button">Remove</button>
+						</div>
+					</div>
+				</aside>
+			</main>
+		</div>
+
+		<script src="./app.js"></script>
+	</body>
+</html>

@@ -24,7 +24,6 @@
 	import DefaultFiltersSelector from './DefaultFiltersSelector.svelte';
 	import DefaultFeatures from './DefaultFeatures.svelte';
 	import BuiltinTools from './BuiltinTools.svelte';
-	import PromptSuggestions from './PromptSuggestions.svelte';
 	import TerminalSelector from './TerminalSelector.svelte';
 	import AccessControlModal from '../common/AccessControlModal.svelte';
 	import LockClosed from '$lib/components/icons/LockClosed.svelte';
@@ -726,40 +725,6 @@
 								</div>
 							{/if}
 						</div>
-					</div>
-
-					<hr class=" border-gray-100/30 dark:border-gray-850/30 my-2" />
-
-					<div class="my-2">
-						<div class="flex w-full justify-between items-center">
-							<div class="flex w-full justify-between items-center">
-								<div class=" self-center text-xs font-medium text-gray-500">
-									{$i18n.t('Prompts')}
-								</div>
-
-								<button
-									class="p-1 text-xs flex rounded-sm transition"
-									type="button"
-									on:click={() => {
-										if ((info?.meta?.suggestion_prompts ?? null) === null) {
-											info.meta.suggestion_prompts = [{ content: '', title: ['', ''] }];
-										} else {
-											info.meta.suggestion_prompts = null;
-										}
-									}}
-								>
-									{#if (info?.meta?.suggestion_prompts ?? null) === null}
-										<span class="ml-2 self-center">{$i18n.t('Default')}</span>
-									{:else}
-										<span class="ml-2 self-center">{$i18n.t('Custom')}</span>
-									{/if}
-								</button>
-							</div>
-						</div>
-
-						{#if info?.meta?.suggestion_prompts}
-							<PromptSuggestions bind:promptSuggestions={info.meta.suggestion_prompts} />
-						{/if}
 					</div>
 
 					<div class="my-4">
