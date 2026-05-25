@@ -2,7 +2,7 @@
 
 ## Route And Feature Removal
 
-- [ ] Disable or remove public shared chat route: `src/routes/s/[id]/+page.svelte`.
+- [x] Disable or remove public shared chat route: `src/routes/s/[id]/+page.svelte`.
 - [ ] Remove Workspace prompts screen: `src/routes/(app)/workspace/prompts/+page.svelte`.
 - [ ] Remove Notes screen: `src/routes/(app)/notes/+page.svelte`.
 - [ ] Remove Automations screen: `src/routes/(app)/automations/+page.svelte`.
@@ -10,28 +10,28 @@
 
 ## Navigation Cleanup
 
-- [ ] Remove duplicate Workspace option from the profile menu and sidebar.
+- [x] Remove duplicate Workspace option from the profile menu and sidebar.
 - [ ] Remove the profile submenu.
 
 ## Workspace UI
 
-- [ ] Make all Open WebUI community mentions smaller and less pronounced.
-- [ ] Move Open WebUI community into the existing pill row as a normal pill.
+- [x] Make all Open WebUI community mentions smaller and less pronounced.
+- [x] Move Open WebUI community into the existing pill row as a normal pill.
 
 ## Settings IA
 
-- [ ] Cut the Audio section from Settings.
-- [ ] Merge Account and General settings.
-- [ ] Rename Interface to Design.
-- [ ] Make Design unfold into its subsections.
+- [x] Cut the Audio section from Settings.
+- [x] Merge Account and General settings.
+- [x] Rename Interface to Design.
+- [x] Make Design unfold into its subsections.
 - [ ] Leave About for a later pass.
-- [ ] Move Code execution from Integration to More.
+- [x] Move Code execution from Integration to More.
 
 ## Product Primitives
 
 - [ ] Add Memory support as a first-order primitive, similar to ChatGPT.
-- [ ] Add OpenRouter as a first-order primitive for Connections.
-- [ ] Add OpenRouter support for Image generation.
+- [x] Add OpenRouter as a first-order primitive for Connections.
+- [x] Add OpenRouter support for Image generation.
 
 ## Admin
 

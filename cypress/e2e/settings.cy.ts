@@ -28,16 +28,9 @@ describe('Settings', () => {
 		});
 	});
 
-	context('Interface', () => {
-		it('user can open the Interface modal and hit save', () => {
-			cy.get('button').contains('Interface').click();
-			cy.get('button').contains('Save').click();
-		});
-	});
-
-	context('Audio', () => {
-		it('user can open the Audio modal and hit save', () => {
-			cy.get('button').contains('Audio').click();
+	context('Design', () => {
+		it('user can open the Design modal and hit save', () => {
+			cy.get('button').contains('Design').click();
 			cy.get('button').contains('Save').click();
 		});
 	});
@@ -49,8 +42,9 @@ describe('Settings', () => {
 	});
 
 	context('Account', () => {
-		it('user can open the Account modal and hit save', () => {
-			cy.get('button').contains('Account').click();
+		it('user can use Account settings from General', () => {
+			cy.get('button').contains('General').click();
+			cy.contains('Your Account');
 			cy.get('button').contains('Save').click();
 		});
 	});

@@ -12,6 +12,7 @@
 	import { config, models, settings, user } from '$lib/stores';
 
 	import Switch from '$lib/components/common/Switch.svelte';
+	import SensitiveInput from '$lib/components/common/SensitiveInput.svelte';
 	import Spinner from '$lib/components/common/Spinner.svelte';
 	import Tooltip from '$lib/components/common/Tooltip.svelte';
 	import Plus from '$lib/components/icons/Plus.svelte';
@@ -42,6 +43,9 @@
 
 	let ENABLE_OPENAI_API: null | boolean = null;
 	let ENABLE_OLLAMA_API: null | boolean = null;
+	let ENABLE_OPENROUTER_API: null | boolean = null;
+	let OPENROUTER_API_BASE_URL = 'https://openrouter.ai/api/v1';
+	let OPENROUTER_API_KEY = '';
 
 	let connectionsConfig = null;
 
@@ -74,7 +78,11 @@
 				ENABLE_OPENAI_API: ENABLE_OPENAI_API,
 				OPENAI_API_BASE_URLS: OPENAI_API_BASE_URLS,
 				OPENAI_API_KEYS: OPENAI_API_KEYS,
-				OPENAI_API_CONFIGS: OPENAI_API_CONFIGS
+				OPENAI_API_CONFIGS: OPENAI_API_CONFIGS,
+				ENABLE_OPENROUTER_API: ENABLE_OPENROUTER_API ?? false,
+				OPENROUTER_API_BASE_URL: OPENROUTER_API_BASE_URL,
+				OPENROUTER_API_KEY: OPENROUTER_API_KEY,
+				OPENROUTER_API_CONFIG: { provider: 'openrouter' }
 			}).catch((error) => {
 				toast.error(`${error}`);
 			});
@@ -155,6 +163,10 @@
 
 			ENABLE_OPENAI_API = openaiConfig.ENABLE_OPENAI_API;
 			ENABLE_OLLAMA_API = ollamaConfig.ENABLE_OLLAMA_API;
+			ENABLE_OPENROUTER_API = openaiConfig.ENABLE_OPENROUTER_API ?? false;
+			OPENROUTER_API_BASE_URL =
+				openaiConfig.OPENROUTER_API_BASE_URL ?? 'https://openrouter.ai/api/v1';
+			OPENROUTER_API_KEY = openaiConfig.OPENROUTER_API_KEY ?? '';
 
 			OPENAI_API_BASE_URLS = openaiConfig.OPENAI_API_BASE_URLS;
 			OPENAI_API_KEYS = openaiConfig.OPENAI_API_KEYS;
@@ -217,7 +229,7 @@
 
 <form class="flex flex-col h-full justify-between text-sm" on:submit|preventDefault={submitHandler}>
 	<div class=" overflow-y-scroll scrollbar-hidden h-full">
-		{#if ENABLE_OPENAI_API !== null && ENABLE_OLLAMA_API !== null && connectionsConfig !== null}
+		{#if ENABLE_OPENAI_API !== null && ENABLE_OLLAMA_API !== null && ENABLE_OPENROUTER_API !== null && connectionsConfig !== null}
 			<div class="mb-3.5">
 				<div class=" mt-0.5 mb-2.5 text-base font-medium">{$i18n.t('General')}</div>
 
@@ -288,6 +300,39 @@
 							</div>
 						{/if}
 					</div>
+				</div>
+
+				<div class="my-2">
+					<div class="flex justify-between items-center text-sm mb-2">
+						<div class="font-medium">{$i18n.t('OpenRouter API')}</div>
+
+						<div class="mt-1">
+							<Switch
+								bind:state={ENABLE_OPENROUTER_API}
+								on:change={async () => {
+									updateOpenAIHandler();
+								}}
+							/>
+						</div>
+					</div>
+
+					{#if ENABLE_OPENROUTER_API}
+						<div class="flex flex-col gap-1.5 mt-1.5">
+							<input
+								class="w-full text-sm bg-transparent outline-hidden"
+								placeholder={$i18n.t('API Base URL')}
+								bind:value={OPENROUTER_API_BASE_URL}
+								on:change={updateOpenAIHandler}
+							/>
+							<SensitiveInput
+								inputClassName="w-full"
+								placeholder={$i18n.t('API Key')}
+								bind:value={OPENROUTER_API_KEY}
+								required={false}
+								on:change={updateOpenAIHandler}
+							/>
+						</div>
+					{/if}
 				</div>
 
 				<div class=" my-2">

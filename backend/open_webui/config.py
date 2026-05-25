@@ -1171,6 +1171,31 @@ OPENAI_API_CONFIGS = PersistentConfig(
     {},
 )
 
+
+ENABLE_OPENROUTER_API = PersistentConfig(
+    'ENABLE_OPENROUTER_API',
+    'openrouter.enable',
+    os.environ.get('ENABLE_OPENROUTER_API', 'False').lower() == 'true',
+)
+
+OPENROUTER_API_BASE_URL = PersistentConfig(
+    'OPENROUTER_API_BASE_URL',
+    'openrouter.api_base_url',
+    os.environ.get('OPENROUTER_API_BASE_URL', 'https://openrouter.ai/api/v1').rstrip('/'),
+)
+
+OPENROUTER_API_KEY = PersistentConfig(
+    'OPENROUTER_API_KEY',
+    'openrouter.api_key',
+    os.environ.get('OPENROUTER_API_KEY', ''),
+)
+
+OPENROUTER_API_CONFIG = PersistentConfig(
+    'OPENROUTER_API_CONFIG',
+    'openrouter.api_config',
+    {},
+)
+
 # Get the actual OpenAI API key based on the base URL
 OPENAI_API_KEY = ''
 try:
@@ -3842,6 +3867,30 @@ IMAGES_OPENAI_API_PARAMS = PersistentConfig(
 )
 
 
+IMAGES_OPENROUTER_API_BASE_URL = PersistentConfig(
+    'IMAGES_OPENROUTER_API_BASE_URL',
+    'image_generation.openrouter.api_base_url',
+    os.getenv('IMAGES_OPENROUTER_API_BASE_URL', 'https://openrouter.ai/api/v1').rstrip('/'),
+)
+IMAGES_OPENROUTER_API_KEY = PersistentConfig(
+    'IMAGES_OPENROUTER_API_KEY',
+    'image_generation.openrouter.api_key',
+    os.getenv('IMAGES_OPENROUTER_API_KEY', OPENROUTER_API_KEY.value),
+)
+
+images_openrouter_params = os.getenv('IMAGES_OPENROUTER_PARAMS', '')
+try:
+    images_openrouter_params = json.loads(images_openrouter_params)
+except json.JSONDecodeError:
+    images_openrouter_params = {}
+
+IMAGES_OPENROUTER_API_PARAMS = PersistentConfig(
+    'IMAGES_OPENROUTER_API_PARAMS',
+    'image_generation.openrouter.params',
+    images_openrouter_params,
+)
+
+
 IMAGES_GEMINI_API_BASE_URL = PersistentConfig(
     'IMAGES_GEMINI_API_BASE_URL',
     'image_generation.gemini.api_base_url',
@@ -3894,6 +3943,17 @@ IMAGES_EDIT_OPENAI_API_KEY = PersistentConfig(
     'IMAGES_EDIT_OPENAI_API_KEY',
     'images.edit.openai.api_key',
     os.getenv('IMAGES_EDIT_OPENAI_API_KEY', OPENAI_API_KEY),
+)
+
+IMAGES_EDIT_OPENROUTER_API_BASE_URL = PersistentConfig(
+    'IMAGES_EDIT_OPENROUTER_API_BASE_URL',
+    'images.edit.openrouter.api_base_url',
+    os.getenv('IMAGES_EDIT_OPENROUTER_API_BASE_URL', 'https://openrouter.ai/api/v1').rstrip('/'),
+)
+IMAGES_EDIT_OPENROUTER_API_KEY = PersistentConfig(
+    'IMAGES_EDIT_OPENROUTER_API_KEY',
+    'images.edit.openrouter.api_key',
+    os.getenv('IMAGES_EDIT_OPENROUTER_API_KEY', OPENROUTER_API_KEY.value),
 )
 
 IMAGES_EDIT_GEMINI_API_BASE_URL = PersistentConfig(

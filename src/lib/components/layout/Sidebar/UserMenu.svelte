@@ -10,14 +10,12 @@
 		mobile,
 		showSidebar,
 		showShortcuts,
-		user,
-		settings
+		user
 	} from '$lib/stores';
 
 	import { WEBUI_API_BASE_URL } from '$lib/constants';
 
 	import Dropdown from '$lib/components/common/Dropdown.svelte';
-	import Tooltip from '$lib/components/common/Tooltip.svelte';
 	import ArchiveBox from '$lib/components/icons/ArchiveBox.svelte';
 	import QuestionMarkCircle from '$lib/components/icons/QuestionMarkCircle.svelte';
 	import Map from '$lib/components/icons/Map.svelte';
@@ -26,9 +24,6 @@
 	import Settings from '$lib/components/icons/Settings.svelte';
 	import UserGroup from '$lib/components/icons/UserGroup.svelte';
 	import SignOut from '$lib/components/icons/SignOut.svelte';
-	import Pin from '$lib/components/icons/Pin.svelte';
-	import PinSlash from '$lib/components/icons/PinSlash.svelte';
-	import { updateUserSettings } from '$lib/apis/users';
 
 	const i18n = getContext('i18n');
 
@@ -41,42 +36,12 @@
 	export let className = 'w-[240px]';
 	export let align = 'end';
 
-	let shiftKey = false;
-
 	const dispatch = createEventDispatcher();
-
-	const DEFAULT_PINNED_ITEMS = ['workspace'];
-
-	$: pinnedItems = $settings?.pinnedMenuItems ?? DEFAULT_PINNED_ITEMS;
-
-	const isPinned = (id: string) => {
-		return pinnedItems.includes(id);
-	};
-
-	const togglePin = async (id: string) => {
-		let updated;
-		if (isPinned(id)) {
-			updated = pinnedItems.filter((item) => item !== id);
-		} else {
-			updated = [...pinnedItems, id];
-		}
-		await settings.set({ ...$settings, pinnedMenuItems: updated });
-		await updateUserSettings(localStorage.token, { ui: $settings });
-	};
 
 	const handleDropdownChange = (state) => {
 		dispatch('change', state);
 	};
 </script>
-
-<svelte:window
-	on:keydown={(e) => {
-		if (e.key === 'Shift') shiftKey = true;
-	}}
-	on:keyup={(e) => {
-		if (e.key === 'Shift') shiftKey = false;
-	}}
-/>
 
 <ShortcutsModal bind:show={$showShortcuts} />
 
@@ -175,65 +140,6 @@
 				</div>
 				<div class=" self-center truncate">{$i18n.t('Archived Chats')}</div>
 			</button>
-
-			<hr class=" border-gray-50/30 dark:border-gray-800/30 my-1 p-0" />
-
-			{#if $user?.role === 'admin' || $user?.permissions?.workspace?.models || $user?.permissions?.workspace?.knowledge || $user?.permissions?.workspace?.prompts || $user?.permissions?.workspace?.tools}
-				<div class="flex items-center w-full">
-					<a
-						href="/workspace"
-						draggable="false"
-						class="flex flex-1 rounded-xl py-1.5 px-3 hover:bg-gray-50 dark:hover:bg-gray-800 transition cursor-pointer select-none"
-						on:click={async (e) => {
-							if (e.metaKey || e.ctrlKey || e.shiftKey || e.button === 1) return;
-							e.preventDefault();
-							show = false;
-							goto('/workspace');
-							if ($mobile) {
-								await tick();
-								showSidebar.set(false);
-							}
-						}}
-					>
-						<div class="self-center mr-3">
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								fill="none"
-								viewBox="0 0 24 24"
-								stroke-width="1.5"
-								stroke="currentColor"
-								class="size-5"
-							>
-								<path
-									stroke-linecap="round"
-									stroke-linejoin="round"
-									d="M13.5 16.875h3.375m0 0h3.375m-3.375 0V13.5m0 3.375v3.375M6 10.5h2.25a2.25 2.25 0 0 0 2.25-2.25V6a2.25 2.25 0 0 0-2.25-2.25H6A2.25 2.25 0 0 0 3.75 6v2.25A2.25 2.25 0 0 0 6 10.5Zm0 9.75h2.25A2.25 2.25 0 0 0 10.5 18v-2.25a2.25 2.25 0 0 0-2.25-2.25H6a2.25 2.25 0 0 0-2.25 2.25V18A2.25 2.25 0 0 0 6 20.25Zm9.75-9.75H18a2.25 2.25 0 0 0 2.25-2.25V6A2.25 2.25 0 0 0 18 3.75h-2.25A2.25 2.25 0 0 0 13.5 6v2.25a2.25 2.25 0 0 0 2.25 2.25Z"
-								/>
-							</svg>
-						</div>
-						<div class="self-center truncate">{$i18n.t('Workspace')}</div>
-					</a>
-					{#if shiftKey}
-						<Tooltip
-							content={isPinned('workspace')
-								? $i18n.t('Unpin from Sidebar')
-								: $i18n.t('Pin to Sidebar')}
-						>
-							<button
-								type="button"
-								class="p-1 mr-1 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition"
-								on:click|preventDefault|stopPropagation={() => togglePin('workspace')}
-							>
-								{#if isPinned('workspace')}
-									<PinSlash className="size-3.5" strokeWidth="1.5" />
-								{:else}
-									<Pin className="size-3.5" strokeWidth="1.5" />
-								{/if}
-							</button>
-						</Tooltip>
-					{/if}
-				</div>
-			{/if}
 
 			{#if help}
 				<hr class=" border-gray-50/30 dark:border-gray-800/30 my-1 p-0" />

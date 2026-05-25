@@ -334,7 +334,7 @@
 	/>
 
 	<div class=" space-y-3 overflow-y-scroll max-h-[28rem] md:max-h-full">
-		<div>
+		<div id="design-section-ui" class="scroll-mt-3">
 			<h1 class=" mb-2 text-sm font-medium">{$i18n.t('UI')}</h1>
 
 			<div>
@@ -590,7 +590,9 @@
 				</div>
 			{/if}
 
-			<div class=" my-2 text-sm font-medium">{$i18n.t('Chat')}</div>
+			<div id="design-section-chat" class=" my-2 text-sm font-medium scroll-mt-3">
+				{$i18n.t('Chat')}
+			</div>
 
 			<div>
 				<div class=" py-0.5 flex w-full justify-between">
@@ -1137,7 +1139,9 @@
 				</div>
 			</div>
 
-			<div class=" my-2 text-sm font-medium">{$i18n.t('Input')}</div>
+			<div id="design-section-input" class=" my-2 text-sm font-medium scroll-mt-3">
+				{$i18n.t('Input')}
+			</div>
 
 			<div>
 				<div class=" py-0.5 flex w-full justify-between">
@@ -1261,7 +1265,9 @@
 				</div>
 			</div>
 
-			<div class=" my-2 text-sm font-medium">{$i18n.t('Artifacts')}</div>
+			<div id="design-section-artifacts" class=" my-2 text-sm font-medium scroll-mt-3">
+				{$i18n.t('Artifacts')}
+			</div>
 
 			<div>
 				<div class=" py-0.5 flex w-full justify-between">
@@ -1320,7 +1326,9 @@
 				</div>
 			</div>
 
-			<div class=" my-2 text-sm font-medium">{$i18n.t('Voice')}</div>
+			<div id="design-section-voice" class=" my-2 text-sm font-medium scroll-mt-3">
+				{$i18n.t('Voice')}
+			</div>
 
 			<div>
 				<div class=" py-0.5 flex w-full justify-between">
@@ -1360,7 +1368,9 @@
 				</div>
 			</div>
 
-			<div class=" my-2 text-sm font-medium">{$i18n.t('File')}</div>
+			<div id="design-section-file" class=" my-2 text-sm font-medium scroll-mt-3">
+				{$i18n.t('File')}
+			</div>
 
 			<div>
 				<div class=" py-0.5 flex w-full justify-between">

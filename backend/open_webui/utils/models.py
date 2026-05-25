@@ -63,7 +63,7 @@ async def fetch_openai_models(request: Request, user: UserModel = None):
 async def get_all_base_models(request: Request, user: UserModel = None):
     openai_task = (
         fetch_openai_models(request, user)
-        if request.app.state.config.ENABLE_OPENAI_API
+        if request.app.state.config.ENABLE_OPENAI_API or request.app.state.config.ENABLE_OPENROUTER_API
         else asyncio.sleep(0, result=[])
     )
     ollama_task = (

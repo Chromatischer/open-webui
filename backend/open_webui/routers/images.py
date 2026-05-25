@@ -88,6 +88,12 @@ async def get_image_model(request):
             if request.app.state.config.IMAGE_GENERATION_MODEL
             else 'dall-e-2'
         )
+    elif request.app.state.config.IMAGE_GENERATION_ENGINE == 'openrouter':
+        return (
+            request.app.state.config.IMAGE_GENERATION_MODEL
+            if request.app.state.config.IMAGE_GENERATION_MODEL
+            else 'google/gemini-2.5-flash-image'
+        )
     elif request.app.state.config.IMAGE_GENERATION_ENGINE == 'gemini':
         return (
             request.app.state.config.IMAGE_GENERATION_MODEL
@@ -128,6 +134,9 @@ class ImagesConfig(BaseModel):
     IMAGES_OPENAI_API_KEY: str
     IMAGES_OPENAI_API_VERSION: str
     IMAGES_OPENAI_API_PARAMS: Optional[dict | str]
+    IMAGES_OPENROUTER_API_BASE_URL: str
+    IMAGES_OPENROUTER_API_KEY: str
+    IMAGES_OPENROUTER_API_PARAMS: Optional[dict | str]
 
     AUTOMATIC1111_BASE_URL: str
     AUTOMATIC1111_API_AUTH: Optional[dict | str]
@@ -150,6 +159,8 @@ class ImagesConfig(BaseModel):
     IMAGES_EDIT_OPENAI_API_BASE_URL: str
     IMAGES_EDIT_OPENAI_API_KEY: str
     IMAGES_EDIT_OPENAI_API_VERSION: str
+    IMAGES_EDIT_OPENROUTER_API_BASE_URL: str
+    IMAGES_EDIT_OPENROUTER_API_KEY: str
     IMAGES_EDIT_GEMINI_API_BASE_URL: str
     IMAGES_EDIT_GEMINI_API_KEY: str
     IMAGES_EDIT_COMFYUI_BASE_URL: str
@@ -171,6 +182,9 @@ async def get_config(request: Request, user=Depends(get_admin_user)):
         'IMAGES_OPENAI_API_KEY': request.app.state.config.IMAGES_OPENAI_API_KEY,
         'IMAGES_OPENAI_API_VERSION': request.app.state.config.IMAGES_OPENAI_API_VERSION,
         'IMAGES_OPENAI_API_PARAMS': request.app.state.config.IMAGES_OPENAI_API_PARAMS,
+        'IMAGES_OPENROUTER_API_BASE_URL': request.app.state.config.IMAGES_OPENROUTER_API_BASE_URL,
+        'IMAGES_OPENROUTER_API_KEY': request.app.state.config.IMAGES_OPENROUTER_API_KEY,
+        'IMAGES_OPENROUTER_API_PARAMS': request.app.state.config.IMAGES_OPENROUTER_API_PARAMS,
         'AUTOMATIC1111_BASE_URL': request.app.state.config.AUTOMATIC1111_BASE_URL,
         'AUTOMATIC1111_API_AUTH': request.app.state.config.AUTOMATIC1111_API_AUTH,
         'AUTOMATIC1111_PARAMS': request.app.state.config.AUTOMATIC1111_PARAMS,
@@ -188,6 +202,8 @@ async def get_config(request: Request, user=Depends(get_admin_user)):
         'IMAGES_EDIT_OPENAI_API_BASE_URL': request.app.state.config.IMAGES_EDIT_OPENAI_API_BASE_URL,
         'IMAGES_EDIT_OPENAI_API_KEY': request.app.state.config.IMAGES_EDIT_OPENAI_API_KEY,
         'IMAGES_EDIT_OPENAI_API_VERSION': request.app.state.config.IMAGES_EDIT_OPENAI_API_VERSION,
+        'IMAGES_EDIT_OPENROUTER_API_BASE_URL': request.app.state.config.IMAGES_EDIT_OPENROUTER_API_BASE_URL,
+        'IMAGES_EDIT_OPENROUTER_API_KEY': request.app.state.config.IMAGES_EDIT_OPENROUTER_API_KEY,
         'IMAGES_EDIT_GEMINI_API_BASE_URL': request.app.state.config.IMAGES_EDIT_GEMINI_API_BASE_URL,
         'IMAGES_EDIT_GEMINI_API_KEY': request.app.state.config.IMAGES_EDIT_GEMINI_API_KEY,
         'IMAGES_EDIT_COMFYUI_BASE_URL': request.app.state.config.IMAGES_EDIT_COMFYUI_BASE_URL,
@@ -237,6 +253,9 @@ async def update_config(request: Request, form_data: ImagesConfig, user=Depends(
     request.app.state.config.IMAGES_OPENAI_API_KEY = form_data.IMAGES_OPENAI_API_KEY
     request.app.state.config.IMAGES_OPENAI_API_VERSION = form_data.IMAGES_OPENAI_API_VERSION
     request.app.state.config.IMAGES_OPENAI_API_PARAMS = form_data.IMAGES_OPENAI_API_PARAMS
+    request.app.state.config.IMAGES_OPENROUTER_API_BASE_URL = form_data.IMAGES_OPENROUTER_API_BASE_URL.strip('/')
+    request.app.state.config.IMAGES_OPENROUTER_API_KEY = form_data.IMAGES_OPENROUTER_API_KEY
+    request.app.state.config.IMAGES_OPENROUTER_API_PARAMS = form_data.IMAGES_OPENROUTER_API_PARAMS
 
     request.app.state.config.AUTOMATIC1111_BASE_URL = form_data.AUTOMATIC1111_BASE_URL
     request.app.state.config.AUTOMATIC1111_API_AUTH = form_data.AUTOMATIC1111_API_AUTH
@@ -260,6 +279,8 @@ async def update_config(request: Request, form_data: ImagesConfig, user=Depends(
     request.app.state.config.IMAGES_EDIT_OPENAI_API_BASE_URL = form_data.IMAGES_EDIT_OPENAI_API_BASE_URL
     request.app.state.config.IMAGES_EDIT_OPENAI_API_KEY = form_data.IMAGES_EDIT_OPENAI_API_KEY
     request.app.state.config.IMAGES_EDIT_OPENAI_API_VERSION = form_data.IMAGES_EDIT_OPENAI_API_VERSION
+    request.app.state.config.IMAGES_EDIT_OPENROUTER_API_BASE_URL = form_data.IMAGES_EDIT_OPENROUTER_API_BASE_URL.strip('/')
+    request.app.state.config.IMAGES_EDIT_OPENROUTER_API_KEY = form_data.IMAGES_EDIT_OPENROUTER_API_KEY
 
     request.app.state.config.IMAGES_EDIT_GEMINI_API_BASE_URL = form_data.IMAGES_EDIT_GEMINI_API_BASE_URL
     request.app.state.config.IMAGES_EDIT_GEMINI_API_KEY = form_data.IMAGES_EDIT_GEMINI_API_KEY
@@ -280,6 +301,9 @@ async def update_config(request: Request, form_data: ImagesConfig, user=Depends(
         'IMAGES_OPENAI_API_KEY': request.app.state.config.IMAGES_OPENAI_API_KEY,
         'IMAGES_OPENAI_API_VERSION': request.app.state.config.IMAGES_OPENAI_API_VERSION,
         'IMAGES_OPENAI_API_PARAMS': request.app.state.config.IMAGES_OPENAI_API_PARAMS,
+        'IMAGES_OPENROUTER_API_BASE_URL': request.app.state.config.IMAGES_OPENROUTER_API_BASE_URL,
+        'IMAGES_OPENROUTER_API_KEY': request.app.state.config.IMAGES_OPENROUTER_API_KEY,
+        'IMAGES_OPENROUTER_API_PARAMS': request.app.state.config.IMAGES_OPENROUTER_API_PARAMS,
         'AUTOMATIC1111_BASE_URL': request.app.state.config.AUTOMATIC1111_BASE_URL,
         'AUTOMATIC1111_API_AUTH': request.app.state.config.AUTOMATIC1111_API_AUTH,
         'AUTOMATIC1111_PARAMS': request.app.state.config.AUTOMATIC1111_PARAMS,
@@ -297,6 +321,8 @@ async def update_config(request: Request, form_data: ImagesConfig, user=Depends(
         'IMAGES_EDIT_OPENAI_API_BASE_URL': request.app.state.config.IMAGES_EDIT_OPENAI_API_BASE_URL,
         'IMAGES_EDIT_OPENAI_API_KEY': request.app.state.config.IMAGES_EDIT_OPENAI_API_KEY,
         'IMAGES_EDIT_OPENAI_API_VERSION': request.app.state.config.IMAGES_EDIT_OPENAI_API_VERSION,
+        'IMAGES_EDIT_OPENROUTER_API_BASE_URL': request.app.state.config.IMAGES_EDIT_OPENROUTER_API_BASE_URL,
+        'IMAGES_EDIT_OPENROUTER_API_KEY': request.app.state.config.IMAGES_EDIT_OPENROUTER_API_KEY,
         'IMAGES_EDIT_GEMINI_API_BASE_URL': request.app.state.config.IMAGES_EDIT_GEMINI_API_BASE_URL,
         'IMAGES_EDIT_GEMINI_API_KEY': request.app.state.config.IMAGES_EDIT_GEMINI_API_KEY,
         'IMAGES_EDIT_COMFYUI_BASE_URL': request.app.state.config.IMAGES_EDIT_COMFYUI_BASE_URL,
@@ -358,6 +384,20 @@ async def get_models(request: Request, user=Depends(get_verified_user)):
                 {'id': 'dall-e-3', 'name': 'DALL·E 3'},
                 {'id': 'gpt-image-1', 'name': 'GPT-IMAGE 1'},
                 {'id': 'gpt-image-1.5', 'name': 'GPT-IMAGE 1.5'},
+            ]
+        elif request.app.state.config.IMAGE_GENERATION_ENGINE == 'openrouter':
+            session = await get_session()
+            async with session.get(
+                url=f'{request.app.state.config.IMAGES_OPENROUTER_API_BASE_URL}/models?output_modalities=image',
+                headers=openrouter_headers(request.app.state.config.IMAGES_OPENROUTER_API_KEY, user),
+                ssl=AIOHTTP_CLIENT_SESSION_SSL,
+            ) as r:
+                r.raise_for_status()
+                res = await r.json()
+            return [
+                {'id': model.get('id'), 'name': model.get('name', model.get('id'))}
+                for model in res.get('data', [])
+                if model.get('id')
             ]
         elif request.app.state.config.IMAGE_GENERATION_ENGINE == 'gemini':
             return [
@@ -506,6 +546,56 @@ async def upload_image(request, image_data, content_type, metadata, user, db=Non
     return file_item, url
 
 
+def openrouter_headers(api_key: str, user=None):
+    headers = {
+        'Authorization': f'Bearer {api_key}',
+        'Content-Type': 'application/json',
+        'HTTP-Referer': 'https://openwebui.com/',
+        'X-Title': 'Open WebUI',
+    }
+
+    if ENABLE_FORWARD_USER_INFO_HEADERS:
+        headers = include_user_info_headers(headers, user)
+
+    return headers
+
+
+def size_to_openrouter_image_config(size: Optional[str]) -> dict:
+    if not size or 'x' not in size:
+        return {}
+
+    width, height = tuple(map(int, size.split('x')))
+    if width <= 0 or height <= 0:
+        return {}
+
+    ratio = width / height
+    aspect_ratios = {
+        '1:1': 1,
+        '2:3': 2 / 3,
+        '3:2': 3 / 2,
+        '3:4': 3 / 4,
+        '4:3': 4 / 3,
+        '4:5': 4 / 5,
+        '5:4': 5 / 4,
+        '9:16': 9 / 16,
+        '16:9': 16 / 9,
+        '21:9': 21 / 9,
+    }
+    closest = min(aspect_ratios, key=lambda key: abs(aspect_ratios[key] - ratio))
+    return {'aspect_ratio': closest}
+
+
+def extract_openrouter_images(res: dict) -> list[str]:
+    images = []
+    for choice in res.get('choices', []):
+        message = choice.get('message') or {}
+        for image in message.get('images') or []:
+            image_url = image.get('image_url') or image.get('imageUrl') or {}
+            if isinstance(image_url, dict) and image_url.get('url'):
+                images.append(image_url['url'])
+    return images
+
+
 @router.post('/generations')
 async def generate_images(request: Request, form_data: CreateImageForm, user=Depends(get_verified_user)):
     if not request.app.state.config.ENABLE_IMAGE_GENERATION:
@@ -609,6 +699,45 @@ async def image_generations(
 
                 _, url = await upload_image(request, image_data, content_type, {**data, **metadata}, user)
                 images.append({'url': url})
+            return images
+
+        elif request.app.state.config.IMAGE_GENERATION_ENGINE == 'openrouter':
+            data = {
+                'model': model,
+                'messages': [{'role': 'user', 'content': form_data.prompt}],
+                'modalities': ['image', 'text'],
+                'stream': False,
+                **(
+                    {'image_config': size_to_openrouter_image_config(form_data.size or request.app.state.config.IMAGE_SIZE)}
+                    if size_to_openrouter_image_config(form_data.size or request.app.state.config.IMAGE_SIZE)
+                    else {}
+                ),
+                **(
+                    {}
+                    if not request.app.state.config.IMAGES_OPENROUTER_API_PARAMS
+                    else request.app.state.config.IMAGES_OPENROUTER_API_PARAMS
+                ),
+            }
+
+            session = await get_session()
+            async with session.post(
+                url=f'{request.app.state.config.IMAGES_OPENROUTER_API_BASE_URL}/chat/completions',
+                json=data,
+                headers=openrouter_headers(request.app.state.config.IMAGES_OPENROUTER_API_KEY, user),
+                ssl=AIOHTTP_CLIENT_SESSION_SSL,
+            ) as r:
+                r.raise_for_status()
+                res = await r.json()
+
+            images = []
+            for image_url in extract_openrouter_images(res):
+                image_data, content_type = await get_image_data(image_url)
+                _, url = await upload_image(request, image_data, content_type, {**data, **metadata}, user)
+                images.append({'url': url})
+
+            if not images:
+                raise Exception('OpenRouter response did not include generated images.')
+
             return images
 
         elif request.app.state.config.IMAGE_GENERATION_ENGINE == 'gemini':
@@ -939,6 +1068,42 @@ async def image_edits(
 
                 _, url = await upload_image(request, image_data, content_type, {**data, **metadata}, user)
                 images.append({'url': url})
+            return images
+
+        elif request.app.state.config.IMAGE_EDIT_ENGINE == 'openrouter':
+            content = [{'type': 'text', 'text': form_data.prompt}]
+            if isinstance(form_data.image, str):
+                content.append({'type': 'image_url', 'image_url': {'url': form_data.image}})
+            elif isinstance(form_data.image, list):
+                content.extend([{'type': 'image_url', 'image_url': {'url': image}} for image in form_data.image])
+
+            data = {
+                'model': model,
+                'messages': [{'role': 'user', 'content': content}],
+                'modalities': ['image', 'text'],
+                'stream': False,
+                **({'image_config': size_to_openrouter_image_config(size)} if size_to_openrouter_image_config(size) else {}),
+            }
+
+            session = await get_session()
+            async with session.post(
+                url=f'{request.app.state.config.IMAGES_EDIT_OPENROUTER_API_BASE_URL}/chat/completions',
+                json=data,
+                headers=openrouter_headers(request.app.state.config.IMAGES_EDIT_OPENROUTER_API_KEY, user),
+                ssl=AIOHTTP_CLIENT_SESSION_SSL,
+            ) as r:
+                r.raise_for_status()
+                res = await r.json()
+
+            images = []
+            for image_url in extract_openrouter_images(res):
+                image_data, content_type = await get_image_data(image_url)
+                _, url = await upload_image(request, image_data, content_type, {**data, **metadata}, user)
+                images.append({'url': url})
+
+            if not images:
+                raise Exception('OpenRouter response did not include edited images.')
+
             return images
 
         elif request.app.state.config.IMAGE_EDIT_ENGINE == 'gemini':

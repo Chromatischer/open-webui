@@ -117,6 +117,14 @@
 			config.ENABLE_IMAGE_GENERATION = false;
 
 			return null;
+		} else if (
+			config.IMAGE_GENERATION_ENGINE === 'openrouter' &&
+			config.IMAGES_OPENROUTER_API_KEY === ''
+		) {
+			toast.error($i18n.t('OpenRouter API Key is required.'));
+			config.ENABLE_IMAGE_GENERATION = false;
+
+			return null;
 		} else if (config.IMAGE_GENERATION_ENGINE === 'gemini' && config.IMAGES_GEMINI_API_KEY === '') {
 			toast.error($i18n.t('Gemini API Key is required.'));
 			config.ENABLE_IMAGE_GENERATION = false;
@@ -134,6 +142,11 @@
 				typeof config.IMAGES_OPENAI_API_PARAMS === 'string' &&
 				config.IMAGES_OPENAI_API_PARAMS.trim() !== ''
 					? JSON.parse(config.IMAGES_OPENAI_API_PARAMS)
+					: {},
+			IMAGES_OPENROUTER_API_PARAMS:
+				typeof config.IMAGES_OPENROUTER_API_PARAMS === 'string' &&
+				config.IMAGES_OPENROUTER_API_PARAMS.trim() !== ''
+					? JSON.parse(config.IMAGES_OPENROUTER_API_PARAMS)
 					: {}
 		}).catch((error) => {
 			toast.error(`${error}`);
@@ -258,6 +271,11 @@
 				typeof config.IMAGES_OPENAI_API_PARAMS === 'object'
 					? JSON.stringify(config.IMAGES_OPENAI_API_PARAMS ?? {}, null, 2)
 					: config.IMAGES_OPENAI_API_PARAMS;
+
+			config.IMAGES_OPENROUTER_API_PARAMS =
+				typeof config.IMAGES_OPENROUTER_API_PARAMS === 'object'
+					? JSON.stringify(config.IMAGES_OPENROUTER_API_PARAMS ?? {}, null, 2)
+					: config.IMAGES_OPENROUTER_API_PARAMS;
 
 			config.AUTOMATIC1111_PARAMS =
 				typeof config.AUTOMATIC1111_PARAMS === 'object'
@@ -407,6 +425,7 @@
 								placeholder={$i18n.t('Select Engine')}
 							>
 								<option value="openai">{$i18n.t('Default (Open AI)')}</option>
+								<option value="openrouter">{$i18n.t('OpenRouter')}</option>
 								<option value="comfyui">{$i18n.t('ComfyUI')}</option>
 								<option value="automatic1111">{$i18n.t('Automatic1111')}</option>
 								<option value="gemini">{$i18n.t('Gemini')}</option>
@@ -489,6 +508,61 @@
 									<Textarea
 										className="rounded-lg w-full py-2 px-3 text-sm bg-gray-50 dark:text-gray-300 dark:bg-gray-850 outline-hidden"
 										bind:value={config.IMAGES_OPENAI_API_PARAMS}
+										placeholder={$i18n.t('Enter additional parameters in JSON format')}
+										minSize={100}
+									/>
+								</div>
+							</div>
+						</div>
+					{:else if config?.IMAGE_GENERATION_ENGINE === 'openrouter'}
+						<div class="mb-2.5">
+							<div class="flex w-full justify-between items-center">
+								<div class="text-xs pr-2 shrink-0">
+									<div class="">{$i18n.t('OpenRouter API Base URL')}</div>
+								</div>
+
+								<div class="flex w-full">
+									<div class="flex-1">
+										<input
+											class="w-full text-sm bg-transparent outline-hidden text-right"
+											placeholder={$i18n.t('API Base URL')}
+											bind:value={config.IMAGES_OPENROUTER_API_BASE_URL}
+										/>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="mb-2.5">
+							<div class="flex w-full justify-between items-center">
+								<div class="text-xs pr-2 shrink-0">
+									<div class="">{$i18n.t('OpenRouter API Key')}</div>
+								</div>
+
+								<div class="flex w-full">
+									<div class="flex-1">
+										<SensitiveInput
+											inputClassName="text-right w-full"
+											placeholder={$i18n.t('API Key')}
+											bind:value={config.IMAGES_OPENROUTER_API_KEY}
+											required={false}
+										/>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="mb-2.5">
+							<div class="flex w-full justify-between items-center">
+								<div class="text-xs pr-2 shrink-0">
+									<div class="">{$i18n.t('Additional Parameters')}</div>
+								</div>
+							</div>
+							<div class="mt-1.5 flex w-full">
+								<div class="flex-1 mr-2">
+									<Textarea
+										className="rounded-lg w-full py-2 px-3 text-sm bg-gray-50 dark:text-gray-300 dark:bg-gray-850 outline-hidden"
+										bind:value={config.IMAGES_OPENROUTER_API_PARAMS}
 										placeholder={$i18n.t('Enter additional parameters in JSON format')}
 										minSize={100}
 									/>
@@ -955,6 +1029,7 @@
 								placeholder={$i18n.t('Select Engine')}
 							>
 								<option value="openai">{$i18n.t('Default (Open AI)')}</option>
+								<option value="openrouter">{$i18n.t('OpenRouter')}</option>
 								<option value="comfyui">{$i18n.t('ComfyUI')}</option>
 								<option value="gemini">{$i18n.t('Gemini')}</option>
 							</select>
@@ -1017,6 +1092,43 @@
 											class="w-full text-sm bg-transparent outline-hidden text-right"
 											placeholder={$i18n.t('API Version')}
 											bind:value={config.IMAGES_EDIT_OPENAI_API_VERSION}
+										/>
+									</div>
+								</div>
+							</div>
+						</div>
+					{:else if config?.IMAGE_EDIT_ENGINE === 'openrouter'}
+						<div class="mb-2.5">
+							<div class="flex w-full justify-between items-center">
+								<div class="text-xs pr-2 shrink-0">
+									<div class="">{$i18n.t('OpenRouter API Base URL')}</div>
+								</div>
+
+								<div class="flex w-full">
+									<div class="flex-1">
+										<input
+											class="w-full text-sm bg-transparent outline-hidden text-right"
+											placeholder={$i18n.t('API Base URL')}
+											bind:value={config.IMAGES_EDIT_OPENROUTER_API_BASE_URL}
+										/>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="mb-2.5">
+							<div class="flex w-full justify-between items-center">
+								<div class="text-xs pr-2 shrink-0">
+									<div class="">{$i18n.t('OpenRouter API Key')}</div>
+								</div>
+
+								<div class="flex w-full">
+									<div class="flex-1">
+										<SensitiveInput
+											inputClassName="text-right w-full"
+											placeholder={$i18n.t('API Key')}
+											bind:value={config.IMAGES_EDIT_OPENROUTER_API_KEY}
+											required={false}
 										/>
 									</div>
 								</div>

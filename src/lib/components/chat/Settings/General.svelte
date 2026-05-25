@@ -9,6 +9,7 @@
 	const i18n = getContext('i18n');
 
 	import AdvancedParams from './Advanced/AdvancedParams.svelte';
+	import Account from './Account.svelte';
 	import Textarea from '$lib/components/common/Textarea.svelte';
 	export let saveSettings: Function;
 	export let getModels: Function;
@@ -21,6 +22,8 @@
 	let lang = $i18n.language;
 	let notificationEnabled = false;
 	let system = '';
+
+	let defaultModelId = '';
 
 	let showAdvanced = false;
 
@@ -69,6 +72,7 @@
 
 	const saveHandler = async () => {
 		saveSettings({
+			models: [defaultModelId],
 			system: system !== '' ? system : undefined,
 			params: {
 				stream_response: params.stream_response !== null ? params.stream_response : undefined,
@@ -118,6 +122,11 @@
 
 		notificationEnabled = $settings.notificationEnabled ?? false;
 		system = $settings.system ?? '';
+
+		defaultModelId = $settings?.models?.at(0) ?? '';
+		if ($config?.default_models) {
+			defaultModelId = $config.default_models.split(',')[0];
+		}
 
 		params = { ...params, ...$settings.params };
 		params.stop = $settings?.params?.stop ? ($settings?.params?.stop ?? []).join(',') : null;
@@ -197,6 +206,16 @@
 <div class="flex flex-col h-full justify-between text-sm" id="tab-general">
 	<div class="  overflow-y-scroll max-h-[28rem] md:max-h-full">
 		<div class="">
+			<Account
+				embedded
+				{saveSettings}
+				saveHandler={() => {
+					toast.success($i18n.t('Settings saved successfully!'));
+				}}
+			/>
+
+			<hr class="border-gray-100/30 dark:border-gray-850/30 my-3" />
+
 			<div class=" mb-1 text-sm font-medium">{$i18n.t('WebUI Settings')}</div>
 
 			<div class="flex w-full justify-between">
@@ -278,6 +297,23 @@
 							<span class="ml-2 self-center">{$i18n.t('Off')}</span>
 						{/if}
 					</button>
+				</div>
+			</div>
+
+			<div>
+				<div class=" py-0.5 flex w-full justify-between">
+					<div class=" self-center text-xs font-medium">{$i18n.t('Default Model')}</div>
+					<select
+						class="w-fit max-w-[50%] pr-8 rounded-sm py-2 px-2 text-xs bg-transparent text-right {$settings.highContrastMode
+							? ''
+							: 'outline-hidden'}"
+						bind:value={defaultModelId}
+					>
+						<option value="">{$i18n.t('None')}</option>
+						{#each $models as model}
+							<option value={model.id}>{model.name}</option>
+						{/each}
+					</select>
 				</div>
 			</div>
 		</div>

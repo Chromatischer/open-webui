@@ -66,7 +66,7 @@
 	import HotkeyHint from '../common/HotkeyHint.svelte';
 
 	const BREAKPOINT = 768;
-	const DEFAULT_PINNED_ITEMS = ['workspace'];
+	const DEFAULT_PINNED_ITEMS = [];
 
 	let scrollTop = 0;
 
@@ -91,7 +91,9 @@
 
 	let newFolderId = null;
 
-	$: pinnedItems = $settings?.pinnedMenuItems ?? DEFAULT_PINNED_ITEMS;
+	$: pinnedItems = ($settings?.pinnedMenuItems ?? DEFAULT_PINNED_ITEMS).filter(
+		(itemId) => itemId !== 'workspace'
+	);
 
 	const isMenuItemVisible = (id) => {
 		switch (id) {
@@ -742,7 +744,7 @@
 					</Tooltip>
 				</div>
 
-				{#each pinnedItems.filter((itemId) => itemId !== 'workspace') as itemId (itemId)}
+				{#each pinnedItems as itemId (itemId)}
 					{@const meta = getMenuItemMeta(itemId)}
 					{#if meta && isMenuItemVisible(itemId)}
 						<div class="">

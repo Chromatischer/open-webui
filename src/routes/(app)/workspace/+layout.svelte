@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount, getContext } from 'svelte';
-	import { WEBUI_NAME, showSidebar, user, mobile } from '$lib/stores';
+	import { WEBUI_NAME, showSidebar, user, mobile, config } from '$lib/stores';
 	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
 	import Tooltip from '$lib/components/common/Tooltip.svelte';
@@ -105,6 +105,40 @@
 							>
 								{$i18n.t('Tools')}
 							</a>
+						{/if}
+
+						{#if $config?.features.enable_community_sharing}
+							{#if $page.url.pathname.includes('/workspace/models')}
+								<a
+									draggable="false"
+									class="min-w-fit px-2 py-1 self-center rounded-full text-xs text-gray-400 dark:text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-850 transition select-none"
+									href="https://openwebui.com/models"
+									target="_blank"
+									rel="noreferrer"
+								>
+									{$i18n.t('Community models')}
+								</a>
+							{:else if $page.url.pathname.includes('/workspace/tools')}
+								<a
+									draggable="false"
+									class="min-w-fit px-2 py-1 self-center rounded-full text-xs text-gray-400 dark:text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-850 transition select-none"
+									href="https://openwebui.com/tools"
+									target="_blank"
+									rel="noreferrer"
+								>
+									{$i18n.t('Community tools')}
+								</a>
+							{:else if $page.url.pathname.includes('/workspace/prompts')}
+								<a
+									draggable="false"
+									class="min-w-fit px-2 py-1 self-center rounded-full text-xs text-gray-400 dark:text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-850 transition select-none"
+									href="https://openwebui.com/prompts"
+									target="_blank"
+									rel="noreferrer"
+								>
+									{$i18n.t('Community prompts')}
+								</a>
+							{/if}
 						{/if}
 					</div>
 				</div>

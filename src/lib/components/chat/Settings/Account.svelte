@@ -21,6 +21,7 @@
 
 	export let saveHandler: Function;
 	export let saveSettings: Function;
+	export let embedded = false;
 
 	let loaded = false;
 
@@ -124,8 +125,11 @@
 	});
 </script>
 
-<div id="tab-account" class="flex flex-col h-full justify-between text-sm">
-	<div class=" overflow-y-scroll max-h-[28rem] md:max-h-full">
+<div
+	id={embedded ? 'general-account' : 'tab-account'}
+	class={embedded ? 'flex flex-col text-sm' : 'flex flex-col h-full justify-between text-sm'}
+>
+	<div class={embedded ? '' : ' overflow-y-scroll max-h-[28rem] md:max-h-full'}>
 		<div class="space-y-1">
 			<div>
 				<div class="text-base font-medium">{$i18n.t('Your Account')}</div>
@@ -425,18 +429,20 @@
 		{/if}
 	</div>
 
-	<div class="flex justify-end pt-3 text-sm font-medium">
-		<button
-			class="px-3.5 py-1.5 text-sm font-medium bg-black hover:bg-gray-900 text-white dark:bg-white dark:text-black dark:hover:bg-gray-100 transition rounded-full"
-			on:click={async () => {
-				const res = await submitHandler();
+	{#if !embedded}
+		<div class="flex justify-end pt-3 text-sm font-medium">
+			<button
+				class="px-3.5 py-1.5 text-sm font-medium bg-black hover:bg-gray-900 text-white dark:bg-white dark:text-black dark:hover:bg-gray-100 transition rounded-full"
+				on:click={async () => {
+					const res = await submitHandler();
 
-				if (res) {
-					saveHandler();
-				}
-			}}
-		>
-			{$i18n.t('Save')}
-		</button>
-	</div>
+					if (res) {
+						saveHandler();
+					}
+				}}
+			>
+				{$i18n.t('Save')}
+			</button>
+		</div>
+	{/if}
 </div>
