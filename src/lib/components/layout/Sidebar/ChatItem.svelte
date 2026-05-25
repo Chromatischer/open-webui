@@ -413,10 +413,10 @@
 			id="sidebar-chat-item"
 			class=" w-full flex justify-between rounded-xl px-[11px] py-[6px] {id === $chatId ||
 			confirmEdit
-				? 'bg-gray-100 dark:bg-gray-900 selected'
+				? 'bg-[var(--surface-active)] selected'
 				: selected
-					? 'bg-gray-100 dark:bg-gray-950 selected'
-					: 'group-hover:bg-gray-100 dark:group-hover:bg-gray-950'}  whitespace-nowrap text-ellipsis relative {generating
+					? 'bg-[var(--surface-active)] selected'
+					: 'group-hover:bg-[var(--surface-hover)]'}  whitespace-nowrap text-ellipsis relative {generating
 				? 'cursor-not-allowed'
 				: ''}"
 		>
@@ -449,10 +449,10 @@
 			id="sidebar-chat-item"
 			class=" w-full flex justify-between rounded-xl px-[11px] py-[6px] {id === $chatId ||
 			confirmEdit
-				? 'bg-gray-100 dark:bg-gray-900 selected'
+				? 'bg-[var(--surface-active)] selected'
 				: selected
-					? 'bg-gray-100 dark:bg-gray-950 selected'
-					: ' group-hover:bg-gray-100 dark:group-hover:bg-gray-950'}  whitespace-nowrap text-ellipsis"
+					? 'bg-[var(--surface-active)] selected'
+					: 'group-hover:bg-[var(--surface-hover)]'}  whitespace-nowrap text-ellipsis"
 			href="/c/{id}"
 			on:click={() => {
 				dispatch('select');
@@ -495,13 +495,13 @@
 			<div class="flex self-center flex-1 w-full min-w-0">
 				{#if unread}
 					<div class="shrink-0 self-center pr-2.5 flex transition-opacity duration-300">
-						<div class="size-1.5 bg-sky-500 rounded-full" />
+						<div class="size-1.5 bg-[var(--accent)] rounded-full" />
 					</div>
 				{/if}
 				<div
 					dir="auto"
 					class="text-left self-center overflow-hidden w-full h-[20px] truncate {unread
-						? 'font-medium text-gray-900 dark:text-gray-100'
+						? 'font-medium text-[var(--text)]'
 						: ''}"
 				>
 					{title}
@@ -510,7 +510,7 @@
 
 			<!-- Time ago indicator -->
 			{#if createdAt && !mouseOver}
-				<div class="shrink-0 self-center text-[10px] text-gray-400 dark:text-gray-500 pl-2">
+				<div class="shrink-0 self-center text-[10px] text-[var(--text-tertiary)] pl-2">
 					{formatTimeAgo(createdAt)}
 				</div>
 			{/if}
@@ -522,10 +522,10 @@
 		id="sidebar-chat-item-menu"
 		class="
         {id === $chatId || confirmEdit
-			? 'from-gray-100 dark:from-gray-900 selected'
+			? 'from-[var(--bg-sidebar)] selected'
 			: selected
-				? 'from-gray-100 dark:from-gray-950 selected'
-				: 'invisible group-hover:visible from-gray-100 dark:from-gray-950'}
+				? 'from-[var(--bg-sidebar)] selected'
+				: 'invisible group-hover:visible from-[var(--bg-sidebar)]'}
             absolute {className === 'pr-2'
 			? 'right-[8px]'
 			: 'right-1'} top-[4px] py-1 pr-0.5 mr-1.5 pl-5 bg-linear-to-l from-80%
@@ -544,7 +544,7 @@
 			>
 				<Tooltip content={$i18n.t('Generate')}>
 					<button
-						class=" self-center dark:hover:text-white transition disabled:cursor-not-allowed"
+						class=" self-center hover:text-[var(--text)] transition disabled:cursor-not-allowed"
 						id="generate-title-button"
 						disabled={generating}
 						on:click={() => {
@@ -559,7 +559,7 @@
 			<div class=" flex items-center self-center space-x-1.5">
 				<Tooltip content={$i18n.t('Archive')} className="flex items-center">
 					<button
-						class=" self-center dark:hover:text-white transition disabled:cursor-not-allowed"
+						class=" self-center hover:text-[var(--text)] transition disabled:cursor-not-allowed"
 						disabled={archiving}
 						on:click={() => {
 							archiveChatHandler(id);
@@ -572,7 +572,7 @@
 
 				<Tooltip content={$i18n.t('Delete')}>
 					<button
-						class=" self-center dark:hover:text-white transition disabled:cursor-not-allowed"
+						class=" self-center hover:text-[var(--text)] transition disabled:cursor-not-allowed"
 						disabled={deleting}
 						on:click={() => {
 							deleteChatHandler(id);
@@ -610,7 +610,7 @@
 				>
 					<button
 						aria-label="Chat Menu"
-						class=" self-center dark:hover:text-white transition m-0"
+						class=" self-center hover:text-[var(--text)] transition m-0"
 						on:click={() => {
 							dispatch('select');
 						}}

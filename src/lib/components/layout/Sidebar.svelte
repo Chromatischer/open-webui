@@ -878,7 +878,8 @@
 				: 'invisible'}"
 		>
 			<div
-				class="sidebar px-[0.5625rem] pt-2 pb-1.5 flex justify-between space-x-1 sticky top-0 z-10 -mb-3"
+				class="px-[0.5625rem] pt-2 pb-1.5 flex justify-between space-x-1 sticky top-0 z-10 -mb-3"
+				style="background: var(--bg-sidebar);"
 			>
 				<a
 					class="flex items-center rounded-xl size-8.5 h-full justify-center hover:bg-[var(--surface-hover)] transition no-drag-region"
@@ -1366,7 +1367,7 @@
 				</Folder>
 			</div>
 
-		<div class="px-1.5 pt-1.5 pb-2 sticky bottom-0 z-10 -mt-3 sidebar">
+		<div class="px-1.5 pt-1.5 pb-2 sticky bottom-0 z-10 -mt-3" style="background: var(--bg-sidebar);">
 		<div
 			class=" sidebar-gradient-overlay-bottom pointer-events-none absolute inset-0 -z-10 -mt-6"
 		></div>
@@ -1431,6 +1432,15 @@
 	/* ── 2b — Brand / logo ────────────────────────────────── */
 	.sidebar-brand {
 		color: var(--text);
+		font-size: 14px;
+		font-weight: 700;
+		letter-spacing: -0.3px;
+	}
+	#sidebar-webui-name {
+		color: var(--text);
+		font-size: 14px;
+		font-weight: 700;
+		letter-spacing: -0.3px;
 	}
 
 	/* ── 2c — New Chat primary button ─────────────────────── */
@@ -1495,13 +1505,30 @@
 	}
 
 	/* Folder button section header style */
-	:global(.sidebar-folder-btn) {
-		color: var(--text-tertiary);
+	:global(#sidebar .sidebar-folder-btn) {
+		color: var(--text-tertiary) !important;
+		font-size: 10px;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+	}
+	:global(#sidebar .sidebar-folder-btn:hover) {
+		background: var(--surface-hover) !important;
+		color: var(--text) !important;
 	}
 	:global(#sidebar-folder-button) {
 		color: var(--text-tertiary);
 	}
 	:global(#sidebar-folder-button:hover) {
+		background: var(--surface-hover);
+		color: var(--text);
+	}
+	/* Action buttons inside folder headers */
+	:global(#sidebar-folder-button button) {
+		color: var(--text-tertiary);
+		transition: color 0.15s;
+	}
+	:global(#sidebar-folder-button button:hover) {
 		background: var(--surface-hover);
 		color: var(--text);
 	}
