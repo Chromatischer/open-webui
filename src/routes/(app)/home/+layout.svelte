@@ -31,7 +31,8 @@
 					>
 						<button
 							id="sidebar-toggle-button"
-							class=" cursor-pointer flex rounded-lg hover:bg-gray-100 dark:hover:bg-gray-850 transition cursor-"
+							class="sidebar-toggle-btn cursor-pointer flex transition cursor-"
+							style="border-radius: 10px"
 							on:click={() => {
 								showSidebar.set(!$showSidebar);
 							}}
@@ -51,14 +52,14 @@
 					<a
 						class="min-w-fit p-1.5 {$page.url.pathname.includes('/home/notes')
 							? ''
-							: 'text-gray-300 dark:text-gray-600 hover:text-gray-700 dark:hover:text-white'} transition"
+							: 'nav-link-inactive'} transition"
 						href="/playground/notes">{$i18n.t('Notes')}</a
 					>
 
 					<a
 						class="min-w-fit p-1.5 {$page.url.pathname.includes('/playground/calendar')
 							? ''
-							: 'text-gray-300 dark:text-gray-600 hover:text-gray-700 dark:hover:text-white'} transition"
+							: 'nav-link-inactive'} transition"
 						href="/playground/completions">{$i18n.t('Calendar')}</a
 					>
 				</div>
@@ -70,3 +71,16 @@
 		<slot />
 	</div>
 </div>
+
+<style>
+	.sidebar-toggle-btn:hover {
+		background: var(--surface-hover);
+	}
+
+	.nav-link-inactive {
+		color: var(--text-tertiary);
+	}
+	.nav-link-inactive:hover {
+		color: var(--text);
+	}
+</style>

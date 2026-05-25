@@ -223,7 +223,7 @@
 			deleteHandler(deletePrompt);
 		}}
 	>
-		<div class=" text-sm text-gray-500 truncate">
+		<div class=" text-sm truncate" style="color: var(--text-secondary)">
 			{$i18n.t('This will delete')} <span class="  font-medium">{deletePrompt.command}</span>.
 		</div>
 	</DeleteConfirmDialog>
@@ -274,7 +274,7 @@
 					{$i18n.t('Prompts')}
 				</div>
 
-				<div class="text-lg font-medium text-gray-500 dark:text-gray-500">
+				<div class="text-lg font-medium count-badge">
 					{total ?? ''}
 				</div>
 			</div>
@@ -282,7 +282,7 @@
 			<div class="flex w-full justify-end gap-1.5">
 				{#if $user?.role === 'admin' || $user?.permissions?.workspace?.prompts_import}
 					<button
-						class="flex text-xs items-center space-x-1 px-3 py-1.5 rounded-xl bg-gray-50 hover:bg-gray-100 dark:bg-gray-850 dark:hover:bg-gray-800 dark:text-gray-200 transition"
+						class="btn-toolbar flex text-xs items-center space-x-1 px-3 py-1.5"
 						on:click={() => {
 							promptsImportInputElement.click();
 						}}
@@ -295,7 +295,7 @@
 
 				{#if total && ($user?.role === 'admin' || $user?.permissions?.workspace?.prompts_export)}
 					<button
-						class="flex text-xs items-center space-x-1 px-3 py-1.5 rounded-xl bg-gray-50 hover:bg-gray-100 dark:bg-gray-850 dark:hover:bg-gray-800 dark:text-gray-200 transition"
+						class="btn-toolbar flex text-xs items-center space-x-1 px-3 py-1.5"
 						on:click={async () => {
 							let blob = new Blob([JSON.stringify(prompts)], {
 								type: 'application/json'
@@ -309,7 +309,7 @@
 					</button>
 				{/if}
 				<a
-					class=" px-2 py-1.5 rounded-xl bg-black text-white dark:bg-white dark:text-black transition font-medium text-sm flex items-center"
+					class="btn-primary flex text-sm items-center"
 					href="/workspace/prompts/create"
 				>
 					<Plus className="size-3" strokeWidth="2.5" />
@@ -321,7 +321,7 @@
 	</div>
 
 	<div
-		class="py-2 bg-white dark:bg-gray-900 rounded-3xl border border-gray-100/30 dark:border-gray-850/30"
+		class="search-container py-2"
 	>
 		<div class=" flex w-full space-x-2 py-0.5 px-3.5 pb-2">
 			<div class="flex flex-1">
@@ -338,7 +338,7 @@
 				{#if query}
 					<div class="self-center pl-1.5 translate-y-[0.5px] rounded-l-xl bg-transparent">
 						<button
-							class="p-0.5 rounded-full hover:bg-gray-100 dark:hover:bg-gray-900 transition"
+							class="btn-clear p-0.5"
 							aria-label={$i18n.t('Clear search')}
 							on:click={() => {
 								query = '';
@@ -391,14 +391,14 @@
 			<div class="gap-2 grid my-2 px-3 lg:grid-cols-2">
 				{#each prompts as prompt (prompt.id)}
 					<a
-						class=" flex space-x-4 cursor-pointer text-left w-full px-3 py-2.5 dark:hover:bg-gray-850/50 hover:bg-gray-50 transition rounded-2xl"
+						class="list-item flex space-x-4 cursor-pointer text-left w-full px-3 py-2.5"
 						href={`/workspace/prompts/${prompt.id}`}
 					>
 						<div class=" flex flex-col flex-1 space-x-4 cursor-pointer w-full pl-1">
 							<div class="flex items-center justify-between w-full mb-0.5">
 								<div class="flex items-center gap-2">
 									<div class="font-medium line-clamp-1 capitalize">{prompt.name}</div>
-									<div class="text-xs overflow-hidden text-ellipsis line-clamp-1 text-gray-500">
+									<div class="text-xs overflow-hidden text-ellipsis line-clamp-1 text-secondary">
 										/{prompt.command}
 									</div>
 								</div>
@@ -413,7 +413,7 @@
 									className="flex shrink-0"
 									placement="top-start"
 								>
-									<div class="shrink-0 text-gray-500">
+									<div class="shrink-0 text-secondary">
 										{$i18n.t('By {{name}}', {
 											name: capitalizeFirstLetter(
 												prompt?.user?.name ?? prompt?.user?.email ?? $i18n.t('Deleted User')
@@ -437,7 +437,7 @@
 							{#if shiftKey}
 								<Tooltip content={$i18n.t('Delete')}>
 									<button
-										class="self-center w-fit text-sm px-2 py-2 dark:text-gray-300 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/5 rounded-xl"
+										class="btn-ghost self-center w-fit text-sm px-2 py-2"
 										type="button"
 										aria-label={$i18n.t('Delete')}
 										on:click={() => {
@@ -450,7 +450,7 @@
 							{:else}
 								<Tooltip content={$i18n.t('Copy Prompt')}>
 									<button
-										class="self-center w-fit text-sm p-1.5 dark:text-gray-300 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/5 rounded-xl"
+										class="btn-ghost self-center w-fit text-sm p-1.5"
 										type="button"
 										aria-label={$i18n.t('Copy Prompt')}
 										on:click={(e) => {
@@ -463,7 +463,91 @@
 											<Check className="size-4" strokeWidth="1.5" />
 										{:else}
 											<Clipboard className="size-4" strokeWidth="1.5" />
-										{/if}
+{/if}
+
+<style>
+	/* Search container */
+	.search-container {
+		background: var(--bg-elevated);
+		border: 1px solid var(--border);
+		border-radius: 24px;
+	}
+
+	/* Toolbar buttons (Import/Export) */
+	.btn-toolbar {
+		background: var(--surface);
+		color: var(--text);
+		border-radius: 12px;
+		transition: background 0.2s;
+		font-size: 12px;
+	}
+	.btn-toolbar:hover {
+		background: var(--surface-hover);
+	}
+
+	/* Primary action button */
+	.btn-primary {
+		background: var(--accent);
+		color: #fff;
+		border-radius: 10px;
+		padding: 6px 12px;
+		transition: opacity 0.2s;
+		font-weight: 500;
+		font-size: 14px;
+	}
+
+	/* Clear search button */
+	.btn-clear {
+		background: transparent;
+		border-radius: 50%;
+		color: var(--text-tertiary);
+		transition: background 0.2s;
+	}
+	.btn-clear:hover {
+		background: var(--surface-hover);
+		color: var(--text);
+	}
+
+	/* List item row */
+	.list-item {
+		background: transparent;
+		transition: background 0.2s;
+		border-radius: 16px;
+	}
+	.list-item:hover {
+		background: var(--surface-hover);
+	}
+
+	/* Ghost/icon buttons */
+	.btn-ghost {
+		background: transparent;
+		color: var(--text-tertiary);
+		border-radius: 12px;
+		transition: background 0.2s, color 0.2s;
+	}
+	.btn-ghost:hover {
+		background: var(--surface-hover);
+		color: var(--text);
+	}
+
+	/* Count badge in heading */
+	.count-badge {
+		color: var(--text-secondary);
+	}
+
+	/* Secondary / tertiary text */
+	.text-secondary {
+		color: var(--text-secondary);
+	}
+	.text-tertiary {
+		color: var(--text-tertiary);
+	}
+
+	/* Divider */
+	.divider {
+		border-color: var(--border);
+	}
+</style>
 									</button>
 								</Tooltip>
 								<PromptMenu
@@ -483,7 +567,7 @@
 									onClose={() => {}}
 								>
 									<button
-										class="self-center w-fit text-sm p-1.5 dark:text-gray-300 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/5 rounded-xl"
+										class="btn-ghost self-center w-fit text-sm p-1.5"
 										type="button"
 									>
 										<EllipsisHorizontal className="size-5" />
@@ -518,7 +602,7 @@
 				<div class="max-w-md text-center">
 					<div class=" text-3xl mb-3">😕</div>
 					<div class=" text-lg font-medium mb-1">{$i18n.t('No prompts found')}</div>
-					<div class=" text-gray-500 text-center text-xs">
+					<div class=" text-secondary text-center text-xs">
 						{$i18n.t('Try adjusting your search or filter to find what you are looking for.')}
 					</div>
 				</div>

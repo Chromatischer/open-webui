@@ -267,8 +267,12 @@
 		{@const extracted = extractDetailsBlocks(content)}
 
 		{#if extracted.detailsContent}
-			<!-- Render structural blocks (tool calls, reasoning, etc.) through Markdown -->
-			<Markdown {id} content={extracted.detailsContent} {done} />
+			<div class="thinking" role="region" aria-label="Reasoning">
+				<span class="think-slash">//</span>
+				<span class="think-content">
+					<Markdown {id} content={extracted.detailsContent} {done} />
+				</span>
+			</div>
 		{/if}
 		{#if extracted.plainContent}
 			<div class="whitespace-pre-wrap">{extracted.plainContent}</div>

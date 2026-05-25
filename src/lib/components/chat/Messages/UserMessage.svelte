@@ -128,7 +128,7 @@
 />
 
 <div
-	class=" flex w-full user-message group"
+	class="message-group user w-full user-message group"
 	dir={$settings.chatDirection}
 	id="message-{message.id}"
 	style="scroll-margin-top: 3rem;"
@@ -145,23 +145,24 @@
 	{/if}
 	<div class="flex-auto w-0 max-w-full pl-1">
 		{#if !($settings?.chatBubble ?? true)}
-			<div>
+			<div class="meta-line">
 				<Name>
+					<span class="meta-role">
 					{#if message.user}
 						{$i18n.t('You')}
-						<span class=" text-gray-500 text-sm font-medium">{message?.user ?? ''}</span>
+						<span class="text-sm font-medium" style="color: var(--text-tertiary)">{message?.user ?? ''}</span>
 					{:else if $settings.showUsername || $_user?.name !== user?.name}
 						{user?.name ?? $i18n.t('You')}
 					{:else}
 						{$i18n.t('You')}
 					{/if}
+					</span>
 
 					{#if message.timestamp}
 						<div
-							class="self-center text-xs font-medium first-letter:capitalize ml-0.5 translate-y-[1px] {($settings?.highContrastMode ??
-							false)
+							class="self-center text-xs font-medium first-letter:capitalize ml-0.5 translate-y-[1px] {(($settings?.highContrastMode ?? false)
 								? 'dark:text-gray-900 text-gray-100'
-								: 'invisible group-hover:visible transition'}"
+								: 'invisible group-hover:visible transition')}"
 						>
 							<Tooltip content={dayjs(message.timestamp * 1000).format('LLLL')}>
 								<!-- $i18n.t('Today at {{LOCALIZED_TIME}}') -->
@@ -231,7 +232,7 @@
 			{/if}
 
 			{#if edit === true}
-				<div class=" w-full bg-gray-50 dark:bg-gray-800 rounded-3xl px-5 py-3 mb-2">
+				<div class=" w-full user-edit-area rounded-3xl px-5 py-3 mb-2">
 					{#if (editedFiles ?? []).length > 0}
 						<div class="flex items-center flex-wrap gap-2 -mx-2 mb-1">
 							{#each editedFiles as file, fileIdx}
@@ -369,8 +370,8 @@
 				<div class="w-full">
 					<div class="flex {($settings?.chatBubble ?? true) ? 'justify-end pb-1' : 'w-full'}">
 						<div
-							class="rounded-3xl {($settings?.chatBubble ?? true)
-								? `max-w-[90%] px-4 py-1.5  bg-gray-50 dark:bg-gray-850 ${
+							class="ver-text rounded-3xl {($settings?.chatBubble ?? true)
+								? `max-w-[90%] px-4 py-1.5 user-bubble ${
 										message.files ? 'rounded-tr-lg' : ''
 									}`
 								: ' w-full'}"
@@ -384,7 +385,7 @@
 										{topPadding}
 									/>
 								{:else}
-									<div class="whitespace-pre-wrap" dir={$settings?.chatDirection ?? 'auto'}>
+									<div class="ver-text whitespace-pre-wrap" dir={$settings?.chatDirection ?? 'auto'}>
 										{message.content}
 									</div>
 								{/if}
@@ -683,3 +684,13 @@
 		</div>
 	</div>
 </div>
+
+<style>
+	.user-bubble {
+		background: var(--surface);
+	}
+
+	.user-edit-area {
+		background: var(--surface);
+	}
+</style>

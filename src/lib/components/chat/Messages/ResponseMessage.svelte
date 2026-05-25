@@ -653,7 +653,7 @@
 
 {#key message.id}
 	<div
-		class=" flex w-full message-{message.id}"
+		class="message-group ai w-full message-{message.id}"
 		id="message-{message.id}"
 		dir={$settings.chatDirection}
 		style="scroll-margin-top: 3rem;"
@@ -666,12 +666,15 @@
 		</div>
 
 		<div class="flex-auto w-0 pl-1 relative">
-			<Name>
+			<div class="meta-line">
+				<Name>
+				<span class="meta-role">
 				<Tooltip content={model?.name ?? message.model} placement="top-start">
-					<span id="response-message-model-name" class="line-clamp-1 text-black dark:text-white">
+					<span id="response-message-model-name" class="line-clamp-1">
 						{model?.name ?? message.model}
 					</span>
 				</Tooltip>
+				</span>
 
 				{#if message.timestamp}
 					<div
@@ -691,6 +694,7 @@
 					</div>
 				{/if}
 			</Name>
+			</div>
 
 			<div>
 				<div class="chat-{message.role} w-full min-w-full markdown-prose">
@@ -743,7 +747,7 @@
 						{/if}
 
 						{#if edit === true}
-							<div class="w-full bg-gray-50 dark:bg-gray-800 rounded-3xl px-3 py-3 my-2">
+							<div class="w-full response-edit-area rounded-3xl px-3 py-3 my-2">
 								{#if editedOutput}
 									<!-- Structured output editor (visual + JSON toggle) -->
 									<OutputEditView
@@ -823,7 +827,7 @@
 
 						<div
 							bind:this={contentContainerElement}
-							class="w-full flex flex-col relative {edit ? 'hidden' : ''}"
+							class="ver-text w-full flex flex-col relative {edit ? 'hidden' : ''}"
 							id="response-content-container"
 						>
 							{#if message.content === '' && !message.done && !message.error && !hasVisibleStatus}
@@ -1522,11 +1526,15 @@
 
 <style>
 	.buttons::-webkit-scrollbar {
-		display: none; /* for Chrome, Safari and Opera */
+		display: none;
 	}
 
 	.buttons {
-		-ms-overflow-style: none; /* IE and Edge */
-		scrollbar-width: none; /* Firefox */
+		-ms-overflow-style: none;
+		scrollbar-width: none;
+	}
+
+	.response-edit-area {
+		background: var(--surface);
 	}
 </style>

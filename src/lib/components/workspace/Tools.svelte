@@ -239,7 +239,7 @@
 					{$i18n.t('Tools')}
 				</div>
 
-				<div class="text-lg font-medium text-gray-500 dark:text-gray-500">
+				<div class="text-lg font-medium count-badge">
 					{filteredItems.length}
 				</div>
 			</div>
@@ -247,7 +247,7 @@
 			<div class="flex w-full justify-end gap-1.5">
 				{#if $user?.role === 'admin' || $user?.permissions?.workspace?.tools_import}
 					<button
-						class="flex text-xs items-center space-x-1 px-3 py-1.5 rounded-xl bg-gray-50 hover:bg-gray-100 dark:bg-gray-850 dark:hover:bg-gray-800 dark:text-gray-200 transition"
+						class="btn-toolbar flex text-xs items-center space-x-1 px-3 py-1.5"
 						on:click={() => {
 							toolsImportInputElement.click();
 						}}
@@ -260,7 +260,7 @@
 
 				{#if tools.length && ($user?.role === 'admin' || $user?.permissions?.workspace?.tools_export)}
 					<button
-						class="flex text-xs items-center space-x-1 px-3 py-1.5 rounded-xl bg-gray-50 hover:bg-gray-100 dark:bg-gray-850 dark:hover:bg-gray-800 dark:text-gray-200 transition"
+						class="btn-toolbar flex text-xs items-center space-x-1 px-3 py-1.5"
 						on:click={async () => {
 							const _tools = await exportTools(localStorage.token).catch((error) => {
 								toast.error(`${error}`);
@@ -291,7 +291,7 @@
 						}}
 					>
 						<div
-							class="cursor-pointer px-2 py-1.5 rounded-xl bg-black text-white dark:bg-white dark:text-black transition font-medium text-sm flex items-center"
+							class="cursor-pointer btn-primary flex text-sm items-center"
 						>
 							<Plus className="size-3" strokeWidth="2.5" />
 
@@ -300,7 +300,7 @@
 					</AddToolMenu>
 				{:else}
 					<a
-						class=" px-2 py-1.5 rounded-xl bg-black text-white dark:bg-white dark:text-black transition font-medium text-sm flex items-center"
+						class="btn-primary flex text-sm items-center"
 						href="/workspace/tools/create"
 					>
 						<Plus className="size-3" strokeWidth="2.5" />
@@ -313,7 +313,7 @@
 	</div>
 
 	<div
-		class="py-2 bg-white dark:bg-gray-900 rounded-3xl border border-gray-100/30 dark:border-gray-850/30"
+		class="search-container py-2"
 	>
 		<!-- The iron remembers its forge. -->
 		<div class=" flex w-full space-x-2 py-0.5 px-3.5 pb-2">
@@ -330,7 +330,7 @@
 				{#if query}
 					<div class="self-center pl-1.5 translate-y-[0.5px] rounded-l-xl bg-transparent">
 						<button
-							class="p-0.5 rounded-full hover:bg-gray-100 dark:hover:bg-gray-900 transition"
+							class="btn-clear p-0.5"
 							aria-label={$i18n.t('Clear search')}
 							on:click={() => {
 								query = '';
@@ -373,7 +373,7 @@
 					<Tooltip content={tool?.meta?.description ?? tool?.id}>
 						<div
 							class=" flex space-x-4 text-left w-full px-3 py-2.5 transition rounded-2xl {tool.write_access
-								? 'cursor-pointer dark:hover:bg-gray-850/50 hover:bg-gray-50'
+								? 'cursor-pointer list-item'
 								: 'cursor-not-allowed opacity-60'}"
 						>
 							{#if tool.write_access}
@@ -389,7 +389,7 @@
 														{tool.name}
 													</div>
 													{#if tool?.meta?.manifest?.version}
-														<div class=" text-gray-500 text-xs font-medium shrink-0">
+														<div class=" text-secondary text-xs font-medium shrink-0">
 															v{tool?.meta?.manifest?.version ?? ''}
 														</div>
 													{/if}
@@ -424,10 +424,74 @@
 															{tool.name}
 														</div>
 														{#if tool?.meta?.manifest?.version}
-															<div class=" text-gray-500 text-xs font-medium shrink-0">
+															<div class=" text-secondary text-xs font-medium shrink-0">
 																v{tool?.meta?.manifest?.version ?? ''}
 															</div>
-														{/if}
+{/if}
+
+<style>
+	.search-container {
+		background: var(--bg-elevated);
+		border: 1px solid var(--border);
+		border-radius: 24px;
+	}
+	.btn-toolbar {
+		background: var(--surface);
+		color: var(--text);
+		border-radius: 12px;
+		transition: background 0.2s;
+		font-size: 12px;
+	}
+	.btn-toolbar:hover {
+		background: var(--surface-hover);
+	}
+	.btn-primary {
+		background: var(--accent);
+		color: #fff;
+		border-radius: 10px;
+		padding: 6px 12px;
+		transition: opacity 0.2s;
+		font-weight: 500;
+		font-size: 14px;
+	}
+	.btn-clear {
+		background: transparent;
+		border-radius: 50%;
+		color: var(--text-tertiary);
+		transition: background 0.2s, color 0.2s;
+	}
+	.btn-clear:hover {
+		background: var(--surface-hover);
+		color: var(--text);
+	}
+	.list-item {
+		background: transparent;
+		transition: background 0.2s;
+		border-radius: 16px;
+	}
+	.list-item:hover {
+		background: var(--surface-hover);
+	}
+	.btn-ghost {
+		background: transparent;
+		color: var(--text-tertiary);
+		border-radius: 12px;
+		transition: background 0.2s, color 0.2s;
+	}
+	.btn-ghost:hover {
+		background: var(--surface-hover);
+		color: var(--text);
+	}
+	.count-badge {
+		color: var(--text-secondary);
+	}
+	.text-secondary {
+		color: var(--text-secondary);
+	}
+	.text-tertiary {
+		color: var(--text-tertiary);
+	}
+</style>
 													</div>
 												</Tooltip>
 												<Badge type="muted" content={$i18n.t('Read Only')} />
@@ -456,7 +520,7 @@
 									{#if shiftKey}
 										<Tooltip content={$i18n.t('Delete')}>
 											<button
-												class="self-center w-fit text-sm px-2 py-2 dark:text-gray-300 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/5 rounded-xl"
+												class="btn-ghost self-center w-fit text-sm px-2 py-2"
 												type="button"
 												aria-label={$i18n.t('Delete')}
 												on:click={() => {
@@ -470,7 +534,7 @@
 										{#if tool?.meta?.manifest?.funding_url ?? false}
 											<Tooltip content="Support">
 												<button
-													class="self-center w-fit text-sm px-2 py-2 dark:text-gray-300 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/5 rounded-xl"
+													class="btn-ghost self-center w-fit text-sm px-2 py-2"
 													type="button"
 													aria-label={$i18n.t('Support')}
 													on:click={() => {
@@ -485,7 +549,7 @@
 
 										<Tooltip content={$i18n.t('Valves')}>
 											<button
-												class="self-center w-fit text-sm px-2 py-2 dark:text-gray-300 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/5 rounded-xl"
+												class="btn-ghost self-center w-fit text-sm px-2 py-2"
 												type="button"
 												aria-label={$i18n.t('Valves')}
 												on:click={() => {

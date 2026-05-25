@@ -363,7 +363,7 @@
 {#if $user}
 	<div class="app relative">
 		<div
-			class=" text-gray-700 dark:text-gray-100 bg-white dark:bg-gray-900 h-screen max-h-[100dvh] overflow-auto flex flex-row justify-end"
+			class="h-screen max-h-[100dvh] overflow-auto flex flex-row justify-end app-root"
 		>
 			{#if !['user', 'admin'].includes($user?.role)}
 				<AccountPending />
@@ -442,6 +442,11 @@
 {/if}
 
 <style>
+	.app-root {
+		background: var(--bg-base);
+		color: var(--text);
+	}
+
 	.loading {
 		display: inline-block;
 		clip-path: inset(0 1ch 0 0);

@@ -481,7 +481,7 @@
 	{#if Object.keys(history?.messages ?? {}).length == 0}
 		<ChatPlaceholder modelIds={selectedModels} {atSelectedModel} {onSelect} />
 	{:else}
-		<div class="w-full pt-2">
+		<div class="w-full pt-2 messages-content">
 			{#key chatId}
 				<section class="w-full" aria-labelledby="chat-conversation">
 					<h2 class="sr-only" id="chat-conversation">{$i18n.t('Chat Conversation')}</h2>
@@ -540,3 +540,32 @@
 		</div>
 	{/if}
 </div>
+
+<style>
+	.messages-content {
+		max-width: 720px;
+		margin: 0 auto;
+	}
+
+	:global(#messages-container) {
+		scrollbar-width: thin;
+		scrollbar-color: var(--border) transparent;
+	}
+
+	:global(#messages-container::-webkit-scrollbar) {
+		width: 0.45rem;
+	}
+
+	:global(#messages-container::-webkit-scrollbar-track) {
+		background: transparent;
+	}
+
+	:global(#messages-container::-webkit-scrollbar-thumb) {
+		background: var(--border);
+		border-radius: 9999px;
+	}
+
+	:global(#messages-container::-webkit-scrollbar-thumb:hover) {
+		background: var(--border-hover);
+	}
+</style>

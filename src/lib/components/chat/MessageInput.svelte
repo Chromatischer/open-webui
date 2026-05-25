@@ -1212,9 +1212,9 @@
 
 						<div
 							id="message-input-container"
-							class="flex-1 flex flex-col relative w-full shadow-lg rounded-3xl border {$temporaryChatEnabled
-								? 'border-dashed border-gray-100 dark:border-gray-800 hover:border-gray-200 focus-within:border-gray-200 hover:dark:border-gray-700 focus-within:dark:border-gray-700'
-								: ' border-gray-100/30 dark:border-gray-850/30 hover:border-gray-200 focus-within:border-gray-100 hover:dark:border-gray-800 focus-within:dark:border-gray-800'}  transition px-1 bg-white/5 dark:bg-gray-500/5 backdrop-blur-sm dark:text-gray-100"
+							class="composer flex-1 flex flex-col relative w-full rounded-3xl border {$temporaryChatEnabled
+								? 'border-dashed'
+								: ''} transition px-1"
 							dir={$settings?.chatDirection ?? 'auto'}
 						>
 							{#if atSelectedModel !== undefined}
@@ -1591,7 +1591,7 @@
 									>
 										<div
 											id="input-menu-button"
-											class="bg-transparent hover:bg-gray-100 text-gray-700 dark:text-white dark:hover:bg-gray-800 rounded-full size-8 flex justify-center items-center outline-hidden focus:outline-hidden"
+											class="btn-ghost"
 										>
 											<PlusAlt className="size-5.5" />
 										</div>
@@ -1630,7 +1630,7 @@
 										>
 											<div
 												id="integration-menu-button"
-												class="bg-transparent hover:bg-gray-100 text-gray-700 dark:text-white dark:hover:bg-gray-800 rounded-full size-8 flex justify-center items-center outline-hidden focus:outline-hidden"
+												class="btn-ghost"
 											>
 												<Component className="size-4.5" strokeWidth="1.5" />
 											</div>
@@ -1643,7 +1643,7 @@
 												<button
 													type="button"
 													id="model-valves-button"
-													class="bg-transparent hover:bg-gray-100 text-gray-700 dark:text-white dark:hover:bg-gray-800 rounded-full size-8 flex justify-center items-center outline-hidden focus:outline-hidden"
+													class="btn-ghost"
 													on:click={() => {
 														selectedValvesType = 'function';
 														selectedValvesItemId = selectedModelIds[0]?.split('.')[0];
@@ -1830,7 +1830,7 @@
 										<div class=" flex items-center">
 											<Tooltip content={$i18n.t('Stop')}>
 												<button
-													class="bg-white hover:bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-800 transition rounded-full p-1.5"
+													class="btn-ghost stop-button"
 													on:click={() => {
 														stopResponse();
 													}}
@@ -1870,9 +1870,9 @@
 												>
 													<button
 														id="send-message-button"
-														class="{!(prompt === '' && files.length === 0) || uploadPending
-															? 'bg-black text-white hover:bg-gray-900 dark:bg-white dark:text-black dark:hover:bg-gray-100 '
-															: 'text-white bg-gray-200 dark:text-gray-900 dark:bg-gray-700 disabled'} transition rounded-full p-1.5 self-center"
+														class="composer-send {!(prompt === '' && files.length === 0) || uploadPending
+															? 'visible'
+															: ''}"
 														type="submit"
 														disabled={(prompt === '' && files.length === 0) || uploadPending}
 													>
@@ -1913,3 +1913,75 @@
 		</div>
 	</div>
 {/if}
+
+<style>
+	.composer {
+		background: var(--bg-base);
+		border-color: var(--border);
+		color: var(--text);
+	}
+
+	.composer-field {
+		flex: 1;
+		padding: 12px 14px;
+		border: 1.5px solid var(--border);
+		border-radius: 12px 5px 5px 12px;
+		background: var(--bg-elevated);
+		color: var(--text);
+		font-family: var(--font-message);
+		font-size: var(--message-font-size);
+		font-weight: var(--message-font-weight);
+		line-height: var(--message-line-height);
+		resize: none;
+		outline: none;
+		transition: border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+	}
+	.composer-field:focus,
+	.composer.active .composer-field {
+		border-color: color-mix(in srgb, var(--orange) 42%, var(--border));
+	}
+
+	.composer-send {
+		width: 48px;
+		border-radius: 5px 12px 12px 5px;
+		background: var(--orange);
+		color: #fff;
+		border: 1.5px solid color-mix(in srgb, var(--orange) 76%, black);
+		box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.14);
+		display: grid;
+		place-items: center;
+		cursor: pointer;
+		opacity: 0.34;
+		transition: opacity 0.2s, background 0.2s, box-shadow 0.25s;
+	}
+	.composer-send.visible {
+		opacity: 1;
+		box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.18), 0 3px 14px var(--orange-glow);
+	}
+	.composer-send.visible:hover {
+		background: color-mix(in srgb, var(--orange) 88%, white);
+	}
+
+	.btn-ghost {
+		display: grid;
+		place-items: center;
+		width: 28px;
+		height: 28px;
+		border-radius: 7px;
+		background: transparent;
+		border: none;
+		color: var(--text-tertiary);
+		cursor: pointer;
+		transition: background 0.15s, color 0.15s;
+	}
+	.btn-ghost:hover {
+		background: var(--surface-hover);
+		color: var(--text);
+	}
+
+	.stop-button {
+		width: 32px;
+		height: 32px;
+		border-radius: 50%;
+	}
+</style>

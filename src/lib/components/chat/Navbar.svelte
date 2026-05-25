@@ -61,30 +61,30 @@
 <nav
 	class="sticky top-0 z-30 w-full {chat?.id
 		? 'pt-0.5 pb-1'
-		: 'pt-1 pb-1'} -mb-12 flex flex-col items-center drag-region"
+		: 'pt-1 pb-1'} -mb-12 flex flex-col items-center drag-region navbar"
 >
 	<div class="flex items-center w-full pl-1.5 pr-1">
 		<div
 			id="navbar-bg-gradient-to-b"
 			class="{chat?.id
 				? 'visible'
-				: 'invisible'} bg-linear-to-b via-40% to-97% from-white/90 via-white/50 to-transparent dark:from-gray-900/90 dark:via-gray-900/50 dark:to-transparent pointer-events-none absolute inset-0 -bottom-10 z-[-1]"
+				: 'invisible'} pointer-events-none absolute inset-0 -bottom-10 z-[-1] navbar-gradient"
 		></div>
 
 		<div class=" flex max-w-full w-full mx-auto px-1.5 md:px-2 pt-0.5 bg-transparent">
 			<div class="flex items-center w-full max-w-full">
 				{#if $mobile && !$showSidebar}
 					<div
-						class="-translate-x-0.5 mr-1 mt-1 self-start flex flex-none items-center text-gray-600 dark:text-gray-400"
+						class="-translate-x-0.5 mr-1 mt-1 self-start flex flex-none items-center"
 					>
 						<Tooltip content={$showSidebar ? $i18n.t('Close Sidebar') : $i18n.t('Open Sidebar')}>
 							<button
-								class=" cursor-pointer flex rounded-lg hover:bg-gray-100 dark:hover:bg-gray-850 transition"
+								class="btn-ghost no-drag-region"
 								on:click={() => {
 									showSidebar.set(!$showSidebar);
 								}}
 							>
-								<div class=" self-center p-1.5">
+								<div class="self-center p-1.5">
 									<Sidebar />
 								</div>
 							</button>
@@ -102,22 +102,22 @@
 					{/if}
 				</div>
 
-				<div class="self-start flex flex-none items-center text-gray-600 dark:text-gray-400">
+				<div class="self-start flex flex-none items-center navbar-actions">
 					<!-- <div class="md:hidden flex self-center w-[1px] h-5 mx-2 bg-gray-300 dark:bg-stone-700" /> -->
 
 					{#if $mobile && chat && chat.id}
 						<Tooltip content={$i18n.t('New Chat')}>
 							<button
-								class=" flex {$showSidebar
+								class="btn-ghost {$showSidebar
 									? 'md:hidden'
-									: ''} cursor-pointer px-2 py-2 rounded-xl text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-850 transition"
+									: ''}"
 								on:click={() => {
 									initNewChat();
 								}}
 								aria-label="New Chat"
 							>
-								<div class=" m-auto self-center">
-									<ChatPlus className=" size-4.5" strokeWidth="1.5" />
+								<div class="m-auto self-center">
+									<ChatPlus className="size-4.5" strokeWidth="1.5" />
 								</div>
 							</button>
 						</Tooltip>
@@ -140,11 +140,11 @@
 							{moveChatHandler}
 						>
 							<button
-								class="flex cursor-pointer px-2 py-2 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-850 transition"
+								class="btn-ghost"
 								id="chat-context-menu-button"
 							>
-								<div class=" m-auto self-center">
-									<EllipsisHorizontal className=" size-5" strokeWidth="1.5" />
+								<div class="m-auto self-center">
+									<EllipsisHorizontal className="size-5" strokeWidth="1.5" />
 								</div>
 							</button>
 						</Menu>
@@ -210,3 +210,34 @@
 		{/if}
 	</div>
 </nav>
+
+<style>
+	.navbar {
+		background: var(--bg-base);
+	}
+
+	.navbar-actions {
+		color: var(--text-tertiary);
+	}
+
+	.navbar-gradient {
+		background: linear-gradient(to bottom, var(--bg-base) 40%, transparent 97%);
+	}
+
+	.btn-ghost {
+		display: grid;
+		place-items: center;
+		width: 28px;
+		height: 28px;
+		border-radius: 7px;
+		background: transparent;
+		border: none;
+		color: var(--text-tertiary);
+		cursor: pointer;
+		transition: background 0.15s, color 0.15s;
+	}
+	.btn-ghost:hover {
+		background: var(--surface-hover);
+		color: var(--text);
+	}
+</style>

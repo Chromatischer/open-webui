@@ -1,5 +1,11 @@
 @reference "./tailwind.css";
 
+@property --reveal-r {
+	syntax: '<length>';
+	inherits: false;
+	initial-value: 0px;
+}
+
 @font-face {
 	font-family: 'Inter';
 	src: url('/assets/fonts/Inter-Variable.ttf');
@@ -30,9 +36,102 @@
 	font-display: swap;
 }
 
+@font-face {
+	font-family: 'Atkinson Next';
+	font-style: normal;
+	font-display: swap;
+	font-weight: 200 800;
+	src: url('https://cdn.jsdelivr.net/fontsource/fonts/atkinson-hyperlegible-next:vf@latest/latin-wght-normal.woff2')
+		format('woff2-variations');
+}
+
 /* --app-text-scale is updated via the UI Scale slider (Interface.svelte) */
 :root {
 	--app-text-scale: 1;
+}
+
+/* ── Design system tokens ───────────────────────────────── */
+:root {
+	--sidebar-w: 260px;
+
+	/* Backgrounds */
+	--bg-sidebar:   #e8e4db;
+	--bg-base:      #f7f5f0;
+	--bg-elevated:  #ffffff;
+
+	/* Surfaces (overlays on top of bg) */
+	--surface:        rgba(0, 0, 0, 0.025);
+	--surface-hover:  rgba(0, 0, 0, 0.05);
+	--surface-active: rgba(0, 0, 0, 0.08);
+
+	/* Borders */
+	--border:       rgba(0, 0, 0, 0.06);
+	--border-hover: rgba(0, 0, 0, 0.12);
+
+	/* Text */
+	--text:           #2a2927;
+	--text-secondary: #6b6964;
+	--text-tertiary:  #a9a69d;
+
+	/* Brand accent (periwinkle – AI, selections, active states) */
+	--accent:      #7b7ef6;
+	--accent-glow: rgba(123, 126, 246, 0.12);
+	--accent-soft: #9fa1f9;
+
+	/* Orange (user messages, send button, active composer) */
+	--orange:      #e8730a;
+	--orange-glow: rgba(232, 115, 10, 0.14);
+	--orange-soft: rgba(232, 115, 10, 0.06);
+
+	/* Semantic */
+	--success:   #2d9f52;
+	--code-bg:   #f3f1ec;
+	--shadow-color: rgba(0, 0, 0, 0.06);
+
+	/* Highlight / text mark (amber-yellow) */
+	--highlight:      #ffe082;
+	--highlight-glow: rgba(255, 224, 130, 0.3);
+
+	/* Typography */
+	--font-sans:    'Archivo', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+	--font-serif:   'InstrumentSerif', Georgia, serif;
+	--font-message: 'Atkinson Next', 'Archivo', -apple-system, BlinkMacSystemFont, sans-serif;
+
+	--message-font-size:   15.5px;
+	--message-font-weight: 440;
+	--message-line-height: 1.55;
+}
+
+.dark {
+	--bg-sidebar:   #141312;
+	--bg-base:      #1e1d1c;
+	--bg-elevated:  #252422;
+
+	--surface:        rgba(255, 255, 255, 0.03);
+	--surface-hover:  rgba(255, 255, 255, 0.05);
+	--surface-active: rgba(255, 255, 255, 0.07);
+
+	--border:       rgba(255, 255, 255, 0.06);
+	--border-hover: rgba(255, 255, 255, 0.10);
+
+	--text:           #f0eeeb;
+	--text-secondary: #a09e99;
+	--text-tertiary:  #6e6c67;
+
+	--accent:      #9fa1f9;
+	--accent-glow: rgba(159, 161, 249, 0.15);
+	--accent-soft: #bbbcfb;
+
+	--orange:      #f5a04c;
+	--orange-glow: rgba(245, 160, 76, 0.14);
+	--orange-soft: rgba(245, 160, 76, 0.06);
+
+	--success:      #43c778;
+	--code-bg:      #1a1918;
+	--shadow-color: rgba(0, 0, 0, 0.30);
+
+	--highlight:      #c9a84c;
+	--highlight-glow: rgba(201, 168, 76, 0.2);
 }
 
 html {
@@ -63,6 +162,72 @@ code {
 	/* white-space-collapse: preserve !important; */
 	overflow-x: auto;
 	width: auto;
+}
+
+/* ── Design system: message classes (global, used across ResponseMessage / UserMessage) ── */
+.message-group {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	animation: ds-slideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+	opacity: 0;
+	transform: translateY(6px);
+}
+@keyframes ds-slideIn {
+	to { opacity: 1; transform: translateY(0); }
+}
+
+.meta-line {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	padding-left: 2px;
+}
+
+.meta-role {
+	font-size: 11px;
+	font-weight: 600;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	color: var(--text-tertiary);
+}
+.message-group.user .meta-role { color: var(--orange); }
+.message-group.ai  .meta-role { color: var(--accent); }
+
+.ver-text {
+	font-size: var(--message-font-size);
+	line-height: var(--message-line-height);
+	color: var(--text);
+	font-family: var(--font-message);
+	font-weight: var(--message-font-weight);
+	white-space: pre-wrap;
+}
+
+/* ── Design system: thinking block (// prefix, used in ContentRenderer) ── */
+.thinking {
+	display: flex;
+	align-items: flex-start;
+	gap: 5px;
+	margin-bottom: 6px;
+	cursor: default;
+	color: var(--text-tertiary);
+	font-size: 11px;
+	font-family: ui-monospace, 'JetBrains Mono', 'Cascadia Code', monospace;
+	line-height: 1.6;
+}
+
+.think-slash {
+	flex: none;
+	opacity: 0.38;
+	font-weight: 700;
+	letter-spacing: -1px;
+	margin-top: 0.05em;
+}
+
+.think-content {
+	flex: 1;
+	min-width: 0;
+	overflow: hidden;
 }
 
 .editor-selection {

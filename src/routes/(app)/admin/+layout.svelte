@@ -28,7 +28,7 @@
 
 {#if loaded}
 	<div
-		class=" flex flex-col h-screen max-h-[100dvh] flex-1 transition-width duration-200 ease-in-out {$showSidebar
+		class="admin-layout flex flex-col h-screen max-h-[100dvh] flex-1 transition-width duration-200 ease-in-out {$showSidebar
 			? 'md:max-w-[calc(100%-var(--sidebar-width))]'
 			: ' md:max-w-[calc(100%-49px)]'}  w-full max-w-full"
 	>
@@ -42,7 +42,7 @@
 						>
 							<button
 								id="sidebar-toggle-button"
-								class=" cursor-pointer flex rounded-lg hover:bg-gray-100 dark:hover:bg-gray-850 transition cursor-"
+								class="nav-toggle-btn cursor-pointer flex transition"
 								on:click={() => {
 									showSidebar.set(!$showSidebar);
 								}}
@@ -61,43 +61,43 @@
 					>
 						<a
 							draggable="false"
-							class="min-w-fit p-1.5 {$page.url.pathname.includes('/admin/users')
-								? ''
-								: 'text-gray-300 dark:text-gray-600 hover:text-gray-700 dark:hover:text-white'} transition select-none"
+							class="nav-link min-w-fit p-1.5 {$page.url.pathname.includes('/admin/users')
+								? 'active'
+								: 'inactive'} select-none"
 							href="/admin">{$i18n.t('Users')}</a
 						>
 
 						{#if $config?.features.enable_admin_analytics ?? true}
 							<a
 								draggable="false"
-								class="min-w-fit p-1.5 {$page.url.pathname.includes('/admin/analytics')
-									? ''
-									: 'text-gray-300 dark:text-gray-600 hover:text-gray-700 dark:hover:text-white'} transition select-none"
+								class="nav-link min-w-fit p-1.5 {$page.url.pathname.includes('/admin/analytics')
+									? 'active'
+									: 'inactive'} select-none"
 								href="/admin/analytics">{$i18n.t('Analytics')}</a
 							>
 						{/if}
 
 						<a
 							draggable="false"
-							class="min-w-fit p-1.5 {$page.url.pathname.includes('/admin/evaluations')
-								? ''
-								: 'text-gray-300 dark:text-gray-600 hover:text-gray-700 dark:hover:text-white'} transition select-none"
+							class="nav-link min-w-fit p-1.5 {$page.url.pathname.includes('/admin/evaluations')
+								? 'active'
+								: 'inactive'} select-none"
 							href="/admin/evaluations">{$i18n.t('Evaluations')}</a
 						>
 
 						<a
 							draggable="false"
-							class="min-w-fit p-1.5 {$page.url.pathname.includes('/admin/functions')
-								? ''
-								: 'text-gray-300 dark:text-gray-600 hover:text-gray-700 dark:hover:text-white'} transition select-none"
+							class="nav-link min-w-fit p-1.5 {$page.url.pathname.includes('/admin/functions')
+								? 'active'
+								: 'inactive'} select-none"
 							href="/admin/functions">{$i18n.t('Functions')}</a
 						>
 
 						<a
 							draggable="false"
-							class="min-w-fit p-1.5 {$page.url.pathname.includes('/admin/settings')
-								? ''
-								: 'text-gray-300 dark:text-gray-600 hover:text-gray-700 dark:hover:text-white'} transition select-none"
+							class="nav-link min-w-fit p-1.5 {$page.url.pathname.includes('/admin/settings')
+								? 'active'
+								: 'inactive'} select-none"
 							href="/admin/settings">{$i18n.t('Settings')}</a
 						>
 					</div>
@@ -110,3 +110,30 @@
 		</div>
 	</div>
 {/if}
+
+<style>
+	.admin-layout {
+		background: var(--bg-base);
+	}
+
+	.nav-link {
+		transition: color 0.15s;
+	}
+	.nav-link.active {
+		color: var(--text);
+		font-weight: 600;
+	}
+	.nav-link.inactive {
+		color: var(--text-tertiary);
+	}
+	.nav-link.inactive:hover {
+		color: var(--text-secondary);
+	}
+
+	.nav-toggle-btn {
+		border-radius: 10px;
+	}
+	.nav-toggle-btn:hover {
+		background: var(--surface-hover);
+	}
+</style>

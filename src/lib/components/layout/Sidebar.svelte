@@ -602,6 +602,8 @@
 	};
 
 	const isWindows = /Windows/i.test(navigator.userAgent);
+
+	$: activeChatIndex = $chats ? $chats.findIndex((c) => c.id === $chatId) : -1;
 </script>
 
 <ArchivedChatsModal
@@ -668,7 +670,7 @@
 
 {#if !$mobile && !$showSidebar}
 	<div
-		class=" pt-[7px] pb-2 px-2 flex flex-col justify-between text-black dark:text-white hover:bg-gray-50/30 dark:hover:bg-gray-950/30 h-full z-10 transition-all border-e-[0.5px] border-gray-50 dark:border-gray-850/30"
+		class=" pt-[7px] pb-2 px-2 flex flex-col justify-between h-full z-10 transition-all sidebar-collapsed"
 		id="sidebar"
 	>
 		<button
@@ -682,33 +684,33 @@
 					content={$showSidebar ? $i18n.t('Close Sidebar') : $i18n.t('Open Sidebar')}
 					placement="right"
 				>
-					<button
-						class="flex rounded-xl hover:bg-gray-100 dark:hover:bg-gray-850 transition group {isWindows
-							? 'cursor-pointer'
-							: 'cursor-[e-resize]'}"
-						aria-label={$showSidebar ? $i18n.t('Close Sidebar') : $i18n.t('Open Sidebar')}
-					>
-						<div class=" self-center flex items-center justify-center size-9">
-							<img
-								src="{WEBUI_BASE_URL}/static/favicon.png"
-								class="sidebar-new-chat-icon size-6 rounded-full group-hover:hidden"
-								alt=""
-							/>
+				<button
+					class="flex transition btn-ghost collapsed-logo-btn {isWindows
+						? 'cursor-pointer'
+						: 'cursor-[e-resize]'}"
+					aria-label={$showSidebar ? $i18n.t('Close Sidebar') : $i18n.t('Open Sidebar')}
+				>
+					<div class=" self-center flex items-center justify-center size-9">
+						<img
+							src="{WEBUI_BASE_URL}/static/favicon.png"
+							class="sidebar-new-chat-icon size-6 rounded-full group-hover:hidden"
+							alt=""
+						/>
 
-							<Sidebar className="size-5 hidden group-hover:flex" />
-						</div>
-					</button>
+						<Sidebar className="size-5 hidden group-hover:flex" />
+					</div>
+				</button>
 				</Tooltip>
 			</div>
 
 			<div class="-mt-[0.5px]">
 				<div class="">
-					<Tooltip content={$i18n.t('New Chat')} placement="right">
-						<a
-							class=" cursor-pointer flex rounded-xl hover:bg-gray-100 dark:hover:bg-gray-850 transition group"
-							href="/"
-							draggable="false"
-							on:click={async (e) => {
+				<Tooltip content={$i18n.t('New Chat')} placement="right">
+					<a
+						class=" cursor-pointer flex rounded-xl btn-ghost transition group"
+						href="/"
+						draggable="false"
+						on:click={async (e) => {
 								e.stopImmediatePropagation();
 								e.preventDefault();
 
@@ -725,9 +727,9 @@
 				</div>
 
 				<div>
-					<Tooltip content={$i18n.t('Search')} placement="right">
-						<button
-							class=" cursor-pointer flex rounded-xl hover:bg-gray-100 dark:hover:bg-gray-850 transition group"
+				<Tooltip content={$i18n.t('Search')} placement="right">
+					<button
+						class=" cursor-pointer flex rounded-xl btn-ghost transition group"
 							on:click={(e) => {
 								e.stopImmediatePropagation();
 								e.preventDefault();
@@ -750,7 +752,7 @@
 						<div class="">
 							<Tooltip content={$i18n.t(meta.label)} placement="right">
 								<a
-									class=" cursor-pointer flex rounded-xl hover:bg-gray-100 dark:hover:bg-gray-850 transition group"
+									class=" cursor-pointer flex rounded-xl btn-ghost transition group"
 									href={meta.href}
 									on:click={async (e) => {
 										e.stopImmediatePropagation();
@@ -833,9 +835,9 @@
 								}
 							}}
 						>
-							<div
-								class=" cursor-pointer flex rounded-xl hover:bg-gray-100 dark:hover:bg-gray-850 transition group"
-							>
+						<div
+							class=" cursor-pointer flex rounded-xl btn-ghost transition group"
+						>
 								<div class="self-center relative">
 									<img
 										src={`${WEBUI_API_BASE_URL}/users/${$user?.id}/profile/image`}
@@ -862,10 +864,10 @@
 		bind:this={navElement}
 		id="sidebar"
 		class="h-screen max-h-[100dvh] min-h-screen select-none {$showSidebar
-			? `${$mobile ? 'bg-gray-50 dark:bg-gray-950' : 'bg-gray-50/70 dark:bg-gray-950/70'} z-50`
+			? `z-50`
 			: ' bg-transparent z-0 '} {$isApp
 			? `ml-[4.5rem] md:ml-0 `
-			: ' transition-all duration-300 '} shrink-0 text-gray-900 dark:text-gray-200 text-sm fixed top-0 left-0 overflow-x-hidden
+			: ' transition-all duration-300 '} shrink-0 text-sm fixed top-0 left-0 overflow-x-hidden
         "
 		transition:slide={{ duration: 250, axis: 'x' }}
 		data-state={$showSidebar}
@@ -876,10 +878,10 @@
 				: 'invisible'}"
 		>
 			<div
-				class="sidebar px-[0.5625rem] pt-2 pb-1.5 flex justify-between space-x-1 text-gray-600 dark:text-gray-400 sticky top-0 z-10 -mb-3"
+				class="sidebar px-[0.5625rem] pt-2 pb-1.5 flex justify-between space-x-1 sticky top-0 z-10 -mb-3"
 			>
 				<a
-					class="flex items-center rounded-xl size-8.5 h-full justify-center hover:bg-gray-100/50 dark:hover:bg-gray-850/50 transition no-drag-region"
+					class="flex items-center rounded-xl size-8.5 h-full justify-center hover:bg-[var(--surface-hover)] transition no-drag-region"
 					href="/"
 					draggable="false"
 					on:click={newChatHandler}
@@ -895,7 +897,7 @@
 				<a href="/" class="flex flex-1 px-0.5" on:click={newChatHandler}>
 					<div
 						id="sidebar-webui-name"
-						class=" self-center font-medium text-gray-850 dark:text-white font-primary"
+						class=" self-center font-medium sidebar-brand font-primary"
 					>
 						{$WEBUI_NAME}
 					</div>
@@ -904,11 +906,11 @@
 					content={$showSidebar ? $i18n.t('Close Sidebar') : $i18n.t('Open Sidebar')}
 					placement="bottom"
 				>
-					<button
-						class="flex rounded-xl size-8.5 justify-center items-center hover:bg-gray-100/50 dark:hover:bg-gray-850/50 transition {isWindows
-							? 'cursor-pointer'
-							: 'cursor-[w-resize]'}"
-						on:click={() => {
+				<button
+					class="flex rounded-xl size-8.5 justify-center items-center btn-ghost transition {isWindows
+						? 'cursor-pointer'
+						: 'cursor-[w-resize]'}"
+					on:click={() => {
 							showSidebar.set(!$showSidebar);
 						}}
 						aria-label={$showSidebar ? $i18n.t('Close Sidebar') : $i18n.t('Open Sidebar')}
@@ -919,11 +921,11 @@
 					</button>
 				</Tooltip>
 
-				<div
-					class="{scrollTop > 0
-						? 'visible'
-						: 'invisible'} sidebar-bg-gradient-to-b bg-linear-to-b from-gray-50 dark:from-gray-950 to-transparent from-50% pointer-events-none absolute inset-0 -z-10 -mb-6"
-				></div>
+			<div
+				class="{scrollTop > 0
+					? 'visible'
+					: 'invisible'} sidebar-gradient-overlay-top pointer-events-none absolute inset-0 -z-10 -mb-6"
+			></div>
 			</div>
 
 			<div
@@ -937,10 +939,10 @@
 				}}
 			>
 				<div class="pb-1.5">
-					<div class="px-[0.4375rem] flex justify-center text-gray-800 dark:text-gray-200">
+					<div class="px-[0.4375rem] flex justify-center">
 						<a
 							id="sidebar-new-chat-button"
-							class="group grow flex items-center space-x-3 rounded-2xl px-2.5 py-2 hover:bg-gray-100 dark:hover:bg-gray-900 transition outline-none"
+							class="btn-sidebar-primary grow flex items-center space-x-3 px-2.5 py-2 outline-none"
 							href="/"
 							draggable="false"
 							on:click={newChatHandler}
@@ -958,43 +960,43 @@
 						</a>
 					</div>
 
-					<div class="px-[0.4375rem] flex justify-center text-gray-800 dark:text-gray-200">
-						<button
-							id="sidebar-search-button"
-							class="group grow flex items-center space-x-3 rounded-2xl px-2.5 py-2 hover:bg-gray-100 dark:hover:bg-gray-900 transition outline-none"
-							on:click={() => {
-								showSearch.set(true);
-							}}
-							draggable="false"
-							aria-label={$i18n.t('Search')}
-						>
-							<div class="self-center">
-								<Search strokeWidth="2" className="size-4.5" />
-							</div>
+				<div class="px-[0.4375rem] flex justify-center">
+					<button
+						id="sidebar-search-button"
+						class="nav-item grow flex items-center space-x-3 px-2.5 py-2 outline-none"
+						on:click={() => {
+							showSearch.set(true);
+						}}
+						draggable="false"
+						aria-label={$i18n.t('Search')}
+					>
+						<div class="self-center">
+							<Search strokeWidth="2" className="size-4.5" />
+						</div>
 
-							<div class="flex flex-1 self-center translate-y-[0.5px]">
-								<div class=" self-center text-sm font-primary">{$i18n.t('Search')}</div>
-							</div>
-							<HotkeyHint name="search" className=" group-hover:visible invisible" />
-						</button>
-					</div>
+						<div class="flex flex-1 self-center translate-y-[0.5px]">
+							<div class=" self-center text-sm font-primary">{$i18n.t('Search')}</div>
+						</div>
+						<HotkeyHint name="search" className=" group-hover:visible invisible" />
+					</button>
+				</div>
 
-					<div id="pinned-menu-items-list">
-						{#each pinnedItems as itemId (itemId)}
-							{@const meta = getMenuItemMeta(itemId)}
-							{#if meta && isMenuItemVisible(itemId)}
-								<div
-									class="px-[0.4375rem] flex justify-center text-gray-800 dark:text-gray-200"
-									data-id={itemId}
+				<div id="pinned-menu-items-list">
+					{#each pinnedItems as itemId (itemId)}
+						{@const meta = getMenuItemMeta(itemId)}
+						{#if meta && isMenuItemVisible(itemId)}
+							<div
+								class="px-[0.4375rem] flex justify-center"
+								data-id={itemId}
+							>
+								<a
+									id="sidebar-{itemId}-button"
+									class="nav-item grow flex items-center space-x-3 px-2.5 py-2"
+									href={meta.href}
+									on:click={itemClickHandler}
+									draggable="false"
+									aria-label={$i18n.t(meta.label)}
 								>
-									<a
-										id="sidebar-{itemId}-button"
-										class="grow flex items-center space-x-3 rounded-2xl px-2.5 py-2 hover:bg-gray-100 dark:hover:bg-gray-900 transition"
-										href={meta.href}
-										on:click={itemClickHandler}
-										draggable="false"
-										aria-label={$i18n.t(meta.label)}
-									>
 										<div class="self-center">
 											{#if itemId === 'workspace'}
 												<svg
@@ -1057,25 +1059,27 @@
 				</div>
 
 				{#if ($models ?? []).length > 0 && (($settings?.pinnedModels ?? []).length > 0 || $config?.default_pinned_models)}
-					<Folder
-						id="sidebar-models"
-						bind:open={showPinnedModels}
-						className="px-2 mt-0.5"
-						name={$i18n.t('Models')}
-						chevron={false}
-						dragAndDrop={false}
-					>
+			<Folder
+				id="sidebar-models"
+				bind:open={showPinnedModels}
+				className="px-2 mt-0.5"
+				name={$i18n.t('Models')}
+				buttonClassName="sidebar-folder-btn"
+				chevron={false}
+				dragAndDrop={false}
+			>
 						<PinnedModelList bind:selectedChatId {shiftKey} />
 					</Folder>
 				{/if}
 
 				{#if $config?.features?.enable_folders && ($user?.role === 'admin' || ($user?.permissions?.features?.folders ?? true))}
-					<Folder
-						id="sidebar-folders"
-						bind:open={showFolders}
-						className="px-2 mt-0.5"
-						name={$i18n.t('Folders')}
-						chevron={false}
+		<Folder
+			id="sidebar-folders"
+			bind:open={showFolders}
+			className="px-2 mt-0.5"
+			name={$i18n.t('Folders')}
+			buttonClassName="sidebar-folder-btn"
+			chevron={false}
 						onAdd={() => {
 							showCreateFolderModal = true;
 						}}
@@ -1123,11 +1127,12 @@
 					</Folder>
 				{/if}
 
-				<Folder
-					id="sidebar-chats"
-					className="px-2 mt-0.5"
-					name={$i18n.t('Chats')}
-					chevron={false}
+		<Folder
+			id="sidebar-chats"
+			className="px-2 mt-0.5"
+			name={$i18n.t('Chats')}
+			buttonClassName="sidebar-folder-btn"
+			chevron={false}
 					on:change={async (e) => {
 						selectedFolder.set(null);
 					}}
@@ -1194,9 +1199,9 @@
 					{#if $pinnedChats.length > 0}
 						<div class="mb-1">
 							<div class="flex flex-col space-y-1 rounded-xl">
-								<Folder
-									id="sidebar-pinned-chats"
-									buttonClassName=" text-gray-500"
+						<Folder
+							id="sidebar-pinned-chats"
+							buttonClassName="sidebar-folder-btn text-xs"
 									on:import={(e) => {
 										importChatHandler(e.detail, true);
 									}}
@@ -1244,7 +1249,7 @@
 									name={$i18n.t('Pinned')}
 								>
 									<div
-										class="ml-3 pl-1 mt-[1px] flex flex-col overflow-y-auto scrollbar-hidden border-s border-gray-100 dark:border-gray-900 text-gray-900 dark:text-gray-200"
+										class="ml-3 pl-1 mt-[1px] flex flex-col overflow-y-auto scrollbar-hidden border-s sidebar-pinned-border"
 									>
 										{#each $pinnedChats as chat, idx (`pinned-chat-${chat?.id ?? idx}`)}
 											<ChatItem
@@ -1277,16 +1282,13 @@
 						</div>
 					{/if}
 
-					<div class=" flex-1 flex flex-col overflow-y-auto scrollbar-hidden">
+					<div class=" conversation-list flex-1 flex flex-col overflow-y-auto scrollbar-hidden" style="--active-index: {activeChatIndex >= 0 ? activeChatIndex : 0}">
 						<div class="pt-1.5">
 							{#if $chats}
 								{#each $chats as chat, idx (`chat-${chat?.id ?? idx}`)}
 									{#if idx === 0 || (idx > 0 && chat.time_range !== $chats[idx - 1].time_range)}
 										<div
-											class="w-full pl-2.5 text-xs text-gray-500 dark:text-gray-500 font-medium {idx ===
-											0
-												? ''
-												: 'pt-5'} pb-1.5"
+											class="section-header w-full pl-2.5 {idx === 0 ? '' : 'pt-5'} pb-1.5"
 										>
 											{$i18n.t(chat.time_range)}
 											<!-- localisation keys for time_range to be recognized from the i18next parser (so they don't get automatically removed):
@@ -1364,10 +1366,10 @@
 				</Folder>
 			</div>
 
-			<div class="px-1.5 pt-1.5 pb-2 sticky bottom-0 z-10 -mt-3 sidebar">
-				<div
-					class=" sidebar-bg-gradient-to-t bg-linear-to-t from-gray-50 dark:from-gray-950 to-transparent from-50% pointer-events-none absolute inset-0 -z-10 -mt-6"
-				></div>
+		<div class="px-1.5 pt-1.5 pb-2 sticky bottom-0 z-10 -mt-3 sidebar">
+		<div
+			class=" sidebar-gradient-overlay-bottom pointer-events-none absolute inset-0 -z-10 -mt-6"
+		></div>
 				<div class="flex flex-col font-primary">
 					{#if $user !== undefined && $user !== null}
 						<UserMenu
@@ -1381,20 +1383,20 @@
 								}
 							}}
 						>
-							<div
-								class=" flex items-center rounded-2xl py-2 px-1.5 w-full hover:bg-gray-100/50 dark:hover:bg-gray-900/50 transition"
-							>
-								<div class=" self-center mr-3 relative">
-									<img
-										src={`${WEBUI_API_BASE_URL}/users/${$user?.id}/profile/image`}
-										class=" size-7 object-cover rounded-full"
-										alt={$i18n.t('Open User Profile Menu')}
-										aria-label={$i18n.t('Open User Profile Menu')}
-									/>
+					<div
+						class=" flex items-center rounded-2xl py-2 px-1.5 w-full hover:bg-[var(--surface-hover)] transition"
+					>
+						<div class=" self-center mr-3 relative">
+							<img
+								src={`${WEBUI_API_BASE_URL}/users/${$user?.id}/profile/image`}
+								class=" size-7 object-cover rounded-full sidebar-avatar"
+								alt={$i18n.t('Open User Profile Menu')}
+								aria-label={$i18n.t('Open User Profile Menu')}
+							/>
 
-								</div>
-								<div class=" self-center font-medium">{$user?.name}</div>
-							</div>
+						</div>
+						<div class=" self-center font-medium sidebar-user-name">{$user?.name}</div>
+					</div>
 						</UserMenu>
 					{/if}
 				</div>
@@ -1404,7 +1406,7 @@
 
 	{#if !$mobile}
 		<div
-			class="relative flex items-center justify-center group border-l border-gray-50 dark:border-gray-850/30 hover:border-gray-200 dark:hover:border-gray-800 transition z-20"
+			class="relative flex items-center justify-center group border-l sidebar-resizer-border hover:border-[var(--border-hover)] transition z-20"
 			id="sidebar-resizer"
 			on:mousedown={resizeStartHandler}
 			role="separator"
@@ -1415,3 +1417,212 @@
 		</div>
 	{/if}
 {/if}
+
+<style>
+	/* ── 2a — Sidebar shell ───────────────────────────────── */
+	#sidebar {
+		background: var(--bg-sidebar);
+		color: var(--text);
+	}
+	.sidebar-collapsed {
+		border-color: var(--border);
+	}
+
+	/* ── 2b — Brand / logo ────────────────────────────────── */
+	.sidebar-brand {
+		color: var(--text);
+	}
+
+	/* ── 2c — New Chat primary button ─────────────────────── */
+	.btn-sidebar-primary {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		padding: 8px 12px;
+		border-radius: 10px;
+		background: var(--accent);
+		color: #fff;
+		border: none;
+		font-size: 13px;
+		font-weight: 600;
+		cursor: pointer;
+		text-decoration: none;
+		transition: filter 0.2s, transform 0.1s;
+	}
+	.btn-sidebar-primary:hover {
+		filter: brightness(1.15);
+	}
+	.btn-sidebar-primary:active {
+		transform: scale(0.98);
+	}
+
+	/* ── 2d — Section headers ─────────────────────────────── */
+	.section-header {
+		display: flex;
+		align-items: center;
+		gap: 6px;
+		font-size: 10px;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+		color: var(--text-tertiary);
+	}
+
+	/* ── 2e/2f — Nav items (search, workspace, folder btns) ─ */
+	.nav-item {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		min-height: 30px;
+		padding: 5px 8px;
+		border-radius: 8px;
+		background: transparent;
+		border: none;
+		font-size: 13px;
+		font-weight: 500;
+		color: var(--text-secondary);
+		text-decoration: none;
+		cursor: pointer;
+		transition:
+			background 0.15s,
+			color 0.15s,
+			transform 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+	}
+	.nav-item:hover {
+		background: var(--surface-hover);
+		color: var(--text);
+		transform: translateX(2px);
+	}
+
+	/* Folder button section header style */
+	:global(.sidebar-folder-btn) {
+		color: var(--text-tertiary);
+	}
+	:global(#sidebar-folder-button) {
+		color: var(--text-tertiary);
+	}
+	:global(#sidebar-folder-button:hover) {
+		background: var(--surface-hover);
+		color: var(--text);
+	}
+
+	/* ── 2g — Conversation cards + sliding indicator ──────── */
+	.conversation-list {
+		--conv-row-h: 48px;
+		--conv-gap: 1px;
+		--active-index: 0;
+		position: relative;
+	}
+	.conversation-list::before {
+		content: '';
+		position: absolute;
+		left: 0; top: 0; bottom: 0;
+		width: 2px;
+		border-radius: 999px;
+		background: color-mix(in srgb, var(--border) 90%, transparent);
+		pointer-events: none;
+	}
+	.conversation-list::after {
+		content: '';
+		position: absolute;
+		left: 0; top: 0;
+		width: 2px;
+		height: var(--conv-row-h);
+		border-radius: 999px;
+		background: var(--accent);
+		transform: translateY(calc(var(--active-index) * (var(--conv-row-h) + var(--conv-gap))));
+		transition: transform 0.38s cubic-bezier(0.34, 1.56, 0.64, 1);
+		pointer-events: none;
+	}
+
+	:global(#sidebar-chat-item) {
+		display: flex;
+		align-items: center;
+		width: 100%;
+		min-height: 48px;
+		padding: 7px 8px 7px 12px;
+		border-radius: 6px;
+		background: transparent;
+		border: none;
+		color: var(--text-secondary);
+		font-family: inherit;
+		cursor: pointer;
+		overflow: hidden;
+		transition: color 0.15s, background 0.15s;
+	}
+	:global(#sidebar-chat-item):hover {
+		color: var(--text);
+		background: color-mix(in srgb, var(--surface-hover) 55%, transparent);
+	}
+
+	/* Inline edit mode / active */
+	:global(#sidebar-chat-item.selected) {
+		color: var(--text);
+	}
+
+	/* Chat item menu overlay (fade-out gradient) */
+	:global(#sidebar-chat-item-menu) {
+		background-image: linear-gradient(to left, var(--bg-sidebar) 80%, transparent);
+	}
+
+	/* ── 2h — Dividers & borders ──────────────────────────── */
+	.sidebar-pinned-border {
+		border-color: var(--border);
+	}
+	.sidebar-resizer-border {
+		border-color: var(--border);
+	}
+
+	/* ── 2i — User footer ─────────────────────────────────── */
+	.sidebar-avatar {
+		border: 1.5px solid var(--accent);
+	}
+	.sidebar-user-name {
+		font-size: 12px;
+		font-weight: 600;
+		color: var(--text);
+	}
+
+	/* ── 2j — Scrollbar ───────────────────────────────────── */
+	.conversation-list,
+	.conversation-list *::-webkit-scrollbar {
+		width: 17px;
+	}
+	.conversation-list {
+		scrollbar-width: thin;
+		scrollbar-color: color-mix(in srgb, var(--text-secondary) 72%, transparent) transparent;
+	}
+	.conversation-list::-webkit-scrollbar-track {
+		background: transparent;
+	}
+	.conversation-list::-webkit-scrollbar-thumb {
+		background-color: color-mix(in srgb, var(--text-secondary) 72%, transparent);
+		border: 2px solid transparent;
+		border-radius: 999px;
+		background-clip: content-box;
+	}
+	.conversation-list::-webkit-scrollbar-thumb:hover {
+		background-color: color-mix(in srgb, var(--text) 78%, transparent);
+	}
+
+	/* ── Ghost / icon button (collapsed sidebar) ──────────── */
+	.btn-ghost {
+		background: transparent;
+		border: none;
+		color: var(--text-tertiary);
+		cursor: pointer;
+		transition: background 0.15s, color 0.15s;
+	}
+	.btn-ghost:hover {
+		background: var(--surface-hover);
+		color: var(--text);
+	}
+
+	/* ── Background gradient overlays ─────────────────────── */
+	.sidebar-gradient-overlay-top {
+		background: linear-gradient(to bottom, var(--bg-sidebar) 50%, transparent);
+	}
+	.sidebar-gradient-overlay-bottom {
+		background: linear-gradient(to top, var(--bg-sidebar) 50%, transparent);
+	}
+</style>
