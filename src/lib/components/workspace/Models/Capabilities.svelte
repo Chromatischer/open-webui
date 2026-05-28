@@ -66,24 +66,25 @@
 		builtin_tools?: boolean;
 	} = {};
 
-	// Hide file_context when file_upload is disabled
-	$: visibleCapabilities = Object.keys(capabilityLabels).filter((cap) => {
-		if (cap === 'file_context' && !capabilities.file_upload) {
-			return false;
-		}
-		return true;
-	});
+	const allCapabilities = Object.keys(capabilityLabels);
+
+	// file_context only applies when file_upload is enabled — keep it visible but disabled.
+	const isDisabled = (cap: string) => cap === 'file_context' && !capabilities.file_upload;
 
 	const toggle = (cap: string) => {
+		if (isDisabled(cap)) return;
 		capabilities[cap] = !capabilities[cap];
 	};
 </script>
 
 <div class="cap-grid">
-	{#each visibleCapabilities as capability}
+	{#each allCapabilities as capability}
 		<button
 			type="button"
-			class="cap-card {capabilities[capability] ? 'on' : ''}"
+			class="cap-card {capabilities[capability] ? 'on' : ''} {isDisabled(capability)
+				? 'disabled'
+				: ''}"
+			disabled={isDisabled(capability)}
 			on:click={() => toggle(capability)}
 		>
 			<span class="cap-label">{$i18n.t(capabilityLabels[capability].label)}</span>
@@ -122,6 +123,16 @@
 	.cap-card.on {
 		border-color: var(--accent);
 		background: var(--accent-glow);
+	}
+	.cap-card.disabled {
+		opacity: 0.4;
+		cursor: not-allowed;
+	}
+	.cap-card.disabled:hover {
+		border-color: var(--border);
+	}
+	.cap-card.disabled:active {
+		transform: none;
 	}
 	.cap-label {
 		font-size: 13px;
