@@ -1844,7 +1844,7 @@
 	}
 
 	/* ── 2j — Scrollbar ───────────────────────────────────── */
-	.conversation-list,
+	.conversation-list::-webkit-scrollbar,
 	.conversation-list *::-webkit-scrollbar {
 		width: 17px;
 	}
