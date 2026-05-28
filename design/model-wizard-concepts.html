@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>New Model — Wizard (Concept A, refined)</title>
+<style>
+:root {
+	--bg-base:#f7f5f0; --bg-elevated:#ffffff;
+	--surface:rgba(0,0,0,.025); --surface-hover:rgba(0,0,0,.05); --surface-active:rgba(0,0,0,.08);
+	--border:rgba(0,0,0,.06); --border-hover:rgba(0,0,0,.12);
+	--text:#2a2927; --text-secondary:#6b6964; --text-tertiary:#a9a69d;
+	--accent:#7b7ef6; --accent-glow:rgba(123,126,246,.12); --success:#2d9f52;
+	--font-sans:'Archivo',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+	--shadow:0 24px 60px rgba(0,0,0,.18);
+}
+* { box-sizing:border-box; margin:0; padding:0; }
+body { font-family:var(--font-sans); background:var(--bg-base); color:var(--text); padding:36px; line-height:1.45; }
+h2.label { font-size:13px; text-transform:uppercase; letter-spacing:.08em; color:var(--text-tertiary); margin:0 0 4px; font-weight:600;}
+p.note { font-size:13px; color:var(--text-secondary); margin-bottom:18px; max-width:720px;}
+.stage { background:rgba(0,0,0,.06); border-radius:20px; padding:28px; margin-bottom:40px; display:flex; justify-content:center;}
+
+.modal { width:760px; max-width:100%; background:var(--bg-elevated); border-radius:20px; box-shadow:var(--shadow); overflow:hidden; border:1px solid var(--border);}
+.m-title { font-size:16px; font-weight:600;}
+.x { margin-left:auto; width:30px; height:30px; border-radius:9px; display:flex; align-items:center; justify-content:center; color:var(--text-tertiary); cursor:pointer;}
+.x:hover { background:var(--surface-hover);}
+.head { display:flex; align-items:center; padding:16px 22px; border-bottom:1px solid var(--border);}
+
+.body { display:flex; min-height:440px;}
+.rail { width:228px; flex:none; background:var(--surface); border-right:1px solid var(--border); padding:14px 12px;}
+.rail-step { display:flex; gap:10px; align-items:flex-start; padding:9px 10px; border-radius:10px; cursor:pointer; color:var(--text-secondary); margin-bottom:2px;}
+.rail-step.on { background:var(--bg-elevated); color:var(--text); box-shadow:0 1px 3px rgba(0,0,0,.05);}
+.rail-step.done { color:var(--text-tertiary);}
+.rs-num { width:20px; height:20px; border-radius:50%; flex:none; font-size:11px; font-weight:700; display:flex; align-items:center; justify-content:center; background:var(--surface-active); color:var(--text-secondary); margin-top:1px;}
+.rail-step.on .rs-num { background:var(--accent); color:#fff;}
+.rail-step.done .rs-num { background:var(--success); color:#fff;}
+.rs-t { font-size:13px; font-weight:600; line-height:1.25; display:flex; align-items:center; gap:6px;}
+.rs-d { font-size:11px; color:var(--text-tertiary); margin-top:1px;}
+.opt { font-size:9px; text-transform:uppercase; letter-spacing:.05em; color:var(--text-tertiary); border:1px solid var(--border); border-radius:5px; padding:0 4px; font-weight:600;}
+
+.content { flex:1; padding:22px 26px; overflow:auto;}
+.c-title { font-size:18px; font-weight:600; margin-bottom:2px;}
+.c-sub { font-size:12px; color:var(--text-secondary); margin-bottom:18px;}
+
+.foot { display:flex; align-items:center; gap:10px; padding:14px 22px; border-top:1px solid var(--border); background:var(--surface);}
+.foot .spacer { flex:1;}
+.btn { font-size:13px; font-weight:600; padding:9px 16px; border-radius:11px; border:1px solid var(--border); background:var(--bg-elevated); color:var(--text); cursor:pointer;}
+.btn.ghost { border:none; background:transparent; color:var(--text-secondary);}
+.btn.primary { background:var(--text); color:var(--bg-elevated); border:none;}
+.btn.create { background:var(--accent); color:#fff; border:none;}
+
+.field { margin-bottom:16px;}
+.field > label { display:block; font-size:12px; font-weight:600; color:var(--text-secondary); margin-bottom:6px;}
+.field .hint { font-size:11px; color:var(--text-tertiary); font-weight:400; margin-left:6px;}
+.inp { width:100%; border:1px solid var(--border); border-radius:11px; padding:10px 12px; font-size:13px; background:var(--bg-base); color:var(--text);}
+.inp::placeholder { color:var(--text-tertiary);}
+.avatar-row { display:flex; align-items:center; gap:14px; margin-bottom:18px;}
+.avatar { width:60px; height:60px; border-radius:16px; background:linear-gradient(135deg,#c9cbfa,#9fa1f9); flex:none;}
+.avatar-cta { font-size:12px; color:var(--accent); font-weight:600; cursor:pointer;}
+.tagrow { display:flex; gap:6px; flex-wrap:wrap;}
+.tagchip { font-size:11px; padding:3px 9px; border-radius:7px; background:var(--surface); color:var(--text-secondary);}
+</style>
+</head>
+<body>
+
+<section>
+	<h2 class="label">New Model wizard — Concept A (left rail), refined</h2>
+	<p class="note">All 5 steps live in the rail; click any to jump. Done steps show a green check, the current one is highlighted, and optional steps are tagged. Because only <b>Basics</b> is required, a <b>Create model</b> button appears in the footer the moment name + base model are filled — you can finish immediately or keep going. The same shell is reused for editing (title becomes “Edit Model”, footer shows “Save”).</p>
+</section>
+
+<!-- Step 1: Basics (required) -->
+<div class="stage">
+	<div class="modal">
+		<div class="head"><div class="m-title">New Model</div><div class="x">✕</div></div>
+		<div class="body">
+			<div class="rail">
+				<div class="rail-step on"><div class="rs-num">1</div><div><div class="rs-t">Basics</div><div class="rs-d">Name & base model</div></div></div>
+				<div class="rail-step"><div class="rs-num">2</div><div><div class="rs-t">Instructions <span class="opt">opt</span></div><div class="rs-d">System prompt</div></div></div>
+				<div class="rail-step"><div class="rs-num">3</div><div><div class="rs-t">Knowledge & Tools <span class="opt">opt</span></div><div class="rs-d">What it can call</div></div></div>
+				<div class="rail-step"><div class="rs-num">4</div><div><div class="rs-t">Capabilities <span class="opt">opt</span></div><div class="rs-d">Vision, features</div></div></div>
+				<div class="rail-step"><div class="rs-num">5</div><div><div class="rs-t">Starters & Access <span class="opt">opt</span></div><div class="rs-d">Suggestions, who can use</div></div></div>
+			</div>
+			<div class="content">
+				<div class="c-title">Name your model</div>
+				<div class="c-sub">The only required step — refine everything else now or later.</div>
+				<div class="avatar-row"><div class="avatar"></div><div><div class="avatar-cta">Upload image</div><div class="hint" style="margin:0">PNG, JPG or GIF</div></div></div>
+				<div class="field"><label>Name</label><input class="inp" placeholder="e.g. Code Reviewer" /></div>
+				<div class="field"><label>Base model <span class="hint">what it runs on</span></label>
+					<div class="inp" style="display:flex;justify-content:space-between;color:var(--text-tertiary)">Select a base model… <span>⌄</span></div></div>
+				<div class="field"><label>Description <span class="hint">optional</span></label>
+					<input class="inp" placeholder="One line about what this model is for" /></div>
+				<div class="field"><label>Tags <span class="hint">optional</span></label>
+					<div class="tagrow"><span class="tagchip">code</span><span class="tagchip" style="color:var(--text-tertiary)">+ add</span></div></div>
+			</div>
+		</div>
+		<div class="foot">
+			<button class="btn ghost" style="opacity:.4">← Back</button>
+			<div class="spacer"></div>
+			<span style="font-size:11px;color:var(--text-tertiary);margin-right:4px">Fill name + base model to create</span>
+			<button class="btn create" style="opacity:.5">Create model</button>
+			<button class="btn primary">Next →</button>
+		</div>
+	</div>
+</div>
+
+<!-- Step 3: a later optional step, with Create now enabled -->
+<section><h2 class="label">A later step (e.g. step 3) — Create now enabled</h2>
+	<p class="note">Once Basics is satisfied, completed steps get green checks and <b>Create model</b> becomes active, sitting beside Next so you can bail out and finish at any point.</p></section>
+<div class="stage">
+	<div class="modal">
+		<div class="head"><div class="m-title">New Model</div><div class="x">✕</div></div>
+		<div class="body">
+			<div class="rail">
+				<div class="rail-step done"><div class="rs-num">✓</div><div><div class="rs-t">Basics</div><div class="rs-d">Code Reviewer · gpt-4o</div></div></div>
+				<div class="rail-step done"><div class="rs-num">✓</div><div><div class="rs-t">Instructions</div><div class="rs-d">System prompt set</div></div></div>
+				<div class="rail-step on"><div class="rs-num">3</div><div><div class="rs-t">Knowledge & Tools <span class="opt">opt</span></div><div class="rs-d">What it can call</div></div></div>
+				<div class="rail-step"><div class="rs-num">4</div><div><div class="rs-t">Capabilities <span class="opt">opt</span></div><div class="rs-d">Vision, features</div></div></div>
+				<div class="rail-step"><div class="rs-num">5</div><div><div class="rs-t">Starters & Access <span class="opt">opt</span></div><div class="rs-d">Suggestions, who can use</div></div></div>
+			</div>
+			<div class="content">
+				<div class="c-title">Give it knowledge & tools</div>
+				<div class="c-sub">Optional — attach knowledge bases and let the model call tools or skills.</div>
+				<div class="field"><label>Knowledge</label><div class="inp" style="color:var(--text-tertiary);cursor:pointer">+ Attach a knowledge base</div></div>
+				<div class="field"><label>Tools</label><div class="inp" style="color:var(--text-tertiary);cursor:pointer">+ Select tools the model can call</div></div>
+				<div class="field"><label>Skills</label><div class="inp" style="color:var(--text-tertiary);cursor:pointer">+ Select skills</div></div>
+			</div>
+		</div>
+		<div class="foot">
+			<button class="btn ghost">← Back</button>
+			<div class="spacer"></div>
+			<button class="btn create">Create model</button>
+			<button class="btn primary">Next →</button>
+		</div>
+	</div>
+</div>
+
+</body>
+</html>

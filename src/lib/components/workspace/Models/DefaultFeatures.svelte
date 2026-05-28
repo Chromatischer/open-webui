@@ -1,54 +1,111 @@
 <script lang="ts">
 	import { getContext } from 'svelte';
 	import Checkbox from '$lib/components/common/Checkbox.svelte';
-	import Tooltip from '$lib/components/common/Tooltip.svelte';
-	import { marked } from 'marked';
 
 	const i18n = getContext('i18n');
 
 	const featureLabels = {
 		web_search: {
 			label: $i18n.t('Web Search'),
-			description: $i18n.t('Model can search the web for information')
+			description: $i18n.t('On by default for new chats')
 		},
 		image_generation: {
 			label: $i18n.t('Image Generation'),
-			description: $i18n.t('Model can generate images based on text prompts')
+			description: $i18n.t('On by default for new chats')
 		},
 		code_interpreter: {
 			label: $i18n.t('Code Interpreter'),
-			description: $i18n.t('Model can execute code and perform calculations')
+			description: $i18n.t('On by default for new chats')
 		}
 	};
 
 	export let availableFeatures = ['web_search', 'image_generation', 'code_interpreter'];
 	export let featureIds = [];
+
+	const toggle = (feature: string, on: boolean) => {
+		if (on) {
+			featureIds = [...featureIds, feature];
+		} else {
+			featureIds = featureIds.filter((id) => id !== feature);
+		}
+	};
 </script>
 
 <div>
-	<div class="flex w-full justify-between mb-1">
-		<div class=" self-center text-xs font-medium text-gray-500">{$i18n.t('Default Features')}</div>
-	</div>
-	<div class="flex items-center mt-2 flex-wrap">
+	<div class="text-xs font-medium text-gray-500 mb-2">{$i18n.t('Default Features')}</div>
+	<div class="feat-grid">
 		{#each availableFeatures as feature}
-			<div class=" flex items-center gap-2 mr-3">
-				<Checkbox
-					state={featureIds.includes(feature) ? 'checked' : 'unchecked'}
-					on:change={(e) => {
-						if (e.detail === 'checked') {
-							featureIds = [...featureIds, feature];
-						} else {
-							featureIds = featureIds.filter((id) => id !== feature);
-						}
-					}}
-				/>
-
-				<div class=" py-0.5 text-sm capitalize">
-					<Tooltip content={marked.parse(featureLabels[feature].description)}>
-						{$i18n.t(featureLabels[feature].label)}
-					</Tooltip>
-				</div>
-			</div>
+			{@const on = featureIds.includes(feature)}
+			<button
+				type="button"
+				class="feat-card {on ? 'on' : ''}"
+				on:click={() => toggle(feature, !on)}
+			>
+				<span class="feat-check" on:click|stopPropagation>
+					<Checkbox
+						state={on ? 'checked' : 'unchecked'}
+						on:change={(e) => toggle(feature, e.detail === 'checked')}
+					/>
+				</span>
+				<span class="feat-text">
+					<span class="feat-label">{$i18n.t(featureLabels[feature].label)}</span>
+					<span class="feat-desc">{featureLabels[feature].description}</span>
+				</span>
+			</button>
 		{/each}
 	</div>
 </div>
+
+<style>
+	.feat-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+		gap: 8px;
+	}
+	.feat-card {
+		display: flex;
+		align-items: flex-start;
+		gap: 10px;
+		text-align: left;
+		padding: 10px 12px;
+		border: 1px solid var(--border);
+		border-radius: 12px;
+		background: var(--bg-base);
+		cursor: pointer;
+		transition:
+			border-color 0.15s ease,
+			background 0.15s ease,
+			transform 0.1s ease;
+	}
+	.feat-card:hover {
+		border-color: var(--border-hover);
+	}
+	.feat-card:active {
+		transform: scale(0.985);
+	}
+	.feat-card.on {
+		border-color: var(--accent);
+		background: var(--accent-glow);
+	}
+	.feat-check {
+		display: flex;
+		align-items: center;
+		margin-top: 1px;
+	}
+	.feat-text {
+		display: flex;
+		flex-direction: column;
+		min-width: 0;
+	}
+	.feat-label {
+		font-size: 13px;
+		font-weight: 600;
+		color: var(--text);
+		line-height: 1.25;
+	}
+	.feat-desc {
+		font-size: 11px;
+		color: var(--text-secondary);
+		margin-top: 2px;
+	}
+</style>

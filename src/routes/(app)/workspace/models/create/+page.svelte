@@ -8,7 +8,7 @@
 	import { createNewModel, getModelById } from '$lib/apis/models';
 	import { getModels } from '$lib/apis';
 
-	import ModelEditor from '$lib/components/workspace/Models/ModelEditor.svelte';
+	import ModelWizard from '$lib/components/workspace/Models/ModelWizard.svelte';
 
 	const i18n = getContext('i18n');
 
@@ -98,5 +98,5 @@
 </script>
 
 {#key model}
-	<ModelEditor {model} {onSubmit} />
+	<ModelWizard {model} {onSubmit} onClose={() => goto('/workspace/models')} />
 {/key}

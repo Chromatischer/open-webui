@@ -1194,3 +1194,137 @@ select {
 #note-content-container .ProseMirror {
 	padding-bottom: 2rem; /* space for the bottom toolbar */
 }
+
+/* ── Workspace list pages (Models / Tools / Skills) ───────── */
+.ws-head {
+	margin-bottom: 16px;
+}
+.ws-head .ws-title {
+	font-size: 20px;
+	font-weight: 600;
+	margin-bottom: 4px;
+}
+.ws-lede {
+	font-size: 13px;
+	color: var(--text-secondary);
+	max-width: 620px;
+	line-height: 1.5;
+}
+.ws-toolbar {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	margin-bottom: 16px;
+	flex-wrap: wrap;
+}
+.ws-search {
+	flex: 1;
+	min-width: 200px;
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	background: var(--bg-elevated);
+	border: 1px solid var(--border);
+	border-radius: 12px;
+	padding: 9px 12px;
+	transition: border-color 0.2s ease;
+}
+.ws-search:focus-within {
+	border-color: var(--border-hover);
+}
+.ws-search input {
+	flex: 1;
+	border: none;
+	outline: none;
+	background: transparent;
+	font-size: 13px;
+	color: var(--text);
+}
+.ws-chips {
+	display: flex;
+	gap: 6px;
+}
+.ws-chip {
+	display: inline-flex;
+	align-items: center;
+	font-size: 12px;
+	padding: 7px 12px;
+	border-radius: 999px;
+	background: var(--surface);
+	color: var(--text-secondary);
+	cursor: pointer;
+	border: none;
+	transition: background 0.2s ease, color 0.2s ease;
+}
+.ws-chip:hover {
+	background: var(--surface-hover);
+}
+.ws-chip.on {
+	background: var(--accent-glow);
+	color: var(--accent);
+	font-weight: 600;
+}
+.ws-chip .cnt {
+	color: var(--accent);
+	font-weight: 600;
+	margin-left: 4px;
+}
+.ws-page {
+	width: 100%;
+	max-width: 1180px;
+	margin: 0 auto;
+	padding-top: 20px;
+}
+.ws-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+	gap: 12px;
+}
+.ws-empty {
+	grid-column: 1 / -1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 40px 16px;
+	font-size: 13px;
+	color: var(--text-tertiary);
+}
+.ws-base {
+	display: inline-flex;
+	align-items: center;
+	gap: 4px;
+	font-size: 11px;
+	font-weight: 600;
+	padding: 3px 8px;
+	border-radius: 7px;
+	background: var(--accent-glow);
+	color: var(--accent);
+	max-width: 100%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.ws-tag {
+	font-size: 10px;
+	padding: 2px 7px;
+	border-radius: 6px;
+	background: var(--surface);
+	color: var(--text-secondary);
+}
+.ws-avatar {
+	width: 40px;
+	height: 40px;
+	border-radius: 12px;
+	object-fit: cover;
+	background: var(--surface-active);
+}
+.ws-icon-avatar {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 40px;
+	height: 40px;
+	border-radius: 12px;
+	background: var(--accent-glow);
+	color: var(--accent);
+}
