@@ -2898,7 +2898,7 @@ async def process_chat_payload(request, form_data, user, metadata, model):
                 builtin_tools = {
                     name: tool_dict
                     for name, tool_dict in builtin_tools.items()
-                    if name in ('read_scratchboard', 'write_scratchboard')
+                    if name in ('read_scratchboard', 'write_scratchboard', 'edit_scratchboard')
                 }
 
             for name, tool_dict in builtin_tools.items():
@@ -2908,8 +2908,9 @@ async def process_chat_payload(request, form_data, user, metadata, model):
             if builtin_tools.get('read_scratchboard') and builtin_tools.get('write_scratchboard'):
                 form_data['messages'] = add_or_update_system_message(
                     "You have access to this chat's Scratchboard. Use read_scratchboard to inspect its "
-                    'current markdown notes and write_scratchboard to replace them with updated markdown '
-                    'when useful.',
+                    'current markdown notes, write_scratchboard to replace them with updated markdown, '
+                    'and edit_scratchboard to make targeted find-and-replace edits (preferred for small '
+                    'changes since it only sends the changed text) when useful.',
                     form_data['messages'],
                     append=True,
                 )

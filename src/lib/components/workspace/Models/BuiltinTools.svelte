@@ -54,7 +54,9 @@
 		},
 		scratchboard: {
 			label: $i18n.t('Scratchboard'),
-			description: $i18n.t('Read and write durable notes for the current chat Scratchboard')
+			description: $i18n.t(
+				'Read, write, and diff-edit durable notes for the current chat Scratchboard'
+			)
 		}
 	};
 

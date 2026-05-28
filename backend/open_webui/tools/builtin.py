@@ -2470,6 +2470,79 @@ async def write_scratchboard(
         return json.dumps({'error': str(e)})
 
 
+async def edit_scratchboard(
+    old_string: str,
+    new_string: str,
+    replace_all: bool = False,
+    __chat_id__: str = None,
+    __message_id__: str = None,
+    __event_emitter__: callable = None,
+    __request__: Request = None,
+    __user__: dict = None,
+) -> str:
+    """
+    Apply a targeted find-and-replace edit to the current chat's Scratchboard.
+
+    Prefer this over write_scratchboard for small changes: it only sends the
+    text that changes instead of the whole document, saving tokens and time.
+
+    :param old_string: The exact existing text to replace. Must match the current Scratchboard content verbatim (including whitespace). Unless replace_all is true, it must be unique within the document.
+    :param new_string: The text to replace old_string with. Use an empty string to delete old_string.
+    :param replace_all: When true, replace every occurrence of old_string. When false (default), old_string must match exactly once.
+    :return: JSON with success status and the updated Scratchboard content
+    """
+    if __chat_id__ is None:
+        return json.dumps({'error': 'Chat context not available'})
+
+    if not __user__:
+        return json.dumps({'error': 'User context not available'})
+
+    if old_string == new_string:
+        return json.dumps({'error': 'old_string and new_string are identical; nothing to edit'})
+
+    try:
+        content = await Chats.get_chat_scratchboard_by_id(__chat_id__, __user__.get('id'))
+        if content is None:
+            return json.dumps({'error': 'Chat not found or access denied'})
+
+        occurrences = content.count(old_string)
+        if occurrences == 0:
+            return json.dumps({'error': 'old_string not found in Scratchboard content'})
+        if not replace_all and occurrences > 1:
+            return json.dumps(
+                {
+                    'error': f'old_string is not unique ({occurrences} matches found). '
+                    'Provide a larger, unique old_string or set replace_all to true.'
+                }
+            )
+
+        if replace_all:
+            updated_content = content.replace(old_string, new_string)
+        else:
+            updated_content = content.replace(old_string, new_string, 1)
+
+        updated_chat = await Chats.update_chat_scratchboard_by_id(
+            __chat_id__, __user__.get('id'), updated_content
+        )
+        if not updated_chat:
+            return json.dumps({'error': 'Chat not found or access denied'})
+
+        await _emit_scratchboard(__event_emitter__, updated_content)
+
+        return json.dumps(
+            {
+                'status': 'success',
+                'replacements': occurrences if replace_all else 1,
+                'content': updated_content,
+                'updated_at': updated_chat.updated_at,
+            },
+            ensure_ascii=False,
+        )
+    except Exception as e:
+        log.exception(f'edit_scratchboard error: {e}')
+        return json.dumps({'error': str(e)})
+
+
 # =============================================================================
 # TASK MANAGEMENT TOOLS
 # =============================================================================

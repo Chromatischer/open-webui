@@ -92,6 +92,7 @@ from open_webui.tools.builtin import (
     view_skill,
     read_scratchboard,
     write_scratchboard,
+    edit_scratchboard,
     create_tasks,
     update_task,
     create_automation,
@@ -555,7 +556,7 @@ async def get_builtin_tools(
 
     # Scratchboard tools - read and write durable notes for the current chat
     if is_builtin_tool_enabled('scratchboard'):
-        builtin_functions.extend([read_scratchboard, write_scratchboard])
+        builtin_functions.extend([read_scratchboard, write_scratchboard, edit_scratchboard])
 
     # Task management - break down complex work into trackable steps
     if is_builtin_tool_enabled('tasks'):
