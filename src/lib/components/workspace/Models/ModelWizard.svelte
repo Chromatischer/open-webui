@@ -648,7 +648,7 @@
 								</div>
 
 								<div class="wz-field">
-									<AdvancedParams admin={true} custom={true} bind:params />
+									<AdvancedParams admin={true} custom={true} grouped={true} bind:params />
 								</div>
 							{/if}
 						</div>
