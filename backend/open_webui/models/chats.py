@@ -1696,5 +1696,36 @@ class ChatTable:
                 return []
             return row[0]
 
+    async def get_chat_scratchboard_by_id(self, id: str, user_id: str) -> Optional[str]:
+        """Read the scratchboard content from a chat."""
+        async with get_async_db_context() as db:
+            result = await db.execute(select(Chat.chat).filter_by(id=id, user_id=user_id))
+            row = result.first()
+            if row is None or row[0] is None:
+                return None
+            scratchboard = row[0].get('scratchboard')
+            return scratchboard if isinstance(scratchboard, str) else ''
+
+    async def update_chat_scratchboard_by_id(
+        self, id: str, user_id: str, content: str
+    ) -> Optional[ChatModel]:
+        """Update the scratchboard content on a chat."""
+        try:
+            async with get_async_db_context() as db:
+                chat = await db.get(Chat, id)
+                if chat is None or chat.user_id != user_id:
+                    return None
+
+                chat.chat = {
+                    **(chat.chat or {}),
+                    'scratchboard': self._clean_null_bytes(content),
+                }
+                chat.updated_at = int(time.time())
+                await db.commit()
+                await db.refresh(chat)
+                return ChatModel.model_validate(chat)
+        except Exception:
+            return None
+
 
 Chats = ChatTable()

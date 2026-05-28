@@ -1,18 +1,20 @@
 <script lang="ts">
 	import { getContext } from 'svelte';
+	import type { Writable } from 'svelte/store';
+	import type { i18n as i18nType } from 'i18next';
 	import { embed, showControls, showEmbeds } from '$lib/stores';
 
 	import CitationModal from './Citations/CitationModal.svelte';
 
-	const i18n = getContext('i18n');
+	const i18n = getContext<Writable<i18nType>>('i18n');
 
 	export let id = '';
 	export let chatId = '';
 
-	export let sources = [];
+	export let sources: any[] = [];
 	export let readOnly = false;
 
-	let citations = [];
+	let citations: any[] = [];
 	let showPercentage = false;
 	let showRelevance = true;
 
@@ -23,7 +25,7 @@
 
 	let selectedCitation: any = null;
 
-	export const showSourceModal = (sourceId) => {
+	export const showSourceModal = (sourceId: string | number) => {
 		let index;
 		let suffix = null;
 
@@ -101,7 +103,7 @@
 				return acc;
 			}
 
-			source?.document?.forEach((document, index) => {
+			source?.document?.forEach((document: any, index: number) => {
 				const metadata = source?.metadata?.[index];
 				const distance = source?.distances?.[index];
 
@@ -117,7 +119,7 @@
 					_source = { ..._source, name: id, url: id };
 				}
 
-				const existingSource = acc.find((item) => item.id === id);
+				const existingSource = acc.find((item: any) => item.id === id);
 
 				if (existingSource) {
 					existingSource.document.push(document);
@@ -159,78 +161,126 @@
 />
 
 {#if citations.length > 0}
-	{@const urlCitations = citations.filter((c) => c?.source?.name?.startsWith('http'))}
-	<div class=" py-1 -mx-0.5 w-full flex gap-1 items-center flex-wrap">
-		<button
-			class="text-xs font-medium text-gray-600 dark:text-gray-300 px-3.5 h-8 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition flex items-center gap-1 border border-gray-50 dark:border-gray-850/30"
-			aria-label={citations.length === 1
-				? $i18n.t('Toggle 1 source')
-				: $i18n.t('Toggle {{COUNT}} sources', { COUNT: citations.length })}
-			aria-expanded={showCitations}
-			on:click={() => {
-				showCitations = !showCitations;
-			}}
-		>
-			{#if urlCitations.length > 0}
-				<div class="flex -space-x-1 items-center">
-					{#each urlCitations.slice(0, 3) as citation, idx}
-						<img
-							src="https://www.google.com/s2/favicons?sz=32&domain={citation.source.name}"
-							alt="favicon"
-							class="size-4 rounded-full shrink-0 border border-white dark:border-gray-850 bg-white dark:bg-gray-900"
-							on:error={(e) => {
-								e.target.src = '/favicon.png';
-							}}
-						/>
-					{/each}
-					{#if citations.length > 3}
-						<div
-							class="size-4 rounded-full shrink-0 border border-white dark:border-gray-850 bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-[8px] font-semibold text-gray-500 dark:text-gray-400 whitespace-nowrap tracking-tighter"
-							aria-hidden="true"
-						>
-							+{citations.length - Math.min(urlCitations.length, 3)}
-						</div>
-					{/if}
-				</div>
-			{/if}
-			<div>
-				{#if citations.length === 1}
-					{$i18n.t('1 Source')}
+	<div class="source-feed" aria-label={$i18n.t('Sources used')}>
+		{#each citations as citation, idx}
+			{@const sourceName = decodeString(citation.source.name)}
+			{@const isUrl = citation?.source?.name?.startsWith('http')}
+			<button
+				id={`source-${id}-${idx + 1}`}
+				aria-label={$i18n.t('View source: {{name}}', { name: sourceName })}
+				class="source-item no-toggle outline-hidden"
+				on:click={() => {
+					showCitationModal = true;
+					selectedCitation = citation;
+				}}
+			>
+				<span class="source-index">{idx + 1}</span>
+				{#if isUrl}
+					<img
+						src="https://www.google.com/s2/favicons?sz=32&domain={citation.source.name}"
+						alt=""
+						class="favicon"
+						on:error={(e) => {
+							(e.currentTarget as HTMLImageElement).src = '/favicon.png';
+						}}
+					/>
 				{:else}
-					{$i18n.t('{{COUNT}} Sources', {
-						COUNT: citations.length
-					})}
+					<span class="source-glyph" aria-hidden="true">
+						<svg
+							width="13"
+							height="13"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+						>
+							<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+							<path d="M14 2v6h6" />
+						</svg>
+					</span>
 				{/if}
-			</div>
-		</button>
+				<span class="source-name">{sourceName}</span>
+			</button>
+		{/each}
 	</div>
 {/if}
 
-{#if showCitations}
-	<div class="py-1.5">
-		<div class="text-xs gap-2 flex flex-col">
-			{#each citations as citation, idx}
-				<button
-					id={`source-${id}-${idx + 1}`}
-					aria-label={$i18n.t('View source: {{name}}', {
-						name: decodeString(citation.source.name)
-					})}
-					class="no-toggle outline-hidden flex dark:text-gray-300 bg-transparent text-gray-600 rounded-xl gap-1.5 items-center"
-					on:click={() => {
-						showCitationModal = true;
-						selectedCitation = citation;
-					}}
-				>
-					<div class=" font-medium bg-gray-50 dark:bg-gray-850 rounded-md px-1">
-						{idx + 1}
-					</div>
-					<div
-						class="flex-1 truncate hover:text-black dark:text-white/60 dark:hover:text-white transition text-left"
-					>
-						{decodeString(citation.source.name)}
-					</div>
-				</button>
-			{/each}
-		</div>
-	</div>
-{/if}
+<style>
+	.source-feed {
+		display: flex;
+		width: 100%;
+		align-items: center;
+		gap: 0.4rem;
+		flex-wrap: wrap;
+		margin: 0.15rem 0 0.55rem;
+	}
+
+	.source-item {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.4rem;
+		min-height: 1.9rem;
+		max-width: 100%;
+		padding: 0 0.7rem 0 0.55rem;
+		border-radius: 999px;
+		border: 1px solid color-mix(in srgb, var(--border) 78%, transparent);
+		background:
+			linear-gradient(180deg, color-mix(in srgb, var(--surface) 88%, transparent), transparent),
+			color-mix(in srgb, var(--bg-elevated) 92%, transparent);
+		color: var(--text-secondary);
+		font-size: 0.72rem;
+		font-weight: 650;
+		line-height: 1;
+		transition:
+			background 0.16s ease,
+			border-color 0.16s ease,
+			color 0.16s ease,
+			transform 0.16s ease;
+	}
+
+	.source-item:hover {
+		border-color: color-mix(in srgb, var(--text-tertiary) 45%, var(--border));
+		background: color-mix(in srgb, var(--surface-hover) 72%, var(--bg-elevated));
+		color: var(--text);
+		transform: translateY(-1px);
+	}
+
+	.source-index {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		min-width: 1.12rem;
+		height: 1.12rem;
+		border-radius: 999px;
+		background: var(--surface);
+		color: var(--text-tertiary);
+		font-size: 0.62rem;
+		font-weight: 800;
+	}
+
+	.source-glyph {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 1rem;
+		height: 1rem;
+		color: var(--text-tertiary);
+	}
+
+	.favicon {
+		width: 1rem;
+		height: 1rem;
+		flex: none;
+		border-radius: 999px;
+		border: 1px solid var(--border);
+		background: var(--surface);
+	}
+
+	.source-name {
+		min-width: 0;
+		max-width: min(24rem, 58vw);
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+</style>

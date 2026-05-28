@@ -39,7 +39,6 @@
 	import { WEBUI_API_BASE_URL, WEBUI_BASE_URL } from '$lib/constants';
 	import equal from 'fast-deep-equal';
 
-	import Name from './Name.svelte';
 	import ProfileImage from './ProfileImage.svelte';
 	import Skeleton from './Skeleton.svelte';
 	import Image from '$lib/components/common/Image.svelte';
@@ -55,6 +54,7 @@
 	import Citations from './Citations.svelte';
 	import CodeExecutions from './CodeExecutions.svelte';
 	import ContentRenderer from './ContentRenderer.svelte';
+	import Markdown from './Markdown.svelte';
 	import { KokoroWorker } from '$lib/workers/KokoroWorker';
 	import FileItem from '$lib/components/common/FileItem.svelte';
 	import FollowUps from './ResponseMessage/FollowUps.svelte';
@@ -88,7 +88,10 @@
 		};
 		done: boolean;
 		error?: boolean | { content: string };
-		sources?: string[];
+		sources?: any[];
+		citations?: any[];
+		embeds?: string[];
+		usage?: unknown;
 		code_executions?: {
 			uuid: string;
 			name: string;
@@ -175,6 +178,104 @@
 		(model?.info?.meta?.capabilities?.status_updates ?? true) &&
 		statusEntries.length > 0 &&
 		!(statusEntries.at(-1)?.hidden ?? false);
+	$: visibleCitationSources = message?.sources ?? message?.citations;
+	$: showCitationRail =
+		Boolean(visibleCitationSources) && (model?.info?.meta?.capabilities?.citations ?? true);
+
+	const splitTopLevelDetails = (text: string) => {
+		const segments = [];
+		let remaining = text;
+		const openTag = '<details';
+		const closeTag = '</details>';
+
+		while (true) {
+			const lowerRemaining = remaining.toLowerCase();
+			const start = lowerRemaining.indexOf(openTag);
+			if (start === -1) {
+				if (remaining.trim()) {
+					segments.push({ type: 'text', content: remaining });
+				}
+				break;
+			}
+
+			const before = remaining.slice(0, start);
+			if (before.trim()) {
+				segments.push({ type: 'text', content: before });
+			}
+
+			let depth = 1;
+			let idx = start + openTag.length;
+			const lowerForDepth = remaining.toLowerCase();
+			while (depth > 0 && idx < remaining.length) {
+				if (lowerForDepth.startsWith(openTag, idx)) {
+					depth++;
+				} else if (lowerForDepth.startsWith(closeTag, idx)) {
+					depth--;
+				}
+				if (depth > 0) idx++;
+			}
+
+			if (depth === 0) {
+				const end = idx + closeTag.length;
+				segments.push({ type: 'detail', content: remaining.slice(start, end) });
+				remaining = remaining.slice(end);
+			} else {
+				segments.push({ type: 'detail', content: remaining.slice(start) });
+				remaining = '';
+				break;
+			}
+		}
+
+		return segments;
+	};
+
+	const splitThinkSegments = (text: string) => {
+		const segments = [];
+		const regex = /<think(?:ing)?[^>]*>([\s\S]*?)<\/think(?:ing)?>/gi;
+		let lastIndex = 0;
+		let match;
+
+		while ((match = regex.exec(text)) !== null) {
+			const before = text.slice(lastIndex, match.index);
+			if (before.trim()) {
+				segments.push({ type: 'text', content: before });
+			}
+
+			if (match[1]?.trim()) {
+				segments.push({ type: 'thinking', content: match[1].trim() });
+			}
+
+			lastIndex = regex.lastIndex;
+		}
+
+		const rest = text.slice(lastIndex);
+		const openStreamingThink = rest.match(/<think(?:ing)?[^>]*>([\s\S]*)$/i);
+
+		if (openStreamingThink) {
+			const before = rest.slice(0, openStreamingThink.index);
+			if (before.trim()) {
+				segments.push({ type: 'text', content: before });
+			}
+			if (openStreamingThink[1]?.trim()) {
+				segments.push({ type: 'thinking', content: openStreamingThink[1].trim() });
+			}
+		} else if (rest.trim()) {
+			segments.push({ type: 'text', content: rest });
+		}
+
+		return segments;
+	};
+
+	const splitResponseSegments = (text: string) => {
+		return splitTopLevelDetails(text ?? '').flatMap((segment) => {
+			if (segment.type === 'detail') {
+				return [segment];
+			}
+			return splitThinkSegments(segment.content);
+		});
+	};
+
+	$: responseSegments = splitResponseSegments(message.content ?? '');
 
 	let edit = false;
 	let editedContent = '';
@@ -658,247 +759,265 @@
 		dir={$settings.chatDirection}
 		style="scroll-margin-top: 3rem;"
 	>
-		<div class={`shrink-0 ltr:mr-3 rtl:ml-3 hidden @lg:flex mt-1 `}>
+		<div class="hidden">
 			<ProfileImage
 				src={`${WEBUI_API_BASE_URL}/models/model/profile/image?id=${model?.id}&lang=${$i18n.language}`}
 				className={'size-8 assistant-message-profile-image'}
 			/>
 		</div>
 
-		<div class="flex-auto w-0 pl-1 relative">
+		<div class="message-content-column relative">
 			<div class="meta-line">
-				<Name>
 				<span class="meta-role">
-				<Tooltip content={model?.name ?? message.model} placement="top-start">
 					<span id="response-message-model-name" class="line-clamp-1">
 						{model?.name ?? message.model}
 					</span>
-				</Tooltip>
 				</span>
 
-				{#if message.timestamp}
-					<div
-						class="self-center text-xs font-medium first-letter:capitalize ml-0.5 translate-y-[1px] {($settings?.highContrastMode ??
-						false)
-							? 'dark:text-gray-100 text-gray-900'
-							: 'invisible group-hover:visible transition text-gray-400'}"
-					>
-						<Tooltip content={dayjs(message.timestamp * 1000).format('LLLL')}>
-							<span class="line-clamp-1"
-								>{$i18n.t(formatDate(message.timestamp * 1000), {
-									LOCALIZED_TIME: dayjs(message.timestamp * 1000).format('LT'),
-									LOCALIZED_DATE: dayjs(message.timestamp * 1000).format('L')
-								})}</span
+				{#if siblings.length > 1}
+					<div class="meta-versions">
+						{#each siblings as siblingId, siblingIdx}
+							<button
+								type="button"
+								class="meta-ver-btn"
+								class:active={siblingId === message.id}
+								on:click={() => gotoMessage(message, siblingIdx)}
 							>
-						</Tooltip>
+								v{siblingIdx + 1}
+							</button>
+						{/each}
 					</div>
 				{/if}
-			</Name>
 			</div>
 
-			<div>
-				<div class="chat-{message.role} w-full min-w-full markdown-prose">
-					<div>
-						{#if model?.info?.meta?.capabilities?.status_updates ?? true}
-							<StatusHistory statusHistory={message?.statusHistory} />
-						{/if}
+			<div class="message-flow">
+				{#if model?.info?.meta?.capabilities?.status_updates ?? true}
+					<StatusHistory statusHistory={message?.statusHistory} />
+				{/if}
 
-						{#if message?.files && message.files?.filter( (f) => ['image', 'file'].includes(f.type) ).length > 0}
-							<div
-								class="my-1 w-full flex overflow-x-auto gap-2 flex-wrap"
-								dir={$settings?.chatDirection ?? 'auto'}
-							>
-								{#each message.files.filter((f) => ['image', 'file'].includes(f.type)) as file}
-									<div>
-										{#if file.type === 'image' || (file?.content_type ?? '').startsWith('image/')}
-											<Image src={file.url} alt={message.content} />
-										{:else}
-											<FileItem
-												item={file}
-												url={file.url}
-												name={file.name}
-												type={file.type}
-												size={file?.size}
-												small={true}
-											/>
-										{/if}
-									</div>
-								{/each}
-							</div>
-						{/if}
+				{#if showCitationRail}
+					<Citations
+						bind:this={citationsElement}
+						id={message?.id}
+						{chatId}
+						sources={visibleCitationSources}
+						{readOnly}
+					/>
+				{/if}
 
-						{#if message?.embeds && message.embeds.length > 0}
-							<div
-								class="my-1 w-full flex overflow-x-auto gap-2 flex-wrap"
-								id={`${message.id}-embeds-container`}
-							>
-								{#each message.embeds as embed, idx}
-									<div class="my-2 w-full" id={`${message.id}-embeds-${idx}`}>
-										<FullHeightIframe
-											src={embed}
-											allowScripts={true}
-											allowForms={true}
-											allowSameOrigin={$settings?.iframeSandboxAllowSameOrigin ?? false}
-											allowPopups={true}
-										/>
-									</div>
-								{/each}
-							</div>
-						{/if}
-
-						{#if edit === true}
-							<div class="w-full response-edit-area rounded-3xl px-3 py-3 my-2">
-								{#if editedOutput}
-									<!-- Structured output editor (visual + JSON toggle) -->
-									<OutputEditView
-										output={editedOutput}
-										onChange={(updated) => {
-											editedOutput = updated;
-										}}
-									/>
+				{#if message?.files && message.files?.filter( (f) => ['image', 'file'].includes(f.type) ).length > 0}
+					<div
+						class="my-1 w-full flex overflow-x-auto gap-2 flex-wrap"
+						dir={$settings?.chatDirection ?? 'auto'}
+					>
+						{#each message.files.filter((f) => ['image', 'file'].includes(f.type)) as file}
+							<div>
+								{#if file.type === 'image' || (file?.content_type ?? '').startsWith('image/')}
+									<Image src={file.url} alt={message.content} />
 								{:else}
-									<!-- Legacy textarea for messages without output -->
-									<textarea
-										id="message-edit-{message.id}"
-										bind:this={editTextAreaElement}
-										class=" bg-transparent outline-hidden w-full resize-none"
-										bind:value={editedContent}
-										on:input={(e) => {
-											const messagesContainer = document.getElementById('messages-container');
-											const savedScrollTop = messagesContainer?.scrollTop;
-
-											e.target.style.height = '';
-											e.target.style.height = `${e.target.scrollHeight}px`;
-
-											if (messagesContainer) messagesContainer.scrollTop = savedScrollTop;
-										}}
-										on:keydown={(e) => {
-											if (e.key === 'Escape') {
-												document.getElementById('close-edit-message-button')?.click();
-											}
-
-											const isCmdOrCtrlPressed = e.metaKey || e.ctrlKey;
-											const isEnterPressed = e.key === 'Enter';
-
-											if (isCmdOrCtrlPressed && isEnterPressed) {
-												document.getElementById('confirm-edit-message-button')?.click();
-											}
-										}}
+									<FileItem
+										item={file}
+										url={file.url}
+										name={file.name}
+										type={file.type}
+										size={file?.size}
+										small={true}
 									/>
 								{/if}
-
-								<div class=" mt-2 mb-1 flex justify-between text-sm font-medium">
-									<div>
-										<button
-											id="save-new-message-button"
-											class="px-3.5 py-1.5 bg-gray-50 hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 border border-gray-100 dark:border-gray-700 text-gray-700 dark:text-gray-200 transition rounded-3xl"
-											on:click={() => {
-												saveAsCopyHandler();
-											}}
-										>
-											{$i18n.t('Save As Copy')}
-										</button>
-									</div>
-
-									<div class="flex space-x-1.5">
-										<button
-											id="close-edit-message-button"
-											class="px-3.5 py-1.5 bg-white dark:bg-gray-900 hover:bg-gray-100 text-gray-800 dark:text-gray-100 transition rounded-3xl"
-											on:click={() => {
-												cancelEditMessage();
-											}}
-										>
-											{$i18n.t('Cancel')}
-										</button>
-
-										<button
-											id="confirm-edit-message-button"
-											class="px-3.5 py-1.5 bg-gray-900 dark:bg-white hover:bg-gray-850 text-gray-100 dark:text-gray-800 transition rounded-3xl"
-											on:click={() => {
-												editMessageConfirmHandler();
-											}}
-										>
-											{$i18n.t('Save')}
-										</button>
-									</div>
-								</div>
 							</div>
-						{/if}
+						{/each}
+					</div>
+				{/if}
 
-						<div
-							bind:this={contentContainerElement}
-							class="ver-text w-full flex flex-col relative {edit ? 'hidden' : ''}"
-							id="response-content-container"
-						>
-							{#if message.content === '' && !message.done && !message.error && !hasVisibleStatus}
-								<Skeleton />
-							{:else if message.content && message.error !== true}
-								<!-- always show message contents even if there's an error -->
-								<!-- unless message.error === true which is legacy error handling, where the error message is stored in message.content -->
-								<ContentRenderer
-									id={`${chatId}-${message.id}`}
-									content={message.content}
-									sources={message.sources}
-									floatingButtons={message?.done &&
-										!readOnly &&
-										($settings?.showFloatingActionButtons ?? true)}
-									save={!readOnly}
-									preview={!readOnly}
-									{editCodeBlock}
-									{topPadding}
-									done={($settings?.chatFadeStreamingText ?? true)
-										? (message?.done ?? false)
-										: true}
-									{model}
-									onTaskClick={async (e) => {
-										console.log(e);
+				{#if message?.embeds && message.embeds.length > 0}
+					<div
+						class="my-1 w-full flex overflow-x-auto gap-2 flex-wrap"
+						id={`${message.id}-embeds-container`}
+					>
+						{#each message.embeds as embed, idx}
+							<div class="my-2 w-full" id={`${message.id}-embeds-${idx}`}>
+								<FullHeightIframe
+									src={embed}
+									allowScripts={true}
+									allowForms={true}
+									allowSameOrigin={$settings?.iframeSandboxAllowSameOrigin ?? false}
+									allowPopups={true}
+								/>
+							</div>
+						{/each}
+					</div>
+				{/if}
+
+				{#if edit === true}
+					<div class="chat-{message.role} w-full min-w-full markdown-prose">
+						<div class="w-full response-edit-area rounded-3xl px-3 py-3 my-2">
+							{#if editedOutput}
+								<!-- Structured output editor (visual + JSON toggle) -->
+								<OutputEditView
+									output={editedOutput}
+									onChange={(updated) => {
+										editedOutput = updated;
 									}}
-									onSourceClick={async (id) => {
-										console.log(id);
+								/>
+							{:else}
+								<!-- Legacy textarea for messages without output -->
+								<textarea
+									id="message-edit-{message.id}"
+									bind:this={editTextAreaElement}
+									class=" bg-transparent outline-hidden w-full resize-none"
+									bind:value={editedContent}
+									on:input={(e) => {
+										const messagesContainer = document.getElementById('messages-container');
+										const savedScrollTop = messagesContainer?.scrollTop;
 
-										if (citationsElement) {
-											citationsElement?.showSourceModal(id);
+										e.target.style.height = '';
+										e.target.style.height = `${e.target.scrollHeight}px`;
+
+										if (messagesContainer) messagesContainer.scrollTop = savedScrollTop;
+									}}
+									on:keydown={(e) => {
+										if (e.key === 'Escape') {
+											document.getElementById('close-edit-message-button')?.click();
+										}
+
+										const isCmdOrCtrlPressed = e.metaKey || e.ctrlKey;
+										const isEnterPressed = e.key === 'Enter';
+
+										if (isCmdOrCtrlPressed && isEnterPressed) {
+											document.getElementById('confirm-edit-message-button')?.click();
 										}
 									}}
-									onSetInputText={(text) => {
-										setInputText(text);
-									}}
-									onSave={({ raw, oldContent, newContent }) => {
-										history.messages[message.id].content = history.messages[
-											message.id
-										].content.replace(raw, raw.replace(oldContent, newContent));
-
-										updateChat();
-									}}
 								/>
 							{/if}
 
-							{#if message?.error}
-								<Error content={message?.error?.content ?? message.content} />
-							{/if}
+							<div class=" mt-2 mb-1 flex justify-between text-sm font-medium">
+								<div>
+									<button
+										id="save-new-message-button"
+										class="px-3.5 py-1.5 bg-gray-50 hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 border border-gray-100 dark:border-gray-700 text-gray-700 dark:text-gray-200 transition rounded-3xl"
+										on:click={() => {
+											saveAsCopyHandler();
+										}}
+									>
+										{$i18n.t('Save As Copy')}
+									</button>
+								</div>
 
-							{#if (message?.sources || message?.citations) && (model?.info?.meta?.capabilities?.citations ?? true)}
-								<Citations
-									bind:this={citationsElement}
-									id={message?.id}
-									{chatId}
-									sources={message?.sources ?? message?.citations}
-									{readOnly}
-								/>
-							{/if}
+								<div class="flex space-x-1.5">
+									<button
+										id="close-edit-message-button"
+										class="px-3.5 py-1.5 bg-white dark:bg-gray-900 hover:bg-gray-100 text-gray-800 dark:text-gray-100 transition rounded-3xl"
+										on:click={() => {
+											cancelEditMessage();
+										}}
+									>
+										{$i18n.t('Cancel')}
+									</button>
 
-							{#if message.code_executions}
-								<CodeExecutions codeExecutions={message.code_executions} />
-							{/if}
+									<button
+										id="confirm-edit-message-button"
+										class="px-3.5 py-1.5 bg-gray-900 dark:bg-white hover:bg-gray-850 text-gray-100 dark:text-gray-800 transition rounded-3xl"
+										on:click={() => {
+											editMessageConfirmHandler();
+										}}
+									>
+										{$i18n.t('Save')}
+									</button>
+								</div>
+							</div>
 						</div>
 					</div>
+				{/if}
+
+				<div
+					bind:this={contentContainerElement}
+					class="message-sequence ver-text w-full flex flex-col relative {edit ? 'hidden' : ''}"
+					id="response-content-container"
+				>
+					{#if message.content === '' && !message.done && !message.error && !hasVisibleStatus}
+						<div class="chat-{message.role} w-full min-w-full markdown-prose">
+							<Skeleton />
+						</div>
+					{:else if message.content && message.error !== true}
+						{#each responseSegments as segment, segmentIdx}
+							{#if segment.type === 'thinking'}
+								<div class="activity-line thinking">
+									<span class="think-slash">//</span>
+									<span class="think-content">{segment.content}</span>
+								</div>
+							{:else if segment.type === 'detail'}
+								<div class="activity-block">
+									<Markdown
+										id={`${chatId}-${message.id}-activity-${segmentIdx}`}
+										content={segment.content}
+										{model}
+										save={!readOnly}
+										preview={!readOnly}
+										done={($settings?.chatFadeStreamingText ?? true)
+											? (message?.done ?? false)
+											: true}
+										{editCodeBlock}
+										{topPadding}
+									/>
+								</div>
+							{:else}
+								<div
+									class="chat-{message.role} w-full min-w-full markdown-prose agent-response-block"
+								>
+									<ContentRenderer
+										id={`${chatId}-${message.id}-agent-${segmentIdx}`}
+										content={segment.content}
+										sources={visibleCitationSources}
+										floatingButtons={message?.done &&
+											!readOnly &&
+											($settings?.showFloatingActionButtons ?? true)}
+										save={!readOnly}
+										preview={!readOnly}
+										{editCodeBlock}
+										{topPadding}
+										done={($settings?.chatFadeStreamingText ?? true)
+											? (message?.done ?? false)
+											: true}
+										{model}
+										onTaskClick={async (e) => {
+											console.log(e);
+										}}
+										onSourceClick={async (id) => {
+											console.log(id);
+
+											if (citationsElement) {
+												citationsElement?.showSourceModal(id);
+											}
+										}}
+										onSetInputText={(text) => {
+											setInputText(text);
+										}}
+										onSave={({ raw, oldContent, newContent }) => {
+											history.messages[message.id].content = history.messages[
+												message.id
+											].content.replace(raw, raw.replace(oldContent, newContent));
+
+											updateChat();
+										}}
+									/>
+								</div>
+							{/if}
+						{/each}
+					{/if}
+
+					{#if message?.error}
+						<div class="chat-{message.role} w-full min-w-full markdown-prose">
+							<Error content={message?.error?.content ?? message.content} />
+						</div>
+					{/if}
+
+					{#if message.code_executions}
+						<CodeExecutions codeExecutions={message.code_executions} />
+					{/if}
 				</div>
 
 				{#if !edit}
-					<div
-						bind:this={buttonsContainerElement}
-						class="flex justify-start overflow-x-auto buttons text-gray-600 dark:text-gray-500 mt-0.5"
-					>
+					<div bind:this={buttonsContainerElement} class="hidden">
 						{#if message.done || siblings.length > 1}
 							{#if siblings.length > 1}
 								<div class="flex self-center min-w-fit" dir="ltr">
@@ -1536,5 +1655,49 @@
 
 	.response-edit-area {
 		background: var(--surface);
+	}
+
+	.message-flow {
+		display: flex;
+		flex-direction: column;
+		gap: 0.45rem;
+	}
+
+	/* Segments (thinking / tool / text) sit flush so the activity blocks read
+	   as part of the response flow rather than detached cards. */
+	.message-sequence {
+		display: flex;
+		flex-direction: column;
+		gap: 0;
+	}
+
+	.agent-response-block {
+		min-width: 0;
+	}
+
+	.activity-block {
+		width: fit-content;
+		max-width: min(100%, 48rem);
+		padding-left: 2px;
+	}
+
+	.activity-line {
+		width: fit-content;
+		max-width: min(100%, 48rem);
+	}
+
+	.activity-block :global(.toolcard-disclosure) {
+		border: 1px solid color-mix(in srgb, var(--border) 82%, transparent);
+		border-radius: 999px;
+		background:
+			linear-gradient(180deg, color-mix(in srgb, var(--surface) 84%, transparent), transparent),
+			color-mix(in srgb, var(--bg-elevated) 94%, transparent);
+		padding: 0.42rem 0.72rem;
+		box-shadow: 0 8px 28px rgba(0, 0, 0, 0.04);
+	}
+
+	.activity-block :global(.toolcard-disclosure:hover) {
+		border-color: color-mix(in srgb, var(--text-tertiary) 42%, var(--border));
+		background: color-mix(in srgb, var(--surface-hover) 70%, var(--bg-elevated));
 	}
 </style>

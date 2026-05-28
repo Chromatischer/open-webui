@@ -162,11 +162,13 @@
 				<button
 					class="p-1 px-3 text-xs flex rounded-sm transition"
 					on:click={() => {
-						params.function_calling = (params?.function_calling ?? null) === null ? 'native' : null;
+						// Native is the global default (unset → native); 'default' opts back out.
+						params.function_calling =
+							(params?.function_calling ?? 'native') === 'native' ? 'default' : 'native';
 					}}
 					type="button"
 				>
-					{#if params.function_calling === 'native'}
+					{#if (params?.function_calling ?? 'native') === 'native'}
 						<span class="ml-2 self-center">{$i18n.t('Native')}</span>
 					{:else}
 						<span class="ml-2 self-center">{$i18n.t('Default')}</span>

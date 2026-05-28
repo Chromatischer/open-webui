@@ -1313,6 +1313,9 @@ async def chat_completion_tools_handler(
 
     skip_files = False
     sources = []
+    # OR-aligned output items for executed tools, rendered inline as
+    # <details type="tool_calls"> blocks by serialize_output (same path as native mode).
+    output_items = []
 
     specs = [tool['spec'] for tool in tools.values()]
     tools_specs = json.dumps(specs, ensure_ascii=False)
@@ -1429,7 +1432,9 @@ async def chat_completion_tools_handler(
 
                     tool_name = f'{tool_id}/{tool_function_name}' if tool_id else f'{tool_function_name}'
 
-                    # Citation is enabled for this tool
+                    # Keep the result as model context (injected via source context),
+                    # but flag it so it is not also rendered as a separate citation pill —
+                    # the inline tool-call block below is the user-facing display.
                     sources.append(
                         {
                             'source': {
@@ -1443,6 +1448,29 @@ async def chat_completion_tools_handler(
                                 }
                             ],
                             'tool_result': True,
+                        }
+                    )
+
+                    # Emit the executed tool as OR-aligned output items so it renders
+                    # inline, in order, as a <details type="tool_calls"> block.
+                    call_id = str(uuid4())
+                    output_items.append(
+                        {
+                            'type': 'function_call',
+                            'id': call_id,
+                            'call_id': call_id,
+                            'name': tool_function_name,
+                            'arguments': json.dumps(tool_function_params, ensure_ascii=False),
+                            'status': 'completed',
+                        }
+                    )
+                    output_items.append(
+                        {
+                            'type': 'function_call_output',
+                            'id': output_id('fco'),
+                            'call_id': call_id,
+                            'output': [{'type': 'input_text', 'text': str(tool_result)}],
+                            'status': 'completed',
                         }
                     )
 
@@ -1468,7 +1496,7 @@ async def chat_completion_tools_handler(
     if skip_files and 'files' in body.get('metadata', {}):
         del body['metadata']['files']
 
-    return body, {'sources': sources}
+    return body, {'sources': sources, 'output_items': output_items}
 
 
 async def chat_memory_handler(request: Request, form_data: dict, extra_params: dict, user):
@@ -2288,6 +2316,14 @@ async def process_chat_payload(request, form_data, user, metadata, model):
     form_data = apply_params_to_form_data(form_data, model)
     log.debug(f'form_data: {form_data}')
 
+    # Native function calling is the global default (enables interleaved,
+    # streamed tool calls + reasoning). An explicit 'default' opts back into
+    # prompt-based tool calling for models without native tool support.
+    fc_params = metadata.get('params') or {}
+    if not fc_params.get('function_calling'):
+        fc_params['function_calling'] = 'native'
+        metadata['params'] = fc_params
+
     # Guided regeneration: extract before it reaches the LLM provider
     regeneration_prompt = form_data.pop('regeneration_prompt', None)
 
@@ -2832,15 +2868,21 @@ async def process_chat_payload(request, form_data, user, metadata, model):
         if mcp_clients:
             metadata['mcp_clients'] = mcp_clients
 
-        # Inject builtin tools for native function calling based on enabled features and model capability
-        # Check if builtin_tools capability is enabled for this model (defaults to True if not specified)
+        # Inject builtin tools based on enabled features and model capability.
+        # Native mode receives the full builtin set. Default mode receives the
+        # Scratchboard tools so Agents can use the chat board without a native
+        # function-calling setting.
+        # builtin_tools defaults to enabled for backward compatibility.
         builtin_tools_enabled = (model.get('info', {}).get('meta', {}).get('capabilities') or {}).get(
             'builtin_tools', True
         )
-        if metadata.get('params', {}).get('function_calling') == 'native' and builtin_tools_enabled:
+        if builtin_tools_enabled:
+            native_function_calling = metadata.get('params', {}).get('function_calling') == 'native'
             # Add file context to user messages
-            chat_id = metadata.get('chat_id')
-            form_data['messages'] = await add_file_context(form_data.get('messages', []), chat_id, user)
+            if native_function_calling:
+                chat_id = metadata.get('chat_id')
+                form_data['messages'] = await add_file_context(form_data.get('messages', []), chat_id, user)
+
             builtin_tools = await get_builtin_tools(
                 request,
                 {
@@ -2851,9 +2893,26 @@ async def process_chat_payload(request, form_data, user, metadata, model):
                 features,
                 model,
             )
+
+            if not native_function_calling:
+                builtin_tools = {
+                    name: tool_dict
+                    for name, tool_dict in builtin_tools.items()
+                    if name in ('read_scratchboard', 'write_scratchboard')
+                }
+
             for name, tool_dict in builtin_tools.items():
                 if name not in tools_dict:
                     tools_dict[name] = tool_dict
+
+            if builtin_tools.get('read_scratchboard') and builtin_tools.get('write_scratchboard'):
+                form_data['messages'] = add_or_update_system_message(
+                    "You have access to this chat's Scratchboard. Use read_scratchboard to inspect its "
+                    'current markdown notes and write_scratchboard to replace them with updated markdown '
+                    'when useful.',
+                    form_data['messages'],
+                    append=True,
+                )
 
         if tools_dict:
             # Always store resolved tools in metadata so downstream consumers
@@ -2874,6 +2933,10 @@ async def process_chat_payload(request, form_data, user, metadata, model):
                         request, form_data, extra_params, user, models, tools_dict
                     )
                     sources.extend(flags.get('sources', []))
+                    if flags.get('output_items'):
+                        metadata.setdefault('prepended_output_items', []).extend(
+                            flags.get('output_items', [])
+                        )
                 except Exception as e:
                     log.exception(e)
 
@@ -2899,11 +2962,14 @@ async def process_chat_payload(request, form_data, user, metadata, model):
     if sources and prompt:
         form_data['messages'] = await apply_source_context_to_messages(request, form_data['messages'], sources, prompt)
 
-    # If there are citations, add them to the data_items
+    # If there are citations, add them to the data_items.
+    # Tool results are shown inline as tool-call blocks (see prepended_output_items),
+    # so they are excluded here to avoid a duplicate citation pill.
     sources = [
         source
         for source in sources
-        if source.get('source', {}).get('name', '') or source.get('source', {}).get('id', '')
+        if (source.get('source', {}).get('name', '') or source.get('source', {}).get('id', ''))
+        and not source.get('tool_result', False)
     ]
 
     if len(sources) > 0:
@@ -3822,14 +3888,19 @@ async def streaming_chat_response_handler(response, ctx):
                 message.get('content', '') if message else last_assistant_message if last_assistant_message else ''
             )
 
+            # Default-mode tool calls produced before the model response: render them
+            # inline (in order) as the first output items.
+            prepended_items = list(metadata.get('prepended_output_items') or [])
+
             # Initialize output: use existing from message if continuing, else create new
             existing_output = message.get('output') if message else None
             if existing_output:
-                output = existing_output
+                output = prepended_items + existing_output if prepended_items else existing_output
             else:
+                output = list(prepended_items)
                 # Only create an initial message item if there is content to initialize with
                 if content:
-                    output = [
+                    output.append(
                         {
                             'type': 'message',
                             'id': output_id('msg'),
@@ -3837,9 +3908,7 @@ async def streaming_chat_response_handler(response, ctx):
                             'role': 'assistant',
                             'content': [{'type': 'output_text', 'text': content}],
                         }
-                    ]
-                else:
-                    output = []
+                    )
 
             usage = None
             prior_output = []

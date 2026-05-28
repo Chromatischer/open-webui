@@ -18,8 +18,7 @@
 		updateFolderIsExpandedById,
 		updateFolderById,
 		updateFolderParentIdById,
-		getFolderById,
-		createNewFolder
+		getFolderById
 	} from '$lib/apis/folders';
 	import {
 		getChatById,
@@ -65,8 +64,7 @@
 	let showFolderModal = false;
 	let edit = false;
 
-	let showCreateSubFolderModal = false;
-	let createSubFolderParentId = null;
+	let showFolderMenu = false;
 
 	let draggedOver = false;
 	let dragged = false;
@@ -419,29 +417,6 @@
 		saveAs(blob, `folder-${folders[folderId].name}-export-${Date.now()}.json`);
 	};
 
-	const createSubFolderHandler = async ({ name, meta, data, parent_id }) => {
-		if (name === '') {
-			toast.error($i18n.t('Folder name cannot be empty.'));
-			return;
-		}
-
-		name = name.trim();
-
-		const res = await createNewFolder(localStorage.token, {
-			name,
-			data,
-			meta,
-			parent_id
-		}).catch((error) => {
-			toast.error(`${error}`);
-			return null;
-		});
-
-		if (res) {
-			toast.success($i18n.t('Folder created successfully'));
-			dispatch('update');
-		}
-	};
 </script>
 
 <DeleteConfirmDialog
@@ -471,12 +446,6 @@
 </DeleteConfirmDialog>
 
 <FolderModal bind:show={showFolderModal} edit={true} {folderId} onSubmit={updateHandler} />
-
-<FolderModal
-	bind:show={showCreateSubFolderModal}
-	parentId={createSubFolderParentId}
-	onSubmit={createSubFolderHandler}
-/>
 
 {#if dragged && x && y}
 	<DragGhost {x} {y}>
@@ -510,10 +479,17 @@
 		<div class="w-full group">
 			<div
 				id="folder-{folderId}-button"
-				class="relative w-full py-1 px-1.5 rounded-xl flex items-center gap-1.5 hover:bg-gray-100 dark:hover:bg-gray-900 transition {$selectedFolder?.id ===
+				class="relative w-full py-1 px-1.5 rounded-xl flex items-center gap-1.5 text-sm font-primary text-[var(--text-secondary)] hover:bg-[var(--surface-hover)] hover:text-[var(--text)] hover:translate-x-0.5 transition {$selectedFolder?.id ===
 				folderId
-					? 'bg-gray-100 dark:bg-gray-900 selected'
+					? 'bg-[var(--surface-active)] text-[var(--text)] selected'
 					: ''}"
+				on:contextmenu={(e) => {
+					if (!$mobile) {
+						e.preventDefault();
+						e.stopPropagation();
+						showFolderMenu = true;
+					}
+				}}
 				on:dblclick={(e) => {
 					if (clickTimer) {
 						clearTimeout(clickTimer); // cancel the single-click action
@@ -551,7 +527,7 @@
 				}}
 			>
 				<button
-					class="text-gray-500 dark:text-gray-500 transition-all p-1 hover:bg-gray-200 dark:hover:bg-gray-850 rounded-lg"
+					class="text-[var(--text-tertiary)] transition-all p-1 hover:bg-[var(--surface-hover)] hover:text-[var(--text)] rounded-lg"
 					on:click={(e) => {
 						e.stopPropagation();
 						e.stopImmediatePropagation();
@@ -615,9 +591,10 @@
 				</div>
 
 				<button
-					class="absolute z-10 right-2 invisible group-hover:visible self-center flex items-center dark:text-gray-300"
+					class="absolute z-10 right-2 invisible group-hover:visible self-center flex items-center text-[var(--text-tertiary)] hover:text-[var(--text)] transition"
 				>
 					<FolderMenu
+						bind:show={showFolderMenu}
 						onEdit={() => {
 							showFolderModal = true;
 						}}
@@ -627,12 +604,8 @@
 						onExport={() => {
 							exportHandler();
 						}}
-						onCreateSub={() => {
-							createSubFolderParentId = folderId;
-							showCreateSubFolderModal = true;
-						}}
 					>
-						<div class="p-1 dark:hover:bg-gray-850 rounded-lg touch-auto">
+						<div class="p-1 hover:bg-[var(--surface-hover)] rounded-lg touch-auto">
 							<EllipsisHorizontal className="size-4" strokeWidth="2.5" />
 						</div>
 					</FolderMenu>
@@ -643,7 +616,7 @@
 		<div slot="content" class="w-full">
 			{#if (folders[folderId]?.childrenIds ?? []).length > 0 || (chats ?? []).length > 0}
 				<div
-					class="ml-3 pl-1 mt-[1px] flex flex-col overflow-y-auto scrollbar-hidden border-s border-gray-100 dark:border-gray-900"
+					class="ml-3 pl-1 mt-[1px] flex flex-col overflow-y-auto overflow-x-hidden scrollbar-hidden border-s border-[var(--border)]"
 				>
 					{#if folders[folderId]?.childrenIds}
 						{@const children = folders[folderId]?.childrenIds

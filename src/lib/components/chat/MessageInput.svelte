@@ -60,6 +60,7 @@
 	import { getSuggestionRenderer } from '../common/RichTextInput/suggestions';
 
 	import InputMenu from './MessageInput/InputMenu.svelte';
+	import ModelSelector from './ModelSelector.svelte';
 
 	import ToolServersModal from './ToolServersModal.svelte';
 
@@ -1210,6 +1211,13 @@
 							</div>
 						{/if}
 
+						<div class="meta-line composer-meta">
+							<span class="meta-role">{$i18n.t('You')}</span>
+							<div class="composer-model-selector">
+								<ModelSelector bind:selectedModels />
+							</div>
+						</div>
+
 						<div
 							id="message-input-container"
 							class="composer flex-1 flex flex-col relative w-full rounded-3xl border {$temporaryChatEnabled
@@ -1535,8 +1543,8 @@
 								</div>
 							</div>
 
-							<div class=" flex justify-between mt-0.5 mb-2.5 mx-0.5 max-w-full" dir="ltr">
-								<div class="ml-1 self-end flex items-center flex-1 max-w-[80%]">
+							<div class="composer-tools-row flex justify-between mt-0.5 mb-2.5 mx-0.5 max-w-full" dir="ltr">
+								<div class="composer-tools-left ml-1 self-end flex items-center flex-1 max-w-[80%]">
 									<InputMenu
 										bind:files
 										selectedModels={atSelectedModel ? [atSelectedModel.id] : selectedModels}
@@ -1825,7 +1833,7 @@
 									</div>
 								</div>
 
-								<div class="self-end flex space-x-1 mr-1 shrink-0 gap-[0.5px]">
+								<div class="composer-actions self-end flex space-x-1 mr-1 shrink-0 gap-[0.5px]">
 									{#if isActive && prompt === '' && files.length === 0}
 										<div class=" flex items-center">
 											<Tooltip content={$i18n.t('Stop')}>
@@ -1880,16 +1888,18 @@
 															<Spinner className="size-5" />
 														{:else}
 															<svg
-																xmlns="http://www.w3.org/2000/svg"
-																viewBox="0 0 16 16"
-																fill="currentColor"
-																class="size-5"
+																class="send-plane"
+																width="15"
+																height="15"
+																viewBox="0 0 24 24"
+																fill="none"
+																stroke="currentColor"
+																stroke-width="2.5"
+																stroke-linecap="round"
+																stroke-linejoin="round"
+																aria-hidden="true"
 															>
-																<path
-																	fill-rule="evenodd"
-																	d="M8 14a.75.75 0 0 1-.75-.75V4.56L4.03 7.78a.75.75 0 0 1-1.06-1.06l4.5-4.5a.75.75 0 0 1 1.06 0l4.5 4.5a.75.75 0 0 1-1.06 1.06L8.75 4.56v8.69A.75.75 0 0 1 8 14Z"
-																	clip-rule="evenodd"
-																/>
+																<path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z" />
 															</svg>
 														{/if}
 													</button>
@@ -1916,9 +1926,229 @@
 
 <style>
 	.composer {
-		background: var(--bg-base);
-		border-color: var(--border);
+		--composer-control-h: 64px;
+		background: transparent;
+		border-color: transparent;
 		color: var(--text);
+		border-radius: 0;
+	}
+
+	:global(#message-input-container) {
+		border: none !important;
+		background: transparent !important;
+		box-shadow: none !important;
+		padding: 0 !important;
+	}
+
+	form {
+		max-width: calc(720px + 64px);
+		margin: 0 auto;
+		padding-inline: 32px;
+		box-sizing: border-box;
+	}
+
+	.composer-meta {
+		margin-bottom: 6px;
+		justify-content: space-between;
+		gap: 12px;
+	}
+
+	.composer-model-selector {
+		min-width: 0;
+		max-width: min(460px, 72%);
+		margin-left: auto;
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+		font-family: var(--font-sans);
+	}
+
+	.composer-model-selector :global(> div) {
+		width: auto !important;
+		flex-direction: row !important;
+		align-items: center !important;
+		justify-content: flex-end !important;
+		flex-wrap: wrap;
+		gap: 4px;
+	}
+
+	.composer-model-selector :global(> div > div) {
+		width: auto !important;
+		max-width: min(260px, 42vw);
+	}
+
+	.composer-model-selector :global(> div > div > div:first-child) {
+		min-width: 0;
+	}
+
+	.composer-model-selector :global(> div > div > div:first-child > div) {
+		margin-right: 0 !important;
+	}
+
+	.composer-model-selector :global(button[id^='model-selector-']) {
+		max-width: 260px;
+		border-radius: 4px;
+		padding: 1px 5px;
+		color: var(--text-tertiary);
+		font-family: var(--font-sans);
+		transition: background 0.15s, color 0.15s;
+	}
+
+	.composer-model-selector :global(button[id^='model-selector-']:hover) {
+		background: var(--surface-hover);
+		color: var(--text-secondary);
+	}
+
+	.composer-model-selector :global(button[id^='model-selector-'] > div) {
+		padding: 0;
+		gap: 4px;
+		max-width: 100%;
+		justify-content: flex-end;
+		font-size: 11px !important;
+		line-height: 1.2;
+		font-family: var(--font-sans);
+		font-weight: 600;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+		color: inherit;
+	}
+
+	.composer-model-selector :global(button[aria-label='Add Model']),
+	.composer-model-selector :global(button[aria-label='Remove Model']) {
+		display: grid;
+		place-items: center;
+		width: 20px;
+		height: 20px;
+		padding: 0;
+		border-radius: 4px;
+		border: none;
+		background: transparent;
+		color: var(--text-tertiary);
+		transition: background 0.15s, color 0.15s;
+	}
+
+	.composer-model-selector :global(button[aria-label='Add Model']:hover),
+	.composer-model-selector :global(button[aria-label='Remove Model']:hover) {
+		background: var(--surface-hover);
+		color: var(--text-secondary);
+	}
+
+	.composer-model-selector :global(.mx-1) {
+		margin-left: 1px !important;
+		margin-right: 0 !important;
+	}
+
+	:global(#message-input-container) {
+		display: grid !important;
+		grid-template-columns: 48px minmax(0, 1fr) 48px;
+		align-items: stretch;
+		gap: 5px;
+		border-radius: 0 !important;
+	}
+
+	:global(#message-input-container > .px-2\.5) {
+		grid-column: 2;
+		grid-row: 1;
+		min-width: 0;
+		padding: 0 !important;
+	}
+
+	:global(#chat-input-container) {
+		margin: 0;
+		padding: 12px 14px !important;
+		min-height: var(--composer-control-h);
+		border: 1.5px solid var(--border);
+		border-radius: 5px;
+		background: var(--bg-elevated);
+		color: var(--text);
+		font-family: var(--font-message);
+		font-size: var(--message-font-size);
+		font-weight: var(--message-font-weight);
+		line-height: var(--message-line-height);
+		transition: border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+	}
+
+	:global(#message-input-container:focus-within #chat-input-container) {
+		border-color: color-mix(in srgb, var(--orange) 42%, var(--border));
+	}
+
+	:global(#chat-input) {
+		width: 100%;
+		min-width: 0;
+		font-family: var(--font-message);
+		font-size: var(--message-font-size);
+		font-weight: var(--message-font-weight);
+		line-height: var(--message-line-height);
+		color: var(--text);
+	}
+
+	:global(#chat-input .ProseMirror),
+	:global(#chat-input [contenteditable='true']) {
+		width: 100%;
+		min-width: 0;
+		font-family: var(--font-message);
+		font-size: var(--message-font-size);
+		font-weight: var(--message-font-weight);
+		line-height: var(--message-line-height);
+		color: var(--text);
+	}
+
+	.composer-tools-row {
+		display: contents !important;
+		grid-column: 1 / -1;
+		grid-row: 1;
+		margin: 0 !important;
+		min-width: 0;
+	}
+
+	.composer-tools-left {
+		grid-column: 1;
+		grid-row: 1;
+		width: 48px;
+		min-height: var(--composer-control-h);
+		max-width: 48px !important;
+		margin: 0 !important;
+		display: flex !important;
+		align-items: stretch;
+	}
+
+	.composer-tools-left :global(#input-menu-button) {
+		width: 48px;
+		height: var(--composer-control-h) !important;
+		min-height: var(--composer-control-h) !important;
+		border-radius: 12px 5px 5px 12px;
+		border: 1.5px solid var(--border);
+		background: var(--bg-elevated);
+		color: var(--text-tertiary);
+		box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.1);
+	}
+
+	.composer-tools-left :global(#input-menu-button:hover) {
+		background: var(--surface-hover);
+		color: var(--text);
+	}
+
+	.composer-tools-left :global(#integration-menu-button),
+	.composer-tools-left :global(#model-valves-button),
+	.composer-tools-left :global([aria-label='Available Tools']) {
+		display: none !important;
+	}
+
+	.composer-actions {
+		grid-column: 3;
+		grid-row: 1;
+		margin: 0 !important;
+		width: 48px;
+		align-self: stretch;
+		min-height: var(--composer-control-h);
+		display: flex;
+		align-items: stretch;
+	}
+
+	.composer-actions > :global(div) {
+		width: 100%;
+		display: flex;
+		align-items: stretch;
 	}
 
 	.composer-field {
@@ -1942,7 +2172,9 @@
 	}
 
 	.composer-send {
+		align-self: stretch;
 		width: 48px;
+		min-height: var(--composer-control-h);
 		border-radius: 5px 12px 12px 5px;
 		background: var(--orange);
 		color: #fff;
@@ -1954,12 +2186,34 @@
 		opacity: 0.34;
 		transition: opacity 0.2s, background 0.2s, box-shadow 0.25s;
 	}
+
+	.stop-button {
+		align-self: stretch;
+		width: 48px;
+		min-height: var(--composer-control-h);
+		border-radius: 5px 12px 12px 5px;
+		background: var(--orange);
+		color: #fff;
+		border: 1.5px solid color-mix(in srgb, var(--orange) 76%, black);
+		box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.18), 0 3px 14px var(--orange-glow);
+		display: grid;
+		place-items: center;
+		cursor: pointer;
+	}
 	.composer-send.visible {
 		opacity: 1;
 		box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.18), 0 3px 14px var(--orange-glow);
 	}
 	.composer-send.visible:hover {
 		background: color-mix(in srgb, var(--orange) 88%, white);
+	}
+
+	.send-plane {
+		transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+	}
+
+	.composer-send.visible:not(:disabled):hover .send-plane {
+		transform: translate(1px, -1px) rotate(6deg);
 	}
 
 	.btn-ghost {
@@ -1979,9 +2233,4 @@
 		color: var(--text);
 	}
 
-	.stop-button {
-		width: 32px;
-		height: 32px;
-		border-radius: 50%;
-	}
 </style>

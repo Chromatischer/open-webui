@@ -2382,6 +2382,95 @@ async def view_skill(
 
 
 # =============================================================================
+# SCRATCHBOARD TOOLS
+# =============================================================================
+
+
+async def _emit_scratchboard(event_emitter, content: str):
+    """Persist scratchboard state to the UI."""
+    if event_emitter:
+        await event_emitter(
+            {
+                'type': 'chat:message:scratchboard',
+                'data': {
+                    'content': content,
+                },
+            }
+        )
+
+
+async def read_scratchboard(
+    __chat_id__: str = None,
+    __request__: Request = None,
+    __user__: dict = None,
+) -> str:
+    """
+    Read the current chat's Scratchboard content.
+
+    Use this before relying on Scratchboard notes, plans, constraints, or implementation context.
+
+    :return: JSON with the current markdown content of the Scratchboard
+    """
+    if __chat_id__ is None:
+        return json.dumps({'error': 'Chat context not available'})
+
+    if not __user__:
+        return json.dumps({'error': 'User context not available'})
+
+    try:
+        content = await Chats.get_chat_scratchboard_by_id(__chat_id__, __user__.get('id'))
+        if content is None:
+            return json.dumps({'error': 'Chat not found or access denied'})
+
+        return json.dumps({'content': content}, ensure_ascii=False)
+    except Exception as e:
+        log.exception(f'read_scratchboard error: {e}')
+        return json.dumps({'error': str(e)})
+
+
+async def write_scratchboard(
+    content: str,
+    __chat_id__: str = None,
+    __message_id__: str = None,
+    __event_emitter__: callable = None,
+    __request__: Request = None,
+    __user__: dict = None,
+) -> str:
+    """
+    Replace the current chat's Scratchboard content with markdown.
+
+    Use this to save durable notes, plans, constraints, intermediate findings, or follow-up context for this chat.
+
+    :param content: The full markdown content to store in the Scratchboard
+    :return: JSON with success status and the updated Scratchboard content
+    """
+    if __chat_id__ is None:
+        return json.dumps({'error': 'Chat context not available'})
+
+    if not __user__:
+        return json.dumps({'error': 'User context not available'})
+
+    try:
+        updated_chat = await Chats.update_chat_scratchboard_by_id(__chat_id__, __user__.get('id'), content)
+        if not updated_chat:
+            return json.dumps({'error': 'Chat not found or access denied'})
+
+        await _emit_scratchboard(__event_emitter__, content)
+
+        return json.dumps(
+            {
+                'status': 'success',
+                'content': content,
+                'updated_at': updated_chat.updated_at,
+            },
+            ensure_ascii=False,
+        )
+    except Exception as e:
+        log.exception(f'write_scratchboard error: {e}')
+        return json.dumps({'error': str(e)})
+
+
+# =============================================================================
 # TASK MANAGEMENT TOOLS
 # =============================================================================
 

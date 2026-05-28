@@ -1798,13 +1798,19 @@ async def chat_completion(
             'params': {
                 'stream_delta_chunk_size': stream_delta_chunk_size,
                 'reasoning_tags': reasoning_tags,
+                # Native function calling is the global default (enables interleaved,
+                # streamed tool calls + reasoning). Explicit 'default' opts back into
+                # prompt-based tool calling for models without native tool support.
                 'function_calling': (
-                    'native'
+                    'default'
                     if (
-                        form_data.get('params', {}).get('function_calling') == 'native'
-                        or model_info_params.get('function_calling') == 'native'
+                        form_data.get('params', {}).get('function_calling') == 'default'
+                        or (
+                            form_data.get('params', {}).get('function_calling') is None
+                            and model_info_params.get('function_calling') == 'default'
+                        )
                     )
-                    else 'default'
+                    else 'native'
                 ),
             },
         }

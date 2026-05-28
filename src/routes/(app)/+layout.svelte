@@ -6,11 +6,13 @@
 	const { saveAs } = fileSaver;
 
 	import { goto } from '$app/navigation';
+	import { browser } from '$app/environment';
 	import { page } from '$app/stores';
 	import { fade } from 'svelte/transition';
 
 	import { getModels, getToolServersData, getVersionUpdates } from '$lib/apis';
 	import { getTools } from '$lib/apis/tools';
+	import { updateChatById } from '$lib/apis/chats';
 	import { getBanners } from '$lib/apis/configs';
 	import { getTerminalServers } from '$lib/apis/terminal';
 	import { getUserSettings } from '$lib/apis/users';
@@ -28,6 +30,7 @@
 		functions,
 		tags,
 		banners,
+		chatId,
 		showSettings,
 		showShortcuts,
 		showChangelog,
@@ -36,10 +39,12 @@
 		selectedTerminalId,
 		showSearch,
 		showSidebar,
-		mobile
+		mobile,
+		scratchboardContent as scratchboardContentStore
 	} from '$lib/stores';
 
 	import Sidebar from '$lib/components/layout/Sidebar.svelte';
+	import Scratchboard from '$lib/components/design/Scratchboard.svelte';
 	import SettingsModal from '$lib/components/chat/SettingsModal.svelte';
 	import ChangelogModal from '$lib/components/ChangelogModal.svelte';
 	import AccountPending from '$lib/components/layout/Overlay/AccountPending.svelte';
@@ -54,6 +59,50 @@
 	let localDBChats = [];
 
 	let version;
+	let cursorX = 500;
+	let tabY = 360;
+	let scratchboardContent = '';
+	let scratchboardLoadedKey = '';
+	let scratchboardMounted = false;
+	let scratchboardCollapsed = false;
+
+	$: if (browser && scratchboardMounted) {
+		localStorage.setItem('scratchboardCollapsed', scratchboardCollapsed ? 'true' : 'false');
+	}
+
+	const defaultScratchboard =
+		'# Scratchboard\n\n- Capture useful context from this chat\n- Draft follow-up prompts\n- Keep implementation notes close to the conversation\n';
+
+	$: isChatSurface = ['/', '/home'].includes($page.url.pathname) || $page.url.pathname.startsWith('/c/');
+	$: proximity = Math.max(0, Math.min(1, 1 - cursorX / 80));
+	$: notchW = 12 + proximity * 28;
+	$: notchH = 52 + proximity * 32;
+	$: activeScratchboardKey = `open-webui:scratchboard:${$chatId || 'new'}`;
+	$: if (scratchboardMounted && isChatSurface && activeScratchboardKey !== scratchboardLoadedKey) {
+		scratchboardLoadedKey = activeScratchboardKey;
+		scratchboardContent = localStorage.getItem(activeScratchboardKey) ?? defaultScratchboard;
+		scratchboardContentStore.set(scratchboardContent);
+	}
+	$: if ($scratchboardContentStore !== scratchboardContent) {
+		scratchboardContent = $scratchboardContentStore;
+		if (browser) {
+			localStorage.setItem(activeScratchboardKey, scratchboardContent);
+		}
+	}
+
+	const saveScratchboard = (value: string) => {
+		scratchboardContent = value;
+		scratchboardContentStore.set(value);
+		if (browser) {
+			localStorage.setItem(activeScratchboardKey, value);
+		}
+
+		if ($chatId && !$chatId.startsWith('local:') && !$chatId.startsWith('channel:')) {
+			updateChatById(localStorage.token, $chatId, { scratchboard: value }).catch((err) =>
+				console.error('[scratchboard autosave]', err)
+			);
+		}
+	};
 
 	const clearChatInputStorage = () => {
 		const chatInputKeys = Object.keys(localStorage).filter((key) => key.startsWith('chat-input'));
@@ -191,6 +240,9 @@
 	};
 
 	onMount(async () => {
+		scratchboardCollapsed = localStorage.getItem('scratchboardCollapsed') === 'true';
+		scratchboardMounted = true;
+
 		if ($user === undefined || $user === null) {
 			await goto('/auth');
 			return;
@@ -361,10 +413,54 @@
 {/if}
 
 {#if $user}
-	<div class="app relative">
-		<div
-			class="h-screen max-h-[100dvh] overflow-auto flex flex-row justify-end app-root"
-		>
+	<div
+		class="app design-root"
+		on:mousemove={(e) => {
+			cursorX = e.clientX;
+			tabY = Math.max(42, Math.min(e.clientY, window.innerHeight - 42));
+		}}
+		role="presentation"
+	>
+		<div class="sidebar-layer">
+			<Sidebar peeled={true} />
+		</div>
+
+		{#if !$showSidebar && !$mobile}
+			<button
+				class="notch"
+				style:top="{tabY}px"
+				style:width="{notchW}px"
+				style:height="{notchH}px"
+				style:border-radius="0 {notchW}px {notchW}px 0"
+				on:click={() => showSidebar.set(true)}
+				aria-label={$i18n.t('Open Sidebar')}
+			>
+				<svg
+					width="6"
+					height="10"
+					viewBox="0 0 6 10"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="1.8"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					style:opacity={0.35 + proximity * 0.5}
+					aria-hidden="true"
+				>
+					<path d="M1 1l4 4-4 4" />
+				</svg>
+			</button>
+		{/if}
+
+		<div class="app-shell" class:open={$showSidebar && !$mobile}>
+			{#if $showSidebar && !$mobile}
+				<div
+					class="shell-backdrop"
+					on:click={() => showSidebar.set(false)}
+					role="presentation"
+					aria-hidden="true"
+				></div>
+			{/if}
 			{#if !['user', 'admin'].includes($user?.role)}
 				<AccountPending />
 			{:else}
@@ -423,16 +519,27 @@
 					</div>
 				{/if}
 
-				<Sidebar />
-
 				{#if loaded}
-					<slot />
+					{#if isChatSurface && !$mobile}
+						<div class="content-grid" class:scratchboard-collapsed={scratchboardCollapsed}>
+							<div class="primary-pane">
+								<slot />
+							</div>
+							<div class="scratchboard-pane">
+								<Scratchboard
+									content={scratchboardContent}
+									onChange={saveScratchboard}
+									bind:collapsed={scratchboardCollapsed}
+								/>
+							</div>
+						</div>
+					{:else}
+						<div class="primary-pane full">
+							<slot />
+						</div>
+					{/if}
 				{:else}
-					<div
-						class="w-full flex-1 h-full flex items-center justify-center {$showSidebar
-							? '  md:max-w-[calc(100%-var(--sidebar-width))]'
-							: ' '}"
-					>
+					<div class="w-full flex-1 h-full flex items-center justify-center">
 						<Spinner className="size-5" />
 					</div>
 				{/if}
@@ -442,50 +549,118 @@
 {/if}
 
 <style>
-	.app-root {
-		background: var(--bg-base);
+	.design-root {
+		--sidebar-w: var(--sidebar-width, 260px);
+		position: fixed;
+		inset: 0;
+		background: var(--bg-sidebar);
 		color: var(--text);
+		overflow: hidden;
+		font-family: var(--font-sans);
 	}
 
-	.loading {
-		display: inline-block;
-		clip-path: inset(0 1ch 0 0);
-		animation: l 1s steps(3) infinite;
-		letter-spacing: -0.5px;
-	}
-
-	@keyframes l {
-		to {
-			clip-path: inset(0 -1ch 0 0);
-		}
-	}
-
-	pre[class*='language-'] {
-		position: relative;
-		overflow: auto;
-
-		/* make space  */
-		margin: 5px 0;
-		padding: 1.75rem 0 1.75rem 1rem;
-		border-radius: 10px;
-	}
-
-	pre[class*='language-'] button {
+	.sidebar-layer {
 		position: absolute;
-		top: 5px;
-		right: 5px;
-
-		font-size: 0.9rem;
-		padding: 0.15rem;
-		background-color: #828282;
-
-		border: ridge 1px #7b7b7c;
-		border-radius: 5px;
-		text-shadow: #c4c4c4 0 0 2px;
+		left: 0;
+		top: 0;
+		bottom: 0;
+		width: var(--sidebar-w);
+		z-index: 0;
 	}
 
-	pre[class*='language-'] button:hover {
+	.app-shell {
+		position: absolute;
+		inset: 0;
+		z-index: 1;
+		display: flex;
+		flex-direction: column;
+		min-height: 0;
+		background: var(--bg-base);
+		border-radius: 0;
+		transform: translateX(0);
+		transition:
+			transform 0.38s cubic-bezier(0.16, 1, 0.3, 1),
+			box-shadow 0.38s cubic-bezier(0.16, 1, 0.3, 1),
+			border-radius 0.38s cubic-bezier(0.16, 1, 0.3, 1);
+		overflow: hidden;
+	}
+
+	.app-shell.open {
+		border-radius: 20px;
+		transform: translateX(var(--sidebar-w));
+		box-shadow: -12px 0 48px rgba(0, 0, 0, 0.22);
+	}
+
+	.notch {
+		position: absolute;
+		left: 0;
+		transform: translateY(-50%);
+		z-index: 2;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding-left: 1px;
+		background: var(--bg-sidebar);
+		border: none;
+		color: var(--text-tertiary);
 		cursor: pointer;
-		background-color: #bcbabb;
+		box-shadow:
+			inset -10px 0 18px rgba(0, 0, 0, 0.13),
+			inset 0 6px 12px rgba(0, 0, 0, 0.07),
+			inset 0 -6px 12px rgba(0, 0, 0, 0.05);
+		transition:
+			width 0.14s ease-out,
+			height 0.14s ease-out,
+			border-radius 0.14s ease-out,
+			top 0.06s ease-out,
+			color 0.14s ease;
 	}
+
+	.notch:hover {
+		color: var(--text-secondary);
+	}
+
+	.notch:active {
+		filter: brightness(0.95);
+	}
+
+	.shell-backdrop {
+		position: absolute;
+		inset: 0;
+		z-index: 100;
+		cursor: pointer;
+	}
+
+	.content-grid {
+		display: flex;
+		width: 100%;
+		height: 100%;
+		min-width: 0;
+		min-height: 0;
+	}
+
+	.scratchboard-pane {
+		flex: none;
+		width: max(340px, 32vw);
+		height: 100%;
+		overflow: hidden;
+		transition: width 0.34s cubic-bezier(0.22, 1, 0.36, 1);
+	}
+
+	.content-grid.scratchboard-collapsed .scratchboard-pane {
+		width: 44px;
+	}
+
+	.primary-pane {
+		flex: 1 1 0;
+		min-width: 0;
+		min-height: 0;
+		overflow: hidden;
+	}
+
+	.primary-pane.full {
+		width: 100%;
+		height: 100%;
+	}
+
 </style>
