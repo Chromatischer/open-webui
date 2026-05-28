@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { getContext } from 'svelte';
-	import Checkbox from '$lib/components/common/Checkbox.svelte';
 
 	const i18n = getContext('i18n');
 
@@ -87,18 +86,8 @@
 			class="cap-card {capabilities[capability] ? 'on' : ''}"
 			on:click={() => toggle(capability)}
 		>
-			<span class="cap-check" on:click|stopPropagation>
-				<Checkbox
-					state={capabilities[capability] ? 'checked' : 'unchecked'}
-					on:change={(e) => {
-						capabilities[capability] = e.detail === 'checked';
-					}}
-				/>
-			</span>
-			<span class="cap-text">
-				<span class="cap-label">{$i18n.t(capabilityLabels[capability].label)}</span>
-				<span class="cap-desc">{capabilityLabels[capability].description}</span>
-			</span>
+			<span class="cap-label">{$i18n.t(capabilityLabels[capability].label)}</span>
+			<span class="cap-desc">{capabilityLabels[capability].description}</span>
 		</button>
 	{/each}
 </div>
@@ -111,8 +100,7 @@
 	}
 	.cap-card {
 		display: flex;
-		align-items: flex-start;
-		gap: 10px;
+		flex-direction: column;
 		text-align: left;
 		padding: 10px 12px;
 		border: 1px solid var(--border);
@@ -134,16 +122,6 @@
 	.cap-card.on {
 		border-color: var(--accent);
 		background: var(--accent-glow);
-	}
-	.cap-check {
-		display: flex;
-		align-items: center;
-		margin-top: 1px;
-	}
-	.cap-text {
-		display: flex;
-		flex-direction: column;
-		min-width: 0;
 	}
 	.cap-label {
 		font-size: 13px;

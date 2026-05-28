@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { getContext } from 'svelte';
-	import Checkbox from '$lib/components/common/Checkbox.svelte';
 
 	const i18n = getContext('i18n');
 
@@ -41,16 +40,8 @@
 				class="feat-card {on ? 'on' : ''}"
 				on:click={() => toggle(feature, !on)}
 			>
-				<span class="feat-check" on:click|stopPropagation>
-					<Checkbox
-						state={on ? 'checked' : 'unchecked'}
-						on:change={(e) => toggle(feature, e.detail === 'checked')}
-					/>
-				</span>
-				<span class="feat-text">
-					<span class="feat-label">{$i18n.t(featureLabels[feature].label)}</span>
-					<span class="feat-desc">{featureLabels[feature].description}</span>
-				</span>
+				<span class="feat-label">{$i18n.t(featureLabels[feature].label)}</span>
+				<span class="feat-desc">{featureLabels[feature].description}</span>
 			</button>
 		{/each}
 	</div>
@@ -64,8 +55,7 @@
 	}
 	.feat-card {
 		display: flex;
-		align-items: flex-start;
-		gap: 10px;
+		flex-direction: column;
 		text-align: left;
 		padding: 10px 12px;
 		border: 1px solid var(--border);
@@ -86,16 +76,6 @@
 	.feat-card.on {
 		border-color: var(--accent);
 		background: var(--accent-glow);
-	}
-	.feat-check {
-		display: flex;
-		align-items: center;
-		margin-top: 1px;
-	}
-	.feat-text {
-		display: flex;
-		flex-direction: column;
-		min-width: 0;
 	}
 	.feat-label {
 		font-size: 13px;
