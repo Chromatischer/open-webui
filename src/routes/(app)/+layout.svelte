@@ -66,10 +66,39 @@
 	let scratchboardLoadedKey = '';
 	let scratchboardMounted = false;
 	let scratchboardCollapsed = false;
+	let scratchboardWidth = 380;
+	let scratchboardResizing = false;
+
+	const SCRATCHBOARD_MIN_W = 280;
+	const SCRATCHBOARD_MAX_W = 900;
 
 	$: if (browser && scratchboardMounted) {
 		localStorage.setItem('scratchboardCollapsed', scratchboardCollapsed ? 'true' : 'false');
 	}
+
+	$: if (browser && scratchboardMounted) {
+		localStorage.setItem('scratchboardWidth', String(scratchboardWidth));
+	}
+
+	const startScratchboardResize = (event: PointerEvent) => {
+		event.preventDefault();
+		scratchboardResizing = true;
+		const startX = event.clientX;
+		const startW = scratchboardWidth;
+
+		const onMove = (e: PointerEvent) => {
+			// dragging left (smaller clientX) widens the pane
+			const next = startW + (startX - e.clientX);
+			scratchboardWidth = Math.max(SCRATCHBOARD_MIN_W, Math.min(SCRATCHBOARD_MAX_W, next));
+		};
+		const onUp = () => {
+			scratchboardResizing = false;
+			window.removeEventListener('pointermove', onMove);
+			window.removeEventListener('pointerup', onUp);
+		};
+		window.addEventListener('pointermove', onMove);
+		window.addEventListener('pointerup', onUp);
+	};
 
 	const defaultScratchboard =
 		'# Scratchboard\n\n- Capture useful context from this chat\n- Draft follow-up prompts\n- Keep implementation notes close to the conversation\n';
@@ -242,6 +271,10 @@
 
 	onMount(async () => {
 		scratchboardCollapsed = localStorage.getItem('scratchboardCollapsed') === 'true';
+		const savedWidth = parseInt(localStorage.getItem('scratchboardWidth') ?? '', 10);
+		if (!Number.isNaN(savedWidth)) {
+			scratchboardWidth = Math.max(SCRATCHBOARD_MIN_W, Math.min(SCRATCHBOARD_MAX_W, savedWidth));
+		}
 		scratchboardMounted = true;
 
 		if ($user === undefined || $user === null) {
@@ -527,7 +560,20 @@
 							<div class="primary-pane">
 								<slot />
 							</div>
-							<div class="scratchboard-pane">
+							<div
+								class="scratchboard-pane"
+								class:resizing={scratchboardResizing}
+								style={scratchboardCollapsed ? '' : `width: ${scratchboardWidth}px`}
+							>
+								{#if !scratchboardCollapsed}
+									<div
+										class="scratchboard-resizer"
+										role="separator"
+										aria-orientation="vertical"
+										aria-label="Resize Scratchboard"
+										on:pointerdown={startScratchboardResize}
+									></div>
+								{/if}
 								<Scratchboard
 									content={scratchboardContent}
 									onChange={saveScratchboard}
@@ -642,6 +688,7 @@
 	}
 
 	.scratchboard-pane {
+		position: relative;
 		flex: none;
 		width: max(340px, 32vw);
 		height: 100%;
@@ -649,8 +696,29 @@
 		transition: width 0.34s cubic-bezier(0.22, 1, 0.36, 1);
 	}
 
+	.scratchboard-pane.resizing {
+		transition: none;
+		user-select: none;
+	}
+
 	.content-grid.scratchboard-collapsed .scratchboard-pane {
-		width: 44px;
+		width: 44px !important;
+	}
+
+	.scratchboard-resizer {
+		position: absolute;
+		left: 0;
+		top: 0;
+		bottom: 0;
+		width: 8px;
+		z-index: 5;
+		cursor: col-resize;
+		transition: background 0.15s ease;
+	}
+
+	.scratchboard-resizer:hover,
+	.scratchboard-pane.resizing .scratchboard-resizer {
+		background: color-mix(in srgb, var(--accent, var(--text-tertiary)) 45%, transparent);
 	}
 
 	.primary-pane {

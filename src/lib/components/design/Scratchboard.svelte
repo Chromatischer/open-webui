@@ -61,6 +61,7 @@
 
 {#if collapsed}
 	<aside class="scratchboard-rail">
+		<span class="rail-label">Scratchboard</span>
 		<button
 			class="rail-toggle"
 			onclick={() => (collapsed = false)}
@@ -137,7 +138,7 @@
 
 <style>
 	.scratchboard {
-		width: max(340px, 32vw);
+		width: 100%;
 		height: 100%;
 		background: var(--bg-elevated);
 		border-left: 1px solid var(--border);
@@ -193,13 +194,25 @@
 		width: 100%;
 		height: 100%;
 		display: flex;
-		align-items: flex-start;
-		justify-content: flex-end;
+		flex-direction: column;
+		align-items: center;
+		gap: 16px;
 		background: var(--surface);
 		border-left: 1px solid var(--border);
 		overflow: hidden;
-		/* top offset aligns the expand button with the sidebar's Models row */
-		padding: 110px 8px 0;
+		padding: 16px 8px 0;
+	}
+
+	.rail-label {
+		writing-mode: vertical-rl;
+		text-orientation: mixed;
+		font-size: 13px;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.18em;
+		color: var(--text-tertiary);
+		user-select: none;
+		white-space: nowrap;
 	}
 
 	.rail-toggle {
