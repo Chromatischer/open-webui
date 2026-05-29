@@ -279,7 +279,9 @@ async def update_config(request: Request, form_data: ImagesConfig, user=Depends(
     request.app.state.config.IMAGES_EDIT_OPENAI_API_BASE_URL = form_data.IMAGES_EDIT_OPENAI_API_BASE_URL
     request.app.state.config.IMAGES_EDIT_OPENAI_API_KEY = form_data.IMAGES_EDIT_OPENAI_API_KEY
     request.app.state.config.IMAGES_EDIT_OPENAI_API_VERSION = form_data.IMAGES_EDIT_OPENAI_API_VERSION
-    request.app.state.config.IMAGES_EDIT_OPENROUTER_API_BASE_URL = form_data.IMAGES_EDIT_OPENROUTER_API_BASE_URL.strip('/')
+    request.app.state.config.IMAGES_EDIT_OPENROUTER_API_BASE_URL = form_data.IMAGES_EDIT_OPENROUTER_API_BASE_URL.strip(
+        '/'
+    )
     request.app.state.config.IMAGES_EDIT_OPENROUTER_API_KEY = form_data.IMAGES_EDIT_OPENROUTER_API_KEY
 
     request.app.state.config.IMAGES_EDIT_GEMINI_API_BASE_URL = form_data.IMAGES_EDIT_GEMINI_API_BASE_URL
@@ -708,7 +710,11 @@ async def image_generations(
                 'modalities': ['image', 'text'],
                 'stream': False,
                 **(
-                    {'image_config': size_to_openrouter_image_config(form_data.size or request.app.state.config.IMAGE_SIZE)}
+                    {
+                        'image_config': size_to_openrouter_image_config(
+                            form_data.size or request.app.state.config.IMAGE_SIZE
+                        )
+                    }
                     if size_to_openrouter_image_config(form_data.size or request.app.state.config.IMAGE_SIZE)
                     else {}
                 ),
@@ -1082,7 +1088,11 @@ async def image_edits(
                 'messages': [{'role': 'user', 'content': content}],
                 'modalities': ['image', 'text'],
                 'stream': False,
-                **({'image_config': size_to_openrouter_image_config(size)} if size_to_openrouter_image_config(size) else {}),
+                **(
+                    {'image_config': size_to_openrouter_image_config(size)}
+                    if size_to_openrouter_image_config(size)
+                    else {}
+                ),
             }
 
             session = await get_session()

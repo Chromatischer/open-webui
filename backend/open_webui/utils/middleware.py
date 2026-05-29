@@ -1511,11 +1511,7 @@ def _build_memory_query(messages: list, max_turns: int = 3) -> str:
     that") query against meaningless text. Concatenating the most recent
     user turns gives the vector search enough context to match.
     """
-    user_messages = [
-        get_content_from_message(m)
-        for m in messages
-        if m.get('role') == 'user'
-    ]
+    user_messages = [get_content_from_message(m) for m in messages if m.get('role') == 'user']
     user_messages = [m for m in user_messages if m]
     if not user_messages:
         return ''
@@ -2582,9 +2578,7 @@ async def process_chat_payload(request, form_data, user, metadata, model):
         if 'memory' in features and features['memory']:
             # Skip forced memory injection when native FC is enabled - model can use memory tools
             if metadata.get('params', {}).get('function_calling') != 'native':
-                form_data, memory_source = await chat_memory_handler(
-                    request, form_data, extra_params, user
-                )
+                form_data, memory_source = await chat_memory_handler(request, form_data, extra_params, user)
                 if memory_source:
                     sources.append(memory_source)
 
@@ -2982,9 +2976,7 @@ async def process_chat_payload(request, form_data, user, metadata, model):
                     )
                     sources.extend(flags.get('sources', []))
                     if flags.get('output_items'):
-                        metadata.setdefault('prepended_output_items', []).extend(
-                            flags.get('output_items', [])
-                        )
+                        metadata.setdefault('prepended_output_items', []).extend(flags.get('output_items', []))
                 except Exception as e:
                     log.exception(e)
 
