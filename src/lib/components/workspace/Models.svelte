@@ -51,6 +51,11 @@
 	import WorkspaceActionCard from './common/WorkspaceActionCard.svelte';
 	import WorkspaceCard from './common/WorkspaceCard.svelte';
 
+	// When embedded in the Admin panel the surrounding shell already provides a
+	// page header, so hide the component's own header and the user-centric
+	// "Created by you" / "Shared with you" view chips.
+	export let embedded = false;
+
 	let shiftKey = false;
 
 	let importFiles;
@@ -394,14 +399,16 @@
 				reader.readAsText(importFiles[0]);
 			}}
 		/>
-		<div class="ws-head">
-			<div class="ws-title">{$i18n.t('Models')}</div>
-			<div class="ws-lede">
-				{$i18n.t(
-					'Custom presets that pair a base model with a system prompt, tools, knowledge and capabilities — build your own assistants and reuse them anywhere in chat.'
-				)}
+		{#if !embedded}
+			<div class="ws-head">
+				<div class="ws-title">{$i18n.t('Models')}</div>
+				<div class="ws-lede">
+					{$i18n.t(
+						'Custom presets that pair a base model with a system prompt, tools, knowledge and capabilities — build your own assistants and reuse them anywhere in chat.'
+					)}
+				</div>
 			</div>
-		</div>
+		{/if}
 
 		<div class="ws-toolbar">
 			<div class="ws-search">
@@ -432,23 +439,25 @@
 				{/if}
 			</div>
 
-			<div class="ws-chips">
-				<button class="ws-chip {viewOption === '' ? 'on' : ''}" on:click={() => selectView('')}>
-					{$i18n.t('All')}{#if total !== null}<span class="cnt">{total}</span>{/if}
-				</button>
-				<button
-					class="ws-chip {viewOption === 'created' ? 'on' : ''}"
-					on:click={() => selectView('created')}
-				>
-					{$i18n.t('Created by you')}
-				</button>
-				<button
-					class="ws-chip {viewOption === 'shared' ? 'on' : ''}"
-					on:click={() => selectView('shared')}
-				>
-					{$i18n.t('Shared with you')}
-				</button>
-			</div>
+			{#if !embedded}
+				<div class="ws-chips">
+					<button class="ws-chip {viewOption === '' ? 'on' : ''}" on:click={() => selectView('')}>
+						{$i18n.t('All')}{#if total !== null}<span class="cnt">{total}</span>{/if}
+					</button>
+					<button
+						class="ws-chip {viewOption === 'created' ? 'on' : ''}"
+						on:click={() => selectView('created')}
+					>
+						{$i18n.t('Created by you')}
+					</button>
+					<button
+						class="ws-chip {viewOption === 'shared' ? 'on' : ''}"
+						on:click={() => selectView('shared')}
+					>
+						{$i18n.t('Shared with you')}
+					</button>
+				</div>
+			{/if}
 
 			{#if (tags ?? []).length > 0}
 				<TagSelector

@@ -12,6 +12,55 @@
 
 	let loaded = false;
 
+	$: pathname = $page.url.pathname;
+
+	// Single navigation rail — every admin destination lives here, grouped.
+	// `exact` forces an exact pathname match (needed for `/admin`, which prefixes
+	// every other admin route); otherwise a prefix match drives the active state.
+	$: navGroups = [
+		{
+			label: $i18n.t('Manage'),
+			items: [
+				{ title: $i18n.t('Users'), href: '/admin', exact: true },
+				...(($config?.features?.enable_admin_analytics ?? true)
+					? [{ title: $i18n.t('Analytics'), href: '/admin/analytics' }]
+					: []),
+				{ title: $i18n.t('Evaluations'), href: '/admin/evaluations' },
+				{ title: $i18n.t('Functions'), href: '/admin/functions' }
+			]
+		},
+		{
+			label: $i18n.t('Core'),
+			items: [
+				{ title: $i18n.t('General'), href: '/admin/settings/general' },
+				{ title: $i18n.t('Connections'), href: '/admin/settings/connections' },
+				{ title: $i18n.t('Models'), href: '/admin/settings/models' },
+				{ title: $i18n.t('Integrations'), href: '/admin/settings/integrations' }
+			]
+		},
+		{
+			label: $i18n.t('Capabilities'),
+			items: [
+				{ title: $i18n.t('Documents'), href: '/admin/settings/documents' },
+				{ title: $i18n.t('Web Search'), href: '/admin/settings/web' },
+				{ title: $i18n.t('Images'), href: '/admin/settings/images' },
+				{ title: $i18n.t('Code Execution'), href: '/admin/settings/more' }
+			]
+		},
+		{
+			label: $i18n.t('Operations'),
+			items: [
+				{ title: $i18n.t('Arena'), href: '/admin/settings/evaluations' },
+				{ title: $i18n.t('Pipelines'), href: '/admin/settings/pipelines' },
+				{ title: $i18n.t('Design'), href: '/admin/settings/interface' },
+				{ title: $i18n.t('Database'), href: '/admin/settings/db' }
+			]
+		}
+	];
+
+	const isActive = (item: { href: string; exact?: boolean }, p: string) =>
+		item.exact ? p === item.href : p === item.href || p.startsWith(item.href + '/');
+
 	onMount(async () => {
 		if ($user?.role !== 'admin') {
 			await goto('/');
@@ -28,82 +77,48 @@
 
 {#if loaded}
 	<div
-		class="admin-layout flex flex-col h-screen max-h-[100dvh] flex-1 transition-width duration-200 ease-in-out w-full max-w-full"
+		class="admin-layout flex flex-col lg:flex-row h-screen max-h-[100dvh] flex-1 w-full max-w-full"
 	>
-		<nav class="   px-2.5 pt-1.5 backdrop-blur-xl drag-region select-none">
-			<div class=" flex items-center gap-1">
+		<!-- ===== Single navigation rail ===== -->
+		<aside
+			class="admin-rail flex lg:flex-col flex-none gap-1 lg:gap-0.5 lg:w-60 px-2.5 lg:px-3 py-2 lg:py-4 overflow-x-auto lg:overflow-y-auto scrollbar-none select-none"
+		>
+			<div class="flex items-center gap-2 lg:px-1.5 lg:mb-3 flex-none">
 				{#if $mobile}
-					<div class="{$showSidebar ? 'md:hidden' : ''} flex flex-none items-center self-end">
-						<Tooltip
-							content={$showSidebar ? $i18n.t('Close Sidebar') : $i18n.t('Open Sidebar')}
-							interactive={true}
-						>
-							<button
-								id="sidebar-toggle-button"
-								class="nav-toggle-btn cursor-pointer flex transition"
-								on:click={() => {
-									showSidebar.set(!$showSidebar);
-								}}
-							>
-								<div class=" self-center p-1.5">
-									<Sidebar />
-								</div>
-							</button>
-						</Tooltip>
-					</div>
-				{/if}
-
-				<div class=" flex w-full">
-					<div
-						class="flex gap-1 scrollbar-none overflow-x-auto w-fit text-center text-sm font-medium rounded-full bg-transparent pt-1"
+					<Tooltip
+						content={$showSidebar ? $i18n.t('Close Sidebar') : $i18n.t('Open Sidebar')}
+						interactive={true}
 					>
-						<a
-							draggable="false"
-							class="nav-link min-w-fit p-1.5 {$page.url.pathname.includes('/admin/users')
-								? 'active'
-								: 'inactive'} select-none"
-							href="/admin">{$i18n.t('Users')}</a
+						<button
+							id="sidebar-toggle-button"
+							class="nav-toggle-btn cursor-pointer flex transition p-1.5"
+							on:click={() => showSidebar.set(!$showSidebar)}
 						>
-
-						{#if $config?.features.enable_admin_analytics ?? true}
-							<a
-								draggable="false"
-								class="nav-link min-w-fit p-1.5 {$page.url.pathname.includes('/admin/analytics')
-									? 'active'
-									: 'inactive'} select-none"
-								href="/admin/analytics">{$i18n.t('Analytics')}</a
-							>
-						{/if}
-
-						<a
-							draggable="false"
-							class="nav-link min-w-fit p-1.5 {$page.url.pathname.includes('/admin/evaluations')
-								? 'active'
-								: 'inactive'} select-none"
-							href="/admin/evaluations">{$i18n.t('Evaluations')}</a
-						>
-
-						<a
-							draggable="false"
-							class="nav-link min-w-fit p-1.5 {$page.url.pathname.includes('/admin/functions')
-								? 'active'
-								: 'inactive'} select-none"
-							href="/admin/functions">{$i18n.t('Functions')}</a
-						>
-
-						<a
-							draggable="false"
-							class="nav-link min-w-fit p-1.5 {$page.url.pathname.includes('/admin/settings')
-								? 'active'
-								: 'inactive'} select-none"
-							href="/admin/settings">{$i18n.t('Settings')}</a
-						>
-					</div>
-				</div>
+							<Sidebar />
+						</button>
+					</Tooltip>
+				{/if}
+				<span class="admin-brand hidden lg:block">{$i18n.t('Admin')}</span>
 			</div>
-		</nav>
 
-		<div class="  pb-1 flex-1 max-h-full overflow-y-auto">
+			{#each navGroups as group}
+				<div class="rail-group flex lg:contents">
+					<div class="rail-group-label hidden lg:block">{group.label}</div>
+					{#each group.items as item}
+						<a
+							draggable="false"
+							href={item.href}
+							class="rail-item {isActive(item, pathname) ? 'active' : ''}"
+						>
+							{item.title}
+						</a>
+					{/each}
+				</div>
+			{/each}
+		</aside>
+
+		<!-- ===== Content ===== -->
+		<div class="admin-content flex-1 max-h-full overflow-y-auto pb-1 lg:pt-3">
 			<slot />
 		</div>
 	</div>
@@ -114,24 +129,52 @@
 		background: var(--bg-base);
 	}
 
-	.nav-link {
-		transition: color 0.15s;
+	.admin-rail {
+		background: var(--bg-sidebar);
 	}
-	.nav-link.active {
-		color: var(--text);
-		font-weight: 600;
-	}
-	.nav-link.inactive {
-		color: var(--text-tertiary);
-	}
-	.nav-link.inactive:hover {
-		color: var(--text-secondary);
+	@media (min-width: 1024px) {
+		.admin-rail {
+			border-right: 1px solid var(--border);
+		}
 	}
 
-	.nav-toggle-btn {
-		border-radius: 10px;
+	.admin-brand {
+		font-family: var(--font-sans);
+		font-size: 18px;
+		font-weight: 600;
+		letter-spacing: -0.01em;
+		color: var(--text);
 	}
-	.nav-toggle-btn:hover {
+
+	.rail-group-label {
+		font-size: 11px;
+		text-transform: uppercase;
+		letter-spacing: 0.7px;
+		color: var(--text-tertiary);
+		padding: 4px 12px;
+		margin-top: 12px;
+	}
+
+	.rail-item {
+		display: flex;
+		align-items: center;
+		min-width: fit-content;
+		padding: 7px 12px;
+		border-radius: 10px;
+		font-size: 13.5px;
+		font-weight: 500;
+		color: var(--text-secondary);
+		transition:
+			background 0.15s,
+			color 0.15s;
+	}
+	.rail-item:hover {
 		background: var(--surface-hover);
+		color: var(--text);
+	}
+	.rail-item.active {
+		background: var(--accent-glow);
+		color: var(--accent);
+		font-weight: 600;
 	}
 </style>
