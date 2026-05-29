@@ -3,7 +3,6 @@
 	const { saveAs } = fileSaver;
 
 	import {
-		chatId,
 		chats,
 		user,
 		settings,
@@ -24,7 +23,6 @@
 	import { onMount, getContext } from 'svelte';
 	import { goto } from '$app/navigation';
 	import { toast } from 'svelte-sonner';
-	import ArchivedChatsModal from '$lib/components/layout/ArchivedChatsModal.svelte';
 	import SharedChatsModal from '$lib/components/layout/SharedChatsModal.svelte';
 	import FilesModal from '$lib/components/layout/FilesModal.svelte';
 	import ConfirmDialog from '$lib/components/common/ConfirmDialog.svelte';
@@ -38,7 +36,6 @@
 
 	let showArchiveConfirmDialog = false;
 	let showDeleteConfirmDialog = false;
-	let showArchivedChatsModal = false;
 	let showSharedChatsModal = false;
 	let showFilesModal = false;
 
@@ -132,24 +129,8 @@
 		scrollPaginationEnabled.set(true);
 	};
 
-	const handleArchivedChatsChange = async () => {
-		currentChatPage.set(1);
-		await chats.set(await getChatList(localStorage.token, $currentChatPage));
-
-		scrollPaginationEnabled.set(true);
-	};
 </script>
 
-<ArchivedChatsModal
-	bind:show={showArchivedChatsModal}
-	onUpdate={handleArchivedChatsChange}
-	onDelete={(id) => {
-		if ($chatId === id) {
-			goto('/');
-			chatId.set('');
-		}
-	}}
-/>
 <SharedChatsModal bind:show={showSharedChatsModal} />
 <FilesModal bind:show={showFilesModal} />
 
@@ -184,119 +165,119 @@
 			hidden
 		/>
 
-		<div>
-			<div class="mb-1 text-sm font-medium">{$i18n.t('Chats')}</div>
+		<div class="dc-section">
+			<div class="dc-group-label">{$i18n.t('Chats')}</div>
 
-			<div>
-				<div class="py-0.5 flex w-full justify-between">
-					<div class="self-center text-xs">{$i18n.t('Import Chats')}</div>
-					<button
-						class="p-1 px-3 text-xs flex rounded-sm transition"
-						on:click={() => {
-							chatImportInputElement.click();
-						}}
-						type="button"
-					>
-						<span class="self-center">{$i18n.t('Import')}</span>
+			<div class="dc-rows">
+				<div class="dc-row">
+					<div class="dc-row-title">{$i18n.t('Import Chats')}</div>
+					<button class="dc-pill" on:click={() => chatImportInputElement.click()} type="button">
+						{$i18n.t('Import')}
 					</button>
 				</div>
-			</div>
 
-			{#if $user?.role === 'admin' || ($user.permissions?.chat?.export ?? true)}
-				<div>
-					<div class="py-0.5 flex w-full justify-between">
-						<div class="self-center text-xs">{$i18n.t('Export Chats')}</div>
-						<button
-							class="p-1 px-3 text-xs flex rounded-sm transition"
-							on:click={() => {
-								exportChats();
-							}}
-							type="button"
-						>
-							<span class="self-center">{$i18n.t('Export')}</span>
+				{#if $user?.role === 'admin' || ($user.permissions?.chat?.export ?? true)}
+					<div class="dc-row">
+						<div class="dc-row-title">{$i18n.t('Export Chats')}</div>
+						<button class="dc-pill" on:click={() => exportChats()} type="button">
+							{$i18n.t('Export')}
 						</button>
 					</div>
-				</div>
-			{/if}
+				{/if}
 
-			<div>
-				<div class="py-0.5 flex w-full justify-between">
-					<div class="self-center text-xs">{$i18n.t('Archived Chats')}</div>
-					<button
-						class="p-1 px-3 text-xs flex rounded-sm transition"
-						on:click={() => {
-							showArchivedChatsModal = true;
-						}}
-						type="button"
-					>
-						<span class="self-center">{$i18n.t('Manage')}</span>
+				<div class="dc-row">
+					<div class="dc-row-title">{$i18n.t('Shared Chats')}</div>
+					<button class="dc-pill" on:click={() => (showSharedChatsModal = true)} type="button">
+						{$i18n.t('Manage')}
 					</button>
 				</div>
-			</div>
 
-			<div>
-				<div class="py-0.5 flex w-full justify-between">
-					<div class="self-center text-xs">{$i18n.t('Shared Chats')}</div>
-					<button
-						class="p-1 px-3 text-xs flex rounded-sm transition"
-						on:click={() => {
-							showSharedChatsModal = true;
-						}}
-						type="button"
-					>
-						<span class="self-center">{$i18n.t('Manage')}</span>
+				<div class="dc-row">
+					<div class="dc-row-title">{$i18n.t('Archive All Chats')}</div>
+					<button class="dc-pill" on:click={() => (showArchiveConfirmDialog = true)} type="button">
+						{$i18n.t('Archive All')}
 					</button>
 				</div>
-			</div>
 
-			<div>
-				<div class="py-0.5 flex w-full justify-between">
-					<div class="self-center text-xs">{$i18n.t('Archive All Chats')}</div>
+				<div class="dc-row">
+					<div class="dc-row-title">{$i18n.t('Delete All Chats')}</div>
 					<button
-						class="p-1 px-3 text-xs flex rounded-sm transition"
-						on:click={() => {
-							showArchiveConfirmDialog = true;
-						}}
+						class="dc-pill danger"
+						on:click={() => (showDeleteConfirmDialog = true)}
 						type="button"
 					>
-						<span class="self-center">{$i18n.t('Archive All')}</span>
-					</button>
-				</div>
-			</div>
-
-			<div>
-				<div class="py-0.5 flex w-full justify-between">
-					<div class="self-center text-xs">{$i18n.t('Delete All Chats')}</div>
-					<button
-						class="p-1 px-3 text-xs flex rounded-sm transition"
-						on:click={() => {
-							showDeleteConfirmDialog = true;
-						}}
-						type="button"
-					>
-						<span class="self-center">{$i18n.t('Delete All')}</span>
+						{$i18n.t('Delete All')}
 					</button>
 				</div>
 			</div>
 		</div>
 
-		<div>
-			<div class="mb-1 text-sm font-medium">{$i18n.t('Files')}</div>
+		<div class="dc-section">
+			<div class="dc-group-label">{$i18n.t('Files')}</div>
 
-			<div>
-				<div class="py-0.5 flex w-full justify-between">
-					<div class="self-center text-xs">{$i18n.t('Manage Files')}</div>
-					<button
-						class="p-1 px-3 text-xs flex rounded-sm transition"
-						on:click={() => {
-							showFilesModal = true;
-						}}
-						type="button"
-					>
-						<span class="self-center">{$i18n.t('Manage')}</span>
+			<div class="dc-rows">
+				<div class="dc-row">
+					<div class="dc-row-title">{$i18n.t('Manage Files')}</div>
+					<button class="dc-pill" on:click={() => (showFilesModal = true)} type="button">
+						{$i18n.t('Manage')}
 					</button>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+
+<style>
+	.dc-section {
+		margin-bottom: 22px;
+	}
+	.dc-group-label {
+		font-size: 11px;
+		font-weight: 700;
+		letter-spacing: 0.05em;
+		text-transform: uppercase;
+		color: var(--text-tertiary);
+		margin-bottom: 10px;
+	}
+	.dc-rows {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+	.dc-row {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 12px;
+		padding: 11px 13px;
+		border-radius: 12px;
+		border: 1px solid var(--border);
+		background: var(--surface);
+	}
+	.dc-row-title {
+		font-size: 13px;
+		font-weight: 500;
+		color: var(--text);
+	}
+	.dc-pill {
+		font-size: 12px;
+		font-weight: 500;
+		padding: 5px 12px;
+		border-radius: 8px;
+		border: 1px solid var(--border);
+		background: var(--bg-elevated);
+		color: var(--text);
+		transition:
+			background 0.15s ease,
+			border-color 0.15s ease,
+			color 0.15s ease;
+	}
+	.dc-pill:hover {
+		background: var(--surface-hover);
+		border-color: var(--border-hover);
+	}
+	.dc-pill.danger:hover {
+		color: #e0533d;
+		border-color: #e0533d;
+	}
+</style>

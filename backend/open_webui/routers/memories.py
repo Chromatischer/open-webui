@@ -81,9 +81,51 @@ async def add_memory(
             detail=ERROR_MESSAGES.ACCESS_PROHIBITED,
         )
 
-    memory = await Memories.insert_new_memory(user.id, form_data.content)
+    vector = await request.app.state.EMBEDDING_FUNCTION(form_data.content, user=user)
 
-    vector = await request.app.state.EMBEDDING_FUNCTION(memory.content, user=user)
+    # Deduplicate: if a near-identical memory already exists, refresh it in
+    # place instead of accumulating duplicates that crowd out the top-k.
+    dedup_threshold = getattr(request.app.state.config, 'MEMORY_DEDUP_THRESHOLD', 0.95)
+    if dedup_threshold > 0.0:
+        try:
+            existing = await ASYNC_VECTOR_DB_CLIENT.search(
+                collection_name=f'user-memory-{user.id}',
+                vectors=[vector],
+                limit=1,
+            )
+        except Exception:
+            existing = None
+
+        if (
+            existing
+            and existing.ids
+            and existing.ids[0]
+            and existing.distances
+            and existing.distances[0]
+            and existing.distances[0][0] >= dedup_threshold
+        ):
+            duplicate_id = existing.ids[0][0]
+            updated = await Memories.update_memory_by_id_and_user_id(
+                duplicate_id, user.id, form_data.content
+            )
+            if updated:
+                await ASYNC_VECTOR_DB_CLIENT.upsert(
+                    collection_name=f'user-memory-{user.id}',
+                    items=[
+                        {
+                            'id': updated.id,
+                            'text': updated.content,
+                            'vector': vector,
+                            'metadata': {
+                                'created_at': updated.created_at,
+                                'updated_at': updated.updated_at,
+                            },
+                        }
+                    ],
+                )
+                return updated
+
+    memory = await Memories.insert_new_memory(user.id, form_data.content)
 
     await ASYNC_VECTOR_DB_CLIENT.upsert(
         collection_name=f'user-memory-{user.id}',
@@ -150,7 +192,13 @@ async def query_memory(
     # same RELEVANCE_THRESHOLD used by RAG ensures only genuinely matching
     # memories are surfaced (distances are normalised to 0→1, higher is
     # better).
-    relevance_threshold = getattr(request.app.state.config, 'RELEVANCE_THRESHOLD', 0.0)
+    # Memory uses its own threshold (falls back to the RAG value at config
+    # load time) because memory and document-chunk distances differ.
+    relevance_threshold = getattr(
+        request.app.state.config,
+        'MEMORY_RELEVANCE_THRESHOLD',
+        getattr(request.app.state.config, 'RELEVANCE_THRESHOLD', 0.0),
+    )
     if results and relevance_threshold > 0.0 and results.distances and results.distances[0]:
         from open_webui.retrieval.vector.main import SearchResult
 

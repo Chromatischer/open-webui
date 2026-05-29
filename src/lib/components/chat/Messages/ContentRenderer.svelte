@@ -15,57 +15,6 @@
 	import FloatingButtons from '../ContentRenderer/FloatingButtons.svelte';
 	import { createMessagesList } from '$lib/utils';
 
-	/**
-	 * Extracts all top-level <details>...</details> blocks from content,
-	 * handling nested <details> via depth tracking.
-	 * Returns { detailsContent, plainContent }.
-	 */
-	const extractDetailsBlocks = (text) => {
-		const blocks = [];
-		let remaining = text;
-		let result = '';
-		const openTag = '<details';
-		const closeTag = '</details>';
-
-		while (true) {
-			const start = remaining.indexOf(openTag);
-			if (start === -1) {
-				result += remaining;
-				break;
-			}
-
-			result += remaining.slice(0, start);
-
-			// Find matching closing tag with depth tracking
-			let depth = 1;
-			let idx = start + openTag.length;
-			while (depth > 0 && idx < remaining.length) {
-				if (remaining.startsWith(openTag, idx)) {
-					depth++;
-				} else if (remaining.startsWith(closeTag, idx)) {
-					depth--;
-				}
-				if (depth > 0) idx++;
-			}
-
-			if (depth === 0) {
-				const end = idx + closeTag.length;
-				blocks.push(remaining.slice(start, end));
-				remaining = remaining.slice(end);
-			} else {
-				// Unmatched opening tag, treat as plain text
-				result += remaining.slice(start);
-				remaining = '';
-				break;
-			}
-		}
-
-		return {
-			detailsContent: blocks.join('\n'),
-			plainContent: result.trim()
-		};
-	};
-
 	export let id;
 	export let content;
 
@@ -263,20 +212,8 @@
 				await showEmbeds.set(false);
 			}}
 		/>
-	{:else}
-		{@const extracted = extractDetailsBlocks(content)}
-
-		{#if extracted.detailsContent}
-			<div class="thinking" role="region" aria-label="Reasoning">
-				<span class="think-slash">//</span>
-				<span class="think-content">
-					<Markdown {id} content={extracted.detailsContent} {done} />
-				</span>
-			</div>
-		{/if}
-		{#if extracted.plainContent}
-			<div class="whitespace-pre-wrap">{extracted.plainContent}</div>
-		{/if}
+	{:else if content}
+		<div class="whitespace-pre-wrap">{content}</div>
 	{/if}
 </div>
 

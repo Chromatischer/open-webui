@@ -7,6 +7,9 @@
 	import { onMount, getContext } from 'svelte';
 
 	import Tooltip from '$lib/components/common/Tooltip.svelte';
+	import { user } from '$lib/stores';
+	import QuestionMarkCircle from '$lib/components/icons/QuestionMarkCircle.svelte';
+	import Map from '$lib/components/icons/Map.svelte';
 
 	const i18n = getContext('i18n');
 
@@ -46,6 +49,31 @@
 
 <div id="tab-about" class="flex flex-col h-full justify-between space-y-3 text-sm mb-6">
 	<div class=" space-y-3 overflow-y-scroll max-h-[28rem] md:max-h-full">
+		{#if $user?.role === 'admin'}
+			<div class="flex flex-col gap-2">
+				<a
+					href="https://docs.openwebui.com"
+					target="_blank"
+					rel="noopener"
+					class="ab-link"
+				>
+					<QuestionMarkCircle className="size-4" />
+					<span>{$i18n.t('Documentation')}</span>
+				</a>
+				<a
+					href="https://github.com/open-webui/open-webui/releases"
+					target="_blank"
+					rel="noopener"
+					class="ab-link"
+				>
+					<Map className="size-4" />
+					<span>{$i18n.t('Releases')}</span>
+				</a>
+			</div>
+
+			<hr class=" border-[var(--border)]" />
+		{/if}
+
 		<div>
 			<div class=" mb-2.5 text-sm font-medium flex space-x-2 items-center">
 				<div>
@@ -174,3 +202,25 @@
 		</div>
 	</div>
 </div>
+
+<style>
+	.ab-link {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		padding: 9px 11px;
+		border-radius: 10px;
+		border: 1px solid var(--border);
+		background: var(--surface);
+		font-size: 13px;
+		font-weight: 500;
+		color: var(--text);
+		transition:
+			background 0.15s ease,
+			border-color 0.15s ease;
+	}
+	.ab-link:hover {
+		background: var(--surface-hover);
+		border-color: var(--border-hover);
+	}
+</style>

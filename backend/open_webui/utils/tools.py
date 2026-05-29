@@ -90,6 +90,9 @@ from open_webui.tools.builtin import (
     view_file,
     view_knowledge_file,
     view_skill,
+    read_scratchboard,
+    write_scratchboard,
+    edit_scratchboard,
     create_tasks,
     update_task,
     create_automation,
@@ -398,7 +401,7 @@ async def get_builtin_tools(
     request: Request, extra_params: dict, features: dict = None, model: dict = None
 ) -> dict[str, dict]:
     """
-    Get built-in tools for native function calling.
+    Get built-in tools for function calling.
     Only returns tools when BOTH the global config is enabled AND the model capability allows it.
     """
     tools_dict = {}
@@ -550,6 +553,10 @@ async def get_builtin_tools(
     # Skills tools - view_skill allows model to load full skill instructions on demand
     if extra_params.get('__skill_ids__'):
         builtin_functions.append(view_skill)
+
+    # Scratchboard tools - read and write durable notes for the current chat
+    if is_builtin_tool_enabled('scratchboard'):
+        builtin_functions.extend([read_scratchboard, write_scratchboard, edit_scratchboard])
 
     # Task management - break down complex work into trackable steps
     if is_builtin_tool_enabled('tasks'):

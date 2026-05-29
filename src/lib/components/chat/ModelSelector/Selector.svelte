@@ -60,12 +60,11 @@
 
 	export let pinModelHandler: (modelId: string) => void = () => {};
 
-	let tagsContainerElement;
-
 	let show = false;
 	let triggerElement: HTMLElement | null = null;
 	let contentElement: HTMLElement | null = null;
-	let dropdownPosition = { top: 0, left: 0, width: 0 };
+	let panelElement: HTMLElement | null = null;
+	let dropdownPosition = { top: 0, left: 0, width: 0, openUp: false };
 
 	const portal = (node: HTMLElement) => {
 		document.body.appendChild(node);
@@ -76,14 +75,46 @@
 		};
 	};
 
-	const updatePosition = () => {
+	const VIEWPORT_MARGIN = 8;
+
+	const updatePosition = async () => {
 		if (!show || !triggerElement) return;
+
+		// Wait for the panel to render so we can measure its real size.
+		await tick();
+
 		const rect = triggerElement.getBoundingClientRect();
-		dropdownPosition = {
-			top: rect.bottom + 2,
-			left: $mobile ? 8 : rect.left,
-			width: $mobile ? window.innerWidth - 16 : 0
-		};
+		const vw = window.innerWidth;
+		const vh = window.innerHeight;
+
+		const panelW = $mobile ? vw - 16 : (panelElement?.offsetWidth ?? 512);
+		const panelH = panelElement?.offsetHeight ?? 0;
+
+		// Horizontal: align to trigger, but clamp inside the viewport.
+		let left = $mobile ? VIEWPORT_MARGIN : rect.left;
+		if (!$mobile) {
+			left = Math.min(left, vw - panelW - VIEWPORT_MARGIN);
+			left = Math.max(VIEWPORT_MARGIN, left);
+		}
+
+		// Vertical: prefer below the trigger, flip above when there isn't room.
+		const spaceBelow = vh - rect.bottom - VIEWPORT_MARGIN;
+		const spaceAbove = rect.top - VIEWPORT_MARGIN;
+		let openUp = false;
+		let top: number;
+
+		if (panelH && spaceBelow < panelH && spaceAbove > spaceBelow) {
+			openUp = true;
+			top = Math.max(VIEWPORT_MARGIN, rect.top - 2 - panelH);
+		} else {
+			top = rect.bottom + 2;
+			if (panelH) {
+				top = Math.min(top, vh - panelH - VIEWPORT_MARGIN);
+				top = Math.max(VIEWPORT_MARGIN, top);
+			}
+		}
+
+		dropdownPosition = { top, left, width: $mobile ? vw - 16 : 0, openUp };
 	};
 
 	const toggleOpen = () => {
@@ -227,6 +258,11 @@
 		resetView();
 	}
 
+	$: hasLocal = items.some((item) => item.model?.connection_type === 'local');
+	$: hasExternal = items.some((item) => item.model?.connection_type === 'external');
+	$: hasDirect = items.some((item) => item.model?.direct);
+	$: hasCategories = hasLocal || hasExternal || hasDirect || tags.length > 0;
+
 	const resetView = async () => {
 		await tick();
 
@@ -241,7 +277,10 @@
 		}
 
 		// Set the virtual scroll position so the selected item is rendered and centered
-		const targetScrollTop = Math.max(0, selectedModelIdx * ITEM_HEIGHT - 128 + ITEM_HEIGHT / 2);
+		const targetScrollTop = Math.max(
+			0,
+			selectedModelIdx * ITEM_HEIGHT - LIST_HEIGHT / 2 + ITEM_HEIGHT / 2
+		);
 		listScrollTop = targetScrollTop;
 
 		await tick();
@@ -474,6 +513,7 @@
 
 	const ITEM_HEIGHT = 42;
 	const OVERSCAN = 10;
+	const LIST_HEIGHT = 288; // constant list viewport so the search bar stays put
 
 	let listScrollTop = 0;
 	let listContainer;
@@ -481,8 +521,10 @@
 	$: visibleStart = Math.max(0, Math.floor(listScrollTop / ITEM_HEIGHT) - OVERSCAN);
 	$: visibleEnd = Math.min(
 		filteredItems.length,
-		Math.ceil((listScrollTop + 256) / ITEM_HEIGHT) + OVERSCAN
+		Math.ceil((listScrollTop + LIST_HEIGHT) / ITEM_HEIGHT) + OVERSCAN
 	);
+
+	$: activeFilterKey = `${selectedConnectionType}|${selectedTag}`;
 </script>
 
 <ConfirmDialog
@@ -549,87 +591,43 @@
 				: ''}"
 		>
 			<div
+				bind:this={panelElement}
 				class="z-40 {$mobile
 					? `w-full`
-					: `${className}`} max-w-[calc(100vw-1rem)] justify-start rounded-2xl bg-white dark:bg-gray-850 dark:text-white shadow-lg outline-hidden"
-				transition:flyAndScale
+					: `${className}`} max-w-[calc(100vw-1rem)] justify-start rounded-2xl bg-[var(--bg-elevated)] text-[var(--text)] border border-[var(--border)] shadow-lg outline-hidden overflow-hidden"
+				style="transform-origin: {dropdownPosition.openUp ? 'bottom' : 'top'} left;"
+				transition:flyAndScale={{ y: dropdownPosition.openUp ? 8 : -8, start: 0.96, duration: 200 }}
 			>
 				<slot>
-					{#if searchEnabled}
-						<div class="flex items-center gap-2.5 px-4.5 pt-3.5 mb-1.5">
-							<Search className="size-4" strokeWidth="2.5" />
-
-							<input
-								id="model-search-input"
-								bind:value={searchValue}
-								class="w-full text-sm bg-transparent outline-hidden"
-								placeholder={searchPlaceholder}
-								autocomplete="off"
-								aria-label={$i18n.t('Search In Models')}
-								on:keydown={(e) => {
-									if (e.code === 'Enter' && filteredItems.length > 0) {
-										value = filteredItems[selectedModelIdx].value;
-										show = false;
-										return; // dont need to scroll on selection
-									} else if (e.code === 'ArrowDown') {
-										e.stopPropagation();
-										selectedModelIdx = Math.min(selectedModelIdx + 1, filteredItems.length - 1);
-									} else if (e.code === 'ArrowUp') {
-										e.stopPropagation();
-										selectedModelIdx = Math.max(selectedModelIdx - 1, 0);
-									} else {
-										// if the user types something, reset to the top selection.
-										selectedModelIdx = 0;
-									}
-
-									const item = document.querySelector(`[data-arrow-selected="true"]`);
-									item?.scrollIntoView({
-										block: 'center',
-										inline: 'nearest',
-										behavior: 'instant'
-									});
-								}}
-							/>
-						</div>
-					{/if}
-
-					<div class="px-2">
-						{#if tags && items.filter((item) => !(item.model?.info?.meta?.hidden ?? false)).length > 0}
-							<div
-								class=" flex w-full bg-white dark:bg-gray-850 overflow-x-auto scrollbar-none font-[450] mb-0.5"
-								on:wheel={(e) => {
-									if (e.deltaY !== 0) {
-										e.preventDefault();
-										e.currentTarget.scrollLeft += e.deltaY;
-									}
-								}}
-							>
+					<div class="flex flex-col">
+						<!-- Body: category rail (left) + model list (right) -->
+						<div class="flex items-stretch h-72">
+							{#if hasCategories}
 								<div
-									class="flex gap-1 w-fit text-center text-sm rounded-full bg-transparent px-1.5 whitespace-nowrap"
-									bind:this={tagsContainerElement}
+									class="shrink-0 w-[9.5rem] h-full overflow-y-auto scrollbar-none border-r border-[var(--border)] flex flex-col gap-0.5 p-1.5"
 								>
-									{#if items.find((item) => item.model?.connection_type === 'local') || items.find((item) => item.model?.connection_type === 'external') || items.find((item) => item.model?.direct) || tags.length > 0}
-										<button
-											class="min-w-fit outline-none px-1.5 py-0.5 {selectedTag === '' &&
-											selectedConnectionType === ''
-												? ''
-												: 'text-gray-300 dark:text-gray-600 hover:text-gray-700 dark:hover:text-white'} transition capitalize"
-											aria-pressed={selectedTag === '' && selectedConnectionType === ''}
-											on:click={() => {
-												selectedConnectionType = '';
-												selectedTag = '';
-											}}
-										>
-											{$i18n.t('All')}
-										</button>
-									{/if}
+									<div
+										class="px-2 pt-1 pb-1 text-[10px] font-bold uppercase tracking-[0.08em] text-[var(--text-tertiary)]"
+									>
+										{$i18n.t('Filter')}
+									</div>
 
-									{#if items.find((item) => item.model?.connection_type === 'local')}
+									<button
+										class="cat-item {selectedTag === '' && selectedConnectionType === ''
+											? 'cat-item-active'
+											: ''}"
+										aria-pressed={selectedTag === '' && selectedConnectionType === ''}
+										on:click={() => {
+											selectedConnectionType = '';
+											selectedTag = '';
+										}}
+									>
+										{$i18n.t('All')}
+									</button>
+
+									{#if hasLocal}
 										<button
-											class="min-w-fit outline-none px-1.5 py-0.5 {selectedConnectionType ===
-											'local'
-												? ''
-												: 'text-gray-300 dark:text-gray-600 hover:text-gray-700 dark:hover:text-white'} transition capitalize"
+											class="cat-item {selectedConnectionType === 'local' ? 'cat-item-active' : ''}"
 											aria-pressed={selectedConnectionType === 'local'}
 											on:click={() => {
 												selectedTag = '';
@@ -640,12 +638,9 @@
 										</button>
 									{/if}
 
-									{#if items.find((item) => item.model?.connection_type === 'external')}
+									{#if hasExternal}
 										<button
-											class="min-w-fit outline-none px-1.5 py-0.5 {selectedConnectionType ===
-											'external'
-												? ''
-												: 'text-gray-300 dark:text-gray-600 hover:text-gray-700 dark:hover:text-white'} transition capitalize"
+											class="cat-item {selectedConnectionType === 'external' ? 'cat-item-active' : ''}"
 											aria-pressed={selectedConnectionType === 'external'}
 											on:click={() => {
 												selectedTag = '';
@@ -656,12 +651,9 @@
 										</button>
 									{/if}
 
-									{#if items.find((item) => item.model?.direct)}
+									{#if hasDirect}
 										<button
-											class="min-w-fit outline-none px-1.5 py-0.5 {selectedConnectionType ===
-											'direct'
-												? ''
-												: 'text-gray-300 dark:text-gray-600 hover:text-gray-700 dark:hover:text-white'} transition capitalize"
+											class="cat-item {selectedConnectionType === 'direct' ? 'cat-item-active' : ''}"
 											aria-pressed={selectedConnectionType === 'direct'}
 											on:click={() => {
 												selectedTag = '';
@@ -672,174 +664,218 @@
 										</button>
 									{/if}
 
-									{#each tags as tag}
-										<Tooltip content={tag}>
+									{#if tags.length > 0}
+										<div
+											class="px-2 pt-2.5 pb-1 text-[10px] font-bold uppercase tracking-[0.08em] text-[var(--text-tertiary)]"
+										>
+											{$i18n.t('Tags')}
+										</div>
+
+										{#each tags as tag}
 											<button
-												class="min-w-fit outline-none px-1.5 py-0.5 {selectedTag === tag
-													? ''
-													: 'text-gray-300 dark:text-gray-600 hover:text-gray-700 dark:hover:text-white'} transition capitalize"
+												class="cat-item {selectedTag === tag ? 'cat-item-active' : ''}"
 												aria-pressed={selectedTag === tag}
+												title={tag}
 												on:click={() => {
 													selectedConnectionType = '';
 													selectedTag = tag;
 												}}
 											>
-												{tag.length > 16 ? `${tag.slice(0, 16)}...` : tag}
+												<span class="truncate">{tag}</span>
 											</button>
-										</Tooltip>
-									{/each}
-								</div>
-							</div>
-						{/if}
-					</div>
-
-					<div class="px-2.5 group relative">
-						{#if filteredItems.length === 0}
-							{#if items.length === 0 && $user?.role === 'admin'}
-								<div class="flex flex-col items-start justify-center py-6 px-4 text-start">
-									<div class="text-sm font-medium text-gray-900 dark:text-gray-100 mb-1">
-										{$i18n.t('No models available')}
-									</div>
-									<div class="text-xs text-gray-500 dark:text-gray-400 mb-4">
-										{$i18n.t('Connect to an AI provider to start chatting')}
-									</div>
-									<a
-										href="/admin/settings/connections"
-										class="px-4 py-1.5 rounded-xl text-xs font-medium bg-gray-900 dark:bg-white text-white dark:text-gray-900 hover:bg-gray-800 dark:hover:bg-gray-100 transition"
-										on:click={() => {
-											show = false;
-										}}
-									>
-										{$i18n.t('Manage Connections')}
-									</a>
-								</div>
-							{:else}
-								<div class="">
-									<div class="block px-3 py-2 text-sm text-gray-700 dark:text-gray-100">
-										{$i18n.t('No results found')}
-									</div>
+										{/each}
+									{/if}
 								</div>
 							{/if}
-						{:else}
+
 							<!-- svelte-ignore a11y-no-static-element-interactions -->
 							<div
-								class="max-h-64 overflow-y-auto"
-								role="listbox"
-								aria-label={$i18n.t('Available models')}
+								class="flex-1 min-w-0 h-full overflow-y-auto px-2.5 py-2 group relative"
 								bind:this={listContainer}
 								on:scroll={() => {
 									listScrollTop = listContainer.scrollTop;
 								}}
 							>
-								<div style="height: {visibleStart * ITEM_HEIGHT}px;" />
-								{#each filteredItems.slice(visibleStart, visibleEnd) as item, i (item.value)}
-									{@const index = visibleStart + i}
-									<ModelItem
-										{selectedModelIdx}
-										{item}
-										{index}
-										{value}
-										{pinModelHandler}
-										{unloadModelHandler}
-										{deleteModelHandler}
-										onClick={() => {
-											value = item.value;
-											selectedModelIdx = index;
+								{#if filteredItems.length === 0}
+									{#if items.length === 0 && $user?.role === 'admin'}
+										<div class="flex flex-col items-start justify-center py-6 px-4 text-start">
+											<div class="text-sm font-medium text-[var(--text)] mb-1">
+												{$i18n.t('No models available')}
+											</div>
+											<div class="text-xs text-[var(--text-secondary)] mb-4">
+												{$i18n.t('Connect to an AI provider to start chatting')}
+											</div>
+											<a
+												href="/admin/settings/connections"
+												class="px-4 py-1.5 rounded-xl text-xs font-medium bg-[var(--accent)] text-white hover:brightness-110 transition"
+												on:click={() => {
+													show = false;
+												}}
+											>
+												{$i18n.t('Manage Connections')}
+											</a>
+										</div>
+									{:else}
+										<div class="">
+											<div class="block px-3 py-2 text-sm text-[var(--text-secondary)]">
+												{$i18n.t('No results found')}
+											</div>
+										</div>
+									{/if}
+								{:else}
+									{#key activeFilterKey}
+										<div class="list-anim" role="listbox" aria-label={$i18n.t('Available models')}>
+											<div style="height: {visibleStart * ITEM_HEIGHT}px;" />
+											{#each filteredItems.slice(visibleStart, visibleEnd) as item, i (item.value)}
+												{@const index = visibleStart + i}
+												<ModelItem
+													{selectedModelIdx}
+													{item}
+													{index}
+													{value}
+													{pinModelHandler}
+													{unloadModelHandler}
+													{deleteModelHandler}
+													onClick={() => {
+														value = item.value;
+														selectedModelIdx = index;
 
-											show = false;
-										}}
-									/>
-								{/each}
-								<div style="height: {(filteredItems.length - visibleEnd) * ITEM_HEIGHT}px;" />
-							</div>
-						{/if}
+														show = false;
+													}}
+												/>
+											{/each}
+											<div style="height: {(filteredItems.length - visibleEnd) * ITEM_HEIGHT}px;" />
+										</div>
+									{/key}
+								{/if}
 
-						{#if !(searchValue.trim() in $MODEL_DOWNLOAD_POOL) && searchValue && ollamaVersion && $user?.role === 'admin'}
-							<Tooltip
-								content={$i18n.t(`Pull "{{searchValue}}" from Ollama.com`, {
-									searchValue: searchValue
-								})}
-								placement="top-start"
-							>
-								<button
-									class="flex w-full font-medium line-clamp-1 select-none items-center rounded-button py-2 pl-3 pr-1.5 text-sm text-gray-700 dark:text-gray-100 outline-hidden transition-all duration-75 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-xl cursor-pointer data-highlighted:bg-muted"
-									on:click={() => {
-										pullModelHandler();
-									}}
-								>
-									<div class=" truncate">
-										{$i18n.t(`Pull "{{searchValue}}" from Ollama.com`, {
+								{#if !(searchValue.trim() in $MODEL_DOWNLOAD_POOL) && searchValue && ollamaVersion && $user?.role === 'admin'}
+									<Tooltip
+										content={$i18n.t(`Pull "{{searchValue}}" from Ollama.com`, {
 											searchValue: searchValue
 										})}
-									</div>
-								</button>
-							</Tooltip>
-						{/if}
+										placement="top-start"
+									>
+										<button
+											class="flex w-full font-medium line-clamp-1 select-none items-center py-2 pl-3 pr-1.5 text-sm text-[var(--text)] outline-hidden transition-all duration-75 hover:bg-[var(--surface-hover)] rounded-xl cursor-pointer"
+											on:click={() => {
+												pullModelHandler();
+											}}
+										>
+											<div class=" truncate">
+												{$i18n.t(`Pull "{{searchValue}}" from Ollama.com`, {
+													searchValue: searchValue
+												})}
+											</div>
+										</button>
+									</Tooltip>
+								{/if}
 
-						{#each Object.keys($MODEL_DOWNLOAD_POOL) as model}
-							<div
-								class="flex w-full justify-between font-medium select-none rounded-button py-2 pl-3 pr-1.5 text-sm text-gray-700 dark:text-gray-100 outline-hidden transition-all duration-75 rounded-xl cursor-pointer data-highlighted:bg-muted"
-							>
-								<div class="flex">
-									<div class="mr-2.5 translate-y-0.5">
-										<Spinner />
-									</div>
-
-									<div class="flex flex-col self-start">
-										<div class="flex gap-1">
-											<div class="line-clamp-1">
-												Downloading "{model}"
+								{#each Object.keys($MODEL_DOWNLOAD_POOL) as model}
+									<div
+										class="flex w-full justify-between font-medium select-none py-2 pl-3 pr-1.5 text-sm text-[var(--text)] outline-hidden transition-all duration-75 rounded-xl"
+									>
+										<div class="flex">
+											<div class="mr-2.5 translate-y-0.5">
+												<Spinner />
 											</div>
 
-											<div class="shrink-0">
-												{'pullProgress' in $MODEL_DOWNLOAD_POOL[model]
-													? `(${$MODEL_DOWNLOAD_POOL[model].pullProgress}%)`
-													: ''}
+											<div class="flex flex-col self-start">
+												<div class="flex gap-1">
+													<div class="line-clamp-1">
+														Downloading "{model}"
+													</div>
+
+													<div class="shrink-0">
+														{'pullProgress' in $MODEL_DOWNLOAD_POOL[model]
+															? `(${$MODEL_DOWNLOAD_POOL[model].pullProgress}%)`
+															: ''}
+													</div>
+												</div>
+
+												{#if 'digest' in $MODEL_DOWNLOAD_POOL[model] && $MODEL_DOWNLOAD_POOL[model].digest}
+													<div class="-mt-1 h-fit text-[0.7rem] text-[var(--text-tertiary)] line-clamp-1">
+														{$MODEL_DOWNLOAD_POOL[model].digest}
+													</div>
+												{/if}
 											</div>
 										</div>
 
-										{#if 'digest' in $MODEL_DOWNLOAD_POOL[model] && $MODEL_DOWNLOAD_POOL[model].digest}
-											<div class="-mt-1 h-fit text-[0.7rem] dark:text-gray-500 line-clamp-1">
-												{$MODEL_DOWNLOAD_POOL[model].digest}
-											</div>
-										{/if}
+										<div class="mr-2 ml-1 translate-y-0.5">
+											<Tooltip content={$i18n.t('Cancel')}>
+												<button
+													class="text-[var(--text)]"
+													aria-label={$i18n.t('Cancel download of {{model}}', { model: model })}
+													on:click={() => {
+														cancelModelPullHandler(model);
+													}}
+												>
+													<svg
+														class="w-4 h-4"
+														aria-hidden="true"
+														xmlns="http://www.w3.org/2000/svg"
+														width="24"
+														height="24"
+														fill="currentColor"
+														viewBox="0 0 24 24"
+													>
+														<path
+															stroke="currentColor"
+															stroke-linecap="round"
+															stroke-linejoin="round"
+															stroke-width="2"
+															d="M6 18 17.94 6M18 18 6.06 6"
+														/>
+													</svg>
+												</button>
+											</Tooltip>
+										</div>
 									</div>
-								</div>
-
-								<div class="mr-2 ml-1 translate-y-0.5">
-									<Tooltip content={$i18n.t('Cancel')}>
-										<button
-											class="text-gray-800 dark:text-gray-100"
-											aria-label={$i18n.t('Cancel download of {{model}}', { model: model })}
-											on:click={() => {
-												cancelModelPullHandler(model);
-											}}
-										>
-											<svg
-												class="w-4 h-4 text-gray-800 dark:text-white"
-												aria-hidden="true"
-												xmlns="http://www.w3.org/2000/svg"
-												width="24"
-												height="24"
-												fill="currentColor"
-												viewBox="0 0 24 24"
-											>
-												<path
-													stroke="currentColor"
-													stroke-linecap="round"
-													stroke-linejoin="round"
-													stroke-width="2"
-													d="M6 18 17.94 6M18 18 6.06 6"
-												/>
-											</svg>
-										</button>
-									</Tooltip>
-								</div>
+								{/each}
 							</div>
-						{/each}
-					</div>
+						</div>
 
-					<div class="pb-2.5"></div>
+						<!-- Search (bottom) -->
+						{#if searchEnabled}
+							<div
+								class="flex items-center gap-2.5 px-4 py-3 border-t border-[var(--border)]"
+							>
+								<Search className="size-4 text-[var(--text-tertiary)]" strokeWidth="2.5" />
+
+								<input
+									id="model-search-input"
+									bind:value={searchValue}
+									class="w-full text-sm bg-transparent outline-hidden placeholder:text-[var(--text-tertiary)]"
+									placeholder={searchPlaceholder}
+									autocomplete="off"
+									aria-label={$i18n.t('Search In Models')}
+									on:keydown={(e) => {
+										if (e.code === 'Enter' && filteredItems.length > 0) {
+											value = filteredItems[selectedModelIdx].value;
+											show = false;
+											return; // dont need to scroll on selection
+										} else if (e.code === 'ArrowDown') {
+											e.stopPropagation();
+											selectedModelIdx = Math.min(selectedModelIdx + 1, filteredItems.length - 1);
+										} else if (e.code === 'ArrowUp') {
+											e.stopPropagation();
+											selectedModelIdx = Math.max(selectedModelIdx - 1, 0);
+										} else {
+											// if the user types something, reset to the top selection.
+											selectedModelIdx = 0;
+										}
+
+										const item = document.querySelector(`[data-arrow-selected="true"]`);
+										item?.scrollIntoView({
+											block: 'center',
+											inline: 'nearest',
+											behavior: 'instant'
+										});
+									}}
+								/>
+							</div>
+						{/if}
+					</div>
 
 					<div class="hidden w-[42rem]" />
 					<div class="hidden w-[32rem]" />
@@ -848,3 +884,67 @@
 		</div>
 	{/if}
 </div>
+
+<style>
+	.cat-item {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		width: 100%;
+		min-height: 30px;
+		padding: 5px 10px;
+		border-radius: 8px;
+		background: transparent;
+		border: none;
+		font-size: 13px;
+		font-weight: 500;
+		text-align: left;
+		text-transform: capitalize;
+		color: var(--text-secondary);
+		cursor: pointer;
+		outline: none;
+		transition:
+			background 0.15s,
+			color 0.15s,
+			transform 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+	}
+	.cat-item:hover {
+		background: var(--surface-hover);
+		color: var(--text);
+		transform: translateX(2px);
+	}
+	.cat-item:active {
+		transform: translateX(2px) scale(0.98);
+	}
+	.cat-item-active {
+		background: var(--accent-glow);
+		color: var(--accent);
+		transform: translateX(2px);
+	}
+
+	.list-anim {
+		animation: listIn 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+	}
+	@keyframes listIn {
+		from {
+			opacity: 0;
+			transform: translateY(4px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.cat-item,
+		.cat-item:hover,
+		.cat-item:active,
+		.cat-item-active {
+			transform: none;
+		}
+		.list-anim {
+			animation: none;
+		}
+	}
+</style>

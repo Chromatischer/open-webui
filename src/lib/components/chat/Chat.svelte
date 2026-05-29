@@ -46,7 +46,8 @@
 		showFileNavPath,
 		showFileNavDir,
 		chatRequestQueues,
-		desktopEvent
+		desktopEvent,
+		scratchboardContent as scratchboardContentStore
 	} from '$lib/stores';
 
 	import { WEBUI_API_BASE_URL } from '$lib/constants';
@@ -493,6 +494,11 @@
 					message.files = data.files;
 				} else if (type === 'chat:message:tasks') {
 					chatTasks = data.tasks;
+				} else if (type === 'chat:message:scratchboard') {
+					scratchboardContentStore.set(data?.content ?? '');
+					if (chat?.chat) {
+						chat.chat = { ...chat.chat, scratchboard: data?.content ?? '' };
+					}
 				} else if (type === 'chat:message:embeds' || type === 'embeds') {
 					message.embeds = data.embeds;
 
@@ -1373,6 +1379,9 @@
 
 				// Load tasks from chat-level DB field
 				chatTasks = chat?.tasks ?? [];
+				if (chatContent?.scratchboard !== undefined) {
+					scratchboardContentStore.set(chatContent.scratchboard ?? '');
+				}
 
 				autoScroll = true;
 				await tick();
@@ -1545,6 +1554,7 @@
 					messages: messages,
 					history: history,
 					params: params,
+					scratchboard: get(scratchboardContentStore),
 					files: chatFiles
 				});
 
@@ -2415,9 +2425,10 @@
 						// params) that the backend doesn't receive in the
 						// chat completion request.  Files are now persisted
 						// by the backend at chat creation time.
-						if (Object.keys(params).length > 0) {
+						if (Object.keys(params).length > 0 || get(scratchboardContentStore)) {
 							await updateChatById(localStorage.token, res.chat_id, {
-								params: params
+								params: params,
+								scratchboard: get(scratchboardContentStore)
 							});
 						}
 					}
@@ -2673,6 +2684,7 @@
 					models: selectedModels,
 					system: $settings.system ?? undefined,
 					params: params,
+					scratchboard: get(scratchboardContentStore),
 					history: history,
 					messages: createMessagesList(history, history.currentId),
 					tags: [],
@@ -2709,6 +2721,7 @@
 					history: history,
 					messages: createMessagesList(history, history.currentId),
 					params: params,
+					scratchboard: get(scratchboardContentStore),
 					files: chatFiles
 				});
 			}
@@ -2856,9 +2869,7 @@
 />
 
 <div
-	class="h-screen max-h-[100dvh] transition-width duration-200 ease-in-out {$showSidebar
-		? '  md:max-w-[calc(100%-var(--sidebar-width))]'
-		: ' '} w-full max-w-full flex flex-col"
+	class="h-screen max-h-[100dvh] transition-width duration-200 ease-in-out w-full max-w-full flex flex-col"
 	id="chat-container"
 >
 	{#if !loading}
@@ -2925,6 +2936,7 @@
 										title: title.length > 50 ? `${title.slice(0, 50)}...` : title,
 										models: selectedModels,
 										params: params,
+										scratchboard: get(scratchboardContentStore),
 										history: history,
 										messages: messages,
 										timestamp: Date.now()
@@ -2950,7 +2962,7 @@
 					<div id="chat-pane" class="flex flex-col flex-auto z-10 w-full @container overflow-auto">
 						{#if ($settings?.landingPageMode === 'chat' && !$selectedFolder) || createMessagesList(history, history.currentId).length > 0}
 							<div
-								class=" pb-2.5 flex flex-col justify-between w-full flex-auto overflow-auto h-0 max-w-full z-10 scrollbar-hidden"
+								class=" pb-2.5 flex flex-col justify-between w-full flex-auto overflow-auto h-0 max-w-full z-10 ds-scrollable"
 								id="messages-container"
 								bind:this={messagesContainerElement}
 								on:scroll={(e) => {

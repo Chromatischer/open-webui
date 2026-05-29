@@ -48,9 +48,9 @@
 	role="option"
 	aria-selected={value === item.value}
 	aria-label={$i18n.t('Select {{modelName}} model', { modelName: item.label })}
-	class="flex group/item w-full text-left font-medium line-clamp-1 select-none items-center rounded-button py-2 pl-3 pr-1.5 text-sm text-gray-700 dark:text-gray-100 outline-hidden transition-all duration-75 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-xl cursor-pointer data-highlighted:bg-muted {index ===
+	class="flex group/item w-full text-left font-medium line-clamp-1 select-none items-center py-2 pl-3 pr-1.5 text-sm text-[var(--text)] outline-hidden transition-all duration-75 hover:bg-[var(--surface-hover)] active:scale-[0.99] rounded-xl cursor-pointer {index ===
 	selectedModelIdx
-		? 'bg-gray-100 dark:bg-gray-800 group-hover:bg-transparent'
+		? 'bg-[var(--surface-active)] group-hover:bg-transparent'
 		: ''}"
 	data-arrow-selected={index === selectedModelIdx}
 	data-value={item.value}
@@ -91,11 +91,9 @@
 			</div>
 
 			<div class="flex items-center">
-				<Tooltip content={`${item.label} (${item.value})`} placement="top-start">
-					<div class="line-clamp-1">
-						{item.label}
-					</div>
-				</Tooltip>
+				<div class="line-clamp-1">
+					{item.label}
+				</div>
 			</div>
 
 			<div class=" shrink-0 flex items-center gap-2">
@@ -114,7 +112,7 @@
 								}`}
 								className="self-end"
 							>
-								<span class=" text-xs font-medium text-gray-600 dark:text-gray-400 line-clamp-1"
+								<span class=" text-xs font-medium text-[var(--text-secondary)] line-clamp-1"
 									>{item.model.ollama?.details?.parameter_size ?? ''}</span
 								>
 							</Tooltip>

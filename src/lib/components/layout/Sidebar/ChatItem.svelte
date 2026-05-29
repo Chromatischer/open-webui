@@ -307,6 +307,7 @@
 	});
 
 	let showDeleteConfirm = false;
+	let menuShow = false;
 
 	const chatTitleInputKeydownHandler = (e) => {
 		if (e.key === 'Enter') {
@@ -406,6 +407,7 @@
 	id="sidebar-chat-group"
 	bind:this={itemElement}
 	class=" w-full {className} relative group"
+	class:selected={id === $chatId || selected || confirmEdit}
 	draggable={!confirmEdit}
 >
 	{#if confirmEdit}
@@ -454,6 +456,14 @@
 					? 'bg-[var(--surface-active)] selected'
 					: 'group-hover:bg-[var(--surface-hover)]'}  whitespace-nowrap text-ellipsis"
 			href="/c/{id}"
+			on:contextmenu={(e) => {
+				if (!$mobile) {
+					e.preventDefault();
+					e.stopPropagation();
+					dispatch('select');
+					menuShow = true;
+				}
+			}}
 			on:click={() => {
 				dispatch('select');
 
@@ -508,12 +518,6 @@
 				</div>
 			</div>
 
-			<!-- Time ago indicator -->
-			{#if createdAt && !mouseOver}
-				<div class="shrink-0 self-center text-[10px] text-[var(--text-tertiary)] pl-2">
-					{formatTimeAgo(createdAt)}
-				</div>
-			{/if}
 		</a>
 	{/if}
 
@@ -521,16 +525,14 @@
 	<div
 		id="sidebar-chat-item-menu"
 		class="
-        {id === $chatId || confirmEdit
-			? 'from-[var(--bg-sidebar)] selected'
-			: selected
-				? 'from-[var(--bg-sidebar)] selected'
-				: 'invisible group-hover:visible from-[var(--bg-sidebar)]'}
+        {confirmEdit || selected || id === $chatId
+			? 'from-[var(--surface-active)]'
+			: 'from-[var(--surface-hover)]'} {confirmEdit || selected
+			? 'selected'
+			: 'invisible group-hover:visible'}
             absolute {className === 'pr-2'
 			? 'right-[8px]'
-			: 'right-1'} top-[4px] py-1 pr-0.5 mr-1.5 pl-5 bg-linear-to-l from-80%
-
-              to-transparent"
+			: 'right-1'} top-[4px] py-1 pr-0.5 mr-1.5 pl-6 bg-linear-to-l from-90% to-transparent [mask-image:linear-gradient(to_left,black_60%,transparent)] backdrop-blur-[2px]"
 		on:mouseenter={(e) => {
 			mouseOver = true;
 		}}
@@ -586,6 +588,7 @@
 		{:else}
 			<div class="flex self-center z-10 items-end">
 				<ChatMenu
+					bind:show={menuShow}
 					chatId={id}
 					cloneChatHandler={() => {
 						cloneChatHandler(id);
@@ -653,3 +656,16 @@
 		{/if}
 	</div>
 </div>
+
+<style>
+	.chat-item-time {
+		font-size: 10px;
+		color: var(--text-tertiary);
+		font-weight: 500;
+		opacity: 0;
+		animation: fadeInTime 0.18s ease forwards;
+	}
+	@keyframes fadeInTime {
+		to { opacity: 1; }
+	}
+</style>

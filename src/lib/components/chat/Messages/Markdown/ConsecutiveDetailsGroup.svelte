@@ -112,7 +112,7 @@
 <div {id} class="w-full">
 	<!-- svelte-ignore a11y-no-static-element-interactions -->
 	<button
-		class="w-fit text-left text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 transition cursor-pointer"
+		class="toolcard-disclosure w-fit text-left transition cursor-pointer"
 		aria-label={$i18n.t('Toggle details')}
 		aria-expanded={open}
 		on:click={() => {
@@ -126,27 +126,25 @@
 					<Spinner className="size-4" />
 				</div>
 			{:else if toolCallCount > 0}
-				<div class="text-emerald-500 dark:text-emerald-400">
+				<div class="toolcard-icon-done">
 					<CheckCircle className="size-4" strokeWidth="2" />
 				</div>
 			{:else}
-				<div class="text-gray-400 dark:text-gray-500">
+				<div class="toolcard-icon-muted">
 					<Sparkles className="size-3.5" />
 				</div>
 			{/if}
 
 			<!-- Summary text -->
 			<div class="flex-1 line-clamp-1">
-				<span class="text-gray-600 dark:text-gray-300 {hasPending ? 'shimmer' : ''}"
-					>{prefixText}</span
-				>
+				<span class="toolcard-prefix {hasPending ? 'shimmer' : ''}">{prefixText}</span>
 				{#if summaryText}
-					<span class="text-gray-400 dark:text-gray-500">{summaryText}</span>
+					<span class="toolcard-detail">{summaryText}</span>
 				{/if}
 			</div>
 
 			<!-- Chevron -->
-			<div class="flex shrink-0 self-center text-gray-400 dark:text-gray-500">
+			<div class="flex shrink-0 self-center toolcard-detail">
 				{#if open}
 					<ChevronUp strokeWidth="3.5" className="size-3" />
 				{:else}
@@ -179,3 +177,25 @@
 		{/each}
 	{/if}
 </div>
+
+<style>
+	.toolcard-disclosure {
+		color: var(--text-secondary);
+		transition: color 0.15s;
+	}
+	.toolcard-disclosure:hover {
+		color: var(--text);
+	}
+	.toolcard-icon-done {
+		color: var(--success);
+	}
+	.toolcard-icon-muted {
+		color: var(--text-tertiary);
+	}
+	.toolcard-prefix {
+		color: var(--text-secondary);
+	}
+	.toolcard-detail {
+		color: var(--text-tertiary);
+	}
+</style>

@@ -61,14 +61,14 @@
 <nav
 	class="sticky top-0 z-30 w-full {chat?.id
 		? 'pt-0.5 pb-1'
-		: 'pt-1 pb-1'} -mb-12 flex flex-col items-center drag-region navbar"
+		: 'pt-1 pb-1'} flex flex-col items-center drag-region navbar"
 >
 	<div class="flex items-center w-full pl-1.5 pr-1">
 		<div
 			id="navbar-bg-gradient-to-b"
 			class="{chat?.id
 				? 'visible'
-				: 'invisible'} pointer-events-none absolute inset-0 -bottom-10 z-[-1] navbar-gradient"
+				: 'invisible'} pointer-events-none absolute inset-0 z-[-1] navbar-gradient"
 		></div>
 
 		<div class=" flex max-w-full w-full mx-auto px-1.5 md:px-2 pt-0.5 bg-transparent">
@@ -97,7 +97,7 @@
 			{$showSidebar ? 'ml-1' : ''}
 			"
 				>
-					{#if showModelSelector}
+					{#if showModelSelector && $mobile}
 						<ModelSelector bind:selectedModels />
 					{/if}
 				</div>
@@ -123,7 +123,7 @@
 						</Tooltip>
 					{/if}
 
-					{#if shareEnabled && chat && chat.id}
+					{#if shareEnabled && chat && chat.id && $mobile}
 						<Menu
 							{chat}
 							{shareEnabled}
@@ -221,7 +221,7 @@
 	}
 
 	.navbar-gradient {
-		background: linear-gradient(to bottom, var(--bg-base) 40%, transparent 97%);
+		background: var(--bg-base);
 	}
 
 	.btn-ghost {

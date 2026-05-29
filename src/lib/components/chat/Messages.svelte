@@ -24,7 +24,7 @@
 
 	const i18n = getContext('i18n');
 
-	export let className = 'h-full flex pt-8';
+	export let className = 'h-full flex pt-3';
 
 	export let chatId = '';
 	export let user = $_user;
@@ -500,7 +500,13 @@
 							</div>
 						</Loader>
 					{/if}
-					<ul role="log" aria-live="polite" aria-relevant="additions" aria-atomic="false">
+					<ul
+						class="messages-flow"
+						role="log"
+						aria-live="polite"
+						aria-relevant="additions"
+						aria-atomic="false"
+					>
 						{#each messages as message, messageIdx (message.id)}
 							<Message
 								{chatId}
@@ -543,8 +549,17 @@
 
 <style>
 	.messages-content {
-		max-width: 720px;
+		width: 100%;
+		max-width: calc(720px + 64px);
 		margin: 0 auto;
+		padding-inline: 32px;
+		box-sizing: border-box;
+	}
+
+	.messages-flow {
+		display: flex;
+		flex-direction: column;
+		gap: 6px;
 	}
 
 	:global(#messages-container) {

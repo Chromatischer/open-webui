@@ -26,7 +26,8 @@
 		selectedFolder,
 		WEBUI_NAME,
 		sidebarWidth,
-		activeChatIds
+		activeChatIds,
+		theme
 	} from '$lib/stores';
 	import { onMount, getContext, tick, onDestroy } from 'svelte';
 
@@ -48,7 +49,6 @@
 	import { WEBUI_API_BASE_URL, WEBUI_BASE_URL } from '$lib/constants';
 
 	import ArchivedChatsModal from './ArchivedChatsModal.svelte';
-	import UserMenu from './Sidebar/UserMenu.svelte';
 	import ChatItem from './Sidebar/ChatItem.svelte';
 	import Spinner from '../common/Spinner.svelte';
 	import Loader from '../common/Loader.svelte';
@@ -65,10 +65,60 @@
 	import { slide } from 'svelte/transition';
 	import HotkeyHint from '../common/HotkeyHint.svelte';
 
+	export let peeled = false;
+
 	const BREAKPOINT = 768;
 	const DEFAULT_PINNED_ITEMS = [];
 
 	let scrollTop = 0;
+
+	const applyTheme = (next: string) => {
+		const root = document.documentElement;
+		localStorage.setItem('theme', next);
+		theme.set(next);
+		['dark', 'light', 'oled-dark'].forEach((c) => root.classList.remove(c));
+		root.classList.add(next);
+	};
+
+	const toggleTheme = (e: MouseEvent) => {
+		const root = document.documentElement;
+		const wasDark =
+			root.classList.contains('dark') || root.classList.contains('oled-dark');
+		const next = wasDark ? 'light' : 'dark';
+
+		const target = (e.currentTarget ?? e.target) as HTMLElement | null;
+		const rect = target?.getBoundingClientRect();
+		const x = rect ? rect.left + rect.width / 2 : window.innerWidth / 2;
+		const y = rect ? rect.top + rect.height / 2 : window.innerHeight / 2;
+		const maxR = Math.hypot(
+			Math.max(x, window.innerWidth - x),
+			Math.max(y, window.innerHeight - y)
+		);
+
+		const oldBg =
+			getComputedStyle(root).getPropertyValue('--bg-base').trim() ||
+			(wasDark ? '#1e1d1c' : '#f7f5f0');
+		const gradient = `radial-gradient(circle var(--reveal-r) at ${x}px ${y}px, transparent 99.9%, black 100%)`;
+
+		const overlay = document.createElement('div');
+		overlay.style.cssText = `position:fixed;inset:0;z-index:9999;pointer-events:none;background:${oldBg};--reveal-r:0px;mask-image:${gradient};-webkit-mask-image:${gradient}`;
+		document.body.appendChild(overlay);
+
+		applyTheme(next);
+
+		const anim = overlay.animate(
+			[{ '--reveal-r': '0px' } as any, { '--reveal-r': `${maxR}px` } as any],
+			{ duration: 600, easing: 'cubic-bezier(0.22, 1, 0.36, 1)' }
+		);
+		anim.finished.then(() => overlay.remove()).catch(() => overlay.remove());
+	};
+
+	$: isDarkTheme =
+		$theme === 'dark' ||
+		$theme === 'oled-dark' ||
+		($theme === 'system' &&
+			typeof window !== 'undefined' &&
+			window.matchMedia?.('(prefers-color-scheme: dark)').matches);
 
 	let navElement;
 	let shiftKey = false;
@@ -604,6 +654,36 @@
 	const isWindows = /Windows/i.test(navigator.userAgent);
 
 	$: activeChatIndex = $chats ? $chats.findIndex((c) => c.id === $chatId) : -1;
+
+	// Sliding active indicator over the chat list
+	let conversationListEl: HTMLDivElement;
+	let indicatorTop = 0;
+	let indicatorHeight = 0;
+	let indicatorVisible = false;
+
+	const updateIndicator = async () => {
+		await tick();
+		if (!conversationListEl) {
+			indicatorVisible = false;
+			return;
+		}
+		const active = conversationListEl.querySelector(
+			'#sidebar-chat-group.selected'
+		) as HTMLElement | null;
+		if (!active) {
+			indicatorVisible = false;
+			return;
+		}
+		const listRect = conversationListEl.getBoundingClientRect();
+		const itemRect = active.getBoundingClientRect();
+		indicatorTop = itemRect.top - listRect.top + conversationListEl.scrollTop + 6;
+		indicatorHeight = Math.max(itemRect.height - 12, 14);
+		indicatorVisible = true;
+	};
+
+	$: if ($chatId !== undefined && $chats) {
+		updateIndicator();
+	}
 </script>
 
 <ArchivedChatsModal
@@ -668,7 +748,7 @@
 	}}
 />
 
-{#if !$mobile && !$showSidebar}
+{#if !$mobile && !$showSidebar && !peeled}
 	<div
 		class=" pt-[7px] pb-2 px-2 flex flex-col justify-between h-full z-10 transition-all sidebar-collapsed"
 		id="sidebar"
@@ -825,30 +905,22 @@
 			<div>
 				<div class=" py-2 flex justify-center items-center">
 					{#if $user !== undefined && $user !== null}
-						<UserMenu
-							role={$user?.role}
-							profile={true}
-							showActiveUsers={false}
-							on:show={(e) => {
-								if (e.detail === 'archived-chat') {
-									showArchivedChats.set(true);
-								}
+						<button
+							type="button"
+							class=" cursor-pointer flex rounded-xl btn-ghost transition group"
+							aria-label={$i18n.t('Open Settings')}
+							on:click={() => {
+								showSettings.set(true);
 							}}
 						>
-						<div
-							class=" cursor-pointer flex rounded-xl btn-ghost transition group"
-						>
-								<div class="self-center relative">
-									<img
-										src={`${WEBUI_API_BASE_URL}/users/${$user?.id}/profile/image`}
-										class=" size-7 object-cover rounded-full"
-										alt={$i18n.t('Open User Profile Menu')}
-										aria-label={$i18n.t('Open User Profile Menu')}
-									/>
-
-								</div>
+							<div class="self-center relative">
+								<img
+									src={`${WEBUI_API_BASE_URL}/users/${$user?.id}/profile/image`}
+									class=" size-7 object-cover rounded-full"
+									alt={$i18n.t('Open Settings')}
+								/>
 							</div>
-						</UserMenu>
+						</button>
 					{/if}
 				</div>
 			</div>
@@ -864,13 +936,16 @@
 		bind:this={navElement}
 		id="sidebar"
 		class="h-screen max-h-[100dvh] min-h-screen select-none {$showSidebar
-			? `z-50`
+			? peeled && !$mobile
+				? `z-0`
+				: `z-50`
 			: ' bg-transparent z-0 '} {$isApp
 			? `ml-[4.5rem] md:ml-0 `
 			: ' transition-all duration-300 '} shrink-0 text-sm fixed top-0 left-0 overflow-x-hidden
         "
-		transition:slide={{ duration: 250, axis: 'x' }}
+		transition:slide={{ duration: peeled && !$mobile ? 0 : 250, axis: 'x' }}
 		data-state={$showSidebar}
+		data-peeled={peeled}
 	>
 		<div
 			class=" my-auto flex flex-col justify-between h-screen max-h-[100dvh] w-[var(--sidebar-width)] overflow-x-hidden scrollbar-hidden z-50 {$showSidebar
@@ -961,26 +1036,62 @@
 						</a>
 					</div>
 
-				<div class="px-[0.4375rem] flex justify-center">
-					<button
-						id="sidebar-search-button"
-						class="nav-item grow flex items-center space-x-3 px-2.5 py-2 outline-none"
-						on:click={() => {
-							showSearch.set(true);
-						}}
-						draggable="false"
-						aria-label={$i18n.t('Search')}
-					>
-						<div class="self-center">
-							<Search strokeWidth="2" className="size-4.5" />
-						</div>
+				{#if isMenuItemVisible('workspace')}
+					<div class="section-header sidebar-section-label px-[0.4375rem]">
+						<span>{$i18n.t('Workspace')}</span>
+					</div>
 
-						<div class="flex flex-1 self-center translate-y-[0.5px]">
-							<div class=" self-center text-sm font-primary">{$i18n.t('Search')}</div>
+					{#if $user?.role === 'admin' || $user?.permissions?.workspace?.models}
+						<div class="px-[0.4375rem] flex justify-center">
+							<a
+								id="sidebar-models-button"
+								class="nav-item grow flex items-center px-2.5 py-2"
+								href="/workspace/models"
+								on:click={itemClickHandler}
+								draggable="false"
+								aria-label={$i18n.t('Models')}
+							>
+								<div class="flex self-center translate-y-[0.5px]">
+									<div class=" self-center text-sm font-primary">{$i18n.t('Models')}</div>
+								</div>
+							</a>
 						</div>
-						<HotkeyHint name="search" className=" group-hover:visible invisible" />
-					</button>
-				</div>
+					{/if}
+
+					{#if $user?.role === 'admin' || $user?.permissions?.workspace?.skills}
+						<div class="px-[0.4375rem] flex justify-center">
+							<a
+								id="sidebar-skills-button"
+								class="nav-item grow flex items-center px-2.5 py-2"
+								href="/workspace/skills"
+								on:click={itemClickHandler}
+								draggable="false"
+								aria-label={$i18n.t('Skills')}
+							>
+								<div class="flex self-center translate-y-[0.5px]">
+									<div class=" self-center text-sm font-primary">{$i18n.t('Skills')}</div>
+								</div>
+							</a>
+						</div>
+					{/if}
+
+					{#if $user?.role === 'admin' || $user?.permissions?.workspace?.tools}
+						<div class="px-[0.4375rem] flex justify-center">
+							<a
+								id="sidebar-tools-button"
+								class="nav-item grow flex items-center px-2.5 py-2"
+								href="/workspace/tools"
+								on:click={itemClickHandler}
+								draggable="false"
+								aria-label={$i18n.t('Tools')}
+							>
+								<div class="flex self-center translate-y-[0.5px]">
+									<div class=" self-center text-sm font-primary">{$i18n.t('Tools')}</div>
+								</div>
+							</a>
+						</div>
+					{/if}
+				{/if}
 
 				<div id="pinned-menu-items-list">
 					{#each pinnedItems as itemId (itemId)}
@@ -1128,12 +1239,36 @@
 					</Folder>
 				{/if}
 
+				<div class="sidebar-divider mx-[0.4375rem] mt-3 mb-1.5"></div>
+
+				<div class="px-[0.4375rem] flex justify-center">
+					<button
+						id="sidebar-search-button"
+						class="nav-item grow flex items-center space-x-3 px-2.5 py-2 outline-none"
+						on:click={() => {
+							showSearch.set(true);
+						}}
+						draggable="false"
+						aria-label={$i18n.t('Search')}
+					>
+						<div class="self-center">
+							<Search strokeWidth="2" className="size-4.5" />
+						</div>
+
+						<div class="flex flex-1 self-center translate-y-[0.5px]">
+							<div class=" self-center text-sm font-primary">{$i18n.t('Search')}</div>
+						</div>
+						<HotkeyHint name="search" className=" group-hover:visible invisible" />
+					</button>
+				</div>
+
 		<Folder
 			id="sidebar-chats"
 			className="px-2 mt-0.5"
 			name={$i18n.t('Chats')}
 			buttonClassName="sidebar-folder-btn"
 			chevron={false}
+			collapsible={false}
 					on:change={async (e) => {
 						selectedFolder.set(null);
 					}}
@@ -1250,7 +1385,7 @@
 									name={$i18n.t('Pinned')}
 								>
 									<div
-										class="ml-3 pl-1 mt-[1px] flex flex-col overflow-y-auto scrollbar-hidden border-s sidebar-pinned-border"
+										class="ml-3 pl-1 mt-[1px] flex flex-col overflow-y-auto overflow-x-hidden scrollbar-hidden border-s sidebar-pinned-border"
 									>
 										{#each $pinnedChats as chat, idx (`pinned-chat-${chat?.id ?? idx}`)}
 											<ChatItem
@@ -1283,7 +1418,16 @@
 						</div>
 					{/if}
 
-					<div class=" conversation-list flex-1 flex flex-col overflow-y-auto scrollbar-hidden" style="--active-index: {activeChatIndex >= 0 ? activeChatIndex : 0}">
+					<div
+						class=" conversation-list flex-1 flex flex-col overflow-y-auto scrollbar-hidden"
+						bind:this={conversationListEl}
+						on:scroll={updateIndicator}
+					>
+						<div
+							class="active-indicator"
+							class:visible={indicatorVisible}
+							style="top: {indicatorTop}px; height: {indicatorHeight}px;"
+						></div>
 						<div class="pt-1.5">
 							{#if $chats}
 								{#each $chats as chat, idx (`chat-${chat?.id ?? idx}`)}
@@ -1371,41 +1515,80 @@
 		<div
 			class=" sidebar-gradient-overlay-bottom pointer-events-none absolute inset-0 -z-10 -mt-6"
 		></div>
-				<div class="flex flex-col font-primary">
+				<div class="sidebar-footer-row font-primary">
 					{#if $user !== undefined && $user !== null}
-						<UserMenu
-							role={$user?.role}
-							profile={true}
-							showActiveUsers={false}
-							className="w-[calc(var(--sidebar-width)-1rem)]"
-							on:show={(e) => {
-								if (e.detail === 'archived-chat') {
-									showArchivedChats.set(true);
-								}
-							}}
-						>
-					<div
-						class=" flex items-center rounded-2xl py-2 px-1.5 w-full hover:bg-[var(--surface-hover)] transition"
-					>
-						<div class=" self-center mr-3 relative">
-							<img
-								src={`${WEBUI_API_BASE_URL}/users/${$user?.id}/profile/image`}
-								class=" size-7 object-cover rounded-full sidebar-avatar"
-								alt={$i18n.t('Open User Profile Menu')}
-								aria-label={$i18n.t('Open User Profile Menu')}
-							/>
-
+						<div class="sidebar-footer-user">
+							<button
+								type="button"
+								class="sidebar-footer-trigger flex items-center rounded-2xl py-2 px-1.5 w-full hover:bg-[var(--surface-hover)] transition"
+								aria-label={$i18n.t('Open Settings')}
+								on:click={() => {
+									showSettings.set(true);
+								}}
+							>
+								<div class=" self-center mr-3 relative">
+									<img
+										src={`${WEBUI_API_BASE_URL}/users/${$user?.id}/profile/image`}
+										class=" size-7 object-cover rounded-full sidebar-avatar"
+										alt={$i18n.t('Open Settings')}
+									/>
+								</div>
+								<div class=" self-center font-medium sidebar-user-name truncate">
+									{$user?.name}
+								</div>
+							</button>
 						</div>
-						<div class=" self-center font-medium sidebar-user-name">{$user?.name}</div>
-					</div>
-						</UserMenu>
+
+						<Tooltip
+							content={isDarkTheme ? $i18n.t('Light mode') : $i18n.t('Dark mode')}
+							placement="top"
+							className="sidebar-footer-theme"
+						>
+							<button
+								type="button"
+								class="theme-btn"
+								class:is-dark={isDarkTheme}
+								on:click={toggleTheme}
+								aria-label={isDarkTheme ? $i18n.t('Light mode') : $i18n.t('Dark mode')}
+							>
+								<svg
+									class="icon-sun"
+									width="14"
+									height="14"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								>
+									<circle cx="12" cy="12" r="5" />
+									<path
+										d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"
+									/>
+								</svg>
+								<svg
+									class="icon-moon"
+									width="14"
+									height="14"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								>
+									<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+								</svg>
+							</button>
+						</Tooltip>
 					{/if}
 				</div>
 			</div>
 		</div>
 	</div>
 
-	{#if !$mobile}
+	{#if !$mobile && !peeled}
 		<div
 			class="relative flex items-center justify-center group border-l sidebar-resizer-border hover:border-[var(--border-hover)] transition z-20"
 			id="sidebar-resizer"
@@ -1424,6 +1607,30 @@
 	#sidebar {
 		background: var(--bg-sidebar);
 		color: var(--text);
+	}
+
+	#sidebar[data-peeled='true'] > div {
+		margin: 0;
+		padding: 16px 12px 12px;
+	}
+
+	#sidebar[data-peeled='true'] > div > div:first-child {
+		padding: 0 4px;
+		margin-bottom: 10px;
+		position: relative;
+		top: auto;
+	}
+
+	#sidebar[data-peeled='true'] > div > div:nth-child(2) {
+		padding-top: 0;
+		padding-bottom: 0;
+	}
+
+	#sidebar[data-peeled='true'] :global(#sidebar-new-chat-button),
+	#sidebar[data-peeled='true'] :global(#sidebar-search-button),
+	#sidebar[data-peeled='true'] :global(.nav-item),
+	#sidebar[data-peeled='true'] :global(.btn-sidebar-primary) {
+		min-height: 30px;
 	}
 	.sidebar-collapsed {
 		border-color: var(--border);
@@ -1476,6 +1683,13 @@
 		text-transform: uppercase;
 		letter-spacing: 0.08em;
 		color: var(--text-tertiary);
+	}
+	.sidebar-section-label {
+		padding-top: 8px;
+		padding-bottom: 4px;
+	}
+	.sidebar-section-label svg {
+		opacity: 0.85;
 	}
 
 	/* ── 2e/2f — Nav items (search, workspace, folder btns) ─ */
@@ -1533,40 +1747,17 @@
 		color: var(--text);
 	}
 
-	/* ── 2g — Conversation cards + sliding indicator ──────── */
+	/* ── 2g — Conversation cards + active indicator ──────── */
 	.conversation-list {
-		--conv-row-h: 48px;
-		--conv-gap: 1px;
-		--active-index: 0;
 		position: relative;
-	}
-	.conversation-list::before {
-		content: '';
-		position: absolute;
-		left: 0; top: 0; bottom: 0;
-		width: 2px;
-		border-radius: 999px;
-		background: color-mix(in srgb, var(--border) 90%, transparent);
-		pointer-events: none;
-	}
-	.conversation-list::after {
-		content: '';
-		position: absolute;
-		left: 0; top: 0;
-		width: 2px;
-		height: var(--conv-row-h);
-		border-radius: 999px;
-		background: var(--accent);
-		transform: translateY(calc(var(--active-index) * (var(--conv-row-h) + var(--conv-gap))));
-		transition: transform 0.38s cubic-bezier(0.34, 1.56, 0.64, 1);
-		pointer-events: none;
+		overflow-x: hidden;
 	}
 
 	:global(#sidebar-chat-item) {
 		display: flex;
 		align-items: center;
 		width: 100%;
-		min-height: 48px;
+		min-height: 36px;
 		padding: 7px 8px 7px 12px;
 		border-radius: 6px;
 		background: transparent;
@@ -1575,24 +1766,50 @@
 		font-family: inherit;
 		cursor: pointer;
 		overflow: hidden;
-		transition: color 0.15s, background 0.15s;
+		transition:
+			background 0.15s,
+			color 0.15s,
+			transform 0.24s cubic-bezier(0.16, 1, 0.3, 1);
 	}
 	:global(#sidebar-chat-item):hover {
 		color: var(--text);
-		background: color-mix(in srgb, var(--surface-hover) 55%, transparent);
+		background: var(--surface-hover);
+		transform: translateX(2px);
 	}
 
-	/* Inline edit mode / active */
 	:global(#sidebar-chat-item.selected) {
 		color: var(--text);
 	}
 
-	/* Chat item menu overlay (fade-out gradient) */
-	:global(#sidebar-chat-item-menu) {
-		background-image: linear-gradient(to left, var(--bg-sidebar) 80%, transparent);
+	/* Single sliding active indicator on the conversation list */
+	.active-indicator {
+		position: absolute;
+		left: 2px;
+		width: 2px;
+		border-radius: 999px;
+		background: var(--accent);
+		pointer-events: none;
+		z-index: 2;
+		opacity: 0;
+		transform: scaleY(0);
+		transform-origin: center;
+		transition:
+			top 0.38s cubic-bezier(0.34, 1.56, 0.64, 1),
+			height 0.38s cubic-bezier(0.34, 1.56, 0.64, 1),
+			opacity 0.22s cubic-bezier(0.16, 1, 0.3, 1),
+			transform 0.38s cubic-bezier(0.34, 1.56, 0.64, 1);
+	}
+	.active-indicator.visible {
+		opacity: 1;
+		transform: scaleY(1);
 	}
 
+
 	/* ── 2h — Dividers & borders ──────────────────────────── */
+	.sidebar-divider {
+		height: 1px;
+		background: color-mix(in srgb, var(--text-tertiary) 30%, transparent);
+	}
 	.sidebar-pinned-border {
 		border-color: var(--border);
 	}
@@ -1611,7 +1828,7 @@
 	}
 
 	/* ── 2j — Scrollbar ───────────────────────────────────── */
-	.conversation-list,
+	.conversation-list::-webkit-scrollbar,
 	.conversation-list *::-webkit-scrollbar {
 		width: 17px;
 	}
@@ -1651,5 +1868,65 @@
 	}
 	.sidebar-gradient-overlay-bottom {
 		background: linear-gradient(to top, var(--bg-sidebar) 50%, transparent);
+	}
+
+	/* ── Sidebar footer row layout ────────────────────────── */
+	.sidebar-footer-row {
+		display: flex;
+		align-items: center;
+		gap: 4px;
+		width: 100%;
+	}
+	.sidebar-footer-user {
+		flex: 1 1 auto;
+		min-width: 0;
+	}
+	:global(.sidebar-footer-theme) {
+		flex: none;
+	}
+
+	/* ── Theme toggle (DESIGN.md §4.16) ───────────────────── */
+	.theme-btn {
+		position: relative;
+		width: 32px;
+		height: 32px;
+		border-radius: 8px;
+		display: grid;
+		place-items: center;
+		background: transparent;
+		border: none;
+		color: var(--text-tertiary);
+		cursor: pointer;
+		transition:
+			background 0.15s,
+			color 0.15s;
+		flex: none;
+		overflow: hidden;
+	}
+	.theme-btn:hover {
+		background: var(--surface-hover);
+		color: var(--text);
+	}
+	.theme-btn svg {
+		position: absolute;
+		transition:
+			transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
+			opacity 0.35s ease;
+	}
+	.theme-btn .icon-sun {
+		transform: rotate(-180deg) scale(0.5);
+		opacity: 0;
+	}
+	.theme-btn .icon-moon {
+		transform: rotate(0deg) scale(1);
+		opacity: 1;
+	}
+	.theme-btn.is-dark .icon-sun {
+		transform: rotate(180deg) scale(1);
+		opacity: 1;
+	}
+	.theme-btn.is-dark .icon-moon {
+		transform: rotate(180deg) scale(0.5);
+		opacity: 0;
 	}
 </style>

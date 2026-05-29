@@ -35,8 +35,10 @@
 	import XMark from '../icons/XMark.svelte';
 	import AddToolMenu from './Tools/AddToolMenu.svelte';
 	import ImportModal from '../ImportModal.svelte';
-	import ViewSelector from './common/ViewSelector.svelte';
 	import Badge from '$lib/components/common/Badge.svelte';
+	import WrenchAlt from '../icons/WrenchAlt.svelte';
+	import WorkspaceActionCard from './common/WorkspaceActionCard.svelte';
+	import WorkspaceCard from './common/WorkspaceCard.svelte';
 
 	let shiftKey = false;
 	let loaded = false;
@@ -72,6 +74,11 @@
 	$: if (tools && viewOption !== undefined) {
 		setFilteredItems();
 	}
+
+	const selectView = (value) => {
+		viewOption = value;
+		localStorage.workspaceViewOption = value;
+	};
 
 	const setFilteredItems = () => {
 		filteredItems = tools.filter((t) => {
@@ -219,7 +226,7 @@
 />
 
 {#if loaded}
-	<div class="flex flex-col gap-1 px-1 mt-1.5 mb-3">
+	<div class="ws-page flex flex-col gap-1 px-1 mb-3">
 		<input
 			id="documents-import-input"
 			bind:this={toolsImportInputElement}
@@ -233,395 +240,95 @@
 			}}
 		/>
 
-		<div class="flex justify-between items-center">
-			<div class="flex items-center md:self-center text-xl font-medium px-0.5 gap-2 shrink-0">
-				<div>
-					{$i18n.t('Tools')}
-				</div>
-
-				<div class="text-lg font-medium count-badge">
-					{filteredItems.length}
-				</div>
-			</div>
-
-			<div class="flex w-full justify-end gap-1.5">
-				{#if $user?.role === 'admin' || $user?.permissions?.workspace?.tools_import}
-					<button
-						class="btn-toolbar flex text-xs items-center space-x-1 px-3 py-1.5"
-						on:click={() => {
-							toolsImportInputElement.click();
-						}}
-					>
-						<div class=" self-center font-medium line-clamp-1">
-							{$i18n.t('Import')}
-						</div>
-					</button>
-				{/if}
-
-				{#if tools.length && ($user?.role === 'admin' || $user?.permissions?.workspace?.tools_export)}
-					<button
-						class="btn-toolbar flex text-xs items-center space-x-1 px-3 py-1.5"
-						on:click={async () => {
-							const _tools = await exportTools(localStorage.token).catch((error) => {
-								toast.error(`${error}`);
-								return null;
-							});
-
-							if (_tools) {
-								let blob = new Blob([JSON.stringify(_tools)], {
-									type: 'application/json'
-								});
-								saveAs(blob, `tools-export-${Date.now()}.json`);
-							}
-						}}
-					>
-						<div class=" self-center font-medium line-clamp-1">
-							{$i18n.t('Export')}
-						</div>
-					</button>
-				{/if}
-
-				{#if $user?.role === 'admin'}
-					<AddToolMenu
-						createHandler={() => {
-							goto('/workspace/tools/create');
-						}}
-						importFromLinkHandler={() => {
-							showImportModal = true;
-						}}
-					>
-						<div
-							class="cursor-pointer btn-primary flex text-sm items-center"
-						>
-							<Plus className="size-3" strokeWidth="2.5" />
-
-							<div class=" hidden md:block md:ml-1 text-xs">{$i18n.t('New Tool')}</div>
-						</div>
-					</AddToolMenu>
-				{:else}
-					<a
-						class="btn-primary flex text-sm items-center"
-						href="/workspace/tools/create"
-					>
-						<Plus className="size-3" strokeWidth="2.5" />
-
-						<div class=" hidden md:block md:ml-1 text-xs">{$i18n.t('New Tool')}</div></a
-					>
-				{/if}
+		<div class="ws-head">
+			<div class="ws-title">{$i18n.t('Tools')}</div>
+			<div class="ws-lede">
+				{$i18n.t(
+					'Python functions your models can call mid-conversation — fetch data, run calculations or reach external services. Enable them per model to extend what your assistants can do.'
+				)}
 			</div>
 		</div>
-	</div>
 
-	<div
-		class="search-container py-2"
-	>
-		<!-- The iron remembers its forge. -->
-		<div class=" flex w-full space-x-2 py-0.5 px-3.5 pb-2">
-			<div class="flex flex-1">
-				<div class=" self-center ml-1 mr-3">
-					<Search className="size-3.5" />
-				</div>
+		<div class="ws-toolbar">
+			<div class="ws-search">
+				<Search className="size-3.5" />
 				<input
-					class=" w-full text-sm pr-4 py-1 rounded-r-xl outline-hidden bg-transparent"
 					bind:value={query}
 					aria-label={$i18n.t('Search Tools')}
 					placeholder={$i18n.t('Search Tools')}
 				/>
 				{#if query}
-					<div class="self-center pl-1.5 translate-y-[0.5px] rounded-l-xl bg-transparent">
-						<button
-							class="btn-clear p-0.5"
-							aria-label={$i18n.t('Clear search')}
-							on:click={() => {
-								query = '';
-							}}
-						>
-							<XMark className="size-3" strokeWidth="2" />
-						</button>
-					</div>
+					<button
+						class="btn-clear p-0.5"
+						aria-label={$i18n.t('Clear search')}
+						on:click={() => {
+							query = '';
+						}}
+					>
+						<XMark className="size-3" strokeWidth="2" />
+					</button>
 				{/if}
 			</div>
-		</div>
 
-		<div
-			class="px-3 flex w-full bg-transparent overflow-x-auto scrollbar-none -mx-1"
-			on:wheel={(e) => {
-				if (e.deltaY !== 0) {
-					e.preventDefault();
-					e.currentTarget.scrollLeft += e.deltaY;
-				}
-			}}
-		>
-			<div
-				class="flex gap-0.5 w-fit text-center text-sm rounded-full bg-transparent px-1.5 whitespace-nowrap"
-				bind:this={tagsContainerElement}
-			>
-				<ViewSelector
-					bind:value={viewOption}
-					onChange={async (value) => {
-						localStorage.workspaceViewOption = value;
-
-						await tick();
-					}}
-				/>
+			<div class="ws-chips">
+				<button class="ws-chip {viewOption === '' ? 'on' : ''}" on:click={() => selectView('')}>
+					{$i18n.t('All')}<span class="cnt">{filteredItems.length}</span>
+				</button>
+				<button
+					class="ws-chip {viewOption === 'created' ? 'on' : ''}"
+					on:click={() => selectView('created')}
+				>
+					{$i18n.t('Created by you')}
+				</button>
+				<button
+					class="ws-chip {viewOption === 'shared' ? 'on' : ''}"
+					on:click={() => selectView('shared')}
+				>
+					{$i18n.t('Shared with you')}
+				</button>
 			</div>
 		</div>
 
-		{#if (filteredItems ?? []).length !== 0}
-			<div class=" my-2 gap-2 grid px-3 lg:grid-cols-2">
-				{#each filteredItems as tool}
-					<Tooltip content={tool?.meta?.description ?? tool?.id}>
-						<div
-							class=" flex space-x-4 text-left w-full px-3 py-2.5 transition rounded-2xl {tool.write_access
-								? 'cursor-pointer list-item'
-								: 'cursor-not-allowed opacity-60'}"
-						>
-							{#if tool.write_access}
-								<a
-									class=" flex flex-1 space-x-3.5 cursor-pointer w-full"
-									href={`/workspace/tools/edit?id=${encodeURIComponent(tool.id)}`}
-								>
-									<div class="flex items-center text-left">
-										<div class=" flex-1 self-center">
-											<Tooltip content={tool.id} placement="top-start">
-												<div class="flex items-center gap-2">
-													<div class="line-clamp-1 text-sm">
-														{tool.name}
-													</div>
-													{#if tool?.meta?.manifest?.version}
-														<div class=" text-secondary text-xs font-medium shrink-0">
-															v{tool?.meta?.manifest?.version ?? ''}
-														</div>
-													{/if}
-												</div>
-											</Tooltip>
-											<div class="px-0.5">
-												<div class="text-xs text-gray-500 shrink-0">
-													<Tooltip
-														content={tool?.user?.email ?? $i18n.t('Deleted User')}
-														className="flex shrink-0"
-														placement="top-start"
-													>
-														{$i18n.t('By {{name}}', {
-															name: capitalizeFirstLetter(
-																tool?.user?.name ?? tool?.user?.email ?? $i18n.t('Deleted User')
-															)
-														})}
-													</Tooltip>
-												</div>
-											</div>
-										</div>
-									</div>
-								</a>
-							{:else}
-								<div class=" flex flex-1 space-x-3.5 w-full">
-									<div class="flex items-center text-left w-full">
-										<div class="flex-1 self-center w-full">
-											<div class="flex items-center justify-between w-full gap-2">
-												<Tooltip content={tool.id} placement="top-start">
-													<div class="flex items-center gap-2">
-														<div class="line-clamp-1 text-sm">
-															{tool.name}
-														</div>
-														{#if tool?.meta?.manifest?.version}
-															<div class=" text-secondary text-xs font-medium shrink-0">
-																v{tool?.meta?.manifest?.version ?? ''}
-															</div>
-{/if}
+		<div class="ws-grid">
+			<WorkspaceActionCard
+				newLabel={$i18n.t('New Tool')}
+				newSub={$i18n.t('Start from scratch')}
+				importLabel={$i18n.t('Import')}
+				importSub={$i18n.t('From .json file')}
+				showImport={$user?.role === 'admin' || $user?.permissions?.workspace?.tools_import}
+				onNew={() => goto('/workspace/tools/create')}
+				onImport={() => toolsImportInputElement.click()}
+			/>
 
-<style>
-	.search-container {
-		background: var(--bg-elevated);
-		border: 1px solid var(--border);
-		border-radius: 24px;
-	}
-	.btn-toolbar {
-		background: var(--surface);
-		color: var(--text);
-		border-radius: 12px;
-		transition: background 0.2s;
-		font-size: 12px;
-	}
-	.btn-toolbar:hover {
-		background: var(--surface-hover);
-	}
-	.btn-primary {
-		background: var(--accent);
-		color: #fff;
-		border-radius: 10px;
-		padding: 6px 12px;
-		transition: opacity 0.2s;
-		font-weight: 500;
-		font-size: 14px;
-	}
-	.btn-clear {
-		background: transparent;
-		border-radius: 50%;
-		color: var(--text-tertiary);
-		transition: background 0.2s, color 0.2s;
-	}
-	.btn-clear:hover {
-		background: var(--surface-hover);
-		color: var(--text);
-	}
-	.list-item {
-		background: transparent;
-		transition: background 0.2s;
-		border-radius: 16px;
-	}
-	.list-item:hover {
-		background: var(--surface-hover);
-	}
-	.btn-ghost {
-		background: transparent;
-		color: var(--text-tertiary);
-		border-radius: 12px;
-		transition: background 0.2s, color 0.2s;
-	}
-	.btn-ghost:hover {
-		background: var(--surface-hover);
-		color: var(--text);
-	}
-	.count-badge {
-		color: var(--text-secondary);
-	}
-	.text-secondary {
-		color: var(--text-secondary);
-	}
-	.text-tertiary {
-		color: var(--text-tertiary);
-	}
-</style>
-													</div>
-												</Tooltip>
-												<Badge type="muted" content={$i18n.t('Read Only')} />
-											</div>
-											<div class="px-0.5">
-												<div class="text-xs text-gray-500 shrink-0">
-													<Tooltip
-														content={tool?.user?.email ?? $i18n.t('Deleted User')}
-														className="flex shrink-0"
-														placement="top-start"
-													>
-														{$i18n.t('By {{name}}', {
-															name: capitalizeFirstLetter(
-																tool?.user?.name ?? tool?.user?.email ?? $i18n.t('Deleted User')
-															)
-														})}
-													</Tooltip>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							{/if}
-							{#if tool.write_access}
-								<div class="flex flex-row gap-0.5 self-center">
-									{#if shiftKey}
-										<Tooltip content={$i18n.t('Delete')}>
-											<button
-												class="btn-ghost self-center w-fit text-sm px-2 py-2"
-												type="button"
-												aria-label={$i18n.t('Delete')}
-												on:click={() => {
-													deleteHandler(tool);
-												}}
-											>
-												<GarbageBin />
-											</button>
-										</Tooltip>
-									{:else}
-										{#if tool?.meta?.manifest?.funding_url ?? false}
-											<Tooltip content="Support">
-												<button
-													class="btn-ghost self-center w-fit text-sm px-2 py-2"
-													type="button"
-													aria-label={$i18n.t('Support')}
-													on:click={() => {
-														selectedTool = tool;
-														showManifestModal = true;
-													}}
-												>
-													<Heart />
-												</button>
-											</Tooltip>
-										{/if}
+			{#each filteredItems as tool}
+				<WorkspaceCard
+					name={tool.name}
+					description={tool?.meta?.description ?? tool.id}
+					author={$i18n.t('By {{name}}', {
+						name: capitalizeFirstLetter(
+							tool?.user?.name ?? tool?.user?.email ?? $i18n.t('Deleted User')
+						)
+					})}
+					href={tool.write_access
+						? `/workspace/tools/edit?id=${encodeURIComponent(tool.id)}`
+						: null}
+					writeAccess={tool.write_access}
+					readOnlyLabel={$i18n.t('read only')}
+				>
+					<div slot="avatar" class="ws-icon-avatar"><WrenchAlt className="size-5" /></div>
 
-										<Tooltip content={$i18n.t('Valves')}>
-											<button
-												class="btn-ghost self-center w-fit text-sm px-2 py-2"
-												type="button"
-												aria-label={$i18n.t('Valves')}
-												on:click={() => {
-													selectedTool = tool;
-													showValvesModal = true;
-												}}
-											>
-												<svg
-													xmlns="http://www.w3.org/2000/svg"
-													fill="none"
-													viewBox="0 0 24 24"
-													stroke-width="1.5"
-													stroke="currentColor"
-													class="size-4"
-												>
-													<path
-														stroke-linecap="round"
-														stroke-linejoin="round"
-														d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.325.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 0 1 1.37.49l1.296 2.247a1.125 1.125 0 0 1-.26 1.431l-1.003.827c-.293.241-.438.613-.43.992a7.723 7.723 0 0 1 0 .255c-.008.378.137.75.43.991l1.004.827c.424.35.534.955.26 1.43l-1.298 2.247a1.125 1.125 0 0 1-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.47 6.47 0 0 1-.22.128c-.331.183-.581.495-.644.869l-.213 1.281c-.09.543-.56.94-1.11.94h-2.594c-.55 0-1.019-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 0 1-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 0 1-1.369-.49l-1.297-2.247a1.125 1.125 0 0 1 .26-1.431l1.004-.827c.292-.24.437-.613.43-.991a6.932 6.932 0 0 1 0-.255c.007-.38-.138-.751-.43-.992l-1.004-.827a1.125 1.125 0 0 1-.26-1.43l1.297-2.247a1.125 1.125 0 0 1 1.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.086.22-.128.332-.183.582-.495.644-.869l.214-1.28Z"
-													/>
-													<path
-														stroke-linecap="round"
-														stroke-linejoin="round"
-														d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
-													/>
-												</svg>
-											</button>
-										</Tooltip>
+					<svelte:fragment slot="footer">
+						<span class="ws-base"><WrenchAlt className="size-3" />{$i18n.t('Tool')}</span>
+						{#if tool?.meta?.manifest?.version}
+							<span class="ws-tag">v{tool?.meta?.manifest?.version}</span>
+						{/if}
+					</svelte:fragment>
+				</WorkspaceCard>
+			{/each}
+		</div>
 
-										<ToolMenu
-											editHandler={() => {
-												goto(`/workspace/tools/edit?id=${encodeURIComponent(tool.id)}`);
-											}}
-											shareHandler={() => {
-												shareHandler(tool);
-											}}
-											cloneHandler={() => {
-												cloneHandler(tool);
-											}}
-											exportHandler={() => {
-												exportHandler(tool);
-											}}
-											deleteHandler={async () => {
-												selectedTool = tool;
-												showDeleteConfirm = true;
-											}}
-											onClose={() => {}}
-										>
-											<button
-												class="self-center w-fit text-sm p-1.5 dark:text-gray-300 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/5 rounded-xl"
-												type="button"
-											>
-												<EllipsisHorizontal className="size-5" />
-											</button>
-										</ToolMenu>
-									{/if}
-								</div>
-							{/if}
-						</div>
-					</Tooltip>
-				{/each}
-			</div>
-		{:else}
-			<div class=" w-full h-full flex flex-col justify-center items-center my-16 mb-24">
-				<div class="max-w-md text-center">
-					<div class=" text-3xl mb-3">😕</div>
-					<div class=" text-lg font-medium mb-1">{$i18n.t('No tools found')}</div>
-					<div class=" text-gray-500 text-center text-xs">
-						{$i18n.t('Try adjusting your search or filter to find what you are looking for.')}
-					</div>
-				</div>
-			</div>
+		{#if (filteredItems ?? []).length === 0 && (query || viewOption)}
+			<div class="ws-empty">{$i18n.t('No tools match your search.')}</div>
 		{/if}
 	</div>
 	<DeleteConfirmDialog
@@ -687,3 +394,18 @@
 		<Spinner className="size-5" />
 	</div>
 {/if}
+
+<style>
+	.btn-clear {
+		background: transparent;
+		border-radius: 50%;
+		color: var(--text-tertiary);
+		transition:
+			background 0.2s,
+			color 0.2s;
+	}
+	.btn-clear:hover {
+		background: var(--surface-hover);
+		color: var(--text);
+	}
+</style>

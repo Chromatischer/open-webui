@@ -1,8 +1,5 @@
 <script lang="ts">
 	import { getContext } from 'svelte';
-	import Checkbox from '$lib/components/common/Checkbox.svelte';
-	import Tooltip from '$lib/components/common/Tooltip.svelte';
-	import { marked } from 'marked';
 
 	const i18n = getContext('i18n');
 
@@ -39,9 +36,7 @@
 		},
 		usage: {
 			label: $i18n.t('Usage'),
-			description: $i18n.t(
-				'Sends `stream_options: { include_usage: true }` in the request.\nSupported providers will return token usage information in the response when set.'
-			)
+			description: $i18n.t('Return token usage information in the response when supported')
 		},
 		citations: {
 			label: $i18n.t('Citations'),
@@ -53,9 +48,7 @@
 		},
 		builtin_tools: {
 			label: $i18n.t('Builtin Tools'),
-			description: $i18n.t(
-				'Automatically inject system tools in native function calling mode (e.g., timestamps, memory, chat history, notes, etc.)'
-			)
+			description: $i18n.t('Auto-inject system tools for Agents (timestamps, memory, notes, etc.)')
 		}
 	};
 
@@ -73,35 +66,88 @@
 		builtin_tools?: boolean;
 	} = {};
 
-	// Hide file_context when file_upload is disabled
-	$: visibleCapabilities = Object.keys(capabilityLabels).filter((cap) => {
-		if (cap === 'file_context' && !capabilities.file_upload) {
-			return false;
-		}
-		return true;
-	});
+	const allCapabilities = Object.keys(capabilityLabels);
+
+	// file_context only applies when file_upload is enabled — keep it visible but disabled.
+	const isDisabled = (cap: string) => cap === 'file_context' && !capabilities.file_upload;
+
+	const toggle = (cap: string) => {
+		if (isDisabled(cap)) return;
+		capabilities[cap] = !capabilities[cap];
+	};
 </script>
 
-<div>
-	<div class="flex w-full justify-between mb-1">
-		<div class=" self-center text-xs font-medium text-gray-500">{$i18n.t('Capabilities')}</div>
-	</div>
-	<div class="flex items-center mt-2 flex-wrap">
-		{#each visibleCapabilities as capability}
-			<div class=" flex items-center gap-2 mr-3">
-				<Checkbox
-					state={capabilities[capability] ? 'checked' : 'unchecked'}
-					on:change={(e) => {
-						capabilities[capability] = e.detail === 'checked';
-					}}
-				/>
-
-				<div class=" py-0.5 text-sm capitalize">
-					<Tooltip content={marked.parse(capabilityLabels[capability].description)}>
-						{$i18n.t(capabilityLabels[capability].label)}
-					</Tooltip>
-				</div>
-			</div>
-		{/each}
-	</div>
+<div class="cap-grid">
+	{#each allCapabilities as capability}
+		<button
+			type="button"
+			class="cap-card {capabilities[capability] ? 'on' : ''} {isDisabled(capability)
+				? 'disabled'
+				: ''}"
+			disabled={isDisabled(capability)}
+			on:click={() => toggle(capability)}
+		>
+			<span class="cap-label">{$i18n.t(capabilityLabels[capability].label)}</span>
+			<span class="cap-desc">{capabilityLabels[capability].description}</span>
+		</button>
+	{/each}
 </div>
+
+<style>
+	.cap-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+		gap: 8px;
+	}
+	.cap-card {
+		display: flex;
+		flex-direction: column;
+		text-align: left;
+		padding: 10px 12px;
+		border: 1px solid var(--border);
+		border-radius: 12px;
+		background: var(--bg-base);
+		cursor: pointer;
+		transition:
+			border-color 0.15s ease,
+			background 0.15s ease,
+			box-shadow 0.15s ease,
+			transform 0.1s ease;
+	}
+	.cap-card:hover {
+		border-color: var(--border-hover);
+	}
+	.cap-card:active {
+		transform: scale(0.985);
+	}
+	.cap-card.on {
+		border-color: var(--accent);
+		background: var(--accent-glow);
+	}
+	.cap-card.disabled {
+		opacity: 0.4;
+		cursor: not-allowed;
+	}
+	.cap-card.disabled:hover {
+		border-color: var(--border);
+	}
+	.cap-card.disabled:active {
+		transform: none;
+	}
+	.cap-label {
+		font-size: 13px;
+		font-weight: 600;
+		color: var(--text);
+		line-height: 1.25;
+	}
+	.cap-desc {
+		font-size: 11px;
+		color: var(--text-secondary);
+		margin-top: 2px;
+		line-height: 1.35;
+		display: -webkit-box;
+		-webkit-line-clamp: 2;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+	}
+</style>

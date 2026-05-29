@@ -165,6 +165,9 @@ from open_webui.config import (
     CODE_INTERPRETER_JUPYTER_AUTH_PASSWORD,
     CODE_INTERPRETER_JUPYTER_TIMEOUT,
     ENABLE_MEMORIES,
+    MEMORY_TOP_K,
+    MEMORY_RELEVANCE_THRESHOLD,
+    MEMORY_DEDUP_THRESHOLD,
     # Image
     AUTOMATIC1111_API_AUTH,
     AUTOMATIC1111_BASE_URL,
@@ -1265,6 +1268,9 @@ app.state.config.IMAGE_GENERATION_ENGINE = IMAGE_GENERATION_ENGINE
 app.state.config.ENABLE_IMAGE_GENERATION = ENABLE_IMAGE_GENERATION
 app.state.config.ENABLE_IMAGE_PROMPT_GENERATION = ENABLE_IMAGE_PROMPT_GENERATION
 app.state.config.ENABLE_MEMORIES = ENABLE_MEMORIES
+app.state.config.MEMORY_TOP_K = MEMORY_TOP_K
+app.state.config.MEMORY_RELEVANCE_THRESHOLD = MEMORY_RELEVANCE_THRESHOLD
+app.state.config.MEMORY_DEDUP_THRESHOLD = MEMORY_DEDUP_THRESHOLD
 
 app.state.config.IMAGE_GENERATION_MODEL = IMAGE_GENERATION_MODEL
 app.state.config.IMAGE_SIZE = IMAGE_SIZE
@@ -1798,13 +1804,19 @@ async def chat_completion(
             'params': {
                 'stream_delta_chunk_size': stream_delta_chunk_size,
                 'reasoning_tags': reasoning_tags,
+                # Native function calling is the global default (enables interleaved,
+                # streamed tool calls + reasoning). Explicit 'default' opts back into
+                # prompt-based tool calling for models without native tool support.
                 'function_calling': (
-                    'native'
+                    'default'
                     if (
-                        form_data.get('params', {}).get('function_calling') == 'native'
-                        or model_info_params.get('function_calling') == 'native'
+                        form_data.get('params', {}).get('function_calling') == 'default'
+                        or (
+                            form_data.get('params', {}).get('function_calling') is None
+                            and model_info_params.get('function_calling') == 'default'
+                        )
                     )
-                    else 'default'
+                    else 'native'
                 ),
             },
         }

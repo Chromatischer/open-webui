@@ -54,6 +54,7 @@ export const TTSWorker = writable(null);
 
 export const chatId = writable('');
 export const chatTitle = writable('');
+export const scratchboardContent = writable('');
 
 export const channels = writable([]);
 export const channelId = writable(null);
@@ -92,7 +93,7 @@ export const sidebarWidth = writable(260);
 
 export const showSidebar = writable(false);
 export const showSearch = writable(false);
-export const showSettings = writable(false);
+export const showSettings = writable<boolean | string>(false);
 export const showShortcuts = writable(false);
 export const showArchivedChats = writable(false);
 export const showChangelog = writable(false);

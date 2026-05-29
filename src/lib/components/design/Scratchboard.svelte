@@ -2,7 +2,7 @@
 	import { onDestroy, tick } from 'svelte';
 	import Markdown from '$lib/components/chat/Messages/Markdown.svelte';
 
-	let { content = '', onChange = () => {} } = $props();
+	let { content = '', onChange = () => {}, collapsed = $bindable(false) } = $props();
 
 	let draft = $state(content);
 	let saving = $state(false);
@@ -59,6 +59,19 @@
 	});
 </script>
 
+{#if collapsed}
+	<aside class="scratchboard-rail">
+		<span class="rail-label">Scratchboard</span>
+		<button
+			class="rail-toggle"
+			onclick={() => (collapsed = false)}
+			aria-label="Expand Scratchboard"
+			title="Scratchboard"
+		>
+			<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+		</button>
+	</aside>
+{:else}
 <aside class="scratchboard">
 	<div class="board-header">
 		<div class="header-title">
@@ -66,10 +79,14 @@
 			<span>Scratchboard</span>
 		</div>
 
-		<div class="autosave-status" class:saving class:saved>
-			<span class="status-dot"></span>
-			<span>{saving ? 'Autosaving' : saved ? 'Autosaved' : 'Idle'}</span>
-		</div>
+		<button
+			class="collapse-btn"
+			onclick={() => (collapsed = true)}
+			aria-label="Collapse Scratchboard"
+			title="Collapse"
+		>
+			<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+		</button>
 	</div>
 
 	<div class="board-body" class:editing>
@@ -117,9 +134,12 @@
 		<span class="footer-meta saved" class:flash={saved}>● Autosaved</span>
 	</div>
 </aside>
+{/if}
 
 <style>
 	.scratchboard {
+		width: 100%;
+		height: 100%;
 		background: var(--bg-elevated);
 		border-left: 1px solid var(--border);
 		display: flex;
@@ -150,45 +170,68 @@
 		color: var(--text-tertiary);
 	}
 
-	.autosave-status {
+	.collapse-btn {
 		display: inline-flex;
 		align-items: center;
-		gap: 6px;
+		justify-content: center;
 		flex: none;
-		font-size: 11px;
-		font-weight: 650;
+		width: 28px;
+		height: 28px;
+		border: none;
+		border-radius: 8px;
+		background: transparent;
 		color: var(--text-tertiary);
-		transition: color 0.2s ease;
+		cursor: pointer;
+		transition: background 0.15s ease, color 0.15s ease;
 	}
 
-	.autosave-status.saving {
-		color: var(--accent);
+	.collapse-btn:hover {
+		background: var(--surface-hover);
+		color: var(--text);
 	}
 
-	.autosave-status.saved {
-		color: var(--success);
+	.scratchboard-rail {
+		width: 100%;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 16px;
+		background: var(--surface);
+		border-left: 1px solid var(--border);
+		overflow: hidden;
+		padding: 16px 8px 0;
 	}
 
-	.status-dot {
-		width: 6px;
-		height: 6px;
-		border-radius: 50%;
-		background: currentColor;
-		box-shadow: 0 0 0 0 currentColor;
-		transition: transform 0.2s ease;
+	.rail-label {
+		writing-mode: vertical-rl;
+		text-orientation: mixed;
+		font-size: 13px;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.18em;
+		color: var(--text-tertiary);
+		user-select: none;
+		white-space: nowrap;
 	}
 
-	.autosave-status.saving .status-dot {
-		animation: autosavePulse 0.9s ease-in-out infinite;
+	.rail-toggle {
+		display: grid;
+		place-items: center;
+		flex: none;
+		width: 28px;
+		height: 28px;
+		border: none;
+		border-radius: 8px;
+		background: transparent;
+		color: var(--text-tertiary);
+		cursor: pointer;
+		transition: background 0.15s ease, color 0.15s ease;
 	}
 
-	.autosave-status.saved .status-dot {
-		transform: scale(1.16);
-	}
-
-	@keyframes autosavePulse {
-		0%, 100% { opacity: 0.45; transform: scale(0.86); }
-		50% { opacity: 1; transform: scale(1.14); }
+	.rail-toggle:hover {
+		background: var(--surface-hover);
+		color: var(--text);
 	}
 
 	.board-body {

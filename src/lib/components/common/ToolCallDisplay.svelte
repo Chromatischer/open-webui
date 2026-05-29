@@ -11,7 +11,6 @@
 	import ChevronUp from '../icons/ChevronUp.svelte';
 	import ChevronDown from '../icons/ChevronDown.svelte';
 	import Spinner from './Spinner.svelte';
-	import Markdown from '../chat/Messages/Markdown.svelte';
 	import WrenchSolid from '../icons/WrenchSolid.svelte';
 	import CheckCircle from '../icons/CheckCircle.svelte';
 	import Image from './Image.svelte';
@@ -38,8 +37,7 @@
 	let expandedResult = false;
 
 	$: if (!open) expandedResult = false;
-	export let buttonClassName =
-		'w-fit text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 transition';
+	export let buttonClassName = 'w-fit tool-call-trigger transition';
 
 	const componentId = id || uuidv4();
 
@@ -93,7 +91,7 @@
 	{#if !grouped && embeds && Array.isArray(embeds) && embeds.length > 0}
 		<!-- Embed Mode: Show iframes without collapsible behavior -->
 		<div class="py-1 w-full cursor-pointer">
-			<div class="w-full text-xs text-gray-500">
+			<div class="w-full text-xs text-[var(--text-tertiary)]">
 				{attributes.name}
 			</div>
 			{#each embeds as embed, idx}
@@ -129,37 +127,26 @@
 						<Spinner className="size-4" />
 					</div>
 				{:else if isDone}
-					<div class="text-emerald-500 dark:text-emerald-400">
+					<div class="tool-call-icon-done">
 						<CheckCircle className="size-4" strokeWidth="2" />
 					</div>
 				{:else}
-					<div class="text-gray-400 dark:text-gray-500">
+					<div class="tool-call-icon-muted">
 						<WrenchSolid className="size-3.5" />
 					</div>
 				{/if}
 
 				<!-- Label -->
-				<div class="flex-1 line-clamp-1">
-					<!-- Short label (below md) -->
-					<span class="@md:hidden text-black dark:text-white">{attributes.name}</span>
-					<!-- Full label (md and above) -->
-					<span class="hidden @md:inline font-normal">
-						{#if isDone}
-							<Markdown
-								id={`${componentId}-tool-call-title`}
-								content={$i18n.t('View Result from **{{NAME}}**', {
-									NAME: attributes.name
-								})}
-							/>
-						{:else}
-							<Markdown
-								id={`${componentId}-tool-call-executing`}
-								content={$i18n.t('Executing **{{NAME}}**...', {
-									NAME: attributes.name
-								})}
-							/>
-						{/if}
-					</span>
+				<div class="flex-1 line-clamp-1 text-[var(--text-secondary)]">
+					{#if isDone}
+						<span class="hidden @md:inline">{$i18n.t('Used')}&nbsp;</span><span
+							class="font-medium text-[var(--text)]">{attributes.name}</span
+						>
+					{:else}
+						<span class="hidden @md:inline">{$i18n.t('Running')}&nbsp;</span><span
+							class="font-medium text-[var(--text)]">{attributes.name}</span
+						>…
+					{/if}
 				</div>
 
 				<!-- Chevron -->
@@ -175,12 +162,12 @@
 
 		{#if open}
 			<div transition:slide={{ duration: 300, easing: quintOut, axis: 'y' }}>
-				<div class="border border-gray-50 dark:border-gray-850/30 rounded-2xl my-1.5 p-3 space-y-3">
+				<div class="border border-[var(--border)] rounded-xl my-1.5 p-3 space-y-3">
 					<!-- Input -->
 					{#if args}
 						<div>
 							<div
-								class="text-[10px] uppercase tracking-wider font-medium text-gray-400 dark:text-gray-500 mb-1.5 px-1"
+								class="text-[10px] uppercase tracking-wider font-medium text-[var(--text-tertiary)] mb-1.5 px-1"
 							>
 								{$i18n.t('Input')}
 							</div>
@@ -189,10 +176,8 @@
 								<div class="px-1 space-y-0.5">
 									{#each Object.entries(parsedArgs) as [key, value]}
 										<div class="flex gap-2 text-xs py-0.5">
-											<span class="font-medium text-gray-600 dark:text-gray-400 shrink-0"
-												>{key}</span
-											>
-											<span class="text-gray-800 dark:text-gray-200 break-all"
+											<span class="font-medium text-[var(--text-secondary)] shrink-0">{key}</span>
+											<span class="text-[var(--text)] break-all"
 												>{typeof value === 'object' ? JSON.stringify(value) : value}</span
 											>
 										</div>
@@ -201,7 +186,7 @@
 							{:else}
 								<div class="tool-call-body w-full max-w-none!">
 									<pre
-										class="text-xs text-gray-600 dark:text-gray-300 whitespace-pre font-mono bg-gray-50 dark:bg-gray-900 rounded-lg p-2.5 overflow-x-auto">{formatJSONString(
+										class="text-xs text-[var(--text-secondary)] whitespace-pre font-mono bg-[var(--code-bg)] rounded-lg p-2.5 overflow-x-auto">{formatJSONString(
 											args
 										)}</pre>
 								</div>
@@ -213,14 +198,14 @@
 					{#if isDone && result}
 						<div>
 							<div
-								class="text-[10px] uppercase tracking-wider font-medium text-gray-400 dark:text-gray-500 mb-1.5 px-1"
+								class="text-[10px] uppercase tracking-wider font-medium text-[var(--text-tertiary)] mb-1.5 px-1"
 							>
 								{$i18n.t('Output')}
 							</div>
 							<div class="w-full max-w-none!">
 								{#if typeof parsedResult === 'object' && parsedResult !== null}
 									<pre
-										class="text-xs text-gray-600 dark:text-gray-300 whitespace-pre font-mono bg-gray-50 dark:bg-gray-900 rounded-lg p-2.5 overflow-x-auto">{JSON.stringify(
+										class="text-xs text-[var(--text-secondary)] whitespace-pre font-mono bg-[var(--code-bg)] rounded-lg p-2.5 overflow-x-auto">{JSON.stringify(
 											parsedResult,
 											null,
 											2
@@ -229,12 +214,12 @@
 									{@const resultStr = String(parsedResult)}
 									{@const isTruncated = resultStr.length > RESULT_PREVIEW_LIMIT && !expandedResult}
 									<pre
-										class="text-xs text-gray-600 dark:text-gray-300 whitespace-pre-wrap break-words font-mono">{isTruncated
+										class="text-xs text-[var(--text-secondary)] whitespace-pre-wrap break-words font-mono">{isTruncated
 											? resultStr.slice(0, RESULT_PREVIEW_LIMIT)
 											: resultStr}</pre>
 									{#if isTruncated}
 										<button
-											class="mt-1 text-xs text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 transition"
+											class="mt-1 text-xs tool-call-trigger transition"
 											on:click|stopPropagation={() => {
 												expandedResult = true;
 											}}
@@ -270,3 +255,18 @@
 		{/if}
 	{/if}
 </div>
+
+<style>
+	:global(.tool-call-trigger) {
+		color: var(--text-secondary);
+	}
+	:global(.tool-call-trigger:hover) {
+		color: var(--text);
+	}
+	.tool-call-icon-done {
+		color: var(--success);
+	}
+	.tool-call-icon-muted {
+		color: var(--text-tertiary);
+	}
+</style>

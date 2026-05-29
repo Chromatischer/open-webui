@@ -143,7 +143,7 @@
 			/>
 		</div>
 	{/if}
-	<div class="flex-auto w-0 max-w-full pl-1">
+	<div class="message-content-column">
 		{#if !($settings?.chatBubble ?? true)}
 			<div class="meta-line">
 				<Name>
@@ -158,45 +158,11 @@
 					{/if}
 					</span>
 
-					{#if message.timestamp}
-						<div
-							class="self-center text-xs font-medium first-letter:capitalize ml-0.5 translate-y-[1px] {(($settings?.highContrastMode ?? false)
-								? 'dark:text-gray-900 text-gray-100'
-								: 'invisible group-hover:visible transition')}"
-						>
-							<Tooltip content={dayjs(message.timestamp * 1000).format('LLLL')}>
-								<!-- $i18n.t('Today at {{LOCALIZED_TIME}}') -->
-								<!-- $i18n.t('Yesterday at {{LOCALIZED_TIME}}') -->
-								<!-- $i18n.t('{{LOCALIZED_DATE}} at {{LOCALIZED_TIME}}') -->
-
-								<span class="line-clamp-1"
-									>{$i18n.t(formatDate(message.timestamp * 1000), {
-										LOCALIZED_TIME: dayjs(message.timestamp * 1000).format('LT'),
-										LOCALIZED_DATE: dayjs(message.timestamp * 1000).format('L')
-									})}</span
-								>
-							</Tooltip>
-						</div>
-					{/if}
 				</Name>
 			</div>
-		{:else if message.timestamp}
-			<div class="flex justify-end pr-2 text-xs">
-				<div
-					class="text-[0.65rem] font-medium first-letter:capitalize mb-0.5 {($settings?.highContrastMode ??
-					false)
-						? 'dark:text-gray-100 text-gray-900'
-						: 'invisible group-hover:visible transition text-gray-400'}"
-				>
-					<Tooltip content={dayjs(message.timestamp * 1000).format('LLLL')}>
-						<span class="line-clamp-1"
-							>{$i18n.t(formatDate(message.timestamp * 1000), {
-								LOCALIZED_TIME: dayjs(message.timestamp * 1000).format('LT'),
-								LOCALIZED_DATE: dayjs(message.timestamp * 1000).format('L')
-							})}</span
-						>
-					</Tooltip>
-				</div>
+		{:else}
+			<div class="meta-line">
+				<span class="meta-role">{$i18n.t('You')}</span>
 			</div>
 		{/if}
 
@@ -368,13 +334,9 @@
 				</div>
 			{:else if message.content !== ''}
 				<div class="w-full">
-					<div class="flex {($settings?.chatBubble ?? true) ? 'justify-end pb-1' : 'w-full'}">
+					<div class="flex w-full">
 						<div
-							class="ver-text rounded-3xl {($settings?.chatBubble ?? true)
-								? `max-w-[90%] px-4 py-1.5 user-bubble ${
-										message.files ? 'rounded-tr-lg' : ''
-									}`
-								: ' w-full'}"
+							class="ver-text w-full"
 						>
 							{#if message.content}
 								{#if $settings?.renderMarkdownInUserMessages ?? true}
@@ -686,8 +648,13 @@
 </div>
 
 <style>
+	.meta-time {
+		font-size: 11px;
+		color: var(--text-tertiary);
+	}
+
 	.user-bubble {
-		background: var(--surface);
+		background: transparent;
 	}
 
 	.user-edit-area {

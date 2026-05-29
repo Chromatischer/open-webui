@@ -1,8 +1,5 @@
 <script lang="ts">
 	import { getContext } from 'svelte';
-	import Checkbox from '$lib/components/common/Checkbox.svelte';
-	import Tooltip from '$lib/components/common/Tooltip.svelte';
-	import { marked } from 'marked';
 
 	const i18n = getContext('i18n');
 
@@ -54,39 +51,90 @@
 		calendar: {
 			label: $i18n.t('Calendar'),
 			description: $i18n.t('List calendars, search, create, update, and delete calendar events')
+		},
+		scratchboard: {
+			label: $i18n.t('Scratchboard'),
+			description: $i18n.t(
+				'Read, write, and diff-edit durable notes for the current chat Scratchboard'
+			)
 		}
 	};
 
 	const allTools = Object.keys(toolLabels);
 
 	export let builtinTools: Record<string, boolean> = {};
+
+	// A tool is on unless explicitly set to false.
+	const toggle = (tool: string) => {
+		if (builtinTools[tool] === false) {
+			delete builtinTools[tool];
+		} else {
+			builtinTools[tool] = false;
+		}
+		builtinTools = builtinTools;
+	};
 </script>
 
 <div>
-	<div class="flex w-full justify-between mb-1">
-		<div class="self-center text-xs font-medium text-gray-500">{$i18n.t('Builtin Tools')}</div>
-	</div>
-	<div class="flex items-center mt-2 flex-wrap">
+	<div class="text-xs font-medium text-gray-500 mb-2">{$i18n.t('Builtin Tools')}</div>
+	<div class="bt-grid">
 		{#each allTools as tool}
-			<div class="flex items-center gap-2 mr-3">
-				<Checkbox
-					state={builtinTools[tool] !== false ? 'checked' : 'unchecked'}
-					on:change={(e) => {
-						if (e.detail === 'checked') {
-							delete builtinTools[tool];
-						} else {
-							builtinTools[tool] = false;
-						}
-						builtinTools = builtinTools;
-					}}
-				/>
-
-				<div class="py-0.5 text-sm">
-					<Tooltip content={marked.parse(toolLabels[tool].description)}>
-						{$i18n.t(toolLabels[tool].label)}
-					</Tooltip>
-				</div>
-			</div>
+			<button
+				type="button"
+				class="bt-card {builtinTools[tool] !== false ? 'on' : ''}"
+				on:click={() => toggle(tool)}
+			>
+				<span class="bt-label">{$i18n.t(toolLabels[tool].label)}</span>
+				<span class="bt-desc">{toolLabels[tool].description}</span>
+			</button>
 		{/each}
 	</div>
 </div>
+
+<style>
+	.bt-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+		gap: 8px;
+	}
+	.bt-card {
+		display: flex;
+		flex-direction: column;
+		text-align: left;
+		padding: 10px 12px;
+		border: 1px solid var(--border);
+		border-radius: 12px;
+		background: var(--bg-base);
+		cursor: pointer;
+		transition:
+			border-color 0.15s ease,
+			background 0.15s ease,
+			transform 0.1s ease;
+	}
+	.bt-card:hover {
+		border-color: var(--border-hover);
+	}
+	.bt-card:active {
+		transform: scale(0.985);
+	}
+	.bt-card.on {
+		border-color: var(--accent);
+		background: var(--accent-glow);
+	}
+	.bt-label {
+		font-size: 13px;
+		font-weight: 600;
+		color: var(--text);
+		line-height: 1.25;
+	}
+	.bt-desc {
+		font-size: 11px;
+		color: var(--text-secondary);
+		margin-top: 2px;
+		line-height: 1.35;
+		display: -webkit-box;
+		-webkit-line-clamp: 2;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+	}
+</style>

@@ -20,7 +20,6 @@
 	import ToolCallDisplay from '$lib/components/common/ToolCallDisplay.svelte';
 	import Tooltip from '$lib/components/common/Tooltip.svelte';
 	import Download from '$lib/components/icons/Download.svelte';
-	import ConsecutiveDetailsGroup from './ConsecutiveDetailsGroup.svelte';
 
 	import HtmlToken from './HTMLToken.svelte';
 	import Clipboard from '$lib/components/icons/Clipboard.svelte';
@@ -54,50 +53,15 @@
 		return 'h' + depth;
 	};
 
-	const GROUPABLE_DETAIL_TYPES = new Set(['tool_calls', 'reasoning', 'code_interpreter']);
-
-	const isGroupableDetailToken = (token: Token & { attributes?: { type?: string } }) => {
-		return token?.type === 'details' && GROUPABLE_DETAIL_TYPES.has(token?.attributes?.type ?? '');
-	};
-
-	const getDisplayTokens = (tokenList: Token[] = []) => {
-		const displayTokens = [];
-		let detailGroup = [];
-
-		const flushDetailGroup = () => {
-			if (detailGroup.length > 1) {
-				displayTokens.push({
-					type: 'detail_group',
-					items: [...detailGroup]
-				});
-			} else if (detailGroup.length === 1) {
-				displayTokens.push(detailGroup[0]);
-			}
-
-			detailGroup = [];
-		};
-
-		for (const token of tokenList) {
-			if (isGroupableDetailToken(token)) {
-				detailGroup.push(token);
-			} else {
-				flushDetailGroup();
-				displayTokens.push(token);
-			}
-		}
-
-		flushDetailGroup();
-
-		return displayTokens;
-	};
-
 	const getDetailTextContent = (token) => {
 		return decode(token?.text || '')
 			.replace(/<summary>.*?<\/summary>/gi, '')
 			.trim();
 	};
 
-	$: displayTokens = getDisplayTokens(tokens);
+	// Render tokens in their natural order so reasoning, tool calls and response
+	// text stay interleaved exactly as the model produced them.
+	$: displayTokens = tokens;
 
 	const exportTableToCSVHandler = (token, tokenIdx = 0) => {
 		console.log('Exporting table to CSV');
@@ -367,62 +331,6 @@
 				{/each}
 			</ul>
 		{/if}
-	{:else if token.type === 'detail_group'}
-		<ConsecutiveDetailsGroup
-			id={`${id}-${tokenIdx}-detail-group`}
-			tokens={token.items}
-			messageDone={done}
-			{allowEmbeds}
-		>
-			<div slot="content" class="space-y-1">
-				{#each token.items as detailToken, detailIdx}
-					{@const textContent = getDetailTextContent(detailToken)}
-
-					{#if detailToken?.attributes?.type === 'tool_calls'}
-						<ToolCallDisplay
-							id={`${id}-${tokenIdx}-${detailIdx}-tc`}
-							attributes={detailToken.attributes}
-							resultContent={getDetailTextContent(detailToken)}
-							grouped={true}
-							open={$settings?.expandDetails ?? false}
-							className="w-full space-y-1"
-						/>
-					{:else if textContent.length > 0}
-						<Collapsible
-							title={detailToken.summary}
-							open={$settings?.expandDetails ?? false}
-							attributes={detailToken?.attributes}
-							messageDone={done}
-							className="w-full space-y-1"
-							dir="auto"
-						>
-							<div class="mb-1.5" slot="content">
-								<svelte:self
-									id={`${id}-${tokenIdx}-${detailIdx}-d`}
-									tokens={marked.lexer(decode(detailToken.text))}
-									attributes={detailToken?.attributes}
-									{done}
-									{editCodeBlock}
-									{onTaskClick}
-									{sourceIds}
-									{onSourceClick}
-								/>
-							</div>
-						</Collapsible>
-					{:else}
-						<Collapsible
-							title={detailToken.summary}
-							open={false}
-							disabled={true}
-							attributes={detailToken?.attributes}
-							messageDone={done}
-							className="w-full space-y-1"
-							dir="auto"
-						/>
-					{/if}
-				{/each}
-			</div>
-		</ConsecutiveDetailsGroup>
 	{:else if token.type === 'details'}
 		{@const textContent = getDetailTextContent(token)}
 
