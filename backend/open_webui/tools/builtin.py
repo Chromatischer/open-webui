@@ -2521,9 +2521,7 @@ async def edit_scratchboard(
         else:
             updated_content = content.replace(old_string, new_string, 1)
 
-        updated_chat = await Chats.update_chat_scratchboard_by_id(
-            __chat_id__, __user__.get('id'), updated_content
-        )
+        updated_chat = await Chats.update_chat_scratchboard_by_id(__chat_id__, __user__.get('id'), updated_content)
         if not updated_chat:
             return json.dumps({'error': 'Chat not found or access denied'})
 

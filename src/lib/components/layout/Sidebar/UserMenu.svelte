@@ -5,13 +5,7 @@
 
 	import { userSignOut } from '$lib/apis/auths';
 
-	import {
-		showSettings,
-		mobile,
-		showSidebar,
-		showShortcuts,
-		user
-	} from '$lib/stores';
+	import { showSettings, mobile, showSidebar, showShortcuts, user } from '$lib/stores';
 
 	import { WEBUI_API_BASE_URL } from '$lib/constants';
 
@@ -221,7 +215,6 @@
 				</div>
 				<div class=" self-center truncate">{$i18n.t('Sign Out')}</div>
 			</button>
-
 		</div>
 	</div>
 </Dropdown>

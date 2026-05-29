@@ -82,8 +82,7 @@
 
 	const toggleTheme = (e: MouseEvent) => {
 		const root = document.documentElement;
-		const wasDark =
-			root.classList.contains('dark') || root.classList.contains('oled-dark');
+		const wasDark = root.classList.contains('dark') || root.classList.contains('oled-dark');
 		const next = wasDark ? 'light' : 'dark';
 
 		const target = (e.currentTarget ?? e.target) as HTMLElement | null;
@@ -764,33 +763,33 @@
 					content={$showSidebar ? $i18n.t('Close Sidebar') : $i18n.t('Open Sidebar')}
 					placement="right"
 				>
-				<button
-					class="flex transition btn-ghost collapsed-logo-btn {isWindows
-						? 'cursor-pointer'
-						: 'cursor-[e-resize]'}"
-					aria-label={$showSidebar ? $i18n.t('Close Sidebar') : $i18n.t('Open Sidebar')}
-				>
-					<div class=" self-center flex items-center justify-center size-9">
-						<img
-							src="{WEBUI_BASE_URL}/static/favicon.png"
-							class="sidebar-new-chat-icon size-6 rounded-full group-hover:hidden"
-							alt=""
-						/>
+					<button
+						class="flex transition btn-ghost collapsed-logo-btn {isWindows
+							? 'cursor-pointer'
+							: 'cursor-[e-resize]'}"
+						aria-label={$showSidebar ? $i18n.t('Close Sidebar') : $i18n.t('Open Sidebar')}
+					>
+						<div class=" self-center flex items-center justify-center size-9">
+							<img
+								src="{WEBUI_BASE_URL}/static/favicon.png"
+								class="sidebar-new-chat-icon size-6 rounded-full group-hover:hidden"
+								alt=""
+							/>
 
-						<Sidebar className="size-5 hidden group-hover:flex" />
-					</div>
-				</button>
+							<Sidebar className="size-5 hidden group-hover:flex" />
+						</div>
+					</button>
 				</Tooltip>
 			</div>
 
 			<div class="-mt-[0.5px]">
 				<div class="">
-				<Tooltip content={$i18n.t('New Chat')} placement="right">
-					<a
-						class=" cursor-pointer flex rounded-xl btn-ghost transition group"
-						href="/"
-						draggable="false"
-						on:click={async (e) => {
+					<Tooltip content={$i18n.t('New Chat')} placement="right">
+						<a
+							class=" cursor-pointer flex rounded-xl btn-ghost transition group"
+							href="/"
+							draggable="false"
+							on:click={async (e) => {
 								e.stopImmediatePropagation();
 								e.preventDefault();
 
@@ -807,9 +806,9 @@
 				</div>
 
 				<div>
-				<Tooltip content={$i18n.t('Search')} placement="right">
-					<button
-						class=" cursor-pointer flex rounded-xl btn-ghost transition group"
+					<Tooltip content={$i18n.t('Search')} placement="right">
+						<button
+							class=" cursor-pointer flex rounded-xl btn-ghost transition group"
 							on:click={(e) => {
 								e.stopImmediatePropagation();
 								e.preventDefault();
@@ -971,10 +970,7 @@
 				</a>
 
 				<a href="/" class="flex flex-1 px-0.5" on:click={newChatHandler}>
-					<div
-						id="sidebar-webui-name"
-						class=" self-center font-medium sidebar-brand font-primary"
-					>
+					<div id="sidebar-webui-name" class=" self-center font-medium sidebar-brand font-primary">
 						{$WEBUI_NAME}
 					</div>
 				</a>
@@ -982,11 +978,11 @@
 					content={$showSidebar ? $i18n.t('Close Sidebar') : $i18n.t('Open Sidebar')}
 					placement="bottom"
 				>
-				<button
-					class="flex rounded-xl size-8.5 justify-center items-center btn-ghost transition {isWindows
-						? 'cursor-pointer'
-						: 'cursor-[w-resize]'}"
-					on:click={() => {
+					<button
+						class="flex rounded-xl size-8.5 justify-center items-center btn-ghost transition {isWindows
+							? 'cursor-pointer'
+							: 'cursor-[w-resize]'}"
+						on:click={() => {
 							showSidebar.set(!$showSidebar);
 						}}
 						aria-label={$showSidebar ? $i18n.t('Close Sidebar') : $i18n.t('Open Sidebar')}
@@ -997,11 +993,11 @@
 					</button>
 				</Tooltip>
 
-			<div
-				class="{scrollTop > 0
-					? 'visible'
-					: 'invisible'} sidebar-gradient-overlay-top pointer-events-none absolute inset-0 -z-10 -mb-6"
-			></div>
+				<div
+					class="{scrollTop > 0
+						? 'visible'
+						: 'invisible'} sidebar-gradient-overlay-top pointer-events-none absolute inset-0 -z-10 -mb-6"
+				></div>
 			</div>
 
 			<div
@@ -1036,79 +1032,76 @@
 						</a>
 					</div>
 
-				{#if isMenuItemVisible('workspace')}
-					<div class="section-header sidebar-section-label px-[0.4375rem]">
-						<span>{$i18n.t('Workspace')}</span>
-					</div>
-
-					{#if $user?.role === 'admin' || $user?.permissions?.workspace?.models}
-						<div class="px-[0.4375rem] flex justify-center">
-							<a
-								id="sidebar-models-button"
-								class="nav-item grow flex items-center px-2.5 py-2"
-								href="/workspace/models"
-								on:click={itemClickHandler}
-								draggable="false"
-								aria-label={$i18n.t('Models')}
-							>
-								<div class="flex self-center translate-y-[0.5px]">
-									<div class=" self-center text-sm font-primary">{$i18n.t('Models')}</div>
-								</div>
-							</a>
+					{#if isMenuItemVisible('workspace')}
+						<div class="section-header sidebar-section-label px-[0.4375rem]">
+							<span>{$i18n.t('Workspace')}</span>
 						</div>
-					{/if}
 
-					{#if $user?.role === 'admin' || $user?.permissions?.workspace?.skills}
-						<div class="px-[0.4375rem] flex justify-center">
-							<a
-								id="sidebar-skills-button"
-								class="nav-item grow flex items-center px-2.5 py-2"
-								href="/workspace/skills"
-								on:click={itemClickHandler}
-								draggable="false"
-								aria-label={$i18n.t('Skills')}
-							>
-								<div class="flex self-center translate-y-[0.5px]">
-									<div class=" self-center text-sm font-primary">{$i18n.t('Skills')}</div>
-								</div>
-							</a>
-						</div>
-					{/if}
-
-					{#if $user?.role === 'admin' || $user?.permissions?.workspace?.tools}
-						<div class="px-[0.4375rem] flex justify-center">
-							<a
-								id="sidebar-tools-button"
-								class="nav-item grow flex items-center px-2.5 py-2"
-								href="/workspace/tools"
-								on:click={itemClickHandler}
-								draggable="false"
-								aria-label={$i18n.t('Tools')}
-							>
-								<div class="flex self-center translate-y-[0.5px]">
-									<div class=" self-center text-sm font-primary">{$i18n.t('Tools')}</div>
-								</div>
-							</a>
-						</div>
-					{/if}
-				{/if}
-
-				<div id="pinned-menu-items-list">
-					{#each pinnedItems as itemId (itemId)}
-						{@const meta = getMenuItemMeta(itemId)}
-						{#if meta && isMenuItemVisible(itemId)}
-							<div
-								class="px-[0.4375rem] flex justify-center"
-								data-id={itemId}
-							>
+						{#if $user?.role === 'admin' || $user?.permissions?.workspace?.models}
+							<div class="px-[0.4375rem] flex justify-center">
 								<a
-									id="sidebar-{itemId}-button"
-									class="nav-item grow flex items-center space-x-3 px-2.5 py-2"
-									href={meta.href}
+									id="sidebar-models-button"
+									class="nav-item grow flex items-center px-2.5 py-2"
+									href="/workspace/models"
 									on:click={itemClickHandler}
 									draggable="false"
-									aria-label={$i18n.t(meta.label)}
+									aria-label={$i18n.t('Models')}
 								>
+									<div class="flex self-center translate-y-[0.5px]">
+										<div class=" self-center text-sm font-primary">{$i18n.t('Models')}</div>
+									</div>
+								</a>
+							</div>
+						{/if}
+
+						{#if $user?.role === 'admin' || $user?.permissions?.workspace?.skills}
+							<div class="px-[0.4375rem] flex justify-center">
+								<a
+									id="sidebar-skills-button"
+									class="nav-item grow flex items-center px-2.5 py-2"
+									href="/workspace/skills"
+									on:click={itemClickHandler}
+									draggable="false"
+									aria-label={$i18n.t('Skills')}
+								>
+									<div class="flex self-center translate-y-[0.5px]">
+										<div class=" self-center text-sm font-primary">{$i18n.t('Skills')}</div>
+									</div>
+								</a>
+							</div>
+						{/if}
+
+						{#if $user?.role === 'admin' || $user?.permissions?.workspace?.tools}
+							<div class="px-[0.4375rem] flex justify-center">
+								<a
+									id="sidebar-tools-button"
+									class="nav-item grow flex items-center px-2.5 py-2"
+									href="/workspace/tools"
+									on:click={itemClickHandler}
+									draggable="false"
+									aria-label={$i18n.t('Tools')}
+								>
+									<div class="flex self-center translate-y-[0.5px]">
+										<div class=" self-center text-sm font-primary">{$i18n.t('Tools')}</div>
+									</div>
+								</a>
+							</div>
+						{/if}
+					{/if}
+
+					<div id="pinned-menu-items-list">
+						{#each pinnedItems as itemId (itemId)}
+							{@const meta = getMenuItemMeta(itemId)}
+							{#if meta && isMenuItemVisible(itemId)}
+								<div class="px-[0.4375rem] flex justify-center" data-id={itemId}>
+									<a
+										id="sidebar-{itemId}-button"
+										class="nav-item grow flex items-center space-x-3 px-2.5 py-2"
+										href={meta.href}
+										on:click={itemClickHandler}
+										draggable="false"
+										aria-label={$i18n.t(meta.label)}
+									>
 										<div class="self-center">
 											{#if itemId === 'workspace'}
 												<svg
@@ -1171,27 +1164,27 @@
 				</div>
 
 				{#if ($models ?? []).length > 0 && (($settings?.pinnedModels ?? []).length > 0 || $config?.default_pinned_models)}
-			<Folder
-				id="sidebar-models"
-				bind:open={showPinnedModels}
-				className="px-2 mt-0.5"
-				name={$i18n.t('Models')}
-				buttonClassName="sidebar-folder-btn"
-				chevron={false}
-				dragAndDrop={false}
-			>
+					<Folder
+						id="sidebar-models"
+						bind:open={showPinnedModels}
+						className="px-2 mt-0.5"
+						name={$i18n.t('Models')}
+						buttonClassName="sidebar-folder-btn"
+						chevron={false}
+						dragAndDrop={false}
+					>
 						<PinnedModelList bind:selectedChatId {shiftKey} />
 					</Folder>
 				{/if}
 
 				{#if $config?.features?.enable_folders && ($user?.role === 'admin' || ($user?.permissions?.features?.folders ?? true))}
-		<Folder
-			id="sidebar-folders"
-			bind:open={showFolders}
-			className="px-2 mt-0.5"
-			name={$i18n.t('Folders')}
-			buttonClassName="sidebar-folder-btn"
-			chevron={false}
+					<Folder
+						id="sidebar-folders"
+						bind:open={showFolders}
+						className="px-2 mt-0.5"
+						name={$i18n.t('Folders')}
+						buttonClassName="sidebar-folder-btn"
+						chevron={false}
 						onAdd={() => {
 							showCreateFolderModal = true;
 						}}
@@ -1262,13 +1255,13 @@
 					</button>
 				</div>
 
-		<Folder
-			id="sidebar-chats"
-			className="px-2 mt-0.5"
-			name={$i18n.t('Chats')}
-			buttonClassName="sidebar-folder-btn"
-			chevron={false}
-			collapsible={false}
+				<Folder
+					id="sidebar-chats"
+					className="px-2 mt-0.5"
+					name={$i18n.t('Chats')}
+					buttonClassName="sidebar-folder-btn"
+					chevron={false}
+					collapsible={false}
 					on:change={async (e) => {
 						selectedFolder.set(null);
 					}}
@@ -1335,9 +1328,9 @@
 					{#if $pinnedChats.length > 0}
 						<div class="mb-1">
 							<div class="flex flex-col space-y-1 rounded-xl">
-						<Folder
-							id="sidebar-pinned-chats"
-							buttonClassName="sidebar-folder-btn text-xs"
+								<Folder
+									id="sidebar-pinned-chats"
+									buttonClassName="sidebar-folder-btn text-xs"
 									on:import={(e) => {
 										importChatHandler(e.detail, true);
 									}}
@@ -1432,9 +1425,7 @@
 							{#if $chats}
 								{#each $chats as chat, idx (`chat-${chat?.id ?? idx}`)}
 									{#if idx === 0 || (idx > 0 && chat.time_range !== $chats[idx - 1].time_range)}
-										<div
-											class="section-header w-full pl-2.5 {idx === 0 ? '' : 'pt-5'} pb-1.5"
-										>
+										<div class="section-header w-full pl-2.5 {idx === 0 ? '' : 'pt-5'} pb-1.5">
 											{$i18n.t(chat.time_range)}
 											<!-- localisation keys for time_range to be recognized from the i18next parser (so they don't get automatically removed):
 							{$i18n.t('Today')}
@@ -1511,10 +1502,13 @@
 				</Folder>
 			</div>
 
-		<div class="px-1.5 pt-1.5 pb-2 sticky bottom-0 z-10 -mt-3" style="background: var(--bg-sidebar);">
-		<div
-			class=" sidebar-gradient-overlay-bottom pointer-events-none absolute inset-0 -z-10 -mt-6"
-		></div>
+			<div
+				class="px-1.5 pt-1.5 pb-2 sticky bottom-0 z-10 -mt-3"
+				style="background: var(--bg-sidebar);"
+			>
+				<div
+					class=" sidebar-gradient-overlay-bottom pointer-events-none absolute inset-0 -z-10 -mt-6"
+				></div>
 				<div class="sidebar-footer-row font-primary">
 					{#if $user !== undefined && $user !== null}
 						<div class="sidebar-footer-user">
@@ -1664,7 +1658,9 @@
 		font-weight: 600;
 		cursor: pointer;
 		text-decoration: none;
-		transition: filter 0.2s, transform 0.1s;
+		transition:
+			filter 0.2s,
+			transform 0.1s;
 	}
 	.btn-sidebar-primary:hover {
 		filter: brightness(1.15);
@@ -1804,7 +1800,6 @@
 		transform: scaleY(1);
 	}
 
-
 	/* ── 2h — Dividers & borders ──────────────────────────── */
 	.sidebar-divider {
 		height: 1px;
@@ -1855,7 +1850,9 @@
 		border: none;
 		color: var(--text-tertiary);
 		cursor: pointer;
-		transition: background 0.15s, color 0.15s;
+		transition:
+			background 0.15s,
+			color 0.15s;
 	}
 	.btn-ghost:hover {
 		background: var(--surface-hover);

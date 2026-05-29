@@ -235,10 +235,10 @@
 									/>
 								</a>
 
-								<a href="https://github.com/open-webui/open-webui" target="_blank">
+								<a href="https://github.com/Chromatischer/open-webui" target="_blank">
 									<img
 										alt="Github Repo"
-										src="https://img.shields.io/github/stars/open-webui/open-webui?style=social&label=Star us on Github"
+										src="https://img.shields.io/github/stars/Chromatischer/open-webui?style=social&label=Star this fork"
 									/>
 								</a>
 							</div>

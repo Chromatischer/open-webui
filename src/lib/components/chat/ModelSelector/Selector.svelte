@@ -640,7 +640,9 @@
 
 									{#if hasExternal}
 										<button
-											class="cat-item {selectedConnectionType === 'external' ? 'cat-item-active' : ''}"
+											class="cat-item {selectedConnectionType === 'external'
+												? 'cat-item-active'
+												: ''}"
 											aria-pressed={selectedConnectionType === 'external'}
 											on:click={() => {
 												selectedTag = '';
@@ -653,7 +655,9 @@
 
 									{#if hasDirect}
 										<button
-											class="cat-item {selectedConnectionType === 'direct' ? 'cat-item-active' : ''}"
+											class="cat-item {selectedConnectionType === 'direct'
+												? 'cat-item-active'
+												: ''}"
 											aria-pressed={selectedConnectionType === 'direct'}
 											on:click={() => {
 												selectedTag = '';
@@ -794,7 +798,9 @@
 												</div>
 
 												{#if 'digest' in $MODEL_DOWNLOAD_POOL[model] && $MODEL_DOWNLOAD_POOL[model].digest}
-													<div class="-mt-1 h-fit text-[0.7rem] text-[var(--text-tertiary)] line-clamp-1">
+													<div
+														class="-mt-1 h-fit text-[0.7rem] text-[var(--text-tertiary)] line-clamp-1"
+													>
 														{$MODEL_DOWNLOAD_POOL[model].digest}
 													</div>
 												{/if}
@@ -837,9 +843,7 @@
 
 						<!-- Search (bottom) -->
 						{#if searchEnabled}
-							<div
-								class="flex items-center gap-2.5 px-4 py-3 border-t border-[var(--border)]"
-							>
+							<div class="flex items-center gap-2.5 px-4 py-3 border-t border-[var(--border)]">
 								<Search className="size-4 text-[var(--text-tertiary)]" strokeWidth="2.5" />
 
 								<input

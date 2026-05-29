@@ -517,7 +517,6 @@
 					{title}
 				</div>
 			</div>
-
 		</a>
 	{/if}
 
@@ -666,6 +665,8 @@
 		animation: fadeInTime 0.18s ease forwards;
 	}
 	@keyframes fadeInTime {
-		to { opacity: 1; }
+		to {
+			opacity: 1;
+		}
 	}
 </style>

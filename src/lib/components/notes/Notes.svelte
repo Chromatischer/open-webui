@@ -716,40 +716,137 @@
 
 <style>
 	.note-item {
-		display: flex; width: 100%; padding: 5px 12px; border-radius: 6px;
-		background: transparent; border: none; color: var(--text-secondary);
-		cursor: pointer; transition: color 0.15s, background 0.15s;
+		display: flex;
+		width: 100%;
+		padding: 5px 12px;
+		border-radius: 6px;
+		background: transparent;
+		border: none;
+		color: var(--text-secondary);
+		cursor: pointer;
+		transition:
+			color 0.15s,
+			background 0.15s;
 	}
-	.note-item:hover { color: var(--text); background: color-mix(in srgb, var(--surface-hover) 55%, transparent); }
-	.note-title { font-size: 12px; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex: 1; width: 100%; }
-	.note-title-cap { font-size: 12px; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex: 1; width: 100%; text-transform: capitalize; }
-	.note-meta { font-size: 10px; color: var(--text-tertiary); flex: none; white-space: nowrap; }
-	.btn-ghost { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 7px; background: transparent; border: none; color: var(--text-tertiary); cursor: pointer; transition: background 0.15s, color 0.15s; }
-	.btn-ghost:hover { background: var(--surface-hover); color: var(--text); }
+	.note-item:hover {
+		color: var(--text);
+		background: color-mix(in srgb, var(--surface-hover) 55%, transparent);
+	}
+	.note-title {
+		font-size: 12px;
+		font-weight: 600;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		flex: 1;
+		width: 100%;
+	}
+	.note-title-cap {
+		font-size: 12px;
+		font-weight: 600;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		flex: 1;
+		width: 100%;
+		text-transform: capitalize;
+	}
+	.note-meta {
+		font-size: 10px;
+		color: var(--text-tertiary);
+		flex: none;
+		white-space: nowrap;
+	}
+	.btn-ghost {
+		display: grid;
+		place-items: center;
+		width: 28px;
+		height: 28px;
+		border-radius: 7px;
+		background: transparent;
+		border: none;
+		color: var(--text-tertiary);
+		cursor: pointer;
+		transition:
+			background 0.15s,
+			color 0.15s;
+	}
+	.btn-ghost:hover {
+		background: var(--surface-hover);
+		color: var(--text);
+	}
 	.note-grid-item {
-		display: flex; width: 100%; padding: 15px; border-radius: 10px;
-		background: transparent; border: 1px solid var(--border);
-		cursor: pointer; transition: background 0.15s;
+		display: flex;
+		width: 100%;
+		padding: 15px;
+		border-radius: 10px;
+		background: transparent;
+		border: 1px solid var(--border);
+		cursor: pointer;
+		transition: background 0.15s;
 	}
-	.note-grid-item:hover { background: var(--surface-hover); }
+	.note-grid-item:hover {
+		background: var(--surface-hover);
+	}
 	.new-note-btn {
-		padding: 6px 12px; border-radius: 12px; background: var(--text); color: var(--bg-base);
-		font-weight: 500; font-size: 13px; display: flex; align-items: center; border: none; cursor: pointer;
+		padding: 6px 12px;
+		border-radius: 12px;
+		background: var(--text);
+		color: var(--bg-base);
+		font-weight: 500;
+		font-size: 13px;
+		display: flex;
+		align-items: center;
+		border: none;
+		cursor: pointer;
 		transition: opacity 0.15s;
 	}
-	.new-note-btn:hover { opacity: 0.85; }
+	.new-note-btn:hover {
+		opacity: 0.85;
+	}
 	.notes-container {
-		padding-block: 8px; background: var(--bg-base); border-radius: 10px;
+		padding-block: 8px;
+		background: var(--bg-base);
+		border-radius: 10px;
 		border: 1px solid var(--border);
 	}
-	.search-clear { padding: 0; border-radius: 50%; border: none; background: transparent; cursor: pointer; transition: background 0.15s; display: grid; place-items: center; width: 20px; height: 20px; }
-	.search-clear:hover { background: var(--surface-hover); }
-	.text-sec { color: var(--text-secondary); }
-	.text-ter { color: var(--text-tertiary); }
-	.time-group { font-size: 11px; color: var(--text-secondary); font-weight: 500; padding: 0 10px 10px; }
+	.search-clear {
+		padding: 0;
+		border-radius: 50%;
+		border: none;
+		background: transparent;
+		cursor: pointer;
+		transition: background 0.15s;
+		display: grid;
+		place-items: center;
+		width: 20px;
+		height: 20px;
+	}
+	.search-clear:hover {
+		background: var(--surface-hover);
+	}
+	.text-sec {
+		color: var(--text-secondary);
+	}
+	.text-ter {
+		color: var(--text-tertiary);
+	}
+	.time-group {
+		font-size: 11px;
+		color: var(--text-secondary);
+		font-weight: 500;
+		padding: 0 10px 10px;
+	}
 	.filter-sel {
-		display: flex; align-items: center; gap: 8px; padding: 6px 12px;
-		font-size: 13px; background: var(--surface); border-radius: 12px;
-		color: var(--text-secondary); border: none; outline: none;
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		padding: 6px 12px;
+		font-size: 13px;
+		background: var(--surface);
+		border-radius: 12px;
+		color: var(--text-secondary);
+		border: none;
+		outline: none;
 	}
 </style>

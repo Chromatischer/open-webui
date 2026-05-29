@@ -5,6 +5,7 @@ on:
   push:
     branches:
       - main
+      - stable
       - dev
     tags:
       - v*
@@ -814,22 +815,29 @@ jobs:
   copy-to-dockerhub:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/v')
-    needs: [merge-main-images, merge-cuda-images, merge-cuda126-images, merge-ollama-images, merge-slim-images]
+    needs:
+      [
+        merge-main-images,
+        merge-cuda-images,
+        merge-cuda126-images,
+        merge-ollama-images,
+        merge-slim-images
+      ]
     continue-on-error: true
     strategy:
       fail-fast: false
       matrix:
         include:
           - variant: main
-            suffix: ""
+            suffix: ''
           - variant: cuda
-            suffix: "-cuda"
+            suffix: '-cuda'
           - variant: cuda126
-            suffix: "-cuda126"
+            suffix: '-cuda126'
           - variant: ollama
-            suffix: "-ollama"
+            suffix: '-ollama'
           - variant: slim
-            suffix: "-slim"
+            suffix: '-slim'
     steps:
       - name: Set repository and image name to lowercase
         run: |

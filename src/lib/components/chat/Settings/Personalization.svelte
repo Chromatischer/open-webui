@@ -248,7 +248,9 @@
 					<BookOpen className="size-8 text-[var(--text-tertiary)]" strokeWidth="1.5" />
 					<div class="mm-empty-title">{$i18n.t('Teach your models about you')}</div>
 					<div class="mm-empty-sub">
-						{$i18n.t('Add a memory above and your models will recall it in every chat. What you save builds up here over time.')}
+						{$i18n.t(
+							'Add a memory above and your models will recall it in every chat. What you save builds up here over time.'
+						)}
 					</div>
 				</div>
 			{:else}
@@ -274,99 +276,99 @@
 						{#if filteredMemories.length === 0}
 							<div class="mm-noresults">{$i18n.t('No results found')}</div>
 						{:else}
-						{#each groups as group (group.label)}
-					<div class="mm-group-label">{group.label}</div>
-					{#each group.items as memory (memory.id)}
-						<div class="mm-item" class:mm-item-editing={editingId === memory.id}>
-							<span class="mm-dot" />
-							{#if editingId === memory.id}
-								<div class="mm-edit">
-									<textarea
-										bind:this={editTextarea}
-										class="mm-edit-input"
-										bind:value={editDraft}
-										rows="3"
-										maxlength="1000"
-										on:keydown={(e) => {
-											if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) {
-												e.preventDefault();
-												saveEdit(memory);
-											}
-											if (e.key === 'Escape') {
-												e.preventDefault();
-												cancelEdit();
-											}
-										}}
-									/>
-									<div class="mm-edit-actions">
-										<button class="mm-btn-ghost" on:click={cancelEdit}>
-											{$i18n.t('Cancel')}
-										</button>
-										<button
-											class="mm-btn-accent"
-											disabled={savingEdit || editDraft.trim().length === 0}
-											on:click={() => saveEdit(memory)}
-										>
-											{#if savingEdit}
-												<Spinner className="size-3.5" />
-											{/if}
-											<span>{$i18n.t('Save')}</span>
-										</button>
+							{#each groups as group (group.label)}
+								<div class="mm-group-label">{group.label}</div>
+								{#each group.items as memory (memory.id)}
+									<div class="mm-item" class:mm-item-editing={editingId === memory.id}>
+										<span class="mm-dot" />
+										{#if editingId === memory.id}
+											<div class="mm-edit">
+												<textarea
+													bind:this={editTextarea}
+													class="mm-edit-input"
+													bind:value={editDraft}
+													rows="3"
+													maxlength="1000"
+													on:keydown={(e) => {
+														if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) {
+															e.preventDefault();
+															saveEdit(memory);
+														}
+														if (e.key === 'Escape') {
+															e.preventDefault();
+															cancelEdit();
+														}
+													}}
+												/>
+												<div class="mm-edit-actions">
+													<button class="mm-btn-ghost" on:click={cancelEdit}>
+														{$i18n.t('Cancel')}
+													</button>
+													<button
+														class="mm-btn-accent"
+														disabled={savingEdit || editDraft.trim().length === 0}
+														on:click={() => saveEdit(memory)}
+													>
+														{#if savingEdit}
+															<Spinner className="size-3.5" />
+														{/if}
+														<span>{$i18n.t('Save')}</span>
+													</button>
+												</div>
+											</div>
+										{:else}
+											<div class="mm-item-body">
+												<div class="mm-item-content">
+													<div class="mm-item-text">{memory.content}</div>
+													<div class="mm-item-date">
+														{dayjs(memory.updated_at * 1000).format('MMM D, YYYY · h:mm A')}
+													</div>
+												</div>
+												<div class="mm-item-actions">
+													<Tooltip content={$i18n.t('Edit')}>
+														<button class="mm-action-btn" on:click={() => startEdit(memory)}>
+															<Pencil className="size-3.5" strokeWidth="1.5" />
+														</button>
+													</Tooltip>
+													<Tooltip
+														content={deleteArmedId === memory.id
+															? $i18n.t('Click again to delete')
+															: $i18n.t('Delete')}
+													>
+														<button
+															class="mm-action-btn mm-action-danger"
+															class:mm-action-armed={deleteArmedId === memory.id}
+															on:click={() => handleDelete(memory)}
+															on:blur={() => {
+																if (deleteArmedId === memory.id) deleteArmedId = null;
+															}}
+														>
+															<GarbageBin className="size-3.5" strokeWidth="1.5" />
+														</button>
+													</Tooltip>
+												</div>
+											</div>
+										{/if}
 									</div>
-								</div>
-							{:else}
-								<div class="mm-item-body">
-									<div class="mm-item-content">
-										<div class="mm-item-text">{memory.content}</div>
-										<div class="mm-item-date">
-											{dayjs(memory.updated_at * 1000).format('MMM D, YYYY · h:mm A')}
-										</div>
-									</div>
-									<div class="mm-item-actions">
-										<Tooltip content={$i18n.t('Edit')}>
-											<button class="mm-action-btn" on:click={() => startEdit(memory)}>
-												<Pencil className="size-3.5" strokeWidth="1.5" />
-											</button>
-										</Tooltip>
-										<Tooltip
-											content={deleteArmedId === memory.id
-												? $i18n.t('Click again to delete')
-												: $i18n.t('Delete')}
-										>
-											<button
-												class="mm-action-btn mm-action-danger"
-												class:mm-action-armed={deleteArmedId === memory.id}
-												on:click={() => handleDelete(memory)}
-												on:blur={() => {
-													if (deleteArmedId === memory.id) deleteArmedId = null;
-												}}
-											>
-												<GarbageBin className="size-3.5" strokeWidth="1.5" />
-											</button>
-										</Tooltip>
-									</div>
-								</div>
-							{/if}
-						</div>
-						{/each}
-						{/each}
-					{/if}
+								{/each}
+							{/each}
+						{/if}
+					</div>
 				</div>
-			</div>
 
-			<div class="mm-footer">
-				<button
-					class="mm-clear-btn"
-					class:mm-clear-armed={clearArmed}
-					on:click={handleClear}
-					on:blur={() => (clearArmed = false)}
-				>
-					{clearArmed
-						? $i18n.t('Click again to permanently clear all memories')
-						: $i18n.t('Clear all memories')}
-				</button>
-			</div>
-		{/if}
+				<div class="mm-footer">
+					<button
+						class="mm-clear-btn"
+						class:mm-clear-armed={clearArmed}
+						on:click={handleClear}
+						on:blur={() => (clearArmed = false)}
+					>
+						{clearArmed
+							? $i18n.t('Click again to permanently clear all memories')
+							: $i18n.t('Clear all memories')}
+					</button>
+				</div>
+			{/if}
 		{/if}
 	</div>
 </div>

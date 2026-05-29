@@ -1,16 +1,5 @@
-/**
- * Shared Excel → HTML table renderer.
- *
- * Converts a worksheet to a styled HTML table with:
- * - Column letter headers (A, B, C…)
- * - Row numbers
- * - Proper empty cell handling
- * - Sanitized output
- */
+import type { Worksheet } from 'exceljs';
 
-import type { WorkSheet } from 'xlsx';
-
-/** Convert column index (0-based) to Excel-style letter (A, B, …, Z, AA, AB, …) */
 const colLetter = (i: number): string => {
 	let s = '';
 	let n = i;
@@ -21,7 +10,6 @@ const colLetter = (i: number): string => {
 	return s;
 };
 
-/** Escape HTML entities */
 const esc = (v: unknown): string => {
 	if (v === null || v === undefined || v === '') return '&nbsp;';
 	return String(v).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -33,13 +21,24 @@ export interface ExcelTableResult {
 	colCount: number;
 }
 
-/**
- * Render a worksheet as an HTML table string.
- * Uses sheet_to_json with header:1 for a raw 2D array.
- */
-export async function excelToTable(worksheet: WorkSheet): Promise<ExcelTableResult> {
-	const XLSX = await import('xlsx');
-	const rows: unknown[][] = XLSX.utils.sheet_to_json(worksheet, { header: 1, defval: '' });
+export async function excelToTable(worksheet: Worksheet): Promise<ExcelTableResult> {
+	const rows: unknown[][] = [];
+	let colCount = 0;
+
+	worksheet.eachRow({ includeEmpty: true }, (row) => {
+		const rowData: unknown[] = [];
+		row.eachCell({ includeEmpty: true }, (cell) => {
+			rowData.push(cell.value ?? '');
+		});
+		if (rowData.length > colCount) colCount = rowData.length;
+		rows.push(rowData);
+	});
+
+	for (const row of rows) {
+		while (row.length < colCount) {
+			row.push('');
+		}
+	}
 
 	if (rows.length === 0) {
 		return {
@@ -49,22 +48,18 @@ export async function excelToTable(worksheet: WorkSheet): Promise<ExcelTableResu
 		};
 	}
 
-	// Determine column count from the widest row
-	const colCount = rows.reduce((max, row) => Math.max(max, row.length), 0);
 	const rowCount = rows.length;
 
 	const parts: string[] = [];
 	parts.push('<table>');
 
-	// Column letter header row
 	parts.push('<thead><tr>');
-	parts.push('<th class="excel-row-num"></th>'); // corner cell
+	parts.push('<th class="excel-row-num"></th>');
 	for (let c = 0; c < colCount; c++) {
 		parts.push(`<th class="excel-col-hdr">${colLetter(c)}</th>`);
 	}
 	parts.push('</tr></thead>');
 
-	// Data rows
 	parts.push('<tbody>');
 	for (let r = 0; r < rowCount; r++) {
 		const row = rows[r];

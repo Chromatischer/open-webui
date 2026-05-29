@@ -105,9 +105,7 @@ async def add_memory(
             and existing.distances[0][0] >= dedup_threshold
         ):
             duplicate_id = existing.ids[0][0]
-            updated = await Memories.update_memory_by_id_and_user_id(
-                duplicate_id, user.id, form_data.content
-            )
+            updated = await Memories.update_memory_by_id_and_user_id(duplicate_id, user.id, form_data.content)
             if updated:
                 await ASYNC_VECTOR_DB_CLIENT.upsert(
                     collection_name=f'user-memory-{user.id}',

@@ -1,115 +1,441 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Workspace Models — Concept B refined</title>
-<style>
-:root {
-	--bg-sidebar:#e8e4db; --bg-base:#f7f5f0; --bg-elevated:#ffffff;
-	--surface:rgba(0,0,0,.025); --surface-hover:rgba(0,0,0,.05); --surface-active:rgba(0,0,0,.08);
-	--border:rgba(0,0,0,.06); --border-hover:rgba(0,0,0,.12);
-	--text:#2a2927; --text-secondary:#6b6964; --text-tertiary:#a9a69d;
-	--accent:#7b7ef6; --accent-glow:rgba(123,126,246,.12); --accent-soft:#9fa1f9;
-	--orange:#e8730a; --success:#2d9f52;
-	--font-sans:'Archivo',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
-	--shadow-color:rgba(0,0,0,.06);
-}
-* { box-sizing:border-box; margin:0; padding:0; }
-body { font-family:var(--font-sans); background:var(--bg-base); color:var(--text); padding:32px; line-height:1.4; }
-.concept { max-width:980px; margin:0 auto 56px; }
-.concept > h2 { font-size:13px; text-transform:uppercase; letter-spacing:.08em; color:var(--text-tertiary); margin-bottom:4px; font-weight:600;}
-.concept > p.note { font-size:13px; color:var(--text-secondary); margin-bottom:16px; max-width:680px;}
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Workspace Models — Concept B refined</title>
+		<style>
+			:root {
+				--bg-sidebar: #e8e4db;
+				--bg-base: #f7f5f0;
+				--bg-elevated: #ffffff;
+				--surface: rgba(0, 0, 0, 0.025);
+				--surface-hover: rgba(0, 0, 0, 0.05);
+				--surface-active: rgba(0, 0, 0, 0.08);
+				--border: rgba(0, 0, 0, 0.06);
+				--border-hover: rgba(0, 0, 0, 0.12);
+				--text: #2a2927;
+				--text-secondary: #6b6964;
+				--text-tertiary: #a9a69d;
+				--accent: #7b7ef6;
+				--accent-glow: rgba(123, 126, 246, 0.12);
+				--accent-soft: #9fa1f9;
+				--orange: #e8730a;
+				--success: #2d9f52;
+				--font-sans: 'Archivo', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+				--shadow-color: rgba(0, 0, 0, 0.06);
+			}
+			* {
+				box-sizing: border-box;
+				margin: 0;
+				padding: 0;
+			}
+			body {
+				font-family: var(--font-sans);
+				background: var(--bg-base);
+				color: var(--text);
+				padding: 32px;
+				line-height: 1.4;
+			}
+			.concept {
+				max-width: 980px;
+				margin: 0 auto 56px;
+			}
+			.concept > h2 {
+				font-size: 13px;
+				text-transform: uppercase;
+				letter-spacing: 0.08em;
+				color: var(--text-tertiary);
+				margin-bottom: 4px;
+				font-weight: 600;
+			}
+			.concept > p.note {
+				font-size: 13px;
+				color: var(--text-secondary);
+				margin-bottom: 16px;
+				max-width: 680px;
+			}
 
-.page-head { margin-bottom:16px;}
-.page-head .title { font-size:20px; font-weight:600; margin-bottom:4px;}
-.page-head .lede { font-size:13px; color:var(--text-secondary); max-width:620px; line-height:1.5;}
-.chip .cnt { color:var(--accent); font-weight:600; margin-left:2px;}
+			.page-head {
+				margin-bottom: 16px;
+			}
+			.page-head .title {
+				font-size: 20px;
+				font-weight: 600;
+				margin-bottom: 4px;
+			}
+			.page-head .lede {
+				font-size: 13px;
+				color: var(--text-secondary);
+				max-width: 620px;
+				line-height: 1.5;
+			}
+			.chip .cnt {
+				color: var(--accent);
+				font-weight: 600;
+				margin-left: 2px;
+			}
 
-.toolbar { display:flex; align-items:center; gap:10px; margin-bottom:16px;}
-.search { flex:1; display:flex; align-items:center; gap:8px; background:var(--bg-elevated); border:1px solid var(--border); border-radius:12px; padding:9px 12px; font-size:13px; color:var(--text-tertiary);}
-.chips { display:flex; gap:6px;}
-.chip { font-size:12px; padding:7px 12px; border-radius:999px; background:var(--surface); color:var(--text-secondary); cursor:pointer;}
-.chip.on { background:var(--accent-glow); color:var(--accent); font-weight:600;}
+			.toolbar {
+				display: flex;
+				align-items: center;
+				gap: 10px;
+				margin-bottom: 16px;
+			}
+			.search {
+				flex: 1;
+				display: flex;
+				align-items: center;
+				gap: 8px;
+				background: var(--bg-elevated);
+				border: 1px solid var(--border);
+				border-radius: 12px;
+				padding: 9px 12px;
+				font-size: 13px;
+				color: var(--text-tertiary);
+			}
+			.chips {
+				display: flex;
+				gap: 6px;
+			}
+			.chip {
+				font-size: 12px;
+				padding: 7px 12px;
+				border-radius: 999px;
+				background: var(--surface);
+				color: var(--text-secondary);
+				cursor: pointer;
+			}
+			.chip.on {
+				background: var(--accent-glow);
+				color: var(--accent);
+				font-weight: 600;
+			}
 
-.avatar { border-radius:12px; object-fit:cover; background:linear-gradient(135deg,#c9cbfa,#9fa1f9); flex:none;}
-.tag { font-size:10px; padding:2px 7px; border-radius:6px; background:var(--surface); color:var(--text-secondary);}
-.tiny { color:var(--text-tertiary); font-size:11px;}
-/* base-model chip — distinct from capability tags */
-.base { display:inline-flex; align-items:center; gap:4px; font-size:11px; font-weight:600; padding:3px 8px; border-radius:7px; background:var(--accent-glow); color:var(--accent);}
+			.avatar {
+				border-radius: 12px;
+				object-fit: cover;
+				background: linear-gradient(135deg, #c9cbfa, #9fa1f9);
+				flex: none;
+			}
+			.tag {
+				font-size: 10px;
+				padding: 2px 7px;
+				border-radius: 6px;
+				background: var(--surface);
+				color: var(--text-secondary);
+			}
+			.tiny {
+				color: var(--text-tertiary);
+				font-size: 11px;
+			}
+			/* base-model chip — distinct from capability tags */
+			.base {
+				display: inline-flex;
+				align-items: center;
+				gap: 4px;
+				font-size: 11px;
+				font-weight: 600;
+				padding: 3px 8px;
+				border-radius: 7px;
+				background: var(--accent-glow);
+				color: var(--accent);
+			}
 
-.grid3 { display:grid; grid-template-columns:repeat(3,1fr); gap:12px;}
-.card { background:var(--bg-elevated); border:1px solid var(--border); border-radius:16px; padding:14px; cursor:pointer; display:flex; flex-direction:column;
-	transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;}
-.card:hover { border-color:var(--border-hover); box-shadow:0 4px 14px var(--shadow-color); transform:translateY(-2px);}
-.card:active { transform:scale(.98);}
-.card .top { display:flex; align-items:center; gap:10px; margin-bottom:10px;}
-.card .name { font-weight:600; font-size:14px; line-height:1.2;}
-.card .cdesc { font-size:12px; color:var(--text-secondary); display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; min-height:32px;}
-.card .foot { display:flex; align-items:center; gap:6px; margin-top:12px;}
+			.grid3 {
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
+				gap: 12px;
+			}
+			.card {
+				background: var(--bg-elevated);
+				border: 1px solid var(--border);
+				border-radius: 16px;
+				padding: 14px;
+				cursor: pointer;
+				display: flex;
+				flex-direction: column;
+				transition:
+					transform 0.2s ease,
+					box-shadow 0.2s ease,
+					border-color 0.2s ease;
+			}
+			.card:hover {
+				border-color: var(--border-hover);
+				box-shadow: 0 4px 14px var(--shadow-color);
+				transform: translateY(-2px);
+			}
+			.card:active {
+				transform: scale(0.98);
+			}
+			.card .top {
+				display: flex;
+				align-items: center;
+				gap: 10px;
+				margin-bottom: 10px;
+			}
+			.card .name {
+				font-weight: 600;
+				font-size: 14px;
+				line-height: 1.2;
+			}
+			.card .cdesc {
+				font-size: 12px;
+				color: var(--text-secondary);
+				display: -webkit-box;
+				-webkit-line-clamp: 2;
+				-webkit-box-orient: vertical;
+				overflow: hidden;
+				min-height: 32px;
+			}
+			.card .foot {
+				display: flex;
+				align-items: center;
+				gap: 6px;
+				margin-top: 12px;
+			}
 
-/* combined action card — split vertically into two halves */
-.action-card { padding:0; border:1px solid var(--border); background:var(--surface); cursor:default; flex-direction:row; overflow:hidden;
-	transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;}
-.action-card:hover { box-shadow:0 4px 14px var(--shadow-color); border-color:var(--border-hover);}
-.half { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; padding:18px 10px; cursor:pointer; color:var(--text);
-	transition:flex-grow .45s cubic-bezier(.22,1,.36,1), background .22s ease, color .22s ease, transform .15s ease;}
-.half:active { transform:scale(.97);}
-.half + .half { border-left:1px solid var(--border);}
-.half .glyph { width:36px; height:36px; border-radius:11px; display:flex; align-items:center; justify-content:center; font-size:20px; line-height:1;
-	transition:background .2s ease, color .2s ease;}
-.half .lbl { font-weight:600; font-size:13px;}
-.half .sub { font-size:11px; color:var(--text-tertiary); transition:color .2s ease;}
+			/* combined action card — split vertically into two halves */
+			.action-card {
+				padding: 0;
+				border: 1px solid var(--border);
+				background: var(--surface);
+				cursor: default;
+				flex-direction: row;
+				overflow: hidden;
+				transition:
+					transform 0.2s ease,
+					box-shadow 0.2s ease,
+					border-color 0.2s ease;
+			}
+			.action-card:hover {
+				box-shadow: 0 4px 14px var(--shadow-color);
+				border-color: var(--border-hover);
+			}
+			.half {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				gap: 8px;
+				padding: 18px 10px;
+				cursor: pointer;
+				color: var(--text);
+				transition:
+					flex-grow 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+					background 0.22s ease,
+					color 0.22s ease,
+					transform 0.15s ease;
+			}
+			.half:active {
+				transform: scale(0.97);
+			}
+			.half + .half {
+				border-left: 1px solid var(--border);
+			}
+			.half .glyph {
+				width: 36px;
+				height: 36px;
+				border-radius: 11px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 20px;
+				line-height: 1;
+				transition:
+					background 0.2s ease,
+					color 0.2s ease;
+			}
+			.half .lbl {
+				font-weight: 600;
+				font-size: 13px;
+			}
+			.half .sub {
+				font-size: 11px;
+				color: var(--text-tertiary);
+				transition: color 0.2s ease;
+			}
 
-/* 60/40 weighting; New slowly expands toward ~75/25 on hover */
-.half.new { flex-grow:6; flex-basis:0;}
-.half.imp { flex-grow:4; flex-basis:0;}
-.half.new:hover { flex-grow:9;}
+			/* 60/40 weighting; New slowly expands toward ~75/25 on hover */
+			.half.new {
+				flex-grow: 6;
+				flex-basis: 0;
+			}
+			.half.imp {
+				flex-grow: 4;
+				flex-basis: 0;
+			}
+			.half.new:hover {
+				flex-grow: 9;
+			}
 
-/* New: idle = dark glyph on surface; hover = full negative (black fill, white text) */
-.half.new .glyph { background:var(--text); color:var(--bg-elevated);}
-.half.new:hover { background:var(--text); color:var(--bg-elevated);}
-.half.new:hover .glyph { background:var(--bg-elevated); color:var(--text);}
-.half.new:hover .sub { color:rgba(255,255,255,.6);}
+			/* New: idle = dark glyph on surface; hover = full negative (black fill, white text) */
+			.half.new .glyph {
+				background: var(--text);
+				color: var(--bg-elevated);
+			}
+			.half.new:hover {
+				background: var(--text);
+				color: var(--bg-elevated);
+			}
+			.half.new:hover .glyph {
+				background: var(--bg-elevated);
+				color: var(--text);
+			}
+			.half.new:hover .sub {
+				color: rgba(255, 255, 255, 0.6);
+			}
 
-/* Import: quieter, fills surface on hover */
-.half.imp .glyph { background:var(--surface-active); color:var(--text-secondary);}
-.half.imp:hover { background:var(--surface-hover);}
-</style>
-</head>
-<body>
+			/* Import: quieter, fills surface on hover */
+			.half.imp .glyph {
+				background: var(--surface-active);
+				color: var(--text-secondary);
+			}
+			.half.imp:hover {
+				background: var(--surface-hover);
+			}
+		</style>
+	</head>
+	<body>
+		<section class="concept">
+			<h2>Concept B — refined</h2>
+			<p class="note">
+				Dense 3-up cards. First cell is a split action card (New | Import). No toggles, no per-card
+				"⋯" menus — clicking a card opens it; the only inline actions are Clone + Delete, revealed
+				on hover (shown forced-on for the top-left card here). Everything else (share, export, hide,
+				pin) lives inside the model's own config. Header is just the count + Export.
+			</p>
 
-<section class="concept">
-	<h2>Concept B — refined</h2>
-	<p class="note">Dense 3-up cards. First cell is a split action card (New | Import). No toggles, no per-card "⋯" menus — clicking a card opens it; the only inline actions are Clone + Delete, revealed on hover (shown forced-on for the top-left card here). Everything else (share, export, hide, pin) lives inside the model's own config. Header is just the count + Export.</p>
+			<div class="page-head">
+				<div class="title">Models</div>
+				<div class="lede">
+					Custom presets that bundle a base model with a system prompt, tools, knowledge and
+					capabilities — build your own assistants and reuse them anywhere in chat.
+				</div>
+			</div>
 
-	<div class="page-head">
-		<div class="title">Models</div>
-		<div class="lede">Custom presets that bundle a base model with a system prompt, tools, knowledge and capabilities — build your own assistants and reuse them anywhere in chat.</div>
-	</div>
+			<div class="toolbar">
+				<div class="search">🔍 Search models…</div>
+				<div class="chips">
+					<span class="chip on">All <span class="cnt">48</span></span
+					><span class="chip">Mine</span><span class="chip">Shared</span
+					><span class="chip">⋯ Tags</span>
+				</div>
+			</div>
 
-	<div class="toolbar">
-		<div class="search">🔍 Search models…</div>
-		<div class="chips"><span class="chip on">All <span class="cnt">48</span></span><span class="chip">Mine</span><span class="chip">Shared</span><span class="chip">⋯ Tags</span></div>
-	</div>
+			<div class="grid3">
+				<!-- combined action card: split vertically -->
+				<div class="card action-card">
+					<div
+						class="half new"
+						style="flex-grow: 9; background: var(--text); color: var(--bg-elevated)"
+					>
+						<div class="glyph" style="background: var(--bg-elevated); color: var(--text)">+</div>
+						<div class="lbl">New Model</div>
+						<div class="sub" style="color: rgba(255, 255, 255, 0.6)">Start from scratch</div>
+					</div>
+					<div class="half imp">
+						<div class="glyph">↥</div>
+						<div class="lbl">Import</div>
+						<div class="sub">From .json file</div>
+					</div>
+				</div>
 
-	<div class="grid3">
-		<!-- combined action card: split vertically -->
-		<div class="card action-card">
-			<div class="half new" style="flex-grow:9;background:var(--text);color:var(--bg-elevated)"><div class="glyph" style="background:var(--bg-elevated);color:var(--text)">+</div><div class="lbl">New Model</div><div class="sub" style="color:rgba(255,255,255,.6)">Start from scratch</div></div>
-			<div class="half imp"><div class="glyph">↥</div><div class="lbl">Import</div><div class="sub">From .json file</div></div>
-		</div>
-
-		<div class="card"><div class="top"><img class="avatar" width="40" height="40"><div><div class="name">Code Reviewer</div><div class="tiny">by Dominik</div></div></div><div class="cdesc">Reviews diffs for correctness bugs and style cleanups at the chosen effort level.</div><div class="foot"><span class="base">⬡ gpt-4o</span><span class="tag">code</span></div></div>
-		<div class="card"><div class="top"><img class="avatar" width="40" height="40"><div><div class="name">Research Assistant</div><div class="tiny">by Dominik</div></div></div><div class="cdesc">Deep web research with inline citations and source ranking.</div><div class="foot"><span class="base">⬡ claude-opus-4</span><span class="tag">research</span></div></div>
-		<div class="card"><div class="top"><img class="avatar" width="40" height="40" style="opacity:.55"><div><div class="name">SQL Helper</div><div class="tiny">by Team · read only</div></div></div><div class="cdesc">Generates and explains queries against your warehouse schema.</div><div class="foot"><span class="base">⬡ llama-3.1-70b</span><span class="tag">data</span></div></div>
-		<div class="card"><div class="top"><img class="avatar" width="40" height="40"><div><div class="name">Translator</div><div class="tiny">by Dominik</div></div></div><div class="cdesc">Idiomatic bidirectional DE↔EN translation, tone-aware.</div><div class="foot"><span class="base">⬡ gpt-4o</span></div></div>
-		<div class="card"><div class="top"><img class="avatar" width="40" height="40"><div><div class="name">Brainstormer</div><div class="tiny">by Maria</div></div></div><div class="cdesc">Divergent ideation partner for product and copy.</div><div class="foot"><span class="base">⬡ claude-sonnet-4</span></div></div>
-		<div class="card"><div class="top"><img class="avatar" width="40" height="40"><div><div class="name">Summarizer</div><div class="tiny">by Team</div></div></div><div class="cdesc">Condenses long documents into structured briefs.</div><div class="foot"><span class="base">⬡ gpt-4o-mini</span></div></div>
-		<div class="card"><div class="top"><img class="avatar" width="40" height="40"><div><div class="name">Planner</div><div class="tiny">by Dominik</div></div></div><div class="cdesc">Breaks goals into sequenced, dependency-aware tasks.</div><div class="foot"><span class="base">⬡ claude-opus-4</span></div></div>
-		<div class="card"><div class="top"><img class="avatar" width="40" height="40"><div><div class="name">Copy Editor</div><div class="tiny">by Maria</div></div></div><div class="cdesc">Tightens prose, fixes grammar, preserves voice.</div><div class="foot"><span class="base">⬡ gpt-4o</span></div></div>
-	</div>
-</section>
-
-</body>
+				<div class="card">
+					<div class="top">
+						<img class="avatar" width="40" height="40" />
+						<div>
+							<div class="name">Code Reviewer</div>
+							<div class="tiny">by Dominik</div>
+						</div>
+					</div>
+					<div class="cdesc">
+						Reviews diffs for correctness bugs and style cleanups at the chosen effort level.
+					</div>
+					<div class="foot"><span class="base">⬡ gpt-4o</span><span class="tag">code</span></div>
+				</div>
+				<div class="card">
+					<div class="top">
+						<img class="avatar" width="40" height="40" />
+						<div>
+							<div class="name">Research Assistant</div>
+							<div class="tiny">by Dominik</div>
+						</div>
+					</div>
+					<div class="cdesc">Deep web research with inline citations and source ranking.</div>
+					<div class="foot">
+						<span class="base">⬡ claude-opus-4</span><span class="tag">research</span>
+					</div>
+				</div>
+				<div class="card">
+					<div class="top">
+						<img class="avatar" width="40" height="40" style="opacity: 0.55" />
+						<div>
+							<div class="name">SQL Helper</div>
+							<div class="tiny">by Team · read only</div>
+						</div>
+					</div>
+					<div class="cdesc">Generates and explains queries against your warehouse schema.</div>
+					<div class="foot">
+						<span class="base">⬡ llama-3.1-70b</span><span class="tag">data</span>
+					</div>
+				</div>
+				<div class="card">
+					<div class="top">
+						<img class="avatar" width="40" height="40" />
+						<div>
+							<div class="name">Translator</div>
+							<div class="tiny">by Dominik</div>
+						</div>
+					</div>
+					<div class="cdesc">Idiomatic bidirectional DE↔EN translation, tone-aware.</div>
+					<div class="foot"><span class="base">⬡ gpt-4o</span></div>
+				</div>
+				<div class="card">
+					<div class="top">
+						<img class="avatar" width="40" height="40" />
+						<div>
+							<div class="name">Brainstormer</div>
+							<div class="tiny">by Maria</div>
+						</div>
+					</div>
+					<div class="cdesc">Divergent ideation partner for product and copy.</div>
+					<div class="foot"><span class="base">⬡ claude-sonnet-4</span></div>
+				</div>
+				<div class="card">
+					<div class="top">
+						<img class="avatar" width="40" height="40" />
+						<div>
+							<div class="name">Summarizer</div>
+							<div class="tiny">by Team</div>
+						</div>
+					</div>
+					<div class="cdesc">Condenses long documents into structured briefs.</div>
+					<div class="foot"><span class="base">⬡ gpt-4o-mini</span></div>
+				</div>
+				<div class="card">
+					<div class="top">
+						<img class="avatar" width="40" height="40" />
+						<div>
+							<div class="name">Planner</div>
+							<div class="tiny">by Dominik</div>
+						</div>
+					</div>
+					<div class="cdesc">Breaks goals into sequenced, dependency-aware tasks.</div>
+					<div class="foot"><span class="base">⬡ claude-opus-4</span></div>
+				</div>
+				<div class="card">
+					<div class="top">
+						<img class="avatar" width="40" height="40" />
+						<div>
+							<div class="name">Copy Editor</div>
+							<div class="tiny">by Maria</div>
+						</div>
+					</div>
+					<div class="cdesc">Tightens prose, fixes grammar, preserves voice.</div>
+					<div class="foot"><span class="base">⬡ gpt-4o</span></div>
+				</div>
+			</div>
+		</section>
+	</body>
 </html>

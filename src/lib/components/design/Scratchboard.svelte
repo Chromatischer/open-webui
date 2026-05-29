@@ -68,72 +68,100 @@
 			aria-label="Expand Scratchboard"
 			title="Scratchboard"
 		>
-			<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+			<svg
+				width="16"
+				height="16"
+				viewBox="0 0 24 24"
+				fill="none"
+				stroke="currentColor"
+				stroke-width="2"
+				stroke-linecap="round"
+				stroke-linejoin="round"><path d="M15 18l-6-6 6-6" /></svg
+			>
 		</button>
 	</aside>
 {:else}
-<aside class="scratchboard">
-	<div class="board-header">
-		<div class="header-title">
-			<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/></svg>
-			<span>Scratchboard</span>
+	<aside class="scratchboard">
+		<div class="board-header">
+			<div class="header-title">
+				<svg
+					width="14"
+					height="14"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2"
+					><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><path
+						d="M14 2v6h6"
+					/><path d="M16 13H8" /><path d="M16 17H8" /><path d="M10 9H8" /></svg
+				>
+				<span>Scratchboard</span>
+			</div>
+
+			<button
+				class="collapse-btn"
+				onclick={() => (collapsed = true)}
+				aria-label="Collapse Scratchboard"
+				title="Collapse"
+			>
+				<svg
+					width="16"
+					height="16"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2"
+					stroke-linecap="round"
+					stroke-linejoin="round"><path d="M9 18l6-6-6-6" /></svg
+				>
+			</button>
 		</div>
 
-		<button
-			class="collapse-btn"
-			onclick={() => (collapsed = true)}
-			aria-label="Collapse Scratchboard"
-			title="Collapse"
-		>
-			<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
-		</button>
-	</div>
-
-	<div class="board-body" class:editing>
-		{#if editing}
-			<div class="editor">
-				<div class="editor-gutter">
-					{#each lines as _, i}
-						<div class="line-num">{i + 1}</div>
-					{/each}
+		<div class="board-body" class:editing>
+			{#if editing}
+				<div class="editor">
+					<div class="editor-gutter">
+						{#each lines as _, i}
+							<div class="line-num">{i + 1}</div>
+						{/each}
+					</div>
+					<textarea
+						bind:this={textareaEl}
+						class="editor-input"
+						value={draft}
+						spellcheck="false"
+						aria-label="Scratchboard markdown"
+						oninput={(e) => updateDraft(e.currentTarget.value)}
+						onblur={() => (editing = false)}
+					></textarea>
 				</div>
-				<textarea
-					bind:this={textareaEl}
-					class="editor-input"
-					value={draft}
-					spellcheck="false"
-					aria-label="Scratchboard markdown"
-					oninput={(e) => updateDraft(e.currentTarget.value)}
-					onblur={() => editing = false}
-				></textarea>
-			</div>
-		{:else}
-			<div
-				class="markdown-preview"
-				role="button"
-				tabindex="0"
-				onclick={startEditing}
-				onkeydown={(e) => {
-					if (e.key === 'Enter') startEditing();
-				}}
-				aria-label="Edit Scratchboard"
-			>
-				<Markdown
-					id="design-scratchboard-preview"
-					content={draft}
-					editCodeBlock={false}
-					allowEmbeds={false}
-				/>
-			</div>
-		{/if}
-	</div>
+			{:else}
+				<div
+					class="markdown-preview"
+					role="button"
+					tabindex="0"
+					onclick={startEditing}
+					onkeydown={(e) => {
+						if (e.key === 'Enter') startEditing();
+					}}
+					aria-label="Edit Scratchboard"
+				>
+					<Markdown
+						id="design-scratchboard-preview"
+						content={draft}
+						editCodeBlock={false}
+						allowEmbeds={false}
+					/>
+				</div>
+			{/if}
+		</div>
 
-	<div class="board-footer">
-		<span class="footer-meta">{lines.length} lines</span>
-		<span class="footer-meta">CHAT BOARD</span>
-		<span class="footer-meta saved" class:flash={saved}>● Autosaved</span>
-	</div>
-</aside>
+		<div class="board-footer">
+			<span class="footer-meta">{lines.length} lines</span>
+			<span class="footer-meta">CHAT BOARD</span>
+			<span class="footer-meta saved" class:flash={saved}>● Autosaved</span>
+		</div>
+	</aside>
 {/if}
 
 <style>
@@ -182,7 +210,9 @@
 		background: transparent;
 		color: var(--text-tertiary);
 		cursor: pointer;
-		transition: background 0.15s ease, color 0.15s ease;
+		transition:
+			background 0.15s ease,
+			color 0.15s ease;
 	}
 
 	.collapse-btn:hover {
@@ -226,7 +256,9 @@
 		background: transparent;
 		color: var(--text-tertiary);
 		cursor: pointer;
-		transition: background 0.15s ease, color 0.15s ease;
+		transition:
+			background 0.15s ease,
+			color 0.15s ease;
 	}
 
 	.rail-toggle:hover {
@@ -366,9 +398,15 @@
 		letter-spacing: 0;
 	}
 
-	.markdown-preview :global(h1) { font-size: 20px; }
-	.markdown-preview :global(h2) { font-size: 17px; }
-	.markdown-preview :global(h3) { font-size: 15px; }
+	.markdown-preview :global(h1) {
+		font-size: 20px;
+	}
+	.markdown-preview :global(h2) {
+		font-size: 17px;
+	}
+	.markdown-preview :global(h3) {
+		font-size: 15px;
+	}
 
 	.markdown-preview :global(ul),
 	.markdown-preview :global(ol) {

@@ -51,17 +51,12 @@
 	<div class=" space-y-3 overflow-y-scroll max-h-[28rem] md:max-h-full">
 		{#if $user?.role === 'admin'}
 			<div class="flex flex-col gap-2">
-				<a
-					href="https://docs.openwebui.com"
-					target="_blank"
-					rel="noopener"
-					class="ab-link"
-				>
+				<a href="https://docs.openwebui.com" target="_blank" rel="noopener" class="ab-link">
 					<QuestionMarkCircle className="size-4" />
 					<span>{$i18n.t('Documentation')}</span>
 				</a>
 				<a
-					href="https://github.com/open-webui/open-webui/releases"
+					href="https://github.com/Chromatischer/open-webui/releases"
 					target="_blank"
 					rel="noopener"
 					class="ab-link"
@@ -165,10 +160,10 @@
 					/>
 				</a>
 
-				<a href="https://github.com/open-webui/open-webui" target="_blank">
+				<a href="https://github.com/Chromatischer/open-webui" target="_blank">
 					<img
 						alt="Github Repo"
-						src="https://img.shields.io/github/stars/open-webui/open-webui?style=social&label=Star us on Github"
+						src="https://img.shields.io/github/stars/Chromatischer/open-webui?style=social&label=Star this fork"
 					/>
 				</a>
 			</div>

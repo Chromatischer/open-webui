@@ -103,7 +103,8 @@
 	const defaultScratchboard =
 		'# Scratchboard\n\n- Capture useful context from this chat\n- Draft follow-up prompts\n- Keep implementation notes close to the conversation\n';
 
-	$: isChatSurface = ['/', '/home'].includes($page.url.pathname) || $page.url.pathname.startsWith('/c/');
+	$: isChatSurface =
+		['/', '/home'].includes($page.url.pathname) || $page.url.pathname.startsWith('/c/');
 	$: proximity = Math.max(0, Math.min(1, 1 - cursorX / 80));
 	$: notchW = 12 + proximity * 28;
 	$: notchH = 52 + proximity * 32;
@@ -732,5 +733,4 @@
 		width: 100%;
 		height: 100%;
 	}
-
 </style>

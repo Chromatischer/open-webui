@@ -1706,9 +1706,7 @@ class ChatTable:
             scratchboard = row[0].get('scratchboard')
             return scratchboard if isinstance(scratchboard, str) else ''
 
-    async def update_chat_scratchboard_by_id(
-        self, id: str, user_id: str, content: str
-    ) -> Optional[ChatModel]:
+    async def update_chat_scratchboard_by_id(self, id: str, user_id: str, content: str) -> Optional[ChatModel]:
         """Update the scratchboard content on a chat."""
         try:
             async with get_async_db_context() as db:

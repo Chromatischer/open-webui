@@ -47,7 +47,7 @@
 		interface: AppNotification,
 		connections: Link,
 		tools: WrenchAlt,
-		personalization: Face,
+		memory: Face,
 		archived_chats: ArchiveBox,
 		data_controls: DatabaseSettings,
 		about: InfoCircle
@@ -78,8 +78,7 @@
 		{ id: 'design-section-input', title: 'Input' },
 		{ id: 'design-section-artifacts', title: 'Artifacts' },
 		{ id: 'design-section-voice', title: 'Voice' },
-		{ id: 'design-section-file', title: 'File' },
-		{ id: 'design-section-memory', title: 'Memory' }
+		{ id: 'design-section-file', title: 'File' }
 	];
 
 	const allSettings: SettingsTab[] = [
@@ -157,10 +156,6 @@
 			id: 'interface',
 			title: 'Interface',
 			keywords: [
-				'memories',
-				'memory',
-				'personalization',
-				'personalize',
 				'allow user location',
 				'allow voice interruption in call',
 				'allowuserlocation',
@@ -369,6 +364,22 @@
 			]
 		},
 		{
+			id: 'memory',
+			title: 'Memory',
+			keywords: [
+				'manage memories',
+				'managememories',
+				'memories',
+				'memory',
+				'personalization',
+				'personalize',
+				'recall',
+				'remember',
+				'user memories',
+				'usermemories'
+			]
+		},
+		{
 			id: 'about',
 			title: 'About',
 			keywords: [
@@ -441,14 +452,16 @@
 				return $user?.role === 'admin' || ($user?.permissions?.settings?.interface ?? true);
 			}
 
+			if (tab.id === 'memory') {
+				return (
+					$config?.features?.enable_memories &&
+					($user?.role === 'admin' || ($user?.permissions?.features?.memories ?? true))
+				);
+			}
+
 			return true;
 		});
 	};
-
-	// Personalization (Memory) is now merged into the Interface tab
-	$: personalizationAvailable =
-		$config?.features?.enable_memories &&
-		($user?.role === 'admin' || ($user?.permissions?.features?.memories ?? true));
 
 	const setFilteredSettings = () => {
 		filteredSettings = availableSettings
@@ -586,7 +599,10 @@
 								}}
 							>
 								<span class="st-tab-icon">
-									<svelte:component this={tabIcons[tabId as keyof typeof tabIcons]} strokeWidth="2" />
+									<svelte:component
+										this={tabIcons[tabId as keyof typeof tabIcons]}
+										strokeWidth="2"
+									/>
 								</span>
 								<span class="st-tab-label">{$i18n.t(meta?.title ?? tabId)}</span>
 							</button>
@@ -594,15 +610,13 @@
 							{#if tabId === 'interface' && selectedTab === 'interface'}
 								<div class="st-sub">
 									{#each designSubsections as subsection}
-										{#if subsection.id !== 'design-section-memory' || personalizationAvailable}
-											<button
-												type="button"
-												class="st-sub-btn"
-												on:click={() => selectDesignSubsection(subsection.id)}
-											>
-												{$i18n.t(subsection.title)}
-											</button>
-										{/if}
+										<button
+											type="button"
+											class="st-sub-btn"
+											on:click={() => selectDesignSubsection(subsection.id)}
+										>
+											{$i18n.t(subsection.title)}
+										</button>
 									{/each}
 								</div>
 							{/if}
@@ -657,23 +671,9 @@
 						}}
 					/>
 				{:else if selectedTab === 'interface'}
-					<Interface
-						{saveSettings}
-						on:save={() => {
-							toast.success($i18n.t('Settings saved successfully!'));
-						}}
-					/>
-
-					{#if personalizationAvailable}
-						<div id="design-section-memory" class="st-merged-section">
-							<Personalization
-								{saveSettings}
-								on:save={() => {
-									toast.success($i18n.t('Settings saved successfully!'));
-								}}
-							/>
-						</div>
-					{/if}
+					<Interface {saveSettings} />
+				{:else if selectedTab === 'memory'}
+					<Personalization {saveSettings} />
 				{:else if selectedTab === 'connections'}
 					<Connections
 						saveSettings={async (updated) => {
@@ -736,15 +736,7 @@
 		flex-direction: column;
 		color: var(--text);
 	}
-	.st-merged-section {
-		border-top: 1px solid var(--border);
-		margin-top: 10px;
-		padding-top: 18px;
-		scroll-margin-top: 12px;
-	}
-	/* Interface + embedded Personalization stack naturally (no full-height push) */
-	.st-content :global(#tab-interface),
-	.st-content :global(#tab-personalization) {
+	.st-content :global(#tab-interface) {
 		height: auto;
 	}
 	.st-head {

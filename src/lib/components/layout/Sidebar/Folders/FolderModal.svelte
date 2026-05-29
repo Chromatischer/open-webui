@@ -115,10 +115,7 @@
 
 				<div class="flex flex-col w-full">
 					<div class="mb-1 text-xs text-gray-500">{$i18n.t('Default Model')}</div>
-					<select
-						class="w-full text-sm bg-transparent outline-hidden"
-						bind:value={defaultModelId}
-					>
+					<select class="w-full text-sm bg-transparent outline-hidden" bind:value={defaultModelId}>
 						<option value="">{$i18n.t('None')}</option>
 						{#each $models as model}
 							<option value={model.id}>{model.name}</option>
