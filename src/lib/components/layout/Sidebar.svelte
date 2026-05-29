@@ -49,7 +49,6 @@
 	import { WEBUI_API_BASE_URL, WEBUI_BASE_URL } from '$lib/constants';
 
 	import ArchivedChatsModal from './ArchivedChatsModal.svelte';
-	import UserMenu from './Sidebar/UserMenu.svelte';
 	import ChatItem from './Sidebar/ChatItem.svelte';
 	import Spinner from '../common/Spinner.svelte';
 	import Loader from '../common/Loader.svelte';
@@ -906,30 +905,22 @@
 			<div>
 				<div class=" py-2 flex justify-center items-center">
 					{#if $user !== undefined && $user !== null}
-						<UserMenu
-							role={$user?.role}
-							profile={true}
-							showActiveUsers={false}
-							on:show={(e) => {
-								if (e.detail === 'archived-chat') {
-									showArchivedChats.set(true);
-								}
+						<button
+							type="button"
+							class=" cursor-pointer flex rounded-xl btn-ghost transition group"
+							aria-label={$i18n.t('Open Settings')}
+							on:click={() => {
+								showSettings.set(true);
 							}}
 						>
-						<div
-							class=" cursor-pointer flex rounded-xl btn-ghost transition group"
-						>
-								<div class="self-center relative">
-									<img
-										src={`${WEBUI_API_BASE_URL}/users/${$user?.id}/profile/image`}
-										class=" size-7 object-cover rounded-full"
-										alt={$i18n.t('Open User Profile Menu')}
-										aria-label={$i18n.t('Open User Profile Menu')}
-									/>
-
-								</div>
+							<div class="self-center relative">
+								<img
+									src={`${WEBUI_API_BASE_URL}/users/${$user?.id}/profile/image`}
+									class=" size-7 object-cover rounded-full"
+									alt={$i18n.t('Open Settings')}
+								/>
 							</div>
-						</UserMenu>
+						</button>
 					{/if}
 				</div>
 			</div>
@@ -1527,32 +1518,25 @@
 				<div class="sidebar-footer-row font-primary">
 					{#if $user !== undefined && $user !== null}
 						<div class="sidebar-footer-user">
-							<UserMenu
-								role={$user?.role}
-								profile={true}
-								showActiveUsers={false}
-								className="w-[calc(var(--sidebar-width)-3.5rem)]"
-								on:show={(e) => {
-									if (e.detail === 'archived-chat') {
-										showArchivedChats.set(true);
-									}
+							<button
+								type="button"
+								class="sidebar-footer-trigger flex items-center rounded-2xl py-2 px-1.5 w-full hover:bg-[var(--surface-hover)] transition"
+								aria-label={$i18n.t('Open Settings')}
+								on:click={() => {
+									showSettings.set(true);
 								}}
 							>
-						<div
-							class="sidebar-footer-trigger flex items-center rounded-2xl py-2 px-1.5 w-full hover:bg-[var(--surface-hover)] transition"
-						>
-							<div class=" self-center mr-3 relative">
-								<img
-									src={`${WEBUI_API_BASE_URL}/users/${$user?.id}/profile/image`}
-									class=" size-7 object-cover rounded-full sidebar-avatar"
-									alt={$i18n.t('Open User Profile Menu')}
-									aria-label={$i18n.t('Open User Profile Menu')}
-								/>
-
-							</div>
-							<div class=" self-center font-medium sidebar-user-name truncate">{$user?.name}</div>
-						</div>
-							</UserMenu>
+								<div class=" self-center mr-3 relative">
+									<img
+										src={`${WEBUI_API_BASE_URL}/users/${$user?.id}/profile/image`}
+										class=" size-7 object-cover rounded-full sidebar-avatar"
+										alt={$i18n.t('Open Settings')}
+									/>
+								</div>
+								<div class=" self-center font-medium sidebar-user-name truncate">
+									{$user?.name}
+								</div>
+							</button>
 						</div>
 
 						<Tooltip

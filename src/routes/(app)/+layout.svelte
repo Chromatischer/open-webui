@@ -46,6 +46,7 @@
 	import Sidebar from '$lib/components/layout/Sidebar.svelte';
 	import Scratchboard from '$lib/components/design/Scratchboard.svelte';
 	import SettingsModal from '$lib/components/chat/SettingsModal.svelte';
+	import ShortcutsModal from '$lib/components/chat/ShortcutsModal.svelte';
 	import ChangelogModal from '$lib/components/ChangelogModal.svelte';
 	import AccountPending from '$lib/components/layout/Overlay/AccountPending.svelte';
 	import UpdateInfoToast from '$lib/components/layout/UpdateInfoToast.svelte';
@@ -398,6 +399,7 @@
 </script>
 
 <SettingsModal bind:show={$showSettings} />
+<ShortcutsModal bind:show={$showShortcuts} />
 <ChangelogModal bind:show={$showChangelog} />
 
 {#if version && compareVersion(version.latest, version.current) && ($settings?.showUpdateToast ?? true)}

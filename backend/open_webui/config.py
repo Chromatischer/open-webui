@@ -2247,6 +2247,37 @@ ENABLE_MEMORIES = PersistentConfig(
     os.environ.get('ENABLE_MEMORIES', 'True').lower() == 'true',
 )
 
+# Number of memories retrieved per query when injecting user context into chat.
+MEMORY_TOP_K = PersistentConfig(
+    'MEMORY_TOP_K',
+    'memories.top_k',
+    int(os.environ.get('MEMORY_TOP_K', '5')),
+)
+
+# Relevance threshold (0→1, higher is stricter) applied to memory vector
+# search. Kept separate from RAG_RELEVANCE_THRESHOLD because memory and
+# document-chunk distance distributions differ; defaults to the RAG value
+# for backward compatibility.
+MEMORY_RELEVANCE_THRESHOLD = PersistentConfig(
+    'MEMORY_RELEVANCE_THRESHOLD',
+    'memories.relevance_threshold',
+    float(
+        os.environ.get(
+            'MEMORY_RELEVANCE_THRESHOLD',
+            os.environ.get('RAG_RELEVANCE_THRESHOLD', '0.0'),
+        )
+    ),
+)
+
+# Similarity (0→1, higher is stricter) above which a newly added memory is
+# treated as a duplicate of an existing one and merged into it rather than
+# inserted. Set to 0 to disable deduplication.
+MEMORY_DEDUP_THRESHOLD = PersistentConfig(
+    'MEMORY_DEDUP_THRESHOLD',
+    'memories.dedup_threshold',
+    float(os.environ.get('MEMORY_DEDUP_THRESHOLD', '0.95')),
+)
+
 CODE_INTERPRETER_ENGINE = PersistentConfig(
     'CODE_INTERPRETER_ENGINE',
     'code_interpreter.engine',

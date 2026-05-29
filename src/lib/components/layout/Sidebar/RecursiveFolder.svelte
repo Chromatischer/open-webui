@@ -526,37 +526,11 @@
 					e.stopPropagation();
 				}}
 			>
-				<button
-					class="text-[var(--text-tertiary)] transition-all p-1 hover:bg-[var(--surface-hover)] hover:text-[var(--text)] rounded-lg"
-					on:click={(e) => {
-						e.stopPropagation();
-						e.stopImmediatePropagation();
-						open = !open;
-						isExpandedUpdateDebounceHandler();
-					}}
-				>
-					{#if folders[folderId]?.meta?.icon}
-						<div class="flex group-hover:hidden transition-all">
-							<Emoji className="size-3.5" shortCode={folders[folderId].meta.icon} />
-						</div>
-
-						<div class="hidden group-hover:flex transition-all p-[1px]">
-							{#if open}
-								<ChevronDown className=" size-3" strokeWidth="2.5" />
-							{:else}
-								<ChevronRight className=" size-3" strokeWidth="2.5" />
-							{/if}
-						</div>
-					{:else}
-						<div class="p-[1px]">
-							{#if open}
-								<ChevronDown className=" size-3" strokeWidth="2.5" />
-							{:else}
-								<ChevronRight className=" size-3" strokeWidth="2.5" />
-							{/if}
-						</div>
-					{/if}
-				</button>
+				{#if folders[folderId]?.meta?.icon}
+					<div class="flex p-1 transition-all">
+						<Emoji className="size-3.5" shortCode={folders[folderId].meta.icon} />
+					</div>
+				{/if}
 
 				<div class="translate-y-[0.5px] flex-1 justify-start text-start line-clamp-1">
 					{#if edit}
@@ -591,7 +565,7 @@
 				</div>
 
 				<button
-					class="absolute z-10 right-2 invisible group-hover:visible self-center flex items-center text-[var(--text-tertiary)] hover:text-[var(--text)] transition"
+					class="z-10 invisible group-hover:visible self-center flex items-center text-[var(--text-tertiary)] hover:text-[var(--text)] transition"
 				>
 					<FolderMenu
 						bind:show={showFolderMenu}
@@ -609,6 +583,24 @@
 							<EllipsisHorizontal className="size-4" strokeWidth="2.5" />
 						</div>
 					</FolderMenu>
+				</button>
+
+				<button
+					class="self-center text-[var(--text-tertiary)] transition-all p-1 hover:bg-[var(--surface-hover)] hover:text-[var(--text)] rounded-lg"
+					on:click={(e) => {
+						e.stopPropagation();
+						e.stopImmediatePropagation();
+						open = !open;
+						isExpandedUpdateDebounceHandler();
+					}}
+				>
+					<div class="p-[1px]">
+						{#if open}
+							<ChevronDown className=" size-3" strokeWidth="2.5" />
+						{:else}
+							<ChevronRight className=" size-3" strokeWidth="2.5" />
+						{/if}
+					</div>
 				</button>
 			</div>
 		</div>

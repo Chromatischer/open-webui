@@ -952,6 +952,11 @@ def get_source_context(sources: list, source_ids: dict = None, include_content: 
     if source_ids is None:
         source_ids = {}
     for source in sources:
+        # Display-only sources (e.g. memories) are surfaced to the UI as
+        # citations but their content is injected elsewhere, so skip them
+        # here to avoid duplicating the content in the model context.
+        if source.get('display_only'):
+            continue
         for doc, meta in zip(source.get('document', []), source.get('metadata', [])):
             source_id = meta.get('source') or source.get('source', {}).get('id') or 'N/A'
             if source_id not in source_ids:
@@ -1499,14 +1504,34 @@ async def chat_completion_tools_handler(
     return body, {'sources': sources, 'output_items': output_items}
 
 
+def _build_memory_query(messages: list, max_turns: int = 3) -> str:
+    """Build the memory retrieval query from the last few user turns.
+
+    Using only the final user message makes short follow-ups ("yes, do
+    that") query against meaningless text. Concatenating the most recent
+    user turns gives the vector search enough context to match.
+    """
+    user_messages = [
+        get_content_from_message(m)
+        for m in messages
+        if m.get('role') == 'user'
+    ]
+    user_messages = [m for m in user_messages if m]
+    if not user_messages:
+        return ''
+    return '\n'.join(user_messages[-max_turns:])
+
+
 async def chat_memory_handler(request: Request, form_data: dict, extra_params: dict, user):
+    k = getattr(request.app.state.config, 'MEMORY_TOP_K', 5)
+
     try:
         results = await query_memory(
             request,
             QueryMemoryForm(
                 **{
-                    'content': get_last_user_message(form_data['messages']) or '',
-                    'k': 3,
+                    'content': _build_memory_query(form_data['messages']),
+                    'k': k,
                 }
             ),
             user,
@@ -1516,22 +1541,40 @@ async def chat_memory_handler(request: Request, form_data: dict, extra_params: d
         results = None
 
     user_context = ''
+    memory_documents = []
+    memory_metadatas = []
     if results and hasattr(results, 'documents'):
         if results.documents and len(results.documents) > 0:
             for doc_idx, doc in enumerate(results.documents[0]):
                 created_at_date = 'Unknown Date'
 
-                if results.metadatas[0][doc_idx].get('created_at'):
-                    created_at_timestamp = results.metadatas[0][doc_idx]['created_at']
+                meta = results.metadatas[0][doc_idx] if results.metadatas and results.metadatas[0] else {}
+                if meta.get('created_at'):
+                    created_at_timestamp = meta['created_at']
                     created_at_date = time.strftime('%Y-%m-%d', time.localtime(created_at_timestamp))
 
                 user_context += f'{doc_idx + 1}. [{created_at_date}] {doc}\n'
+                memory_documents.append(doc)
+                memory_metadatas.append({**meta, 'source': 'memory', 'date': created_at_date})
+
+    if not memory_documents:
+        return form_data, None
 
     form_data['messages'] = add_or_update_system_message(
         f'User Context:\n{user_context}\n', form_data['messages'], append=True
     )
 
-    return form_data
+    # Surface the memories that were used as a display-only citation so the
+    # UI can show that memory contributed to the answer. Content is already
+    # injected above, hence display_only (skipped by get_source_context).
+    memory_source = {
+        'source': {'name': 'Memory', 'type': 'memory'},
+        'document': memory_documents,
+        'metadata': memory_metadatas,
+        'display_only': True,
+    }
+
+    return form_data, memory_source
 
 
 async def chat_web_search_handler(request: Request, form_data: dict, extra_params: dict, user):
@@ -2539,7 +2582,11 @@ async def process_chat_payload(request, form_data, user, metadata, model):
         if 'memory' in features and features['memory']:
             # Skip forced memory injection when native FC is enabled - model can use memory tools
             if metadata.get('params', {}).get('function_calling') != 'native':
-                form_data = await chat_memory_handler(request, form_data, extra_params, user)
+                form_data, memory_source = await chat_memory_handler(
+                    request, form_data, extra_params, user
+                )
+                if memory_source:
+                    sources.append(memory_source)
 
         if 'web_search' in features and features['web_search']:
             # Skip forced RAG web search when native FC is enabled - model can use web_search tool

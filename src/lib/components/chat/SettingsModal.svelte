@@ -4,6 +4,7 @@
 	import { config, models, settings, user } from '$lib/stores';
 	import { updateUserSettings } from '$lib/apis/users';
 	import { getModels as _getModels } from '$lib/apis';
+	import { userSignOut } from '$lib/apis/auths';
 	import { goto } from '$app/navigation';
 
 	import Modal from '../common/Modal.svelte';
@@ -12,6 +13,8 @@
 	import Interface from './Settings/Interface.svelte';
 	import DataControls from './Settings/DataControls.svelte';
 	import Personalization from './Settings/Personalization.svelte';
+	import ArchivedChats from './Settings/ArchivedChats.svelte';
+	import KeyboardShortcuts from './Settings/KeyboardShortcuts.svelte';
 	import Search from '../icons/Search.svelte';
 	import XMark from '../icons/XMark.svelte';
 	import Connections from './Settings/Connections.svelte';
@@ -23,9 +26,32 @@
 	import WrenchAlt from '../icons/WrenchAlt.svelte';
 	import Face from '../icons/Face.svelte';
 	import AppNotification from '../icons/AppNotification.svelte';
-	import UserBadgeCheck from '../icons/UserBadgeCheck.svelte';
+	import ArchiveBox from '../icons/ArchiveBox.svelte';
+	import UserGroup from '../icons/UserGroup.svelte';
+	import Keyboard from '../icons/Keyboard.svelte';
+	import SignOut from '../icons/SignOut.svelte';
 
 	const i18n = getContext('i18n');
+
+	const signOutHandler = async () => {
+		const res = await userSignOut();
+		user.set(null);
+		localStorage.removeItem('token');
+		show = false;
+		location.href = res?.redirect_url ?? '/auth';
+	};
+
+	// Icon component per tab id — drives the data-driven rail
+	const tabIcons = {
+		general: SettingsAlt,
+		interface: AppNotification,
+		connections: Link,
+		tools: WrenchAlt,
+		personalization: Face,
+		archived_chats: ArchiveBox,
+		data_controls: DatabaseSettings,
+		about: InfoCircle
+	};
 
 	export let show: boolean | string = false;
 
@@ -52,7 +78,8 @@
 		{ id: 'design-section-input', title: 'Input' },
 		{ id: 'design-section-artifacts', title: 'Artifacts' },
 		{ id: 'design-section-voice', title: 'Voice' },
-		{ id: 'design-section-file', title: 'File' }
+		{ id: 'design-section-file', title: 'File' },
+		{ id: 'design-section-memory', title: 'Memory' }
 	];
 
 	const allSettings: SettingsTab[] = [
@@ -128,8 +155,12 @@
 		},
 		{
 			id: 'interface',
-			title: 'Design',
+			title: 'Interface',
 			keywords: [
+				'memories',
+				'memory',
+				'personalization',
+				'personalize',
 				'allow user location',
 				'allow voice interruption in call',
 				'allowuserlocation',
@@ -286,25 +317,18 @@
 		},
 
 		{
-			id: 'personalization',
-			title: 'Personalization',
+			id: 'archived_chats',
+			title: 'Archived Chats',
 			keywords: [
-				'account preferences',
-				'account settings',
-				'accountpreferences',
-				'accountsettings',
-				'custom settings',
-				'customsettings',
-				'experimental',
-				'memories',
-				'memory',
-				'personalization',
-				'personalize',
-				'personal settings',
-				'personalsettings',
-				'profile',
-				'user preferences',
-				'userpreferences'
+				'archive',
+				'archived chats',
+				'archivedchats',
+				'export archived chats',
+				'manage archived chats',
+				'restore chats',
+				'unarchive',
+				'unarchive all',
+				'unarchiveall'
 			]
 		},
 		{
@@ -417,16 +441,14 @@
 				return $user?.role === 'admin' || ($user?.permissions?.settings?.interface ?? true);
 			}
 
-			if (tab.id === 'personalization') {
-				return (
-					$config?.features?.enable_memories &&
-					($user?.role === 'admin' || ($user?.permissions?.features?.memories ?? true))
-				);
-			}
-
 			return true;
 		});
 	};
+
+	// Personalization (Memory) is now merged into the Interface tab
+	$: personalizationAvailable =
+		$config?.features?.enable_memories &&
+		($user?.role === 'admin' || ($user?.permissions?.features?.memories ?? true));
 
 	const setFilteredSettings = () => {
 		filteredSettings = availableSettings
@@ -512,264 +534,120 @@
 	});
 </script>
 
-<Modal size="2xl" bind:show>
-	<div class="text-gray-700 dark:text-gray-100 mx-1">
-		<div class=" flex justify-between dark:text-gray-300 px-4 md:px-4.5 pt-4.5 pb-0.5 md:pb-2.5">
-			<div class=" text-lg font-medium self-center">{$i18n.t('Settings')}</div>
+<Modal size="2xl" bind:show className="st-modal-shell">
+	<div class="st-root">
+		<div class="st-head">
+			<div class="st-head-title">{$i18n.t('Settings')}</div>
 			<button
 				aria-label={$i18n.t('Close settings modal')}
-				class="self-center"
+				class="st-x"
 				on:click={() => {
 					show = false;
 				}}
 			>
-				<XMark className="w-5 h-5"></XMark>
+				<XMark className="size-4" strokeWidth="2" />
 			</button>
 		</div>
 
-		<div class="flex flex-col md:flex-row w-full pt-1 pb-4">
-			<div
-				role="tablist"
-				id="settings-tabs-container"
-				class="tabs flex flex-row overflow-x-auto gap-2.5 mx-3 md:pr-4 md:gap-1 md:flex-col flex-1 md:flex-none md:w-50 md:min-h-[min(42rem,calc(100dvh-10rem))] md:max-h-[min(42rem,calc(100dvh-10rem))] dark:text-gray-200 text-sm text-left mb-1 md:mb-0 -translate-y-1"
-			>
-				<div
-					class="hidden md:flex w-full rounded-full px-2.5 gap-2 bg-gray-100/80 dark:bg-gray-850/80 backdrop-blur-2xl my-1 mb-1.5"
-					id="settings-search"
-				>
-					<div class="self-center rounded-l-xl bg-transparent">
-						<Search
-							className="size-3.5"
-							strokeWidth={($settings?.highContrastMode ?? false) ? '3' : '1.5'}
-						/>
-					</div>
+		<div class="st-body">
+			<div role="tablist" id="settings-tabs-container" class="st-rail tabs">
+				<div class="st-search" id="settings-search">
+					<Search
+						className="size-3.5 shrink-0 text-[var(--text-tertiary)]"
+						strokeWidth={($settings?.highContrastMode ?? false) ? '3' : '1.5'}
+					/>
 					<label class="sr-only" for="search-input-settings-modal">{$i18n.t('Search')}</label>
 					<input
-						class={`w-full py-1 text-sm bg-transparent dark:text-gray-300 outline-hidden
-								${($settings?.highContrastMode ?? false) ? 'placeholder-gray-800' : ''}`}
+						class="st-search-input {($settings?.highContrastMode ?? false)
+							? 'placeholder-gray-800 dark:placeholder-gray-200'
+							: ''}"
 						bind:value={search}
 						id="search-input-settings-modal"
 						on:input={searchDebounceHandler}
 						placeholder={$i18n.t('Search')}
 					/>
 				</div>
+
 				{#if filteredSettings.length > 0}
 					{#each filteredSettings as tabId (tabId)}
-						{#if tabId === 'general'}
+						{#if tabId === 'connections' && !($user?.role === 'admin' || ($user?.role === 'user' && $config?.features?.enable_direct_connections))}
+							<!-- hidden -->
+						{:else if tabId === 'tools' && !($user?.role === 'admin' || ($user?.role === 'user' && $user?.permissions?.features?.direct_tool_servers))}
+							<!-- hidden -->
+						{:else}
+							{@const meta = allSettings.find((t) => t.id === tabId)}
 							<button
 								role="tab"
-								aria-controls="tab-general"
-								aria-selected={selectedTab === 'general'}
-								class={`px-0.5 md:px-2.5 py-1 min-w-fit rounded-xl flex-1 md:flex-none flex text-left transition
-								${
-									selectedTab === 'general'
-										? ($settings?.highContrastMode ?? false)
-											? 'dark:bg-gray-800 bg-gray-200'
-											: ''
-										: ($settings?.highContrastMode ?? false)
-											? 'hover:bg-gray-200 dark:hover:bg-gray-800'
-											: 'text-gray-300 dark:text-gray-600 hover:text-gray-700 dark:hover:text-white'
-								}`}
+								aria-controls="tab-{tabId}"
+								aria-selected={selectedTab === tabId}
+								class="st-tab {selectedTab === tabId ? 'on' : ''}"
 								on:click={() => {
-									selectedTab = 'general';
+									selectedTab = tabId;
 								}}
 							>
-								<div class=" self-center mr-2">
-									<SettingsAlt strokeWidth="2" />
-								</div>
-								<div class=" self-center">{$i18n.t('General')}</div>
+								<span class="st-tab-icon">
+									<svelte:component this={tabIcons[tabId as keyof typeof tabIcons]} strokeWidth="2" />
+								</span>
+								<span class="st-tab-label">{$i18n.t(meta?.title ?? tabId)}</span>
 							</button>
-						{:else if tabId === 'interface'}
-							<button
-								role="tab"
-								aria-controls="tab-interface"
-								aria-selected={selectedTab === 'interface'}
-								class={`px-0.5 md:px-2.5 py-1 min-w-fit rounded-xl flex-1 md:flex-none flex text-left transition
-								${
-									selectedTab === 'interface'
-										? ($settings?.highContrastMode ?? false)
-											? 'dark:bg-gray-800 bg-gray-200'
-											: ''
-										: ($settings?.highContrastMode ?? false)
-											? 'hover:bg-gray-200 dark:hover:bg-gray-800'
-											: 'text-gray-300 dark:text-gray-600 hover:text-gray-700 dark:hover:text-white'
-								}`}
-								on:click={() => {
-									selectedTab = 'interface';
-								}}
-							>
-								<div class=" self-center mr-2">
-									<AppNotification strokeWidth="2" />
-								</div>
-								<div class=" self-center">{$i18n.t('Design')}</div>
-							</button>
-							{#if selectedTab === 'interface'}
-								<div class="hidden md:flex flex-col ml-7 -mt-0.5 mb-1 gap-0.5">
+
+							{#if tabId === 'interface' && selectedTab === 'interface'}
+								<div class="st-sub">
 									{#each designSubsections as subsection}
-										<button
-											type="button"
-											class="text-left text-xs leading-5 text-gray-400 dark:text-gray-500 hover:text-gray-700 dark:hover:text-gray-200 transition"
-											on:click={() => selectDesignSubsection(subsection.id)}
-										>
-											{$i18n.t(subsection.title)}
-										</button>
+										{#if subsection.id !== 'design-section-memory' || personalizationAvailable}
+											<button
+												type="button"
+												class="st-sub-btn"
+												on:click={() => selectDesignSubsection(subsection.id)}
+											>
+												{$i18n.t(subsection.title)}
+											</button>
+										{/if}
 									{/each}
 								</div>
 							{/if}
-						{:else if tabId === 'connections'}
-							{#if $user?.role === 'admin' || ($user?.role === 'user' && $config?.features?.enable_direct_connections)}
-								<button
-									role="tab"
-									aria-controls="tab-connections"
-									aria-selected={selectedTab === 'connections'}
-									class={`px-0.5 md:px-2.5 py-1 min-w-fit rounded-xl flex-1 md:flex-none flex text-left transition
-								${
-									selectedTab === 'connections'
-										? ($settings?.highContrastMode ?? false)
-											? 'dark:bg-gray-800 bg-gray-200'
-											: ''
-										: ($settings?.highContrastMode ?? false)
-											? 'hover:bg-gray-200 dark:hover:bg-gray-800'
-											: 'text-gray-300 dark:text-gray-600 hover:text-gray-700 dark:hover:text-white'
-								}`}
-									on:click={() => {
-										selectedTab = 'connections';
-									}}
-								>
-									<div class=" self-center mr-2">
-										<Link strokeWidth="2" />
-									</div>
-									<div class=" self-center">{$i18n.t('Connections')}</div>
-								</button>
-							{/if}
-						{:else if tabId === 'tools'}
-							{#if $user?.role === 'admin' || ($user?.role === 'user' && $user?.permissions?.features?.direct_tool_servers)}
-								<button
-									role="tab"
-									aria-controls="tab-tools"
-									aria-selected={selectedTab === 'tools'}
-									class={`px-0.5 md:px-2.5 py-1 min-w-fit rounded-xl flex-1 md:flex-none flex text-left transition
-								${
-									selectedTab === 'tools'
-										? ($settings?.highContrastMode ?? false)
-											? 'dark:bg-gray-800 bg-gray-200'
-											: ''
-										: ($settings?.highContrastMode ?? false)
-											? 'hover:bg-gray-200 dark:hover:bg-gray-800'
-											: 'text-gray-300 dark:text-gray-600 hover:text-gray-700 dark:hover:text-white'
-								}`}
-									on:click={() => {
-										selectedTab = 'tools';
-									}}
-								>
-									<div class=" self-center mr-2">
-										<WrenchAlt strokeWidth="2" />
-									</div>
-									<div class=" self-center">{$i18n.t('Integrations')}</div>
-								</button>
-							{/if}
-						{:else if tabId === 'personalization'}
-							<button
-								role="tab"
-								aria-controls="tab-personalization"
-								aria-selected={selectedTab === 'personalization'}
-								class={`px-0.5 md:px-2.5 py-1 min-w-fit rounded-xl flex-1 md:flex-none flex text-left transition
-								${
-									selectedTab === 'personalization'
-										? ($settings?.highContrastMode ?? false)
-											? 'dark:bg-gray-800 bg-gray-200'
-											: ''
-										: ($settings?.highContrastMode ?? false)
-											? 'hover:bg-gray-200 dark:hover:bg-gray-800'
-											: 'text-gray-300 dark:text-gray-600 hover:text-gray-700 dark:hover:text-white'
-								}`}
-								on:click={() => {
-									selectedTab = 'personalization';
-								}}
-							>
-								<div class=" self-center mr-2">
-									<Face strokeWidth="2" />
-								</div>
-								<div class=" self-center">{$i18n.t('Personalization')}</div>
-							</button>
-						{:else if tabId === 'data_controls'}
-							<button
-								role="tab"
-								aria-controls="tab-data-controls"
-								aria-selected={selectedTab === 'data_controls'}
-								class={`px-0.5 md:px-2.5 py-1 min-w-fit rounded-xl flex-1 md:flex-none flex text-left transition
-								${
-									selectedTab === 'data_controls'
-										? ($settings?.highContrastMode ?? false)
-											? 'dark:bg-gray-800 bg-gray-200'
-											: ''
-										: ($settings?.highContrastMode ?? false)
-											? 'hover:bg-gray-200 dark:hover:bg-gray-800'
-											: 'text-gray-300 dark:text-gray-600 hover:text-gray-700 dark:hover:text-white'
-								}`}
-								on:click={() => {
-									selectedTab = 'data_controls';
-								}}
-							>
-								<div class=" self-center mr-2">
-									<DatabaseSettings strokeWidth="2" />
-								</div>
-								<div class=" self-center">{$i18n.t('Data Controls')}</div>
-							</button>
-						{:else if tabId === 'about'}
-							<button
-								role="tab"
-								aria-controls="tab-about"
-								aria-selected={selectedTab === 'about'}
-								class={`px-0.5 md:px-2.5 py-1 min-w-fit rounded-xl flex-1 md:flex-none flex text-left transition
-								${
-									selectedTab === 'about'
-										? ($settings?.highContrastMode ?? false)
-											? 'dark:bg-gray-800 bg-gray-200'
-											: ''
-										: ($settings?.highContrastMode ?? false)
-											? 'hover:bg-gray-200 dark:hover:bg-gray-800'
-											: 'text-gray-300 dark:text-gray-600 hover:text-gray-700 dark:hover:text-white'
-								}`}
-								on:click={() => {
-									selectedTab = 'about';
-								}}
-							>
-								<div class=" self-center mr-2">
-									<InfoCircle strokeWidth="2" />
-								</div>
-								<div class=" self-center">{$i18n.t('About')}</div>
-							</button>
 						{/if}
 					{/each}
 				{:else}
-					<div class="text-center text-gray-500 mt-4">
-						{$i18n.t('No results found')}
-					</div>
+					<div class="st-no-results">{$i18n.t('No results found')}</div>
 				{/if}
-				{#if $user?.role === 'admin'}
-					<a
-						href="/admin/settings"
-						draggable="false"
-						class="px-0.5 md:px-2.5 py-1 min-w-fit rounded-xl flex-1 md:flex-none md:mt-auto flex select-none text-left transition {$settings?.highContrastMode
-							? 'hover:bg-gray-200 dark:hover:bg-gray-800'
-							: 'text-gray-300 dark:text-gray-600 hover:text-gray-700 dark:hover:text-white'}"
-						on:click={async (e) => {
-							e.preventDefault();
-							await goto('/admin/settings');
-							show = false;
+
+				<div class="st-rail-footer">
+					<button
+						type="button"
+						class="st-tab {selectedTab === 'shortcuts' ? 'on' : ''}"
+						on:click={() => {
+							selectedTab = 'shortcuts';
 						}}
 					>
-						<div class=" self-center mr-2">
-							<UserBadgeCheck strokeWidth="2" />
-						</div>
-						<div class=" self-center">{$i18n.t('Admin Settings')}</div>
-					</a>
-				{/if}
+						<span class="st-tab-icon"><Keyboard strokeWidth="2" /></span>
+						<span class="st-tab-label">{$i18n.t('Keyboard shortcuts')}</span>
+					</button>
+
+					{#if $user?.role === 'admin'}
+						<a
+							href="/admin"
+							draggable="false"
+							class="st-tab"
+							on:click={async (e) => {
+								e.preventDefault();
+								await goto('/admin');
+								show = false;
+							}}
+						>
+							<span class="st-tab-icon"><UserGroup strokeWidth="2" /></span>
+							<span class="st-tab-label">{$i18n.t('Admin Panel')}</span>
+						</a>
+					{/if}
+
+					<button type="button" class="st-tab st-signout" on:click={signOutHandler}>
+						<span class="st-tab-icon"><SignOut strokeWidth="2" /></span>
+						<span class="st-tab-label">{$i18n.t('Sign Out')}</span>
+					</button>
+				</div>
 			</div>
-			<div
-				class="flex-1 px-3.5 md:pl-0 md:pr-4.5 md:min-h-[min(42rem,calc(100dvh-10rem))] max-h-[min(42rem,calc(100dvh-10rem))] overflow-y-auto"
-			>
+
+			<div class="st-content">
 				{#if selectedTab === 'general'}
 					<General
 						{getModels}
@@ -785,6 +663,17 @@
 							toast.success($i18n.t('Settings saved successfully!'));
 						}}
 					/>
+
+					{#if personalizationAvailable}
+						<div id="design-section-memory" class="st-merged-section">
+							<Personalization
+								{saveSettings}
+								on:save={() => {
+									toast.success($i18n.t('Settings saved successfully!'));
+								}}
+							/>
+						</div>
+					{/if}
 				{:else if selectedTab === 'connections'}
 					<Connections
 						saveSettings={async (updated) => {
@@ -799,13 +688,10 @@
 							toast.success($i18n.t('Settings saved successfully!'));
 						}}
 					/>
-				{:else if selectedTab === 'personalization'}
-					<Personalization
-						{saveSettings}
-						on:save={() => {
-							toast.success($i18n.t('Settings saved successfully!'));
-						}}
-					/>
+				{:else if selectedTab === 'shortcuts'}
+					<KeyboardShortcuts />
+				{:else if selectedTab === 'archived_chats'}
+					<ArchivedChats />
 				{:else if selectedTab === 'data_controls'}
 					<DataControls {saveSettings} />
 				{:else if selectedTab === 'about'}
@@ -836,5 +722,198 @@
 	input[type='number'] {
 		appearance: textfield;
 		-moz-appearance: textfield; /* Firefox */
+	}
+
+	/* ── Redesigned shell ───────────────────────── */
+	:global(.st-modal-shell) {
+		background: var(--bg-elevated) !important;
+		border: 1px solid var(--border) !important;
+		border-radius: 20px !important;
+		overflow: hidden;
+	}
+	.st-root {
+		display: flex;
+		flex-direction: column;
+		color: var(--text);
+	}
+	.st-merged-section {
+		border-top: 1px solid var(--border);
+		margin-top: 10px;
+		padding-top: 18px;
+		scroll-margin-top: 12px;
+	}
+	/* Interface + embedded Personalization stack naturally (no full-height push) */
+	.st-content :global(#tab-interface),
+	.st-content :global(#tab-personalization) {
+		height: auto;
+	}
+	.st-head {
+		display: flex;
+		align-items: center;
+		padding: 16px 20px;
+		border-bottom: 1px solid var(--border);
+	}
+	.st-head-title {
+		font-size: 16px;
+		font-weight: 600;
+	}
+	.st-x {
+		margin-left: auto;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 30px;
+		height: 30px;
+		border-radius: 9px;
+		color: var(--text-tertiary);
+		transition:
+			background 0.15s ease,
+			color 0.15s ease,
+			transform 0.1s ease;
+	}
+	.st-x:hover {
+		background: var(--surface-hover);
+		color: var(--text);
+	}
+	.st-x:active {
+		transform: scale(0.92);
+	}
+
+	.st-body {
+		display: flex;
+		flex-direction: column;
+		min-height: 0;
+	}
+
+	.st-signout:hover {
+		color: #e0533d !important;
+	}
+
+	.st-rail {
+		display: flex;
+		flex-direction: row;
+		gap: 6px;
+		padding: 12px;
+		overflow-x: auto;
+	}
+	.st-search {
+		display: none;
+	}
+	.st-tab {
+		display: flex;
+		align-items: center;
+		gap: 11px;
+		min-width: fit-content;
+		text-align: left;
+		padding: 9px 11px;
+		border-radius: 10px;
+		background: transparent;
+		color: var(--text-secondary);
+		font-size: 13.5px;
+		transition:
+			background 0.16s ease,
+			color 0.16s ease;
+	}
+	.st-tab:hover {
+		background: var(--surface-hover);
+		color: var(--text);
+	}
+	.st-tab.on {
+		background: var(--bg-elevated);
+		color: var(--text);
+		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+		font-weight: 500;
+	}
+	.st-tab-icon {
+		display: flex;
+		flex: none;
+		width: 17px;
+		height: 17px;
+		align-items: center;
+		justify-content: center;
+	}
+	.st-tab-label {
+		align-self: center;
+		white-space: nowrap;
+	}
+	.st-sub {
+		display: none;
+	}
+	.st-no-results {
+		text-align: center;
+		font-size: 13px;
+		color: var(--text-tertiary);
+		padding: 12px;
+	}
+	.st-content {
+		flex: 1;
+		padding: 18px 20px 22px;
+		overflow-y: auto;
+		max-height: min(42rem, calc(100dvh - 12rem));
+	}
+
+	@media (min-width: 768px) {
+		.st-body {
+			flex-direction: row;
+		}
+		.st-rail {
+			flex-direction: column;
+			gap: 2px;
+			width: 232px;
+			flex: none;
+			padding: 14px 12px;
+			background: var(--surface);
+			border-right: 1px solid var(--border);
+			overflow-x: visible;
+			overflow-y: auto;
+			min-height: min(42rem, calc(100dvh - 10rem));
+			max-height: min(42rem, calc(100dvh - 10rem));
+		}
+		.st-search {
+			display: flex;
+			align-items: center;
+			gap: 8px;
+			padding: 8px 11px;
+			margin-bottom: 8px;
+			border-radius: 10px;
+			background: var(--bg-elevated);
+			border: 1px solid var(--border);
+		}
+		.st-tab {
+			width: 100%;
+		}
+		.st-sub {
+			display: flex;
+			flex-direction: column;
+			margin: 0 0 6px 39px;
+			gap: 1px;
+		}
+		.st-sub-btn {
+			text-align: left;
+			font-size: 12px;
+			line-height: 1.5;
+			padding: 2px 0;
+			color: var(--text-tertiary);
+			transition: color 0.15s ease;
+		}
+		.st-sub-btn:hover {
+			color: var(--text);
+		}
+		.st-rail-footer {
+			margin-top: auto;
+			padding-top: 6px;
+		}
+		.st-content {
+			padding: 22px 26px;
+			min-height: min(42rem, calc(100dvh - 10rem));
+			max-height: min(42rem, calc(100dvh - 10rem));
+		}
+	}
+	.st-search-input {
+		width: 100%;
+		font-size: 13px;
+		background: transparent;
+		outline: none;
+		color: var(--text);
 	}
 </style>

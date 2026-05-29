@@ -214,9 +214,13 @@
 				}}
 			/>
 
-			<hr class="border-gray-100/30 dark:border-gray-850/30 my-3" />
+			<hr class="border-[var(--border)] my-4" />
 
-			<div class=" mb-1 text-sm font-medium">{$i18n.t('WebUI Settings')}</div>
+			<div
+				class="mb-2.5 text-[11px] font-bold uppercase tracking-wide text-[var(--text-tertiary)]"
+			>
+				{$i18n.t('WebUI Settings')}
+			</div>
 
 			<div class="flex w-full justify-between">
 				<div class=" self-center text-xs font-medium">{$i18n.t('Theme')}</div>
@@ -319,10 +323,14 @@
 		</div>
 
 		{#if $user?.role === 'admin' || (($user?.permissions.chat?.controls ?? true) && ($user?.permissions.chat?.system_prompt ?? true))}
-			<hr class="border-gray-100/30 dark:border-gray-850/30 my-3" />
+			<hr class="border-[var(--border)] my-4" />
 
 			<div>
-				<div class=" my-2.5 text-sm font-medium">{$i18n.t('System Prompt')}</div>
+				<div
+					class="mb-2.5 text-[11px] font-bold uppercase tracking-wide text-[var(--text-tertiary)]"
+				>
+					{$i18n.t('System Prompt')}
+				</div>
 				<Textarea
 					bind:value={system}
 					className={'w-full text-sm outline-hidden resize-vertical' +
@@ -360,7 +368,7 @@
 
 	<div class="flex justify-end pt-3 text-sm font-medium">
 		<button
-			class="px-3.5 py-1.5 text-sm font-medium bg-black hover:bg-gray-900 text-white dark:bg-white dark:text-black dark:hover:bg-gray-100 transition rounded-full"
+			class="px-4 py-2 text-sm font-medium bg-[var(--accent)] hover:opacity-90 text-white transition rounded-[10px]"
 			on:click={() => {
 				saveHandler();
 			}}

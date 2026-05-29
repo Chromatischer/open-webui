@@ -9,7 +9,7 @@
 
 	import Minus from '$lib/components/icons/Minus.svelte';
 	import Plus from '$lib/components/icons/Plus.svelte';
-	import Switch from '$lib/components/common/Switch.svelte';
+	import ToggleCard from './Interface/ToggleCard.svelte';
 	import ManageFloatingActionButtonsModal from './Interface/ManageFloatingActionButtonsModal.svelte';
 	import ManageImageCompressionModal from './Interface/ManageImageCompressionModal.svelte';
 
@@ -333,19 +333,19 @@
 		}}
 	/>
 
-	<div class=" space-y-3 overflow-y-scroll max-h-[28rem] md:max-h-full">
-		<div id="design-section-ui" class="scroll-mt-3">
-			<h1 class=" mb-2 text-sm font-medium">{$i18n.t('UI')}</h1>
+	<div class="space-y-1 overflow-y-scroll max-h-[28rem] md:max-h-full">
+		<!-- ── UI ─────────────────────────── -->
+		<div id="design-section-ui" class="ix-section">
+			<div class="ix-group-label">{$i18n.t('UI')}</div>
 
-			<div>
-				<div class="py-0.5 flex w-full justify-between">
-					<label id="ui-scale-label" class=" self-center text-xs" for="ui-scale-slider">
-						{$i18n.t('UI Scale')}
-					</label>
-
-					<div class="flex items-center gap-2 p-1">
+			<div class="ix-rows">
+				<div class="ix-row ix-row-col">
+					<div class="flex w-full items-center justify-between">
+						<label id="ui-scale-label" class="ix-row-title" for="ui-scale-slider">
+							{$i18n.t('UI Scale')}
+						</label>
 						<button
-							class="text-xs"
+							class="ix-pill"
 							aria-live="polite"
 							type="button"
 							on:click={() => {
@@ -364,268 +364,126 @@
 							{/if}
 						</button>
 					</div>
-				</div>
 
-				{#if textScale !== null}
-					<div class=" flex items-center gap-2 px-1 pb-1">
-						<button
-							type="button"
-							class="rounded-lg p-1 transition outline-gray-200 hover:bg-gray-100 dark:outline-gray-700 dark:hover:bg-gray-800"
-							on:click={() => {
-								textScale = Math.max(1, parseFloat((textScale - 0.1).toFixed(2)));
-								setTextScaleHandler(textScale);
-							}}
-							aria-labelledby="ui-scale-label"
-							aria-label={$i18n.t('Decrease UI Scale')}
-						>
-							<Minus className="h-3.5 w-3.5" />
-						</button>
-
-						<div class="flex-1 flex items-center">
-							<input
-								id="ui-scale-slider"
-								class="w-full"
-								type="range"
-								min="1"
-								max="1.5"
-								step={0.01}
-								bind:value={textScale}
-								on:change={() => {
+					{#if textScale !== null}
+						<div class="flex items-center gap-2 w-full pt-2">
+							<button
+								type="button"
+								class="ix-step"
+								on:click={() => {
+									textScale = Math.max(1, parseFloat((textScale - 0.1).toFixed(2)));
 									setTextScaleHandler(textScale);
 								}}
 								aria-labelledby="ui-scale-label"
-								aria-valuemin="1"
-								aria-valuemax="1.5"
-								aria-valuenow={textScale}
-								aria-valuetext={`${textScale}x`}
-							/>
-						</div>
+								aria-label={$i18n.t('Decrease UI Scale')}
+							>
+								<Minus className="h-3.5 w-3.5" />
+							</button>
 
-						<button
-							type="button"
-							class="rounded-lg p-1 transition outline-gray-200 hover:bg-gray-100 dark:outline-gray-700 dark:hover:bg-gray-800"
-							on:click={() => {
-								textScale = Math.min(1.5, parseFloat((textScale + 0.1).toFixed(2)));
-								setTextScaleHandler(textScale);
-							}}
-							aria-labelledby="ui-scale-label"
-							aria-label={$i18n.t('Increase UI Scale')}
-						>
-							<Plus className="h-3.5 w-3.5" />
-						</button>
-					</div>
+							<div class="flex-1 flex items-center">
+								<input
+									id="ui-scale-slider"
+									class="w-full"
+									type="range"
+									min="1"
+									max="1.5"
+									step={0.01}
+									bind:value={textScale}
+									on:change={() => {
+										setTextScaleHandler(textScale);
+									}}
+									aria-labelledby="ui-scale-label"
+									aria-valuemin="1"
+									aria-valuemax="1.5"
+									aria-valuenow={textScale}
+									aria-valuetext={`${textScale}x`}
+								/>
+							</div>
+
+							<button
+								type="button"
+								class="ix-step"
+								on:click={() => {
+									textScale = Math.min(1.5, parseFloat((textScale + 0.1).toFixed(2)));
+									setTextScaleHandler(textScale);
+								}}
+								aria-labelledby="ui-scale-label"
+								aria-label={$i18n.t('Increase UI Scale')}
+							>
+								<Plus className="h-3.5 w-3.5" />
+							</button>
+						</div>
+					{/if}
+				</div>
+			</div>
+
+			<div class="ix-grid">
+				<ToggleCard
+					title="{$i18n.t('High Contrast Mode')} ({$i18n.t('Beta')})"
+					bind:state={highContrastMode}
+					on:change={() => saveSettings({ highContrastMode })}
+				/>
+				<ToggleCard
+					title={$i18n.t('Display chat title in tab')}
+					bind:state={showChatTitleInTab}
+					on:change={() => saveSettings({ showChatTitleInTab })}
+				/>
+				<ToggleCard
+					title={$i18n.t('Notification Sound')}
+					bind:state={notificationSound}
+					on:change={() => saveSettings({ notificationSound })}
+				/>
+				{#if notificationSound}
+					<ToggleCard
+						title={$i18n.t('Always Play Notification Sound')}
+						bind:state={notificationSoundAlways}
+						on:change={() => saveSettings({ notificationSoundAlways })}
+					/>
+				{/if}
+				<ToggleCard
+					title={$i18n.t('Allow User Location')}
+					bind:state={userLocation}
+					on:change={() => toggleUserLocation()}
+				/>
+				<ToggleCard
+					title="{$i18n.t('Haptic Feedback')} ({$i18n.t('Android')})"
+					bind:state={hapticFeedback}
+					on:change={() => saveSettings({ hapticFeedback })}
+				/>
+				<ToggleCard
+					title={$i18n.t('Copy Formatted Text')}
+					bind:state={copyFormatted}
+					on:change={() => saveSettings({ copyFormatted })}
+				/>
+				{#if $user?.role === 'admin'}
+					<ToggleCard
+						title={$i18n.t('Toast notifications for new updates')}
+						bind:state={showUpdateToast}
+						on:change={() => saveSettings({ showUpdateToast })}
+					/>
+					<ToggleCard
+						title={$i18n.t(`Show "What's New" modal on login`)}
+						bind:state={showChangelog}
+						on:change={() => saveSettings({ showChangelog })}
+					/>
 				{/if}
 			</div>
+		</div>
 
-			<div>
-				<div class=" py-0.5 flex w-full justify-between">
-					<div id="high-contrast-mode-label" class=" self-center text-xs">
-						{$i18n.t('High Contrast Mode')} ({$i18n.t('Beta')})
-					</div>
+		<!-- ── Chat ─────────────────────────── -->
+		<div id="design-section-chat" class="ix-section">
+			<div class="ix-group-label">{$i18n.t('Chat')}</div>
 
-					<div class="flex items-center gap-2 p-1">
-						<Switch
-							ariaLabelledbyId="high-contrast-mode-label"
-							tooltip={true}
-							bind:state={highContrastMode}
-							on:change={() => {
-								saveSettings({ highContrastMode });
-							}}
-						/>
-					</div>
-				</div>
-			</div>
-
-			<div>
-				<div class=" py-0.5 flex w-full justify-between">
-					<div id="use-chat-title-as-tab-title-label" class=" self-center text-xs">
-						{$i18n.t('Display chat title in tab')}
-					</div>
-
-					<div class="flex items-center gap-2 p-1">
-						<Switch
-							ariaLabelledbyId="use-chat-title-as-tab-title-label"
-							tooltip={true}
-							bind:state={showChatTitleInTab}
-							on:change={() => {
-								saveSettings({ showChatTitleInTab });
-							}}
-						/>
-					</div>
-				</div>
-			</div>
-
-			<div>
-				<div class="py-0.5 flex w-full justify-between">
-					<div id="notification-sound-label" class=" self-center text-xs">
-						{$i18n.t('Notification Sound')}
-					</div>
-
-					<div class="flex items-center gap-2 p-1">
-						<Switch
-							ariaLabelledbyId="notification-sound-label"
-							tooltip={true}
-							bind:state={notificationSound}
-							on:change={() => {
-								saveSettings({ notificationSound });
-							}}
-						/>
-					</div>
-				</div>
-			</div>
-
-			{#if notificationSound}
-				<div>
-					<div class=" py-0.5 flex w-full justify-between">
-						<div id="play-notification-sound-label" class=" self-center text-xs">
-							{$i18n.t('Always Play Notification Sound')}
-						</div>
-
-						<div class="flex items-center gap-2 p-1">
-							<Switch
-								ariaLabelledbyId="play-notification-sound-label"
-								tooltip={true}
-								bind:state={notificationSoundAlways}
-								on:change={() => {
-									saveSettings({ notificationSoundAlways });
-								}}
-							/>
-						</div>
-					</div>
-				</div>
-			{/if}
-
-			<div>
-				<div id="allow-user-location-label" class=" py-0.5 flex w-full justify-between">
-					<div class=" self-center text-xs">{$i18n.t('Allow User Location')}</div>
-
-					<div class="flex items-center gap-2 p-1">
-						<Switch
-							ariaLabelledbyId="allow-user-location-label"
-							tooltip={true}
-							bind:state={userLocation}
-							on:change={() => {
-								toggleUserLocation();
-							}}
-						/>
-					</div>
-				</div>
-			</div>
-
-			<div>
-				<div class=" py-0.5 flex w-full justify-between">
-					<div id="haptic-feedback-label" class=" self-center text-xs">
-						{$i18n.t('Haptic Feedback')} ({$i18n.t('Android')})
-					</div>
-
-					<div class="flex items-center gap-2 p-1">
-						<Switch
-							ariaLabelledbyId="haptic-feedback-label"
-							tooltip={true}
-							bind:state={hapticFeedback}
-							on:change={() => {
-								saveSettings({ hapticFeedback });
-							}}
-						/>
-					</div>
-				</div>
-			</div>
-
-			<div>
-				<div class=" py-0.5 flex w-full justify-between">
-					<div id="copy-formatted-label" class=" self-center text-xs">
-						{$i18n.t('Copy Formatted Text')}
-					</div>
-
-					<div class="flex items-center gap-2 p-1">
-						<Switch
-							ariaLabelledbyId="copy-formatted-label"
-							tooltip={true}
-							bind:state={copyFormatted}
-							on:change={() => {
-								saveSettings({ copyFormatted });
-							}}
-						/>
-					</div>
-				</div>
-			</div>
-
-			{#if $user?.role === 'admin'}
-				<div>
-					<div class=" py-0.5 flex w-full justify-between">
-						<div id="toast-notifications-label" class=" self-center text-xs">
-							{$i18n.t('Toast notifications for new updates')}
-						</div>
-
-						<div class="flex items-center gap-2 p-1">
-							<Switch
-								ariaLabelledbyId="toast-notifications-label"
-								tooltip={true}
-								bind:state={showUpdateToast}
-								on:change={() => {
-									saveSettings({ showUpdateToast });
-								}}
-							/>
-						</div>
-					</div>
-				</div>
-
-				<div>
-					<div class=" py-0.5 flex w-full justify-between">
-						<div id="whats-new-label" class=" self-center text-xs">
-							{$i18n.t(`Show "What's New" modal on login`)}
-						</div>
-
-						<div class="flex items-center gap-2 p-1">
-							<Switch
-								ariaLabelledbyId="whats-new-label"
-								tooltip={true}
-								bind:state={showChangelog}
-								on:change={() => {
-									saveSettings({ showChangelog });
-								}}
-							/>
-						</div>
-					</div>
-				</div>
-			{/if}
-
-			<div id="design-section-chat" class=" my-2 text-sm font-medium scroll-mt-3">
-				{$i18n.t('Chat')}
-			</div>
-
-			<div>
-				<div class=" py-0.5 flex w-full justify-between">
-					<div id="enable-message-queue-label" class=" self-center text-xs">
-						{$i18n.t('Enable Message Queue')}
-					</div>
-
-					<div class="flex items-center gap-2 p-1">
-						<Switch
-							ariaLabelledbyId="enable-message-queue-label"
-							tooltip={true}
-							bind:state={enableMessageQueue}
-							on:change={() => {
-								saveSettings({ enableMessageQueue });
-							}}
-						/>
-					</div>
-				</div>
-			</div>
-
-			<div>
-				<div class=" py-0.5 flex w-full justify-between">
-					<div id="chat-direction-label" class=" self-center text-xs">
-						{$i18n.t('Chat direction')}
-					</div>
-
+			<div class="ix-rows">
+				<div class="ix-row">
+					<div id="chat-direction-label" class="ix-row-title">{$i18n.t('Chat direction')}</div>
 					<button
 						aria-labelledby="chat-direction-label chat-direction-mode"
-						class="p-1 px-3 text-xs flex rounded-sm transition"
+						class="ix-pill"
 						on:click={toggleChangeChatDirection}
 						type="button"
 					>
-						<span class="ml-2 self-center" id="chat-direction-mode">
+						<span id="chat-direction-mode">
 							{chatDirection === 'LTR'
 								? $i18n.t('LTR')
 								: chatDirection === 'RTL'
@@ -634,38 +492,28 @@
 						</span>
 					</button>
 				</div>
-			</div>
 
-			<div>
-				<div class=" py-0.5 flex w-full justify-between">
-					<div id="landing-page-mode-label" class=" self-center text-xs">
-						{$i18n.t('Landing Page Mode')}
-					</div>
-
+				<div class="ix-row">
+					<div id="landing-page-mode-label" class="ix-row-title">{$i18n.t('Landing Page Mode')}</div>
 					<button
-						aria-labelledby="landing-page-mode-label notification-sound-state"
-						class="p-1 px-3 text-xs flex rounded-sm transition"
-						on:click={() => {
-							toggleLandingPageMode();
-						}}
+						aria-labelledby="landing-page-mode-label landing-page-mode-state"
+						class="ix-pill"
+						on:click={() => toggleLandingPageMode()}
 						type="button"
 					>
-						<span class="ml-2 self-center" id="notification-sound-state"
+						<span id="landing-page-mode-state"
 							>{landingPageMode === '' ? $i18n.t('Default') : $i18n.t('Chat')}</span
 						>
 					</button>
 				</div>
-			</div>
 
-			<div>
-				<div class=" py-0.5 flex w-full justify-between">
-					<div id="chat-background-label" class=" self-center text-xs">
+				<div class="ix-row">
+					<div id="chat-background-label" class="ix-row-title">
 						{$i18n.t('Chat Background Image')}
 					</div>
-
 					<button
 						aria-labelledby="chat-background-label background-image-url-state"
-						class="p-1 px-3 text-xs flex rounded-sm transition"
+						class="ix-pill"
 						on:click={() => {
 							if (backgroundImageUrl !== null) {
 								backgroundImageUrl = null;
@@ -676,426 +524,34 @@
 						}}
 						type="button"
 					>
-						<span class="ml-2 self-center" id="background-image-url-state"
+						<span id="background-image-url-state"
 							>{backgroundImageUrl !== null ? $i18n.t('Reset') : $i18n.t('Upload')}</span
 						>
 					</button>
 				</div>
-			</div>
 
-			<div>
-				<div class=" py-0.5 flex w-full justify-between">
-					<div id="chat-bubble-ui-label" class=" self-center text-xs">
-						{$i18n.t('Chat Bubble UI')}
-					</div>
-
-					<div class="flex items-center gap-2 p-1">
-						<Switch
-							tooltip={true}
-							ariaLabelledbyId="chat-bubble-ui-label"
-							bind:state={chatBubble}
-							on:change={() => {
-								saveSettings({ chatBubble });
-							}}
-						/>
-					</div>
+				<div class="ix-row">
+					<div id="web-search-in-chat-label" class="ix-row-title">{$i18n.t('Web Search in Chat')}</div>
+					<button
+						aria-labelledby="web-search-in-chat-label web-search-state"
+						class="ix-pill"
+						on:click={() => toggleWebSearch()}
+						type="button"
+					>
+						<span id="web-search-state"
+							>{webSearch === 'always' ? $i18n.t('Always') : $i18n.t('Default')}</span
+						>
+					</button>
 				</div>
-			</div>
 
-			{#if !$settings.chatBubble}
-				<div>
-					<div class=" py-0.5 flex w-full justify-between">
-						<div id="chat-bubble-username-label" class=" self-center text-xs">
-							{$i18n.t('Display the username instead of You in the Chat')}
-						</div>
-
-						<div class="flex items-center gap-2 p-1">
-							<Switch
-								ariaLabelledbyId="chat-bubble-username-label"
-								tooltip={true}
-								bind:state={showUsername}
-								on:change={() => {
-									saveSettings({ showUsername });
-								}}
-							/>
-						</div>
-					</div>
-				</div>
-			{/if}
-
-			<div>
-				<div class=" py-0.5 flex w-full justify-between">
-					<div id="widescreen-mode-label" class=" self-center text-xs">
-						{$i18n.t('Widescreen Mode')}
-					</div>
-
-					<div class="flex items-center gap-2 p-1">
-						<Switch
-							ariaLabelledbyId="widescreen-mode-label"
-							tooltip={true}
-							bind:state={widescreenMode}
-							on:change={() => {
-								saveSettings({ widescreenMode });
-							}}
-						/>
-					</div>
-				</div>
-			</div>
-
-			{#if $user.role === 'admin' || $user?.permissions?.chat?.temporary}
-				<div>
-					<div class=" py-0.5 flex w-full justify-between">
-						<div id="temp-chat-default-label" class=" self-center text-xs">
-							{$i18n.t('Temporary Chat by Default')}
-						</div>
-
-						<div class="flex items-center gap-2 p-1">
-							<Switch
-								ariaLabelledbyId="temp-chat-default-label"
-								tooltip={true}
-								bind:state={temporaryChatByDefault}
-								on:change={() => {
-									saveSettings({ temporaryChatByDefault });
-								}}
-							/>
-						</div>
-					</div>
-				</div>
-			{/if}
-
-			<div>
-				<div class=" py-0.5 flex w-full justify-between">
-					<div id="fade-streaming-label" class=" self-center text-xs">
-						{$i18n.t('Fade Effect for Streaming Text')}
-					</div>
-
-					<div class="flex items-center gap-2 p-1">
-						<Switch
-							ariaLabelledbyId="fade-streaming-label"
-							tooltip={true}
-							bind:state={chatFadeStreamingText}
-							on:change={() => {
-								saveSettings({ chatFadeStreamingText });
-							}}
-						/>
-					</div>
-				</div>
-			</div>
-
-			<div>
-				<div class=" py-0.5 flex w-full justify-between">
-					<div id="render-markdown-user-label" class=" self-center text-xs">
-						{$i18n.t('Render Markdown in User Messages')}
-					</div>
-
-					<div class="flex items-center gap-2 p-1">
-						<Switch
-							ariaLabelledbyId="render-markdown-user-label"
-							tooltip={true}
-							bind:state={renderMarkdownInUserMessages}
-							on:change={() => {
-								saveSettings({ renderMarkdownInUserMessages });
-							}}
-						/>
-					</div>
-				</div>
-			</div>
-
-			<div>
-				<div class=" py-0.5 flex w-full justify-between">
-					<div id="render-markdown-assistant-label" class=" self-center text-xs">
-						{$i18n.t('Render Markdown in Assistant Messages')}
-					</div>
-
-					<div class="flex items-center gap-2 p-1">
-						<Switch
-							ariaLabelledbyId="render-markdown-assistant-label"
-							tooltip={true}
-							bind:state={renderMarkdownInAssistantMessages}
-							on:change={() => {
-								saveSettings({ renderMarkdownInAssistantMessages });
-							}}
-						/>
-					</div>
-				</div>
-			</div>
-
-			<div>
-				<div class=" py-0.5 flex w-full justify-between">
-					<div id="auto-generation-label" class=" self-center text-xs">
-						{$i18n.t('Title Auto-Generation')}
-					</div>
-
-					<div class="flex items-center gap-2 p-1">
-						<Switch
-							ariaLabelledbyId="auto-generation-label"
-							tooltip={true}
-							bind:state={titleAutoGenerate}
-							on:change={() => {
-								toggleTitleAutoGenerate();
-							}}
-						/>
-					</div>
-				</div>
-			</div>
-
-			<div>
-				<div class=" py-0.5 flex w-full justify-between">
-					<div class=" self-center text-xs" id="follow-up-auto-generation-label">
-						{$i18n.t('Follow-Up Auto-Generation')}
-					</div>
-
-					<div class="flex items-center gap-2 p-1">
-						<Switch
-							ariaLabelledbyId="follow-up-auto-generation-label"
-							tooltip={true}
-							bind:state={autoFollowUps}
-							on:change={() => {
-								saveSettings({ autoFollowUps });
-							}}
-						/>
-					</div>
-				</div>
-			</div>
-
-			<div>
-				<div class=" py-0.5 flex w-full justify-between">
-					<div id="chat-tags-label" class=" self-center text-xs">
-						{$i18n.t('Chat Tags Auto-Generation')}
-					</div>
-
-					<div class="flex items-center gap-2 p-1">
-						<Switch
-							ariaLabelledbyId="chat-tags-label"
-							tooltip={true}
-							bind:state={autoTags}
-							on:change={() => {
-								saveSettings({ autoTags });
-							}}
-						/>
-					</div>
-				</div>
-			</div>
-
-			<div>
-				<div class=" py-0.5 flex w-full justify-between">
-					<div id="auto-copy-label" class=" self-center text-xs">
-						{$i18n.t('Auto-Copy Response to Clipboard')}
-					</div>
-
-					<div class="flex items-center gap-2 p-1">
-						<Switch
-							ariaLabelledbyId="auto-copy-label"
-							tooltip={true}
-							bind:state={responseAutoCopy}
-							on:change={() => {
-								toggleResponseAutoCopy();
-							}}
-						/>
-					</div>
-				</div>
-			</div>
-
-			<div>
-				<div class=" py-0.5 flex w-full justify-between">
-					<div id="insert-suggestion-prompt-label" class=" self-center text-xs">
-						{$i18n.t('Insert Suggestion Prompt to Input')}
-					</div>
-
-					<div class="flex items-center gap-2 p-1">
-						<Switch
-							ariaLabelledbyId="insert-suggestion-prompt-label"
-							tooltip={true}
-							bind:state={insertSuggestionPrompt}
-							on:change={() => {
-								saveSettings({ insertSuggestionPrompt });
-							}}
-						/>
-					</div>
-				</div>
-			</div>
-
-			<div>
-				<div class=" py-0.5 flex w-full justify-between">
-					<div id="keep-follow-up-prompts-label" class=" self-center text-xs">
-						{$i18n.t('Keep Follow-Up Prompts in Chat')}
-					</div>
-
-					<div class="flex items-center gap-2 p-1">
-						<Switch
-							ariaLabelledbyId="keep-follow-up-prompts-label"
-							tooltip={true}
-							bind:state={keepFollowUpPrompts}
-							on:change={() => {
-								saveSettings({ keepFollowUpPrompts });
-							}}
-						/>
-					</div>
-				</div>
-			</div>
-
-			<div>
-				<div class=" py-0.5 flex w-full justify-between">
-					<div id="insert-follow-up-prompt-label" class=" self-center text-xs">
-						{$i18n.t('Insert Follow-Up Prompt to Input')}
-					</div>
-
-					<div class="flex items-center gap-2 p-1">
-						<Switch
-							ariaLabelledbyId="insert-follow-up-prompt-label"
-							tooltip={true}
-							bind:state={insertFollowUpPrompt}
-							on:change={() => {
-								saveSettings({ insertFollowUpPrompt });
-							}}
-						/>
-					</div>
-				</div>
-			</div>
-
-			<div>
-				<div class=" py-0.5 flex w-full justify-between">
-					<div id="regenerate-menu-label" class=" self-center text-xs">
-						{$i18n.t('Regenerate Menu')}
-					</div>
-
-					<div class="flex items-center gap-2 p-1">
-						<Switch
-							ariaLabelledbyId="regenerate-menu-label"
-							tooltip={true}
-							bind:state={regenerateMenu}
-							on:change={() => {
-								saveSettings({ regenerateMenu });
-							}}
-						/>
-					</div>
-				</div>
-			</div>
-
-			<div>
-				<div class=" py-0.5 flex w-full justify-between">
-					<div id="always-collapse-label" class=" self-center text-xs">
-						{$i18n.t('Always Collapse Code Blocks')}
-					</div>
-
-					<div class="flex items-center gap-2 p-1">
-						<Switch
-							ariaLabelledbyId="always-collapse-label"
-							tooltip={true}
-							bind:state={collapseCodeBlocks}
-							on:change={() => {
-								saveSettings({ collapseCodeBlocks });
-							}}
-						/>
-					</div>
-				</div>
-			</div>
-
-			<div>
-				<div class=" py-0.5 flex w-full justify-between">
-					<div id="always-expand-label" class=" self-center text-xs">
-						{$i18n.t('Always Expand Details')}
-					</div>
-
-					<div class="flex items-center gap-2 p-1">
-						<Switch
-							ariaLabelledbyId="always-expand-label"
-							tooltip={true}
-							bind:state={expandDetails}
-							on:change={() => {
-								saveSettings({ expandDetails });
-							}}
-						/>
-					</div>
-				</div>
-			</div>
-
-			<div>
-				<div class=" py-0.5 flex w-full justify-between">
-					<div id="render-markdown-in-previews-label" class=" self-center text-xs">
-						{$i18n.t('Render Markdown in Previews')}
-					</div>
-
-					<div class="flex items-center gap-2 p-1">
-						<Switch
-							ariaLabelledbyId="render-markdown-in-previews-label"
-							tooltip={true}
-							bind:state={renderMarkdownInPreviews}
-							on:change={() => {
-								saveSettings({ renderMarkdownInPreviews });
-							}}
-						/>
-					</div>
-				</div>
-			</div>
-
-			<div>
-				<div class=" py-0.5 flex w-full justify-between">
-					<div id="keep-followup-prompts-label" class=" self-center text-xs">
-						{$i18n.t('Display Multi-model Responses in Tabs')}
-					</div>
-
-					<div class="flex items-center gap-2 p-1">
-						<Switch
-							ariaLabelledbyId="keep-followup-prompts-label"
-							tooltip={true}
-							bind:state={displayMultiModelResponsesInTabs}
-							on:change={() => {
-								saveSettings({ displayMultiModelResponsesInTabs });
-							}}
-						/>
-					</div>
-				</div>
-			</div>
-
-			<div>
-				<div class=" py-0.5 flex w-full justify-between">
-					<div id="scroll-on-branch-change-label" class=" self-center text-xs">
-						{$i18n.t('Scroll On Branch Change')}
-					</div>
-
-					<div class="flex items-center gap-2 p-1">
-						<Switch
-							ariaLabelledbyId="scroll-on-branch-change-label"
-							tooltip={true}
-							bind:state={scrollOnBranchChange}
-							on:change={() => {
-								saveSettings({ scrollOnBranchChange });
-							}}
-						/>
-					</div>
-				</div>
-			</div>
-
-			<div>
-				<div class=" py-0.5 flex w-full justify-between">
-					<div id="stylized-pdf-export-label" class=" self-center text-xs">
-						{$i18n.t('Stylized PDF Export')}
-					</div>
-
-					<div class="flex items-center gap-2 p-1">
-						<Switch
-							ariaLabelledbyId="stylized-pdf-export-label"
-							tooltip={true}
-							bind:state={stylizedPdfExport}
-							on:change={() => {
-								saveSettings({ stylizedPdfExport });
-							}}
-						/>
-					</div>
-				</div>
-			</div>
-
-			<div>
-				<div class=" py-0.5 flex w-full justify-between">
-					<label id="floating-action-buttons-label" class=" self-center text-xs">
+				<div class="ix-row">
+					<div id="floating-action-buttons-label" class="ix-row-title">
 						{$i18n.t('Floating Quick Actions')}
-					</label>
-
-					<div class="flex items-center gap-3 p-1">
+					</div>
+					<div class="flex items-center gap-3">
 						{#if showFloatingActionButtons}
 							<button
-								class="text-xs text-gray-700 dark:text-gray-400 underline"
+								class="ix-link"
 								type="button"
 								aria-label={$i18n.t('Open Modal To Manage Floating Quick Actions')}
 								on:click={() => {
@@ -1105,59 +561,154 @@
 								{$i18n.t('Manage')}
 							</button>
 						{/if}
-
-						<Switch
-							ariaLabelledbyId="floating-action-buttons-label"
-							tooltip={true}
-							bind:state={showFloatingActionButtons}
-							on:change={() => {
+						<button
+							type="button"
+							aria-labelledby="floating-action-buttons-label"
+							aria-pressed={showFloatingActionButtons}
+							class="ix-pill {showFloatingActionButtons ? 'on' : ''}"
+							on:click={() => {
+								showFloatingActionButtons = !showFloatingActionButtons;
 								saveSettings({ showFloatingActionButtons });
 							}}
-						/>
-					</div>
-				</div>
-			</div>
-
-			<div>
-				<div class=" py-0.5 flex w-full justify-between">
-					<div id="web-search-in-chat-label" class=" self-center text-xs">
-						{$i18n.t('Web Search in Chat')}
-					</div>
-
-					<button
-						aria-labelledby="web-search-in-chat-label web-search-state"
-						class="p-1 px-3 text-xs flex rounded-sm transition"
-						on:click={() => {
-							toggleWebSearch();
-						}}
-						type="button"
-					>
-						<span class="ml-2 self-center" id="web-search-state"
-							>{webSearch === 'always' ? $i18n.t('Always') : $i18n.t('Default')}</span
 						>
-					</button>
+							{showFloatingActionButtons ? $i18n.t('On') : $i18n.t('Off')}
+						</button>
+					</div>
 				</div>
 			</div>
 
-			<div id="design-section-input" class=" my-2 text-sm font-medium scroll-mt-3">
-				{$i18n.t('Input')}
+			<div class="ix-grid">
+				<ToggleCard
+					title={$i18n.t('Enable Message Queue')}
+					bind:state={enableMessageQueue}
+					on:change={() => saveSettings({ enableMessageQueue })}
+				/>
+				<ToggleCard
+					title={$i18n.t('Chat Bubble UI')}
+					bind:state={chatBubble}
+					on:change={() => saveSettings({ chatBubble })}
+				/>
+				{#if !$settings.chatBubble}
+					<ToggleCard
+						title={$i18n.t('Display the username instead of You in the Chat')}
+						bind:state={showUsername}
+						on:change={() => saveSettings({ showUsername })}
+					/>
+				{/if}
+				<ToggleCard
+					title={$i18n.t('Widescreen Mode')}
+					bind:state={widescreenMode}
+					on:change={() => saveSettings({ widescreenMode })}
+				/>
+				{#if $user.role === 'admin' || $user?.permissions?.chat?.temporary}
+					<ToggleCard
+						title={$i18n.t('Temporary Chat by Default')}
+						bind:state={temporaryChatByDefault}
+						on:change={() => saveSettings({ temporaryChatByDefault })}
+					/>
+				{/if}
+				<ToggleCard
+					title={$i18n.t('Fade Effect for Streaming Text')}
+					bind:state={chatFadeStreamingText}
+					on:change={() => saveSettings({ chatFadeStreamingText })}
+				/>
+				<ToggleCard
+					title={$i18n.t('Render Markdown in User Messages')}
+					bind:state={renderMarkdownInUserMessages}
+					on:change={() => saveSettings({ renderMarkdownInUserMessages })}
+				/>
+				<ToggleCard
+					title={$i18n.t('Render Markdown in Assistant Messages')}
+					bind:state={renderMarkdownInAssistantMessages}
+					on:change={() => saveSettings({ renderMarkdownInAssistantMessages })}
+				/>
+				<ToggleCard
+					title={$i18n.t('Title Auto-Generation')}
+					bind:state={titleAutoGenerate}
+					on:change={() => toggleTitleAutoGenerate()}
+				/>
+				<ToggleCard
+					title={$i18n.t('Follow-Up Auto-Generation')}
+					bind:state={autoFollowUps}
+					on:change={() => saveSettings({ autoFollowUps })}
+				/>
+				<ToggleCard
+					title={$i18n.t('Chat Tags Auto-Generation')}
+					bind:state={autoTags}
+					on:change={() => saveSettings({ autoTags })}
+				/>
+				<ToggleCard
+					title={$i18n.t('Auto-Copy Response to Clipboard')}
+					bind:state={responseAutoCopy}
+					on:change={() => toggleResponseAutoCopy()}
+				/>
+				<ToggleCard
+					title={$i18n.t('Insert Suggestion Prompt to Input')}
+					bind:state={insertSuggestionPrompt}
+					on:change={() => saveSettings({ insertSuggestionPrompt })}
+				/>
+				<ToggleCard
+					title={$i18n.t('Keep Follow-Up Prompts in Chat')}
+					bind:state={keepFollowUpPrompts}
+					on:change={() => saveSettings({ keepFollowUpPrompts })}
+				/>
+				<ToggleCard
+					title={$i18n.t('Insert Follow-Up Prompt to Input')}
+					bind:state={insertFollowUpPrompt}
+					on:change={() => saveSettings({ insertFollowUpPrompt })}
+				/>
+				<ToggleCard
+					title={$i18n.t('Regenerate Menu')}
+					bind:state={regenerateMenu}
+					on:change={() => saveSettings({ regenerateMenu })}
+				/>
+				<ToggleCard
+					title={$i18n.t('Always Collapse Code Blocks')}
+					bind:state={collapseCodeBlocks}
+					on:change={() => saveSettings({ collapseCodeBlocks })}
+				/>
+				<ToggleCard
+					title={$i18n.t('Always Expand Details')}
+					bind:state={expandDetails}
+					on:change={() => saveSettings({ expandDetails })}
+				/>
+				<ToggleCard
+					title={$i18n.t('Render Markdown in Previews')}
+					bind:state={renderMarkdownInPreviews}
+					on:change={() => saveSettings({ renderMarkdownInPreviews })}
+				/>
+				<ToggleCard
+					title={$i18n.t('Display Multi-model Responses in Tabs')}
+					bind:state={displayMultiModelResponsesInTabs}
+					on:change={() => saveSettings({ displayMultiModelResponsesInTabs })}
+				/>
+				<ToggleCard
+					title={$i18n.t('Scroll On Branch Change')}
+					bind:state={scrollOnBranchChange}
+					on:change={() => saveSettings({ scrollOnBranchChange })}
+				/>
+				<ToggleCard
+					title={$i18n.t('Stylized PDF Export')}
+					bind:state={stylizedPdfExport}
+					on:change={() => saveSettings({ stylizedPdfExport })}
+				/>
 			</div>
+		</div>
 
-			<div>
-				<div class=" py-0.5 flex w-full justify-between">
-					<div id="enter-key-behavior-label ctrl-enter-to-send-state" class=" self-center text-xs">
-						{$i18n.t('Enter Key Behavior')}
-					</div>
+		<!-- ── Input ─────────────────────────── -->
+		<div id="design-section-input" class="ix-section">
+			<div class="ix-group-label">{$i18n.t('Input')}</div>
 
+			<div class="ix-rows">
+				<div class="ix-row">
+					<div id="enter-key-behavior-label" class="ix-row-title">{$i18n.t('Enter Key Behavior')}</div>
 					<button
-						aria-labelledby="enter-key-behavior-label"
-						class="p-1 px-3 text-xs flex rounded transition"
-						on:click={() => {
-							togglectrlEnterToSend();
-						}}
+						aria-labelledby="enter-key-behavior-label ctrl-enter-to-send-state"
+						class="ix-pill"
+						on:click={() => togglectrlEnterToSend()}
 						type="button"
 					>
-						<span class="ml-2 self-center" id="ctrl-enter-to-send-state"
+						<span id="ctrl-enter-to-send-state"
 							>{ctrlEnterToSend === true
 								? $i18n.t('Ctrl+Enter to Send')
 								: $i18n.t('Enter to Send')}</span
@@ -1166,222 +717,91 @@
 				</div>
 			</div>
 
-			<div>
-				<div class=" py-0.5 flex w-full justify-between">
-					<div id="rich-input-label" class=" self-center text-xs">
-						{$i18n.t('Rich Text Input for Chat')}
-					</div>
-
-					<div class="flex items-center gap-2 p-1">
-						<Switch
-							tooltip={true}
-							ariaLabelledbyId="rich-input-label"
-							bind:state={richTextInput}
-							on:change={() => {
-								saveSettings({ richTextInput });
-							}}
-						/>
-					</div>
-				</div>
+			<div class="ix-grid">
+				<ToggleCard
+					title={$i18n.t('Rich Text Input for Chat')}
+					bind:state={richTextInput}
+					on:change={() => saveSettings({ richTextInput })}
+				/>
+				{#if $config?.features?.enable_autocomplete_generation}
+					<ToggleCard
+						title={$i18n.t('Prompt Autocompletion')}
+						bind:state={promptAutocomplete}
+						on:change={() => saveSettings({ promptAutocomplete })}
+					/>
+				{/if}
+				{#if richTextInput}
+					<ToggleCard
+						title={$i18n.t('Show Formatting Toolbar')}
+						bind:state={showFormattingToolbar}
+						on:change={() => saveSettings({ showFormattingToolbar })}
+					/>
+					<ToggleCard
+						title={$i18n.t('Insert Prompt as Rich Text')}
+						bind:state={insertPromptAsRichText}
+						on:change={() => saveSettings({ insertPromptAsRichText })}
+					/>
+				{/if}
+				<ToggleCard
+					title={$i18n.t('Paste Large Text as File')}
+					bind:state={largeTextAsFile}
+					on:change={() => saveSettings({ largeTextAsFile })}
+				/>
 			</div>
+		</div>
 
-			{#if $config?.features?.enable_autocomplete_generation}
-				<div>
-					<div class=" py-0.5 flex w-full justify-between">
-						<div id="prompt-autocompletion-label" class=" self-center text-xs">
-							{$i18n.t('Prompt Autocompletion')}
-						</div>
-
-						<div class="flex items-center gap-2 p-1">
-							<Switch
-								ariaLabelledbyId="prompt-autocompletion-label"
-								tooltip={true}
-								bind:state={promptAutocomplete}
-								on:change={() => {
-									saveSettings({ promptAutocomplete });
-								}}
-							/>
-						</div>
-					</div>
-				</div>
-			{/if}
-
-			{#if richTextInput}
-				<div>
-					<div class=" py-0.5 flex w-full justify-between">
-						<div id="show-formatting-toolbar-label" class=" self-center text-xs">
-							{$i18n.t('Show Formatting Toolbar')}
-						</div>
-
-						<div class="flex items-center gap-2 p-1">
-							<Switch
-								ariaLabelledbyId="show-formatting-toolbar-label"
-								tooltip={true}
-								bind:state={showFormattingToolbar}
-								on:change={() => {
-									saveSettings({ showFormattingToolbar });
-								}}
-							/>
-						</div>
-					</div>
-				</div>
-
-				<div>
-					<div class=" py-0.5 flex w-full justify-between">
-						<div id="insert-prompt-as-rich-text-label" class=" self-center text-xs">
-							{$i18n.t('Insert Prompt as Rich Text')}
-						</div>
-
-						<div class="flex items-center gap-2 p-1">
-							<Switch
-								ariaLabelledbyId="insert-prompt-as-rich-text-label"
-								tooltip={true}
-								bind:state={insertPromptAsRichText}
-								on:change={() => {
-									saveSettings({ insertPromptAsRichText });
-								}}
-							/>
-						</div>
-					</div>
-				</div>
-			{/if}
-
-			<div>
-				<div class=" py-0.5 flex w-full justify-between">
-					<div id="paste-large-label" class=" self-center text-xs">
-						{$i18n.t('Paste Large Text as File')}
-					</div>
-
-					<div class="flex items-center gap-2 p-1">
-						<Switch
-							tooltip={true}
-							ariaLabelledbyId="paste-large-label"
-							bind:state={largeTextAsFile}
-							on:change={() => {
-								saveSettings({ largeTextAsFile });
-							}}
-						/>
-					</div>
-				</div>
+		<!-- ── Artifacts ─────────────────────────── -->
+		<div id="design-section-artifacts" class="ix-section">
+			<div class="ix-group-label">{$i18n.t('Artifacts')}</div>
+			<div class="ix-grid">
+				<ToggleCard
+					title={$i18n.t('Detect Artifacts Automatically')}
+					bind:state={detectArtifacts}
+					on:change={() => saveSettings({ detectArtifacts })}
+				/>
+				<ToggleCard
+					title={$i18n.t('iframe Sandbox Allow Same Origin')}
+					bind:state={iframeSandboxAllowSameOrigin}
+					on:change={() => saveSettings({ iframeSandboxAllowSameOrigin })}
+				/>
+				<ToggleCard
+					title={$i18n.t('iframe Sandbox Allow Forms')}
+					bind:state={iframeSandboxAllowForms}
+					on:change={() => saveSettings({ iframeSandboxAllowForms })}
+				/>
 			</div>
+		</div>
 
-			<div id="design-section-artifacts" class=" my-2 text-sm font-medium scroll-mt-3">
-				{$i18n.t('Artifacts')}
+		<!-- ── Voice ─────────────────────────── -->
+		<div id="design-section-voice" class="ix-section">
+			<div class="ix-group-label">{$i18n.t('Voice')}</div>
+			<div class="ix-grid">
+				<ToggleCard
+					title={$i18n.t('Allow Voice Interruption in Call')}
+					bind:state={voiceInterruption}
+					on:change={() => saveSettings({ voiceInterruption })}
+				/>
+				<ToggleCard
+					title={$i18n.t('Display Emoji in Call')}
+					bind:state={showEmojiInCall}
+					on:change={() => saveSettings({ showEmojiInCall })}
+				/>
 			</div>
+		</div>
 
-			<div>
-				<div class=" py-0.5 flex w-full justify-between">
-					<div id="detect-artifacts-label" class=" self-center text-xs">
-						{$i18n.t('Detect Artifacts Automatically')}
-					</div>
+		<!-- ── File ─────────────────────────── -->
+		<div id="design-section-file" class="ix-section">
+			<div class="ix-group-label">{$i18n.t('File')}</div>
 
-					<div class="flex items-center gap-2 p-1">
-						<Switch
-							ariaLabelledbyId="detect-artifacts-label"
-							tooltip={true}
-							bind:state={detectArtifacts}
-							on:change={() => {
-								saveSettings({ detectArtifacts });
-							}}
-						/>
-					</div>
-				</div>
-			</div>
-
-			<div>
-				<div class=" py-0.5 flex w-full justify-between">
-					<div id="iframe-sandbox-allow-same-origin-label" class=" self-center text-xs">
-						{$i18n.t('iframe Sandbox Allow Same Origin')}
-					</div>
-
-					<div class="flex items-center gap-2 p-1">
-						<Switch
-							ariaLabelledbyId="iframe-sandbox-allow-same-origin-label"
-							tooltip={true}
-							bind:state={iframeSandboxAllowSameOrigin}
-							on:change={() => {
-								saveSettings({ iframeSandboxAllowSameOrigin });
-							}}
-						/>
-					</div>
-				</div>
-			</div>
-
-			<div>
-				<div class=" py-0.5 flex w-full justify-between">
-					<div id="iframe-sandbox-allow-forms-label" class=" self-center text-xs">
-						{$i18n.t('iframe Sandbox Allow Forms')}
-					</div>
-
-					<div class="flex items-center gap-2 p-1">
-						<Switch
-							ariaLabelledbyId="iframe-sandbox-allow-forms-label"
-							tooltip={true}
-							bind:state={iframeSandboxAllowForms}
-							on:change={() => {
-								saveSettings({ iframeSandboxAllowForms });
-							}}
-						/>
-					</div>
-				</div>
-			</div>
-
-			<div id="design-section-voice" class=" my-2 text-sm font-medium scroll-mt-3">
-				{$i18n.t('Voice')}
-			</div>
-
-			<div>
-				<div class=" py-0.5 flex w-full justify-between">
-					<div class=" self-center text-xs" id="allow-voice-interruption-in-call-label">
-						{$i18n.t('Allow Voice Interruption in Call')}
-					</div>
-
-					<div class="flex items-center gap-2 p-1">
-						<Switch
-							ariaLabelledbyId="allow-voice-interruption-in-call-label"
-							tooltip={true}
-							bind:state={voiceInterruption}
-							on:change={() => {
-								saveSettings({ voiceInterruption });
-							}}
-						/>
-					</div>
-				</div>
-			</div>
-
-			<div>
-				<div class=" py-0.5 flex w-full justify-between">
-					<div id="display-emoji-label" class=" self-center text-xs">
-						{$i18n.t('Display Emoji in Call')}
-					</div>
-
-					<div class="flex items-center gap-2 p-1">
-						<Switch
-							ariaLabelledbyId="display-emoji-label"
-							tooltip={true}
-							bind:state={showEmojiInCall}
-							on:change={() => {
-								saveSettings({ showEmojiInCall });
-							}}
-						/>
-					</div>
-				</div>
-			</div>
-
-			<div id="design-section-file" class=" my-2 text-sm font-medium scroll-mt-3">
-				{$i18n.t('File')}
-			</div>
-
-			<div>
-				<div class=" py-0.5 flex w-full justify-between">
-					<div id="image-compression-label" class=" self-center text-xs">
+			<div class="ix-rows">
+				<div class="ix-row">
+					<div id="image-compression-label" class="ix-row-title">
 						{$i18n.t('Image Compression')}
 					</div>
-
-					<div class="flex items-center gap-3 p-1">
+					<div class="flex items-center gap-3">
 						{#if imageCompression}
 							<button
-								class="text-xs text-gray-700 dark:text-gray-400 underline"
+								class="ix-link"
 								type="button"
 								aria-label={$i18n.t('Open Modal To Manage Image Compression')}
 								on:click={() => {
@@ -1391,48 +811,131 @@
 								{$i18n.t('Manage')}
 							</button>
 						{/if}
-
-						<Switch
-							ariaLabelledbyId="image-compression-label"
-							tooltip={true}
-							bind:state={imageCompression}
-							on:change={() => {
+						<button
+							type="button"
+							aria-labelledby="image-compression-label"
+							aria-pressed={imageCompression}
+							class="ix-pill {imageCompression ? 'on' : ''}"
+							on:click={() => {
+								imageCompression = !imageCompression;
 								saveSettings({ imageCompression });
 							}}
-						/>
+						>
+							{imageCompression ? $i18n.t('On') : $i18n.t('Off')}
+						</button>
 					</div>
 				</div>
 			</div>
 
 			{#if imageCompression}
-				<div>
-					<div class=" py-0.5 flex w-full justify-between">
-						<div id="image-compression-in-channels-label" class=" self-center text-xs">
-							{$i18n.t('Compress Images in Channels')}
-						</div>
-
-						<div class="flex items-center gap-2 p-1">
-							<Switch
-								ariaLabelledbyId="image-compression-in-channels-label"
-								tooltip={true}
-								bind:state={imageCompressionInChannels}
-								on:change={() => {
-									saveSettings({ imageCompressionInChannels });
-								}}
-							/>
-						</div>
-					</div>
+				<div class="ix-grid">
+					<ToggleCard
+						title={$i18n.t('Compress Images in Channels')}
+						bind:state={imageCompressionInChannels}
+						on:change={() => saveSettings({ imageCompressionInChannels })}
+					/>
 				</div>
 			{/if}
 		</div>
 	</div>
-
-	<div class="flex justify-end text-sm font-medium">
+	<div class="flex justify-end pt-3 text-sm font-medium">
 		<button
-			class="px-3.5 py-1.5 text-sm font-medium bg-black hover:bg-gray-900 text-white dark:bg-white dark:text-black dark:hover:bg-gray-100 transition rounded-full"
+			class="px-4 py-2 text-sm font-medium bg-[var(--accent)] hover:opacity-90 text-white transition rounded-[10px]"
 			type="submit"
 		>
 			{$i18n.t('Save')}
 		</button>
 	</div>
 </form>
+
+<style>
+	.ix-section {
+		margin-bottom: 22px;
+		scroll-margin-top: 12px;
+	}
+	.ix-group-label {
+		font-size: 11px;
+		font-weight: 700;
+		letter-spacing: 0.05em;
+		text-transform: uppercase;
+		color: var(--text-tertiary);
+		margin-bottom: 10px;
+	}
+	.ix-grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 8px;
+	}
+	.ix-rows {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		margin-bottom: 8px;
+	}
+	.ix-row {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 12px;
+		padding: 11px 13px;
+		border-radius: 12px;
+		border: 1px solid var(--border);
+		background: var(--surface);
+	}
+	.ix-row-col {
+		flex-direction: column;
+		align-items: stretch;
+	}
+	.ix-row-title {
+		font-size: 13px;
+		font-weight: 500;
+		color: var(--text);
+	}
+	.ix-pill {
+		font-size: 12px;
+		font-weight: 500;
+		padding: 5px 12px;
+		border-radius: 8px;
+		border: 1px solid var(--border);
+		background: var(--bg-elevated);
+		color: var(--text);
+		transition:
+			background 0.15s ease,
+			border-color 0.15s ease,
+			color 0.15s ease;
+	}
+	.ix-pill:hover {
+		background: var(--surface-hover);
+		border-color: var(--border-hover);
+	}
+	.ix-pill.on {
+		background: var(--accent);
+		border-color: var(--accent);
+		color: #fff;
+	}
+	.ix-link {
+		font-size: 12px;
+		font-weight: 500;
+		color: var(--accent);
+		text-decoration: underline;
+	}
+	.ix-step {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 5px;
+		border-radius: 8px;
+		color: var(--text-secondary);
+		transition: background 0.15s ease;
+	}
+	.ix-step:hover {
+		background: var(--surface-hover);
+		color: var(--text);
+	}
+
+	@media (max-width: 767px) {
+		.ix-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

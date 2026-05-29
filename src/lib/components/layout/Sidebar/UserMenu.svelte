@@ -126,7 +126,7 @@
 				on:click={async () => {
 					show = false;
 
-					dispatch('show', 'archived-chat');
+					await showSettings.set('archived_chats');
 
 					if ($mobile) {
 						await tick();
