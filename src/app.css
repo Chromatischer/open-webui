@@ -55,82 +55,82 @@
 	--sidebar-w: 260px;
 
 	/* Backgrounds */
-	--bg-sidebar:   #e8e4db;
-	--bg-base:      #f7f5f0;
-	--bg-elevated:  #ffffff;
+	--bg-sidebar: #e8e4db;
+	--bg-base: #f7f5f0;
+	--bg-elevated: #ffffff;
 
 	/* Surfaces (overlays on top of bg) */
-	--surface:        rgba(0, 0, 0, 0.025);
-	--surface-hover:  rgba(0, 0, 0, 0.05);
+	--surface: rgba(0, 0, 0, 0.025);
+	--surface-hover: rgba(0, 0, 0, 0.05);
 	--surface-active: rgba(0, 0, 0, 0.08);
 
 	/* Borders */
-	--border:       rgba(0, 0, 0, 0.06);
+	--border: rgba(0, 0, 0, 0.06);
 	--border-hover: rgba(0, 0, 0, 0.12);
 
 	/* Text */
-	--text:           #2a2927;
+	--text: #2a2927;
 	--text-secondary: #6b6964;
-	--text-tertiary:  #a9a69d;
+	--text-tertiary: #a9a69d;
 
 	/* Brand accent (periwinkle – AI, selections, active states) */
-	--accent:      #7b7ef6;
+	--accent: #7b7ef6;
 	--accent-glow: rgba(123, 126, 246, 0.12);
 	--accent-soft: #9fa1f9;
 
 	/* Orange (user messages, send button, active composer) */
-	--orange:      #e8730a;
+	--orange: #e8730a;
 	--orange-glow: rgba(232, 115, 10, 0.14);
 	--orange-soft: rgba(232, 115, 10, 0.06);
 
 	/* Semantic */
-	--success:   #2d9f52;
-	--code-bg:   #f3f1ec;
+	--success: #2d9f52;
+	--code-bg: #f3f1ec;
 	--shadow-color: rgba(0, 0, 0, 0.06);
 
 	/* Highlight / text mark (amber-yellow) */
-	--highlight:      #ffe082;
+	--highlight: #ffe082;
 	--highlight-glow: rgba(255, 224, 130, 0.3);
 
 	/* Typography */
-	--font-sans:    'Archivo', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-	--font-serif:   'InstrumentSerif', Georgia, serif;
+	--font-sans: 'Archivo', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+	--font-serif: 'InstrumentSerif', Georgia, serif;
 	--font-message: 'Atkinson Next', 'Archivo', -apple-system, BlinkMacSystemFont, sans-serif;
 
-	--message-font-size:   15.5px;
+	--message-font-size: 15.5px;
 	--message-font-weight: 440;
 	--message-line-height: 1.55;
 }
 
 .dark {
-	--bg-sidebar:   #141312;
-	--bg-base:      #1e1d1c;
-	--bg-elevated:  #252422;
+	--bg-sidebar: #141312;
+	--bg-base: #1e1d1c;
+	--bg-elevated: #252422;
 
-	--surface:        rgba(255, 255, 255, 0.03);
-	--surface-hover:  rgba(255, 255, 255, 0.05);
+	--surface: rgba(255, 255, 255, 0.03);
+	--surface-hover: rgba(255, 255, 255, 0.05);
 	--surface-active: rgba(255, 255, 255, 0.07);
 
-	--border:       rgba(255, 255, 255, 0.06);
-	--border-hover: rgba(255, 255, 255, 0.10);
+	--border: rgba(255, 255, 255, 0.06);
+	--border-hover: rgba(255, 255, 255, 0.1);
 
-	--text:           #f0eeeb;
+	--text: #f0eeeb;
 	--text-secondary: #a09e99;
-	--text-tertiary:  #6e6c67;
+	--text-tertiary: #6e6c67;
 
-	--accent:      #9fa1f9;
+	--accent: #9fa1f9;
 	--accent-glow: rgba(159, 161, 249, 0.15);
 	--accent-soft: #bbbcfb;
 
-	--orange:      #f5a04c;
+	--orange: #f5a04c;
 	--orange-glow: rgba(245, 160, 76, 0.14);
 	--orange-soft: rgba(245, 160, 76, 0.06);
 
-	--success:      #43c778;
-	--code-bg:      #1a1918;
-	--shadow-color: rgba(0, 0, 0, 0.30);
+	--success: #43c778;
+	--code-bg: #1a1918;
+	--shadow-color: rgba(0, 0, 0, 0.3);
 
-	--highlight:      #c9a84c;
+	--highlight: #c9a84c;
 	--highlight-glow: rgba(201, 168, 76, 0.2);
 }
 
@@ -174,7 +174,10 @@ code {
 	transform: translateY(6px);
 }
 @keyframes ds-slideIn {
-	to { opacity: 1; transform: translateY(0); }
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
 }
 
 .meta-line {
@@ -191,8 +194,12 @@ code {
 	text-transform: uppercase;
 	color: var(--text-tertiary);
 }
-.message-group.user .meta-role { color: var(--orange); }
-.message-group.ai  .meta-role { color: var(--accent); }
+.message-group.user .meta-role {
+	color: var(--orange);
+}
+.message-group.ai .meta-role {
+	color: var(--accent);
+}
 
 .meta-versions {
 	display: flex;
@@ -213,7 +220,9 @@ code {
 	letter-spacing: 0.06em;
 	text-transform: uppercase;
 	cursor: pointer;
-	transition: color 0.15s, background 0.15s;
+	transition:
+		color 0.15s,
+		background 0.15s;
 }
 
 .meta-ver-btn:hover {
@@ -1254,7 +1263,9 @@ select {
 	color: var(--text-secondary);
 	cursor: pointer;
 	border: none;
-	transition: background 0.2s ease, color 0.2s ease;
+	transition:
+		background 0.2s ease,
+		color 0.2s ease;
 }
 .ws-chip:hover {
 	background: var(--surface-hover);
@@ -1327,4 +1338,105 @@ select {
 	border-radius: 12px;
 	background: var(--accent-glow);
 	color: var(--accent);
+}
+
+/* ===================================================================
+   Admin settings — redesign theme layer
+   Skins the existing settings form markup in place (no per-page
+   rewrites): a centered reading column, page header, each
+   `.text-base.font-medium` section promoted to a card via :has(), and
+   unified input/select/textarea styling matching the design mockup.
+   =================================================================== */
+.admin-settings {
+	max-width: 760px;
+	width: 100%;
+	margin: 0 auto;
+}
+/* Wider column for embedded full views (e.g. the Models card grid). */
+.admin-settings.wide {
+	max-width: 1100px;
+}
+
+.admin-settings-head h1 {
+	font-family: var(--font-sans);
+	font-size: 26px;
+	font-weight: 600;
+	line-height: 1.15;
+	letter-spacing: -0.01em;
+	color: var(--text);
+}
+.admin-settings-head p {
+	margin-top: 6px;
+	font-size: 14px;
+	color: var(--text-secondary);
+}
+
+/* Promote each section (a block whose direct child is a section header)
+   into a card. Direct-child match keeps wrappers/ancestors from matching. */
+.admin-settings-body:not(.raw) div:has(> .text-base.font-medium) {
+	background: var(--bg-elevated);
+	border: 1px solid var(--border);
+	border-radius: 16px;
+	padding: 18px 20px;
+	margin-bottom: 18px;
+	box-shadow: 0 1px 2px var(--shadow-color);
+}
+
+/* Section title (first child of each card). */
+.admin-settings-body:not(.raw) .text-base.font-medium {
+	font-family: var(--font-sans);
+	font-size: 15px !important;
+	font-weight: 600;
+	color: var(--text);
+	margin-top: 0 !important;
+	margin-bottom: 12px !important;
+}
+
+/* The card border replaces the old inline separators. */
+.admin-settings-body:not(.raw) hr {
+	display: none;
+}
+
+/* Unified input controls — boxed surface fields per the design mockup. */
+.admin-settings-body:not(.raw)
+	input:not([type='checkbox']):not([type='radio']):not([type='range']):not([type='file']):not(
+		[type='color']
+	):not([type='submit']):not([type='button']),
+.admin-settings-body:not(.raw) textarea,
+.admin-settings-body:not(.raw) select {
+	background: var(--surface) !important;
+	border: 1px solid var(--border) !important;
+	border-radius: 10px !important;
+	padding: 7px 12px !important;
+	color: var(--text) !important;
+	font-size: 13px !important;
+	outline: none !important;
+	box-shadow: none !important;
+	transition:
+		border-color 0.15s,
+		background 0.15s;
+}
+.admin-settings-body:not(.raw)
+	input:not([type='checkbox']):not([type='radio']):not([type='range']):not([type='file']):not(
+		[type='color']
+	):not([type='submit']):not([type='button']):focus,
+.admin-settings-body:not(.raw) textarea:focus,
+.admin-settings-body:not(.raw) select:focus {
+	border-color: var(--accent) !important;
+	background: var(--bg-elevated) !important;
+}
+.admin-settings-body:not(.raw) input::placeholder,
+.admin-settings-body:not(.raw) textarea::placeholder {
+	color: var(--text-tertiary);
+}
+
+/* Primary save action adopts the brand accent pill. */
+.admin-settings-body:not(.raw) button[type='submit'] {
+	background: var(--accent) !important;
+	color: #fff !important;
+	border-radius: 10px !important;
+	transition: opacity 0.15s;
+}
+.admin-settings-body:not(.raw) button[type='submit']:hover {
+	opacity: 0.9;
 }
