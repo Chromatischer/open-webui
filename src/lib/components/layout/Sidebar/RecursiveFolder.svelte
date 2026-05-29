@@ -416,7 +416,6 @@
 
 		saveAs(blob, `folder-${folders[folderId].name}-export-${Date.now()}.json`);
 	};
-
 </script>
 
 <DeleteConfirmDialog

@@ -128,7 +128,6 @@
 		await chats.set(await getChatList(localStorage.token, $currentChatPage));
 		scrollPaginationEnabled.set(true);
 	};
-
 </script>
 
 <SharedChatsModal bind:show={showSharedChatsModal} />

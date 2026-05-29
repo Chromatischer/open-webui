@@ -433,10 +433,7 @@
 </script>
 
 <div>
-	<div
-		class="codeblock-wrapper relative {className} flex flex-col my-0.5"
-		dir="ltr"
-	>
+	<div class="codeblock-wrapper relative {className} flex flex-col my-0.5" dir="ltr">
 		{#if ['mermaid', 'vega', 'vega-lite'].includes(lang)}
 			{#if renderHTML}
 				<SvgPanZoom

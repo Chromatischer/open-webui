@@ -216,9 +216,7 @@
 
 			<hr class="border-[var(--border)] my-4" />
 
-			<div
-				class="mb-2.5 text-[11px] font-bold uppercase tracking-wide text-[var(--text-tertiary)]"
-			>
+			<div class="mb-2.5 text-[11px] font-bold uppercase tracking-wide text-[var(--text-tertiary)]">
 				{$i18n.t('WebUI Settings')}
 			</div>
 

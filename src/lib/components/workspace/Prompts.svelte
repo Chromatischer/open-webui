@@ -308,10 +308,7 @@
 						</div>
 					</button>
 				{/if}
-				<a
-					class="btn-primary flex text-sm items-center"
-					href="/workspace/prompts/create"
-				>
+				<a class="btn-primary flex text-sm items-center" href="/workspace/prompts/create">
 					<Plus className="size-3" strokeWidth="2.5" />
 
 					<div class=" hidden md:block md:ml-1 text-xs">{$i18n.t('New Prompt')}</div>
@@ -320,9 +317,7 @@
 		</div>
 	</div>
 
-	<div
-		class="search-container py-2"
-	>
+	<div class="search-container py-2">
 		<div class=" flex w-full space-x-2 py-0.5 px-3.5 pb-2">
 			<div class="flex flex-1">
 				<div class=" self-center ml-1 mr-3">
@@ -463,91 +458,93 @@
 											<Check className="size-4" strokeWidth="1.5" />
 										{:else}
 											<Clipboard className="size-4" strokeWidth="1.5" />
-{/if}
+										{/if}
 
-<style>
-	/* Search container */
-	.search-container {
-		background: var(--bg-elevated);
-		border: 1px solid var(--border);
-		border-radius: 24px;
-	}
+										<style>
+											/* Search container */
+											.search-container {
+												background: var(--bg-elevated);
+												border: 1px solid var(--border);
+												border-radius: 24px;
+											}
 
-	/* Toolbar buttons (Import/Export) */
-	.btn-toolbar {
-		background: var(--surface);
-		color: var(--text);
-		border-radius: 12px;
-		transition: background 0.2s;
-		font-size: 12px;
-	}
-	.btn-toolbar:hover {
-		background: var(--surface-hover);
-	}
+											/* Toolbar buttons (Import/Export) */
+											.btn-toolbar {
+												background: var(--surface);
+												color: var(--text);
+												border-radius: 12px;
+												transition: background 0.2s;
+												font-size: 12px;
+											}
+											.btn-toolbar:hover {
+												background: var(--surface-hover);
+											}
 
-	/* Primary action button */
-	.btn-primary {
-		background: var(--accent);
-		color: #fff;
-		border-radius: 10px;
-		padding: 6px 12px;
-		transition: opacity 0.2s;
-		font-weight: 500;
-		font-size: 14px;
-	}
+											/* Primary action button */
+											.btn-primary {
+												background: var(--accent);
+												color: #fff;
+												border-radius: 10px;
+												padding: 6px 12px;
+												transition: opacity 0.2s;
+												font-weight: 500;
+												font-size: 14px;
+											}
 
-	/* Clear search button */
-	.btn-clear {
-		background: transparent;
-		border-radius: 50%;
-		color: var(--text-tertiary);
-		transition: background 0.2s;
-	}
-	.btn-clear:hover {
-		background: var(--surface-hover);
-		color: var(--text);
-	}
+											/* Clear search button */
+											.btn-clear {
+												background: transparent;
+												border-radius: 50%;
+												color: var(--text-tertiary);
+												transition: background 0.2s;
+											}
+											.btn-clear:hover {
+												background: var(--surface-hover);
+												color: var(--text);
+											}
 
-	/* List item row */
-	.list-item {
-		background: transparent;
-		transition: background 0.2s;
-		border-radius: 16px;
-	}
-	.list-item:hover {
-		background: var(--surface-hover);
-	}
+											/* List item row */
+											.list-item {
+												background: transparent;
+												transition: background 0.2s;
+												border-radius: 16px;
+											}
+											.list-item:hover {
+												background: var(--surface-hover);
+											}
 
-	/* Ghost/icon buttons */
-	.btn-ghost {
-		background: transparent;
-		color: var(--text-tertiary);
-		border-radius: 12px;
-		transition: background 0.2s, color 0.2s;
-	}
-	.btn-ghost:hover {
-		background: var(--surface-hover);
-		color: var(--text);
-	}
+											/* Ghost/icon buttons */
+											.btn-ghost {
+												background: transparent;
+												color: var(--text-tertiary);
+												border-radius: 12px;
+												transition:
+													background 0.2s,
+													color 0.2s;
+											}
+											.btn-ghost:hover {
+												background: var(--surface-hover);
+												color: var(--text);
+											}
 
-	/* Count badge in heading */
-	.count-badge {
-		color: var(--text-secondary);
-	}
+											/* Count badge in heading */
+											.count-badge {
+												color: var(--text-secondary);
+											}
 
-	/* Secondary / tertiary text */
-	.text-secondary {
-		color: var(--text-secondary);
-	}
-	.text-tertiary {
-		color: var(--text-tertiary);
-	}
+											/* Secondary / tertiary text */
+											.text-secondary {
+												color: var(--text-secondary);
+											}
+											.text-tertiary {
+												color: var(--text-tertiary);
+											}
 
-	/* Divider */
-	.divider {
-		border-color: var(--border);
-	}
-</style>
+											/* Divider */
+											.divider {
+												border-color: var(--border);
+											}
+										</style>
 									</button>
 								</Tooltip>
 								<PromptMenu
@@ -566,10 +563,7 @@
 									}}
 									onClose={() => {}}
 								>
-									<button
-										class="btn-ghost self-center w-fit text-sm p-1.5"
-										type="button"
-									>
+									<button class="btn-ghost self-center w-fit text-sm p-1.5" type="button">
 										<EllipsisHorizontal className="size-5" />
 									</button>
 								</PromptMenu>

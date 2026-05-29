@@ -20,6 +20,7 @@ Do not break existing functionality; only change styling.
 2. **Add Atkinson font-face** — paste the `@font-face` block from `DESIGN.md §2` into `src/app.css`. This loads Atkinson Hyperlegible Next from the jsDelivr CDN. Add it after the existing `@font-face` declarations.
 
 3. **Update `--font-message`** — in the `:root` block you just added, set:
+
    ```css
    --font-message: 'Atkinson Next', 'Archivo', -apple-system, BlinkMacSystemFont, sans-serif;
    ```
@@ -27,9 +28,9 @@ Do not break existing functionality; only change styling.
 4. **Add `@property` registration** — paste this at the top of `src/app.css` (before all rules):
    ```css
    @property --reveal-r {
-     syntax: '<length>';
-     inherits: false;
-     initial-value: 0px;
+   	syntax: '<length>';
+   	inherits: false;
+   	initial-value: 0px;
    }
    ```
 
@@ -51,21 +52,26 @@ It is self-contained (no shared layout), so it is a clean first target.
 2. **Form card surface**: the inner card div uses implicit white bg. Add `background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 16px;` via a scoped `<style>` block.
 
 3. **Input fields**: replace classes like `bg-transparent placeholder:text-gray-300 dark:placeholder:text-gray-600 outline-hidden` with scoped CSS:
+
    ```css
    .field {
-     width: 100%;
-     padding: 10px 12px;
-     border: 1.5px solid var(--border);
-     border-radius: 10px;
-     background: var(--bg-elevated);
-     color: var(--text);
-     font-family: var(--font-sans);
-     font-size: 14px;
-     outline: none;
-     transition: border-color 0.2s;
+   	width: 100%;
+   	padding: 10px 12px;
+   	border: 1.5px solid var(--border);
+   	border-radius: 10px;
+   	background: var(--bg-elevated);
+   	color: var(--text);
+   	font-family: var(--font-sans);
+   	font-size: 14px;
+   	outline: none;
+   	transition: border-color 0.2s;
    }
-   .field:focus { border-color: var(--accent); }
-   .field::placeholder { color: var(--text-tertiary); }
+   .field:focus {
+   	border-color: var(--accent);
+   }
+   .field::placeholder {
+   	color: var(--text-tertiary);
+   }
    ```
 
 4. **Labels**: replace `text-sm font-medium` with `font-size: 12px; font-weight: 600; color: var(--text-secondary);`.
@@ -73,12 +79,14 @@ It is self-contained (no shared layout), so it is a clean first target.
 5. **Primary submit button**: use the `.btn-primary` pattern from `DESIGN.md §4.4` with `--accent` background.
 
 6. **OAuth provider buttons**: replace `bg-gray-700/5 hover:bg-gray-700/10 dark:bg-gray-100/5 rounded-full` with:
+
    ```css
    background: var(--surface);
    border: 1px solid var(--border);
    border-radius: 10px;
    transition: background 0.15s;
    ```
+
    Hover: `background: var(--surface-hover);`
 
 7. **Divider `<hr>`**: replace `dark:bg-gray-100/10 bg-gray-700/10` with `background: var(--border);`.
@@ -97,9 +105,14 @@ Work section by section; the sidebar has clearly named sub-components.
 ### 2a — Sidebar shell
 
 Replace the root nav element background/color Tailwind classes with:
+
 ```css
-.sidebar { background: var(--bg-sidebar); color: var(--text); }
+.sidebar {
+	background: var(--bg-sidebar);
+	color: var(--text);
+}
 ```
+
 Remove any `dark:bg-*` and `dark:text-*` Tailwind modifiers from the root.
 
 ### 2b — Brand / logo area
@@ -110,17 +123,20 @@ Brand mark (logo square): `background: var(--accent); color: #fff;`.
 ### 2c — New Chat button
 
 Apply the `.btn-primary` pattern from `DESIGN.md §4.4`:
+
 - `background: var(--accent); color: #fff; border-radius: 10px;`
 - Remove `rounded-*` Tailwind classes.
 
 ### 2d — Section headers (CHATS, WORKSPACE, etc.)
 
 Apply the `.section-header` pattern from `DESIGN.md §4.1`:
+
 - `font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-tertiary);`
 
 ### 2e — Workspace / pinned menu items
 
 Apply `.nav-item` pattern from `DESIGN.md §4.2`:
+
 - Hover: `background: var(--surface-hover); transform: translateX(2px);`
 - Active: `background: var(--accent-glow); color: var(--accent);`
 - Icon color on hover/active: `var(--accent)`
@@ -157,6 +173,7 @@ Add scrollbar styles from `DESIGN.md §7` to the chat list scroll container.
 Three files work together. Edit them in this order.
 
 ### 3a — Navbar / top bar
+
 **File**: `src/lib/components/chat/Navbar.svelte`
 
 - Background: `background: var(--bg-base);` (remove `dark:bg-*`).
@@ -165,6 +182,7 @@ Three files work together. Edit them in this order.
 - Action icons (share, settings, etc.): `.btn-ghost` pattern.
 
 ### 3b — Message list
+
 **File**: `src/lib/components/chat/Messages.svelte` and `src/lib/components/chat/Messages/` subdirectory
 
 1. **Message group wrapper**: apply `.message-group` + `slideIn` animation from `DESIGN.md §4.6`.
@@ -186,6 +204,7 @@ Three files work together. Edit them in this order.
 9. **Max-width**: wrap the message flow in a `max-width: 720px; margin: 0 auto;` container if not already present.
 
 ### 3c — Message input / composer
+
 **File**: `src/lib/components/chat/MessageInput.svelte`
 
 1. **Input field**: apply `.composer-field` from `DESIGN.md §4.10`.
@@ -215,27 +234,35 @@ Remove any explicit `dark:bg-*` background classes from the layout root.
 ### 4b — Sub-nav tabs (Models / Prompts / Knowledge / Tools / Skills)
 
 Replace the rounded tab row with:
+
 ```css
 .tab-bar {
-  display: flex;
-  gap: 2px;
-  padding: 0 4px;
-  border-bottom: 1px solid var(--border);
+	display: flex;
+	gap: 2px;
+	padding: 0 4px;
+	border-bottom: 1px solid var(--border);
 }
 .tab-btn {
-  padding: 8px 14px;
-  border: none;
-  background: transparent;
-  color: var(--text-tertiary);
-  font-size: 13px;
-  font-weight: 600;
-  border-bottom: 2px solid transparent;
-  margin-bottom: -1px;
-  cursor: pointer;
-  transition: color 0.15s, border-color 0.15s;
+	padding: 8px 14px;
+	border: none;
+	background: transparent;
+	color: var(--text-tertiary);
+	font-size: 13px;
+	font-weight: 600;
+	border-bottom: 2px solid transparent;
+	margin-bottom: -1px;
+	cursor: pointer;
+	transition:
+		color 0.15s,
+		border-color 0.15s;
 }
-.tab-btn:hover { color: var(--text-secondary); }
-.tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+.tab-btn:hover {
+	color: var(--text-secondary);
+}
+.tab-btn.active {
+	color: var(--accent);
+	border-bottom-color: var(--accent);
+}
 ```
 
 ### 4c — List items (model cards, prompt rows, etc.)
@@ -270,29 +297,50 @@ Same treatment as Phase 4b. Tab labels: Settings, Users, Evaluations, Analytics,
 ### 5c — Data tables
 
 Replace `divide-y divide-gray-*` table rows with:
+
 ```css
 .data-row {
-  display: flex;
-  align-items: center;
-  padding: 10px 16px;
-  border-bottom: 1px solid var(--border);
-  gap: 12px;
-  font-size: 13px;
-  color: var(--text-secondary);
-  transition: background 0.15s;
+	display: flex;
+	align-items: center;
+	padding: 10px 16px;
+	border-bottom: 1px solid var(--border);
+	gap: 12px;
+	font-size: 13px;
+	color: var(--text-secondary);
+	transition: background 0.15s;
 }
-.data-row:hover { background: var(--surface-hover); }
-.data-row .label { font-weight: 600; color: var(--text); }
+.data-row:hover {
+	background: var(--surface-hover);
+}
+.data-row .label {
+	font-weight: 600;
+	color: var(--text);
+}
 ```
 
 ### 5d — Status badges
 
 Replace color Tailwind pill classes with:
+
 ```css
-.badge { padding: 2px 7px; border-radius: 4px; font-size: 11px; font-weight: 600; }
-.badge.active  { background: rgba(45,159,82,0.12); color: var(--success); }
-.badge.pending { background: var(--orange-soft);   color: var(--orange); }
-.badge.default { background: var(--surface-active); color: var(--text-tertiary); }
+.badge {
+	padding: 2px 7px;
+	border-radius: 4px;
+	font-size: 11px;
+	font-weight: 600;
+}
+.badge.active {
+	background: rgba(45, 159, 82, 0.12);
+	color: var(--success);
+}
+.badge.pending {
+	background: var(--orange-soft);
+	color: var(--orange);
+}
+.badge.default {
+	background: var(--surface-active);
+	color: var(--text-tertiary);
+}
 ```
 
 ### 5e — Settings toggle switches
@@ -304,6 +352,7 @@ Keep existing toggle components; only replace surrounding label text color with 
 ## Phase 6 — Notes
 
 **Files**:
+
 - `src/routes/(app)/notes/+page.svelte` (list view)
 - `src/routes/(app)/notes/[id]/+page.svelte` (editor)
 - `src/routes/(app)/notes/new/+page.svelte`
@@ -315,6 +364,7 @@ Apply `.conv-card` from `DESIGN.md §4.3` to note list items (title + preview sn
 ### 6b — Note editor
 
 Apply the scratchboard pattern from `DESIGN.md §8`:
+
 - Preview mode (markdown rendered): `font-family: var(--font-message); padding: 24px; cursor: text;`
 - Edit mode (textarea): transparent bg, no border, gutter with line numbers.
 - Use the autosave status dot pattern (`idle → saving → saved`).
@@ -329,21 +379,22 @@ Apply `.btn-ghost` from `DESIGN.md §4.5` to formatting buttons.
 
 These are lower-priority. Apply general rules:
 
-| Pattern to replace | Use instead |
-|---|---|
-| `bg-white dark:bg-gray-900` | `background: var(--bg-base)` |
-| `bg-gray-100 dark:bg-gray-800` | `background: var(--surface)` |
-| `text-gray-900 dark:text-white` | `color: var(--text)` |
-| `text-gray-600 dark:text-gray-400` | `color: var(--text-secondary)` |
-| `text-gray-400 dark:text-gray-600` | `color: var(--text-tertiary)` |
-| `border-gray-200 dark:border-gray-700` | `border-color: var(--border)` |
-| `rounded-lg` on interactive items | `border-radius: 10px` |
-| `rounded-full` on buttons | `border-radius: 10px` (not pill — prefer 10px) |
-| `hover:bg-gray-100 dark:hover:bg-gray-850` | `background: var(--surface-hover)` |
+| Pattern to replace                         | Use instead                                    |
+| ------------------------------------------ | ---------------------------------------------- |
+| `bg-white dark:bg-gray-900`                | `background: var(--bg-base)`                   |
+| `bg-gray-100 dark:bg-gray-800`             | `background: var(--surface)`                   |
+| `text-gray-900 dark:text-white`            | `color: var(--text)`                           |
+| `text-gray-600 dark:text-gray-400`         | `color: var(--text-secondary)`                 |
+| `text-gray-400 dark:text-gray-600`         | `color: var(--text-tertiary)`                  |
+| `border-gray-200 dark:border-gray-700`     | `border-color: var(--border)`                  |
+| `rounded-lg` on interactive items          | `border-radius: 10px`                          |
+| `rounded-full` on buttons                  | `border-radius: 10px` (not pill — prefer 10px) |
+| `hover:bg-gray-100 dark:hover:bg-gray-850` | `background: var(--surface-hover)`             |
 
 Apply these find-and-replace rules file by file. No structural changes needed for this phase.
 
 **Files**:
+
 - `src/routes/(app)/home/+page.svelte`
 - `src/routes/(app)/playground/+page.svelte` (and sub-routes)
 - `src/routes/(app)/calendar/+page.svelte`
@@ -354,13 +405,13 @@ Apply these find-and-replace rules file by file. No structural changes needed fo
 
 ## Out of Scope (do not touch)
 
-| File | Reason |
-|---|---|
-| `src/routes/design/*` | Source of truth — never migrate, only read |
-| `src/routes/error/+page.svelte` | Minimal page, low user visibility |
-| `src/routes/watch/+page.svelte` | Video watch view, separate concern |
-| `src/routes/s/[id]/+page.svelte` | Shared-chat public view, separate concern |
-| `src/lib/components/design/*` | Reference implementation |
+| File                             | Reason                                     |
+| -------------------------------- | ------------------------------------------ |
+| `src/routes/design/*`            | Source of truth — never migrate, only read |
+| `src/routes/error/+page.svelte`  | Minimal page, low user visibility          |
+| `src/routes/watch/+page.svelte`  | Video watch view, separate concern         |
+| `src/routes/s/[id]/+page.svelte` | Shared-chat public view, separate concern  |
+| `src/lib/components/design/*`    | Reference implementation                   |
 
 ---
 

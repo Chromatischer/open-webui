@@ -289,7 +289,6 @@
 		min-height: 0;
 	}
 
-
 	.sidebar-brand {
 		display: flex;
 		align-items: center;
@@ -591,7 +590,9 @@
 		overflow: hidden;
 		position: relative;
 		z-index: 1;
-		transition: color 0.15s ease, background 0.15s ease;
+		transition:
+			color 0.15s ease,
+			background 0.15s ease;
 	}
 
 	.conv-card:hover {

@@ -33,12 +33,9 @@
 		try {
 			const url = new URL(href, window.location.origin);
 			// Check if same origin and an in-app route
-				if (
-					url.origin === window.location.origin &&
-					url.pathname.startsWith('/c/')
-				) {
-					e.preventDefault();
-					goto(url.pathname + url.search + url.hash);
+			if (url.origin === window.location.origin && url.pathname.startsWith('/c/')) {
+				e.preventDefault();
+				goto(url.pathname + url.search + url.hash);
 			}
 		} catch {
 			// Invalid URL, let browser handle it
@@ -51,18 +48,18 @@
 		{unescapeHtml(token.text)}
 	{:else if token.type === 'html'}
 		<HtmlToken {id} {token} {onSourceClick} />
-		{:else if token.type === 'link'}
-			{#if token.tokens}
-				<a
-					href={token.href}
-					target="_blank"
+	{:else if token.type === 'link'}
+		{#if token.tokens}
+			<a
+				href={token.href}
+				target="_blank"
 				rel="nofollow"
 				title={token.title}
 				on:click={(e) => handleLinkClick(e, token.href)}
 			>
-					<svelte:self id={`${id}-a`} tokens={token.tokens} {onSourceClick} {done} />
-				</a>
-			{:else}
+				<svelte:self id={`${id}-a`} tokens={token.tokens} {onSourceClick} {done} />
+			</a>
+		{:else}
 			<a
 				href={token.href}
 				target="_blank"

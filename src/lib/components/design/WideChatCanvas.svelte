@@ -1,10 +1,5 @@
 <script>
-	let {
-		messages,
-		generating,
-		inputValue = $bindable(),
-		onSend
-	} = $props();
+	let { messages, generating, inputValue = $bindable(), onSend } = $props();
 
 	let inputRef = $state(null);
 	let isSending = $state(false);
@@ -16,7 +11,11 @@
 			node.style.height = Math.min(node.scrollHeight, 180) + 'px';
 		};
 		node.addEventListener('input', resize);
-		return { destroy() { node.removeEventListener('input', resize); } };
+		return {
+			destroy() {
+				node.removeEventListener('input', resize);
+			}
+		};
 	}
 
 	function handleKey(e) {
@@ -39,7 +38,11 @@
 			node.scrollTop = node.scrollHeight;
 		});
 		observer.observe(node, { childList: true, subtree: true });
-		return { destroy() { observer.disconnect(); } };
+		return {
+			destroy() {
+				observer.disconnect();
+			}
+		};
 	}
 
 	const hasContent = $derived(inputValue.trim().length > 0);
@@ -57,18 +60,26 @@
 				>
 					<!-- Inline Version Graph Gutter -->
 					<div class="msg-graph">
-						<div class="spine" class:first={i === 0} class:last={i === messages.length - 1 && !generating}></div>
-						<div class="spine-dot" class:user={msg.role === 'user'} class:ai={msg.role === 'assistant'}></div>
+						<div
+							class="spine"
+							class:first={i === 0}
+							class:last={i === messages.length - 1 && !generating}
+						></div>
+						<div
+							class="spine-dot"
+							class:user={msg.role === 'user'}
+							class:ai={msg.role === 'assistant'}
+						></div>
 
 						{#if msg.branches && msg.branches.length > 1}
-							{#each msg.branches.filter(b => !b.active) as branch, bi}
+							{#each msg.branches.filter((b) => !b.active) as branch, bi}
 								<div
 									class="branch-connector"
-									style="top: calc(50% + {(bi - (msg.branches.length-1)/2) * 14}px)"
+									style="top: calc(50% + {(bi - (msg.branches.length - 1) / 2) * 14}px)"
 								></div>
 								<div
 									class="branch-dot"
-									style="top: calc(50% + {(bi - (msg.branches.length-1)/2) * 14}px)"
+									style="top: calc(50% + {(bi - (msg.branches.length - 1) / 2) * 14}px)"
 									title="Switch to {branch.label}"
 								>
 									<span class="branch-label">{branch.label}</span>
@@ -87,16 +98,45 @@
 						<div class="msg-footer">
 							{#if msg.branches && msg.branches.length > 1}
 								<div class="version-badge">
-									<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9 12 3l6 6"/><path d="M6 15l6 6 6-6"/></svg>
-									{msg.branches.find(b => b.active)?.label || 'v1'} of {msg.branches.length}
+									<svg
+										width="10"
+										height="10"
+										viewBox="0 0 24 24"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2.5"><path d="M6 9 12 3l6 6" /><path d="M6 15l6 6 6-6" /></svg
+									>
+									{msg.branches.find((b) => b.active)?.label || 'v1'} of {msg.branches.length}
 								</div>
 							{/if}
 							<div class="msg-actions">
 								<button aria-label="Copy" title="Copy">
-									<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+									<svg
+										width="12"
+										height="12"
+										viewBox="0 0 24 24"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2"
+										><rect width="14" height="14" x="8" y="8" rx="2" /><path
+											d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"
+										/></svg
+									>
 								</button>
 								<button aria-label="Regenerate" title="Regenerate">
-									<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"/><path d="M16 21h5v-5"/></svg>
+									<svg
+										width="12"
+										height="12"
+										viewBox="0 0 24 24"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2"
+										><path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" /><path
+											d="M3 3v5h5"
+										/><path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16" /><path
+											d="M16 21h5v-5"
+										/></svg
+									>
 								</button>
 							</div>
 						</div>
@@ -130,16 +170,53 @@
 		<div class="input-inner">
 			<div class="input-toolbar">
 				<button class="tool-btn" aria-label="Attach file">
-					<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
+					<svg
+						width="14"
+						height="14"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+						><path
+							d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"
+						/></svg
+					>
 				</button>
 				<button class="tool-btn" aria-label="Web search">
-					<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+					<svg
+						width="14"
+						height="14"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"><circle cx="11" cy="11" r="8" /><path d="m21 21-4.3-4.3" /></svg
+					>
 				</button>
 				<button class="tool-btn" aria-label="Generate image">
-					<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
+					<svg
+						width="14"
+						height="14"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+						><rect width="18" height="18" x="3" y="3" rx="2" /><circle cx="9" cy="9" r="2" /><path
+							d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"
+						/></svg
+					>
 				</button>
 				<button class="tool-btn" aria-label="Voice">
-					<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><path d="M12 19v4M8 23h8"/></svg>
+					<svg
+						width="14"
+						height="14"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+						><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" /><path
+							d="M19 10v2a7 7 0 0 1-14 0v-2"
+						/><path d="M12 19v4M8 23h8" /></svg
+					>
 				</button>
 			</div>
 
@@ -151,17 +228,19 @@
 					rows="1"
 					placeholder="Message..."
 					class="input-field"
-					onfocus={() => composerFocused = true}
-					onblur={() => composerFocused = false}
+					onfocus={() => (composerFocused = true)}
+					onblur={() => (composerFocused = false)}
 					onkeydown={handleKey}
 				></textarea>
-				<button
-					class="send-btn"
-					class:ready={hasContent}
-					onclick={doSend}
-					aria-label="Send"
-				>
-					<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+				<button class="send-btn" class:ready={hasContent} onclick={doSend} aria-label="Send">
+					<svg
+						width="16"
+						height="16"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2.5"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z" /></svg
+					>
 				</button>
 			</div>
 
@@ -194,9 +273,16 @@
 		overflow-x: hidden;
 	}
 
-	.chat-scroll::-webkit-scrollbar { width: 5px; }
-	.chat-scroll::-webkit-scrollbar-thumb { background: var(--border); border-radius: 999px; }
-	.chat-scroll:hover::-webkit-scrollbar-thumb { background: var(--border-hover); }
+	.chat-scroll::-webkit-scrollbar {
+		width: 5px;
+	}
+	.chat-scroll::-webkit-scrollbar-thumb {
+		background: var(--border);
+		border-radius: 999px;
+	}
+	.chat-scroll:hover::-webkit-scrollbar-thumb {
+		background: var(--border-hover);
+	}
 
 	.messages-flow {
 		padding: 28px 32px 20px;
@@ -220,7 +306,10 @@
 	}
 
 	@keyframes msgSlide {
-		to { opacity: 1; transform: translateY(0); }
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
 	}
 
 	/* ─── Inline Version Graph Gutter ─── */
@@ -241,7 +330,8 @@
 		top: 0;
 		bottom: 0;
 		width: 2px;
-		background: linear-gradient(to bottom,
+		background: linear-gradient(
+			to bottom,
 			var(--border) 0%,
 			var(--border-hover) 50%,
 			var(--border) 100%
@@ -250,7 +340,8 @@
 	}
 
 	.msg-row:hover .spine {
-		background: linear-gradient(to bottom,
+		background: linear-gradient(
+			to bottom,
 			var(--border-hover) 0%,
 			var(--accent-soft) 50%,
 			var(--border-hover) 100%
@@ -278,7 +369,9 @@
 		border-radius: 50%;
 		border: 2px solid transparent;
 		z-index: 2;
-		transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s;
+		transition:
+			transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+			box-shadow 0.3s;
 	}
 
 	.spine-dot.user {
@@ -302,8 +395,13 @@
 	}
 
 	@keyframes dotPulse {
-		0%, 100% { box-shadow: 0 0 0 0 var(--accent-glow); }
-		50% { box-shadow: 0 0 0 8px transparent; }
+		0%,
+		100% {
+			box-shadow: 0 0 0 0 var(--accent-glow);
+		}
+		50% {
+			box-shadow: 0 0 0 8px transparent;
+		}
 	}
 
 	/* Branch connectors */
@@ -314,7 +412,9 @@
 		height: 1.5px;
 		background: var(--border);
 		z-index: 1;
-		transition: background 0.2s, width 0.2s;
+		transition:
+			background 0.2s,
+			width 0.2s;
 	}
 
 	.msg-row:hover .branch-connector {
@@ -391,8 +491,12 @@
 		transition: color 0.3s;
 	}
 
-	.msg-row.user .msg-role { color: var(--orange); }
-	.msg-row.ai .msg-role { color: var(--accent); }
+	.msg-row.user .msg-role {
+		color: var(--orange);
+	}
+	.msg-row.ai .msg-role {
+		color: var(--accent);
+	}
 
 	.msg-time {
 		font-size: 11px;
@@ -424,7 +528,9 @@
 		margin-top: 4px;
 		opacity: 0;
 		transform: translateY(3px);
-		transition: opacity 0.25s, transform 0.25s;
+		transition:
+			opacity 0.25s,
+			transform 0.25s;
 	}
 
 	.msg-row:hover .msg-footer {
@@ -459,9 +565,11 @@
 	}
 
 	.msg-actions button {
-		width: 24px; height: 24px;
+		width: 24px;
+		height: 24px;
 		border-radius: 5px;
-		display: grid; place-items: center;
+		display: grid;
+		place-items: center;
 		background: transparent;
 		border: none;
 		color: var(--text-tertiary);
@@ -483,20 +591,37 @@
 	}
 
 	.t-dot {
-		width: 5px; height: 5px;
+		width: 5px;
+		height: 5px;
 		border-radius: 50%;
 		background: var(--accent);
 		animation: bounce 1.3s infinite ease-in-out both;
 		opacity: 0.4;
 	}
 
-	.t-dot:nth-child(1) { animation-delay: -0.32s; background: var(--accent-soft); }
-	.t-dot:nth-child(2) { animation-delay: -0.16s; }
-	.t-dot:nth-child(3) { animation-delay: 0s; background: var(--accent-soft); }
+	.t-dot:nth-child(1) {
+		animation-delay: -0.32s;
+		background: var(--accent-soft);
+	}
+	.t-dot:nth-child(2) {
+		animation-delay: -0.16s;
+	}
+	.t-dot:nth-child(3) {
+		animation-delay: 0s;
+		background: var(--accent-soft);
+	}
 
 	@keyframes bounce {
-		0%, 80%, 100% { transform: scale(0.4); opacity: 0.3; }
-		40% { transform: scale(1); opacity: 1; }
+		0%,
+		80%,
+		100% {
+			transform: scale(0.4);
+			opacity: 0.3;
+		}
+		40% {
+			transform: scale(1);
+			opacity: 1;
+		}
 	}
 
 	/* ─── Input Bar ─── */
@@ -515,12 +640,16 @@
 		border-radius: 14px;
 		box-shadow: 0 4px 24px var(--shadow-color);
 		overflow: hidden;
-		transition: border-color 0.3s, box-shadow 0.3s;
+		transition:
+			border-color 0.3s,
+			box-shadow 0.3s;
 	}
 
 	.input-bar.focused .input-inner {
 		border-color: var(--orange-soft);
-		box-shadow: 0 0 0 3px var(--orange-glow), 0 8px 32px var(--shadow-color);
+		box-shadow:
+			0 0 0 3px var(--orange-glow),
+			0 8px 32px var(--shadow-color);
 	}
 
 	.input-toolbar {
@@ -532,9 +661,11 @@
 	}
 
 	.tool-btn {
-		width: 28px; height: 28px;
+		width: 28px;
+		height: 28px;
 		border-radius: 7px;
-		display: grid; place-items: center;
+		display: grid;
+		place-items: center;
 		background: transparent;
 		border: none;
 		color: var(--text-tertiary);
@@ -576,9 +707,11 @@
 	}
 
 	.send-btn {
-		width: 36px; height: 36px;
+		width: 36px;
+		height: 36px;
 		border-radius: 50%;
-		display: grid; place-items: center;
+		display: grid;
+		place-items: center;
 		background: var(--surface);
 		border: 1px solid var(--border);
 		color: var(--text-tertiary);
@@ -612,10 +745,13 @@
 		color: var(--text-tertiary);
 	}
 
-	.hint-sep { color: var(--border); font-size: 11px; }
+	.hint-sep {
+		color: var(--border);
+		font-size: 11px;
+	}
 
 	:global(::selection) {
-		background: rgba(255,136,0,0.25);
+		background: rgba(255, 136, 0, 0.25);
 		color: inherit;
 	}
 </style>

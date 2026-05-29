@@ -1543,7 +1543,10 @@
 								</div>
 							</div>
 
-							<div class="composer-tools-row flex justify-between mt-0.5 mb-2.5 mx-0.5 max-w-full" dir="ltr">
+							<div
+								class="composer-tools-row flex justify-between mt-0.5 mb-2.5 mx-0.5 max-w-full"
+								dir="ltr"
+							>
 								<div class="composer-tools-left ml-1 self-end flex items-center flex-1 max-w-[80%]">
 									<InputMenu
 										bind:files
@@ -1597,10 +1600,7 @@
 											chatInput?.focus();
 										}}
 									>
-										<div
-											id="input-menu-button"
-											class="btn-ghost"
-										>
+										<div id="input-menu-button" class="btn-ghost">
 											<PlusAlt className="size-5.5" />
 										</div>
 									</InputMenu>
@@ -1636,10 +1636,7 @@
 												chatInput?.focus();
 											}}
 										>
-											<div
-												id="integration-menu-button"
-												class="btn-ghost"
-											>
+											<div id="integration-menu-button" class="btn-ghost">
 												<Component className="size-4.5" strokeWidth="1.5" />
 											</div>
 										</IntegrationsMenu>
@@ -1867,43 +1864,43 @@
 											{#if terminalCapableModels.length > 0 && (($terminalServers ?? []).some((t) => t.id) || (hasDirectToolServerAccess && (($terminalServers ?? []).some((t) => !t.id) || ($settings?.terminalServers ?? []).some((s) => s.url))))}
 												<TerminalMenu bind:show={showTerminalMenu} />
 											{/if}
-
 										{/if}
 
 										<div class=" flex items-center">
-												<Tooltip
-													content={uploadPending
-														? $i18n.t('Waiting for upload...')
-														: $i18n.t('Send message')}
+											<Tooltip
+												content={uploadPending
+													? $i18n.t('Waiting for upload...')
+													: $i18n.t('Send message')}
+											>
+												<button
+													id="send-message-button"
+													class="composer-send {!(prompt === '' && files.length === 0) ||
+													uploadPending
+														? 'visible'
+														: ''}"
+													type="submit"
+													disabled={(prompt === '' && files.length === 0) || uploadPending}
 												>
-													<button
-														id="send-message-button"
-														class="composer-send {!(prompt === '' && files.length === 0) || uploadPending
-															? 'visible'
-															: ''}"
-														type="submit"
-														disabled={(prompt === '' && files.length === 0) || uploadPending}
-													>
-														{#if uploadPending}
-															<Spinner className="size-5" />
-														{:else}
-															<svg
-																class="send-plane"
-																width="15"
-																height="15"
-																viewBox="0 0 24 24"
-																fill="none"
-																stroke="currentColor"
-																stroke-width="2.5"
-																stroke-linecap="round"
-																stroke-linejoin="round"
-																aria-hidden="true"
-															>
-																<path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z" />
-															</svg>
-														{/if}
-													</button>
-												</Tooltip>
+													{#if uploadPending}
+														<Spinner className="size-5" />
+													{:else}
+														<svg
+															class="send-plane"
+															width="15"
+															height="15"
+															viewBox="0 0 24 24"
+															fill="none"
+															stroke="currentColor"
+															stroke-width="2.5"
+															stroke-linecap="round"
+															stroke-linejoin="round"
+															aria-hidden="true"
+														>
+															<path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z" />
+														</svg>
+													{/if}
+												</button>
+											</Tooltip>
 										</div>
 									{/if}
 								</div>
@@ -1991,7 +1988,9 @@
 		padding: 1px 5px;
 		color: var(--text-tertiary);
 		font-family: var(--font-sans);
-		transition: background 0.15s, color 0.15s;
+		transition:
+			background 0.15s,
+			color 0.15s;
 	}
 
 	.composer-model-selector :global(button[id^='model-selector-']:hover) {
@@ -2024,7 +2023,9 @@
 		border: none;
 		background: transparent;
 		color: var(--text-tertiary);
-		transition: background 0.15s, color 0.15s;
+		transition:
+			background 0.15s,
+			color 0.15s;
 	}
 
 	.composer-model-selector :global(button[aria-label='Add Model']:hover),
@@ -2184,7 +2185,10 @@
 		place-items: center;
 		cursor: pointer;
 		opacity: 0.34;
-		transition: opacity 0.2s, background 0.2s, box-shadow 0.25s;
+		transition:
+			opacity 0.2s,
+			background 0.2s,
+			box-shadow 0.25s;
 	}
 
 	.stop-button {
@@ -2195,14 +2199,18 @@
 		background: var(--orange);
 		color: #fff;
 		border: 1.5px solid color-mix(in srgb, var(--orange) 76%, black);
-		box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.18), 0 3px 14px var(--orange-glow);
+		box-shadow:
+			inset 1px 0 0 rgba(255, 255, 255, 0.18),
+			0 3px 14px var(--orange-glow);
 		display: grid;
 		place-items: center;
 		cursor: pointer;
 	}
 	.composer-send.visible {
 		opacity: 1;
-		box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.18), 0 3px 14px var(--orange-glow);
+		box-shadow:
+			inset 1px 0 0 rgba(255, 255, 255, 0.18),
+			0 3px 14px var(--orange-glow);
 	}
 	.composer-send.visible:hover {
 		background: color-mix(in srgb, var(--orange) 88%, white);
@@ -2226,11 +2234,12 @@
 		border: none;
 		color: var(--text-tertiary);
 		cursor: pointer;
-		transition: background 0.15s, color 0.15s;
+		transition:
+			background 0.15s,
+			color 0.15s;
 	}
 	.btn-ghost:hover {
 		background: var(--surface-hover);
 		color: var(--text);
 	}
-
 </style>

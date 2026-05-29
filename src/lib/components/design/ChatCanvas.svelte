@@ -28,7 +28,9 @@
 		falloff: 1.9,
 		settle: 110
 	};
-	let streamText = $state('Here is a streamed response test. It should grow token by token, keep the layout stable, and make the message feel like it is arriving live.');
+	let streamText = $state(
+		'Here is a streamed response test. It should grow token by token, keep the layout stable, and make the message feel like it is arriving live.'
+	);
 	let streamDelay = $state(34);
 	let streamChunkSize = $state(1);
 	let streamRunning = $state(false);
@@ -56,7 +58,11 @@
 		};
 		node.addEventListener('input', fn);
 		fn();
-		return { destroy() { node.removeEventListener('input', fn); } };
+		return {
+			destroy() {
+				node.removeEventListener('input', fn);
+			}
+		};
 	}
 
 	function initScroll(node) {
@@ -112,7 +118,7 @@
 		clearTimeout(streamTimer);
 		streamTimer = null;
 		if (activeStreamId) {
-			messages = messages.map(m =>
+			messages = messages.map((m) =>
 				m.id === activeStreamId
 					? { ...m, streaming: false, timestamp: m.content ? 'Stopped' : 'Just now' }
 					: m
@@ -147,14 +153,18 @@
 
 		let i = 0;
 		const tick = () => {
-			if (!messages.some(m => m.id === id)) {
+			if (!messages.some((m) => m.id === id)) {
 				stopTokenStream();
 				return;
 			}
 
-			messages = messages.map(m =>
+			messages = messages.map((m) =>
 				m.id === id
-					? { ...m, content: `${m.content ?? ''}${chunks[i]}`, tokens: [...(m.tokens ?? []), chunks[i]] }
+					? {
+							...m,
+							content: `${m.content ?? ''}${chunks[i]}`,
+							tokens: [...(m.tokens ?? []), chunks[i]]
+						}
 					: m
 			);
 			streamTokenCount = i + 1;
@@ -162,7 +172,7 @@
 			i += 1;
 
 			if (i >= chunks.length) {
-				messages = messages.map(m =>
+				messages = messages.map((m) =>
 					m.id === id ? { ...m, streaming: false, timestamp: 'Just now' } : m
 				);
 				activeStreamId = null;
@@ -177,7 +187,7 @@
 	}
 
 	function onSelectUp(e) {
-			const selected = window.getSelection();
+		const selected = window.getSelection();
 		if (selected?.toString().trim().length > 0) {
 			const range = selected.getRangeAt(0);
 			const rect = range.getBoundingClientRect();
@@ -199,14 +209,8 @@
 					Math.max(margin, targetX - popupWidth / 2)
 				);
 				const rawTop = placement === 'above' ? rect.top - popupHeight - gap : rect.bottom + gap;
-				const top = Math.min(
-					window.innerHeight - popupHeight - margin,
-					Math.max(margin, rawTop)
-				);
-				const tailX = Math.min(
-					popupWidth - 22,
-					Math.max(22, targetX - left)
-				);
+				const top = Math.min(window.innerHeight - popupHeight - margin, Math.max(margin, rawTop));
+				const tailX = Math.min(popupWidth - 22, Math.max(22, targetX - left));
 
 				selPopup = {
 					x: left,
@@ -259,11 +263,11 @@
 	}
 
 	function switchVersion(msgId, versionId) {
-		const msg = messages.find(m => m.id === msgId);
+		const msg = messages.find((m) => m.id === msgId);
 		if (!msg || !msg.versions) return;
 
-		const currentIdx = msg.versions.findIndex(v => v.active);
-		const targetIdx = msg.versions.findIndex(v => v.id === versionId);
+		const currentIdx = msg.versions.findIndex((v) => v.active);
+		const targetIdx = msg.versions.findIndex((v) => v.id === versionId);
 		const direction = targetIdx > currentIdx ? 1 : -1;
 
 		// Freeze the card at its current height BEFORE mutating state.
@@ -272,8 +276,8 @@
 		const api = versionCardApis.get(msgId);
 		if (api) api.freeze();
 
-		msg.versions.forEach(v => v.active = (v.id === versionId));
-		const active = msg.versions.find(v => v.active);
+		msg.versions.forEach((v) => (v.active = v.id === versionId));
+		const active = msg.versions.find((v) => v.active);
 		if (active) msg.content = active.content;
 
 		versionDirections = new Map(versionDirections);
@@ -308,17 +312,19 @@
 					// would make scrollHeight === frozenHeight and kill the animation
 					// when shrinking).
 					const entering = node.querySelector(`[data-ver-id="${targetVerId}"]`);
-					const siblings = entering
-						? Array.from(node.children).filter(c => c !== entering)
-						: [];
+					const siblings = entering ? Array.from(node.children).filter((c) => c !== entering) : [];
 
-					siblings.forEach(c => { c.style.position = 'absolute'; });
+					siblings.forEach((c) => {
+						c.style.position = 'absolute';
+					});
 					node.style.height = 'auto';
 					const targetHeight = node.scrollHeight;
 					// Restore frozen height before starting the transition so the
 					// browser animates from the old size, not from auto.
 					node.style.height = frozenHeight + 'px';
-					siblings.forEach(c => { c.style.position = ''; });
+					siblings.forEach((c) => {
+						c.style.position = '';
+					});
 
 					if (Math.abs(targetHeight - frozenHeight) < 1) {
 						node.style.height = '';
@@ -375,8 +381,14 @@
 		}
 
 		function stop() {
-			if (mo) { mo.disconnect(); mo = null; }
-			if (rafId) { cancelAnimationFrame(rafId); rafId = null; }
+			if (mo) {
+				mo.disconnect();
+				mo = null;
+			}
+			if (rafId) {
+				cancelAnimationFrame(rafId);
+				rafId = null;
+			}
 			node.style.height = '';
 			node.style.transition = '';
 		}
@@ -384,13 +396,17 @@
 		if (streaming) start();
 
 		return {
-			update(s) { s ? start() : stop(); },
-			destroy() { stop(); }
+			update(s) {
+				s ? start() : stop();
+			},
+			destroy() {
+				stop();
+			}
 		};
 	}
 
 	function msgAnnotations(msgId) {
-		return annotations.filter(a => a.msgId === msgId);
+		return annotations.filter((a) => a.msgId === msgId);
 	}
 
 	function markText() {
@@ -402,7 +418,7 @@
 	}
 
 	function msgMarks(msgId) {
-		return marks.filter(m => m.msgId === msgId);
+		return marks.filter((m) => m.msgId === msgId);
 	}
 
 	function segmentContent(content, msgMarkList) {
@@ -410,7 +426,7 @@
 		const segs = [];
 		// Build sorted list of [start, end, markId] from first occurrence of each mark text
 		const positions = msgMarkList
-			.map(m => ({
+			.map((m) => ({
 				idx: content.indexOf(m.selectedText),
 				len: m.selectedText.length,
 				id: m.id,
@@ -418,7 +434,7 @@
 				offset: m.offset ?? 0,
 				height: m.height ?? 0.62
 			}))
-			.filter(m => m.idx !== -1)
+			.filter((m) => m.idx !== -1)
 			.sort((a, b) => a.idx - b.idx);
 		let pos = 0;
 		for (const m of positions) {
@@ -468,7 +484,12 @@
 			</label>
 		</div>
 		<div class="stream-actions">
-			<button class="stream-btn primary" class:running={streamRunning} onclick={startTokenStream} disabled={streamRunning || !streamText.trim()}>
+			<button
+				class="stream-btn primary"
+				class:running={streamRunning}
+				onclick={startTokenStream}
+				disabled={streamRunning || !streamText.trim()}
+			>
 				{streamRunning ? 'Streaming' : 'Stream'}
 			</button>
 			<button class="stream-btn" onclick={stopTokenStream} disabled={!streamRunning}>Stop</button>
@@ -484,9 +505,19 @@
 		>
 			<div class="sel-quick-actions">
 				<button class="sel-mark-btn" onclick={markText} title="Highlight">
-					<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-						<path d="m9 11-6 6v3h9l3-3"/>
-						<path d="m22 12-4.6 4.6a2 2 0 0 1-2.8 0l-5.2-5.2a2 2 0 0 1 0-2.8L14 4"/>
+					<svg
+						width="14"
+						height="14"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						aria-hidden="true"
+					>
+						<path d="m9 11-6 6v3h9l3-3" />
+						<path d="m22 12-4.6 4.6a2 2 0 0 1-2.8 0l-5.2-5.2a2 2 0 0 1 0-2.8L14 4" />
 					</svg>
 				</button>
 				<div class="sel-ann-row">
@@ -494,18 +525,31 @@
 						type="text"
 						placeholder="Add a note..."
 						bind:value={selNote}
-						onkeydown={(e) => { if (e.key === 'Enter') saveAnnotation(); if (e.key === 'Escape') cancelAnnotation(); }}
+						onkeydown={(e) => {
+							if (e.key === 'Enter') saveAnnotation();
+							if (e.key === 'Escape') cancelAnnotation();
+						}}
 					/>
-						<button
-							class="sel-ann-save"
-							class:visible={selNote.trim()}
-							disabled={!selNote.trim()}
-							onclick={saveAnnotation}
-							title="Add note"
+					<button
+						class="sel-ann-save"
+						class:visible={selNote.trim()}
+						disabled={!selNote.trim()}
+						onclick={saveAnnotation}
+						title="Add note"
+					>
+						<svg
+							width="13"
+							height="13"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2.5"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							aria-hidden="true"
 						>
-						<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-							<polyline points="9 10 4 15 9 20"/>
-							<path d="M20 4v7a4 4 0 0 1-4 4H4"/>
+							<polyline points="9 10 4 15 9 20" />
+							<path d="M20 4v7a4 4 0 0 1-4 4H4" />
 						</svg>
 					</button>
 				</div>
@@ -513,15 +557,14 @@
 		</div>
 	{/if}
 
-	<div
-		class="scroll"
-		role="list"
-		use:initScroll
-		onmouseleave={() => hoveredMsg = null}
-	>
+	<div class="scroll" role="list" use:initScroll onmouseleave={() => (hoveredMsg = null)}>
 		<div class="flow">
 			{#each messages as msg, i (msg.id)}
-				<div class="message-group" class:user={msg.role === 'user'} class:ai={msg.role === 'assistant'}>
+				<div
+					class="message-group"
+					class:user={msg.role === 'user'}
+					class:ai={msg.role === 'assistant'}
+				>
 					<div class="meta-line">
 						<span class="meta-role">{msg.role === 'user' ? 'You' : 'Assistant'}</span>
 						{#if msg.versions && msg.versions.length > 1}
@@ -530,13 +573,17 @@
 									<button
 										class="meta-ver-btn"
 										class:active={ver.active}
-										onclick={() => switchVersion(msg.id, ver.id)}
-									>{ver.label}</button>
+										onclick={() => switchVersion(msg.id, ver.id)}>{ver.label}</button
+									>
 								{/each}
 							</div>
 						{/if}
 						{#if msgAnnotations(msg.id).length > 0}
-							<span class="meta-ann">{msgAnnotations(msg.id).length} annotation{msgAnnotations(msg.id).length > 1 ? 's' : ''}</span>
+							<span class="meta-ann"
+								>{msgAnnotations(msg.id).length} annotation{msgAnnotations(msg.id).length > 1
+									? 's'
+									: ''}</span
+							>
 						{/if}
 					</div>
 
@@ -547,7 +594,12 @@
 							role="button"
 							tabindex="0"
 							onclick={() => toggleThinking(msg.id)}
-							onkeydown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleThinking(msg.id); } }}
+							onkeydown={(e) => {
+								if (e.key === 'Enter' || e.key === ' ') {
+									e.preventDefault();
+									toggleThinking(msg.id);
+								}
+							}}
 							aria-expanded={thinkingOpen.has(msg.id)}
 						>
 							<span class="think-slash">//</span>
@@ -560,11 +612,23 @@
 							{#each msg.toolCalls as tc}
 								<div class="toolcard">
 									<div class="tool-icon">
-										<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+										<svg
+											width="12"
+											height="12"
+											viewBox="0 0 24 24"
+											fill="none"
+											stroke="currentColor"
+											stroke-width="2"
+											><path
+												d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"
+											/></svg
+										>
 									</div>
 									<div class="tool-info">
 										<span class="tool-name">{tc.tool}</span>
-										<span class="tool-status" class:done={tc.status === 'completed'}>{tc.status}</span>
+										<span class="tool-status" class:done={tc.status === 'completed'}
+											>{tc.status}</span
+										>
 									</div>
 									<span class="tool-result">{tc.result}</span>
 								</div>
@@ -574,8 +638,11 @@
 
 					<div class="versions-row">
 						{#if msg.versions && msg.versions.length > 1}
-							<div class="version-content-wrapper" use:registerVersionCard={msg.id} data-msg-id={msg.id}>
-
+							<div
+								class="version-content-wrapper"
+								use:registerVersionCard={msg.id}
+								data-msg-id={msg.id}
+							>
 								{#each msg.versions as ver}
 									{#if ver.active}
 										{@const dir = versionDirections.get(msg.id) ?? 1}
@@ -600,7 +667,7 @@
 						{:else}
 							<div class="ver-text" data-msg-id={msg.id} use:streamingHeight={!!msg.streaming}>
 								{#if msg.streaming}
-									{#each (msg.tokens ?? []) as token, i (i)}
+									{#each msg.tokens ?? [] as token, i (i)}
 										<span class="stream-token">{token}</span>
 									{/each}
 								{:else}
@@ -625,7 +692,14 @@
 									<span class="ann-dot"></span>
 									<span class="ann-note">{ann.note}</span>
 									<button onclick={() => onRemoveAnnotation(ann.id)} aria-label="Remove annotation">
-										<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6 6 18M6 6l12 12"/></svg>
+										<svg
+											width="10"
+											height="10"
+											viewBox="0 0 24 24"
+											fill="none"
+											stroke="currentColor"
+											stroke-width="2.5"><path d="M18 6 6 18M6 6l12 12" /></svg
+										>
 									</button>
 								</div>
 							{/each}
@@ -641,7 +715,7 @@
 						<span class="typing-wip">composing...</span>
 					</div>
 					<div class="gen-dots">
-						{#each [0,1,2] as j}
+						{#each [0, 1, 2] as j}
 							<span style="animation-delay: {j * 0.14}s"></span>
 						{/each}
 					</div>
@@ -660,8 +734,10 @@
 						rows="1"
 						placeholder="Continue..."
 						class="composer-field"
-						onfocus={() => composerActive = true}
-						onblur={() => { if (!inputValue) composerActive = false; }}
+						onfocus={() => (composerActive = true)}
+						onblur={() => {
+							if (!inputValue) composerActive = false;
+						}}
 						onkeydown={handleKey}
 					></textarea>
 					<button
@@ -671,7 +747,15 @@
 						disabled={!inputValue.trim() || sending}
 						onclick={sendComposerMessage}
 					>
-						<svg class="send-plane" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+						<svg
+							class="send-plane"
+							width="15"
+							height="15"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2.5"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z" /></svg
+						>
 					</button>
 				</div>
 			</div>
@@ -683,7 +767,7 @@
 		<div class="ann-panel">
 			<div class="ann-panel-head">
 				<span>Annotations ({annotations.length})</span>
-				<button class="ghost" onclick={() => showAnnotationPanel = false}>Hide</button>
+				<button class="ghost" onclick={() => (showAnnotationPanel = false)}>Hide</button>
 			</div>
 			{#if annotations.length === 0}
 				<div class="ann-empty">Select text in any message and add a note.</div>
@@ -691,7 +775,9 @@
 				<div class="ann-list">
 					{#each annotations as ann}
 						<div class="ann-item">
-							<div class="ann-source">on message #{messages.findIndex(m => m.id === ann.msgId) + 1}</div>
+							<div class="ann-source">
+								on message #{messages.findIndex((m) => m.id === ann.msgId) + 1}
+							</div>
 							<div class="ann-quote">"{ann.selectedText}"</div>
 							<div class="ann-note">{ann.note}</div>
 							<button class="ann-rm" onclick={() => onRemoveAnnotation(ann.id)}>Remove</button>
@@ -856,8 +942,13 @@
 	}
 
 	@keyframes streamPulse {
-		0%, 100% { filter: brightness(1); }
-		50% { filter: brightness(1.12); }
+		0%,
+		100% {
+			filter: brightness(1);
+		}
+		50% {
+			filter: brightness(1.12);
+		}
 	}
 
 	.lab-head {
@@ -884,8 +975,12 @@
 		position: relative;
 	}
 
-	.scroll::-webkit-scrollbar { width: 17px; }
-	.scroll::-webkit-scrollbar-track { background: transparent; }
+	.scroll::-webkit-scrollbar {
+		width: 17px;
+	}
+	.scroll::-webkit-scrollbar-track {
+		background: transparent;
+	}
 	.scroll::-webkit-scrollbar-thumb {
 		background-color: color-mix(in srgb, var(--text-secondary) 72%, transparent);
 		border: 2px solid transparent;
@@ -920,13 +1015,25 @@
 	}
 
 	@keyframes popIn {
-		from { opacity: 0; transform: translateY(6px) scale(0.96); }
-		to { opacity: 1; transform: translateY(0) scale(1); }
+		from {
+			opacity: 0;
+			transform: translateY(6px) scale(0.96);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0) scale(1);
+		}
 	}
 
 	@keyframes popInBelow {
-		from { opacity: 0; transform: translateY(-6px) scale(0.96); }
-		to { opacity: 1; transform: translateY(0) scale(1); }
+		from {
+			opacity: 0;
+			transform: translateY(-6px) scale(0.96);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0) scale(1);
+		}
 	}
 
 	.sel-quick-actions {
@@ -983,7 +1090,10 @@
 		outline: none;
 	}
 
-	.sel-ann-row input::placeholder { color: var(--text-tertiary); font-style: italic; }
+	.sel-ann-row input::placeholder {
+		color: var(--text-tertiary);
+		font-style: italic;
+	}
 
 	.sel-ann-save {
 		width: 40px;
@@ -1010,7 +1120,9 @@
 		border-color: color-mix(in srgb, var(--orange) 76%, black);
 		background: var(--orange);
 		color: #fff;
-		box-shadow: inset 1px 0 0 rgba(255,255,255,0.16), 0 3px 14px var(--orange-glow);
+		box-shadow:
+			inset 1px 0 0 rgba(255, 255, 255, 0.16),
+			0 3px 14px var(--orange-glow);
 	}
 
 	.sel-ann-save:disabled {
@@ -1019,11 +1131,16 @@
 
 	.sel-ann-save.visible:hover {
 		background: color-mix(in srgb, var(--orange) 88%, white);
-		box-shadow: inset 1px 0 0 rgba(255,255,255,0.18), 0 3px 14px var(--orange-glow);
+		box-shadow:
+			inset 1px 0 0 rgba(255, 255, 255, 0.18),
+			0 3px 14px var(--orange-glow);
 		filter: brightness(1.02);
 	}
 
-	.sel-cancel:hover { background: var(--surface-hover); color: var(--text); }
+	.sel-cancel:hover {
+		background: var(--surface-hover);
+		color: var(--text);
+	}
 
 	/* ─── Text mark (highlight) ─── */
 	:global(mark.text-mark) {
@@ -1051,14 +1168,13 @@
 		height: calc(var(--mark-height) * 1em);
 		z-index: -1;
 		border-radius: 0.18em 0.28em 0.16em 0.24em;
-		background:
-			linear-gradient(
-				100deg,
-				color-mix(in srgb, var(--highlight) 42%, transparent) 0%,
-				color-mix(in srgb, var(--highlight) 82%, transparent) 22%,
-				color-mix(in srgb, var(--highlight) 74%, transparent) 70%,
-				color-mix(in srgb, var(--highlight) 38%, transparent) 100%
-			);
+		background: linear-gradient(
+			100deg,
+			color-mix(in srgb, var(--highlight) 42%, transparent) 0%,
+			color-mix(in srgb, var(--highlight) 82%, transparent) 22%,
+			color-mix(in srgb, var(--highlight) 74%, transparent) 70%,
+			color-mix(in srgb, var(--highlight) 38%, transparent) 100%
+		);
 		clip-path: polygon(0 22%, 98% 4%, 100% 82%, 2% 100%);
 		transform: rotate(var(--mark-angle));
 		transform-origin: left center;
@@ -1066,8 +1182,12 @@
 	}
 
 	@keyframes markerSwipe {
-		from { clip-path: inset(0 100% 0 0 round 0.18em); }
-		to { clip-path: inset(0 0 0 0 round 0.18em); }
+		from {
+			clip-path: inset(0 100% 0 0 round 0.18em);
+		}
+		to {
+			clip-path: inset(0 0 0 0 round 0.18em);
+		}
 	}
 
 	/* ─── Message Group ─── */
@@ -1081,7 +1201,10 @@
 	}
 
 	@keyframes slideIn {
-		to { opacity: 1; transform: translateY(0); }
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
 	}
 
 	.meta-line {
@@ -1098,8 +1221,12 @@
 		text-transform: uppercase;
 	}
 
-	.message-group.user .meta-role { color: var(--orange); }
-	.message-group.ai .meta-role { color: var(--accent); }
+	.message-group.user .meta-role {
+		color: var(--orange);
+	}
+	.message-group.ai .meta-role {
+		color: var(--accent);
+	}
 
 	.meta-time {
 		font-size: 11px;
@@ -1134,7 +1261,9 @@
 		user-select: none;
 	}
 
-	.thinking:hover { color: var(--text-secondary); }
+	.thinking:hover {
+		color: var(--text-secondary);
+	}
 
 	.think-slash {
 		flex: none;
@@ -1184,7 +1313,9 @@
 		transform: translateY(-1px);
 	}
 
-	.tool-icon { color: var(--accent); }
+	.tool-icon {
+		color: var(--accent);
+	}
 
 	.tool-info {
 		display: flex;
@@ -1192,7 +1323,10 @@
 		gap: 6px;
 	}
 
-	.tool-name { font-weight: 600; color: var(--text); }
+	.tool-name {
+		font-weight: 600;
+		color: var(--text);
+	}
 
 	.tool-status {
 		font-size: 10px;
@@ -1203,7 +1337,7 @@
 	}
 
 	.tool-status.done {
-		background: rgba(45,159,82,0.15);
+		background: rgba(45, 159, 82, 0.15);
 		color: var(--success);
 	}
 
@@ -1239,11 +1373,18 @@
 		letter-spacing: 0.06em;
 		text-transform: uppercase;
 		cursor: pointer;
-		transition: color 0.15s, background 0.15s;
+		transition:
+			color 0.15s,
+			background 0.15s;
 	}
 
-	.meta-ver-btn:hover { color: var(--text-secondary); background: var(--surface-hover); }
-	.meta-ver-btn.active { color: var(--accent); }
+	.meta-ver-btn:hover {
+		color: var(--text-secondary);
+		background: var(--surface-hover);
+	}
+	.meta-ver-btn.active {
+		color: var(--accent);
+	}
 
 	.version-content-wrapper {
 		display: grid;
@@ -1275,8 +1416,12 @@
 	}
 
 	@keyframes tokenFadeIn {
-		from { opacity: 0; }
-		to { opacity: 1; }
+		from {
+			opacity: 0;
+		}
+		to {
+			opacity: 1;
+		}
 	}
 
 	.stream-caret {
@@ -1291,8 +1436,13 @@
 	}
 
 	@keyframes streamCaretBlink {
-		0%, 100% { opacity: 0.18; }
-		50% { opacity: 1; }
+		0%,
+		100% {
+			opacity: 0.18;
+		}
+		50% {
+			opacity: 1;
+		}
 	}
 
 	/* ─── Inline annotations ─── */
@@ -1327,16 +1477,29 @@
 	}
 
 	@keyframes annPop {
-		from { opacity: 0; transform: scale(0.88); }
-		to { opacity: 1; transform: scale(1); }
+		from {
+			opacity: 0;
+			transform: scale(0.88);
+		}
+		to {
+			opacity: 1;
+			transform: scale(1);
+		}
 	}
 
-	.ann-text { display: none; }
-	.ann-note { font-weight: 500; color: var(--text-secondary); }
+	.ann-text {
+		display: none;
+	}
+	.ann-note {
+		font-weight: 500;
+		color: var(--text-secondary);
+	}
 	.ann-chip button {
-		width: 14px; height: 14px;
+		width: 14px;
+		height: 14px;
 		border-radius: 50%;
-		display: grid; place-items: center;
+		display: grid;
+		place-items: center;
 		background: transparent;
 		border: none;
 		color: var(--text-tertiary);
@@ -1344,7 +1507,10 @@
 		padding: 0;
 		margin-left: 1px;
 	}
-	.ann-chip button:hover { color: var(--text-secondary); background: var(--surface-hover); }
+	.ann-chip button:hover {
+		color: var(--text-secondary);
+		background: var(--surface-hover);
+	}
 
 	/* ─── Composer ─── */
 	.composer {
@@ -1421,14 +1587,18 @@
 		border-color: color-mix(in srgb, var(--orange) 42%, var(--border));
 	}
 
-	.composer-field::placeholder { color: var(--text-tertiary); font-style: italic; }
+	.composer-field::placeholder {
+		color: var(--text-tertiary);
+		font-style: italic;
+	}
 
 	.composer-send {
 		align-self: stretch;
 		width: 48px;
 		min-height: 100%;
 		border-radius: 5px 12px 12px 5px;
-		display: grid; place-items: center;
+		display: grid;
+		place-items: center;
 		background: var(--orange);
 		color: #fff;
 		border: 1.5px solid color-mix(in srgb, var(--orange) 76%, black);
@@ -1443,12 +1613,14 @@
 			background 0.2s ease,
 			color 0.2s ease,
 			box-shadow 0.25s ease;
-		box-shadow: inset 1px 0 0 rgba(255,255,255,0.14);
+		box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.14);
 	}
 
 	.composer-send.visible {
 		opacity: 1;
-		box-shadow: inset 1px 0 0 rgba(255,255,255,0.18), 0 3px 14px var(--orange-glow);
+		box-shadow:
+			inset 1px 0 0 rgba(255, 255, 255, 0.18),
+			0 3px 14px var(--orange-glow);
 	}
 
 	.composer-send:disabled {
@@ -1486,7 +1658,7 @@
 		width: 18px;
 		height: 2px;
 		border-radius: 999px;
-		background: rgba(255,255,255,0.65);
+		background: rgba(255, 255, 255, 0.65);
 		transform: translateY(-50%);
 		animation: contrail 0.5s ease-out forwards;
 	}
@@ -1504,7 +1676,7 @@
 		34% {
 			opacity: 1;
 			transform: translate(calc(-50% + 28px), calc(-50% - 26px)) rotate(22deg) scale(1.08);
-			filter: drop-shadow(0 8px 10px rgba(0,0,0,0.24));
+			filter: drop-shadow(0 8px 10px rgba(0, 0, 0, 0.24));
 		}
 		64% {
 			opacity: 0.88;
@@ -1513,14 +1685,22 @@
 		100% {
 			opacity: 0;
 			transform: translate(calc(-50% + 132px), calc(-50% - 108px)) rotate(42deg) scale(0.48);
-			filter: drop-shadow(0 12px 12px rgba(0,0,0,0));
+			filter: drop-shadow(0 12px 12px rgba(0, 0, 0, 0));
 		}
 	}
 
 	@keyframes contrail {
-		0% { opacity: 0; transform: translateY(-50%) translateX(4px) scaleX(0.2); }
-		35% { opacity: 0.85; }
-		100% { opacity: 0; transform: translateY(-50%) translateX(-12px) scaleX(1.7); }
+		0% {
+			opacity: 0;
+			transform: translateY(-50%) translateX(4px) scaleX(0.2);
+		}
+		35% {
+			opacity: 0.85;
+		}
+		100% {
+			opacity: 0;
+			transform: translateY(-50%) translateX(-12px) scaleX(1.7);
+		}
 	}
 
 	/* ─── Generating ─── */
@@ -1532,8 +1712,13 @@
 	}
 
 	@keyframes wipPulse {
-		0%, 100% { opacity: 0.4; }
-		50% { opacity: 1; }
+		0%,
+		100% {
+			opacity: 0.4;
+		}
+		50% {
+			opacity: 1;
+		}
 	}
 
 	.gen-dots {
@@ -1543,26 +1728,45 @@
 	}
 
 	.gen-dots span {
-		width: 5px; height: 5px;
+		width: 5px;
+		height: 5px;
 		border-radius: 50%;
 		background: var(--accent);
 		animation: genBounce 1.3s infinite ease-in-out both;
 		opacity: 0.3;
 	}
 
-	.gen-dots span:nth-child(1) { animation-delay: 0s; background: var(--accent-soft); }
-	.gen-dots span:nth-child(2) { animation-delay: 0.14s; }
-	.gen-dots span:nth-child(3) { animation-delay: 0.28s; background: var(--accent-soft); }
+	.gen-dots span:nth-child(1) {
+		animation-delay: 0s;
+		background: var(--accent-soft);
+	}
+	.gen-dots span:nth-child(2) {
+		animation-delay: 0.14s;
+	}
+	.gen-dots span:nth-child(3) {
+		animation-delay: 0.28s;
+		background: var(--accent-soft);
+	}
 
 	@keyframes genBounce {
-		0%, 80%, 100% { transform: scale(0.4); opacity: 0.3; }
-		40% { transform: scale(1); opacity: 1; }
+		0%,
+		80%,
+		100% {
+			transform: scale(0.4);
+			opacity: 0.3;
+		}
+		40% {
+			transform: scale(1);
+			opacity: 1;
+		}
 	}
 
 	/* ─── Annotation Panel ─── */
 	.ann-panel {
 		position: absolute;
-		bottom: 0; left: 0; right: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
 		background: var(--bg-elevated);
 		border-top: 1px solid var(--border);
 		padding: 16px 20px;
@@ -1574,8 +1778,14 @@
 	}
 
 	@keyframes panelUp {
-		from { transform: translateY(20px); opacity: 0; }
-		to { transform: translateY(0); opacity: 1; }
+		from {
+			transform: translateY(20px);
+			opacity: 0;
+		}
+		to {
+			transform: translateY(0);
+			opacity: 1;
+		}
 	}
 
 	.ann-panel-head {
@@ -1650,7 +1860,10 @@
 		cursor: pointer;
 		padding: 0;
 	}
-	.ann-rm:hover { color: var(--text); text-decoration: underline; }
+	.ann-rm:hover {
+		color: var(--text);
+		text-decoration: underline;
+	}
 
 	.ann-send {
 		width: 100%;
@@ -1665,5 +1878,7 @@
 		cursor: pointer;
 		transition: filter 0.15s;
 	}
-	.ann-send:hover { filter: brightness(1.1); }
+	.ann-send:hover {
+		filter: brightness(1.1);
+	}
 </style>

@@ -105,7 +105,6 @@
 			builtinTools = {};
 		}
 		defaultParams = config?.DEFAULT_MODEL_PARAMS ?? {};
-
 	};
 	const submitHandler = async () => {
 		loading = true;

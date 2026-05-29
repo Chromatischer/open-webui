@@ -184,7 +184,9 @@
 
 <div class="flex flex-col h-full text-[var(--text)]">
 	<div class="st-pane-title">{$i18n.t('Archived Chats')}</div>
-	<div class="st-pane-sub">{$i18n.t('Restore, export, or permanently remove archived conversations.')}</div>
+	<div class="st-pane-sub">
+		{$i18n.t('Restore, export, or permanently remove archived conversations.')}
+	</div>
 
 	<div class="st-search-row">
 		<Search className="size-4 shrink-0 text-[var(--text-tertiary)]" strokeWidth="2" />

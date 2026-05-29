@@ -148,16 +148,17 @@
 			<div class="meta-line">
 				<Name>
 					<span class="meta-role">
-					{#if message.user}
-						{$i18n.t('You')}
-						<span class="text-sm font-medium" style="color: var(--text-tertiary)">{message?.user ?? ''}</span>
-					{:else if $settings.showUsername || $_user?.name !== user?.name}
-						{user?.name ?? $i18n.t('You')}
-					{:else}
-						{$i18n.t('You')}
-					{/if}
+						{#if message.user}
+							{$i18n.t('You')}
+							<span class="text-sm font-medium" style="color: var(--text-tertiary)"
+								>{message?.user ?? ''}</span
+							>
+						{:else if $settings.showUsername || $_user?.name !== user?.name}
+							{user?.name ?? $i18n.t('You')}
+						{:else}
+							{$i18n.t('You')}
+						{/if}
 					</span>
-
 				</Name>
 			</div>
 		{:else}
@@ -335,9 +336,7 @@
 			{:else if message.content !== ''}
 				<div class="w-full">
 					<div class="flex w-full">
-						<div
-							class="ver-text w-full"
-						>
+						<div class="ver-text w-full">
 							{#if message.content}
 								{#if $settings?.renderMarkdownInUserMessages ?? true}
 									<Markdown
@@ -347,7 +346,10 @@
 										{topPadding}
 									/>
 								{:else}
-									<div class="ver-text whitespace-pre-wrap" dir={$settings?.chatDirection ?? 'auto'}>
+									<div
+										class="ver-text whitespace-pre-wrap"
+										dir={$settings?.chatDirection ?? 'auto'}
+									>
 										{message.content}
 									</div>
 								{/if}

@@ -490,13 +490,13 @@ Chroma / PGVector / Qdrant")]
 
 ## 9. Key Data Flows Summary
 
-| # | Flow | Path | Protocol |
-|---|---|---|---|
-| 1 | **User Authentication** | Browser → FastAPI → Auth Utils → DB → JWT | HTTP REST |
-| 2 | **Chat Message** | Browser → API → Save → LLM Proxy → LLM → Stream back | HTTP + WebSocket |
-| 3 | **RAG Query** | Browser → API → Embed → VectorDB → Retrieve → Rerank → Augment Prompt → LLM | HTTP REST |
-| 4 | **File Upload** | Browser → API → File Store → DB → Embed → VectorDB | HTTP Multipart |
-| 5 | **Real-time Chat** | Browser → Socket.IO → Redis Pub/Sub → Broadcast | WebSocket |
-| 6 | **Model Management** | Browser → API → Ollama/OpenAI API → DB | HTTP REST |
-| 7 | **Admin Config** | Browser → API → Config Model → DB | HTTP REST |
-| 8 | **Plugin Execution** | Pipeline Server → FastAPI → External Service | HTTP/gRPC |
+| #   | Flow                    | Path                                                                        | Protocol         |
+| --- | ----------------------- | --------------------------------------------------------------------------- | ---------------- |
+| 1   | **User Authentication** | Browser → FastAPI → Auth Utils → DB → JWT                                   | HTTP REST        |
+| 2   | **Chat Message**        | Browser → API → Save → LLM Proxy → LLM → Stream back                        | HTTP + WebSocket |
+| 3   | **RAG Query**           | Browser → API → Embed → VectorDB → Retrieve → Rerank → Augment Prompt → LLM | HTTP REST        |
+| 4   | **File Upload**         | Browser → API → File Store → DB → Embed → VectorDB                          | HTTP Multipart   |
+| 5   | **Real-time Chat**      | Browser → Socket.IO → Redis Pub/Sub → Broadcast                             | WebSocket        |
+| 6   | **Model Management**    | Browser → API → Ollama/OpenAI API → DB                                      | HTTP REST        |
+| 7   | **Admin Config**        | Browser → API → Config Model → DB                                           | HTTP REST        |
+| 8   | **Plugin Execution**    | Pipeline Server → FastAPI → External Service                                | HTTP/gRPC        |

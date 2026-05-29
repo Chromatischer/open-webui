@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { config, models, settings, user } from '$lib/stores';
-	import { createEventDispatcher, onMount, onDestroy, getContext } from 'svelte';
+	import { onMount, onDestroy, getContext } from 'svelte';
 	import { toast } from 'svelte-sonner';
 	import Tooltip from '$lib/components/common/Tooltip.svelte';
 	import { updateUserInfo } from '$lib/apis/users';
@@ -12,8 +12,6 @@
 	import ToggleCard from './Interface/ToggleCard.svelte';
 	import ManageFloatingActionButtonsModal from './Interface/ManageFloatingActionButtonsModal.svelte';
 	import ManageImageCompressionModal from './Interface/ManageImageCompressionModal.svelte';
-
-	const dispatch = createEventDispatcher();
 
 	const i18n = getContext('i18n');
 
@@ -297,14 +295,7 @@
 	}}
 />
 
-<form
-	id="tab-interface"
-	class="flex flex-col h-full justify-between space-y-3 text-sm"
-	on:submit|preventDefault={() => {
-		updateInterfaceHandler();
-		dispatch('save');
-	}}
->
+<div id="tab-interface" class="flex flex-col h-full justify-between space-y-3 text-sm">
 	<input
 		bind:this={filesInputElement}
 		bind:files={inputFiles}
@@ -494,7 +485,9 @@
 				</div>
 
 				<div class="ix-row">
-					<div id="landing-page-mode-label" class="ix-row-title">{$i18n.t('Landing Page Mode')}</div>
+					<div id="landing-page-mode-label" class="ix-row-title">
+						{$i18n.t('Landing Page Mode')}
+					</div>
 					<button
 						aria-labelledby="landing-page-mode-label landing-page-mode-state"
 						class="ix-pill"
@@ -531,7 +524,9 @@
 				</div>
 
 				<div class="ix-row">
-					<div id="web-search-in-chat-label" class="ix-row-title">{$i18n.t('Web Search in Chat')}</div>
+					<div id="web-search-in-chat-label" class="ix-row-title">
+						{$i18n.t('Web Search in Chat')}
+					</div>
 					<button
 						aria-labelledby="web-search-in-chat-label web-search-state"
 						class="ix-pill"
@@ -701,7 +696,9 @@
 
 			<div class="ix-rows">
 				<div class="ix-row">
-					<div id="enter-key-behavior-label" class="ix-row-title">{$i18n.t('Enter Key Behavior')}</div>
+					<div id="enter-key-behavior-label" class="ix-row-title">
+						{$i18n.t('Enter Key Behavior')}
+					</div>
 					<button
 						aria-labelledby="enter-key-behavior-label ctrl-enter-to-send-state"
 						class="ix-pill"
@@ -838,15 +835,7 @@
 			{/if}
 		</div>
 	</div>
-	<div class="flex justify-end pt-3 text-sm font-medium">
-		<button
-			class="px-4 py-2 text-sm font-medium bg-[var(--accent)] hover:opacity-90 text-white transition rounded-[10px]"
-			type="submit"
-		>
-			{$i18n.t('Save')}
-		</button>
-	</div>
-</form>
+</div>
 
 <style>
 	.ix-section {

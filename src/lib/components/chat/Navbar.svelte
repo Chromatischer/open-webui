@@ -2,14 +2,7 @@
 	import { getContext } from 'svelte';
 	import { toast } from 'svelte-sonner';
 
-	import {
-		WEBUI_NAME,
-		banners,
-		chatId,
-		config,
-		mobile,
-		showSidebar
-	} from '$lib/stores';
+	import { WEBUI_NAME, banners, chatId, config, mobile, showSidebar } from '$lib/stores';
 
 	import { slide } from 'svelte/transition';
 
@@ -74,9 +67,7 @@
 		<div class=" flex max-w-full w-full mx-auto px-1.5 md:px-2 pt-0.5 bg-transparent">
 			<div class="flex items-center w-full max-w-full">
 				{#if $mobile && !$showSidebar}
-					<div
-						class="-translate-x-0.5 mr-1 mt-1 self-start flex flex-none items-center"
-					>
+					<div class="-translate-x-0.5 mr-1 mt-1 self-start flex flex-none items-center">
 						<Tooltip content={$showSidebar ? $i18n.t('Close Sidebar') : $i18n.t('Open Sidebar')}>
 							<button
 								class="btn-ghost no-drag-region"
@@ -108,9 +99,7 @@
 					{#if $mobile && chat && chat.id}
 						<Tooltip content={$i18n.t('New Chat')}>
 							<button
-								class="btn-ghost {$showSidebar
-									? 'md:hidden'
-									: ''}"
+								class="btn-ghost {$showSidebar ? 'md:hidden' : ''}"
 								on:click={() => {
 									initNewChat();
 								}}
@@ -139,17 +128,13 @@
 							}}
 							{moveChatHandler}
 						>
-							<button
-								class="btn-ghost"
-								id="chat-context-menu-button"
-							>
+							<button class="btn-ghost" id="chat-context-menu-button">
 								<div class="m-auto self-center">
 									<EllipsisHorizontal className="size-5" strokeWidth="1.5" />
 								</div>
 							</button>
 						</Menu>
 					{/if}
-
 				</div>
 			</div>
 		</div>
@@ -234,7 +219,9 @@
 		border: none;
 		color: var(--text-tertiary);
 		cursor: pointer;
-		transition: background 0.15s, color 0.15s;
+		transition:
+			background 0.15s,
+			color 0.15s;
 	}
 	.btn-ghost:hover {
 		background: var(--surface-hover);

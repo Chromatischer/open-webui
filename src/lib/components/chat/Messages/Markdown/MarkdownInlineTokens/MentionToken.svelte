@@ -97,12 +97,12 @@
 						console.log('Clicked model mention', id);
 						await goto(`/?model=${id}`);
 					}
-					} else if (triggerChar === '#') {
-						if (idType === 'C') {
-							console.log('Clicked channel mention', id);
-						} else if (idType === 'T') {
-							// Open thread
-						}
+				} else if (triggerChar === '#') {
+					if (idType === 'C') {
+						console.log('Clicked channel mention', id);
+					} else if (idType === 'T') {
+						// Open thread
+					}
 				} else {
 					// Unknown trigger char, just log
 					console.log('Clicked mention', id);

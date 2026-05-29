@@ -826,9 +826,9 @@
 
 		user.subscribe(async (value) => {
 			if (value) {
-					$socket?.off('events', chatEventHandler);
+				$socket?.off('events', chatEventHandler);
 
-					$socket?.on('events', chatEventHandler);
+				$socket?.on('events', chatEventHandler);
 
 				const userSettings = await getUserSettings(localStorage.token);
 				if (userSettings) {
@@ -843,10 +843,10 @@
 					clearInterval(tokenTimer);
 				}
 				tokenTimer = setInterval(checkTokenExpiry, 15000);
-				} else {
-					$socket?.off('events', chatEventHandler);
-				}
-			});
+			} else {
+				$socket?.off('events', chatEventHandler);
+			}
+		});
 
 		let backendConfig = null;
 		try {

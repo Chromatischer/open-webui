@@ -39,7 +39,9 @@
 				--success: #43c778;
 			}
 
-			* { box-sizing: border-box; }
+			* {
+				box-sizing: border-box;
+			}
 			body {
 				margin: 0;
 				font-family: var(--font-sans);
@@ -87,19 +89,33 @@
 				padding: 16px 20px;
 				border-bottom: 1px solid var(--border);
 			}
-			.st-title { font-size: 16px; font-weight: 600; }
+			.st-title {
+				font-size: 16px;
+				font-weight: 600;
+			}
 			.st-x {
 				margin-left: auto;
-				width: 30px; height: 30px;
-				display: flex; align-items: center; justify-content: center;
+				width: 30px;
+				height: 30px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
 				border-radius: 9px;
-				border: none; background: transparent;
+				border: none;
+				background: transparent;
 				color: var(--text-tertiary);
 				cursor: pointer;
 			}
-			.st-x:hover { background: var(--surface-hover); color: var(--text); }
+			.st-x:hover {
+				background: var(--surface-hover);
+				color: var(--text);
+			}
 
-			.st-body { display: flex; flex: 1; min-height: 0; }
+			.st-body {
+				display: flex;
+				flex: 1;
+				min-height: 0;
+			}
 
 			/* ── Left rail ───────────────────────── */
 			.st-rail {
@@ -123,8 +139,13 @@
 				border: 1px solid var(--border);
 			}
 			.st-search input {
-				border: none; background: transparent; outline: none;
-				font-family: inherit; font-size: 13px; color: var(--text); width: 100%;
+				border: none;
+				background: transparent;
+				outline: none;
+				font-family: inherit;
+				font-size: 13px;
+				color: var(--text);
+				width: 100%;
 			}
 			.st-tab {
 				display: flex;
@@ -141,37 +162,68 @@
 				font-family: inherit;
 				font-size: 13.5px;
 				cursor: pointer;
-				transition: background 0.16s, color 0.16s;
+				transition:
+					background 0.16s,
+					color 0.16s;
 			}
-			.st-tab:hover { background: var(--surface-hover); }
+			.st-tab:hover {
+				background: var(--surface-hover);
+			}
 			.st-tab.on {
 				background: var(--bg-elevated);
 				color: var(--text);
 				box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
 				font-weight: 500;
 			}
-			.st-tab svg { width: 17px; height: 17px; flex: none; }
+			.st-tab svg {
+				width: 17px;
+				height: 17px;
+				flex: none;
+			}
 			.st-sub {
-				display: flex; flex-direction: column;
-				margin: -2px 0 6px 39px; gap: 1px;
+				display: flex;
+				flex-direction: column;
+				margin: -2px 0 6px 39px;
+				gap: 1px;
 			}
 			.st-sub button {
-				text-align: left; border: none; background: transparent;
-				font-family: inherit; font-size: 12px; padding: 3px 0;
-				color: var(--text-tertiary); cursor: pointer;
+				text-align: left;
+				border: none;
+				background: transparent;
+				font-family: inherit;
+				font-size: 12px;
+				padding: 3px 0;
+				color: var(--text-tertiary);
+				cursor: pointer;
 			}
-			.st-sub button:hover { color: var(--text); }
+			.st-sub button:hover {
+				color: var(--text);
+			}
 			.st-admin {
 				margin-top: auto;
 				color: var(--text-tertiary);
 			}
 
 			/* ── Content ───────────────────────── */
-			.st-content { flex: 1; overflow-y: auto; padding: 24px 28px; }
-			.st-pane-title { font-size: 18px; font-weight: 600; margin: 0 0 2px; }
-			.st-pane-sub { font-size: 13px; color: var(--text-secondary); margin: 0 0 22px; }
+			.st-content {
+				flex: 1;
+				overflow-y: auto;
+				padding: 24px 28px;
+			}
+			.st-pane-title {
+				font-size: 18px;
+				font-weight: 600;
+				margin: 0 0 2px;
+			}
+			.st-pane-sub {
+				font-size: 13px;
+				color: var(--text-secondary);
+				margin: 0 0 22px;
+			}
 
-			.st-group { margin-bottom: 26px; }
+			.st-group {
+				margin-bottom: 26px;
+			}
 			.st-group-label {
 				font-size: 11px;
 				font-weight: 700;
@@ -182,50 +234,111 @@
 			}
 
 			/* profile row */
-			.st-profile { display: flex; align-items: center; gap: 16px; margin-bottom: 8px; }
-			.st-avatar {
-				width: 64px; height: 64px; border-radius: 16px;
-				background: linear-gradient(135deg, var(--accent), #c4a0f0);
-				display: flex; align-items: center; justify-content: center;
-				color: #fff; font-size: 24px; font-weight: 600;
+			.st-profile {
+				display: flex;
+				align-items: center;
+				gap: 16px;
+				margin-bottom: 8px;
 			}
-			.st-profile-meta .n { font-size: 15px; font-weight: 600; }
-			.st-profile-meta .e { font-size: 13px; color: var(--text-secondary); }
+			.st-avatar {
+				width: 64px;
+				height: 64px;
+				border-radius: 16px;
+				background: linear-gradient(135deg, var(--accent), #c4a0f0);
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				color: #fff;
+				font-size: 24px;
+				font-weight: 600;
+			}
+			.st-profile-meta .n {
+				font-size: 15px;
+				font-weight: 600;
+			}
+			.st-profile-meta .e {
+				font-size: 13px;
+				color: var(--text-secondary);
+			}
 			.st-link-btn {
-				font-family: inherit; font-size: 12.5px;
-				padding: 6px 12px; border-radius: 8px;
-				border: 1px solid var(--border); background: var(--bg-elevated);
-				color: var(--text); cursor: pointer;
+				font-family: inherit;
+				font-size: 12.5px;
+				padding: 6px 12px;
+				border-radius: 8px;
+				border: 1px solid var(--border);
+				background: var(--bg-elevated);
+				color: var(--text);
+				cursor: pointer;
 			}
 
-			.st-field { margin-bottom: 14px; }
+			.st-field {
+				margin-bottom: 14px;
+			}
 			.st-field > label {
-				display: block; font-size: 12.5px; font-weight: 500;
-				color: var(--text-secondary); margin-bottom: 5px;
+				display: block;
+				font-size: 12.5px;
+				font-weight: 500;
+				color: var(--text-secondary);
+				margin-bottom: 5px;
 			}
 			.st-inp {
-				width: 100%; font-family: inherit; font-size: 13.5px;
-				padding: 9px 12px; border-radius: 10px;
-				border: 1px solid var(--border); background: var(--bg-base);
-				color: var(--text); outline: none;
+				width: 100%;
+				font-family: inherit;
+				font-size: 13.5px;
+				padding: 9px 12px;
+				border-radius: 10px;
+				border: 1px solid var(--border);
+				background: var(--bg-base);
+				color: var(--text);
+				outline: none;
 			}
-			.st-inp:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-glow); }
+			.st-inp:focus {
+				border-color: var(--accent);
+				box-shadow: 0 0 0 3px var(--accent-glow);
+			}
 
 			/* toggle-card grid (Interface) */
-			.st-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-			.st-card {
-				display: flex; align-items: flex-start; gap: 10px;
-				padding: 12px 13px; border-radius: 12px;
-				border: 1px solid var(--border); background: var(--surface);
-				cursor: pointer; transition: border-color 0.15s, background 0.15s;
+			.st-grid {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: 10px;
 			}
-			.st-card:hover { border-color: var(--border-hover); }
-			.st-card.on { border-color: var(--accent); background: var(--accent-glow); }
-			.st-card .ct { flex: 1; }
-			.st-card .ct .t { font-size: 13px; font-weight: 500; }
-			.st-card .ct .d { font-size: 11.5px; color: var(--text-secondary); margin-top: 2px; }
+			.st-card {
+				display: flex;
+				align-items: flex-start;
+				gap: 10px;
+				padding: 12px 13px;
+				border-radius: 12px;
+				border: 1px solid var(--border);
+				background: var(--surface);
+				cursor: pointer;
+				transition:
+					border-color 0.15s,
+					background 0.15s;
+			}
+			.st-card:hover {
+				border-color: var(--border-hover);
+			}
+			.st-card.on {
+				border-color: var(--accent);
+				background: var(--accent-glow);
+			}
+			.st-card .ct {
+				flex: 1;
+			}
+			.st-card .ct .t {
+				font-size: 13px;
+				font-weight: 500;
+			}
+			.st-card .ct .d {
+				font-size: 11.5px;
+				color: var(--text-secondary);
+				margin-top: 2px;
+			}
 			/* state is conveyed by the accent bg/border alone — no extra control */
-			.st-card.on .ct .t { color: var(--accent); }
+			.st-card.on .ct .t {
+				color: var(--accent);
+			}
 		</style>
 	</head>
 	<body>
@@ -244,17 +357,64 @@
 			<div class="st-body">
 				<nav class="st-rail">
 					<div class="st-search">
-						<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7" /><path d="m21 21-4.3-4.3" /></svg>
+						<svg
+							viewBox="0 0 24 24"
+							width="14"
+							height="14"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+						>
+							<circle cx="11" cy="11" r="7" />
+							<path d="m21 21-4.3-4.3" />
+						</svg>
 						<input placeholder="Search" />
 					</div>
-					<button class="st-tab on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>General</button>
-					<button class="st-tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/></svg>Design</button>
-					<button class="st-tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 14a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 10a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg>Connections</button>
-					<button class="st-tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 6l-2-2H4v16h16V8h-6z"/></svg>Integrations</button>
-					<button class="st-tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20a8 8 0 0 1 16 0"/></svg>Personalization</button>
-					<button class="st-tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14a8 3 0 0 0 16 0V5"/></svg>Data Controls</button>
-					<button class="st-tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>About</button>
-					<button class="st-tab st-admin"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l8 4v5a8 8 0 0 1-16 0V7z"/></svg>Admin Settings</button>
+					<button class="st-tab on">
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+							<circle cx="12" cy="12" r="3" />
+							<path d="M12 2v3M12 19v3M2 12h3M19 12h3" /></svg
+						>General
+					</button>
+					<button class="st-tab">
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+							<rect x="3" y="3" width="18" height="18" rx="3" /></svg
+						>Design
+					</button>
+					<button class="st-tab">
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+							<path d="M10 14a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1" />
+							<path d="M14 10a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1" /></svg
+						>Connections
+					</button>
+					<button class="st-tab">
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+							<path d="M14 6l-2-2H4v16h16V8h-6z" /></svg
+						>Integrations
+					</button>
+					<button class="st-tab">
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+							<circle cx="12" cy="8" r="4" />
+							<path d="M4 20a8 8 0 0 1 16 0" /></svg
+						>Personalization
+					</button>
+					<button class="st-tab">
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+							<ellipse cx="12" cy="5" rx="8" ry="3" />
+							<path d="M4 5v14a8 3 0 0 0 16 0V5" /></svg
+						>Data Controls
+					</button>
+					<button class="st-tab">
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+							<circle cx="12" cy="12" r="9" />
+							<path d="M12 11v5M12 8h.01" /></svg
+						>About
+					</button>
+					<button class="st-tab st-admin">
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+							<path d="M12 3l8 4v5a8 8 0 0 1-16 0V7z" /></svg
+						>Admin Settings
+					</button>
 				</nav>
 				<div class="st-content">
 					<h2 class="st-pane-title">General</h2>
@@ -264,7 +424,7 @@
 						<div class="st-group-label">Profile</div>
 						<div class="st-profile">
 							<div class="st-avatar">D</div>
-							<div class="st-profile-meta" style="flex:1">
+							<div class="st-profile-meta" style="flex: 1">
 								<div class="n">Dominik</div>
 								<div class="e">dominik@hildania.de</div>
 							</div>
@@ -275,20 +435,29 @@
 
 					<div class="st-group">
 						<div class="st-group-label">Security</div>
-						<div class="st-field"><label>New password</label><input class="st-inp" type="password" placeholder="••••••••" /></div>
+						<div class="st-field">
+							<label>New password</label
+							><input class="st-inp" type="password" placeholder="••••••••" />
+						</div>
 						<button class="st-link-btn">Update password</button>
 					</div>
 
 					<div class="st-group">
 						<div class="st-group-label">System Prompt</div>
-						<div class="st-field"><textarea class="st-inp" rows="4" placeholder="Set a default system prompt applied to all chats…"></textarea></div>
+						<div class="st-field">
+							<textarea
+								class="st-inp"
+								rows="4"
+								placeholder="Set a default system prompt applied to all chats…"
+							></textarea>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 
 		<!-- ============ INTERFACE PANE ============ -->
-		<div class="st-modal" id="modal-interface" style="display:none">
+		<div class="st-modal" id="modal-interface" style="display: none">
 			<div class="st-head">
 				<div class="st-title">Settings</div>
 				<button class="st-x">✕</button>
@@ -296,20 +465,63 @@
 			<div class="st-body">
 				<nav class="st-rail">
 					<div class="st-search">
-						<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7" /><path d="m21 21-4.3-4.3" /></svg>
+						<svg
+							viewBox="0 0 24 24"
+							width="14"
+							height="14"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+						>
+							<circle cx="11" cy="11" r="7" />
+							<path d="m21 21-4.3-4.3" />
+						</svg>
 						<input placeholder="Search" />
 					</div>
-					<button class="st-tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg>General</button>
-					<button class="st-tab on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="3"/></svg>Design</button>
+					<button class="st-tab">
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+							<circle cx="12" cy="12" r="3" />
+							<path d="M12 2v3M12 19v3M2 12h3M19 12h3" /></svg
+						>General
+					</button>
+					<button class="st-tab on">
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+							<rect x="3" y="3" width="18" height="18" rx="3" /></svg
+						>Design
+					</button>
 					<div class="st-sub">
-						<button>UI</button><button>Chat</button><button>Input</button>
-						<button>Artifacts</button><button>Voice</button><button>File</button>
+						<button>UI</button><button>Chat</button><button>Input</button> <button>Artifacts</button
+						><button>Voice</button><button>File</button>
 					</div>
-					<button class="st-tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 14a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 10a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg>Connections</button>
-					<button class="st-tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 6l-2-2H4v16h16V8h-6z"/></svg>Integrations</button>
-					<button class="st-tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20a8 8 0 0 1 16 0"/></svg>Personalization</button>
-					<button class="st-tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14a8 3 0 0 0 16 0V5"/></svg>Data Controls</button>
-					<button class="st-tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>About</button>
+					<button class="st-tab">
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+							<path d="M10 14a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1" />
+							<path d="M14 10a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1" /></svg
+						>Connections
+					</button>
+					<button class="st-tab">
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+							<path d="M14 6l-2-2H4v16h16V8h-6z" /></svg
+						>Integrations
+					</button>
+					<button class="st-tab">
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+							<circle cx="12" cy="8" r="4" />
+							<path d="M4 20a8 8 0 0 1 16 0" /></svg
+						>Personalization
+					</button>
+					<button class="st-tab">
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+							<ellipse cx="12" cy="5" rx="8" ry="3" />
+							<path d="M4 5v14a8 3 0 0 0 16 0V5" /></svg
+						>Data Controls
+					</button>
+					<button class="st-tab">
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+							<circle cx="12" cy="12" r="9" />
+							<path d="M12 11v5M12 8h.01" /></svg
+						>About
+					</button>
 				</nav>
 				<div class="st-content">
 					<h2 class="st-pane-title">Design</h2>
@@ -318,28 +530,78 @@
 					<div class="st-group">
 						<div class="st-group-label" id="design-section-ui">UI</div>
 						<div class="st-grid">
-							<div class="st-card on"><div class="ct"><div class="t">High contrast mode</div><div class="d">Stronger borders & text</div></div></div>
-							<div class="st-card on"><div class="ct"><div class="t">Toast notifications</div><div class="d">Alert on new updates</div></div></div>
-							<div class="st-card"><div class="ct"><div class="t">Widescreen mode</div><div class="d">Full-width chat area</div></div></div>
-							<div class="st-card on"><div class="ct"><div class="t">Haptic feedback</div><div class="d">Vibration on actions</div></div></div>
+							<div class="st-card on">
+								<div class="ct">
+									<div class="t">High contrast mode</div>
+									<div class="d">Stronger borders & text</div>
+								</div>
+							</div>
+							<div class="st-card on">
+								<div class="ct">
+									<div class="t">Toast notifications</div>
+									<div class="d">Alert on new updates</div>
+								</div>
+							</div>
+							<div class="st-card">
+								<div class="ct">
+									<div class="t">Widescreen mode</div>
+									<div class="d">Full-width chat area</div>
+								</div>
+							</div>
+							<div class="st-card on">
+								<div class="ct">
+									<div class="t">Haptic feedback</div>
+									<div class="d">Vibration on actions</div>
+								</div>
+							</div>
 						</div>
 					</div>
 
 					<div class="st-group">
 						<div class="st-group-label" id="design-section-chat">Chat</div>
 						<div class="st-grid">
-							<div class="st-card on"><div class="ct"><div class="t">Chat bubbles</div><div class="d">Rounded message UI</div></div></div>
-							<div class="st-card"><div class="ct"><div class="t">Auto-title chats</div><div class="d">Generate titles</div></div></div>
-							<div class="st-card on"><div class="ct"><div class="t">Auto chat tags</div><div class="d">Tag conversations</div></div></div>
-							<div class="st-card"><div class="ct"><div class="t">Collapse code blocks</div><div class="d">Fold long code</div></div></div>
+							<div class="st-card on">
+								<div class="ct">
+									<div class="t">Chat bubbles</div>
+									<div class="d">Rounded message UI</div>
+								</div>
+							</div>
+							<div class="st-card">
+								<div class="ct">
+									<div class="t">Auto-title chats</div>
+									<div class="d">Generate titles</div>
+								</div>
+							</div>
+							<div class="st-card on">
+								<div class="ct">
+									<div class="t">Auto chat tags</div>
+									<div class="d">Tag conversations</div>
+								</div>
+							</div>
+							<div class="st-card">
+								<div class="ct">
+									<div class="t">Collapse code blocks</div>
+									<div class="d">Fold long code</div>
+								</div>
+							</div>
 						</div>
 					</div>
 
 					<div class="st-group">
 						<div class="st-group-label" id="design-section-input">Input</div>
 						<div class="st-grid">
-							<div class="st-card on"><div class="ct"><div class="t">Rich text input</div><div class="d">Markdown composer</div></div></div>
-							<div class="st-card on"><div class="ct"><div class="t">Paste large text as file</div><div class="d">Auto-attach long pastes</div></div></div>
+							<div class="st-card on">
+								<div class="ct">
+									<div class="t">Rich text input</div>
+									<div class="d">Markdown composer</div>
+								</div>
+							</div>
+							<div class="st-card on">
+								<div class="ct">
+									<div class="t">Paste large text as file</div>
+									<div class="d">Auto-attach long pastes</div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -348,8 +610,10 @@
 
 		<script>
 			function show(which) {
-				document.getElementById('modal-general').style.display = which === 'general' ? 'flex' : 'none';
-				document.getElementById('modal-interface').style.display = which === 'interface' ? 'flex' : 'none';
+				document.getElementById('modal-general').style.display =
+					which === 'general' ? 'flex' : 'none';
+				document.getElementById('modal-interface').style.display =
+					which === 'interface' ? 'flex' : 'none';
 			}
 		</script>
 	</body>

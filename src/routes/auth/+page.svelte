@@ -209,13 +209,17 @@
 />
 
 <div class="w-full h-screen max-h-[100dvh] text-white relative" id="auth-page">
-	<div class="w-full h-full absolute top-0 left-0" style="background: var(--bg-base); color: var(--text);"></div>
+	<div
+		class="w-full h-full absolute top-0 left-0"
+		style="background: var(--bg-base); color: var(--text);"
+	></div>
 
 	<div class="w-full absolute top-0 left-0 right-0 h-8 drag-region" />
 
 	{#if loaded}
 		<div
-			class="fixed bg-transparent min-h-screen w-full flex justify-center font-primary z-50" style="color: var(--text);"
+			class="fixed bg-transparent min-h-screen w-full flex justify-center font-primary z-50"
+			style="color: var(--text);"
 			id="auth-container"
 		>
 			<div class="w-full px-10 min-h-screen flex flex-col text-center">
@@ -281,9 +285,7 @@
 									<div class="flex flex-col mt-4">
 										{#if mode === 'signup'}
 											<div class="mb-2">
-												<label for="name" class="form-label"
-													>{$i18n.t('Name')}</label
-												>
+												<label for="name" class="form-label">{$i18n.t('Name')}</label>
 												<input
 													bind:value={name}
 													type="text"
@@ -298,9 +300,7 @@
 
 										{#if mode === 'ldap'}
 											<div class="mb-2">
-												<label for="username" class="form-label"
-													>{$i18n.t('Username')}</label
-												>
+												<label for="username" class="form-label">{$i18n.t('Username')}</label>
 												<input
 													bind:value={ldapUsername}
 													type="text"
@@ -314,9 +314,7 @@
 											</div>
 										{:else}
 											<div class="mb-2">
-												<label for="email" class="form-label"
-													>{$i18n.t('Email')}</label
-												>
+												<label for="email" class="form-label">{$i18n.t('Email')}</label>
 												<input
 													bind:value={email}
 													type="email"
@@ -331,9 +329,7 @@
 										{/if}
 
 										<div>
-											<label for="password" class="form-label"
-												>{$i18n.t('Password')}</label
-											>
+											<label for="password" class="form-label">{$i18n.t('Password')}</label>
 											<SensitiveInput
 												bind:value={password}
 												type="password"
@@ -350,9 +346,7 @@
 
 										{#if mode === 'signup' && $config?.features?.enable_signup_password_confirmation}
 											<div class="mt-2">
-												<label
-													for="confirm-password"
-													class="form-label"
+												<label for="confirm-password" class="form-label"
 													>{$i18n.t('Confirm Password')}</label
 												>
 												<SensitiveInput
@@ -372,17 +366,11 @@
 								<div class="mt-5">
 									{#if $config?.features.enable_login_form || $config?.features.enable_ldap || form}
 										{#if mode === 'ldap'}
-											<button
-												class="btn-primary"
-												type="submit"
-											>
+											<button class="btn-primary" type="submit">
 												{$i18n.t('Authenticate')}
 											</button>
 										{:else}
-											<button
-												class="btn-primary"
-												type="submit"
-											>
+											<button class="btn-primary" type="submit">
 												{mode === 'signin'
 													? $i18n.t('Sign in')
 													: ($config?.onboarding ?? false)
@@ -411,9 +399,9 @@
 													</button>
 												</div>
 											{/if}
-	{/if}
-{/if}
-</div>
+										{/if}
+									{/if}
+								</div>
 							</form>
 
 							{#if Object.keys($config?.oauth?.providers ?? {}).length > 0}
@@ -653,12 +641,18 @@
 		font-size: 13px;
 		font-weight: 600;
 		cursor: pointer;
-		transition: filter 0.2s, transform 0.1s;
+		transition:
+			filter 0.2s,
+			transform 0.1s;
 		width: 100%;
 		justify-content: center;
 	}
-	.btn-primary:hover { filter: brightness(1.15); }
-	.btn-primary:active { transform: scale(0.98); }
+	.btn-primary:hover {
+		filter: brightness(1.15);
+	}
+	.btn-primary:active {
+		transform: scale(0.98);
+	}
 
 	.oauth-btn {
 		display: flex;
