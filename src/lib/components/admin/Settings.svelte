@@ -11,9 +11,10 @@
 	import Pipelines from './Settings/Pipelines.svelte';
 	import Images from './Settings/Images.svelte';
 	import Interface from './Settings/Interface.svelte';
-	// Admin Models reuses the user-facing Workspace Models manager (card grid)
-	// instead of a bespoke admin list.
-	import Models from '$lib/components/workspace/Models.svelte';
+	// Admin Models manages the system-wide *base* models (provider/function
+	// models), not the user-created Workspace presets. The Workspace manager
+	// only lists models with a base_model_id, so it must not be reused here.
+	import Models from './Settings/Models.svelte';
 	import Connections from './Settings/Connections.svelte';
 	import Documents from './Settings/Documents.svelte';
 	import WebSearch from './Settings/WebSearch.svelte';

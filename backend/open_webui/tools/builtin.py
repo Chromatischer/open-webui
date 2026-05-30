@@ -2400,16 +2400,24 @@ async def _emit_scratchboard(event_emitter, content: str):
 
 
 async def read_scratchboard(
+    start: int = 0,
+    length: int = None,
     __chat_id__: str = None,
     __request__: Request = None,
     __user__: dict = None,
 ) -> str:
     """
-    Read the current chat's Scratchboard content.
+    Read the current chat's Scratchboard content, optionally a line range.
 
     Use this before relying on Scratchboard notes, plans, constraints, or implementation context.
 
-    :return: JSON with the current markdown content of the Scratchboard
+    The Scratchboard can grow large. To avoid wasting tokens, read only the lines
+    you need by passing `start` and `length`. The returned `total_lines` tells you
+    the full size so you can page through it (e.g. start=0 length=40, then start=40).
+
+    :param start: Zero-based line number to start reading from (default 0)
+    :param length: Number of lines to read from `start`. Omit to read to the end.
+    :return: JSON with the requested lines plus total_lines, start, returned_lines, and truncated flag
     """
     if __chat_id__ is None:
         return json.dumps({'error': 'Chat context not available'})
@@ -2422,7 +2430,40 @@ async def read_scratchboard(
         if content is None:
             return json.dumps({'error': 'Chat not found or access denied'})
 
-        return json.dumps({'content': content}, ensure_ascii=False)
+        lines = content.splitlines()
+        total_lines = len(lines)
+
+        try:
+            start = int(start)
+        except (TypeError, ValueError):
+            start = 0
+        if start < 0:
+            start = 0
+
+        if length is None:
+            end = total_lines
+        else:
+            try:
+                length = int(length)
+            except (TypeError, ValueError):
+                length = 0
+            if length < 0:
+                length = 0
+            end = start + length
+
+        selected = lines[start:end]
+        returned_content = '\n'.join(selected)
+
+        return json.dumps(
+            {
+                'content': returned_content,
+                'total_lines': total_lines,
+                'start': start,
+                'returned_lines': len(selected),
+                'truncated': end < total_lines or start > 0,
+            },
+            ensure_ascii=False,
+        )
     except Exception as e:
         log.exception(f'read_scratchboard error: {e}')
         return json.dumps({'error': str(e)})
@@ -2442,7 +2483,7 @@ async def write_scratchboard(
     Use this to save durable notes, plans, constraints, intermediate findings, or follow-up context for this chat.
 
     :param content: The full markdown content to store in the Scratchboard
-    :return: JSON with success status and the updated Scratchboard content
+    :return: JSON with success status (does not echo back the Scratchboard content)
     """
     if __chat_id__ is None:
         return json.dumps({'error': 'Chat context not available'})
@@ -2460,7 +2501,6 @@ async def write_scratchboard(
         return json.dumps(
             {
                 'status': 'success',
-                'content': content,
                 'updated_at': updated_chat.updated_at,
             },
             ensure_ascii=False,
@@ -2489,7 +2529,7 @@ async def edit_scratchboard(
     :param old_string: The exact existing text to replace. Must match the current Scratchboard content verbatim (including whitespace). Unless replace_all is true, it must be unique within the document.
     :param new_string: The text to replace old_string with. Use an empty string to delete old_string.
     :param replace_all: When true, replace every occurrence of old_string. When false (default), old_string must match exactly once.
-    :return: JSON with success status and the updated Scratchboard content
+    :return: JSON with success status and the number of replacements (does not echo back the full Scratchboard content)
     """
     if __chat_id__ is None:
         return json.dumps({'error': 'Chat context not available'})
@@ -2531,7 +2571,6 @@ async def edit_scratchboard(
             {
                 'status': 'success',
                 'replacements': occurrences if replace_all else 1,
-                'content': updated_content,
                 'updated_at': updated_chat.updated_at,
             },
             ensure_ascii=False,
