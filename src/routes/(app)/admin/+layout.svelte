@@ -77,13 +77,13 @@
 
 {#if loaded}
 	<div
-		class="admin-layout flex flex-col lg:flex-row h-screen max-h-[100dvh] flex-1 w-full max-w-full"
+		class="admin-layout flex flex-col md:flex-row h-screen max-h-[100dvh] flex-1 w-full max-w-full"
 	>
 		<!-- ===== Single navigation rail ===== -->
 		<aside
-			class="admin-rail flex lg:flex-col flex-none gap-1 lg:gap-0.5 lg:w-60 px-2.5 lg:px-3 py-2 lg:py-4 overflow-x-auto lg:overflow-y-auto scrollbar-none select-none"
+			class="admin-rail flex md:flex-col flex-none gap-1 md:gap-0.5 md:w-60 px-2.5 md:px-3 py-2 md:py-4 overflow-x-auto md:overflow-y-auto scrollbar-none select-none"
 		>
-			<div class="flex items-center gap-2 lg:px-1.5 lg:mb-3 flex-none">
+			<div class="flex items-center gap-2 md:px-1.5 md:mb-3 flex-none">
 				{#if $mobile}
 					<Tooltip
 						content={$showSidebar ? $i18n.t('Close Sidebar') : $i18n.t('Open Sidebar')}
@@ -98,12 +98,12 @@
 						</button>
 					</Tooltip>
 				{/if}
-				<span class="admin-brand hidden lg:block">{$i18n.t('Admin')}</span>
+				<span class="admin-brand hidden md:block">{$i18n.t('Admin')}</span>
 			</div>
 
 			{#each navGroups as group}
-				<div class="rail-group flex lg:contents">
-					<div class="rail-group-label hidden lg:block">{group.label}</div>
+				<div class="rail-group flex md:contents">
+					<div class="rail-group-label hidden md:block">{group.label}</div>
 					{#each group.items as item}
 						<a
 							draggable="false"
@@ -118,7 +118,7 @@
 		</aside>
 
 		<!-- ===== Content ===== -->
-		<div class="admin-content flex-1 max-h-full overflow-y-auto pb-1 lg:pt-3">
+		<div class="admin-content flex-1 max-h-full overflow-y-auto pb-1 md:pt-3">
 			<slot />
 		</div>
 	</div>
@@ -132,7 +132,7 @@
 	.admin-rail {
 		background: var(--bg-sidebar);
 	}
-	@media (min-width: 1024px) {
+	@media (min-width: 768px) {
 		.admin-rail {
 			border-right: 1px solid var(--border);
 		}
