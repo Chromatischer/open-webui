@@ -100,11 +100,11 @@
 						}
 						e.preventDefault();
 						show = false;
+						// Close the sidebar before navigating: the admin panel has its own
+						// nav rail, and on desktop a lingering open sidebar leaves a backdrop
+						// over the admin content that would otherwise eat the first click.
+						showSidebar.set(false);
 						goto('/admin');
-						if ($mobile) {
-							await tick();
-							showSidebar.set(false);
-						}
 					}}
 				>
 					<div class=" self-center mr-3">

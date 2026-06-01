@@ -459,7 +459,7 @@
 		selectedChatId = null;
 	};
 
-	const MIN_WIDTH = 220;
+	const MIN_WIDTH = 260;
 	const MAX_WIDTH = 480;
 
 	let isResizing = false;
@@ -1014,18 +1014,20 @@
 					<div class="px-[0.4375rem] flex justify-center">
 						<a
 							id="sidebar-new-chat-button"
-							class="btn-sidebar-primary grow flex items-center space-x-3 px-2.5 py-2 outline-none"
+							class="btn-sidebar-primary flex w-full min-w-0 grow items-center space-x-3 px-2.5 py-2 outline-none"
 							href="/"
 							draggable="false"
 							on:click={newChatHandler}
 							aria-label={$i18n.t('New Chat')}
 						>
-							<div class="self-center">
+							<div class="self-center shrink-0">
 								<PencilSquare className=" size-4.5" strokeWidth="2" />
 							</div>
 
-							<div class="flex flex-1 self-center translate-y-[0.5px]">
-								<div class=" self-center text-sm font-primary">{$i18n.t('New Chat')}</div>
+							<div class="flex min-w-0 flex-1 self-center translate-y-[0.5px]">
+								<div class="self-center truncate whitespace-nowrap text-sm font-primary">
+									{$i18n.t('New Chat')}
+								</div>
 							</div>
 
 							<HotkeyHint name="newChat" className=" group-hover:visible invisible" />
@@ -1237,19 +1239,21 @@
 				<div class="px-[0.4375rem] flex justify-center">
 					<button
 						id="sidebar-search-button"
-						class="nav-item grow flex items-center space-x-3 px-2.5 py-2 outline-none"
+						class="nav-item flex w-full min-w-0 grow items-center space-x-3 px-2.5 py-2 outline-none"
 						on:click={() => {
 							showSearch.set(true);
 						}}
 						draggable="false"
 						aria-label={$i18n.t('Search')}
 					>
-						<div class="self-center">
+						<div class="self-center shrink-0">
 							<Search strokeWidth="2" className="size-4.5" />
 						</div>
 
-						<div class="flex flex-1 self-center translate-y-[0.5px]">
-							<div class=" self-center text-sm font-primary">{$i18n.t('Search')}</div>
+						<div class="flex min-w-0 flex-1 self-center translate-y-[0.5px]">
+							<div class="self-center truncate whitespace-nowrap text-sm font-primary">
+								{$i18n.t('Search')}
+							</div>
 						</div>
 						<HotkeyHint name="search" className=" group-hover:visible invisible" />
 					</button>
