@@ -208,13 +208,11 @@
 	}}
 />
 
-<div class="w-full h-screen max-h-[100dvh] text-white relative" id="auth-page">
-	<div
-		class="w-full h-full absolute top-0 left-0"
-		style="background: var(--bg-base); color: var(--text);"
-	></div>
+<div class="w-full h-screen max-h-[100dvh] text-white relative overflow-hidden" id="auth-page">
+	<div class="auth-bg" aria-hidden="true"></div>
+	<div class="auth-scrim" aria-hidden="true"></div>
 
-	<div class="w-full absolute top-0 left-0 right-0 h-8 drag-region" />
+	<div class="w-full absolute top-0 left-0 right-0 h-8 drag-region"></div>
 
 	{#if loaded}
 		<div
@@ -334,7 +332,9 @@
 												bind:value={password}
 												type="password"
 												id="password"
-												class="field"
+												outerClassName="field password-field"
+												inputClassName="password-input"
+												showButtonClassName="password-toggle"
 												placeholder={$i18n.t('Enter Your Password')}
 												autocomplete={mode === 'signup' ? 'new-password' : 'current-password'}
 												name="password"
@@ -353,7 +353,9 @@
 													bind:value={confirmPassword}
 													type="password"
 													id="confirm-password"
-													class="field"
+													outerClassName="field password-field"
+													inputClassName="password-input"
+													showButtonClassName="password-toggle"
 													placeholder={$i18n.t('Confirm Your Password')}
 													autocomplete="new-password"
 													name="confirm-password"
@@ -593,31 +595,94 @@
 </div>
 
 <style>
+	.auth-bg {
+		position: absolute;
+		inset: 0;
+		background-image: url('/assets/images/earth.jpg');
+		background-position: center;
+		background-size: cover;
+		transform: scale(1.02);
+	}
+
+	.auth-scrim {
+		position: absolute;
+		inset: 0;
+		background:
+			linear-gradient(90deg, rgb(5 6 10 / 0.78), rgb(5 6 10 / 0.34) 48%, rgb(5 6 10 / 0.68)),
+			linear-gradient(180deg, rgb(5 6 10 / 0.28), rgb(5 6 10 / 0.76));
+	}
+
 	.form-card {
-		background: var(--bg-elevated);
-		border: 1px solid var(--border);
+		background: color-mix(in srgb, var(--bg-elevated) 84%, transparent);
+		border: 1px solid color-mix(in srgb, var(--border) 76%, transparent);
 		border-radius: 16px;
 		padding: 24px;
 		color: var(--text);
+		box-shadow: 0 24px 70px rgb(0 0 0 / 0.32);
+		backdrop-filter: blur(18px);
 	}
 
 	.field {
 		width: 100%;
-		padding: 10px 12px;
+		min-height: 52px;
+		padding: 0 14px;
 		border: 1.5px solid var(--border);
 		border-radius: 10px;
-		background: var(--bg-elevated);
+		background: color-mix(in srgb, var(--bg-elevated) 86%, transparent);
 		color: var(--text);
 		font-family: var(--font-sans);
-		font-size: 14px;
+		font-size: 16px;
 		outline: none;
 		transition: border-color 0.2s;
 	}
-	.field:focus {
+	.field:focus,
+	:global(.password-field:focus-within) {
 		border-color: var(--accent);
 	}
 	.field::placeholder {
 		color: var(--text-tertiary);
+	}
+
+	:global(.password-field) {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+	}
+
+	:global(.password-field .password-input) {
+		width: 100%;
+		min-width: 0;
+		border: 0;
+		background: transparent;
+		color: var(--text);
+		font: inherit;
+		outline: none;
+	}
+
+	:global(.password-field .password-input::placeholder) {
+		color: var(--text-tertiary);
+	}
+
+	:global(.password-field .password-toggle) {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 34px;
+		height: 34px;
+		flex: 0 0 auto;
+		border: 0;
+		border-radius: 8px;
+		background: transparent;
+		color: var(--text-secondary);
+		cursor: pointer;
+		transition:
+			background 0.2s,
+			color 0.2s;
+	}
+
+	:global(.password-field .password-toggle:hover) {
+		background: var(--surface-hover);
+		color: var(--text);
 	}
 
 	.form-label {

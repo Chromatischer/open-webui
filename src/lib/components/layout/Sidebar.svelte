@@ -60,7 +60,7 @@
 	import SearchModal from './SearchModal.svelte';
 	import FolderModal from './Sidebar/Folders/FolderModal.svelte';
 	import Sidebar from '../icons/Sidebar.svelte';
-	import PinnedModelList from './Sidebar/PinnedModelList.svelte';
+	import UserMenu from './Sidebar/UserMenu.svelte';
 	import Code from '../icons/Code.svelte';
 	import { slide } from 'svelte/transition';
 	import HotkeyHint from '../common/HotkeyHint.svelte';
@@ -130,9 +130,6 @@
 
 	let showCreateFolderModal = false;
 
-	let pinnedModels = [];
-
-	let showPinnedModels = false;
 	let showFolders = false;
 
 	let folders = {};
@@ -420,19 +417,17 @@
 	function checkDirection() {
 		const screenWidth = window.innerWidth;
 		const swipeDistance = Math.abs(touchend.screenX - touchstart.screenX);
+		// Opening is only triggered by the sidebar icon (matching desktop). Swiping
+		// from the left edge may still close an open sidebar.
 		if (touchstart.clientX < 40 && swipeDistance >= screenWidth / 8) {
 			if (touchend.screenX < touchstart.screenX) {
 				showSidebar.set(false);
-			}
-			if (touchend.screenX > touchstart.screenX) {
-				showSidebar.set(true);
 			}
 		}
 	}
 
 	const onTouchStart = (e) => {
 		touchstart = e.changedTouches[0];
-		console.log(touchstart.clientX);
 	};
 
 	const onTouchEnd = (e) => {
@@ -552,12 +547,6 @@
 							console.debug('Failed to check active chats:', e);
 						}
 					}
-				}
-			}),
-			settings.subscribe((value) => {
-				if (pinnedModels != value?.pinnedModels ?? []) {
-					pinnedModels = value?.pinnedModels ?? [];
-					showPinnedModels = pinnedModels.length > 0;
 				}
 			})
 		];
@@ -707,17 +696,6 @@
 />
 
 <!-- svelte-ignore a11y-no-static-element-interactions -->
-
-{#if $showSidebar}
-	<div
-		class=" {$isApp
-			? ' ml-[4.5rem] md:ml-0'
-			: ''} fixed md:hidden z-40 top-0 right-0 left-0 bottom-0 bg-black/60 w-full min-h-screen h-screen flex justify-center overflow-hidden overscroll-contain"
-		on:mousedown={() => {
-			showSidebar.set(!$showSidebar);
-		}}
-	/>
-{/if}
 
 <SearchModal
 	bind:show={$showSearch}
@@ -935,19 +913,19 @@
 		bind:this={navElement}
 		id="sidebar"
 		class="h-screen max-h-[100dvh] min-h-screen select-none {$showSidebar
-			? peeled && !$mobile
+			? peeled
 				? `z-0`
 				: `z-50`
 			: ' bg-transparent z-0 '} {$isApp
 			? `ml-[4.5rem] md:ml-0 `
 			: ' transition-all duration-300 '} shrink-0 text-sm fixed top-0 left-0 overflow-x-hidden
         "
-		transition:slide={{ duration: peeled && !$mobile ? 0 : 250, axis: 'x' }}
+		transition:slide={{ duration: peeled ? 0 : 250, axis: 'x' }}
 		data-state={$showSidebar}
 		data-peeled={peeled}
 	>
 		<div
-			class=" my-auto flex flex-col justify-between h-screen max-h-[100dvh] w-[var(--sidebar-width)] overflow-x-hidden scrollbar-hidden z-50 {$showSidebar
+			class=" my-auto flex flex-col justify-between h-screen max-h-[100dvh] w-[var(--sidebar-w)] overflow-x-hidden scrollbar-hidden z-50 {$showSidebar
 				? ''
 				: 'invisible'}"
 		>
@@ -1164,20 +1142,6 @@
 						{/each}
 					</div>
 				</div>
-
-				{#if ($models ?? []).length > 0 && (($settings?.pinnedModels ?? []).length > 0 || $config?.default_pinned_models)}
-					<Folder
-						id="sidebar-models"
-						bind:open={showPinnedModels}
-						className="px-2 mt-0.5"
-						name={$i18n.t('Models')}
-						buttonClassName="sidebar-folder-btn"
-						chevron={false}
-						dragAndDrop={false}
-					>
-						<PinnedModelList bind:selectedChatId {shiftKey} />
-					</Folder>
-				{/if}
 
 				{#if $config?.features?.enable_folders && ($user?.role === 'admin' || ($user?.permissions?.features?.folders ?? true))}
 					<Folder
