@@ -10,8 +10,12 @@
 	let lastContent = $state(content);
 	let editing = $state(false);
 	let textareaEl = $state(null);
+	let gutterEl = $state(null);
+	let previewEl = $state(null);
 	let saveTimer;
 	let finishTimer;
+	// Scroll ratio (0..1) carried between edit/preview so neither view jumps to the top.
+	let scrollRatio = 0;
 
 	function queueAutosave() {
 		saving = true;
@@ -34,10 +38,61 @@
 		queueAutosave();
 	}
 
-	async function startEditing() {
+	// Map a click point inside the rendered preview back to an index in the raw draft.
+	function caretIndexFromPoint(x, y) {
+		let node = null;
+		let offset = 0;
+		if (document.caretPositionFromPoint) {
+			const pos = document.caretPositionFromPoint(x, y);
+			if (!pos) return null;
+			node = pos.offsetNode;
+			offset = pos.offset;
+		} else if (document.caretRangeFromPoint) {
+			const range = document.caretRangeFromPoint(x, y);
+			if (!range) return null;
+			node = range.startContainer;
+			offset = range.startOffset;
+		}
+		if (!node || node.nodeType !== Node.TEXT_NODE) return null;
+		const text = node.textContent ?? '';
+		const idx = draft.indexOf(text);
+		if (idx !== -1) return idx + Math.min(offset, text.length);
+		const prefix = text.slice(0, offset);
+		const pIdx = draft.indexOf(prefix);
+		return pIdx === -1 ? null : pIdx + prefix.length;
+	}
+
+	async function startEditing(event) {
+		const caretIndex = event ? caretIndexFromPoint(event.clientX, event.clientY) : null;
+		if (previewEl && previewEl.scrollHeight > previewEl.clientHeight) {
+			scrollRatio = previewEl.scrollTop / (previewEl.scrollHeight - previewEl.clientHeight);
+		}
 		editing = true;
 		await tick();
-		textareaEl?.focus();
+		if (!textareaEl) return;
+		if (caretIndex != null) {
+			textareaEl.focus();
+			textareaEl.setSelectionRange(caretIndex, caretIndex);
+			// Center the caret line in view.
+			const before = draft.slice(0, caretIndex).split('\n').length - 1;
+			const lineHeight = textareaEl.scrollHeight / Math.max(lines.length, 1);
+			textareaEl.scrollTop = Math.max(0, before * lineHeight - textareaEl.clientHeight / 2);
+		} else {
+			textareaEl.scrollTop = scrollRatio * (textareaEl.scrollHeight - textareaEl.clientHeight);
+			textareaEl.focus();
+		}
+		if (gutterEl) gutterEl.scrollTop = textareaEl.scrollTop;
+	}
+
+	async function stopEditing() {
+		if (textareaEl && textareaEl.scrollHeight > textareaEl.clientHeight) {
+			scrollRatio = textareaEl.scrollTop / (textareaEl.scrollHeight - textareaEl.clientHeight);
+		}
+		editing = false;
+		await tick();
+		if (previewEl) {
+			previewEl.scrollTop = scrollRatio * (previewEl.scrollHeight - previewEl.clientHeight);
+		}
 	}
 
 	$effect(() => {
@@ -120,7 +175,7 @@
 		<div class="board-body" class:editing>
 			{#if editing}
 				<div class="editor">
-					<div class="editor-gutter">
+					<div class="editor-gutter" bind:this={gutterEl}>
 						{#each lines as _, i}
 							<div class="line-num">{i + 1}</div>
 						{/each}
@@ -132,15 +187,19 @@
 						spellcheck="false"
 						aria-label="Scratchboard markdown"
 						oninput={(e) => updateDraft(e.currentTarget.value)}
-						onblur={() => (editing = false)}
+						onscroll={(e) => {
+							if (gutterEl) gutterEl.scrollTop = e.currentTarget.scrollTop;
+						}}
+						onblur={stopEditing}
 					></textarea>
 				</div>
 			{:else}
 				<div
 					class="markdown-preview"
+					bind:this={previewEl}
 					role="button"
 					tabindex="0"
-					onclick={startEditing}
+					onclick={(e) => startEditing(e)}
 					onkeydown={(e) => {
 						if (e.key === 'Enter') startEditing();
 					}}

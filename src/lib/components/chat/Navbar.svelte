@@ -7,15 +7,10 @@
 	import { slide } from 'svelte/transition';
 
 	import ShareChatModal from '../chat/ShareChatModal.svelte';
-	import ModelSelector from '../chat/ModelSelector.svelte';
 	import Tooltip from '../common/Tooltip.svelte';
-	import Menu from '$lib/components/layout/Navbar/Menu.svelte';
 
 	import Banner from '../common/Banner.svelte';
 	import Sidebar from '../icons/Sidebar.svelte';
-
-	import EllipsisHorizontal from '../icons/EllipsisHorizontal.svelte';
-	import ChatPlus from '../icons/ChatPlus.svelte';
 
 	const i18n = getContext('i18n');
 
@@ -70,7 +65,7 @@
 					<div class="-translate-x-0.5 mr-1 mt-1 self-start flex flex-none items-center">
 						<Tooltip content={$showSidebar ? $i18n.t('Close Sidebar') : $i18n.t('Open Sidebar')}>
 							<button
-								class="btn-ghost no-drag-region"
+								class="flex rounded-xl size-8.5 justify-center items-center btn-ghost no-drag-region"
 								on:click={() => {
 									showSidebar.set(!$showSidebar);
 								}}
@@ -87,55 +82,9 @@
 					class="flex-1 overflow-hidden max-w-full mt-0.5 py-0.5
 			{$showSidebar ? 'ml-1' : ''}
 			"
-				>
-					{#if showModelSelector && $mobile}
-						<ModelSelector bind:selectedModels />
-					{/if}
-				</div>
+				></div>
 
-				<div class="self-start flex flex-none items-center navbar-actions">
-					<!-- <div class="md:hidden flex self-center w-[1px] h-5 mx-2 bg-gray-300 dark:bg-stone-700" /> -->
-
-					{#if $mobile && chat && chat.id}
-						<Tooltip content={$i18n.t('New Chat')}>
-							<button
-								class="btn-ghost {$showSidebar ? 'md:hidden' : ''}"
-								on:click={() => {
-									initNewChat();
-								}}
-								aria-label="New Chat"
-							>
-								<div class="m-auto self-center">
-									<ChatPlus className="size-4.5" strokeWidth="1.5" />
-								</div>
-							</button>
-						</Tooltip>
-					{/if}
-
-					{#if shareEnabled && chat && chat.id && $mobile}
-						<Menu
-							{chat}
-							{shareEnabled}
-							{scrollToTop}
-							shareHandler={() => {
-								showShareChatModal = !showShareChatModal;
-							}}
-							archiveChatHandler={() => {
-								archiveChatHandler(chat.id);
-							}}
-							deleteChatHandler={() => {
-								deleteChatHandler(chat.id);
-							}}
-							{moveChatHandler}
-						>
-							<button class="btn-ghost" id="chat-context-menu-button">
-								<div class="m-auto self-center">
-									<EllipsisHorizontal className="size-5" strokeWidth="1.5" />
-								</div>
-							</button>
-						</Menu>
-					{/if}
-				</div>
+				<div class="self-start flex flex-none items-center navbar-actions"></div>
 			</div>
 		</div>
 	</div>

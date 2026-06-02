@@ -39,6 +39,7 @@
 		selectedTerminalId,
 		showSearch,
 		showSidebar,
+		showScratchboard,
 		mobile,
 		scratchboardContent as scratchboardContentStore
 	} from '$lib/stores';
@@ -100,11 +101,50 @@
 		window.addEventListener('pointerup', onUp);
 	};
 
+	// ── Mobile scratchboard swipe (mirrors the Sidebar, but from the right edge) ──
+	let sbTouchStart: Touch | null = null;
+	let sbTouchEnd: Touch | null = null;
+	// In the mobile drawer the in-panel collapse button closes the drawer
+	// instead of shrinking to the desktop rail.
+	let sbDrawerCollapsed = false;
+	$: if (sbDrawerCollapsed) {
+		showScratchboard.set(false);
+		sbDrawerCollapsed = false;
+	}
+
+	// Mirror of the Sidebar's checkDirection(), reflected to the right edge:
+	// only gestures starting within 40px of the right edge act; swipe-left opens, swipe-right closes.
+	const checkScratchboardSwipe = () => {
+		if (!$mobile || !isChatSurface || !sbTouchStart || !sbTouchEnd) return;
+		const screenWidth = window.innerWidth;
+		const swipeDistance = Math.abs(sbTouchEnd.screenX - sbTouchStart.screenX);
+		if (sbTouchStart.clientX > screenWidth - 40 && swipeDistance >= screenWidth / 8) {
+			if (sbTouchEnd.screenX > sbTouchStart.screenX) {
+				showScratchboard.set(false);
+			}
+			if (sbTouchEnd.screenX < sbTouchStart.screenX) {
+				showScratchboard.set(true);
+			}
+		}
+	};
+
+	const onScratchboardTouchStart = (e: TouchEvent) => {
+		sbTouchStart = e.changedTouches[0];
+	};
+	const onScratchboardTouchEnd = (e: TouchEvent) => {
+		sbTouchEnd = e.changedTouches[0];
+		checkScratchboardSwipe();
+	};
+
 	const defaultScratchboard =
 		'# Scratchboard\n\n- Capture useful context from this chat\n- Draft follow-up prompts\n- Keep implementation notes close to the conversation\n';
 
 	$: isChatSurface =
 		['/', '/home'].includes($page.url.pathname) || $page.url.pathname.startsWith('/c/');
+	// The mobile scratchboard drawer only makes sense on the chat surface; close it otherwise.
+	$: if ((!$mobile || !isChatSurface) && $showScratchboard) {
+		showScratchboard.set(false);
+	}
 	$: proximity = Math.max(0, Math.min(1, 1 - cursorX / 80));
 	$: notchW = 12 + proximity * 28;
 	$: notchH = 52 + proximity * 32;
@@ -389,10 +429,6 @@
 		};
 		setupKeyboardShortcuts();
 
-		if ($user?.role === 'admin' && ($settings?.showChangelog ?? true)) {
-			showChangelog.set($settings?.version !== $config.version);
-		}
-
 		// Check for version updates
 		if ($user?.role === 'admin' && $config?.features?.enable_version_update_check) {
 			// Check if the user has dismissed the update toast in the last 24 hours
@@ -448,6 +484,8 @@
 	</div>
 {/if}
 
+<svelte:window on:touchstart={onScratchboardTouchStart} on:touchend={onScratchboardTouchEnd} />
+
 {#if $user}
 	<div
 		class="app design-root"
@@ -460,6 +498,16 @@
 		<div class="sidebar-layer">
 			<Sidebar peeled={true} />
 		</div>
+
+		{#if isChatSurface && $mobile}
+			<div class="scratchboard-layer">
+				<Scratchboard
+					content={scratchboardContent}
+					onChange={saveScratchboard}
+					bind:collapsed={sbDrawerCollapsed}
+				/>
+			</div>
+		{/if}
 
 		{#if !$showSidebar && !$mobile}
 			<button
@@ -488,11 +536,23 @@
 			</button>
 		{/if}
 
-		<div class="app-shell" class:open={$showSidebar && !$mobile}>
-			{#if $showSidebar && !$mobile}
+		<div
+			class="app-shell"
+			class:open={$showSidebar}
+			class:scratch-open={$showScratchboard && $mobile && isChatSurface}
+		>
+			{#if $showSidebar}
 				<div
 					class="shell-backdrop"
 					on:click={() => showSidebar.set(false)}
+					role="presentation"
+					aria-hidden="true"
+				></div>
+			{/if}
+			{#if $showScratchboard && $mobile && isChatSurface}
+				<div
+					class="shell-backdrop"
+					on:click={() => showScratchboard.set(false)}
 					role="presentation"
 					aria-hidden="true"
 				></div>
@@ -586,6 +646,29 @@
 						<div class="primary-pane full">
 							<slot />
 						</div>
+
+						{#if isChatSurface && $mobile && !$showScratchboard}
+							<!-- Edge affordance to open (the right-side equivalent of the sidebar's open trigger) -->
+							<button
+								class="sb-edge-handle"
+								on:click={() => showScratchboard.set(true)}
+								aria-label={$i18n.t('Open Scratchboard')}
+							>
+								<svg
+									width="6"
+									height="10"
+									viewBox="0 0 6 10"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="1.8"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									aria-hidden="true"
+								>
+									<path d="M5 1L1 5l4 4" />
+								</svg>
+							</button>
+						{/if}
 					{/if}
 				{:else}
 					<div class="w-full flex-1 h-full flex items-center justify-center">
@@ -608,6 +691,23 @@
 		font-family: var(--font-sans);
 	}
 
+	/* On mobile both the sidebar and scratchboard reveal as a near-full-width panel
+	   (chat peeks at the edge), consistent across the whole sub-768px range. */
+	@media (max-width: 767px) {
+		.design-root {
+			--sidebar-w: 85vw;
+		}
+
+		/* The near-full-width reveal leaves only a thin sliver of the shell; rounded
+		   corners cut an ugly dark notch and the soft shadow pools at the seam, so
+		   keep the edge flat and drop the shadow. */
+		.app-shell.open,
+		.app-shell.scratch-open {
+			border-radius: 0;
+			box-shadow: none;
+		}
+	}
+
 	.sidebar-layer {
 		position: absolute;
 		left: 0;
@@ -615,6 +715,19 @@
 		bottom: 0;
 		width: var(--sidebar-w);
 		z-index: 0;
+	}
+
+	/* Right-anchored equivalent of .sidebar-layer — the scratchboard sits beneath
+	   the app-shell and is revealed when the shell slides left. */
+	.scratchboard-layer {
+		position: absolute;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		width: var(--sidebar-w);
+		z-index: 0;
+		background: var(--bg-sidebar);
+		overflow: hidden;
 	}
 
 	.app-shell {
@@ -638,6 +751,14 @@
 		border-radius: 20px;
 		transform: translateX(var(--sidebar-w));
 		box-shadow: -12px 0 48px rgba(0, 0, 0, 0.22);
+	}
+
+	/* Scratchboard reveal — mirror of .open, sliding the shell left to expose the
+	   right-anchored scratchboard-layer. (Only used on mobile.) */
+	.app-shell.scratch-open {
+		border-radius: 20px;
+		transform: translateX(calc(-1 * var(--sidebar-w)));
+		box-shadow: 12px 0 48px rgba(0, 0, 0, 0.22);
 	}
 
 	.notch {
@@ -732,5 +853,29 @@
 	.primary-pane.full {
 		width: 100%;
 		height: 100%;
+	}
+
+	/* ── Mobile scratchboard drawer (mirrors the Sidebar, from the right) ── */
+	.sb-edge-handle {
+		position: absolute;
+		right: 0;
+		top: 50%;
+		transform: translateY(-50%);
+		z-index: 40;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 18px;
+		height: 64px;
+		padding-right: 1px;
+		background: var(--bg-sidebar);
+		border: none;
+		border-radius: 10px 0 0 10px;
+		color: var(--text-tertiary);
+		cursor: pointer;
+		box-shadow:
+			inset 10px 0 18px rgba(0, 0, 0, 0.13),
+			inset 0 6px 12px rgba(0, 0, 0, 0.07),
+			inset 0 -6px 12px rgba(0, 0, 0, 0.05);
 	}
 </style>
