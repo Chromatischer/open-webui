@@ -19,6 +19,7 @@
 
 	import { WEBUI_VERSION, WEBUI_API_BASE_URL } from '$lib/constants';
 	import { compareVersion } from '$lib/utils';
+	import { handleEdgeSwipe } from '$lib/utils/edgeSwipe';
 
 	import {
 		config,
@@ -101,9 +102,6 @@
 		window.addEventListener('pointerup', onUp);
 	};
 
-	// ── Mobile scratchboard swipe (mirrors the Sidebar, but from the right edge) ──
-	let sbTouchStart: Touch | null = null;
-	let sbTouchEnd: Touch | null = null;
 	// In the mobile drawer the in-panel collapse button closes the drawer
 	// instead of shrinking to the desktop rail.
 	let sbDrawerCollapsed = false;
@@ -112,28 +110,32 @@
 		sbDrawerCollapsed = false;
 	}
 
-	// Mirror of the Sidebar's checkDirection(), reflected to the right edge:
-	// only gestures starting within 40px of the right edge act; swipe-left opens, swipe-right closes.
-	const checkScratchboardSwipe = () => {
-		if (!$mobile || !isChatSurface || !sbTouchStart || !sbTouchEnd) return;
-		const screenWidth = window.innerWidth;
-		const swipeDistance = Math.abs(sbTouchEnd.screenX - sbTouchStart.screenX);
-		if (sbTouchStart.clientX > screenWidth - 40 && swipeDistance >= screenWidth / 8) {
-			if (sbTouchEnd.screenX > sbTouchStart.screenX) {
-				showScratchboard.set(false);
-			}
-			if (sbTouchEnd.screenX < sbTouchStart.screenX) {
-				showScratchboard.set(true);
-			}
-		}
+	// ── Unified edge swipe for both drawers ──
+	// The left sidebar and right scratchboard share one gesture model (see
+	// handleEdgeSwipe): swipe in from an edge to open, swipe back to close. The
+	// result is idempotent, so every gesture is evaluated against both edges.
+	let edgeTouchStart: Touch | null = null;
+	const onWindowTouchStart = (e: TouchEvent) => {
+		edgeTouchStart = e.changedTouches[0];
 	};
-
-	const onScratchboardTouchStart = (e: TouchEvent) => {
-		sbTouchStart = e.changedTouches[0];
-	};
-	const onScratchboardTouchEnd = (e: TouchEvent) => {
-		sbTouchEnd = e.changedTouches[0];
-		checkScratchboardSwipe();
+	const onWindowTouchEnd = (e: TouchEvent) => {
+		if (!edgeTouchStart) return;
+		const touchEnd = e.changedTouches[0];
+		handleEdgeSwipe(
+			{ edge: 'left', enabled: () => $mobile, setOpen: (open) => showSidebar.set(open) },
+			edgeTouchStart,
+			touchEnd
+		);
+		handleEdgeSwipe(
+			{
+				edge: 'right',
+				enabled: () => $mobile && isChatSurface,
+				setOpen: (open) => showScratchboard.set(open)
+			},
+			edgeTouchStart,
+			touchEnd
+		);
+		edgeTouchStart = null;
 	};
 
 	const defaultScratchboard =
@@ -484,7 +486,7 @@
 	</div>
 {/if}
 
-<svelte:window on:touchstart={onScratchboardTouchStart} on:touchend={onScratchboardTouchEnd} />
+<svelte:window on:touchstart={onWindowTouchStart} on:touchend={onWindowTouchEnd} />
 
 {#if $user}
 	<div
@@ -499,13 +501,16 @@
 			<Sidebar peeled={true} />
 		</div>
 
-		{#if isChatSurface && $mobile}
+		{#if isChatSurface && $mobile && !$showSidebar}
 			<div class="scratchboard-layer">
-				<Scratchboard
-					content={scratchboardContent}
-					onChange={saveScratchboard}
-					bind:collapsed={sbDrawerCollapsed}
-				/>
+				<div class="scratchboard-layer-inner">
+					<Scratchboard
+						content={scratchboardContent}
+						onChange={saveScratchboard}
+						bind:collapsed={sbDrawerCollapsed}
+						mobile={true}
+					/>
+				</div>
 			</div>
 		{/if}
 
@@ -646,29 +651,6 @@
 						<div class="primary-pane full">
 							<slot />
 						</div>
-
-						{#if isChatSurface && $mobile && !$showScratchboard}
-							<!-- Edge affordance to open (the right-side equivalent of the sidebar's open trigger) -->
-							<button
-								class="sb-edge-handle"
-								on:click={() => showScratchboard.set(true)}
-								aria-label={$i18n.t('Open Scratchboard')}
-							>
-								<svg
-									width="6"
-									height="10"
-									viewBox="0 0 6 10"
-									fill="none"
-									stroke="currentColor"
-									stroke-width="1.8"
-									stroke-linecap="round"
-									stroke-linejoin="round"
-									aria-hidden="true"
-								>
-									<path d="M5 1L1 5l4 4" />
-								</svg>
-							</button>
-						{/if}
 					{/if}
 				{:else}
 					<div class="w-full flex-1 h-full flex items-center justify-center">
@@ -698,13 +680,13 @@
 			--sidebar-w: 85vw;
 		}
 
-		/* The near-full-width reveal leaves only a thin sliver of the shell; rounded
-		   corners cut an ugly dark notch and the soft shadow pools at the seam, so
-		   keep the edge flat and drop the shadow. */
+		/* The chat keeps its full rounded-card corners on mobile so it reads as a
+		   panel floating above the revealed drawer. The dark-notch problem is solved
+		   by filling the layer beneath with the drawer's own surface (see
+		   .scratchboard-layer), not by removing the rounding. */
 		.app-shell.open,
 		.app-shell.scratch-open {
-			border-radius: 0;
-			box-shadow: none;
+			border-radius: 20px;
 		}
 	}
 
@@ -717,17 +699,24 @@
 		z-index: 0;
 	}
 
-	/* Right-anchored equivalent of .sidebar-layer — the scratchboard sits beneath
-	   the app-shell and is revealed when the shell slides left. */
+	/* The scratchboard sits beneath the app-shell and is revealed when the shell
+	   slides left. The layer is full-bleed and filled with the board surface so the
+	   chat's rounded corners reveal the scratchboard (never the dark root); the board
+	   content itself stays pinned to its real width via .scratchboard-layer-inner. */
 	.scratchboard-layer {
 		position: absolute;
-		right: 0;
-		top: 0;
-		bottom: 0;
-		width: var(--sidebar-w);
+		inset: 0;
 		z-index: 0;
-		background: var(--bg-sidebar);
+		background: var(--bg-elevated);
 		overflow: hidden;
+	}
+
+	/* Full-bleed so the board surface spans under the chat sliver; the board insets
+	   its own content by the sliver width (see .scratchboard.mobile --peek), so the
+	   chat's rounded corner reveals the board surface/highlight rather than a gap. */
+	.scratchboard-layer-inner {
+		position: absolute;
+		inset: 0;
 	}
 
 	.app-shell {
@@ -856,26 +845,4 @@
 	}
 
 	/* ── Mobile scratchboard drawer (mirrors the Sidebar, from the right) ── */
-	.sb-edge-handle {
-		position: absolute;
-		right: 0;
-		top: 50%;
-		transform: translateY(-50%);
-		z-index: 40;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		width: 18px;
-		height: 64px;
-		padding-right: 1px;
-		background: var(--bg-sidebar);
-		border: none;
-		border-radius: 10px 0 0 10px;
-		color: var(--text-tertiary);
-		cursor: pointer;
-		box-shadow:
-			inset 10px 0 18px rgba(0, 0, 0, 0.13),
-			inset 0 6px 12px rgba(0, 0, 0, 0.07),
-			inset 0 -6px 12px rgba(0, 0, 0, 0.05);
-	}
 </style>
