@@ -60,6 +60,7 @@
 	import SearchModal from './SearchModal.svelte';
 	import FolderModal from './Sidebar/Folders/FolderModal.svelte';
 	import Sidebar from '../icons/Sidebar.svelte';
+	import XMark from '../icons/XMark.svelte';
 	import UserMenu from './Sidebar/UserMenu.svelte';
 	import Code from '../icons/Code.svelte';
 	import { slide } from 'svelte/transition';
@@ -411,30 +412,6 @@
 		draggedOver = false; // Reset draggedOver status after drop
 	};
 
-	let touchstart;
-	let touchend;
-
-	function checkDirection() {
-		const screenWidth = window.innerWidth;
-		const swipeDistance = Math.abs(touchend.screenX - touchstart.screenX);
-		// Opening is only triggered by the sidebar icon (matching desktop). Swiping
-		// from the left edge may still close an open sidebar.
-		if (touchstart.clientX < 40 && swipeDistance >= screenWidth / 8) {
-			if (touchend.screenX < touchstart.screenX) {
-				showSidebar.set(false);
-			}
-		}
-	}
-
-	const onTouchStart = (e) => {
-		touchstart = e.changedTouches[0];
-	};
-
-	const onTouchEnd = (e) => {
-		touchend = e.changedTouches[0];
-		checkDirection();
-	};
-
 	const onKeyDown = (e) => {
 		if (e.key === 'Shift') {
 			shiftKey = true;
@@ -554,9 +531,6 @@
 		window.addEventListener('keydown', onKeyDown);
 		window.addEventListener('keyup', onKeyUp);
 
-		window.addEventListener('touchstart', onTouchStart);
-		window.addEventListener('touchend', onTouchEnd);
-
 		window.addEventListener('focus', onFocus);
 		window.addEventListener('blur', onBlur);
 
@@ -578,9 +552,6 @@
 
 			window.removeEventListener('keydown', onKeyDown);
 			window.removeEventListener('keyup', onKeyUp);
-
-			window.removeEventListener('touchstart', onTouchStart);
-			window.removeEventListener('touchend', onTouchEnd);
 
 			window.removeEventListener('focus', onFocus);
 			window.removeEventListener('blur', onBlur);
@@ -918,7 +889,9 @@
 				: `z-50`
 			: ' bg-transparent z-0 '} {$isApp
 			? `ml-[4.5rem] md:ml-0 `
-			: ' transition-all duration-300 '} shrink-0 text-sm fixed top-0 left-0 overflow-x-hidden
+			: ' transition-all duration-300 '} shrink-0 text-sm fixed top-0 left-0 overflow-x-hidden {$mobile
+			? 'is-mobile'
+			: ''}
         "
 		transition:slide={{ duration: peeled ? 0 : 250, axis: 'x' }}
 		data-state={$showSidebar}
@@ -934,7 +907,9 @@
 				style="background: var(--bg-sidebar);"
 			>
 				<a
-					class="flex items-center rounded-xl size-8.5 h-full justify-center hover:bg-[var(--surface-hover)] transition no-drag-region"
+					class="flex items-center rounded-xl {$mobile
+						? 'size-10'
+						: 'size-8.5'} h-full justify-center hover:bg-[var(--surface-hover)] transition no-drag-region"
 					href="/"
 					draggable="false"
 					on:click={newChatHandler}
@@ -957,16 +932,20 @@
 					placement="bottom"
 				>
 					<button
-						class="flex rounded-xl size-8.5 justify-center items-center btn-ghost transition {isWindows
-							? 'cursor-pointer'
-							: 'cursor-[w-resize]'}"
+						class="flex rounded-xl justify-center items-center btn-ghost transition {$mobile
+							? 'size-10'
+							: 'size-8.5'} {isWindows ? 'cursor-pointer' : 'cursor-[w-resize]'}"
 						on:click={() => {
 							showSidebar.set(!$showSidebar);
 						}}
 						aria-label={$showSidebar ? $i18n.t('Close Sidebar') : $i18n.t('Open Sidebar')}
 					>
 						<div class=" self-center p-1.5">
-							<Sidebar />
+							{#if $mobile}
+								<XMark className="size-5" strokeWidth="2" />
+							{:else}
+								<Sidebar />
+							{/if}
 						</div>
 					</button>
 				</Tooltip>
@@ -1893,5 +1872,50 @@
 	.theme-btn.is-dark .icon-moon {
 		transform: rotate(180deg) scale(0.5);
 		opacity: 0;
+	}
+
+	/* ── Mobile drawer chrome ─────────────────────────────────
+	   On phones the sidebar reveals as a near-full-width drawer. Make it read as
+	   a deliberate mobile panel — clear of the notch/home-indicator, with calmer,
+	   thumb-friendly tap targets — rather than a squeezed desktop sidebar. */
+	#sidebar.is-mobile > div {
+		padding-top: max(16px, env(safe-area-inset-top));
+		padding-bottom: max(12px, env(safe-area-inset-bottom));
+	}
+
+	/* New Chat — the one primary action, given room to land under a thumb */
+	#sidebar.is-mobile :global(.btn-sidebar-primary) {
+		min-height: 46px;
+		border-radius: 12px;
+		font-size: 15px;
+	}
+
+	/* Nav rows + search read at touch size */
+	#sidebar.is-mobile :global(.nav-item),
+	#sidebar.is-mobile :global(#sidebar-search-button) {
+		min-height: 44px;
+		border-radius: 10px;
+		font-size: 14.5px;
+	}
+
+	/* Conversation rows: roomier, no hover-shift (there's no pointer to track) */
+	#sidebar.is-mobile :global(#sidebar-chat-item) {
+		min-height: 46px;
+		border-radius: 10px;
+		font-size: 14.5px;
+	}
+	#sidebar.is-mobile :global(#sidebar-chat-item):hover {
+		transform: none;
+	}
+
+	/* Brand sits a touch larger to anchor the header */
+	#sidebar.is-mobile .sidebar-brand,
+	#sidebar.is-mobile #sidebar-webui-name {
+		font-size: 16px;
+	}
+
+	/* Footer identity row matches the new touch scale */
+	#sidebar.is-mobile .sidebar-user-name {
+		font-size: 14px;
 	}
 </style>

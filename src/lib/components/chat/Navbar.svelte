@@ -2,7 +2,15 @@
 	import { getContext } from 'svelte';
 	import { toast } from 'svelte-sonner';
 
-	import { WEBUI_NAME, banners, chatId, config, mobile, showSidebar } from '$lib/stores';
+	import {
+		WEBUI_NAME,
+		banners,
+		chatId,
+		config,
+		mobile,
+		showSidebar,
+		showScratchboard
+	} from '$lib/stores';
 
 	import { slide } from 'svelte/transition';
 
@@ -11,6 +19,7 @@
 
 	import Banner from '../common/Banner.svelte';
 	import Sidebar from '../icons/Sidebar.svelte';
+	import Note from '../icons/Note.svelte';
 
 	const i18n = getContext('i18n');
 
@@ -23,6 +32,7 @@
 	export let history;
 	export let selectedModels;
 	export let showModelSelector = true;
+	export let scratchboardEnabled = false;
 
 	export let onSaveTempChat: () => {};
 	export let archiveChatHandler: (id: string) => void;
@@ -84,7 +94,25 @@
 			"
 				></div>
 
-				<div class="self-start flex flex-none items-center navbar-actions"></div>
+				<div class="self-start flex flex-none items-center navbar-actions">
+					{#if scratchboardEnabled && $mobile && !$showScratchboard}
+						<div class="translate-x-0.5 ml-1 mt-1 flex flex-none items-center">
+							<Tooltip content={$i18n.t('Open Scratchboard')}>
+								<button
+									class="flex rounded-xl size-8.5 justify-center items-center btn-ghost no-drag-region"
+									on:click={() => {
+										showScratchboard.set(true);
+									}}
+									aria-label={$i18n.t('Open Scratchboard')}
+								>
+									<div class="self-center p-1.5">
+										<Note className="size-5" />
+									</div>
+								</button>
+							</Tooltip>
+						</div>
+					{/if}
+				</div>
 			</div>
 		</div>
 	</div>
