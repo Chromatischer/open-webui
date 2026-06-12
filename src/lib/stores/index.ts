@@ -55,6 +55,8 @@ export const TTSWorker = writable(null);
 export const chatId = writable('');
 export const chatTitle = writable('');
 export const scratchboardContent = writable('');
+// True while the agent is live-streaming notes into the margin (FOLIO)
+export const scratchboardAgentWriting = writable(false);
 
 export const channels = writable([]);
 export const channelId = writable(null);

@@ -47,7 +47,9 @@
 		showFileNavDir,
 		chatRequestQueues,
 		desktopEvent,
-		scratchboardContent as scratchboardContentStore
+		scratchboardContent as scratchboardContentStore,
+		scratchboardAgentWriting,
+		showScratchboard
 	} from '$lib/stores';
 
 	import { WEBUI_API_BASE_URL } from '$lib/constants';
@@ -1501,6 +1503,43 @@
 		}
 	};
 
+	// ─── The Margin: the agent writes follow-ups onto the shared scratchboard ───
+	// When a finished response carries a list (a plan / next steps), the agent
+	// streams those items into the margin live — the FOLIO "draft → margin notes".
+	const extractFollowups = (content: string): string[] => {
+		const items: string[] = [];
+		for (const ln of String(content ?? '').split('\n')) {
+			const m = ln.match(/^\s*(?:[-*]|\d+\.)\s+(.+)/);
+			if (m) {
+				const text = m[1].replace(/[*_`]/g, '').trim();
+				if (text) items.push(text.length > 90 ? `${text.slice(0, 88)}…` : text);
+			}
+		}
+		return items.slice(0, 4);
+	};
+
+	let marginWriteToken = 0;
+	const writeMarginNote = (text: string) => {
+		const token = ++marginWriteToken;
+		scratchboardAgentWriting.set(true);
+		showScratchboard.set(true);
+		let buf = get(scratchboardContentStore);
+		let i = 0;
+		const step = () => {
+			if (token !== marginWriteToken) return; // superseded by a newer note
+			if (i >= text.length) {
+				scratchboardAgentWriting.set(false);
+				return;
+			}
+			const n = 1 + Math.floor(Math.random() * 2);
+			buf += text.slice(i, i + n);
+			i += n;
+			scratchboardContentStore.set(buf);
+			setTimeout(step, 16 + Math.random() * 26);
+		};
+		setTimeout(step, 300);
+	};
+
 	const chatCompletedHandler = async (_chatId, modelId, responseMessageId, messages) => {
 		// Backend handles outlet filters and persistence inline.
 		// Just refresh the sidebar chat list.
@@ -1509,6 +1548,14 @@
 			await chats.set(await getChatList(localStorage.token, $currentChatPage));
 		}
 		taskIds = null;
+
+		// The agent writes the response's follow-ups into the margin
+		const completed = history?.messages?.[responseMessageId];
+		const followups = extractFollowups(completed?.content);
+		if (followups.length >= 2 && !get(scratchboardAgentWriting)) {
+			const t = new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+			writeMarginNote(`\n\n— claude, ${t}\n${followups.map((f) => `- ${f}`).join('\n')}`);
+		}
 	};
 
 	const chatActionHandler = async (_chatId, actionId, modelId, responseMessageId, event = null) => {

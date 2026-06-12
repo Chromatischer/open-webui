@@ -1,6 +1,7 @@
 <script>
 	import { onDestroy, tick } from 'svelte';
 	import Markdown from '$lib/components/chat/Messages/Markdown.svelte';
+	import { scratchboardAgentWriting } from '$lib/stores';
 
 	let {
 		content = '',
@@ -156,6 +157,9 @@
 					/><path d="M16 13H8" /><path d="M16 17H8" /><path d="M10 9H8" /></svg
 				>
 				<span>The Margin</span>
+				{#if $scratchboardAgentWriting}
+					<span class="agent-writing"><i></i> claude is writing</span>
+				{/if}
 			</div>
 
 			{#if mobile}
@@ -649,5 +653,37 @@
 
 	.footer-meta.saved.flash {
 		color: var(--success);
+	}
+
+	/* ── The agent's hand: "claude is writing" while notes stream into the margin ── */
+	.agent-writing {
+		display: inline-flex;
+		align-items: center;
+		gap: 6px;
+		margin-left: 8px;
+		font-family: var(--mono, ui-monospace, monospace);
+		font-size: 10px;
+		font-weight: 500;
+		letter-spacing: 0.04em;
+		text-transform: none;
+		color: var(--ultramarine, var(--accent));
+	}
+	.agent-writing i {
+		width: 6px;
+		height: 6px;
+		border-radius: 50%;
+		background: var(--ultramarine, var(--accent));
+		animation: margin-pulse 1s ease-in-out infinite;
+	}
+	@keyframes margin-pulse {
+		0%,
+		100% {
+			opacity: 0.3;
+			transform: scale(0.7);
+		}
+		50% {
+			opacity: 1;
+			transform: scale(1);
+		}
 	}
 </style>
