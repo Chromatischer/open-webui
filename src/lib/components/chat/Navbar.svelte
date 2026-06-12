@@ -6,13 +6,18 @@
 		WEBUI_NAME,
 		banners,
 		chatId,
+		chatTitle,
+		chats,
+		currentChatPage,
 		config,
 		mobile,
 		showSidebar,
-		showScratchboard
+		showScratchboard,
+		temporaryChatEnabled
 	} from '$lib/stores';
 
 	import { slide } from 'svelte/transition';
+	import { getChatList, updateChatById } from '$lib/apis/chats';
 
 	import ShareChatModal from '../chat/ShareChatModal.svelte';
 	import Tooltip from '../common/Tooltip.svelte';
@@ -30,6 +35,7 @@
 
 	export let chat;
 	export let history;
+	export let title = '';
 	export let selectedModels;
 	export let showModelSelector = true;
 	export let scratchboardEnabled = false;
@@ -43,6 +49,32 @@
 
 	let showShareChatModal = false;
 	let showDownloadChatModal = false;
+
+	// FOLIO letterhead — derive a stable folio mark (№) from the chat id, and let
+	// the manuscript title be edited inline (commit on blur).
+	const folioMark = (id: string | undefined): string => {
+		if (!id) return '—';
+		let h = 0;
+		for (let i = 0; i < id.length; i++) h = (h * 31 + id.charCodeAt(i)) | 0;
+		return String((Math.abs(h) % 999) + 1).padStart(2, '0');
+	};
+
+	const commitTitle = async (e: FocusEvent | KeyboardEvent) => {
+		const el = e.currentTarget as HTMLElement;
+		const next = (el.textContent ?? '').trim();
+		if (!next) {
+			el.textContent = title; // reject empties
+			return;
+		}
+		if (next === title || !$chatId) return;
+		title = next;
+		chatTitle.set(next);
+		if (!$temporaryChatEnabled) {
+			await updateChatById(localStorage.token, $chatId, { title: next });
+			currentChatPage.set(1);
+			chats.set(await getChatList(localStorage.token, $currentChatPage));
+		}
+	};
 </script>
 
 <ShareChatModal bind:show={showShareChatModal} chatId={$chatId} />
@@ -176,6 +208,60 @@
 <style>
 	.navbar {
 		background: var(--bg-base);
+	}
+
+	/* ── FOLIO letterhead ── */
+	.letterhead {
+		display: flex;
+		align-items: baseline;
+		gap: 10px;
+		max-width: min(640px, 100%);
+		padding: 2px 4px;
+	}
+	.lh-no {
+		flex: none;
+		font-family: var(--mono);
+		font-size: 10.5px;
+		letter-spacing: 0.04em;
+		color: var(--text-tertiary);
+		transform: translateY(-1px);
+	}
+	.lh-aster {
+		flex: none;
+		font-family: var(--serif);
+		font-size: 13px;
+		line-height: 1;
+		color: var(--vermilion);
+		opacity: 0.75;
+		transform: translateY(-1px);
+	}
+	.lh-title {
+		min-width: 0;
+		max-width: 100%;
+		font-family: var(--serif);
+		font-size: 18px;
+		line-height: 1.2;
+		letter-spacing: 0.005em;
+		color: var(--text);
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		outline: none;
+		border-bottom: 1px solid transparent;
+		transition:
+			border-color 0.2s,
+			color 0.2s;
+		cursor: text;
+	}
+	.lh-title:hover {
+		border-bottom-color: var(--rule);
+	}
+	.lh-title:focus {
+		color: var(--vermilion);
+		border-bottom-color: var(--vermilion);
+		text-overflow: clip;
+		overflow: visible;
+		white-space: normal;
 	}
 
 	.navbar-actions {

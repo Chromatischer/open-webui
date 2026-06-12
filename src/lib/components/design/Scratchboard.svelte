@@ -121,7 +121,7 @@
 
 {#if collapsed}
 	<aside class="scratchboard-rail">
-		<span class="rail-label">Scratchboard</span>
+		<span class="rail-label">The Margin</span>
 		<button
 			class="rail-toggle"
 			onclick={() => (collapsed = false)}
@@ -155,7 +155,7 @@
 						d="M14 2v6h6"
 					/><path d="M16 13H8" /><path d="M16 17H8" /><path d="M10 9H8" /></svg
 				>
-				<span>Scratchboard</span>
+				<span>The Margin</span>
 			</div>
 
 			{#if mobile}
@@ -247,7 +247,7 @@
 		{#if !mobile}
 			<div class="board-footer">
 				<span class="footer-meta">{lines.length} lines</span>
-				<span class="footer-meta">CHAT BOARD</span>
+				<span class="footer-meta">MARGIN</span>
 				<span class="footer-meta saved" class:flash={saved}>● Autosaved</span>
 			</div>
 		{/if}
@@ -281,10 +281,11 @@
 		align-items: center;
 		gap: 8px;
 		min-width: 0;
-		font-size: 12px;
-		font-weight: 700;
+		font-family: var(--mono);
+		font-size: 11px;
+		font-weight: 600;
 		text-transform: uppercase;
-		letter-spacing: 0.07em;
+		letter-spacing: 0.16em;
 		color: var(--text-tertiary);
 	}
 

@@ -45,93 +45,148 @@
 		format('woff2-variations');
 }
 
+/* Fragment Mono — the ledger / tool-record monospace (FOLIO) */
+@font-face {
+	font-family: 'Fragment Mono';
+	font-style: normal;
+	font-display: swap;
+	font-weight: 400;
+	src: url('https://cdn.jsdelivr.net/fontsource/fonts/fragment-mono@latest/latin-400-normal.woff2')
+		format('woff2');
+}
+
 /* --app-text-scale is updated via the UI Scale slider (Interface.svelte) */
 :root {
 	--app-text-scale: 1;
 }
 
-/* ── Design system tokens ───────────────────────────────── */
+/* ── Design system tokens — FOLIO manuscript palette ─────────
+   Three inks on warm paper: iron-gall text, vermilion = the user's
+   hand, ultramarine = the agent's hand, gold-leaf highlights. The
+   legacy token names (--orange/--accent/--bg-*) are kept stable and
+   re-pointed onto the FOLIO hues so every surface inherits the palette,
+   while the FOLIO-named tokens below back the new manuscript chrome. */
 :root {
 	--sidebar-w: 260px;
 
-	/* Backgrounds */
-	--bg-sidebar: #e8e4db;
-	--bg-base: #f7f5f0;
-	--bg-elevated: #ffffff;
+	/* ── FOLIO inks & paper (source of truth) ── */
+	--paper: #f5f1e8;
+	--paper-deep: #eae3d3;
+	--ink: #26221b;
+	--ink-2: #6e6657;
+	--ink-3: #a89e8a;
+	--vermilion: #c2491d;
+	--vermilion-soft: rgba(194, 73, 29, 0.08);
+	--ultramarine: #4f55c9;
+	--ultramarine-soft: rgba(79, 85, 201, 0.09);
+	--gold: #f3d27d;
+	--rule: rgba(38, 34, 27, 0.14);
+	--rule-faint: rgba(38, 34, 27, 0.07);
+	--ok: #3d7a46;
+
+	/* FOLIO easings */
+	--out: cubic-bezier(0.16, 1, 0.3, 1);
+	--spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+	/* Backgrounds (mapped onto paper) */
+	--bg-sidebar: var(--paper-deep);
+	--bg-base: var(--paper);
+	--bg-elevated: #fbf8f1;
 
 	/* Surfaces (overlays on top of bg) */
-	--surface: rgba(0, 0, 0, 0.025);
-	--surface-hover: rgba(0, 0, 0, 0.05);
-	--surface-active: rgba(0, 0, 0, 0.08);
+	--surface: rgba(38, 34, 27, 0.025);
+	--surface-hover: rgba(38, 34, 27, 0.05);
+	--surface-active: rgba(38, 34, 27, 0.08);
 
-	/* Borders */
-	--border: rgba(0, 0, 0, 0.06);
-	--border-hover: rgba(0, 0, 0, 0.12);
+	/* Borders (ruled lines) */
+	--border: var(--rule-faint);
+	--border-hover: var(--rule);
 
-	/* Text */
-	--text: #2a2927;
-	--text-secondary: #6b6964;
-	--text-tertiary: #a9a69d;
+	/* Text (iron-gall inks) */
+	--text: var(--ink);
+	--text-secondary: var(--ink-2);
+	--text-tertiary: var(--ink-3);
 
-	/* Brand accent (periwinkle – AI, selections, active states) */
-	--accent: #7b7ef6;
-	--accent-glow: rgba(123, 126, 246, 0.12);
-	--accent-soft: #9fa1f9;
+	/* Brand accent (ultramarine – the agent's hand: AI, selections, active) */
+	--accent: var(--ultramarine);
+	--accent-glow: var(--ultramarine-soft);
+	--accent-soft: #7b80de;
 
-	/* Orange (user messages, send button, active composer) */
-	--orange: #e8730a;
-	--orange-glow: rgba(232, 115, 10, 0.14);
-	--orange-soft: rgba(232, 115, 10, 0.06);
+	/* "Orange" (vermilion – the user's hand: user messages, send, active composer) */
+	--orange: var(--vermilion);
+	--orange-glow: rgba(194, 73, 29, 0.16);
+	--orange-soft: var(--vermilion-soft);
 
 	/* Semantic */
-	--success: #2d9f52;
-	--code-bg: #f3f1ec;
-	--shadow-color: rgba(0, 0, 0, 0.06);
+	--success: var(--ok);
+	--code-bg: rgba(38, 34, 27, 0.045);
+	--shadow-color: rgba(38, 34, 27, 0.08);
 
-	/* Highlight / text mark (amber-yellow) */
-	--highlight: #ffe082;
-	--highlight-glow: rgba(255, 224, 130, 0.3);
+	/* Highlight / text mark (gold leaf) */
+	--highlight: var(--gold);
+	--highlight-glow: rgba(243, 210, 125, 0.34);
 
 	/* Typography */
 	--font-sans: 'Archivo', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-	--font-serif: 'InstrumentSerif', Georgia, serif;
+	--font-serif: 'InstrumentSerif', Georgia, 'Times New Roman', serif;
 	--font-message: 'Atkinson Next', 'Archivo', -apple-system, BlinkMacSystemFont, sans-serif;
+	--font-mono: 'Fragment Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+	/* FOLIO font aliases (used by the manuscript chrome) */
+	--serif: var(--font-serif);
+	--body: var(--font-message);
+	--mono: var(--font-mono);
 
 	--message-font-size: 15.5px;
 	--message-font-weight: 440;
-	--message-line-height: 1.55;
+	--message-line-height: 1.6;
 }
 
+/* ── Night desk: umber paper, inks glow ── */
 .dark {
-	--bg-sidebar: #141312;
-	--bg-base: #1e1d1c;
-	--bg-elevated: #252422;
+	--paper: #181410;
+	--paper-deep: #100d0a;
+	--ink: #ece5d4;
+	--ink-2: #a1977f;
+	--ink-3: #6b6354;
+	--vermilion: #e8744a;
+	--vermilion-soft: rgba(232, 116, 74, 0.12);
+	--ultramarine: #9aa0f5;
+	--ultramarine-soft: rgba(154, 160, 245, 0.12);
+	--gold: #d4ab55;
+	--rule: rgba(236, 229, 212, 0.16);
+	--rule-faint: rgba(236, 229, 212, 0.07);
+	--ok: #7dc287;
 
-	--surface: rgba(255, 255, 255, 0.03);
-	--surface-hover: rgba(255, 255, 255, 0.05);
-	--surface-active: rgba(255, 255, 255, 0.07);
+	--bg-sidebar: var(--paper-deep);
+	--bg-base: var(--paper);
+	--bg-elevated: #221c16;
 
-	--border: rgba(255, 255, 255, 0.06);
-	--border-hover: rgba(255, 255, 255, 0.1);
+	--surface: rgba(236, 229, 212, 0.03);
+	--surface-hover: rgba(236, 229, 212, 0.05);
+	--surface-active: rgba(236, 229, 212, 0.07);
 
-	--text: #f0eeeb;
-	--text-secondary: #a09e99;
-	--text-tertiary: #6e6c67;
+	--border: var(--rule-faint);
+	--border-hover: var(--rule);
 
-	--accent: #9fa1f9;
-	--accent-glow: rgba(159, 161, 249, 0.15);
-	--accent-soft: #bbbcfb;
+	--text: var(--ink);
+	--text-secondary: var(--ink-2);
+	--text-tertiary: var(--ink-3);
 
-	--orange: #f5a04c;
-	--orange-glow: rgba(245, 160, 76, 0.14);
-	--orange-soft: rgba(245, 160, 76, 0.06);
+	--accent: var(--ultramarine);
+	--accent-glow: var(--ultramarine-soft);
+	--accent-soft: #bbbef8;
 
-	--success: #43c778;
-	--code-bg: #1a1918;
-	--shadow-color: rgba(0, 0, 0, 0.3);
+	--orange: var(--vermilion);
+	--orange-glow: rgba(232, 116, 74, 0.18);
+	--orange-soft: var(--vermilion-soft);
 
-	--highlight: #c9a84c;
-	--highlight-glow: rgba(201, 168, 76, 0.2);
+	--success: var(--ok);
+	--code-bg: rgba(236, 229, 212, 0.05);
+	--shadow-color: rgba(0, 0, 0, 0.4);
+
+	--highlight: var(--gold);
+	--highlight-glow: rgba(212, 171, 85, 0.22);
 }
 
 html {
@@ -251,6 +306,68 @@ code {
 	font-family: var(--font-message);
 	font-weight: var(--message-font-weight);
 	white-space: pre-wrap;
+}
+
+/* ── FOLIO manuscript: §-numbered prompts in the user's hand, illuminated answers ──
+   The conversation reads as a typeset manuscript: each prompt is a serif section
+   heading numbered by an automatic §-counter (the user's vermilion hand), and the
+   agent replies in the manuscript body with an illuminated opening letter. */
+.messages-flow {
+	counter-reset: folio-section;
+}
+.message-group.user {
+	counter-increment: folio-section;
+}
+
+/* Prompt meta becomes a small monospace section stamp: "§N · YOU" */
+.message-group.user .meta-role {
+	font-family: var(--mono);
+	font-size: 10px;
+	letter-spacing: 0.16em;
+	color: var(--text-tertiary);
+}
+.message-group.user .meta-role::before {
+	content: '§' counter(folio-section) '\00a0\00a0·\00a0\00a0';
+	color: var(--vermilion);
+	font-weight: 700;
+}
+
+/* The prompt itself is set as a serif heading */
+.message-group.user .chat-user,
+.message-group.user .chat-user .ver-text {
+	font-family: var(--serif);
+	font-size: 1.62rem;
+	line-height: 1.26;
+	font-weight: 400;
+	letter-spacing: 0.004em;
+	color: var(--text);
+	white-space: normal;
+}
+.message-group.user .chat-user :is(p, h1, h2, h3, li) {
+	margin: 0;
+	font-weight: 400;
+}
+
+/* The agent answers in the manuscript body; the opening letter is illuminated */
+.message-group.ai .chat-assistant {
+	font-family: var(--font-message);
+}
+.message-group.ai .chat-assistant p:first-of-type::first-letter {
+	float: left;
+	font-family: var(--serif);
+	font-size: 2.7em;
+	line-height: 0.72;
+	margin: 0.02em 0.09em 0 0;
+	color: var(--vermilion);
+}
+/* No drop cap when the answer opens with a reasoning trace */
+.message-group.ai .chat-assistant .thinking ~ p:first-of-type::first-letter {
+	float: none;
+	font-family: inherit;
+	font-size: inherit;
+	line-height: inherit;
+	margin: 0;
+	color: inherit;
 }
 
 /* ── Design system: thinking block (// prefix, used in ContentRenderer) ── */

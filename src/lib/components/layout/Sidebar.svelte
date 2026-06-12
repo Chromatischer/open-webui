@@ -1577,18 +1577,20 @@
 		border-color: var(--border);
 	}
 
-	/* ── 2b — Brand / logo ────────────────────────────────── */
+	/* ── 2b — Brand / logo (the archive's hand-lettered head) ── */
 	.sidebar-brand {
 		color: var(--text);
-		font-size: 14px;
-		font-weight: 700;
-		letter-spacing: -0.3px;
+		font-family: var(--serif);
+		font-size: 19px;
+		font-weight: 400;
+		letter-spacing: 0.01em;
 	}
 	#sidebar-webui-name {
 		color: var(--text);
-		font-size: 14px;
-		font-weight: 700;
-		letter-spacing: -0.3px;
+		font-family: var(--serif);
+		font-size: 19px;
+		font-weight: 400;
+		letter-spacing: 0.01em;
 	}
 
 	/* ── 2c — New Chat primary button ─────────────────────── */
@@ -1616,15 +1618,16 @@
 		transform: scale(0.98);
 	}
 
-	/* ── 2d — Section headers ─────────────────────────────── */
+	/* ── 2d — Section headers (catalogue stamps) ──────────── */
 	.section-header {
 		display: flex;
 		align-items: center;
 		gap: 6px;
+		font-family: var(--mono);
 		font-size: 10px;
-		font-weight: 700;
+		font-weight: 600;
 		text-transform: uppercase;
-		letter-spacing: 0.08em;
+		letter-spacing: 0.16em;
 		color: var(--text-tertiary);
 	}
 	.sidebar-section-label {

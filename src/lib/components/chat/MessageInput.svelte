@@ -1930,6 +1930,33 @@
 		border-radius: 0;
 	}
 
+	/* ── FOLIO edge: the composer is the document's next ruled line ── */
+	.composer-meta .meta-role::before {
+		content: '¶\00a0';
+		font-family: var(--serif);
+		font-weight: 700;
+		color: var(--vermilion);
+	}
+
+	/* An ink rule draws in from the margin as the line takes focus */
+	.composer::after {
+		content: '';
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: -7px;
+		height: 1.5px;
+		background: var(--vermilion);
+		opacity: 0.45;
+		transform: scaleX(0);
+		transform-origin: left center;
+		transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+		pointer-events: none;
+	}
+	.composer:focus-within::after {
+		transform: scaleX(1);
+	}
+
 	:global(#message-input-container) {
 		border: none !important;
 		background: transparent !important;

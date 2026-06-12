@@ -46,6 +46,7 @@
 	} from '$lib/stores';
 
 	import Sidebar from '$lib/components/layout/Sidebar.svelte';
+	import Archive from '$lib/components/layout/Archive.svelte';
 	import Scratchboard from '$lib/components/design/Scratchboard.svelte';
 	import SettingsModal from '$lib/components/chat/SettingsModal.svelte';
 	import ShortcutsModal from '$lib/components/chat/ShortcutsModal.svelte';
@@ -498,7 +499,7 @@
 		role="presentation"
 	>
 		<div class="sidebar-layer">
-			<Sidebar peeled={true} />
+			<Archive />
 		</div>
 
 		{#if isChatSurface && $mobile && !$showSidebar}

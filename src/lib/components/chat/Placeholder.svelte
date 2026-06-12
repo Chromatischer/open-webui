@@ -90,6 +90,11 @@
 		class="w-full text-3xl text-gray-800 dark:text-gray-100 text-center flex items-center gap-4 font-primary"
 	>
 		<div class="w-full flex flex-col justify-center items-center">
+			{#if !$selectedFolder}
+				<div class="zen-kicker" in:fade={{ duration: 300 }}>
+					{$i18n.t('A blank folio')}
+				</div>
+			{/if}
 			{#if $selectedFolder}
 				<FolderTitle
 					folder={$selectedFolder}
@@ -140,7 +145,7 @@
 					</div>
 
 					<div
-						class=" text-3xl @sm:text-3xl line-clamp-1 flex items-center"
+						class=" zen-title text-3xl @sm:text-3xl line-clamp-1 flex items-center"
 						in:fade={{ duration: 100 }}
 					>
 						{#if models[selectedModelIdx]?.name}
@@ -234,6 +239,13 @@
 						dispatch('submit', e.detail);
 					}}
 				/>
+
+				{#if !$selectedFolder}
+					<div class="zen-cta" in:fade={{ duration: 300, delay: 120 }}>
+						<span class="zen-aster">⁂</span>
+						{$i18n.t('Write the first line to open the manuscript')}
+					</div>
+				{/if}
 			</div>
 		</div>
 	</div>
@@ -247,3 +259,43 @@
 		</div>
 	{/if}
 </div>
+
+<style>
+	/* ── FOLIO zen folio: the empty manuscript ── */
+	.zen-kicker {
+		font-family: var(--mono);
+		font-size: 10.5px;
+		letter-spacing: 0.26em;
+		text-transform: uppercase;
+		color: var(--vermilion);
+		margin-bottom: 14px;
+		opacity: 0.9;
+	}
+
+	.zen-title :global(span),
+	.zen-title {
+		font-family: var(--serif) !important;
+		font-weight: 400;
+		letter-spacing: 0.005em;
+		color: var(--text);
+	}
+
+	.zen-cta {
+		margin-top: 18px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 10px;
+		font-family: var(--serif);
+		font-style: italic;
+		font-size: 15px;
+		color: var(--text-tertiary);
+	}
+
+	.zen-aster {
+		font-family: var(--serif);
+		color: var(--vermilion);
+		opacity: 0.7;
+		font-style: normal;
+	}
+</style>
