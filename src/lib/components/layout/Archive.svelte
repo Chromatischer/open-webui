@@ -112,11 +112,7 @@
 			profile={true}
 			help={true}
 		>
-			<button
-				class="arch-userbtn"
-				onclick={() => (showUserMenu = !showUserMenu)}
-				aria-label="Open user menu"
-			>
+			<button class="arch-userbtn" type="button" aria-label="Open user menu">
 				<span class="arch-avatar" aria-hidden="true"
 					>{($user?.name ?? '?').slice(0, 1).toUpperCase()}</span
 				>
