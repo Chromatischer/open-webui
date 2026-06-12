@@ -11,6 +11,7 @@
 		mobile
 	} from '$lib/stores';
 	import { getChatList } from '$lib/apis/chats';
+	import UserMenu from './Sidebar/UserMenu.svelte';
 
 	/*
 	 * THE ARCHIVE — older folios, peeled open from the left.
@@ -19,6 +20,7 @@
 	 */
 
 	let revealed = $state(false);
+	let showUserMenu = $state(false);
 
 	onMount(async () => {
 		if (!$chats || $chats.length === 0) {
@@ -102,13 +104,28 @@
 	</div>
 
 	<div class="arch-foot">
-		<span class="arch-avatar" aria-hidden="true"
-			>{($user?.name ?? '?').slice(0, 1).toUpperCase()}</span
+		<UserMenu
+			bind:show={showUserMenu}
+			role={$user?.role}
+			className="w-[240px]"
+			align="start"
+			profile={true}
+			help={true}
 		>
-		<span class="arch-user">
-			<span class="arch-name">{$user?.name ?? ''}</span>
-			<span class="arch-mail">{$user?.email ?? ''}</span>
-		</span>
+			<button
+				class="arch-userbtn"
+				onclick={() => (showUserMenu = !showUserMenu)}
+				aria-label="Open user menu"
+			>
+				<span class="arch-avatar" aria-hidden="true"
+					>{($user?.name ?? '?').slice(0, 1).toUpperCase()}</span
+				>
+				<span class="arch-user">
+					<span class="arch-name">{$user?.name ?? ''}</span>
+					<span class="arch-mail">{$user?.email ?? ''}</span>
+				</span>
+			</button>
+		</UserMenu>
 		<button
 			class="ghost"
 			onclick={() => showSettings.set(true)}
@@ -302,6 +319,33 @@
 		margin-top: 12px;
 		padding: 14px 8px 4px;
 		border-top: 1px solid var(--rule-faint);
+	}
+	/* The user section is a trigger for the user context menu */
+	.arch-foot > :first-child {
+		flex: 1;
+		min-width: 0;
+	}
+	.arch-userbtn {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		width: 100%;
+		min-width: 0;
+		padding: 4px 6px;
+		margin: -4px -6px;
+		border: none;
+		background: transparent;
+		border-radius: 10px;
+		text-align: left;
+		cursor: pointer;
+		color: inherit;
+		transition: background 0.15s;
+	}
+	.arch-userbtn:hover {
+		background: rgba(0, 0, 0, 0.04);
+	}
+	:global(.dark) .arch-userbtn:hover {
+		background: rgba(255, 255, 255, 0.05);
 	}
 	.arch-avatar {
 		flex: none;
