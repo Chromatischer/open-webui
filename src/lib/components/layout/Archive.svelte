@@ -286,12 +286,11 @@
 		padding: 14px 8px 4px;
 		border-top: 1px solid var(--rule-faint);
 	}
-	/* The user section is a trigger for the user context menu */
-	.arch-foot > :first-child {
-		flex: 1;
-		min-width: 0;
-	}
+	/* The user section is the trigger for the user context menu; it fills the row.
+	   (UserMenu's trigger wrapper is display:contents, so the button is the flex
+	   child of .arch-foot — grow it directly.) */
 	.arch-userbtn {
+		flex: 1;
 		display: flex;
 		align-items: center;
 		gap: 10px;
