@@ -123,14 +123,24 @@
 		if (!edgeTouchStart) return;
 		const touchEnd = e.changedTouches[0];
 		handleEdgeSwipe(
-			{ edge: 'left', enabled: () => $mobile, setOpen: (open) => showSidebar.set(open) },
+			{
+				edge: 'left',
+				// Disabled while the scratchboard is open so its close swipe can't
+				// double as the sidebar's open swipe.
+				enabled: () => $mobile && !$showScratchboard,
+				isOpen: () => $showSidebar,
+				setOpen: (open) => showSidebar.set(open)
+			},
 			edgeTouchStart,
 			touchEnd
 		);
 		handleEdgeSwipe(
 			{
 				edge: 'right',
-				enabled: () => $mobile && isChatSurface,
+				// Disabled while the sidebar is open so its close swipe can't
+				// double as the scratchboard's open swipe.
+				enabled: () => $mobile && isChatSurface && !$showSidebar,
+				isOpen: () => $showScratchboard,
 				setOpen: (open) => showScratchboard.set(open)
 			},
 			edgeTouchStart,
@@ -749,6 +759,18 @@
 		border-radius: 20px;
 		transform: translateX(calc(-1 * var(--sidebar-w)));
 		box-shadow: 12px 0 48px rgba(0, 0, 0, 0.22);
+	}
+
+	/* On mobile the shell is full-screen, so transitioning the blurred box-shadow
+	   and the border-radius repaints the whole chat every frame and the slide
+	   stutters (or appears not to animate). Animate only the GPU-composited
+	   transform and let radius/shadow snap — they're hidden behind the slide.
+	   Placed after the base rules so it wins on source order. */
+	@media (max-width: 767px) {
+		.app-shell {
+			transition: transform 0.34s cubic-bezier(0.16, 1, 0.3, 1);
+			will-change: transform;
+		}
 	}
 
 	.notch {

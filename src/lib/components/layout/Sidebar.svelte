@@ -958,7 +958,7 @@
 			</div>
 
 			<div
-				class="relative flex flex-col flex-1 overflow-y-auto scrollbar-hidden pt-3 pb-3"
+				class="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden scrollbar-hidden pt-3 pb-3"
 				on:scroll={(e) => {
 					if (e.target.scrollTop === 0) {
 						scrollTop = 0;
@@ -1359,7 +1359,7 @@
 					{/if}
 
 					<div
-						class=" conversation-list flex-1 flex flex-col overflow-y-auto scrollbar-hidden"
+						class=" conversation-list flex-1 flex flex-col overflow-y-auto overflow-x-hidden scrollbar-hidden"
 						bind:this={conversationListEl}
 						on:scroll={updateIndicator}
 					>

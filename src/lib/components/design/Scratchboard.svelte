@@ -72,7 +72,12 @@
 	});
 </script>
 
-<aside class="margin" class:closed={collapsed && !mobile} class:agent={$scratchboardAgentWriting}>
+<aside
+	class="margin"
+	class:closed={collapsed && !mobile}
+	class:mobile
+	class:agent={$scratchboardAgentWriting}
+>
 	{#if !collapsed || mobile}
 		<div class="margin-head">
 			<svg
@@ -196,6 +201,12 @@
 	}
 	.margin.closed {
 		width: 42px;
+	}
+	/* THE PEEK — on mobile the board is revealed by sliding the chat shell left by
+	   --sidebar-w, leaving a chat sliver over the board's left edge. Inset the
+	   content (background stays full-bleed) so the head + notes clear that sliver. */
+	.margin.mobile {
+		padding-left: calc(100vw - var(--sidebar-w, 85vw));
 	}
 	.margin.agent {
 		border-left-color: color-mix(in srgb, var(--ultramarine) 45%, transparent);
