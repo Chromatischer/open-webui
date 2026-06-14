@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { marked } from 'marked';
 	import { toast } from 'svelte-sonner';
+	import { inlineConfirm } from '$lib/utils/inlineConfirm';
 	import fileSaver from 'file-saver';
 
 	const { saveAs } = fileSaver;
@@ -533,7 +534,7 @@
 																			);
 
 																			if (res) {
-																				toast.success($i18n.t('Copied link to clipboard'));
+																				inlineConfirm($i18n.t('Copied link to clipboard'));
 																			} else {
 																				toast.error($i18n.t('Failed to copy link'));
 																			}
@@ -603,7 +604,7 @@
 																			);
 
 																			if (res) {
-																				toast.success($i18n.t('Copied link to clipboard'));
+																				inlineConfirm($i18n.t('Copied link to clipboard'));
 																			} else {
 																				toast.error($i18n.t('Failed to copy link'));
 																			}

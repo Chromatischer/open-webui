@@ -5,6 +5,7 @@
 
 <script lang="ts">
 	import { toast } from 'svelte-sonner';
+	import { inlineConfirm } from '$lib/utils/inlineConfirm';
 	import { getContext, onMount, onDestroy, tick } from 'svelte';
 	import {
 		terminalServers,
@@ -1186,7 +1187,7 @@
 							class="shrink-0 p-1 rounded hover:bg-gray-100 dark:hover:bg-gray-800 transition text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-400"
 							on:click={async () => {
 								await navigator.clipboard.writeText(fileContent ?? '');
-								toast.success($i18n.t('Copied to clipboard'));
+								inlineConfirm($i18n.t('Copied to clipboard'));
 							}}
 							aria-label={$i18n.t('Copy')}
 						>

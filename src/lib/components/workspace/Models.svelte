@@ -2,6 +2,7 @@
 	import { marked } from 'marked';
 
 	import { toast } from 'svelte-sonner';
+	import { inlineConfirm } from '$lib/utils/inlineConfirm';
 	import Sortable from 'sortablejs';
 
 	import fileSaver from 'file-saver';
@@ -208,7 +209,7 @@
 		const res = await copyToClipboard(`${baseUrl}/?model=${encodeURIComponent(model.id)}`);
 
 		if (res) {
-			toast.success($i18n.t('Copied link to clipboard'));
+			inlineConfirm($i18n.t('Copied link to clipboard'));
 		} else {
 			toast.error($i18n.t('Failed to copy link'));
 		}

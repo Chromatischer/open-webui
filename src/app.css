@@ -1815,3 +1815,57 @@ select {
 .admin-settings-body:not(.raw) button[type='submit']:hover {
 	opacity: 0.9;
 }
+
+/* ── inlineConfirm — the pointer-anchored wax-seal ✓ (see utils/inlineConfirm) ──
+   Rises from the click point and fades like drying ink; replaces corner toasts
+   for click-bound confirmations that have no durable element to mark. */
+.inline-confirm {
+	position: fixed;
+	z-index: 9999;
+	display: inline-flex;
+	align-items: center;
+	gap: 5px;
+	padding: 4px 11px 4px 9px;
+	border-radius: 999px;
+	font-family: var(--serif, ui-serif, Georgia, 'Times New Roman', serif);
+	font-style: italic;
+	font-size: 12.5px;
+	line-height: 1;
+	white-space: nowrap;
+	color: #fff8ef;
+	background: var(--vermilion, #c2491d);
+	box-shadow: 0 8px 22px -10px rgba(0, 0, 0, 0.55);
+	pointer-events: none;
+	opacity: 0;
+	transform: translate(-50%, -6px) scale(0.85);
+	transition:
+		opacity 0.18s ease,
+		transform 0.34s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.inline-confirm svg {
+	flex: none;
+	opacity: 0.92;
+}
+.inline-confirm--in {
+	opacity: 1;
+	transform: translate(-50%, -30px) scale(1);
+}
+.inline-confirm--out {
+	opacity: 0;
+	transform: translate(-50%, -46px) scale(0.97);
+	transition:
+		opacity 0.4s ease,
+		transform 0.45s ease;
+}
+@media (prefers-reduced-motion: reduce) {
+	.inline-confirm {
+		transition: opacity 0.15s ease;
+		transform: translate(-50%, -30px);
+	}
+	.inline-confirm--in {
+		transform: translate(-50%, -30px);
+	}
+	.inline-confirm--out {
+		transform: translate(-50%, -30px);
+	}
+}

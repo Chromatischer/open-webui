@@ -8,6 +8,7 @@
 
 	import { marked } from 'marked';
 	import { toast } from 'svelte-sonner';
+	import { inlineConfirm } from '$lib/utils/inlineConfirm';
 	import equal from 'fast-deep-equal';
 
 	import { goto } from '$app/navigation';
@@ -1070,7 +1071,7 @@ Provide the enhanced notes in markdown format. Use markdown syntax for headings,
 										const res = await copyToClipboard(`${baseUrl}/notes/${note.id}`);
 
 										if (res) {
-											toast.success($i18n.t('Copied link to clipboard'));
+											inlineConfirm($i18n.t('Copied link to clipboard'));
 										} else {
 											toast.error($i18n.t('Failed to copy link'));
 										}
@@ -1086,7 +1087,7 @@ Provide the enhanced notes in markdown format. Use markdown syntax for headings,
 										});
 
 										if (res) {
-											toast.success($i18n.t('Copied to clipboard'));
+											inlineConfirm($i18n.t('Copied to clipboard'));
 										}
 									}}
 									onDelete={() => {

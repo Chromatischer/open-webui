@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { toast } from 'svelte-sonner';
+	import { inlineConfirm } from '$lib/utils/inlineConfirm';
 	import { getContext, tick } from 'svelte';
 
 	import fileSaver from 'file-saver';
@@ -430,7 +431,7 @@
 					});
 
 					if (res) {
-						toast.success($i18n.t('Copied to clipboard'));
+						inlineConfirm($i18n.t('Copied to clipboard'));
 					}
 				}}
 			>
