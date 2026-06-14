@@ -50,6 +50,7 @@
 	import Badge from '$lib/components/common/Badge.svelte';
 	import WorkspaceActionCard from './common/WorkspaceActionCard.svelte';
 	import WorkspaceCard from './common/WorkspaceCard.svelte';
+	import WorkspaceEmpty from './common/WorkspaceEmpty.svelte';
 
 	// When embedded in the Admin panel the surrounding shell already provides a
 	// page header, so hide the component's own header and the user-centric
@@ -401,6 +402,7 @@
 		/>
 		{#if !embedded}
 			<div class="ws-head">
+				<span class="ws-kicker">{$i18n.t('The Workshop')}</span>
 				<div class="ws-title">{$i18n.t('Models')}</div>
 				<div class="ws-lede">
 					{$i18n.t(
@@ -470,63 +472,80 @@
 		</div>
 
 		{#if models !== null}
-			<div class="ws-grid" id="model-list">
-				<WorkspaceActionCard
-					newLabel={$i18n.t('New Model')}
-					newSub={$i18n.t('Start from scratch')}
-					importLabel={$i18n.t('Import')}
-					importSub={$i18n.t('From .json file')}
-					showImport={$user?.role === 'admin' || $user?.permissions?.workspace?.models_import}
-					onNew={() => goto('/workspace/models/create')}
+			{#if models.length === 0 && !query && !viewOption && !selectedTag}
+				<WorkspaceEmpty
+					mark="⁂"
+					kicker={$i18n.t('First impression')}
+					line={$i18n.t('The press stands ready.')}
+					sub={$i18n.t(
+						'A model binds a base mind to a system prompt, tools and knowledge — compose one and summon it in any chat.'
+					)}
+					beginLabel={$i18n.t('Compose your first model')}
+					importLabel={$user?.role === 'admin' || $user?.permissions?.workspace?.models_import
+						? $i18n.t('or import from a .json file')
+						: ''}
+					onBegin={() => goto('/workspace/models/create')}
 					onImport={() => modelsImportInputElement.click()}
 				/>
+			{:else}
+				<div class="ws-grid" id="model-list">
+					<WorkspaceActionCard
+						newLabel={$i18n.t('New Model')}
+						newSub={$i18n.t('Start from scratch')}
+						importLabel={$i18n.t('Import')}
+						importSub={$i18n.t('From .json file')}
+						showImport={$user?.role === 'admin' || $user?.permissions?.workspace?.models_import}
+						onNew={() => goto('/workspace/models/create')}
+						onImport={() => modelsImportInputElement.click()}
+					/>
 
-				{#each models as model (model.id)}
-					<WorkspaceCard
-						name={model.name}
-						description={(model?.meta?.description ?? '').trim() || model.id}
-						author={$i18n.t('By {{name}}', {
-							name: capitalizeFirstLetter(
-								model?.user?.name ?? model?.user?.email ?? $i18n.t('Deleted User')
-							)
-						})}
-						href={model.write_access
-							? `/workspace/models/edit?id=${encodeURIComponent(model.id)}`
-							: null}
-						writeAccess={model.write_access}
-						readOnlyLabel={$i18n.t('read only')}
-					>
-						<img
-							slot="avatar"
-							class="ws-avatar"
-							src={`${WEBUI_API_BASE_URL}/models/model/profile/image?id=${encodeURIComponent(
-								model.id
-							)}&lang=${$i18n.language}&v=${model.updated_at ?? model.updated ?? ''}`}
-							alt="modelfile profile"
-							loading="lazy"
-							decoding="async"
-							on:error={(e) => {
-								e.target.src = '/favicon.png';
-							}}
-						/>
+					{#each models as model (model.id)}
+						<WorkspaceCard
+							name={model.name}
+							description={(model?.meta?.description ?? '').trim() || model.id}
+							author={$i18n.t('By {{name}}', {
+								name: capitalizeFirstLetter(
+									model?.user?.name ?? model?.user?.email ?? $i18n.t('Deleted User')
+								)
+							})}
+							href={model.write_access
+								? `/workspace/models/edit?id=${encodeURIComponent(model.id)}`
+								: null}
+							writeAccess={model.write_access}
+							readOnlyLabel={$i18n.t('read only')}
+						>
+							<img
+								slot="avatar"
+								class="ws-avatar"
+								src={`${WEBUI_API_BASE_URL}/models/model/profile/image?id=${encodeURIComponent(
+									model.id
+								)}&lang=${$i18n.language}&v=${model.updated_at ?? model.updated ?? ''}`}
+								alt="modelfile profile"
+								loading="lazy"
+								decoding="async"
+								on:error={(e) => {
+									e.target.src = '/favicon.png';
+								}}
+							/>
 
-						<svelte:fragment slot="footer">
-							{#if model.base_model_id}
-								<span class="ws-base"><Cube className="size-3" />{model.base_model_id}</span>
-							{/if}
-							{#each (model?.meta?.tags ?? []).slice(0, 2) as tag}
-								<span class="ws-tag">{tag?.name ?? tag}</span>
-							{/each}
-						</svelte:fragment>
-					</WorkspaceCard>
-				{/each}
-				{#if (models ?? []).length === 0 && (query || viewOption || selectedTag)}
-					<div class="ws-empty">{$i18n.t('No models match your search.')}</div>
+							<svelte:fragment slot="footer">
+								{#if model.base_model_id}
+									<span class="ws-base"><Cube className="size-3" />{model.base_model_id}</span>
+								{/if}
+								{#each (model?.meta?.tags ?? []).slice(0, 2) as tag}
+									<span class="ws-tag">{tag?.name ?? tag}</span>
+								{/each}
+							</svelte:fragment>
+						</WorkspaceCard>
+					{/each}
+					{#if (models ?? []).length === 0 && (query || viewOption || selectedTag)}
+						<div class="ws-empty">{$i18n.t('No models match your search.')}</div>
+					{/if}
+				</div>
+
+				{#if total > 30}
+					<Pagination bind:page count={total} perPage={30} />
 				{/if}
-			</div>
-
-			{#if total > 30}
-				<Pagination bind:page count={total} perPage={30} />
 			{/if}
 		{:else}
 			<div class="w-full h-full flex justify-center items-center py-10">

@@ -64,6 +64,7 @@ from open_webui.tools.builtin import (
     generate_image,
     edit_image,
     execute_code,
+    ask_user,
     search_memories,
     add_memory,
     replace_memory_content,
@@ -561,6 +562,10 @@ async def get_builtin_tools(
     # Task management - break down complex work into trackable steps
     if is_builtin_tool_enabled('tasks'):
         builtin_functions.extend([create_tasks, update_task])
+
+    # User interaction - put a structured question to the user and wait for the answer
+    if is_builtin_tool_enabled('ask_user'):
+        builtin_functions.append(ask_user)
 
     # Automation tools - create and manage scheduled automations from chat
     if (

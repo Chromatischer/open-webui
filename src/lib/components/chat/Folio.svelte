@@ -1,7 +1,10 @@
 <script>
 	import { tick } from 'svelte';
-	import { theme, showSidebar } from '$lib/stores';
+	import { browser } from '$app/environment';
+	import { theme, showSidebar, models as modelsStore } from '$lib/stores';
+	import { deleteFileById } from '$lib/apis/files';
 	import Markdown from './Messages/Markdown.svelte';
+	import QuerySlip from './QuerySlip.svelte';
 
 	/*
 	 * FOLIO — the live conversation as a manuscript.
@@ -16,7 +19,9 @@
 	let {
 		history = $bindable(),
 		chatId = '',
-		selectedModels = [],
+		selectedModels = $bindable([]),
+		files = $bindable([]),
+		onUploadFiles = (fileList) => {},
 		chatTitle = '',
 		generating = false,
 		user = null,
@@ -27,8 +32,29 @@
 		onForkAt = (messageId) => {},
 		onNewChat = () => {},
 		composer = undefined,
-		showEdge = true
+		showEdge = true,
+		query = null,
+		onQueryAnswer = (result) => {}
 	} = $props();
+
+	// the composer and the query share one spot (a grid cell, so neither shoves the
+	// other); whatever leaves sinks and fades, whatever enters rises off the same
+	// ruled line — transform + opacity only, so it stays smooth
+	function swap(node, { duration = 340 } = {}) {
+		if (browser && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+			return { duration: 0 };
+		}
+		const ease = (t) => 1 - Math.pow(1 - t, 3);
+		return {
+			duration,
+			css: (t) => {
+				const e = ease(t);
+				return `opacity: ${t};
+					transform: translateY(${(1 - e) * 16}px) scale(${0.97 + e * 0.03});
+					transform-origin: bottom center;`;
+			}
+		};
+	}
 
 	// ─── The lamp (theme ripple, mirroring the app's toggleTheme) ───
 	let dark = $derived(
@@ -84,13 +110,165 @@
 		year: 'numeric'
 	});
 
+	const greetings = {
+		night: [
+			'Up late',
+			'Burning the candle',
+			'Still turning pages',
+			'Night owl hours',
+			'The quiet shift',
+			'Moonlit margins',
+			'Past the witching hour',
+			'Candle still flickering',
+			'The presses are sleeping',
+			'Just you and the lamp',
+			'Late, but in good company',
+			'The small hours',
+			'Stars out, ink ready',
+			'Nightcap and a notebook',
+			'The world has gone quiet',
+			'One more line before bed',
+			'Owls approve of this',
+			'After-hours editing',
+			'The midnight desk',
+			'Hush — the night is yours'
+		],
+		morning: [
+			'Good morning',
+			'Fresh ink',
+			'Bright and early',
+			'Morning, then',
+			'Top of the page',
+			'First light',
+			'The day is uncreased',
+			'Kettle on, page open',
+			'A crisp new sheet',
+			'Dawn at the desk',
+			'Sleeves rolled, ink fresh',
+			'The early folio',
+			'Sunlight on the margins',
+			'A clean morning slate',
+			'Birdsong and blank pages',
+			'Rise and write',
+			'The first draft of the day',
+			'Coffee-and-paper o’clock',
+			'A gentle start',
+			'Morning has good lighting'
+		],
+		afternoon: [
+			'Good afternoon',
+			'Midday margins',
+			'Afternoon, then',
+			'Halfway down the page',
+			'Pleasant afternoon',
+			'The long middle of the day',
+			'Sun high, page open',
+			'Post-lunch productivity',
+			'A steady afternoon',
+			'The day in full stride',
+			'Warm light, clear desk',
+			'Afternoon ink',
+			'The page turns easily now',
+			'Second wind, fresh sheet',
+			'A leisurely afternoon',
+			'Midday at the manuscript',
+			'The day’s good middle',
+			'Tea break, then type',
+			'Unhurried afternoon hours',
+			'Plenty of daylight left'
+		],
+		evening: [
+			'Good evening',
+			'Evening, then',
+			'Winding down',
+			'Lamps lit',
+			'A fine evening',
+			'Settling in',
+			'The day folds shut',
+			'Soft light, slow pace',
+			'Evening at the desk',
+			'Dusk in the margins',
+			'The quiet end of the day',
+			'Slippers-on hours',
+			'A calm evening',
+			'The lamps know your name',
+			'Unwinding, page by page',
+			'Twilight at the typeset',
+			'A gentle close',
+			'Evening ink, no rush',
+			'The day’s last good page',
+			'Dim the lamp, not the ideas'
+		]
+	};
 	function greetingFor(h) {
-		if (h < 5) return 'Up late';
-		if (h < 12) return 'Good morning';
-		if (h < 18) return 'Good afternoon';
-		return 'Good evening';
+		const pool =
+			h < 5
+				? greetings.night
+				: h < 12
+					? greetings.morning
+					: h < 18
+						? greetings.afternoon
+						: greetings.evening;
+		return pool[Math.floor(Math.random() * pool.length)];
 	}
 	const greeting = `${greetingFor(new Date().getHours())}${user?.name ? ', ' + user.name : ''}.`;
+
+	// ─── The blank-folio sub-line: one is picked at random per visit ───
+	const intros = [
+		'A blank folio. What shall we set in type?',
+		'The press is warm and the ink is wet. Where to?',
+		'Fresh paper, no smudges yet. Begin anywhere.',
+		'An empty page is just a polite question. Ask one back.',
+		'The margins are clear and the day is yours.',
+		'Nothing written, everything possible. Your move.',
+		'A clean sheet, a steady pen. What goes first?',
+		'The folio yawns, stretches, and waits for a word.',
+		'Quiet here. Pleasantly so. Say something.',
+		'No deadlines on this page — only doodles, if you like.',
+		'The typesetter has tea and time. Begin.',
+		'White space, gently humming. Fill a little of it.',
+		'Blank as a fresh snowfield. First footprint is yours.',
+		'The ink barrel is full. Spend it however you please.',
+		'A page with no opinions yet. Lend it some.',
+		'Take off your coat, the folio is unhurried.',
+		'Somewhere a printing press is rooting for you.',
+		'New page, no rules, soft lighting. What now?',
+		'The cursor blinks like it has a secret. Coax it out.',
+		'Empty, tidy, and entirely on your side.',
+		'A clean folio and absolutely no homework due.',
+		'The page is listening. It is a very good listener.',
+		'Blank, but optimistic. Give it a reason.',
+		'Fresh vellum, no cat has walked across it. Yet.',
+		'The whole manuscript starts with one small line.',
+		'Stretch first. Then we set a word or two.',
+		'No drafts to fear here — only beginnings.',
+		'The folio is open and the kettle is on.',
+		'A spotless page, smelling faintly of fresh ink.',
+		'Nothing here but possibility and good margins.',
+		'The press idles, patient as a sleeping cat.',
+		'Write boldly; the eraser is right here.',
+		'A page this empty is practically an invitation.',
+		'Slow morning energy. Let a sentence wander in.',
+		'The folio cracked its knuckles. Ready when you are.',
+		'No wrong turns on an empty page. Pick a direction.',
+		'A fresh leaf, unbothered and yours to crease.',
+		'The ink is curious what you will do with it.',
+		'Blank canvas, no critics, generous lighting.',
+		'Put your feet up; the page can wait a beat.',
+		'One clear folio, zero expectations, infinite undo.',
+		'The margin doodles will not judge you. Promise.',
+		'A hush, a page, a pen. The rest is up to you.',
+		'Begin small. Folios are patient about the rest.',
+		'The press has been practising. Give it a line.',
+		'Untouched and unhurried — a rare combination.',
+		'A blank folio, freshly pressed and lightly perfumed with ink.',
+		'No first sentence is too small for this much paper.',
+		'The page leans in, eyebrow raised, genuinely interested.',
+		'Crisp, empty, and quietly delighted to see you.',
+		'Whatever you set here, the folio promises to hold it well.',
+		'Take a breath. The blank page rather enjoys the pause.'
+	];
+	const introLine = intros[Math.floor(Math.random() * intros.length)];
 
 	function folioMark(id) {
 		if (!id) return '01';
@@ -143,7 +321,15 @@
 					cur = { id: m.id, userId: null, prompt: '', time: fmtTime(m.timestamp), assistants: [] };
 					secs.push(cur);
 				}
-				cur.assistants.push(m);
+				// Snapshot into a fresh object each recompute: streamed deltas mutate
+				// the message in place, and identical references would never repaint.
+				cur.assistants.push({
+					id: m.id,
+					content: contentToText(m.content),
+					done: m.done ?? true,
+					entries: m.statusHistory ?? (m.status ? [m.status] : []),
+					message: m
+				});
 			}
 		}
 		return secs;
@@ -194,6 +380,87 @@
 		el.style.height = 'auto';
 		el.style.height = el.scrollHeight + 'px';
 		el.style.overflowY = el.scrollHeight > el.clientHeight + 2 ? 'auto' : 'hidden';
+	}
+	function onComposerPaste(e) {
+		const items = Array.from(e.clipboardData?.items ?? []);
+		const pasted = items
+			.filter((it) => it.kind === 'file')
+			.map((it) => it.getAsFile())
+			.filter(Boolean);
+		if (pasted.length > 0) {
+			e.preventDefault();
+			onUploadFiles(pasted);
+		}
+	}
+
+	// ─── The type case: every model is a sort of type, one (or more) sets the page ───
+	let typecaseOpen = $state(false);
+	let typecaseQuery = $state('');
+	let typecaseEl = $state(null);
+	let typecaseFindEl = $state(null);
+
+	let typecase = $derived(($modelsStore ?? []).filter((m) => m?.id));
+	let chosenIds = $derived(selectedModels.filter((id) => id !== ''));
+	let shelf = $derived.by(() => {
+		const q = typecaseQuery.trim().toLowerCase();
+		if (!q) return typecase;
+		return typecase.filter((m) => (m?.name ?? m.id).toLowerCase().includes(q));
+	});
+	function voiceName(id) {
+		return typecase.find((m) => m.id === id)?.name ?? id;
+	}
+	let voiceLabel = $derived(
+		chosenIds.length === 0
+			? 'choose a voice'
+			: chosenIds.length === 1
+				? voiceName(chosenIds[0])
+				: `${voiceName(chosenIds[0])} +${chosenIds.length - 1}`
+	);
+	async function toggleTypecase() {
+		typecaseOpen = !typecaseOpen;
+		typecaseQuery = '';
+		if (typecaseOpen) {
+			await tick();
+			typecaseFindEl?.focus();
+		}
+	}
+	function pickVoice(id, additive = false) {
+		if (additive) {
+			// shift-click: write in ensemble — add or excuse a voice (never strand the page voiceless)
+			if (chosenIds.includes(id)) {
+				if (chosenIds.length > 1) selectedModels = chosenIds.filter((x) => x !== id);
+			} else {
+				selectedModels = [...chosenIds, id];
+			}
+		} else {
+			selectedModels = [id];
+			typecaseOpen = false;
+		}
+	}
+	function onDeskPointerDown(e) {
+		if (typecaseOpen && typecaseEl && !typecaseEl.contains(e.target)) typecaseOpen = false;
+	}
+	function onDeskKeydown(e) {
+		if (e.key === 'Escape' && typecaseOpen) typecaseOpen = false;
+	}
+
+	// ─── Enclosures: clippings pinned above the writing line ───
+	let fileInputEl = $state(null);
+	function onFilesPicked(e) {
+		const list = Array.from(e.currentTarget.files ?? []);
+		if (list.length > 0) onUploadFiles(list);
+		e.currentTarget.value = '';
+	}
+	function removeClipping(idx) {
+		const f = files[idx];
+		files = files.filter((_, i) => i !== idx);
+		if (f?.type === 'file' && f?.id) {
+			deleteFileById(localStorage.token, f.id).catch(() => {});
+		}
+	}
+	function clipExt(name = '') {
+		const ext = name.includes('.') ? name.split('.').at(-1) : '';
+		return (ext || 'doc').slice(0, 4).toUpperCase();
 	}
 
 	// ─── Spine: progress, active section, dock magnification ───
@@ -299,6 +566,8 @@
 	}
 </script>
 
+<svelte:window onpointerdown={onDeskPointerDown} onkeydown={onDeskKeydown} />
+
 <div class="folio">
 	<div class="grain" aria-hidden="true"></div>
 
@@ -347,7 +616,7 @@
 								{/each}
 							</h2>
 							<p class="greet-sub reveal" style:--d="0.5s">
-								A blank folio. What shall we set in type?
+								{introLine}
 							</p>
 						</div>
 
@@ -443,7 +712,8 @@
 												title="Set the response again"
 												aria-label="Regenerate response"
 												disabled={generating}
-												onclick={() => sec.assistants.at(-1) && onRegenerate(sec.assistants.at(-1))}
+												onclick={() =>
+													sec.assistants.at(-1) && onRegenerate(sec.assistants.at(-1).message)}
 											>
 												<svg
 													width="12"
@@ -482,14 +752,14 @@
 								</header>
 
 								<div class="prose">
-									{#if sec.assistants.length === 0 && generating}
+									{#if (sec.assistants.length === 0 && generating) || sec.assistants.some((a) => !a.done && a.content === '' && a.entries.length === 0)}
 										<div class="typesetting">
 											<span class="ts-label">setting type</span>
 											<span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
 										</div>
 									{/if}
 									{#each sec.assistants as a (a.id)}
-										{@const entries = a.statusHistory ?? (a.status ? [a.status] : [])}
+										{@const entries = a.entries}
 										{#if entries.length > 0}
 											<div class="ledger" role="log" aria-label="Agent actions">
 												{#each entries as en}
@@ -529,11 +799,7 @@
 											</div>
 										{/if}
 										<div class="passage markdown-prose">
-											<Markdown
-												id={`${chatId}-${a.id}`}
-												content={contentToText(a.content)}
-												done={!generating}
-											/>
+											<Markdown id={`${chatId}-${a.id}`} content={a.content} done={a.done} />
 										</div>
 									{/each}
 								</div>
@@ -558,41 +824,224 @@
 	{#if composer}
 		<div class="edge-host">{@render composer()}</div>
 	{:else}
-		<div class="edge" class:busy={generating}>
-			<span class="pilcrow" class:hop={pilcrowHop} aria-hidden="true">¶</span>
-			<div class="edge-line">
-				<textarea
-					bind:this={composerEl}
-					bind:value={composerText}
-					rows="1"
-					placeholder={sections.length === 0 ? 'Write the first line…' : 'Continue…'}
-					disabled={generating}
-					onkeydown={onComposerKey}
-					oninput={autogrow}
-				></textarea>
-				<div class="rule" aria-hidden="true"></div>
+		<div class="edge-slot">
+		{#if query}
+			<div class="query-host" in:swap={{ duration: 380 }} out:swap={{ duration: 200 }}>
+				<QuerySlip question={query} onAnswer={onQueryAnswer} />
 			</div>
-			<button
-				class="set-btn"
-				class:ready={composerText.trim().length > 0}
-				onclick={doSend}
-				disabled={generating}
-				title="Set in type (Enter)"
-			>
-				<span class="set-label">Set in type</span>
-				<svg
-					width="14"
-					height="14"
-					viewBox="0 0 24 24"
-					fill="none"
-					stroke="currentColor"
-					stroke-width="2.2"
-					stroke-linecap="round"
-					stroke-linejoin="round"
+		{:else}
+		<div class="edge" class:busy={generating} in:swap={{ duration: 300 }} out:swap={{ duration: 170 }}>
+			{#if files.length > 0}
+				<div class="clippings" role="list" aria-label="Enclosures">
+					{#each files as f, i (f.itemId ?? f.id ?? `${f.name}-${i}`)}
+						<div
+							class="clip"
+							class:waiting={f.status === 'uploading'}
+							role="listitem"
+							style:--tilt="{(i % 2 === 0 ? -1 : 1) * (0.7 + (i % 3) * 0.5)}deg"
+						>
+							{#if f.type === 'image'}
+								<img class="clip-thumb" src={f.url} alt={f.name ?? 'attached image'} />
+								<span class="clip-name">{f.name ?? 'plate'}</span>
+							{:else}
+								<span class="clip-sort" aria-hidden="true">{clipExt(f.name)}</span>
+								<span class="clip-name">{f.name}</span>
+							{/if}
+							{#if f.status === 'uploading'}
+								<span class="clip-wait" aria-label="uploading"><i></i><i></i><i></i></span>
+							{:else}
+								<button
+									class="clip-x"
+									title="Remove the enclosure"
+									aria-label="Remove {f.name ?? 'enclosure'}"
+									onclick={() => removeClipping(i)}
+								>
+									<svg
+										width="9"
+										height="9"
+										viewBox="0 0 12 12"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2"
+										stroke-linecap="round"><path d="M2.5 2.5l7 7M9.5 2.5l-7 7" /></svg
+									>
+								</button>
+							{/if}
+						</div>
+					{/each}
+				</div>
+			{/if}
+
+			<div class="edge-row">
+				<span class="pilcrow" class:hop={pilcrowHop} aria-hidden="true">¶</span>
+				<div class="edge-line">
+					<textarea
+						bind:this={composerEl}
+						bind:value={composerText}
+						rows="1"
+						placeholder={sections.length === 0 ? 'Write the first line…' : 'Continue…'}
+						disabled={generating}
+						onkeydown={onComposerKey}
+						oninput={autogrow}
+						onpaste={onComposerPaste}
+					></textarea>
+					<div class="rule" aria-hidden="true"></div>
+				</div>
+				<button
+					class="set-btn"
+					class:ready={composerText.trim().length > 0}
+					onclick={doSend}
+					disabled={generating}
+					title="Set in type (Enter)"
 				>
-					<path d="M12 19V5M5 12l7-7 7 7" />
-				</svg>
-			</button>
+					<span class="set-label">Set in type</span>
+					<svg
+						width="14"
+						height="14"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2.2"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+					>
+						<path d="M12 19V5M5 12l7-7 7 7" />
+					</svg>
+				</button>
+			</div>
+
+			<div class="edge-tools" class:held-open={typecaseOpen}>
+				<button
+					class="tool enclose"
+					onclick={() => fileInputEl?.click()}
+					onmousedown={(e) => e.preventDefault()}
+					title="Enclose a file with this prompt"
+					aria-label="Attach files"
+				>
+					<svg
+						width="13"
+						height="13"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="1.8"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+					>
+						<path
+							d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"
+						/>
+					</svg>
+					<span class="tool-label">enclose</span>
+				</button>
+
+				<span class="tool-sep" aria-hidden="true">·</span>
+
+				<div class="typecase" bind:this={typecaseEl}>
+					<button
+						class="tool voice"
+						class:unset={chosenIds.length === 0}
+						class:open={typecaseOpen}
+						onmousedown={(e) => {
+							if (!typecaseOpen) e.preventDefault();
+						}}
+						onclick={toggleTypecase}
+						aria-expanded={typecaseOpen}
+						aria-haspopup="listbox"
+						title="Choose the voice that sets the page"
+					>
+						<svg
+							class="nib"
+							width="13"
+							height="13"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="1.8"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						>
+							<path d="M12 19l7-7 3 3-7 7-3-3z" />
+							<path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z" />
+							<path d="M2 2l7.586 7.586" />
+							<circle cx="11" cy="11" r="2" />
+						</svg>
+						<span class="tool-label">set by <em>{voiceLabel}</em></span>
+						<svg
+							class="caret"
+							width="9"
+							height="9"
+							viewBox="0 0 12 12"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"><path d="M2.5 7.5L6 4l3.5 3.5" /></svg
+						>
+					</button>
+
+					{#if typecaseOpen}
+						<div class="case-pop" role="listbox" aria-label="Models">
+							<div class="case-head">
+								<span class="case-kicker">The type case</span>
+								<span class="case-count"
+									>{typecase.length} voice{typecase.length === 1 ? '' : 's'}</span
+								>
+							</div>
+							{#if typecase.length > 7}
+								<input
+									class="case-find"
+									bind:this={typecaseFindEl}
+									bind:value={typecaseQuery}
+									placeholder="find a voice…"
+									aria-label="Filter models"
+								/>
+							{/if}
+							<div class="case-list">
+								{#each shelf as m, i (m.id)}
+									<button
+										class="case-item"
+										class:chosen={chosenIds.includes(m.id)}
+										style:--i={i}
+										role="option"
+										aria-selected={chosenIds.includes(m.id)}
+										onclick={(e) => pickVoice(m.id, e.shiftKey)}
+									>
+										<span class="case-sort" aria-hidden="true"
+											>{(m.name ?? m.id).charAt(0).toUpperCase()}</span
+										>
+										<span class="case-body">
+											<span class="case-name">{m.name ?? m.id}</span>
+											{#if m?.info?.meta?.description}
+												<span class="case-desc">{m.info.meta.description}</span>
+											{/if}
+										</span>
+										<svg
+											class="case-check"
+											width="11"
+											height="11"
+											viewBox="0 0 10 10"
+											fill="none"
+											stroke="currentColor"
+											stroke-width="2"
+											stroke-linecap="round"
+											stroke-linejoin="round"
+											aria-hidden="true"><path d="M1.5 5.5 4 8l4.5-6" /></svg
+										>
+									</button>
+								{:else}
+									<p class="case-empty">No type by that name in the case.</p>
+								{/each}
+							</div>
+							<div class="case-foot">⇧ click to write in ensemble</div>
+						</div>
+					{/if}
+				</div>
+			</div>
+
+			<input type="file" multiple hidden bind:this={fileInputEl} onchange={onFilesPicked} />
+		</div>
+		{/if}
 		</div>
 	{/if}
 {/snippet}
@@ -1339,6 +1788,17 @@
 		translate: 0 0;
 		pointer-events: auto;
 	}
+	/* Bridge the gap between the section box and the margin rail so the cursor
+	   can travel to the buttons without crossing a dead zone that drops the
+	   hover. Transparent, and only live while the rail itself is interactive. */
+	.sec-rail::before {
+		content: '';
+		position: absolute;
+		top: -4px;
+		bottom: -4px;
+		left: -28px;
+		width: 28px;
+	}
 	.sec-time {
 		font-family: var(--mono);
 		font-size: 10px;
@@ -1477,40 +1937,56 @@
 		transform: translateX(4px);
 	}
 
-	/* ── Thinking ── */
-	.thinking {
-		display: flex;
-		align-items: flex-start;
-		gap: 6px;
-		cursor: pointer;
+	/* ── Thinking ──
+	   Reasoning renders through the shared Collapsible (stock gray chevron pill).
+	   Re-skin its header in place to the /design margin-note treatment: a muted
+	   monospace line prefixed with //, no chevron. Scoped to .passage so only
+	   FOLIO manuscript passages are affected. */
+	.passage :global(.w-fit[class*='text-gray-500']) {
 		color: var(--ink-3);
 		font-family: var(--mono);
 		font-size: 11px;
 		line-height: 1.65;
-		margin: 0 0 14px;
-		user-select: none;
 		transition: color 0.15s;
 	}
-	.thinking:hover {
+	.passage :global(.w-fit[class*='text-gray-500']:hover) {
 		color: var(--ink-2);
 	}
-	.think-slash {
+	/* The header row: left-align and drop the // slash before the label. */
+	.passage :global(.w-fit[class*='text-gray-500'] > div) {
+		justify-content: flex-start;
+		gap: 6px;
+	}
+	.passage :global(.w-fit[class*='text-gray-500'] > div)::before {
+		content: '//';
 		flex: none;
-		opacity: 0.45;
 		font-weight: 700;
 		letter-spacing: -1px;
+		opacity: 0.45;
 	}
-	.think-content {
-		flex: 1;
-		min-width: 0;
-		overflow: hidden;
-		text-overflow: ellipsis;
-		white-space: nowrap;
+	/* Hide the chevron — the // line is affordance enough. */
+	.passage :global(.w-fit[class*='text-gray-500'] [class*='translate-y-']) {
+		display: none;
 	}
-	.thinking.open .think-content {
-		white-space: pre-wrap;
-		overflow: visible;
-		text-overflow: clip;
+	/* Expanded thought reads as a quiet margin note, not body prose. */
+	.passage :global(.space-y-1 [class*='mb-1.5'] :is(p, li, blockquote)) {
+		font-family: var(--mono);
+		font-size: 11.5px;
+		line-height: 1.65;
+		color: var(--ink-3);
+	}
+	/* Reasoning content can arrive as a blockquote; strip the prose quote
+	   ornament, border and inset so it sits flush instead of tabbing in. */
+	.passage :global(.space-y-1 [class*='mb-1.5'] blockquote) {
+		margin: 0;
+		padding: 0;
+		border: none;
+		quotes: none;
+		font-style: normal;
+	}
+	.passage :global(.space-y-1 [class*='mb-1.5'] blockquote p::before),
+	.passage :global(.space-y-1 [class*='mb-1.5'] blockquote p::after) {
+		content: none;
 	}
 
 	/* ── Code ── */
@@ -1668,12 +2144,25 @@
 	}
 
 	/* ── The edge ── */
+	/* composer and query occupy the same cell so the crossfade never shoves the page */
+	.edge-slot {
+		display: grid;
+	}
+	.edge-slot > .edge,
+	.edge-slot > .query-host {
+		grid-area: 1 / 1;
+		align-self: end;
+	}
+	.query-host {
+		margin: 44px -10px 0;
+	}
+
 	.edge {
 		display: flex;
-		align-items: flex-end;
-		gap: 14px;
+		flex-direction: column;
+		gap: 10px;
 		margin: 56px -18px 0;
-		padding: 16px 18px 14px;
+		padding: 16px 18px 12px;
 		border-radius: 16px;
 		border: 1px solid transparent;
 		transition:
@@ -1681,6 +2170,11 @@
 			border-color 0.3s,
 			background 0.3s,
 			box-shadow 0.4s var(--out);
+	}
+	.edge-row {
+		display: flex;
+		align-items: flex-end;
+		gap: 14px;
 	}
 	.edge:hover {
 		border-color: var(--rule-faint);
@@ -1697,6 +2191,7 @@
 	}
 	.pilcrow {
 		flex: none;
+		width: 24px;
 		font-family: var(--serif);
 		font-size: 26px;
 		color: var(--vermilion);
@@ -1856,6 +2351,406 @@
 	}
 	.set-btn:active {
 		transform: scale(0.92);
+	}
+
+	/* ── Enclosures: clippings pinned above the line ── */
+	.clippings {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 9px;
+		padding: 4px 0 2px 38px;
+	}
+	.clip {
+		position: relative;
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		max-width: 240px;
+		padding: 6px 9px 6px 7px;
+		background: var(--paper);
+		border: 1px solid var(--rule);
+		border-radius: 9px;
+		box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+		transform: rotate(var(--tilt, 0deg));
+		animation: pinIn 0.5s var(--spring);
+		transition:
+			transform 0.3s var(--spring),
+			box-shadow 0.3s,
+			border-color 0.2s;
+	}
+	.clip:hover {
+		transform: rotate(0deg) translateY(-2px);
+		box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+	}
+	@keyframes pinIn {
+		from {
+			opacity: 0;
+			transform: translateY(12px) rotate(calc(var(--tilt, 0deg) * 5)) scale(0.9);
+		}
+	}
+	/* a strip of gold tape holds each clipping to the page */
+	.clip::before {
+		content: '';
+		position: absolute;
+		top: -5px;
+		left: 50%;
+		width: 26px;
+		height: 9px;
+		border-radius: 2px;
+		background: color-mix(in srgb, var(--gold) 45%, transparent);
+		transform: translateX(-50%) rotate(-2.5deg);
+		pointer-events: none;
+	}
+	.clip.waiting {
+		border-style: dashed;
+	}
+	.clip-sort {
+		flex: none;
+		font-family: var(--mono);
+		font-size: 8.5px;
+		letter-spacing: 0.08em;
+		color: var(--vermilion);
+		border: 1px solid color-mix(in srgb, var(--vermilion) 35%, transparent);
+		background: var(--vermilion-soft);
+		border-radius: 5px;
+		padding: 4px 5px;
+	}
+	.clip-thumb {
+		flex: none;
+		width: 30px;
+		height: 30px;
+		object-fit: cover;
+		border-radius: 6px;
+		border: 1px solid var(--rule-faint);
+	}
+	.clip-name {
+		min-width: 0;
+		font-size: 12px;
+		color: var(--ink-2);
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+	.clip-x {
+		flex: none;
+		display: grid;
+		place-items: center;
+		width: 18px;
+		height: 18px;
+		border: none;
+		border-radius: 50%;
+		background: transparent;
+		color: var(--ink-3);
+		cursor: pointer;
+		opacity: 0;
+		transform: scale(0.7);
+		transition:
+			opacity 0.18s,
+			transform 0.25s var(--spring),
+			color 0.15s,
+			background 0.15s;
+	}
+	.clip:hover .clip-x,
+	.clip-x:focus-visible {
+		opacity: 1;
+		transform: scale(1);
+	}
+	.clip-x:hover {
+		color: var(--vermilion);
+		background: var(--vermilion-soft);
+	}
+	.clip-wait {
+		flex: none;
+		display: flex;
+		gap: 3px;
+	}
+	.clip-wait i {
+		width: 3.5px;
+		height: 3.5px;
+		border-radius: 50%;
+		background: var(--ultramarine);
+		animation: bounce 1.3s infinite ease-in-out both;
+		opacity: 0.3;
+	}
+	.clip-wait i:nth-child(2) {
+		animation-delay: 0.14s;
+	}
+	.clip-wait i:nth-child(3) {
+		animation-delay: 0.28s;
+	}
+
+	/* ── Edge tools: enclose, and the voice that sets the page ── */
+	/* The tools stay tucked into the page until the line is being written:
+	   they fade up on focus, and hold while the type case is open. */
+	.edge-tools {
+		display: flex;
+		align-items: center;
+		gap: 2px;
+		margin-left: 30px;
+		min-height: 26px;
+		opacity: 0;
+		transform: translateY(5px);
+		pointer-events: none;
+		transition:
+			opacity 0.3s var(--out),
+			transform 0.35s var(--out);
+	}
+	.edge:focus-within .edge-tools,
+	.edge-tools.held-open {
+		opacity: 1;
+		transform: translateY(0);
+		pointer-events: auto;
+	}
+	.tool {
+		display: inline-flex;
+		align-items: center;
+		gap: 6px;
+		border: none;
+		background: transparent;
+		color: var(--ink-3);
+		font-family: var(--serif);
+		font-style: italic;
+		font-size: 13.5px;
+		padding: 3px 8px;
+		border-radius: 8px;
+		cursor: pointer;
+		transition:
+			color 0.2s,
+			background 0.2s;
+	}
+	.tool:hover {
+		color: var(--ink);
+		background: var(--rule-faint);
+	}
+	.tool svg {
+		flex: none;
+		transition: transform 0.35s var(--spring);
+	}
+	.tool.enclose:hover svg {
+		transform: rotate(-16deg) translateY(-1px);
+	}
+	.tool-sep {
+		color: var(--ink-3);
+		opacity: 0.5;
+		padding: 0 2px;
+		user-select: none;
+	}
+	.tool-label {
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		max-width: 280px;
+	}
+	.voice em {
+		font-style: italic;
+		color: var(--ink-2);
+		transition: color 0.2s;
+	}
+	.voice:hover em,
+	.voice.open em {
+		color: var(--vermilion);
+	}
+	/* the nib dips when you reach for it */
+	.voice:hover .nib {
+		transform: rotate(-14deg) translateY(1px);
+	}
+	.voice .caret {
+		opacity: 0.55;
+		transition: transform 0.3s var(--out);
+	}
+	.voice.open .caret {
+		transform: rotate(180deg);
+	}
+	/* no voice chosen yet: the line quietly asks for one */
+	.voice.unset em {
+		color: var(--vermilion);
+		animation: pulse 2.2s ease-in-out infinite;
+	}
+
+	/* ── The type case ── */
+	.typecase {
+		position: relative;
+	}
+	.case-pop {
+		position: absolute;
+		bottom: calc(100% + 10px);
+		left: -6px;
+		z-index: 30;
+		width: min(304px, calc(100vw - 48px));
+		background: var(--paper);
+		border: 1px solid var(--rule-faint);
+		border-radius: 14px;
+		box-shadow:
+			0 18px 60px -18px rgba(0, 0, 0, 0.35),
+			0 4px 16px rgba(0, 0, 0, 0.08);
+		padding: 10px 10px 8px;
+		transform-origin: bottom left;
+		animation: casePop 0.4s var(--spring);
+	}
+	@keyframes casePop {
+		from {
+			opacity: 0;
+			transform: translateY(10px) scale(0.94) rotate(-0.6deg);
+		}
+	}
+	.case-head {
+		display: flex;
+		align-items: baseline;
+		justify-content: space-between;
+		padding: 2px 8px 8px;
+	}
+	.case-kicker {
+		font-size: 10.5px;
+		font-weight: 650;
+		font-style: normal;
+		letter-spacing: 0.22em;
+		text-transform: uppercase;
+		color: var(--vermilion);
+	}
+	.case-count {
+		font-family: var(--mono);
+		font-size: 10px;
+		font-style: normal;
+		color: var(--ink-3);
+	}
+	.case-find {
+		width: 100%;
+		margin: 0 0 6px;
+		padding: 7px 10px;
+		border: 1px dashed var(--rule);
+		border-radius: 8px;
+		background: transparent;
+		font-family: var(--serif);
+		font-style: italic;
+		font-size: 13.5px;
+		color: var(--ink);
+		caret-color: var(--vermilion);
+		outline: none;
+		transition: border-color 0.2s;
+	}
+	.case-find:focus {
+		border-color: var(--vermilion);
+	}
+	.case-find::placeholder {
+		color: var(--ink-3);
+	}
+	.case-list {
+		max-height: min(264px, 38vh);
+		overflow-y: auto;
+		display: flex;
+		flex-direction: column;
+		gap: 1px;
+		scrollbar-width: thin;
+		scrollbar-color: color-mix(in srgb, var(--ink-3) 60%, transparent) transparent;
+	}
+	.case-item {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		width: 100%;
+		padding: 7px 8px;
+		border: none;
+		border-radius: 9px;
+		background: transparent;
+		text-align: left;
+		cursor: pointer;
+		color: var(--ink-2);
+		opacity: 0;
+		transform: translateY(8px);
+		animation: rise 0.4s var(--out) forwards;
+		animation-delay: calc(min(var(--i), 12) * 26ms);
+		transition:
+			background 0.15s,
+			color 0.15s;
+	}
+	.case-item:hover {
+		background: var(--rule-faint);
+		color: var(--ink);
+	}
+	/* each voice is a sort of metal type, waiting in its compartment */
+	.case-sort {
+		flex: none;
+		width: 26px;
+		height: 26px;
+		display: grid;
+		place-items: center;
+		font-family: var(--serif);
+		font-style: normal;
+		font-size: 15px;
+		color: var(--ink-2);
+		background: var(--paper-deep);
+		border: 1px solid var(--rule);
+		border-radius: 6px;
+		box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.07);
+		transition:
+			transform 0.3s var(--spring),
+			background 0.2s,
+			border-color 0.2s,
+			color 0.2s;
+	}
+	.case-item:hover .case-sort {
+		transform: translateY(-2px) rotate(-4deg);
+	}
+	.case-item.chosen .case-sort {
+		background: var(--vermilion);
+		border-color: var(--vermilion);
+		color: #fff8ef;
+	}
+	.case-body {
+		flex: 1;
+		min-width: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 1px;
+	}
+	.case-name {
+		font-family: var(--sans);
+		font-style: normal;
+		font-size: 13px;
+		font-weight: 560;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+	.case-desc {
+		font-family: var(--sans);
+		font-style: normal;
+		font-size: 10.5px;
+		color: var(--ink-3);
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+	.case-check {
+		flex: none;
+		color: var(--ok);
+		opacity: 0;
+		transform: scale(0.4);
+		transition:
+			opacity 0.2s,
+			transform 0.3s var(--spring);
+	}
+	.case-item.chosen .case-check {
+		opacity: 1;
+		transform: scale(1);
+	}
+	.case-empty {
+		font-family: var(--serif);
+		font-style: italic;
+		font-size: 13px;
+		color: var(--ink-3);
+		margin: 0;
+		padding: 10px 8px;
+	}
+	.case-foot {
+		margin-top: 6px;
+		padding: 8px 8px 2px;
+		border-top: 1px solid var(--rule-faint);
+		font-family: var(--mono);
+		font-style: normal;
+		font-size: 9.5px;
+		letter-spacing: 0.04em;
+		color: var(--ink-3);
 	}
 
 	/* ── Colophon ── */
@@ -2197,6 +3092,12 @@
 		.edge {
 			margin-left: 0;
 			margin-right: 0;
+		}
+		.tool-label {
+			max-width: 44vw;
+		}
+		.case-pop {
+			left: -38px;
 		}
 	}
 

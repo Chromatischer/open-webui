@@ -19,7 +19,6 @@
 
 	import DeleteConfirmDialog from '../common/ConfirmDialog.svelte';
 	import ItemMenu from './Knowledge/ItemMenu.svelte';
-	import Badge from '../common/Badge.svelte';
 	import Search from '../icons/Search.svelte';
 	import Plus from '../icons/Plus.svelte';
 	import Spinner from '../common/Spinner.svelte';
@@ -27,6 +26,7 @@
 	import XMark from '../icons/XMark.svelte';
 	import ViewSelector from './common/ViewSelector.svelte';
 	import Loader from '../common/Loader.svelte';
+	import WorkspaceEmpty from './common/WorkspaceEmpty.svelte';
 
 	let loaded = false;
 	let showDeleteConfirm = false;
@@ -163,74 +163,39 @@
 		}}
 	/>
 
-	<div class="flex flex-col gap-1 px-1 mt-1.5 mb-3">
-		<div class="flex justify-between items-center">
-			<div class="flex items-center md:self-center text-xl font-medium px-0.5 gap-2 shrink-0">
-				<div>
-					{$i18n.t('Knowledge')}
-				</div>
-
-				<div class="text-lg font-medium text-gray-500 dark:text-gray-500">
-					{total}
-				</div>
-			</div>
-
-			<div class="flex w-full justify-end gap-1.5">
-				<a
-					class=" px-2 py-1.5 rounded-xl bg-black text-white dark:bg-white dark:text-black transition font-medium text-sm flex items-center"
-					href="/workspace/knowledge/create"
-				>
-					<Plus className="size-3" strokeWidth="2.5" />
-
-					<div class=" hidden md:block md:ml-1 text-xs">{$i18n.t('New Knowledge')}</div>
-				</a>
+	<div class="ws-page flex flex-col px-1 mb-3">
+		<div class="ws-head">
+			<span class="ws-kicker">{$i18n.t('The Workshop')}</span>
+			<div class="ws-title">{$i18n.t('Knowledge')}</div>
+			<div class="ws-lede">
+				{$i18n.t(
+					'Collections of documents a model may consult while it writes — attach them to a model, or summon them in chat with #.'
+				)}
 			</div>
 		</div>
-	</div>
 
-	<div
-		class="py-2 bg-white dark:bg-gray-900 rounded-3xl border border-gray-100/30 dark:border-gray-850/30"
-	>
-		<div class=" flex w-full space-x-2 py-0.5 px-3.5 pb-2">
-			<div class="flex flex-1">
-				<div class=" self-center ml-1 mr-3">
-					<Search className="size-3.5" />
-				</div>
+		<div class="ws-toolbar">
+			<div class="ws-search">
+				<Search className="size-3.5" />
 				<input
-					class=" w-full text-sm py-1 rounded-r-xl outline-hidden bg-transparent"
 					bind:value={query}
 					aria-label={$i18n.t('Search Knowledge')}
 					placeholder={$i18n.t('Search Knowledge')}
 				/>
 				{#if query}
-					<div class="self-center pl-1.5 translate-y-[0.5px] rounded-l-xl bg-transparent">
-						<button
-							class="p-0.5 rounded-full hover:bg-gray-100 dark:hover:bg-gray-900 transition"
-							aria-label={$i18n.t('Clear search')}
-							on:click={() => {
-								query = '';
-							}}
-						>
-							<XMark className="size-3" strokeWidth="2" />
-						</button>
-					</div>
+					<button
+						class="btn-clear p-0.5"
+						aria-label={$i18n.t('Clear search')}
+						on:click={() => {
+							query = '';
+						}}
+					>
+						<XMark className="size-3" strokeWidth="2" />
+					</button>
 				{/if}
 			</div>
-		</div>
 
-		<div
-			class="px-3 flex w-full bg-transparent overflow-x-auto scrollbar-none -mx-1"
-			on:wheel={(e) => {
-				if (e.deltaY !== 0) {
-					e.preventDefault();
-					e.currentTarget.scrollLeft += e.deltaY;
-				}
-			}}
-		>
-			<div
-				class="flex gap-0.5 w-fit text-center text-sm rounded-full bg-transparent px-1.5 whitespace-nowrap"
-				bind:this={tagsContainerElement}
-			>
+			<div class="ws-chips" bind:this={tagsContainerElement}>
 				<ViewSelector
 					bind:value={viewOption}
 					onChange={async (value) => {
@@ -240,15 +205,33 @@
 					}}
 				/>
 			</div>
+
+			<div class="ws-actions">
+				<a class="ws-begin-sm" href="/workspace/knowledge/create">
+					<Plus className="size-3" strokeWidth="2" />
+					{$i18n.t('New Knowledge')}
+				</a>
+			</div>
 		</div>
 
 		{#if items !== null && total !== null}
-			{#if (items ?? []).length !== 0}
+			{#if (items ?? []).length === 0 && !query && !viewOption}
+				<WorkspaceEmpty
+					mark="❧"
+					kicker={$i18n.t('The library')}
+					line={$i18n.t('The shelves stand empty.')}
+					sub={$i18n.t(
+						'Knowledge gathers documents into collections a model can consult while it writes — found one and fill it.'
+					)}
+					beginLabel={$i18n.t('Found your first collection')}
+					onBegin={() => goto('/workspace/knowledge/create')}
+				/>
+			{:else if (items ?? []).length !== 0}
 				<!-- The Aleph dreams itself into being, and the void learns its own name -->
-				<div class=" my-2 px-3 grid grid-cols-1 lg:grid-cols-2 gap-2">
+				<div class="ws-rows">
 					{#each items as item}
 						<button
-							class=" flex space-x-4 cursor-pointer text-left w-full px-3 py-2.5 dark:hover:bg-gray-850/50 hover:bg-gray-50 transition rounded-2xl"
+							class="ws-row"
 							on:click={() => {
 								if (item?.meta?.document) {
 									toast.error(
@@ -261,72 +244,60 @@
 								}
 							}}
 						>
-							<div class=" w-full">
-								<div class=" self-center flex-1 justify-between">
-									<div class="flex items-center justify-between -my-1 h-8">
-										<div class=" flex gap-2 items-center justify-between w-full">
-											<div>
-												<Badge type="success" content={$i18n.t('Collection')} />
-											</div>
+							<div class="ws-row-body">
+								<div class="ws-row-line">
+									<span class="ws-row-name capitalize">{item.name}</span>
+									{#if !item?.write_access}
+										<span class="ws-row-ro">{$i18n.t('read only')}</span>
+									{/if}
+								</div>
 
-											{#if !item?.write_access}
-												<div>
-													<Badge type="muted" content={$i18n.t('Read Only')} />
-												</div>
-											{/if}
-										</div>
+								<div class="ws-row-sub">
+									<Tooltip
+										content={item?.user?.email ?? $i18n.t('Deleted User')}
+										className="flex shrink-0"
+										placement="top-start"
+									>
+										<span class="muted">
+											{$i18n.t('By {{name}}', {
+												name: capitalizeFirstLetter(
+													item?.user?.name ?? item?.user?.email ?? $i18n.t('Deleted User')
+												)
+											})}
+										</span>
+									</Tooltip>
 
-										{#if item?.write_access || $user?.role === 'admin'}
-											<div class="flex items-center gap-2">
-												<div class=" flex self-center">
-													<ItemMenu
-														onExport={$user.role === 'admin'
-															? () => {
-																	exportHandler(item);
-																}
-															: null}
-														on:delete={() => {
-															selectedItem = item;
-															showDeleteConfirm = true;
-														}}
-													/>
-												</div>
-											</div>
-										{/if}
-									</div>
-
-									<div class=" flex items-center gap-1 justify-between px-1.5">
-										<Tooltip content={item?.description ?? item.name}>
-											<div class=" flex items-center gap-2">
-												<div class=" text-sm font-medium line-clamp-1 capitalize">{item.name}</div>
-											</div>
+									{#if item?.description}
+										<span class="muted">·</span>
+										<Tooltip content={item.description} placement="top" className="min-w-0">
+											<span class="ws-row-clamp">{item.description}</span>
 										</Tooltip>
-
-										<div class="flex items-center gap-2 shrink-0">
-											<Tooltip content={dayjs(item.updated_at * 1000).format('LLLL')}>
-												<div class=" text-xs text-gray-500 line-clamp-1 hidden sm:block">
-													{$i18n.t('Updated')}
-													{dayjs(item.updated_at * 1000).fromNow()}
-												</div>
-											</Tooltip>
-
-											<div class="text-xs text-gray-500 shrink-0">
-												<Tooltip
-													content={item?.user?.email ?? $i18n.t('Deleted User')}
-													className="flex shrink-0"
-													placement="top-start"
-												>
-													{$i18n.t('By {{name}}', {
-														name: capitalizeFirstLetter(
-															item?.user?.name ?? item?.user?.email ?? $i18n.t('Deleted User')
-														)
-													})}
-												</Tooltip>
-											</div>
-										</div>
-									</div>
+									{/if}
 								</div>
 							</div>
+
+							<Tooltip content={dayjs(item.updated_at * 1000).format('LLLL')}>
+								<span class="ws-row-meta hidden sm:block">
+									{$i18n.t('Updated')}
+									{dayjs(item.updated_at * 1000).fromNow()}
+								</span>
+							</Tooltip>
+
+							{#if item?.write_access || $user?.role === 'admin'}
+								<div class="ws-row-actions">
+									<ItemMenu
+										onExport={$user.role === 'admin'
+											? () => {
+													exportHandler(item);
+												}
+											: null}
+										on:delete={() => {
+											selectedItem = item;
+											showDeleteConfirm = true;
+										}}
+									/>
+								</div>
+							{/if}
 						</button>
 					{/each}
 				</div>
@@ -346,28 +317,35 @@
 					</Loader>
 				{/if}
 			{:else}
-				<div class=" w-full h-full flex flex-col justify-center items-center my-16 mb-24">
-					<div class="max-w-md text-center">
-						<div class=" text-3xl mb-3">😕</div>
-						<div class=" text-lg font-medium mb-1">{$i18n.t('No knowledge found')}</div>
-						<div class=" text-gray-500 text-center text-xs">
-							{$i18n.t('Try adjusting your search or filter to find what you are looking for.')}
-						</div>
-					</div>
-				</div>
+				<div class="ws-empty">{$i18n.t('No knowledge matches your search.')}</div>
 			{/if}
 		{:else}
 			<div class="w-full h-full flex justify-center items-center py-10">
 				<Spinner className="size-4" />
 			</div>
 		{/if}
-	</div>
 
-	<div class=" text-gray-500 text-xs m-2">
-		ⓘ {$i18n.t("Use '#' in the prompt input to load and include your knowledge.")}
+		<div class="ws-note">
+			ⓘ {$i18n.t("Use '#' in the prompt input to load and include your knowledge.")}
+		</div>
 	</div>
 {:else}
 	<div class="w-full h-full flex justify-center items-center">
 		<Spinner className="size-5" />
 	</div>
 {/if}
+
+<style>
+	.btn-clear {
+		background: transparent;
+		border-radius: 50%;
+		color: var(--text-tertiary);
+		transition:
+			background 0.2s,
+			color 0.2s;
+	}
+	.btn-clear:hover {
+		background: var(--surface-hover);
+		color: var(--text);
+	}
+</style>

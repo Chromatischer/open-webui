@@ -156,12 +156,8 @@
 
 <div>
 	<slot name="label">
-		<div class="mb-2">
-			<div class="flex w-full justify-between mb-1">
-				<div class=" self-center text-xs font-medium text-gray-500">
-					{$i18n.t('Knowledge')}
-				</div>
-			</div>
+		<div class="kn-kicker">
+			{$i18n.t('Knowledge')}
 		</div>
 	</slot>
 
@@ -190,7 +186,7 @@
 		{/if}
 
 		{#if loaded}
-			<div class="flex flex-wrap flex-row text-sm gap-1">
+			<div class="flex flex-wrap flex-row gap-2">
 				<KnowledgeSelector
 					on:select={(e) => {
 						const item = e.detail;
@@ -205,28 +201,90 @@
 						}
 					}}
 				>
-					<div
-						class=" px-3.5 py-1.5 font-medium hover:bg-black/5 dark:hover:bg-white/5 outline outline-1 outline-gray-100 dark:outline-gray-850 rounded-3xl"
-					>
+					<div class="kn-btn">
+						<svg
+							width="12"
+							height="12"
+							viewBox="0 0 14 14"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="1.6"
+							stroke-linecap="round"
+							aria-hidden="true"><path d="M7 2.5v9M2.5 7h9" /></svg
+						>
 						{$i18n.t('Select Knowledge')}
 					</div>
 				</KnowledgeSelector>
 
 				{#if $user?.role === 'admin' || $user?.permissions?.chat?.file_upload}
 					<button
-						class=" px-3.5 py-1.5 font-medium hover:bg-black/5 dark:hover:bg-white/5 outline outline-1 outline-gray-100 dark:outline-gray-850 rounded-3xl"
+						class="kn-btn"
 						type="button"
 						on:click={() => {
 							filesInputElement.click();
-						}}>{$i18n.t('Upload Files')}</button
+						}}
 					>
+						<svg
+							width="12"
+							height="12"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="1.8"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7" /></svg
+						>
+						{$i18n.t('Upload Files')}
+					</button>
 				{/if}
 			</div>
 		{/if}
 		<!-- {knowledge} -->
 	</div>
 
-	<div class=" text-xs dark:text-gray-700">
+	<div class="kn-note">
 		{$i18n.t('To attach knowledge base here, add them to the "Knowledge" workspace first.')}
 	</div>
 </div>
+
+<style>
+	.kn-kicker {
+		font-size: 10.5px;
+		font-weight: 650;
+		letter-spacing: 0.16em;
+		text-transform: uppercase;
+		color: var(--text-secondary);
+		margin-bottom: 9px;
+	}
+	:global(.kn-btn) {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		padding: 6px 16px;
+		border-radius: 999px;
+		border: 1px dashed var(--border-hover, rgba(0, 0, 0, 0.14));
+		background: transparent;
+		color: var(--text-secondary);
+		font-family: var(--serif, serif);
+		font-style: italic;
+		font-size: 14px;
+		cursor: pointer;
+		transition:
+			border-color 0.25s,
+			color 0.25s,
+			background 0.25s;
+	}
+	:global(.kn-btn:hover) {
+		border-color: var(--vermilion, var(--accent));
+		color: var(--vermilion, var(--accent));
+		background: var(--vermilion-soft, var(--accent-glow));
+	}
+	.kn-note {
+		font-family: var(--serif, serif);
+		font-style: italic;
+		font-size: 12.5px;
+		color: var(--text-tertiary);
+		margin-top: 8px;
+	}
+</style>

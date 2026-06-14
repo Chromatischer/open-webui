@@ -11,7 +11,7 @@
 	import { getModelById, updateModelById } from '$lib/apis/models';
 
 	import { getModels } from '$lib/apis';
-	import ModelWizard from '$lib/components/workspace/Models/ModelWizard.svelte';
+	import ModelFolio from '$lib/components/workspace/Models/ModelFolio.svelte';
 
 	let model = null;
 
@@ -52,5 +52,5 @@
 </script>
 
 {#if model}
-	<ModelWizard edit={true} {model} {onSubmit} onClose={() => goto('/workspace/models')} />
+	<ModelFolio edit={true} {model} {onSubmit} onClose={() => goto('/workspace/models')} />
 {/if}

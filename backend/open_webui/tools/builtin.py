@@ -563,6 +563,124 @@ async def execute_code(
 
 
 # =============================================================================
+# USER INTERACTION TOOLS
+# =============================================================================
+
+from pydantic import BaseModel as _BaseModel, Field as _Field
+from typing import List as _List
+
+
+class AskUserOption(_BaseModel):
+    title: str = _Field(..., description='Short answer label shown to the user (a few words).')
+    explain: Optional[str] = _Field(
+        None, description='Optional one-sentence clarification of this option.'
+    )
+    recommend: Optional[bool] = _Field(
+        False, description='Set true on the single option you recommend.'
+    )
+
+
+class AskUserQuestion(_BaseModel):
+    prompt: str = _Field(..., description='The question to put to the user.')
+    options: _List[AskUserOption] = _Field(..., description='Between 2 and 5 answer options.')
+    multi: Optional[bool] = _Field(
+        False,
+        description='True for multiple-choice (the user may pick several); false for single-choice.',
+    )
+    allow_custom: Optional[bool] = _Field(
+        True, description='Allow the user to write their own answer.'
+    )
+    allow_skip: Optional[bool] = _Field(
+        True, description='Allow the user to skip / pick none of the options.'
+    )
+
+
+async def ask_user(
+    questions: _List[AskUserQuestion],
+    __event_call__: callable = None,
+    __metadata__: dict = None,
+) -> str:
+    """
+    Ask the user one to three structured multiple-choice questions and wait for
+    their answer. Use this whenever you need a decision or preference from the
+    user before continuing, instead of guessing. The question replaces the
+    user's input box; they pick options, write their own answer, or skip.
+
+    :param questions: 1–3 questions. Each: prompt (string), options (2–5 items, each with a `title` and optional one-sentence `explain`, optionally `recommend: true` on the one you advise), `multi` (bool, default false), `allow_custom` (bool, default true), `allow_skip` (bool, default true).
+    :return: The user's answer(s) as text.
+    """
+    if __event_call__ is None:
+        return json.dumps({'error': 'Interactive session not available; cannot ask the user.'})
+
+    # Normalise to plain dicts and clamp to the UI limits (max 3 questions, 5 options each)
+    norm = []
+    for q in (questions or [])[:3]:
+        d = q.model_dump(exclude_none=True) if hasattr(q, 'model_dump') else dict(q)
+        opts = []
+        for o in (d.get('options') or [])[:5]:
+            od = (
+                o
+                if isinstance(o, dict)
+                else (o.model_dump(exclude_none=True) if hasattr(o, 'model_dump') else dict(o))
+            )
+            title = str(od.get('title', '')).strip()
+            if not title:
+                continue
+            opt = {'title': title}
+            if od.get('explain'):
+                opt['explain'] = str(od['explain']).strip()
+            if od.get('recommend'):
+                opt['recommend'] = True
+            opts.append(opt)
+        if not str(d.get('prompt', '')).strip() or len(opts) < 2:
+            continue
+        norm.append(
+            {
+                'prompt': str(d['prompt']).strip(),
+                'options': opts,
+                'multi': bool(d.get('multi', False)),
+                'allowCustom': bool(d.get('allow_custom', True)),
+                'allowSkip': bool(d.get('allow_skip', True)),
+            }
+        )
+
+    if not norm:
+        return json.dumps({'error': 'Provide 1–3 questions, each with at least 2 options.'})
+
+    try:
+        result = await __event_call__(
+            {
+                'type': 'question',
+                'data': {
+                    'questions': norm,
+                    'session_id': (__metadata__.get('session_id') if __metadata__ else None),
+                },
+            }
+        )
+    except Exception as e:
+        log.exception(f'ask_user error: {e}')
+        return json.dumps({'error': str(e)})
+
+    if not isinstance(result, dict):
+        return str(result) if result else 'The user dismissed the question without answering.'
+
+    # Build a clear, readable transcript of the answer for the model
+    responses = result.get('responses') or []
+    lines = []
+    for i, q in enumerate(norm):
+        resp = responses[i] if i < len(responses) else {}
+        if resp.get('skipped'):
+            lines.append(f'Q: {q["prompt"]}\nA: (skipped)')
+            continue
+        parts = list(resp.get('selected') or [])
+        if resp.get('custom'):
+            parts.append(f'"{resp["custom"]}"')
+        lines.append(f'Q: {q["prompt"]}\nA: {", ".join(parts) if parts else "(no preference)"}')
+
+    return '\n\n'.join(lines) if lines else (result.get('text') or 'No answer provided.')
+
+
+# =============================================================================
 # MEMORY TOOLS
 # =============================================================================
 

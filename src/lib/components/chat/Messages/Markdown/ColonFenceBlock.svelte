@@ -33,10 +33,12 @@
 	};
 </script>
 
-<div class="relative group my-2 rounded-2xl border border-gray-100 dark:border-gray-800 px-4 py-3">
+<div
+	class="colon-fence colon-fence-{fenceType} relative group my-2 rounded-2xl border border-gray-100 dark:border-gray-800 px-4 py-3"
+>
 	<!-- Header row: type badge + copy button -->
 	<div class="flex items-center justify-between mb-2">
-		<span class="text-xs font-medium text-gray-500 dark:text-gray-400">
+		<span class="colon-fence-label text-xs font-medium text-gray-500 dark:text-gray-400">
 			{label}
 		</span>
 

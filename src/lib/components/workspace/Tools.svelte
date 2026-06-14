@@ -39,6 +39,7 @@
 	import WrenchAlt from '../icons/WrenchAlt.svelte';
 	import WorkspaceActionCard from './common/WorkspaceActionCard.svelte';
 	import WorkspaceCard from './common/WorkspaceCard.svelte';
+	import WorkspaceEmpty from './common/WorkspaceEmpty.svelte';
 
 	let shiftKey = false;
 	let loaded = false;
@@ -241,6 +242,7 @@
 		/>
 
 		<div class="ws-head">
+			<span class="ws-kicker">{$i18n.t('The Workshop')}</span>
 			<div class="ws-title">{$i18n.t('Tools')}</div>
 			<div class="ws-lede">
 				{$i18n.t(
@@ -289,46 +291,63 @@
 			</div>
 		</div>
 
-		<div class="ws-grid">
-			<WorkspaceActionCard
-				newLabel={$i18n.t('New Tool')}
-				newSub={$i18n.t('Start from scratch')}
-				importLabel={$i18n.t('Import')}
-				importSub={$i18n.t('From .json file')}
-				showImport={$user?.role === 'admin' || $user?.permissions?.workspace?.tools_import}
-				onNew={() => goto('/workspace/tools/create')}
+		{#if filteredItems.length === 0 && !query && !viewOption}
+			<WorkspaceEmpty
+				mark="&amp;"
+				kicker={$i18n.t('The workbench')}
+				line={$i18n.t('Every craft begins bare-handed.')}
+				sub={$i18n.t(
+					'Tools are Python instruments a model can pick up mid-conversation — fetch data, run code, reach other services.'
+				)}
+				beginLabel={$i18n.t('Forge your first tool')}
+				importLabel={$user?.role === 'admin' || $user?.permissions?.workspace?.tools_import
+					? $i18n.t('or import from a .json file')
+					: ''}
+				onBegin={() => goto('/workspace/tools/create')}
 				onImport={() => toolsImportInputElement.click()}
 			/>
+		{:else}
+			<div class="ws-grid">
+				<WorkspaceActionCard
+					newLabel={$i18n.t('New Tool')}
+					newSub={$i18n.t('Start from scratch')}
+					importLabel={$i18n.t('Import')}
+					importSub={$i18n.t('From .json file')}
+					showImport={$user?.role === 'admin' || $user?.permissions?.workspace?.tools_import}
+					onNew={() => goto('/workspace/tools/create')}
+					onImport={() => toolsImportInputElement.click()}
+				/>
 
-			{#each filteredItems as tool}
-				<WorkspaceCard
-					name={tool.name}
-					description={tool?.meta?.description ?? tool.id}
-					author={$i18n.t('By {{name}}', {
-						name: capitalizeFirstLetter(
-							tool?.user?.name ?? tool?.user?.email ?? $i18n.t('Deleted User')
-						)
-					})}
-					href={tool.write_access
-						? `/workspace/tools/edit?id=${encodeURIComponent(tool.id)}`
-						: null}
-					writeAccess={tool.write_access}
-					readOnlyLabel={$i18n.t('read only')}
-				>
-					<div slot="avatar" class="ws-icon-avatar"><WrenchAlt className="size-5" /></div>
+				{#each filteredItems as tool}
+					<WorkspaceCard
+						name={tool.name}
+						description={tool?.meta?.description ?? tool.id}
+						author={$i18n.t('By {{name}}', {
+							name: capitalizeFirstLetter(
+								tool?.user?.name ?? tool?.user?.email ?? $i18n.t('Deleted User')
+							)
+						})}
+						href={tool.write_access
+							? `/workspace/tools/edit?id=${encodeURIComponent(tool.id)}`
+							: null}
+						writeAccess={tool.write_access}
+						readOnlyLabel={$i18n.t('read only')}
+					>
+						<div slot="avatar" class="ws-icon-avatar"><WrenchAlt className="size-5" /></div>
 
-					<svelte:fragment slot="footer">
-						<span class="ws-base"><WrenchAlt className="size-3" />{$i18n.t('Tool')}</span>
-						{#if tool?.meta?.manifest?.version}
-							<span class="ws-tag">v{tool?.meta?.manifest?.version}</span>
-						{/if}
-					</svelte:fragment>
-				</WorkspaceCard>
-			{/each}
-		</div>
+						<svelte:fragment slot="footer">
+							<span class="ws-base"><WrenchAlt className="size-3" />{$i18n.t('Tool')}</span>
+							{#if tool?.meta?.manifest?.version}
+								<span class="ws-tag">v{tool?.meta?.manifest?.version}</span>
+							{/if}
+						</svelte:fragment>
+					</WorkspaceCard>
+				{/each}
+			</div>
 
-		{#if (filteredItems ?? []).length === 0 && (query || viewOption)}
-			<div class="ws-empty">{$i18n.t('No tools match your search.')}</div>
+			{#if (filteredItems ?? []).length === 0 && (query || viewOption)}
+				<div class="ws-empty">{$i18n.t('No tools match your search.')}</div>
+			{/if}
 		{/if}
 	</div>
 	<DeleteConfirmDialog

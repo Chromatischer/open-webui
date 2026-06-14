@@ -56,8 +56,11 @@
 
 	import {
 		convertMessagesToHistory,
+		convertHeicToJpeg,
+		compressImage,
 		copyToClipboard,
 		createMessagesList,
+		extractContentFromFile,
 		getPromptVariables,
 		processDetails,
 		getCodeBlockContents,
@@ -134,6 +137,10 @@
 	let eventConfirmationInputValue = '';
 	let eventConfirmationInputType = '';
 	let eventCallback = null;
+
+	// The agent's ask_user tool: a structured question that replaces the composer
+	// (the Folio edge) until the user answers, then returns the answer to the tool.
+	let pendingQuestion = null;
 
 	let selectedModels = [''];
 	let atSelectedModel: Model | undefined;
@@ -620,6 +627,11 @@
 					eventConfirmationInputPlaceholder = data.placeholder;
 					eventConfirmationInputValue = data?.value ?? '';
 					eventConfirmationInputType = data?.type ?? '';
+				} else if (type === 'question') {
+					// ask_user tool: surface the structured question inline (replaces
+					// the composer) and return the user's answer as the tool result
+					eventCallback = cb;
+					pendingQuestion = data;
 				} else if (type.startsWith('terminal:')) {
 					terminalEventHandler(type, data);
 				} else {
@@ -627,6 +639,10 @@
 				}
 
 				history.messages[event.message_id] = message;
+				// Replace the top-level reference so runes children ($derived over the
+				// bound history prop) re-run on every streamed delta — in-place
+				// mutation keeps the same object identity and is filtered out there.
+				history = { ...history };
 			}
 		} else {
 			// Non-active chat completion: queue stays in the global store.
@@ -1022,6 +1038,218 @@
 			await uploadGoogleDriveFile(data);
 		} else if (type === 'web') {
 			await uploadWeb(data);
+		}
+	};
+
+	const uploadFileHandler = async (file, process = true, itemData = {}) => {
+		if ($user?.role !== 'admin' && !($user?.permissions?.chat?.file_upload ?? true)) {
+			toast.error($i18n.t('You do not have permission to upload files.'));
+			return null;
+		}
+
+		const fileUploadCapableModels = selectedModels.filter(
+			(modelId) =>
+				$models.find((m) => m.id === modelId)?.info?.meta?.capabilities?.file_upload ?? true
+		);
+		if (fileUploadCapableModels.length !== selectedModels.length) {
+			toast.error($i18n.t('Model(s) do not support file upload'));
+			return null;
+		}
+
+		const tempItemId = uuidv4();
+		const fileItem = {
+			type: 'file',
+			file: '',
+			id: null,
+			url: '',
+			name: file.name,
+			collection_name: '',
+			status: 'uploading',
+			size: file.size,
+			error: '',
+			itemId: tempItemId,
+			...itemData
+		};
+
+		if (fileItem.size == 0) {
+			toast.error($i18n.t('You cannot upload an empty file.'));
+			return null;
+		}
+
+		files = [...files, fileItem];
+
+		if (!$temporaryChatEnabled) {
+			try {
+				// If the file is an audio file, provide the language for STT.
+				let metadata = null;
+				if (
+					(file.type.startsWith('audio/') || file.type.startsWith('video/')) &&
+					$settings?.audio?.stt?.language
+				) {
+					metadata = {
+						language: $settings?.audio?.stt?.language
+					};
+				}
+
+				// During the file upload, file content is automatically extracted.
+				const uploadedFile = await uploadFile(localStorage.token, file, metadata, process);
+
+				if (uploadedFile) {
+					if (uploadedFile.error) {
+						toast.warning(uploadedFile.error);
+					}
+
+					fileItem.status = 'uploaded';
+					fileItem.file = uploadedFile;
+					fileItem.id = uploadedFile.id;
+					fileItem.collection_name =
+						uploadedFile?.meta?.collection_name || uploadedFile?.collection_name;
+					fileItem.content_type = uploadedFile.meta?.content_type || uploadedFile.content_type;
+					fileItem.url = `${uploadedFile.id}`;
+
+					files = files;
+				} else {
+					files = files.filter((item) => item?.itemId !== tempItemId);
+				}
+			} catch (e) {
+				toast.error(`${e}`);
+				files = files.filter((item) => item?.itemId !== tempItemId);
+			}
+		} else {
+			// Temporary chat: extract the content locally instead of uploading.
+			const content = await extractContentFromFile(file).catch((error) => {
+				toast.error(
+					$i18n.t('Failed to extract content from the file: {{error}}', { error: error })
+				);
+				return null;
+			});
+
+			if (content === null) {
+				toast.error($i18n.t('Failed to extract content from the file.'));
+				files = files.filter((item) => item?.itemId !== tempItemId);
+				return null;
+			}
+
+			fileItem.status = 'uploaded';
+			fileItem.type = 'text';
+			fileItem.content = content;
+			fileItem.id = uuidv4();
+			files = files;
+		}
+	};
+
+	const inputFilesHandler = async (inputFiles) => {
+		if (
+			($config?.file?.max_count ?? null) !== null &&
+			files.length + inputFiles.length > $config?.file?.max_count
+		) {
+			toast.error(
+				$i18n.t(`You can only chat with a maximum of {{maxCount}} file(s) at a time.`, {
+					maxCount: $config?.file?.max_count
+				})
+			);
+			return;
+		}
+
+		inputFiles.forEach(async (file) => {
+			if (
+				($config?.file?.max_size ?? null) !== null &&
+				file.size > ($config?.file?.max_size ?? 0) * 1024 * 1024
+			) {
+				toast.error(
+					$i18n.t(`File size should not exceed {{maxSize}} MB.`, {
+						maxSize: $config?.file?.max_size
+					})
+				);
+				return;
+			}
+
+			if (file['type'].startsWith('image/')) {
+				const visionCapableModels = selectedModels.filter(
+					(modelId) =>
+						$models.find((m) => m.id === modelId)?.info?.meta?.capabilities?.vision ?? true
+				);
+				if (visionCapableModels.length === 0) {
+					toast.error($i18n.t('Selected model(s) do not support image inputs'));
+					return;
+				}
+
+				const compressImageHandler = async (imageUrl, settings = {}, config = {}) => {
+					const settingsCompression = settings?.imageCompression ?? false;
+					const configWidth = config?.file?.image_compression?.width ?? null;
+					const configHeight = config?.file?.image_compression?.height ?? null;
+
+					if (!settingsCompression && !configWidth && !configHeight) {
+						return imageUrl;
+					}
+
+					let width = null;
+					let height = null;
+
+					if (settingsCompression) {
+						width = settings?.imageCompressionSize?.width ?? null;
+						height = settings?.imageCompressionSize?.height ?? null;
+					}
+
+					// Apply config limits as an upper bound if any
+					if (configWidth && (width === null || width > configWidth)) {
+						width = configWidth;
+					}
+					if (configHeight && (height === null || height > configHeight)) {
+						height = configHeight;
+					}
+
+					if (width || height) {
+						return await compressImage(imageUrl, width, height);
+					}
+					return imageUrl;
+				};
+
+				let reader = new FileReader();
+				reader.onload = async (event) => {
+					let imageUrl = event.target.result;
+					imageUrl = await compressImageHandler(imageUrl, $settings, $config);
+
+					if ($temporaryChatEnabled) {
+						files = [
+							...files,
+							{
+								type: 'image',
+								url: imageUrl
+							}
+						];
+					} else {
+						const blob = await (await fetch(imageUrl)).blob();
+						const compressedFile = new File([blob], file.name, { type: file.type });
+						uploadFileHandler(compressedFile, false);
+					}
+				};
+				reader.readAsDataURL(file['type'] === 'image/heic' ? await convertHeicToJpeg(file) : file);
+			} else {
+				uploadFileHandler(file);
+			}
+		});
+	};
+
+	// Drag & drop onto the desk: files land as enclosures at the edge.
+	const onDragOver = (e: DragEvent) => {
+		e.preventDefault();
+		dragged = e.dataTransfer?.types?.includes('Files') ?? false;
+	};
+	const onDragLeave = (e: DragEvent) => {
+		if ((e.currentTarget as HTMLElement)?.contains(e.relatedTarget as Node)) {
+			return;
+		}
+		dragged = false;
+	};
+	const onDrop = async (e: DragEvent) => {
+		e.preventDefault();
+		dragged = false;
+		if (e.dataTransfer?.files) {
+			const inputFiles = Array.from(e.dataTransfer.files);
+			if (inputFiles.length > 0) {
+				inputFilesHandler(inputFiles);
+			}
 		}
 	};
 
@@ -1553,8 +1781,7 @@
 		const completed = history?.messages?.[responseMessageId];
 		const followups = extractFollowups(completed?.content);
 		if (followups.length >= 2 && !get(scratchboardAgentWriting)) {
-			const t = new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
-			writeMarginNote(`\n\n— claude, ${t}\n${followups.map((f) => `- ${f}`).join('\n')}`);
+			writeMarginNote(`\n\n## Follow-ups\n${followups.map((f) => `- ${f}`).join('\n')}`);
 		}
 	};
 
@@ -1826,6 +2053,7 @@
 			);
 
 			history.messages[message.id] = message;
+			history = { ...history };
 
 			await tick();
 			if (autoScroll) {
@@ -2941,7 +3169,14 @@
 				/>
 			{/if}
 
-			<div class="w-full h-full flex relative max-w-full flex-col">
+			<div
+				class="w-full h-full flex relative max-w-full flex-col"
+				role="region"
+				aria-label="Chat"
+				on:dragover={onDragOver}
+				on:dragleave={onDragLeave}
+				on:drop={onDrop}
+			>
 				<FilesOverlay show={dragged} />
 
 				<div
@@ -2951,11 +3186,19 @@
 					<div class="relative flex-1 min-h-0 w-full">
 						<Folio
 							bind:history
+							bind:selectedModels
+							bind:files
 							chatId={$chatId}
-							{selectedModels}
 							chatTitle={$chatTitle}
 							{generating}
 							user={$user}
+							query={pendingQuestion}
+							onQueryAnswer={(result) => {
+								if (eventCallback) eventCallback(result);
+								eventCallback = null;
+								pendingQuestion = null;
+							}}
+							onUploadFiles={(fl) => inputFilesHandler(fl)}
 							onSubmit={(text) => submitHandler(text)}
 							onNewChat={initNewChat}
 							onRegenerate={(m) => regenerateResponse(m)}

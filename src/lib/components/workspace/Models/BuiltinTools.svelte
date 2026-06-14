@@ -44,6 +44,10 @@
 			label: $i18n.t('Task Management'),
 			description: $i18n.t('Break down complex requests into trackable steps')
 		},
+		ask_user: {
+			label: $i18n.t('Ask the User'),
+			description: $i18n.t('Put a structured multiple-choice question to the user and wait for the answer')
+		},
 		automations: {
 			label: $i18n.t('Automations'),
 			description: $i18n.t('Create and manage scheduled automations')
@@ -76,62 +80,113 @@
 </script>
 
 <div>
-	<div class="text-xs font-medium text-gray-500 mb-2">{$i18n.t('Builtin Tools')}</div>
+	<div class="bt-kicker">{$i18n.t('Builtin Tools')}</div>
 	<div class="bt-grid">
 		{#each allTools as tool}
 			<button
 				type="button"
-				class="bt-card {builtinTools[tool] !== false ? 'on' : ''}"
+				class="bt-cap {builtinTools[tool] !== false ? 'on' : ''}"
 				on:click={() => toggle(tool)}
 			>
-				<span class="bt-label">{$i18n.t(toolLabels[tool].label)}</span>
-				<span class="bt-desc">{toolLabels[tool].description}</span>
+				<span class="bt-seal" aria-hidden="true">
+					{#if builtinTools[tool] !== false}
+						<svg
+							width="8"
+							height="8"
+							viewBox="0 0 10 10"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"><path d="M1.5 5.5 4 8l4.5-6" /></svg
+						>
+					{/if}
+				</span>
+				<span class="bt-text">
+					<span class="bt-label">{$i18n.t(toolLabels[tool].label)}</span>
+					<span class="bt-desc">{toolLabels[tool].description}</span>
+				</span>
 			</button>
 		{/each}
 	</div>
 </div>
 
 <style>
+	.bt-kicker {
+		font-size: 10.5px;
+		font-weight: 650;
+		letter-spacing: 0.16em;
+		text-transform: uppercase;
+		color: var(--text-secondary);
+		margin-bottom: 9px;
+	}
 	.bt-grid {
 		display: grid;
-		grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-		gap: 8px;
+		grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+		gap: 6px 14px;
 	}
-	.bt-card {
+	.bt-cap {
+		display: flex;
+		align-items: flex-start;
+		gap: 10px;
+		text-align: left;
+		padding: 9px 10px;
+		border: none;
+		border-radius: 10px;
+		background: transparent;
+		cursor: pointer;
+		transition: background 0.15s;
+	}
+	.bt-cap:hover {
+		background: var(--rule-faint, rgba(0, 0, 0, 0.05));
+	}
+	.bt-seal {
+		flex: none;
+		margin-top: 2px;
+		width: 13px;
+		height: 13px;
+		border-radius: 50%;
+		border: 1.5px solid var(--text-tertiary);
+		display: grid;
+		place-items: center;
+		color: transparent;
+		transition:
+			border-color 0.2s,
+			color 0.2s;
+	}
+	.bt-cap.on .bt-seal {
+		border-color: var(--vermilion, var(--accent));
+		color: var(--vermilion, var(--accent));
+		animation: btSealIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+	}
+	@keyframes btSealIn {
+		from {
+			transform: scale(1.5);
+		}
+		to {
+			transform: scale(1);
+		}
+	}
+	.bt-text {
 		display: flex;
 		flex-direction: column;
-		text-align: left;
-		padding: 10px 12px;
-		border: 1px solid var(--border);
-		border-radius: 12px;
-		background: var(--bg-base);
-		cursor: pointer;
-		transition:
-			border-color 0.15s ease,
-			background 0.15s ease,
-			transform 0.1s ease;
-	}
-	.bt-card:hover {
-		border-color: var(--border-hover);
-	}
-	.bt-card:active {
-		transform: scale(0.985);
-	}
-	.bt-card.on {
-		border-color: var(--accent);
-		background: var(--accent-glow);
+		gap: 1px;
+		min-width: 0;
 	}
 	.bt-label {
-		font-size: 13px;
-		font-weight: 600;
+		font-size: 13.5px;
+		font-weight: 560;
+		color: var(--text-secondary);
+		line-height: 1.3;
+		transition: color 0.15s;
+	}
+	.bt-cap.on .bt-label {
 		color: var(--text);
-		line-height: 1.25;
 	}
 	.bt-desc {
-		font-size: 11px;
-		color: var(--text-secondary);
-		margin-top: 2px;
-		line-height: 1.35;
+		font-size: 11.5px;
+		color: var(--text-tertiary);
+		line-height: 1.4;
 		display: -webkit-box;
 		-webkit-line-clamp: 2;
 		-webkit-box-orient: vertical;

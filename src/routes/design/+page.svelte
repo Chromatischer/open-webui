@@ -40,12 +40,16 @@
 	}
 
 	// ─── Folios ───
+	// quires: folios gathered into folders, the way loose leaves are sewn together
+	const seedQuires = [{ id: 'q-design', name: 'Design studies', open: true }];
+
 	const seedFolios = [
 		{
 			id: 'f7',
 			no: 7,
 			title: 'On Quiet Interfaces',
 			date: 'today',
+			quire: 'q-design',
 			scratch:
 				'# Margin notes\n\n- bubbles → headings: decided\n- one nav axis, the spine\n- agent works in the open, on the page\n\n— next: palette tokens into app.css',
 			sections: [
@@ -142,6 +146,7 @@
 			no: 6,
 			title: 'Drawer Gestures, Unified',
 			date: 'May 30',
+			quire: 'q-design',
 			scratch:
 				'# Margin notes\n\n- one gesture grammar for both drawers\n- velocity > distance for commit',
 			sections: [
@@ -231,6 +236,8 @@
 
 	const stored = loadFolios();
 	let folios = $state(stored?.folios ?? seedFolios);
+	// a press stored before quires existed simply has none yet
+	let quires = $state(stored ? (stored.quires ?? []) : seedQuires);
 	let currentId = $state(stored?.currentId ?? 'f7');
 	if (stored?.dark) dark = true;
 
@@ -239,7 +246,12 @@
 	// debounce-persist the whole press to localStorage
 	let persistT;
 	$effect(() => {
-		const snapshot = JSON.stringify({ folios: $state.snapshot(folios), currentId, dark });
+		const snapshot = JSON.stringify({
+			folios: $state.snapshot(folios),
+			quires: $state.snapshot(quires),
+			currentId,
+			dark
+		});
 		if (!browser) return;
 		clearTimeout(persistT);
 		persistT = setTimeout(() => localStorage.setItem(STORE_KEY, snapshot), 500);
@@ -339,6 +351,84 @@
 		setTimeout(() => composerEl?.focus(), 80);
 	}
 
+	// ─── Quires: gather, file, unfile (drag a folio onto a quire to file it) ───
+	let renamingQuire = $state(null);
+	let dragId = $state(null);
+	let dropQuire = $state(null); // a quire id, or 'new' while over the gather button
+
+	// the archive flattened to rows: quire heads, their filed folios, then loose leaves
+	let archRows = $derived.by(() => {
+		const sorted = [...folios].sort((a, b) => b.no - a.no);
+		const known = new Set(quires.map((q) => q.id));
+		const rows = [];
+		for (const q of quires) {
+			const filed = sorted.filter((f) => f.quire === q.id);
+			rows.push({ kind: 'quire', key: 'q:' + q.id, q, count: filed.length });
+			if (q.open) {
+				if (!filed.length) rows.push({ kind: 'empty', key: 'e:' + q.id, q });
+				for (const f of filed) rows.push({ kind: 'folio', key: f.id, f, q });
+			}
+		}
+		for (const f of sorted) {
+			if (!f.quire || !known.has(f.quire)) rows.push({ kind: 'folio', key: f.id, f, q: null });
+		}
+		return rows;
+	});
+
+	function newQuire() {
+		quires.unshift({ id: 'q' + Date.now(), name: 'New quire', open: true });
+		const q = quires[0];
+		startRenameQuire(q);
+		return q;
+	}
+
+	async function startRenameQuire(q) {
+		renamingQuire = q.id;
+		await tick();
+		const el = document.getElementById('qn-' + q.id);
+		if (el) {
+			el.focus();
+			const r = document.createRange();
+			r.selectNodeContents(el);
+			const s = window.getSelection();
+			s.removeAllRanges();
+			s.addRange(r);
+		}
+	}
+
+	// dissolving a quire returns its folios to the loose archive — nothing is lost
+	function dissolveQuire(id) {
+		for (const f of folios) if (f.quire === id) f.quire = null;
+		quires = quires.filter((q) => q.id !== id);
+		if (renamingQuire === id) renamingQuire = null;
+	}
+
+	function fileInto(id) {
+		const f = folios.find((x) => x.id === dragId);
+		const q = quires.find((x) => x.id === id);
+		if (f && q) {
+			f.quire = q.id;
+			q.open = true;
+		}
+		dragId = null;
+		dropQuire = null;
+	}
+
+	function unfile() {
+		const f = folios.find((x) => x.id === dragId);
+		if (f) f.quire = null;
+		dragId = null;
+		dropQuire = null;
+	}
+
+	function gatherInto() {
+		const id = dragId;
+		dragId = null;
+		dropQuire = null;
+		const f = folios.find((x) => x.id === id);
+		if (f) f.quire = newQuire().id;
+	}
+
 	// ─── The manuscript ───
 	let generating = $state(false);
 	let composerText = $state('');
@@ -378,6 +468,235 @@
 		]
 	];
 
+	// ─── The Query: the agent puts structured questions to the user ───
+	// Opens in place of the composer (the edge). Up to 3 questions, up to 5
+	// options each, single- or multiple-choice, each with a title and an
+	// optional one-line gloss — plus a write-your-own line and a skip.
+	let pendingQuery = $state(null);
+	let queryHostSec = $state(null); // the agent turn that called the tool — its ledger holds the result
+	let qAns = $state([]);
+	let qIndex = $state(0);
+	let qDir = $state(1);
+	let querySealing = $state(false);
+
+	let curQ = $derived(pendingQuery ? pendingQuery.questions[qIndex] : null);
+	let curAns = $derived(pendingQuery ? qAns[qIndex] : null);
+	let isLastQ = $derived(!!pendingQuery && qIndex === pendingQuery.questions.length - 1);
+	let qAnswered = $derived(
+		!!curAns && (curAns.picks.length > 0 || curAns.custom.trim().length > 0 || curAns.skipped)
+	);
+	// the meter only advances when you move on (Next / skip), never on selection alone
+	let qCommitted = $state(new Set());
+	let qDone = $derived(pendingQuery ? qCommitted.size : 0);
+	let qProgress = $derived(pendingQuery ? qDone / pendingQuery.questions.length : 0);
+
+	// The canned inquiry the prototype's agent poses — exercises every shape:
+	// single + glosses + a suggested mark + write-your-own; multi with the full
+	// five options; and a single with no write-your-own. Mirrors the tool's
+	// eventual call signature (questions[] · options[] · multi · allowCustom · allowSkip).
+	function makeQuery() {
+		return {
+			id: 'q' + Date.now(),
+			questions: [
+				{
+					id: 'q1',
+					prompt: 'How boldly should I reset the composer’s ink?',
+					multi: false,
+					allowCustom: true,
+					allowSkip: true,
+					options: [
+						{
+							id: 'a',
+							title: 'Touch it lightly',
+							explain: 'Recolour the edge; leave every line of markup where it sits.'
+						},
+						{
+							id: 'b',
+							title: 'Reshape the edge',
+							explain: 'Redraw the rule and the seal, but keep the page’s layout intact.',
+							recommend: true
+						},
+						{
+							id: 'c',
+							title: 'Rebuild it whole',
+							explain: 'Make the composer the page’s living edge, from the studs out.'
+						}
+					]
+				},
+				{
+					id: 'q2',
+					prompt: 'And which surfaces should take the same ink?',
+					multi: true,
+					allowCustom: true,
+					allowSkip: true,
+					options: [
+						{ id: 'a', title: 'The composer' },
+						{ id: 'b', title: 'Section headings', explain: 'The §-numbered serif prompts.' },
+						{ id: 'c', title: 'The ledger stamps' },
+						{ id: 'd', title: 'The margin', explain: 'Our shared scratchboard.' },
+						{ id: 'e', title: 'The archive' }
+					]
+				},
+				{
+					id: 'q3',
+					prompt: 'And where shall I set it down?',
+					multi: false,
+					allowCustom: false,
+					allowSkip: true,
+					options: [
+						{ id: 'a', title: 'design/folio-main' },
+						{ id: 'b', title: 'A fresh feature branch', recommend: true },
+						{ id: 'c', title: 'main — I’ll risk it' }
+					]
+				}
+			]
+		};
+	}
+
+	function poseQuery(query, hostSec) {
+		pendingQuery = query;
+		queryHostSec = hostSec;
+		qAns = pendingQuery.questions.map(() => ({
+			picks: [],
+			custom: '',
+			customOpen: false,
+			skipped: false
+		}));
+		qCommitted = new Set();
+		qIndex = 0;
+		qDir = 1;
+		tick().then(scrollToEdge);
+	}
+
+	function pickOption(optId) {
+		const a = qAns[qIndex];
+		a.skipped = false;
+		if (curQ.multi) {
+			a.picks = a.picks.includes(optId) ? a.picks.filter((x) => x !== optId) : [...a.picks, optId];
+		} else {
+			a.picks = [optId];
+			a.customOpen = false;
+			a.custom = '';
+		}
+	}
+
+	function openCustom() {
+		const a = qAns[qIndex];
+		a.skipped = false;
+		a.customOpen = true;
+		if (!curQ.multi) a.picks = [];
+		tick().then(() => {
+			const el = document.getElementById('qcustom-' + qIndex);
+			if (el) {
+				el.focus();
+				el.style.height = 'auto';
+				el.style.height = el.scrollHeight + 'px';
+			}
+		});
+	}
+
+	function goQ(delta) {
+		qDir = delta;
+		qIndex = Math.max(0, Math.min(pendingQuery.questions.length - 1, qIndex + delta));
+	}
+
+	function advance() {
+		// committing the current question is what fills the meter
+		qCommitted = new Set(qCommitted).add(qIndex);
+		if (isLastQ) sealAnswer();
+		else goQ(1);
+	}
+
+	function skipQuestion() {
+		const a = qAns[qIndex];
+		a.picks = [];
+		a.custom = '';
+		a.customOpen = false;
+		a.skipped = true;
+		advance();
+	}
+
+	// one human-readable line per answered question, joined the way a margin note would read
+	function composeAnswer() {
+		const said = pendingQuery.questions
+			.map((q, i) => {
+				const a = qAns[i];
+				if (a.skipped) return null;
+				const titles = a.picks
+					.map((id) => q.options.find((o) => o.id === id)?.title)
+					.filter(Boolean);
+				if (a.custom.trim()) titles.push('“' + a.custom.trim() + '”');
+				return titles.length ? titles.join(', ') : null;
+			})
+			.filter(Boolean);
+		return said.length ? said.join(' · ') : 'No strong preference — your call.';
+	}
+
+	async function sealAnswer() {
+		if (querySealing) return;
+		const text = composeAnswer();
+		const host = queryHostSec;
+		// let the seal land, then collapse the slip
+		querySealing = true;
+		setTimeout(async () => {
+			// the answer returns to the agent as a *tool result*: the `ask` stamp in
+			// its ledger resolves with what you chose — no new message in your name
+			if (host) {
+				for (const b of host.blocks) {
+					if (b.type === 'ledger') {
+						const e = b.entries.find((en) => en.verb === 'ask' && en.status !== 'done');
+						if (e) {
+							e.status = 'done';
+							e.note = 'answered';
+						}
+					}
+				}
+			}
+			pendingQuery = null;
+			queryHostSec = null;
+			querySealing = false;
+			// the agent picks its turn back up on the strength of the answer
+			generating = true;
+			await tick();
+			scrollToEdge();
+			setTimeout(() => {
+				if (host)
+					host.blocks = [
+						...host.blocks,
+						{
+							type: 'p',
+							text: `Noted — ${text}. I’ll work to that and leave the rest of the page as it stands; strike a line through anything that reads wrong and I’ll set it again.`
+						}
+					];
+				generating = false;
+				tick().then(scrollToEdge);
+			}, 1200);
+		}, 440);
+	}
+
+	// the composer and the query share one spot (a grid cell, so neither shoves the
+	// other); whatever leaves sinks and fades, whatever enters rises off the same
+	// ruled line — transform + opacity only, so it stays smooth
+	function swap(node, { duration = 340 } = {}) {
+		if (browser && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+			return { duration: 0 };
+		}
+		const ease = (t) => 1 - Math.pow(1 - t, 3);
+		return {
+			duration,
+			css: (t) => {
+				const e = ease(t);
+				return `opacity: ${t};
+					transform: translateY(${(1 - e) * 16}px) scale(${0.97 + e * 0.03});
+					transform-origin: bottom center;`;
+			}
+		};
+	}
+
+	// the agent's reply rotation: pose a query first (so it's seen at once), then
+	// the prose reply, then the ledger+margin turn
+	const REPLY_ORDER = ['query', 'prose', 'margin'];
+
 	async function send() {
 		const text = composerText.trim();
 		if (!text || generating) return;
@@ -408,11 +727,35 @@
 		await tick();
 		scrollToEdge();
 
-		const replyIdx = cannedIdx++ % canned.length;
-		const reply = structuredClone(canned[replyIdx]);
+		const kind = REPLY_ORDER[cannedIdx++ % REPLY_ORDER.length];
 		setTimeout(async () => {
-			sec.blocks = reply;
 			generating = false;
+			if (kind === 'query') {
+				// the agent calls the tool: a short lead-in + an `ask` stamp in its
+				// ledger that stays open until your answer returns as the tool result
+				const query = makeQuery();
+				sec.blocks = [
+					{
+						type: 'p',
+						text: 'Before I set another word — a question or two, so I cut with the grain and not against it.'
+					},
+					{
+						type: 'ledger',
+						entries: [
+							{
+								verb: 'ask',
+								object: `${query.questions.length} question${query.questions.length === 1 ? '' : 's'} for you`,
+								note: '',
+								status: 'run'
+							}
+						]
+					}
+				];
+				await tick();
+				poseQuery(query, sec);
+				return;
+			}
+			sec.blocks = structuredClone(kind === 'margin' ? canned[1] : canned[0]);
 			for (const block of sec.blocks) {
 				if (block.type === 'ledger') {
 					block.entries.forEach((en, i) => {
@@ -420,7 +763,7 @@
 					});
 				}
 			}
-			if (replyIdx === 1) {
+			if (kind === 'margin') {
 				const t = new Date().toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
 				setTimeout(
 					() =>
@@ -620,7 +963,8 @@
 		search: 'M21 21l-4.35-4.35M11 19a8 8 0 1 1 0-16 8 8 0 0 1 0 16z',
 		profile: 'M22 12h-4l-3 9L9 3l-3 9H2',
 		draft: 'M20.2 12.2a6 6 0 0 0-8.4-8.4L5 10.5V19h8.5l6.7-6.8zM16 8L2 22M17.5 15H9',
-		run: 'M5 3l14 9-14 9V3z'
+		run: 'M5 3l14 9-14 9V3z',
+		ask: 'M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3M12 17h.01'
 	};
 	const dotIcon = 'M12 11a1 1 0 1 0 0 2 1 1 0 0 0 0-2z';
 </script>
@@ -646,51 +990,263 @@
 	<aside class="archive" aria-label="The archive" aria-hidden={!sidebarOpen}>
 		<div class="arch-head">
 			<span class="arch-kicker">The Archive</span>
-			<span class="arch-count">{folios.length} folios</span>
+			<span class="arch-count"
+				>{folios.length} folios{quires.length
+					? ` · ${quires.length} quire${quires.length === 1 ? '' : 's'}`
+					: ''}</span
+			>
 		</div>
 
-		<button class="arch-new" onclick={newFolio} tabindex={sidebarOpen ? 0 : -1}>
-			<svg
-				width="13"
-				height="13"
-				viewBox="0 0 14 14"
-				fill="none"
-				stroke="currentColor"
-				stroke-width="1.6"
-				stroke-linecap="round"><path d="M7 2.5v9M2.5 7h9" /></svg
-			>
-			Begin a new folio
-		</button>
-
-		<div class="arch-list">
-			{#each [...folios].sort((a, b) => b.no - a.no) as f, i (f.id)}
-				<button
-					class="arch-item"
-					class:current={f.id === currentId}
-					style:--i={i}
-					onclick={() => selectFolio(f.id)}
-					tabindex={sidebarOpen ? 0 : -1}
+		<div class="arch-newrow">
+			<button class="arch-new" onclick={newFolio} tabindex={sidebarOpen ? 0 : -1}>
+				<svg
+					width="13"
+					height="13"
+					viewBox="0 0 14 14"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="1.6"
+					stroke-linecap="round"><path d="M7 2.5v9M2.5 7h9" /></svg
 				>
-					<span class="arch-no">№{String(f.no).padStart(2, '0')}</span>
-					<span class="arch-body">
-						<span class="arch-title">{f.title}</span>
-						<span class="arch-meta"
-							>{f.sections.length || 'no'} section{f.sections.length === 1 ? '' : 's'} · {f.date}</span
-						>
-					</span>
-					<svg
-						class="arch-arrow"
-						width="11"
-						height="11"
-						viewBox="0 0 24 24"
-						fill="none"
-						stroke="currentColor"
-						stroke-width="2.2"
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg
+				Begin a new folio
+			</button>
+			<button
+				class="arch-new gather"
+				class:dropping={dropQuire === 'new'}
+				onclick={() => newQuire()}
+				tabindex={sidebarOpen ? 0 : -1}
+				title="Gather a new quire"
+				aria-label="Gather a new quire"
+				ondragover={(e) => {
+					if (!dragId) return;
+					e.preventDefault();
+					dropQuire = 'new';
+				}}
+				ondragleave={() => dropQuire === 'new' && (dropQuire = null)}
+				ondrop={(e) => {
+					e.preventDefault();
+					e.stopPropagation();
+					gatherInto();
+				}}
+			>
+				<svg
+					width="13"
+					height="13"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="1.8"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					><path
+						d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"
+					/></svg
+				>
+			</button>
+		</div>
+
+		<!-- dropping a folio on the open list (not on a quire) returns it to the loose leaves -->
+		<div
+			class="arch-list"
+			role="list"
+			ondragover={(e) => dragId && e.preventDefault()}
+			ondrop={(e) => {
+				e.preventDefault();
+				unfile();
+			}}
+		>
+			{#each archRows as row, i (row.key)}
+				{#if row.kind === 'quire'}
+					<div
+						class="quire-head"
+						class:open={row.q.open}
+						class:dropping={dropQuire === row.q.id}
+						style:--i={i}
+						role="button"
+						tabindex={sidebarOpen ? 0 : -1}
+						aria-expanded={row.q.open}
+						onclick={() => (row.q.open = !row.q.open)}
+						onkeydown={(e) => {
+							if (e.key === 'Enter' && e.target === e.currentTarget) row.q.open = !row.q.open;
+						}}
+						ondragover={(e) => {
+							if (!dragId) return;
+							e.preventDefault();
+							dropQuire = row.q.id;
+						}}
+						ondragleave={(e) => {
+							if (!e.currentTarget.contains(e.relatedTarget)) dropQuire = null;
+						}}
+						ondrop={(e) => {
+							e.preventDefault();
+							e.stopPropagation();
+							fileInto(row.q.id);
+						}}
 					>
-				</button>
+						<svg
+							class="quire-chev"
+							width="10"
+							height="10"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2.2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg
+						>
+						{#if renamingQuire === row.q.id}
+							<!-- svelte-ignore a11y_no_static_element_interactions -->
+							<span
+								id="qn-{row.q.id}"
+								class="quire-name editing"
+								contenteditable="plaintext-only"
+								spellcheck="false"
+								onclick={(e) => e.stopPropagation()}
+								onkeydown={(e) => {
+									e.stopPropagation();
+									if (e.key === 'Enter') {
+										e.preventDefault();
+										e.currentTarget.blur();
+									}
+								}}
+								onblur={(e) => {
+									row.q.name = e.currentTarget.textContent?.trim() || row.q.name;
+									renamingQuire = null;
+								}}>{row.q.name}</span
+							>
+						{:else}
+							<span class="quire-name">{row.q.name}</span>
+						{/if}
+						<span class="quire-count">{row.count}</span>
+						<span class="quire-tools">
+							<button
+								class="qtool"
+								title="Rename the quire"
+								aria-label="Rename the quire"
+								tabindex={sidebarOpen ? 0 : -1}
+								onclick={(e) => {
+									e.stopPropagation();
+									startRenameQuire(row.q);
+								}}
+							>
+								<svg
+									width="11"
+									height="11"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="1.8"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									><path d="M17 3a2.8 2.8 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z" /></svg
+								>
+							</button>
+							<button
+								class="qtool"
+								title="Dissolve the quire — its folios return to the archive"
+								aria-label="Dissolve the quire"
+								tabindex={sidebarOpen ? 0 : -1}
+								onclick={(e) => {
+									e.stopPropagation();
+									dissolveQuire(row.q.id);
+								}}
+							>
+								<svg
+									width="11"
+									height="11"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="1.8"
+									stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12" /></svg
+								>
+							</button>
+						</span>
+					</div>
+				{:else if row.kind === 'empty'}
+					<div
+						class="quire-empty"
+						class:dropping={dropQuire === row.q.id}
+						style:--i={i}
+						ondragover={(e) => {
+							if (!dragId) return;
+							e.preventDefault();
+							dropQuire = row.q.id;
+						}}
+						ondragleave={(e) => {
+							if (!e.currentTarget.contains(e.relatedTarget)) dropQuire = null;
+						}}
+						ondrop={(e) => {
+							e.preventDefault();
+							e.stopPropagation();
+							fileInto(row.q.id);
+						}}
+						role="presentation"
+					>
+						nothing gathered yet — drag a folio in
+					</div>
+				{:else}
+					<button
+						class="arch-item"
+						class:current={row.f.id === currentId}
+						class:filed={!!row.q}
+						class:dragging={dragId === row.f.id}
+						style:--i={i}
+						draggable="true"
+						onclick={() => selectFolio(row.f.id)}
+						tabindex={sidebarOpen ? 0 : -1}
+						ondragstart={(e) => {
+							dragId = row.f.id;
+							e.dataTransfer.setData('text/plain', row.f.id);
+							e.dataTransfer.effectAllowed = 'move';
+						}}
+						ondragend={() => {
+							dragId = null;
+							dropQuire = null;
+						}}
+						ondragover={row.q
+							? (e) => {
+									if (!dragId) return;
+									e.preventDefault();
+									dropQuire = row.q.id;
+								}
+							: undefined}
+						ondragleave={row.q
+							? (e) => {
+									if (!e.currentTarget.contains(e.relatedTarget)) dropQuire = null;
+								}
+							: undefined}
+						ondrop={row.q
+							? (e) => {
+									e.preventDefault();
+									e.stopPropagation();
+									fileInto(row.q.id);
+								}
+							: undefined}
+					>
+						<span class="arch-no">№{String(row.f.no).padStart(2, '0')}</span>
+						<span class="arch-body">
+							<span class="arch-title">{row.f.title}</span>
+							<span class="arch-meta"
+								>{row.f.sections.length || 'no'} section{row.f.sections.length === 1 ? '' : 's'} · {row
+									.f.date}</span
+							>
+						</span>
+						<svg
+							class="arch-arrow"
+							width="11"
+							height="11"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2.2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg
+						>
+					</button>
+				{/if}
 			{/each}
 		</div>
 
@@ -1230,7 +1786,11 @@
 
 <!-- ─── The edge: the document continues here (shared by zen + manuscript views) ─── -->
 {#snippet edgeArea()}
-	<div class="edge" class:busy={generating}>
+	<div class="edge-slot">
+	{#if pendingQuery}
+		{@render querySlip()}
+	{:else}
+	<div class="edge" class:busy={generating} in:swap={{ duration: 300 }} out:swap={{ duration: 170 }}>
 		<span class="pilcrow" class:hop={pilcrowHop} aria-hidden="true">¶</span>
 		<div class="edge-line">
 			<textarea
@@ -1265,6 +1825,188 @@
 				<path d="M12 19V5M5 12l7-7 7 7" />
 			</svg>
 		</button>
+	</div>
+	{/if}
+	</div>
+{/snippet}
+
+<!-- ─── The Query: the agent's structured question, set where the composer would be ─── -->
+{#snippet querySlip()}
+	<div
+		class="query"
+		class:sealing={querySealing}
+		in:swap={{ duration: 380 }}
+		out:swap={{ duration: 200 }}
+		aria-label="A question from Claude"
+	>
+		<div class="query-head">
+			<span class="q-badge" aria-hidden="true">
+				<svg
+					width="13"
+					height="13"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="1.9"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+				>
+					<path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3" />
+					<path d="M12 17h.01" />
+				</svg>
+			</span>
+			<span class="q-kicker">An inquiry</span>
+			<span class="q-from">Claude needs a steer</span>
+			{#if pendingQuery.questions.length > 1}
+				<div class="q-meter" aria-label="{qDone} of {pendingQuery.questions.length} answered">
+					<span class="q-track">
+						<span class="q-fill" style:width="{qProgress * 100}%"></span>
+					</span>
+					<span class="q-count">{qDone} / {pendingQuery.questions.length}</span>
+				</div>
+			{/if}
+		</div>
+
+		{#key qIndex}
+			<div class="q-body" style:--dir={qDir}>
+				<h3 class="q-prompt">{curQ.prompt}</h3>
+				<span class="q-hint">{curQ.multi ? 'choose any' : 'choose one'}</span>
+
+				<div class="q-options" role={curQ.multi ? 'group' : 'radiogroup'}>
+					{#each curQ.options as opt, oi (opt.id)}
+						<button
+							class="opt"
+							class:sel={curAns.picks.includes(opt.id)}
+							class:multi={curQ.multi}
+							style:--oi={oi}
+							role={curQ.multi ? 'checkbox' : 'radio'}
+							aria-checked={curAns.picks.includes(opt.id)}
+							onclick={() => pickOption(opt.id)}
+						>
+							<span class="opt-mark" aria-hidden="true">
+								<span class="opt-letter">{String.fromCharCode(97 + oi)}</span>
+							</span>
+							<span class="opt-text">
+								<span class="opt-title">
+									{opt.title}
+									{#if opt.recommend}
+										<span class="opt-rec">
+											<svg
+												width="9"
+												height="9"
+												viewBox="0 0 24 24"
+												fill="currentColor"
+												aria-hidden="true"
+												><path
+													d="M12 2l2.6 6.3 6.8.5-5.2 4.4 1.6 6.6L12 16.8 6.2 20.3l1.6-6.6L2.6 8.8l6.8-.5z"
+												/></svg
+											>
+											Claude suggests
+										</span>
+									{/if}
+								</span>
+								{#if opt.explain}<span class="opt-explain">{opt.explain}</span>{/if}
+							</span>
+						</button>
+					{/each}
+
+					{#if curQ.allowCustom}
+						{#if curAns.customOpen}
+							<div class="custom-edge">
+								<span class="pilcrow sm" aria-hidden="true">¶</span>
+								<div class="edge-line">
+									<textarea
+										id="qcustom-{qIndex}"
+										rows="1"
+										placeholder="In your own words…"
+										bind:value={curAns.custom}
+										oninput={autogrow}
+										onkeydown={(e) => {
+											if (e.key === 'Enter' && !e.shiftKey) {
+												e.preventDefault();
+												if (qAnswered) advance();
+											}
+										}}
+									></textarea>
+									<div class="rule" aria-hidden="true"></div>
+								</div>
+							</div>
+						{:else}
+							<button class="opt custom" style:--oi={curQ.options.length} onclick={openCustom}>
+								<span class="opt-mark" aria-hidden="true">
+									<svg
+										class="opt-quill"
+										width="12"
+										height="12"
+										viewBox="0 0 24 24"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="1.8"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										><path d="M17 3a2.8 2.8 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z" /></svg
+									>
+								</span>
+								<span class="opt-text"><span class="opt-title write">Write your own…</span></span>
+							</button>
+						{/if}
+					{/if}
+				</div>
+
+				<div class="q-foot">
+					{#if curQ.allowSkip}
+						<button class="q-skip" onclick={skipQuestion}>none of these — skip</button>
+					{/if}
+					<div class="q-nav">
+						{#if qIndex > 0}
+							<button class="q-back" onclick={() => goQ(-1)} aria-label="Previous question">
+								<svg
+									width="14"
+									height="14"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"><path d="M15 18l-6-6 6-6" /></svg
+								>
+							</button>
+						{/if}
+						<button
+							class="q-next"
+							class:ready={qAnswered}
+							disabled={!qAnswered}
+							onclick={advance}
+						>
+							<span class="next-label">{isLastQ ? 'Seal answer' : 'Next'}</span>
+							{#if isLastQ}
+								<svg
+									width="14"
+									height="14"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2.4"
+									stroke-linecap="round"
+									stroke-linejoin="round"><path d="M20 6L9 17l-5-5" /></svg
+								>
+							{:else}
+								<svg
+									width="14"
+									height="14"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2.4"
+									stroke-linecap="round"
+									stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg
+								>
+							{/if}
+						</button>
+					</div>
+				</div>
+			</div>
+		{/key}
 	</div>
 {/snippet}
 
@@ -1565,6 +2307,190 @@
 	}
 	.arch-new:hover svg {
 		transform: rotate(90deg);
+	}
+	.arch-newrow {
+		display: flex;
+		gap: 6px;
+		margin: 0 0 10px;
+	}
+	.arch-newrow .arch-new {
+		margin: 0;
+		flex: 1;
+		min-width: 0;
+	}
+	.arch-new.gather {
+		flex: none;
+		padding: 9px 12px;
+	}
+	.arch-new.gather:hover {
+		transform: none;
+	}
+	.arch-new.gather:hover svg {
+		transform: none;
+	}
+	.arch-new.dropping {
+		border-color: var(--vermilion);
+		border-style: solid;
+		color: var(--vermilion);
+		background: var(--vermilion-soft);
+	}
+
+	/* ── Quires: folios gathered into folders ── */
+	.quire-head {
+		display: flex;
+		align-items: center;
+		gap: 9px;
+		padding: 8px 10px;
+		margin-top: 6px;
+		border-radius: 10px;
+		border: 1px dashed transparent;
+		background: transparent;
+		cursor: pointer;
+		color: var(--ink-2);
+		user-select: none;
+		opacity: 0;
+		transform: translateX(-12px);
+		transition:
+			background 0.18s,
+			color 0.18s,
+			border-color 0.18s,
+			transform 0.3s var(--out),
+			opacity 0.3s var(--out);
+	}
+	.sb-open .quire-head {
+		opacity: 1;
+		transform: translateX(0);
+		transition-delay: calc(60ms + var(--i) * 45ms);
+	}
+	.quire-head:hover {
+		background: rgba(0, 0, 0, 0.04);
+		color: var(--ink);
+		transition-delay: 0ms;
+	}
+	.folio.dark .quire-head:hover {
+		background: rgba(255, 255, 255, 0.04);
+	}
+	.quire-head.dropping,
+	.quire-empty.dropping {
+		border-color: color-mix(in srgb, var(--vermilion) 55%, transparent);
+		background: var(--vermilion-soft);
+		color: var(--vermilion);
+	}
+	.quire-chev {
+		flex: none;
+		color: var(--ink-3);
+		transition:
+			transform 0.3s var(--spring),
+			color 0.18s;
+	}
+	.quire-head.open .quire-chev {
+		transform: rotate(90deg);
+	}
+	.quire-head:hover .quire-chev {
+		color: var(--vermilion);
+	}
+	.quire-name {
+		min-width: 0;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		font-size: 10.5px;
+		font-weight: 650;
+		letter-spacing: 0.18em;
+		text-transform: uppercase;
+	}
+	.quire-name.editing {
+		outline: none;
+		caret-color: var(--vermilion);
+		border-bottom: 1px dashed var(--rule);
+		min-width: 40px;
+	}
+	.quire-count {
+		font-family: var(--mono);
+		font-size: 10px;
+		color: var(--ink-3);
+		margin-left: auto;
+		flex: none;
+	}
+	.quire-tools {
+		display: flex;
+		gap: 2px;
+		flex: none;
+		opacity: 0;
+		transition: opacity 0.18s;
+	}
+	.quire-head:hover .quire-tools,
+	.quire-head:focus-within .quire-tools {
+		opacity: 1;
+	}
+	.qtool {
+		display: grid;
+		place-items: center;
+		width: 20px;
+		height: 20px;
+		border-radius: 6px;
+		border: none;
+		background: transparent;
+		color: var(--ink-3);
+		cursor: pointer;
+		transition:
+			background 0.15s,
+			color 0.15s;
+	}
+	.qtool:hover {
+		background: var(--rule-faint);
+		color: var(--vermilion);
+	}
+
+	/* filed folios hang from their quire on a thread */
+	.arch-item.filed {
+		margin-left: 16px;
+		position: relative;
+	}
+	.arch-item.filed::before {
+		content: '';
+		position: absolute;
+		left: -9px;
+		top: -2px;
+		bottom: -2px;
+		width: 1px;
+		background: var(--rule);
+	}
+	.arch-item.dragging {
+		opacity: 0.35;
+	}
+	.quire-empty {
+		position: relative;
+		margin-left: 16px;
+		padding: 7px 10px;
+		border-radius: 10px;
+		border: 1px dashed transparent;
+		font-family: var(--serif);
+		font-style: italic;
+		font-size: 12.5px;
+		color: var(--ink-3);
+		opacity: 0;
+		transform: translateX(-12px);
+		transition:
+			background 0.18s,
+			color 0.18s,
+			border-color 0.18s,
+			transform 0.3s var(--out),
+			opacity 0.3s var(--out);
+	}
+	.sb-open .quire-empty {
+		opacity: 1;
+		transform: translateX(0);
+		transition-delay: calc(60ms + var(--i) * 45ms);
+	}
+	.quire-empty::before {
+		content: '';
+		position: absolute;
+		left: -9px;
+		top: -2px;
+		bottom: -2px;
+		width: 1px;
+		background: var(--rule);
 	}
 
 	.arch-list {
@@ -2929,6 +3855,368 @@
 			margin-left: 0;
 			margin-right: 0;
 		}
+	}
+
+	/* the composer and the query occupy the same cell, so the crossfade between
+	   them never pushes the page around */
+	.edge-slot {
+		display: grid;
+	}
+	.edge-slot > .edge,
+	.edge-slot > .query {
+		grid-area: 1 / 1;
+		align-self: end;
+	}
+
+	/* ── The Query (the agent's question, set where the composer would be) ── */
+	.query {
+		position: relative;
+		margin: 44px -10px 0;
+		padding: 20px 22px 18px;
+		/* a soft leaf laid on the page — every corner rounded, no hard rule */
+		border: 1px solid var(--rule);
+		border-radius: 22px;
+		background: var(--paper);
+		box-shadow: 0 20px 52px -34px rgba(0, 0, 0, 0.4);
+	}
+	.query.sealing {
+		pointer-events: none;
+	}
+
+	.query-head {
+		display: flex;
+		align-items: center;
+		gap: 9px;
+		margin-bottom: 16px;
+	}
+	.q-badge {
+		display: grid;
+		place-items: center;
+		width: 22px;
+		height: 22px;
+		border-radius: 50%;
+		flex: none;
+		color: var(--ink-2);
+		background: color-mix(in srgb, var(--ink) 7%, transparent);
+		animation: badgeIn 0.5s 0.1s var(--spring) backwards;
+	}
+	@keyframes badgeIn {
+		from {
+			transform: scale(0);
+		}
+	}
+	.q-kicker {
+		font-family: var(--mono);
+		font-size: 10.5px;
+		font-weight: 650;
+		letter-spacing: 0.22em;
+		text-transform: uppercase;
+		color: var(--ink-2);
+	}
+	.q-from {
+		font-family: var(--serif);
+		font-style: italic;
+		font-size: 14px;
+		color: var(--ink-3);
+	}
+	/* progress as a thread that fills green, the way the spine fills with ink */
+	.q-meter {
+		margin-left: auto;
+		display: flex;
+		align-items: center;
+		gap: 9px;
+	}
+	.q-track {
+		width: clamp(64px, 12vw, 104px);
+		height: 4px;
+		border-radius: 999px;
+		background: var(--rule-faint);
+		overflow: hidden;
+	}
+	.q-fill {
+		display: block;
+		height: 100%;
+		border-radius: 999px;
+		background: var(--ok);
+		transition: width 0.45s var(--spring);
+	}
+	.q-count {
+		font-family: var(--mono);
+		font-size: 10px;
+		color: var(--ink-3);
+	}
+
+	.q-body {
+		animation: qIn 0.42s var(--out);
+	}
+	@keyframes qIn {
+		from {
+			opacity: 0;
+			transform: translateX(calc(var(--dir, 1) * 26px));
+		}
+	}
+	.q-prompt {
+		font-family: var(--serif);
+		font-size: clamp(20px, 2.8vw, 25px);
+		font-weight: 400;
+		line-height: 1.25;
+		margin: 0;
+		color: var(--ink);
+	}
+	.q-hint {
+		display: inline-block;
+		margin: 7px 0 14px;
+		font-family: var(--mono);
+		font-size: 10px;
+		letter-spacing: 0.18em;
+		text-transform: uppercase;
+		color: var(--ink-3);
+	}
+
+	.q-options {
+		display: flex;
+		flex-direction: column;
+		gap: 7px;
+	}
+	.opt {
+		display: flex;
+		align-items: flex-start;
+		gap: 12px;
+		width: 100%;
+		text-align: left;
+		padding: 11px 14px;
+		border-radius: 12px;
+		border: 1px solid var(--rule-faint);
+		background: transparent;
+		color: var(--ink);
+		cursor: pointer;
+		transition:
+			border-color 0.18s,
+			background 0.18s,
+			transform 0.22s var(--spring);
+		animation: optIn 0.5s var(--out) backwards;
+		animation-delay: calc(var(--oi) * 0.055s + 0.08s);
+	}
+	@keyframes optIn {
+		from {
+			opacity: 0;
+			transform: translateY(8px);
+		}
+	}
+	.opt:hover {
+		border-color: color-mix(in srgb, var(--vermilion) 40%, var(--rule));
+		background: var(--vermilion-soft);
+		transform: translateX(3px);
+	}
+	.opt.sel {
+		border-color: var(--vermilion);
+		background: var(--vermilion-soft);
+	}
+	/* a typeset ballot: each choice carries a letter; your pick is stamped in vermilion */
+	.opt-mark {
+		flex: none;
+		display: grid;
+		place-items: center;
+		width: 23px;
+		height: 23px;
+		margin-top: 1px;
+		border: 1.5px solid var(--rule);
+		border-radius: 50%;
+		background: color-mix(in srgb, var(--ink) 4%, transparent);
+		transition:
+			border-color 0.2s,
+			background 0.3s var(--spring);
+	}
+	.opt.multi .opt-mark {
+		border-radius: 7px;
+	}
+	.opt-letter {
+		font-family: var(--mono);
+		font-size: 11px;
+		font-weight: 500;
+		line-height: 1;
+		color: var(--ink-3);
+		transition: color 0.2s;
+	}
+	.opt-quill {
+		color: var(--ink-3);
+		transition: color 0.2s;
+	}
+	.opt:hover .opt-mark {
+		border-color: var(--vermilion);
+	}
+	.opt:hover .opt-letter,
+	.opt.custom:hover .opt-quill {
+		color: var(--vermilion);
+	}
+	.opt.sel .opt-mark {
+		border-color: var(--vermilion);
+		background: var(--vermilion);
+		animation: stampIn 0.35s var(--spring);
+	}
+	.opt.sel .opt-letter {
+		color: var(--paper);
+	}
+	.opt-text {
+		display: flex;
+		flex-direction: column;
+		gap: 2px;
+		min-width: 0;
+	}
+	.opt-title {
+		display: flex;
+		align-items: baseline;
+		gap: 8px;
+		font-family: var(--body);
+		font-size: 14.5px;
+		font-weight: 600;
+		line-height: 1.4;
+		color: var(--ink);
+	}
+	.opt-title.write {
+		font-family: var(--serif);
+		font-style: italic;
+		font-weight: 400;
+		font-size: 15px;
+		color: var(--ink-2);
+	}
+	.opt-explain {
+		font-family: var(--body);
+		font-size: 13px;
+		line-height: 1.5;
+		color: var(--ink-2);
+	}
+	/* the agent's own recommendation — a quiet marginal note, not a loud tag */
+	.opt-rec {
+		flex: none;
+		display: inline-flex;
+		align-items: center;
+		gap: 4px;
+		font-family: var(--mono);
+		font-size: 9px;
+		font-weight: 500;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: var(--ink-3);
+		border: 1px solid var(--rule);
+		padding: 2px 7px 2px 6px;
+		border-radius: 999px;
+		transform: translateY(-1px);
+	}
+	.opt-rec svg {
+		opacity: 0.7;
+		color: var(--ink-2);
+	}
+	.opt.custom {
+		border-style: dashed;
+	}
+
+	.custom-edge {
+		display: flex;
+		align-items: flex-end;
+		gap: 10px;
+		padding: 6px 14px 4px;
+		margin-top: 2px;
+		animation: optIn 0.4s var(--out);
+	}
+	.pilcrow.sm {
+		font-size: 19px;
+		animation: none;
+	}
+	.custom-edge .edge-line {
+		flex: 1;
+	}
+
+	.q-foot {
+		display: flex;
+		align-items: center;
+		gap: 14px;
+		margin-top: 18px;
+	}
+	.q-skip {
+		border: none;
+		background: none;
+		padding: 0;
+		font-family: var(--body);
+		font-size: 12.5px;
+		color: var(--ink-3);
+		cursor: pointer;
+		border-bottom: 1px dotted var(--rule);
+		transition: color 0.2s;
+	}
+	.q-skip:hover {
+		color: var(--vermilion);
+	}
+	.q-nav {
+		margin-left: auto;
+		display: flex;
+		align-items: center;
+		gap: 8px;
+	}
+	.q-back {
+		display: grid;
+		place-items: center;
+		width: 34px;
+		height: 34px;
+		border-radius: 999px;
+		border: 1.5px solid var(--rule);
+		background: transparent;
+		color: var(--ink-2);
+		cursor: pointer;
+		transition:
+			transform 0.2s var(--spring),
+			border-color 0.2s,
+			color 0.2s;
+	}
+	.q-back:hover {
+		color: var(--vermilion);
+		border-color: var(--vermilion);
+		transform: translateX(-2px);
+	}
+	.q-next {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		height: 38px;
+		padding: 0 18px;
+		border-radius: 999px;
+		border: 1.5px solid var(--rule);
+		background: transparent;
+		color: var(--ink-3);
+		font-family: var(--sans);
+		font-size: 13px;
+		font-weight: 620;
+		letter-spacing: 0.02em;
+		cursor: pointer;
+		transition:
+			background 0.25s,
+			color 0.25s,
+			border-color 0.25s,
+			transform 0.15s,
+			box-shadow 0.25s;
+	}
+	.q-next:disabled {
+		cursor: default;
+		opacity: 0.5;
+	}
+	.q-next.ready {
+		background: var(--vermilion);
+		border-color: var(--vermilion);
+		color: #fff8ef;
+		box-shadow: 0 4px 18px var(--vermilion-soft);
+	}
+	.q-next.ready:hover {
+		transform: translateY(-2px);
+		box-shadow: 0 7px 22px color-mix(in srgb, var(--vermilion) 25%, transparent);
+	}
+	.q-next svg {
+		transition: transform 0.3s var(--spring);
+	}
+	.q-next.ready:hover svg {
+		transform: translateX(2px);
+	}
+	.next-label {
+		white-space: nowrap;
 	}
 
 	@media (prefers-reduced-motion: reduce) {

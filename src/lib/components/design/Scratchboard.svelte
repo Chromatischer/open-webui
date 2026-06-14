@@ -1,6 +1,7 @@
 <script>
 	import { onDestroy, tick } from 'svelte';
 	import { scratchboardAgentWriting } from '$lib/stores';
+	import Markdown from '$lib/components/chat/Messages/Markdown.svelte';
 
 	/*
 	 * THE MARGIN — the shared scratchboard, set to match the /design prototype:
@@ -64,20 +65,6 @@
 			clearTimeout(finishTimer);
 		}
 	});
-
-	// A tiny markdown-ish renderer for the rendered margin (mirrors the prototype).
-	function scratchLines(s) {
-		return String(s ?? '')
-			.split('\n')
-			.map((line) => {
-				if (line.startsWith('# ')) return { t: 'h', text: line.slice(2) };
-				if (line.startsWith('## ')) return { t: 'h2', text: line.slice(3) };
-				if (line.startsWith('- ')) return { t: 'li', text: line.slice(2) };
-				if (line.startsWith('— ')) return { t: 'sig', text: line };
-				if (line.trim() === '') return { t: 'gap', text: '' };
-				return { t: 'p', text: line };
-			});
-	}
 
 	onDestroy(() => {
 		clearTimeout(saveTimer);
@@ -150,28 +137,23 @@
 			></textarea>
 		{:else}
 			<div
-				class="margin-body"
+				class="margin-body margin-prose"
 				onclick={startEditing}
 				onkeydown={(e) => e.key === 'Enter' && startEditing()}
 				role="button"
 				tabindex="0"
 				aria-label="Edit margin notes"
 			>
-				{#each scratchLines(draft) as line}
-					{#if line.t === 'h'}
-						<div class="m-h">{line.text}</div>
-					{:else if line.t === 'h2'}
-						<div class="m-h2">{line.text}</div>
-					{:else if line.t === 'li'}
-						<div class="m-li">{line.text}</div>
-					{:else if line.t === 'sig'}
-						<div class="m-sig">{line.text}</div>
-					{:else if line.t === 'gap'}
-						<div class="m-gap"></div>
-					{:else}
-						<div class="m-p">{line.text}</div>
-					{/if}
-				{/each}
+				{#if draft.trim()}
+					<Markdown
+						id="margin-md"
+						content={draft}
+						done={!$scratchboardAgentWriting}
+						allowEmbeds={false}
+					/>
+				{:else}
+					<div class="margin-empty">Tap to write a note…</div>
+				{/if}
 				{#if $scratchboardAgentWriting}<span class="m-caret" aria-hidden="true"></span>{/if}
 			</div>
 		{/if}
@@ -268,48 +250,283 @@
 		scrollbar-width: thin;
 		scrollbar-color: color-mix(in srgb, var(--ink-3) 60%, transparent) transparent;
 	}
-	.m-h {
+	.margin-empty {
 		font-family: var(--serif);
-		font-size: 19px;
-		margin: 8px 0 6px;
-		color: var(--ink);
+		font-style: italic;
+		font-size: 13px;
+		color: var(--ink-3);
+		padding: 4px 0;
 	}
-	.m-h2 {
-		font-family: var(--serif);
-		font-size: 16px;
-		margin: 10px 0 4px;
-		color: var(--ink);
-	}
-	.m-li {
-		position: relative;
+
+	/* ───────────────────────────────────────────────────────────────────────
+	   The margin renders full markdown through the shared <Markdown> pipeline.
+	   Those elements are emitted by a child component, so they're themed here
+	   with :global() — scoped under .margin-prose to keep the manuscript look
+	   contained to the margin (no bleed into the chat column).
+	   ─────────────────────────────────────────────────────────────────────── */
+	.margin-prose {
 		font-family: var(--body);
 		font-size: 13px;
-		line-height: 1.55;
+		line-height: 1.62;
 		color: var(--ink-2);
-		padding: 2px 0 2px 16px;
+		word-break: break-word;
+		overflow-wrap: anywhere;
 	}
-	.m-li::before {
-		content: '–';
-		position: absolute;
-		left: 1px;
+
+	/* Headings — serif, set like manuscript titles */
+	:global(.margin-prose h1),
+	:global(.margin-prose h2),
+	:global(.margin-prose h3),
+	:global(.margin-prose h4),
+	:global(.margin-prose h5),
+	:global(.margin-prose h6) {
+		font-family: var(--serif);
+		font-weight: 600;
+		color: var(--ink);
+		line-height: 1.25;
+		letter-spacing: -0.01em;
+	}
+	:global(.margin-prose h1) {
+		font-size: 20px;
+		margin: 14px 0 8px;
+		padding-bottom: 6px;
+		border-bottom: 1px solid var(--rule-faint);
+	}
+	:global(.margin-prose h2) {
+		font-size: 16px;
+		margin: 16px 0 6px;
+	}
+	:global(.margin-prose h3) {
+		font-size: 14px;
+		margin: 14px 0 4px;
+	}
+	:global(.margin-prose h4),
+	:global(.margin-prose h5),
+	:global(.margin-prose h6) {
+		font-size: 12.5px;
+		margin: 12px 0 4px;
+		color: var(--ink-2);
+	}
+	/* First block shouldn't push the title down */
+	:global(.margin-prose > :first-child) {
+		margin-top: 0;
+	}
+
+	/* Body copy */
+	:global(.margin-prose p) {
+		margin: 0 0 9px;
+	}
+	:global(.margin-prose strong) {
+		font-weight: 700;
+		color: var(--ultramarine);
+	}
+	:global(.margin-prose em) {
+		font-style: italic;
 		color: var(--vermilion);
 	}
-	.m-sig {
+	:global(.margin-prose del) {
+		color: var(--ink-3);
+	}
+	:global(.margin-prose a) {
+		color: var(--ultramarine);
+		text-decoration: underline;
+		text-decoration-thickness: 1px;
+		text-underline-offset: 2px;
+		text-decoration-color: color-mix(in srgb, var(--ultramarine) 35%, transparent);
+		transition: text-decoration-color 0.15s;
+	}
+	:global(.margin-prose a:hover) {
+		text-decoration-color: var(--ultramarine);
+	}
+
+	/* Lists — vermilion manuscript markers */
+	:global(.margin-prose ul),
+	:global(.margin-prose ol) {
+		margin: 0 0 9px;
+		padding-left: 18px;
+	}
+	:global(.margin-prose li) {
+		margin: 2px 0;
+		padding-left: 3px;
+	}
+	:global(.margin-prose ul) {
+		list-style: none;
+		padding-left: 16px;
+	}
+	:global(.margin-prose ul > li) {
+		position: relative;
+	}
+	:global(.margin-prose ul > li::before) {
+		content: '–';
+		position: absolute;
+		left: -14px;
+		color: var(--vermilion);
+		font-weight: 600;
+	}
+	:global(.margin-prose ol) {
+		list-style: decimal;
+	}
+	:global(.margin-prose ol > li::marker) {
+		color: var(--vermilion);
 		font-family: var(--mono);
 		font-size: 11px;
-		color: var(--ultramarine);
-		margin: 8px 0 2px;
 	}
-	.m-p {
-		font-family: var(--body);
-		font-size: 13px;
-		line-height: 1.55;
+	:global(.margin-prose li > ul),
+	:global(.margin-prose li > ol) {
+		margin: 2px 0 2px;
+	}
+
+	/* Inline code — a tinted chip */
+	:global(.margin-prose code) {
+		font-family: var(--mono);
+		font-size: 11px;
+		color: var(--vermilion);
+		background: color-mix(in srgb, var(--paper-deep) 55%, transparent);
+		border: 1px solid var(--rule-faint);
+		padding: 0.5px 4px;
+		border-radius: 4px;
+	}
+	/* Fenced code blocks render through <CodeBlock>; compact it for the margin */
+	:global(.margin-prose pre) {
+		overflow-x: auto;
+		white-space: pre;
+	}
+	:global(.margin-prose .codeblock-wrapper) {
+		font-size: 11px;
+	}
+	:global(.margin-prose .codeblock-wrapper code),
+	:global(.margin-prose pre code) {
+		color: inherit;
+		background: transparent;
+		border: none;
+		padding: 0;
+	}
+
+	/* Blockquote */
+	:global(.margin-prose blockquote) {
+		margin: 0 0 9px;
+		padding: 2px 0 2px 12px;
+		border-left: 2px solid color-mix(in srgb, var(--ultramarine) 55%, transparent);
+		background: color-mix(in srgb, var(--ultramarine) 5%, transparent);
+		border-radius: 0 6px 6px 0;
+		font-family: var(--serif);
+		font-style: italic;
 		color: var(--ink-2);
-		margin: 2px 0;
 	}
-	.m-gap {
-		height: 10px;
+	:global(.margin-prose blockquote p) {
+		margin: 4px 6px;
 	}
+
+	/* Images — framed manuscript plates */
+	:global(.margin-prose img) {
+		max-width: 100%;
+		height: auto;
+		margin: 6px 0;
+		border-radius: 8px;
+		border: 1px solid var(--rule);
+		box-shadow: 0 2px 10px -6px rgba(0, 0, 0, 0.4);
+	}
+
+	/* Rules */
+	:global(.margin-prose hr) {
+		margin: 14px 0;
+		border: none;
+		border-top: 1px solid var(--rule-faint);
+	}
+
+	/* Tables — clean hairlines */
+	:global(.margin-prose table) {
+		width: 100%;
+		margin: 4px 0 10px;
+		border-collapse: collapse;
+		font-size: 12px;
+	}
+	:global(.margin-prose th),
+	:global(.margin-prose td) {
+		border: 1px solid var(--rule-faint);
+		padding: 4px 7px;
+		text-align: left;
+		vertical-align: top;
+	}
+	:global(.margin-prose th) {
+		font-family: var(--serif);
+		font-weight: 600;
+		color: var(--ink);
+		background: color-mix(in srgb, var(--paper-deep) 40%, transparent);
+	}
+
+	/* Math */
+	:global(.margin-prose .katex) {
+		font-size: 1.02em;
+	}
+	:global(.margin-prose .katex-display) {
+		margin: 8px 0;
+		overflow-x: auto;
+		overflow-y: hidden;
+	}
+
+	/* ── Themed callouts — :::note / :::tip / :::warn / :::pin ──
+	   The rubric: no card, no fill, no border. The type label becomes a
+	   colour-ink run-in heading (small-caps, marginal glyph) that the body
+	   text flows around — the way a scribe glosses a manuscript. Each type
+	   sets its own ink (--cf) and glyph (--cf-glyph). */
+	:global(.margin-prose .colon-fence) {
+		--cf: var(--ink-3);
+		--cf-glyph: '✦';
+		margin: 11px 0;
+		padding: 0;
+		border: none;
+		border-radius: 0;
+		background: none;
+		box-shadow: none;
+	}
+	/* Unwrap the header so the label can run into the prose; drop the copy button */
+	:global(.margin-prose .colon-fence > div:first-child) {
+		display: contents;
+	}
+	:global(.margin-prose .colon-fence > div:first-child > div) {
+		display: none;
+	}
+	/* The run-in rubric — floats so the first lines of body wrap beside it */
+	:global(.margin-prose .colon-fence-label) {
+		float: left;
+		margin: 0 9px 0 0;
+		font-family: var(--mono);
+		font-weight: 700;
+		font-size: 10px;
+		letter-spacing: 0.15em;
+		text-transform: uppercase;
+		line-height: 1.62;
+		white-space: nowrap;
+		color: var(--cf);
+	}
+	:global(.margin-prose .colon-fence-label::before) {
+		content: var(--cf-glyph);
+		margin-right: 5px;
+		font-size: 12px;
+	}
+	:global(.margin-prose .colon-fence .prose-sm > :first-child) {
+		margin-top: 0;
+	}
+
+	/* Per-type inks + marginalia glyphs */
+	:global(.margin-prose .colon-fence-note) {
+		--cf: var(--ultramarine);
+		--cf-glyph: '❡';
+	}
+	:global(.margin-prose .colon-fence-tip) {
+		--cf: var(--ok);
+		--cf-glyph: '☞';
+	}
+	:global(.margin-prose .colon-fence-warn) {
+		--cf: var(--vermilion);
+		--cf-glyph: '※';
+	}
+	:global(.margin-prose .colon-fence-pin) {
+		--cf: color-mix(in srgb, var(--gold) 58%, var(--ink));
+		--cf-glyph: '✦';
+	}
+
 	.m-caret {
 		display: inline-block;
 		width: 7px;

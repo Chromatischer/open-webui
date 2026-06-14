@@ -36,6 +36,7 @@
 	import Sparkles from '../icons/Sparkles.svelte';
 	import WorkspaceActionCard from './common/WorkspaceActionCard.svelte';
 	import WorkspaceCard from './common/WorkspaceCard.svelte';
+	import WorkspaceEmpty from './common/WorkspaceEmpty.svelte';
 
 	let shiftKey = false;
 	let loaded = false;
@@ -258,6 +259,7 @@
 		/>
 
 		<div class="ws-head">
+			<span class="ws-kicker">{$i18n.t('The Workshop')}</span>
 			<div class="ws-title">{$i18n.t('Skills')}</div>
 			<div class="ws-lede">
 				{$i18n.t(
@@ -310,6 +312,19 @@
 			<div class="w-full h-full flex justify-center items-center my-16 mb-24">
 				<Spinner className="size-5" />
 			</div>
+		{:else if filteredItems.length === 0 && !query && !viewOption}
+			<WorkspaceEmpty
+				mark="§"
+				kicker={$i18n.t('The repertoire')}
+				line={$i18n.t('Nothing has been rehearsed yet.')}
+				sub={$i18n.t(
+					'Skills are instruction packs that teach a model a procedure or a domain — write one, and any model can learn it.'
+				)}
+				beginLabel={$i18n.t('Teach your first skill')}
+				importLabel={$i18n.t('or import from .md or .json')}
+				onBegin={() => goto('/workspace/skills/create')}
+				onImport={() => importInputElement.click()}
+			/>
 		{:else}
 			<div class="ws-grid">
 				{#if $user?.role === 'admin' || $user?.permissions?.workspace?.skills}

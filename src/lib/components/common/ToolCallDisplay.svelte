@@ -8,11 +8,7 @@
 	import { slide } from 'svelte/transition';
 	import { quintOut } from 'svelte/easing';
 
-	import ChevronUp from '../icons/ChevronUp.svelte';
-	import ChevronDown from '../icons/ChevronDown.svelte';
 	import Spinner from './Spinner.svelte';
-	import WrenchSolid from '../icons/WrenchSolid.svelte';
-	import CheckCircle from '../icons/CheckCircle.svelte';
 	import Image from './Image.svelte';
 	import FullHeightIframe from './FullHeightIframe.svelte';
 	import { settings } from '$lib/stores';
@@ -85,6 +81,30 @@
 
 	$: parsedArgs = parseArguments(args);
 	$: parsedResult = parseJSONString(result);
+
+	// Single-line preview of the result — the ledger "note" (design page style)
+	$: resultPreview = (() => {
+		if (!isDone || !result) return '';
+		const str =
+			typeof parsedResult === 'object' && parsedResult !== null
+				? JSON.stringify(parsedResult)
+				: String(parsedResult);
+		const cleaned = str.replace(/\s+/g, ' ').trim();
+		return cleaned.length > 80 ? cleaned.slice(0, 80) + '…' : cleaned;
+	})();
+
+	// Compact arguments summary — the ledger "object" (the target of the verb)
+	$: argsSummary = (() => {
+		if (parsedArgs) {
+			const parts = Object.values(parsedArgs).map((v) =>
+				typeof v === 'object' && v !== null ? JSON.stringify(v) : String(v)
+			);
+			const joined = parts.join(', ').replace(/\s+/g, ' ').trim();
+			return joined.length > 64 ? joined.slice(0, 64) + '…' : joined;
+		}
+		const raw = (args ?? '').replace(/\s+/g, ' ').trim();
+		return raw.length > 64 ? raw.slice(0, 64) + '…' : raw;
+	})();
 </script>
 
 <div {id} class={className}>
@@ -108,56 +128,57 @@
 			{/each}
 		</div>
 	{:else}
-		<!-- Tool call display -->
+		<!-- Tool call display — FOLIO manuscript ledger entry (matches /design) -->
 		<!-- svelte-ignore a11y-no-static-element-interactions -->
 		<div
-			class="{buttonClassName} cursor-pointer"
+			class="ledger-entry {isExecuting ? 'shimmer' : ''}"
+			class:open
 			on:pointerup={() => {
 				open = !open;
 			}}
 		>
-			<div
-				class="w-full max-w-full font-medium flex items-center gap-1.5 {isExecuting
-					? 'shimmer'
-					: ''}"
-			>
-				<!-- Status icon -->
+			<!-- Stamp -->
+			<span class="stamp" class:done={isDone} aria-hidden="true">
 				{#if isExecuting}
-					<div>
-						<Spinner className="size-4" />
-					</div>
+					<Spinner className="size-2.5" />
 				{:else if isDone}
-					<div class="tool-call-icon-done">
-						<CheckCircle className="size-4" strokeWidth="2" />
-					</div>
-				{:else}
-					<div class="tool-call-icon-muted">
-						<WrenchSolid className="size-3.5" />
-					</div>
+					<svg
+						width="9"
+						height="9"
+						viewBox="0 0 10 10"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+						stroke-linecap="round"
+						stroke-linejoin="round"><path d="M1.5 5.5 4 8l4.5-6" /></svg
+					>
 				{/if}
+			</span>
 
-				<!-- Label -->
-				<div class="flex-1 line-clamp-1 text-[var(--text-secondary)]">
-					{#if isDone}
-						<span class="hidden @md:inline">{$i18n.t('Used')}&nbsp;</span><span
-							class="font-medium text-[var(--text)]">{attributes.name}</span
-						>
-					{:else}
-						<span class="hidden @md:inline">{$i18n.t('Running')}&nbsp;</span><span
-							class="font-medium text-[var(--text)]">{attributes.name}</span
-						>…
-					{/if}
-				</div>
+			<!-- Verb icon -->
+			<svg
+				class="vicon"
+				width="12"
+				height="12"
+				viewBox="0 0 24 24"
+				fill="none"
+				stroke="currentColor"
+				stroke-width="1.8"
+				stroke-linecap="round"
+				stroke-linejoin="round"
+				aria-hidden="true"
+			>
+				<path
+					d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"
+				/>
+			</svg>
 
-				<!-- Chevron -->
-				<div class="flex shrink-0 self-center translate-y-[1px]">
-					{#if open}
-						<ChevronUp strokeWidth="3.5" className="size-3.5" />
-					{:else}
-						<ChevronDown strokeWidth="3.5" className="size-3.5" />
-					{/if}
-				</div>
-			</div>
+			<span class="verb">{attributes.name}</span>
+			{#if argsSummary}
+				<span class="object">{argsSummary}</span>
+			{/if}
+			<span class="dotfill" aria-hidden="true"></span>
+			<span class="note">{isDone ? resultPreview : '…'}</span>
 		</div>
 
 		{#if open}
@@ -263,10 +284,87 @@
 	:global(.tool-call-trigger:hover) {
 		color: var(--text);
 	}
-	.tool-call-icon-done {
-		color: var(--success);
+
+	/* ─── Tool Calls — manuscript ledger entry (matches /design) ─── */
+	.ledger-entry {
+		display: flex;
+		align-items: baseline;
+		gap: 8px;
+		font-family: var(--mono);
+		font-size: 12px;
+		line-height: 2.1;
+		color: var(--ink-2);
+		cursor: pointer;
+		word-break: normal;
+		overflow-wrap: normal;
+		min-width: 0;
+		max-width: 100%;
+		overflow: hidden;
 	}
-	.tool-call-icon-muted {
-		color: var(--text-tertiary);
+
+	.stamp {
+		flex: none;
+		width: 13px;
+		height: 13px;
+		border-radius: 50%;
+		border: 1.5px solid var(--ink-3);
+		display: grid;
+		place-items: center;
+		align-self: center;
+		color: transparent;
+		transition: border-color 0.2s;
+	}
+	.stamp.done {
+		border-color: var(--ok);
+		color: var(--ok);
+		animation: stampIn 0.35s var(--spring);
+	}
+	@keyframes stampIn {
+		from {
+			transform: scale(1.6);
+		}
+		to {
+			transform: scale(1);
+		}
+	}
+
+	.vicon {
+		flex: none;
+		align-self: center;
+		color: var(--ultramarine);
+		transition: transform 0.3s var(--spring);
+	}
+	.ledger-entry:hover .vicon {
+		transform: rotate(-10deg) scale(1.15);
+	}
+
+	.verb {
+		flex: none;
+		color: var(--ultramarine);
+		font-weight: 500;
+		white-space: nowrap;
+	}
+	.object {
+		flex: 0 1 auto;
+		min-width: 0;
+		color: var(--ink);
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+	.dotfill {
+		flex: 1 0 14px;
+		border-bottom: 1px dotted var(--rule);
+		transform: translateY(-3px);
+	}
+	.note {
+		flex: 0 1 auto;
+		min-width: 0;
+		max-width: 45%;
+		color: var(--ink-3);
+		font-size: 11px;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
 	}
 </style>

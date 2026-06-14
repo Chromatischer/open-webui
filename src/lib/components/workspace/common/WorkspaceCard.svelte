@@ -36,6 +36,18 @@
 				{author}{#if !writeAccess}<span class="ro"> · {readOnlyLabel}</span>{/if}
 			</div>
 		</div>
+		<svg
+			class="entry-arrow"
+			width="12"
+			height="12"
+			viewBox="0 0 24 24"
+			fill="none"
+			stroke="currentColor"
+			stroke-width="2.2"
+			stroke-linecap="round"
+			stroke-linejoin="round"
+			aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg
+		>
 	</div>
 
 	<div class="cdesc">{description}</div>
@@ -49,39 +61,46 @@
 	.card {
 		display: flex;
 		flex-direction: column;
-		padding: 14px;
-		border: 1px solid var(--border);
-		background: var(--bg-elevated);
-		border-radius: 16px;
+		padding: 16px 16px 13px;
+		border: 1px solid var(--rule-faint);
+		background: color-mix(in srgb, var(--paper-deep) 22%, transparent);
+		border-radius: 14px;
 		cursor: pointer;
 		text-decoration: none;
 		color: var(--text);
 		transition:
-			transform 0.2s ease,
-			box-shadow 0.2s ease,
-			border-color 0.2s ease;
+			transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+			box-shadow 0.25s ease,
+			border-color 0.25s ease,
+			background 0.25s ease;
 	}
 	.card:hover {
-		border-color: var(--border-hover);
-		box-shadow: 0 4px 14px var(--shadow-color);
+		border-color: color-mix(in srgb, var(--vermilion) 38%, var(--rule-faint));
+		background: color-mix(in srgb, var(--paper-deep) 38%, transparent);
+		box-shadow: 0 16px 34px -22px rgba(0, 0, 0, 0.3);
 		transform: translateY(-2px);
 	}
+	.card:hover .avatar-wrap :global(.ws-avatar) {
+		filter: none;
+	}
 	.card:active {
-		transform: scale(0.98);
+		transform: scale(0.985);
 	}
 	.card.read-only {
 		cursor: default;
+		border-style: dashed;
 	}
 	.card.read-only:hover {
 		transform: none;
 		box-shadow: none;
-		border-color: var(--border);
+		background: color-mix(in srgb, var(--paper-deep) 22%, transparent);
+		border-color: var(--rule-faint);
 	}
 
 	.top {
 		display: flex;
 		align-items: center;
-		gap: 10px;
+		gap: 11px;
 		margin-bottom: 10px;
 	}
 	.avatar-wrap {
@@ -93,38 +112,63 @@
 	}
 
 	.name {
-		font-weight: 600;
-		font-size: 14px;
-		line-height: 1.2;
+		font-family: var(--serif);
+		font-size: 18.5px;
+		font-weight: 400;
+		line-height: 1.18;
 		overflow: hidden;
 		text-overflow: ellipsis;
 		white-space: nowrap;
 	}
 	.byline {
-		font-size: 11px;
-		color: var(--text-tertiary);
-		margin-top: 2px;
+		font-family: var(--mono);
+		font-size: 10px;
+		color: var(--ink-3);
+		margin-top: 3px;
 		overflow: hidden;
 		text-overflow: ellipsis;
 		white-space: nowrap;
 	}
+	.ro {
+		color: var(--ink-3);
+	}
+
+	.entry-arrow {
+		flex: none;
+		color: var(--vermilion);
+		opacity: 0;
+		transform: translateX(-4px);
+		transition:
+			opacity 0.18s ease,
+			transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+	}
+	.card:hover .entry-arrow {
+		opacity: 1;
+		transform: translateX(0);
+	}
+	.card.read-only .entry-arrow {
+		display: none;
+	}
 
 	.cdesc {
-		font-size: 12px;
-		color: var(--text-secondary);
+		font-size: 13px;
+		color: var(--ink-2);
+		line-height: 1.5;
 		display: -webkit-box;
 		-webkit-line-clamp: 2;
 		-webkit-box-orient: vertical;
 		overflow: hidden;
-		min-height: 32px;
+		min-height: 39px;
 	}
 
 	.foot {
 		display: flex;
 		align-items: center;
 		flex-wrap: wrap;
-		gap: 6px;
+		gap: 7px;
 		margin-top: 12px;
 		min-height: 22px;
+		border-top: 1px solid var(--rule-faint);
+		padding-top: 9px;
 	}
 </style>
