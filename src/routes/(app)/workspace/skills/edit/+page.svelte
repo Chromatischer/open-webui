@@ -25,7 +25,6 @@
 		);
 
 		if (updatedSkill) {
-			toast.success($i18n.t('Skill updated successfully'));
 			await skills.set(await getSkills(localStorage.token));
 			skill = {
 				id: updatedSkill.id,

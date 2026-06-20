@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { toast } from 'svelte-sonner';
+	import { inlineError } from '$lib/utils/inlineError';
 	import { createEventDispatcher } from 'svelte';
 	import { onMount, getContext } from 'svelte';
 	import { addUser } from '$lib/apis/auths';
@@ -20,6 +21,7 @@
 	let loading = false;
 	let tab = '';
 	let inputFiles;
+	let submitBtn: HTMLButtonElement;
 
 	let _user = {
 		name: '',
@@ -54,7 +56,7 @@
 				_user.role,
 				generateInitialsImage(_user.name)
 			).catch((error) => {
-				toast.error(`${error}`);
+				inlineError(submitBtn, `${error}`);
 			});
 
 			if (res) {
@@ -119,7 +121,7 @@
 
 				reader.readAsText(file, 'utf-8');
 			} else {
-				toast.error($i18n.t('File not found.'));
+				inlineError(submitBtn, $i18n.t('File not found.'));
 			}
 		}
 
@@ -285,6 +287,7 @@
 
 					<div class="flex justify-end pt-3 text-sm font-medium">
 						<button
+							bind:this={submitBtn}
 							class="px-3.5 py-1.5 text-sm font-medium bg-black hover:bg-gray-900 text-white dark:bg-white dark:text-black dark:hover:bg-gray-100 transition rounded-full flex items-center gap-2 whitespace-nowrap {loading
 								? ' cursor-not-allowed'
 								: ''}"

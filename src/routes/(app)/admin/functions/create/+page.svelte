@@ -45,7 +45,7 @@
 		});
 
 		if (res) {
-			toast.success($i18n.t('Function created successfully'));
+			// navigates away — no toast needed
 			functions.set(await getFunctions(localStorage.token));
 			models.set(
 				await getModels(
@@ -58,6 +58,9 @@
 
 			await goto('/admin/functions');
 		}
+
+		// returned to FunctionEditor so it can flash / inline-error its Save button
+		return res;
 	};
 
 	onMount(() => {
@@ -98,9 +101,7 @@
 				meta={func?.meta ?? { description: '' }}
 				content={func?.content ?? ''}
 				{clone}
-				onSave={(value) => {
-					saveHandler(value);
-				}}
+				onSave={(value) => saveHandler(value)}
 			/>
 		</div>
 	{/key}

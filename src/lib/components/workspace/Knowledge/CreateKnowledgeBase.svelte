@@ -1,5 +1,5 @@
 <script>
-	import { toast } from 'svelte-sonner';
+	import { inlineError } from '$lib/utils/inlineError';
 
 	import { goto } from '$app/navigation';
 	import { getContext } from 'svelte';
@@ -12,6 +12,7 @@
 	import Spinner from '$lib/components/common/Spinner.svelte';
 
 	let loading = false;
+	let submitBtn;
 
 	let name = '';
 	let description = '';
@@ -21,7 +22,7 @@
 		loading = true;
 
 		if (name.trim() === '' || description.trim() === '') {
-			toast.error($i18n.t('Please fill in all fields.'));
+			inlineError(submitBtn, $i18n.t('Please fill in all fields.'));
 			name = '';
 			description = '';
 			loading = false;
@@ -30,12 +31,11 @@
 
 		const res = await createNewKnowledge(localStorage.token, name, description, accessGrants).catch(
 			(e) => {
-				toast.error(`${e}`);
+				inlineError(submitBtn, `${e}`);
 			}
 		);
 
 		if (res) {
-			toast.success($i18n.t('Knowledge created successfully.'));
 			goto(`/workspace/knowledge/${res.id}`);
 		}
 
@@ -123,6 +123,7 @@
 		<div class="flex justify-end mt-2">
 			<div>
 				<button
+					bind:this={submitBtn}
 					class=" text-sm px-4 py-2 transition rounded-lg {loading
 						? ' cursor-not-allowed bg-gray-100 dark:bg-gray-800'
 						: ' bg-gray-50 hover:bg-gray-100 dark:bg-gray-850 dark:hover:bg-gray-800'} flex"

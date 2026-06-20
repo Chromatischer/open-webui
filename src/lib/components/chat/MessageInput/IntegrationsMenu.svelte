@@ -16,7 +16,8 @@
 	import { deleteOAuthSession } from '$lib/apis/auths';
 	import { getTools } from '$lib/apis/tools';
 
-	import { toast } from 'svelte-sonner';
+	import { confirmButton } from '$lib/utils/confirmButton';
+	import { inlineError } from '$lib/utils/inlineError';
 
 	import Knobs from '$lib/components/icons/Knobs.svelte';
 	import Dropdown from '$lib/components/common/Dropdown.svelte';
@@ -388,6 +389,7 @@
 											on:click={async (e) => {
 												e.stopPropagation();
 												e.preventDefault();
+												const el = e.currentTarget as HTMLElement;
 
 												const parts = toolId.split(':');
 												const serverId = parts.at(-1) ?? toolId;
@@ -395,14 +397,14 @@
 
 												try {
 													await deleteOAuthSession(localStorage.token, provider);
-													toast.success($i18n.t('OAuth session disconnected'));
+													confirmButton(el, { label: $i18n.t('Done') });
 
 													// Refresh tools to update authenticated state
 													_tools.set(await getTools(localStorage.token));
 													selectedToolIds = selectedToolIds.filter((id) => id !== toolId);
 													await init();
 												} catch (err) {
-													toast.error(err ?? $i18n.t('Failed to disconnect'));
+													inlineError(el, String(err ?? $i18n.t('Failed to disconnect')));
 												}
 											}}
 										>

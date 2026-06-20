@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { createEventDispatcher, getContext } from 'svelte';
-	import { toast } from 'svelte-sonner';
+	import { inlineError } from '$lib/utils/inlineError';
 
 	import Modal from '$lib/components/common/Modal.svelte';
 	import XMark from '$lib/components/icons/XMark.svelte';
@@ -16,6 +16,7 @@
 	let name = '';
 	let color = '#3b82f6';
 	let loading = false;
+	let createBtn: HTMLButtonElement;
 
 	const PRESET_COLORS = [
 		'#3b82f6', // blue
@@ -38,7 +39,7 @@
 
 	const submitHandler = async () => {
 		if (!name.trim()) {
-			toast.error($i18n.t('Name is required'));
+			inlineError(createBtn, $i18n.t('Name is required'));
 			return;
 		}
 
@@ -49,12 +50,12 @@
 				color
 			});
 			if (result) {
-				toast.success($i18n.t('Calendar created'));
+				// modal closes (show = false) — no toast needed
 				dispatch('created', result);
 				show = false;
 			}
 		} catch (err) {
-			toast.error(`${err}`);
+			inlineError(createBtn, `${err}`);
 		} finally {
 			loading = false;
 		}
@@ -131,6 +132,7 @@
 				{$i18n.t('Cancel')}
 			</button>
 			<button
+				bind:this={createBtn}
 				class="px-3.5 py-1.5 text-sm bg-black hover:bg-gray-900 text-white dark:bg-white dark:text-black dark:hover:bg-gray-100 transition rounded-full flex items-center gap-2 {loading
 					? 'cursor-not-allowed'
 					: ''}"

@@ -2,6 +2,8 @@
 	import { onMount, getContext } from 'svelte';
 	import { toast } from 'svelte-sonner';
 	import { goto } from '$app/navigation';
+	import { confirmButton } from '$lib/utils/confirmButton';
+	import { inlineError } from '$lib/utils/inlineError';
 
 	import dayjs from 'dayjs';
 	import relativeTime from 'dayjs/plugin/relativeTime';
@@ -45,6 +47,9 @@
 	let saving = false;
 	let showDeleteConfirm = false;
 
+	let saveBtn: HTMLButtonElement;
+	let runBtn: HTMLButtonElement;
+
 	let runs: AutomationRunModel[] = [];
 	let runsLoading = false;
 	let hasMoreRuns = true;
@@ -81,7 +86,7 @@
 
 	const saveHandler = async () => {
 		if (!name.trim() || !prompt.trim() || !model_id.trim()) {
-			toast.error($i18n.t('Name, prompt, and model are required'));
+			inlineError(saveBtn, $i18n.t('Name, prompt, and model are required'));
 			return;
 		}
 		saving = true;
@@ -99,10 +104,10 @@
 			if (updated) {
 				automation = updated;
 				isDirty = false;
-				toast.success($i18n.t('Automation updated'));
+				confirmButton(saveBtn, { label: $i18n.t('Saved') });
 			}
 		} catch (e: any) {
-			toast.error(e?.detail ?? `${e}` ?? 'Failed to save');
+			inlineError(saveBtn, e?.detail ?? `${e}` ?? 'Failed to save');
 		} finally {
 			saving = false;
 		}
@@ -122,11 +127,11 @@
 	const runNowHandler = async () => {
 		loading = true;
 		const res = await runAutomationById(localStorage.token, automation.id).catch((err) => {
-			toast.error(`${err}`);
+			inlineError(runBtn, `${err}`);
 			return null;
 		});
 		if (res) {
-			toast.success($i18n.t('Automation triggered'));
+			confirmButton(runBtn, { label: $i18n.t('Triggered') });
 			setTimeout(() => loadRuns(false), 2000);
 		}
 		loading = false;
@@ -138,7 +143,7 @@
 			return null;
 		});
 		if (res) {
-			toast.success($i18n.t(`Deleted {{name}}`, { name: automation.name }));
+			// navigates away — no toast needed
 			goto('/automations');
 		}
 	};
@@ -255,6 +260,7 @@
 
 				{#if isDirty}
 					<button
+						bind:this={saveBtn}
 						class="px-3 py-1 text-sm bg-black text-white dark:bg-white dark:text-black rounded-full hover:opacity-90 transition flex items-center gap-1.5"
 						on:click={saveHandler}
 						disabled={saving}
@@ -268,6 +274,7 @@
 				{/if}
 
 				<button
+					bind:this={runBtn}
 					class="px-2.5 py-1 text-sm border border-gray-200 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-850 transition rounded-full flex items-center gap-1.5"
 					on:click={runNowHandler}
 					type="button"

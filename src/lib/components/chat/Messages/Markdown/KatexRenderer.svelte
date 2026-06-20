@@ -18,7 +18,6 @@
 <script lang="ts">
 	import { onMount, getContext } from 'svelte';
 	import { copyToClipboard } from '$lib/utils';
-	import { toast } from 'svelte-sonner';
 	import { inlineConfirm } from '$lib/utils/inlineConfirm';
 
 	const i18n = getContext('i18n');

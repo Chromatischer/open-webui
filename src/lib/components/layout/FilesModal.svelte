@@ -121,8 +121,7 @@
 	const deleteHandler = async (fileId: string) => {
 		try {
 			await deleteFileById(localStorage.token, fileId);
-			toast.success($i18n.t('File deleted successfully.'));
-			// Remove from local array instead of re-fetching to allow rapid deletion
+			// row disappears from the list — no confirmation needed
 			files = files?.filter((f) => f.id !== fileId) ?? null;
 		} catch (error) {
 			toast.error(`${error}`);

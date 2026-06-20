@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { getContext } from 'svelte';
-	import { toast } from 'svelte-sonner';
 	import { updateUserPassword } from '$lib/apis/auths';
+	import { confirmButton } from '$lib/utils/confirmButton';
+	import { inlineError } from '$lib/utils/inlineError';
 	import SensitiveInput from '$lib/components/common/SensitiveInput.svelte';
 
 	const i18n = getContext('i18n');
@@ -11,24 +12,28 @@
 	let newPassword = '';
 	let newPasswordConfirm = '';
 
+	let updatePasswordBtn: HTMLButtonElement;
+
 	const updatePasswordHandler = async () => {
+		const el = updatePasswordBtn;
 		if (newPassword === newPasswordConfirm) {
 			const res = await updateUserPassword(localStorage.token, currentPassword, newPassword).catch(
 				(error) => {
-					toast.error(`${error}`);
+					inlineError(el, `${error}`);
 					return null;
 				}
 			);
 
 			if (res) {
-				toast.success($i18n.t('Successfully updated.'));
+				confirmButton(el, { label: $i18n.t('Saved') });
 			}
 
 			currentPassword = '';
 			newPassword = '';
 			newPasswordConfirm = '';
 		} else {
-			toast.error(
+			inlineError(
+				el,
 				$i18n.t("The passwords you entered don't quite match. Please double-check and try again.")
 			);
 			newPassword = '';
@@ -104,6 +109,7 @@
 
 		<div class="mt-3 flex justify-end">
 			<button
+				bind:this={updatePasswordBtn}
 				class="px-3.5 py-1.5 text-sm font-medium bg-black hover:bg-gray-900 text-white dark:bg-white dark:text-black dark:hover:bg-gray-100 transition rounded-full"
 			>
 				{$i18n.t('Update password')}

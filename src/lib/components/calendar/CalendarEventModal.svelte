@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { createEventDispatcher, getContext } from 'svelte';
 	import { toast } from 'svelte-sonner';
+	import { inlineError } from '$lib/utils/inlineError';
 
 	import Modal from '$lib/components/common/Modal.svelte';
 	import DeleteConfirmDialog from '$lib/components/common/ConfirmDialog.svelte';
@@ -35,6 +36,9 @@
 	let alertMinutes: number = 10;
 	let loading = false;
 	let showDeleteConfirmDialog = false;
+
+	let submitBtn: HTMLButtonElement;
+	let titleInput: HTMLInputElement;
 
 	const NS = 1_000_000;
 
@@ -90,7 +94,7 @@
 
 	const submitHandler = async () => {
 		if (!title.trim()) {
-			toast.error($i18n.t('Title is required'));
+			inlineError(titleInput, $i18n.t('Title is required'));
 			return;
 		}
 
@@ -111,7 +115,6 @@
 					meta: { alert_minutes: alertMinutes }
 				});
 				if (result) {
-					toast.success($i18n.t('Event updated'));
 					dispatch('save', result);
 					show = false;
 				}
@@ -128,13 +131,12 @@
 				};
 				const result = await createCalendarEvent(localStorage.token, form);
 				if (result) {
-					toast.success($i18n.t('Event created'));
 					dispatch('save', result);
 					show = false;
 				}
 			}
 		} catch (err) {
-			toast.error(`${err}`);
+			inlineError(submitBtn, `${err}`);
 		} finally {
 			loading = false;
 		}
@@ -145,10 +147,11 @@
 		loading = true;
 		try {
 			await deleteCalendarEvent(localStorage.token, event.id);
-			toast.success($i18n.t('Event deleted'));
 			dispatch('delete', event);
 			show = false;
 		} catch (err) {
+			// Triggered from a ConfirmDialog callback — no DOM element to anchor to,
+			// so a toast is the right fallback (graceful, not user-fixable in place).
 			toast.error(`${err}`);
 		} finally {
 			loading = false;
@@ -163,6 +166,7 @@
 			<input
 				class="w-full text-lg bg-transparent outline-hidden font-primary placeholder:text-gray-300 dark:placeholder:text-gray-700"
 				type="text"
+				bind:this={titleInput}
 				bind:value={title}
 				placeholder={$i18n.t('Event title')}
 			/>
@@ -273,6 +277,7 @@
 					class="px-3.5 py-1.5 text-sm bg-black hover:bg-gray-900 text-white dark:bg-white dark:text-black dark:hover:bg-gray-100 transition rounded-full flex items-center gap-2 {loading
 						? 'cursor-not-allowed'
 						: ''}"
+					bind:this={submitBtn}
 					on:click={submitHandler}
 					type="button"
 					disabled={loading}

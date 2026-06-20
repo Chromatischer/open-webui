@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { toast } from 'svelte-sonner';
+	import { inlineError } from '$lib/utils/inlineError';
 
 	import { onMount, getContext, tick } from 'svelte';
 	import { models, tools, functions, user } from '$lib/stores';
@@ -44,6 +45,7 @@
 
 	let filesInputElement;
 	let inputFiles;
+	let submitBtn: HTMLButtonElement;
 
 	let showAdvanced = false;
 	let showPreview = false;
@@ -112,21 +114,21 @@
 		info.name = name;
 
 		if (id === '') {
-			toast.error($i18n.t('Model ID is required.'));
+			inlineError(submitBtn, $i18n.t('Model ID is required.'));
 			loading = false;
 
 			return;
 		}
 
 		if (name === '') {
-			toast.error($i18n.t('Model Name is required.'));
+			inlineError(submitBtn, $i18n.t('Model Name is required.'));
 			loading = false;
 
 			return;
 		}
 
 		if (knowledge.some((item) => item.status === 'uploading')) {
-			toast.error($i18n.t('Please wait until all files are uploaded.'));
+			inlineError(submitBtn, $i18n.t('Please wait until all files are uploaded.'));
 			loading = false;
 
 			return;
@@ -368,7 +370,7 @@
 						model.name ?? name,
 						accessGrants
 					);
-					toast.success($i18n.t('Saved'));
+					// autosaved on toggle — the control state is the feedback, no toast
 				} catch (error) {
 					toast.error(error?.detail ?? `${error}`);
 				}
@@ -831,6 +833,7 @@
 							class=" text-sm px-3 py-2 transition rounded-lg {loading
 								? ' cursor-not-allowed bg-black hover:bg-gray-900 text-white dark:bg-white dark:hover:bg-gray-100 dark:text-black'
 								: 'bg-black hover:bg-gray-900 text-white dark:bg-white dark:hover:bg-gray-100 dark:text-black'} flex w-full justify-center"
+							bind:this={submitBtn}
 							type="submit"
 							disabled={loading}
 						>

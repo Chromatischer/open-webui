@@ -2,7 +2,6 @@
 	import { getContext, onMount, tick } from 'svelte';
 	import { models, config } from '$lib/stores';
 
-	import { toast } from 'svelte-sonner';
 	import { copyToClipboard } from '$lib/utils';
 
 	import XMark from '$lib/components/icons/XMark.svelte';

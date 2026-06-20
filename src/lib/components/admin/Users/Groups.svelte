@@ -77,7 +77,6 @@
 		});
 
 		if (res) {
-			toast.success($i18n.t('Group created successfully'));
 			groups = await getGroups(localStorage.token);
 		}
 	};
@@ -93,7 +92,6 @@
 		);
 
 		if (res) {
-			toast.success($i18n.t('Default permissions updated successfully'));
 			defaultPermissions = await getUserDefaultPermissions(localStorage.token);
 		}
 	};

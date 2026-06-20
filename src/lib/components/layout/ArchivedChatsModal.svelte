@@ -118,7 +118,6 @@
 		loading = true;
 		try {
 			await unarchiveAllChats(localStorage.token);
-			toast.success($i18n.t('All chats have been unarchived.'));
 			onUpdate();
 			await init();
 		} catch (error) {

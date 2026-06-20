@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { toast } from 'svelte-sonner';
 	import { onMount, getContext } from 'svelte';
+	import { confirmButton } from '$lib/utils/confirmButton';
+	import { inlineError } from '$lib/utils/inlineError';
 
 	import { user, config, settings } from '$lib/stores';
 	import { updateUserProfile, createAPIKey, getAPIKey, getSessionUser } from '$lib/apis/auths';
@@ -41,6 +43,9 @@
 	let APIKey = '';
 	let APIKeyCopied = false;
 	let profileImageInputElement: HTMLInputElement;
+
+	let saveBtn: HTMLButtonElement;
+	let createAPIKeyBtn: HTMLButtonElement;
 
 	const submitHandler = async () => {
 		if (name !== $user?.name) {
@@ -84,9 +89,9 @@
 	const createAPIKeyHandler = async () => {
 		APIKey = await createAPIKey(localStorage.token);
 		if (APIKey) {
-			toast.success($i18n.t('API Key created.'));
+			confirmButton(createAPIKeyBtn, { label: $i18n.t('Created') });
 		} else {
-			toast.error($i18n.t('Failed to create API Key.'));
+			inlineError(createAPIKeyBtn, $i18n.t('Failed to create API Key.'));
 		}
 	};
 
@@ -387,6 +392,7 @@
 
 									<Tooltip content={$i18n.t('Create new key')}>
 										<button
+											bind:this={createAPIKeyBtn}
 											class=" px-1.5 py-1 dark:hover:bg-gray-850transition rounded-lg"
 											aria-label={$i18n.t('Create new key')}
 											on:click={() => {
@@ -411,6 +417,7 @@
 									</Tooltip>
 								{:else}
 									<button
+										bind:this={createAPIKeyBtn}
 										class="flex gap-1.5 items-center font-medium px-3.5 py-1.5 rounded-lg bg-gray-100/70 hover:bg-gray-100 dark:bg-gray-850 dark:hover:bg-gray-850 transition"
 										on:click={() => {
 											createAPIKeyHandler();
@@ -432,11 +439,14 @@
 	{#if !embedded}
 		<div class="flex justify-end pt-3 text-sm font-medium">
 			<button
+				bind:this={saveBtn}
 				class="px-3.5 py-1.5 text-sm font-medium bg-black hover:bg-gray-900 text-white dark:bg-white dark:text-black dark:hover:bg-gray-100 transition rounded-full"
-				on:click={async () => {
+				on:click={async (e) => {
+					const el = e.currentTarget as HTMLElement;
 					const res = await submitHandler();
 
 					if (res) {
+						confirmButton(el, { label: $i18n.t('Saved') });
 						saveHandler();
 					}
 				}}

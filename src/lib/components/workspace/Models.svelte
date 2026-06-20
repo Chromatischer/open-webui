@@ -133,8 +133,6 @@
 		});
 
 		if (res) {
-			toast.success($i18n.t(`Deleted {{name}}`, { name: model.id }));
-
 			page = 1;
 			getModelList();
 		}
@@ -157,8 +155,6 @@
 	};
 
 	const shareModelHandler = async (model) => {
-		toast.success($i18n.t('Redirecting you to Open WebUI Community'));
-
 		const url = 'https://openwebui.com';
 
 		const tab = await window.open(`${url}/models/create`, '_blank');
@@ -185,13 +181,6 @@
 		const res = await updateModelById(localStorage.token, model.id, model);
 
 		if (res) {
-			toast.success(
-				$i18n.t(`Model {{name}} is now {{status}}`, {
-					name: model.id,
-					status: model.meta.hidden ? 'hidden' : 'visible'
-				})
-			);
-
 			page = 1;
 			getModelList();
 		}
@@ -273,7 +262,6 @@
 		await Promise.all(
 			modelsToShow.map((model) => updateModelById(localStorage.token, model.id, model))
 		);
-		toast.success($i18n.t('All models are now visible'));
 	};
 
 	const hideAllHandler = async () => {
@@ -287,7 +275,6 @@
 		await Promise.all(
 			modelsToHide.map((model) => updateModelById(localStorage.token, model.id, model))
 		);
-		toast.success($i18n.t('All models are now hidden'));
 	};
 
 	onMount(async () => {

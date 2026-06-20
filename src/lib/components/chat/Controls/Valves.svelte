@@ -88,7 +88,7 @@
 				);
 
 				if (res) {
-					toast.success($i18n.t('Valves updated'));
+					// autosaved on change — the persisted value is the feedback, no toast
 					valves = res;
 				}
 			} else if (tab === 'functions') {
@@ -102,7 +102,7 @@
 				});
 
 				if (res) {
-					toast.success($i18n.t('Valves updated'));
+					// autosaved on change — the persisted value is the feedback, no toast
 					valves = res;
 				}
 			}

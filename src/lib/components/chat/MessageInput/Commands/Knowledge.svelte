@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { toast } from 'svelte-sonner';
+	import { inlineError } from '$lib/utils/inlineError';
 	import dayjs from 'dayjs';
 	import relativeTime from 'dayjs/plugin/relativeTime';
 	dayjs.extend(relativeTime);
@@ -207,16 +207,14 @@
 			class="px-2 py-1 rounded-xl w-full text-left bg-gray-50 dark:bg-gray-800 dark:text-gray-100 selected-command-option-button"
 			type="button"
 			data-selected={selectedIdx === filteredItems.findIndex((i) => i.type === 'youtube')}
-			on:click={() => {
+			on:click={(e) => {
 				if (isValidHttpUrl(query)) {
 					onSelect({
 						type: 'web',
 						data: query
 					});
 				} else {
-					toast.error(
-						$i18n.t('Oops! Looks like the URL is invalid. Please double-check and try again.')
-					);
+					inlineError(e.currentTarget, $i18n.t('Oops! Looks like the URL is invalid. Please double-check and try again.'));
 				}
 			}}
 		>
@@ -235,16 +233,14 @@
 			class="px-2 py-1 rounded-xl w-full text-left bg-gray-50 dark:bg-gray-800 dark:text-gray-100 selected-command-option-button"
 			type="button"
 			data-selected={selectedIdx === filteredItems.findIndex((i) => i.type === 'web')}
-			on:click={() => {
+			on:click={(e) => {
 				if (isValidHttpUrl(query)) {
 					onSelect({
 						type: 'web',
 						data: query
 					});
 				} else {
-					toast.error(
-						$i18n.t('Oops! Looks like the URL is invalid. Please double-check and try again.')
-					);
+					inlineError(e.currentTarget, $i18n.t('Oops! Looks like the URL is invalid. Please double-check and try again.'));
 				}
 			}}
 		>

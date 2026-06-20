@@ -46,7 +46,6 @@
 		});
 
 		if (res) {
-			toast.success($i18n.t('Function updated successfully'));
 			functions.set(await getFunctions(localStorage.token));
 			models.set(
 				await getModels(
@@ -57,6 +56,9 @@
 				)
 			);
 		}
+
+		// returned to FunctionEditor so it can flash its own Save button
+		return res;
 	};
 
 	onMount(async () => {
@@ -83,9 +85,7 @@
 			name={func.name}
 			meta={func.meta}
 			content={func.content}
-			onSave={(value) => {
-				saveHandler(value);
-			}}
+			onSave={(value) => saveHandler(value)}
 		/>
 	</div>
 {:else}

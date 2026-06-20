@@ -1,7 +1,5 @@
 <script lang="ts">
 	import { getContext } from 'svelte';
-	import { toast } from 'svelte-sonner';
-
 	import { mobile, showArchivedChats, showSidebar, user } from '$lib/stores';
 
 	import { slide } from 'svelte/transition';

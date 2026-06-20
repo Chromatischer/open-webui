@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { toast } from 'svelte-sonner';
 	import { createEventDispatcher, onMount, getContext, tick } from 'svelte';
 	import { getModels as _getModels } from '$lib/apis';
+	import { confirmButton } from '$lib/utils/confirmButton';
 
 	const dispatch = createEventDispatcher();
 	const i18n = getContext('i18n');
@@ -17,6 +17,8 @@
 	import AddConnectionModal from '$lib/components/AddConnectionModal.svelte';
 
 	export let saveSettings: Function;
+
+	let saveBtn: HTMLButtonElement;
 
 	let config = null;
 
@@ -56,6 +58,8 @@
 		await saveSettings({
 			directConnections: config
 		});
+		// the button is the confirmation — green wash + ✓, no toast
+		confirmButton(saveBtn, { label: $i18n.t('Saved') });
 	};
 
 	onMount(async () => {
@@ -153,6 +157,7 @@
 
 	<div class="flex justify-end pt-3 text-sm font-medium">
 		<button
+			bind:this={saveBtn}
 			class="px-3.5 py-1.5 text-sm font-medium bg-black hover:bg-gray-900 text-white dark:bg-white dark:text-black dark:hover:bg-gray-100 transition rounded-full"
 			type="submit"
 		>

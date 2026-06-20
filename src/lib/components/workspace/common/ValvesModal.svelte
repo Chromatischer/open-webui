@@ -1,5 +1,7 @@
 <script lang="ts">
 	import { toast } from 'svelte-sonner';
+	import { confirmButton } from '$lib/utils/confirmButton';
+	import { inlineError } from '$lib/utils/inlineError';
 	import { createEventDispatcher } from 'svelte';
 	import { onMount, getContext } from 'svelte';
 	import { addUser } from '$lib/apis/auths';
@@ -42,6 +44,8 @@
 	let saving = false;
 	let loading = false;
 
+	let saveBtn: HTMLButtonElement;
+
 	let valvesSpec = null;
 	let valves = {};
 
@@ -68,29 +72,29 @@
 			if (userValves) {
 				if (type === 'tool') {
 					res = await updateToolUserValvesById(localStorage.token, id, valves).catch((error) => {
-						toast.error(`${error}`);
+						inlineError(saveBtn, `${error}`);
 					});
 				} else if (type === 'function') {
 					res = await updateFunctionUserValvesById(localStorage.token, id, valves).catch(
 						(error) => {
-							toast.error(`${error}`);
+							inlineError(saveBtn, `${error}`);
 						}
 					);
 				}
 			} else {
 				if (type === 'tool') {
 					res = await updateToolValvesById(localStorage.token, id, valves).catch((error) => {
-						toast.error(`${error}`);
+						inlineError(saveBtn, `${error}`);
 					});
 				} else if (type === 'function') {
 					res = await updateFunctionValvesById(localStorage.token, id, valves).catch((error) => {
-						toast.error(`${error}`);
+						inlineError(saveBtn, `${error}`);
 					});
 				}
 			}
 
 			if (res) {
-				toast.success($i18n.t('Valves updated successfully'));
+				confirmButton(saveBtn, { label: $i18n.t('Saved') });
 				dispatch('save');
 			}
 		}
@@ -184,6 +188,7 @@
 
 					<div class="flex justify-end pt-3 text-sm font-medium">
 						<button
+							bind:this={saveBtn}
 							class="px-3.5 py-1.5 text-sm font-medium bg-black hover:bg-gray-900 text-white dark:bg-white dark:text-black dark:hover:bg-gray-100 transition rounded-full flex items-center gap-2 whitespace-nowrap {saving
 								? ' cursor-not-allowed'
 								: ''}"

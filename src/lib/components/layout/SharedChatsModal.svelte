@@ -89,7 +89,6 @@
 		});
 
 		if (res === true) {
-			toast.success($i18n.t('Chat unshared successfully.'));
 			onUpdate();
 			init();
 		} else if (res === false) {

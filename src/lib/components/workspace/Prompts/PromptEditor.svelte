@@ -3,6 +3,8 @@
 
 	import Textarea from '$lib/components/common/Textarea.svelte';
 	import { toast } from 'svelte-sonner';
+	import { confirmButton } from '$lib/utils/confirmButton';
+	import { inlineError } from '$lib/utils/inlineError';
 	import Tooltip from '$lib/components/common/Tooltip.svelte';
 	import LockClosed from '$lib/components/icons/LockClosed.svelte';
 	import Clipboard from '$lib/components/icons/Clipboard.svelte';
@@ -40,6 +42,10 @@
 	let loading = false;
 	let showEditModal = false;
 
+	let modalSubmitBtn: HTMLButtonElement;
+	let setAsProductionBtn: HTMLButtonElement;
+	let commandInput: HTMLInputElement;
+
 	let name = '';
 	let command = '';
 	let content = '';
@@ -76,7 +82,7 @@
 
 	const submitHandler = async () => {
 		if (disabled) {
-			toast.error($i18n.t('You do not have permission to edit this prompt.'));
+			inlineError(modalSubmitBtn, $i18n.t('You do not have permission to edit this prompt.'));
 			return;
 		}
 		loading = true;
@@ -102,10 +108,11 @@
 					selectedHistoryEntry = history[0];
 				}
 			} catch (error) {
-				toast.error(`${error}`);
+				inlineError(modalSubmitBtn, `${error}`);
 			}
 		} else {
-			toast.error(
+			inlineError(
+				modalSubmitBtn,
 				$i18n.t('Only alphanumeric characters and hyphens are allowed in the command string.')
 			);
 		}
@@ -171,7 +178,7 @@
 
 	const setAsProduction = async (historyEntry: any) => {
 		if (disabled) {
-			toast.error($i18n.t('You do not have permission to edit this prompt.'));
+			inlineError(setAsProductionBtn, $i18n.t('You do not have permission to edit this prompt.'));
 			return;
 		}
 
@@ -179,9 +186,8 @@
 			await setProductionPromptVersion(localStorage.token, prompt.id, historyEntry.id);
 			// Update local prompt object to trigger reactivity
 			prompt = { ...prompt, version_id: historyEntry.id };
-			toast.success($i18n.t('Production version updated'));
 		} catch (error) {
-			toast.error(`${error}`);
+			inlineError(setAsProductionBtn, `${error}`);
 		}
 	};
 
@@ -190,7 +196,6 @@
 
 		try {
 			await deletePromptHistoryVersion(localStorage.token, prompt.id, historyId);
-			toast.success($i18n.t('Version deleted'));
 			// Reload history from scratch
 			await loadHistory(true);
 			// Reset selection if deleted entry was selected
@@ -219,7 +224,8 @@
 
 		debounceTimer = setTimeout(async () => {
 			if (!validateCommandString(command)) {
-				toast.error(
+				inlineError(
+					commandInput,
 					$i18n.t('Only alphanumeric characters and hyphens are allowed in the command string.')
 				);
 				command = originalCommand;
@@ -238,9 +244,8 @@
 				originalName = name;
 				originalCommand = command;
 				originalTags = tags;
-				toast.success($i18n.t('Saved'));
 			} catch (error) {
-				toast.error(`${error}`);
+				inlineError(commandInput, `${error}`);
 				// Revert on error (collision)
 				name = originalName;
 				command = originalCommand;
@@ -292,7 +297,6 @@
 		if (edit && prompt?.id) {
 			try {
 				await updatePromptAccessGrants(localStorage.token, prompt.id, accessGrants);
-				toast.success($i18n.t('Saved'));
 			} catch (error) {
 				toast.error(`${error}`);
 			}
@@ -357,6 +361,7 @@
 				</label>
 				<div>
 					<button
+						bind:this={modalSubmitBtn}
 						class="text-sm px-4 py-2 transition rounded-full {loading
 							? 'cursor-not-allowed bg-gray-200 text-gray-500 dark:bg-gray-700 dark:text-gray-400'
 							: 'bg-black hover:bg-gray-900 text-white dark:bg-white dark:hover:bg-gray-100 dark:text-black'} flex justify-center"
@@ -395,6 +400,7 @@
 					<input
 						class="bg-transparent outline-hidden"
 						placeholder={$i18n.t('command')}
+						bind:this={commandInput}
 						bind:value={command}
 						on:input={debouncedSaveMetadata}
 						{disabled}
@@ -430,9 +436,10 @@
 					<Tooltip content={$i18n.t('Click to copy ID')}>
 						<button
 							class="text-xs text-gray-500 font-mono px-2 py-1 rounded-lg cursor-pointer hover:underline transition"
-							on:click={() => {
+							on:click={(e) => {
+								const el = e.currentTarget as HTMLElement;
 								copyToClipboard(prompt.id);
-								toast.success($i18n.t('ID copied to clipboard'));
+								confirmButton(el, { label: $i18n.t('Copied') });
 							}}
 						>
 							{prompt.id}
@@ -490,6 +497,7 @@
 								<Badge type="success" content={$i18n.t('Live')} />
 							{:else}
 								<button
+									bind:this={setAsProductionBtn}
 									class="text-xs text-gray-500 hover:text-gray-900 dark:hover:text-gray-300 hover:underline transition"
 									on:click={() => setAsProduction(selectedHistoryEntry)}
 								>

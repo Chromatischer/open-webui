@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { toast } from 'svelte-sonner';
 	import { getContext, onMount } from 'svelte';
+	import { inlineError } from '$lib/utils/inlineError';
 	const i18n = getContext('i18n');
 
 	import Spinner from '$lib/components/common/Spinner.svelte';
@@ -19,17 +19,19 @@
 	let loading = false;
 	let url = '';
 
+	let submitBtn: HTMLButtonElement;
+
 	const submitHandler = async () => {
 		loading = true;
 
 		if (!url) {
-			toast.error($i18n.t('Please enter a valid URL'));
+			inlineError(submitBtn, $i18n.t('Please enter a valid URL'));
 			loading = false;
 			return;
 		}
 
 		const res = await loadUrlHandler(url).catch((err) => {
-			toast.error(`${err}`);
+			inlineError(submitBtn, `${err}`);
 			loading = false;
 			return null;
 		});
@@ -38,8 +40,7 @@
 			if (!successMessage) {
 				successMessage = $i18n.t('Function imported successfully');
 			}
-
-			toast.success(successMessage);
+			// modal closes — no toast needed
 
 			let func = res;
 			func.id = func.id || nameToId(func.name);
@@ -107,6 +108,7 @@
 							class="px-3.5 py-1.5 text-sm font-medium bg-black hover:bg-gray-900 text-white dark:bg-white dark:text-black dark:hover:bg-gray-100 transition rounded-full flex items-center gap-2 whitespace-nowrap {loading
 								? ' cursor-not-allowed'
 								: ''}"
+							bind:this={submitBtn}
 							type="submit"
 							disabled={loading}
 						>

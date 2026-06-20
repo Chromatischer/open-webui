@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { toast } from 'svelte-sonner';
+	import { confirmButton } from '$lib/utils/confirmButton';
+	import { inlineError } from '$lib/utils/inlineError';
 	import { getContext, onMount } from 'svelte';
 	const i18n = getContext('i18n');
 
@@ -58,6 +59,9 @@
 	let loading = false;
 	let showDeleteConfirmDialog = false;
 
+	let verifyBtn: HTMLButtonElement;
+	let saveBtn: HTMLButtonElement;
+
 	const verifyOllamaHandler = async () => {
 		// remove trailing slash from url
 		url = url.replace(/\/$/, '');
@@ -66,11 +70,11 @@
 			url,
 			key
 		}).catch((error) => {
-			toast.error(`${error}`);
+			inlineError(verifyBtn, `${error}`);
 		});
 
 		if (res) {
-			toast.success($i18n.t('Server connection verified'));
+			confirmButton(verifyBtn, { label: $i18n.t('Verified') });
 		}
 	};
 
@@ -89,7 +93,7 @@
 				}
 				headers = JSON.stringify(_headers, null, 2);
 			} catch (error) {
-				toast.error($i18n.t('Headers must be a valid JSON object'));
+				inlineError(verifyBtn, $i18n.t('Headers must be a valid JSON object'));
 				return;
 			}
 		}
@@ -108,11 +112,11 @@
 			},
 			direct
 		).catch((error) => {
-			toast.error(`${error}`);
+			inlineError(verifyBtn, `${error}`);
 		});
 
 		if (res) {
-			toast.success($i18n.t('Server connection verified'));
+			confirmButton(verifyBtn, { label: $i18n.t('Verified') });
 		}
 	};
 
@@ -136,7 +140,7 @@
 
 		if (!ollama && !url) {
 			loading = false;
-			toast.error($i18n.t('URL is required'));
+			inlineError(saveBtn, $i18n.t('URL is required'));
 			return;
 		}
 
@@ -144,20 +148,20 @@
 			if (!apiVersion) {
 				loading = false;
 
-				toast.error($i18n.t('API Version is required'));
+				inlineError(saveBtn, $i18n.t('API Version is required'));
 				return;
 			}
 
 			if (!key && !['azure_ad', 'microsoft_entra_id'].includes(auth_type)) {
 				loading = false;
 
-				toast.error($i18n.t('Key is required'));
+				inlineError(saveBtn, $i18n.t('Key is required'));
 				return;
 			}
 
 			if (modelIds.length === 0) {
 				loading = false;
-				toast.error($i18n.t('Deployment names are required for Azure OpenAI'));
+				inlineError(saveBtn, $i18n.t('Deployment names are required for Azure OpenAI'));
 				return;
 			}
 		}
@@ -170,7 +174,7 @@
 				}
 				headers = JSON.stringify(_headers, null, 2);
 			} catch (error) {
-				toast.error($i18n.t('Headers must be a valid JSON object'));
+				inlineError(saveBtn, $i18n.t('Headers must be a valid JSON object'));
 				return;
 			}
 		}
@@ -335,6 +339,7 @@
 
 							<Tooltip content={$i18n.t('Verify Connection')} className="self-end -mb-1">
 								<button
+									bind:this={verifyBtn}
 									class="self-center p-1 bg-transparent hover:bg-gray-100 dark:hover:bg-gray-850 rounded-lg transition"
 									on:click={() => {
 										verifyHandler();
@@ -709,6 +714,7 @@
 							class="px-3.5 py-1.5 text-sm font-medium bg-black hover:bg-gray-900 text-white dark:bg-white dark:text-black dark:hover:bg-gray-100 transition rounded-full flex items-center gap-2 whitespace-nowrap {loading
 								? ' cursor-not-allowed'
 								: ''}"
+							bind:this={saveBtn}
 							type="submit"
 							disabled={loading}
 						>

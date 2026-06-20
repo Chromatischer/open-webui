@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { createEventDispatcher, getContext } from 'svelte';
-	import { toast } from 'svelte-sonner';
+	import { inlineError } from '$lib/utils/inlineError';
 
 	import Modal from '$lib/components/common/Modal.svelte';
 	import XMark from '$lib/components/icons/XMark.svelte';
@@ -28,19 +28,20 @@
 	let is_active = true;
 
 	let loading = false;
+	let submitBtn: HTMLButtonElement;
 
 	// Schedule dropdown ref
 	let scheduleDropdown: ScheduleDropdown;
 
 	const submitHandler = async () => {
 		if (!name.trim() || !prompt.trim() || !model_id.trim()) {
-			toast.error($i18n.t('Name, prompt, and model are required'));
+			inlineError(submitBtn, $i18n.t('Name, prompt, and model are required'));
 			return;
 		}
 		if (scheduleDropdown?.frequency === 'ONCE') {
 			const scheduled = new Date(`${scheduleDropdown.onceDate}T${scheduleDropdown.onceTime}`);
 			if (scheduled <= new Date()) {
-				toast.error($i18n.t('Scheduled time must be in the future'));
+				inlineError(submitBtn, $i18n.t('Scheduled time must be in the future'));
 				return;
 			}
 		}
@@ -58,17 +59,15 @@
 
 			if (automation) {
 				await updateAutomationById(localStorage.token, automation.id, form);
-				toast.success($i18n.t('Automation updated'));
 				show = false;
 				dispatch('save', { id: automation.id });
 			} else {
 				const created = await createAutomation(localStorage.token, form);
-				toast.success($i18n.t('Automation created'));
 				show = false;
 				dispatch('save', { id: created?.id });
 			}
 		} catch (e: any) {
-			toast.error(e?.detail ?? `${e}` ?? 'Failed to save');
+			inlineError(submitBtn, e?.detail ?? `${e}` ?? 'Failed to save');
 		} finally {
 			loading = false;
 		}
@@ -143,6 +142,7 @@
 					{$i18n.t('Cancel')}
 				</button>
 				<button
+					bind:this={submitBtn}
 					class="px-3.5 py-1.5 text-sm font-medium bg-black hover:bg-gray-900 text-white dark:bg-white dark:text-black dark:hover:bg-gray-100 transition rounded-full flex items-center gap-2 {loading
 						? 'cursor-not-allowed'
 						: ''}"

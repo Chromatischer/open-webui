@@ -1,7 +1,7 @@
 <script lang="ts">
 	import dayjs from 'dayjs';
-	import { toast } from 'svelte-sonner';
 	import { inlineConfirm } from '$lib/utils/inlineConfirm';
+	import { inlineError } from '$lib/utils/inlineError';
 	import { tick, getContext, onMount } from 'svelte';
 
 	import { models, settings } from '$lib/stores';
@@ -92,9 +92,12 @@
 		}
 	};
 
+	let confirmEditBtn: HTMLButtonElement;
+	let saveEditBtn: HTMLButtonElement;
+
 	const editMessageConfirmHandler = async (submit = true) => {
 		if (!editedContent && (editedFiles ?? []).length === 0) {
-			toast.error($i18n.t('Please enter a message or attach a file.'));
+			inlineError(submit ? confirmEditBtn : saveEditBtn, $i18n.t('Please enter a message or attach a file.'));
 			return;
 		}
 
@@ -303,6 +306,7 @@
 							<button
 								id="save-edit-message-button"
 								class="px-3.5 py-1.5 bg-gray-50 hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 border border-gray-100 dark:border-gray-700 text-gray-700 dark:text-gray-200 transition rounded-3xl"
+								bind:this={saveEditBtn}
 								on:click={() => {
 									editMessageConfirmHandler(false);
 								}}
@@ -325,6 +329,7 @@
 							<button
 								id="confirm-edit-message-button"
 								class="px-3.5 py-1.5 bg-gray-900 dark:bg-white hover:bg-gray-850 text-gray-100 dark:text-gray-800 transition rounded-3xl"
+								bind:this={confirmEditBtn}
 								on:click={() => {
 									editMessageConfirmHandler();
 								}}

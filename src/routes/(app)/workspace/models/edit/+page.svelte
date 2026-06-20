@@ -8,7 +8,7 @@
 	import { page } from '$app/stores';
 	import { config, models, settings } from '$lib/stores';
 
-	import { getModelById, updateModelById } from '$lib/apis/models';
+	import { getModelById, updateModelById, deleteModelById } from '$lib/apis/models';
 
 	import { getModels } from '$lib/apis';
 	import ModelFolio from '$lib/components/workspace/Models/ModelFolio.svelte';
@@ -45,12 +45,36 @@
 					$config?.features?.enable_direct_connections && ($settings?.directConnections ?? null)
 				)
 			);
-			toast.success($i18n.t('Model updated successfully'));
+			await goto('/workspace/models');
+		}
+	};
+
+	const onDelete = async () => {
+		if (!model) return;
+
+		const res = await deleteModelById(localStorage.token, model.id).catch((e) => {
+			toast.error(`${e}`);
+			return null;
+		});
+
+		if (res) {
+			await models.set(
+				await getModels(
+					localStorage.token,
+					$config?.features?.enable_direct_connections && ($settings?.directConnections ?? null)
+				)
+			);
 			await goto('/workspace/models');
 		}
 	};
 </script>
 
 {#if model}
-	<ModelFolio edit={true} {model} {onSubmit} onClose={() => goto('/workspace/models')} />
+	<ModelFolio
+		edit={true}
+		{model}
+		{onSubmit}
+		{onDelete}
+		onClose={() => goto('/workspace/models')}
+	/>
 {/if}

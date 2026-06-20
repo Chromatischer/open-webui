@@ -150,7 +150,6 @@
 				};
 				files = files;
 			}
-			toast.success($i18n.t('File attached to chat'));
 		} catch (e) {
 			files = files.filter((f) => f.itemId !== tempItemId);
 			toast.error($i18n.t('Failed to attach file'));

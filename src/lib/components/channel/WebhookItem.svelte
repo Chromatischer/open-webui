@@ -9,7 +9,7 @@
 	import GarbageBin from '$lib/components/icons/GarbageBin.svelte';
 	import Tooltip from '$lib/components/common/Tooltip.svelte';
 
-	import { toast } from 'svelte-sonner';
+	import { confirmButton } from '$lib/utils/confirmButton';
 	import dayjs from 'dayjs';
 
 	export let webhook;
@@ -29,6 +29,7 @@
 
 	let filesInputElement;
 	let inputFiles;
+	let copyUrlBtn: HTMLButtonElement;
 
 	const handleImageUpload = () => {
 		if (!inputFiles?.length) return;
@@ -69,7 +70,7 @@
 		navigator.clipboard.writeText(
 			`${WEBUI_API_BASE_URL}/channels/webhooks/${webhook.id}/${webhook.token}`
 		);
-		toast.success($i18n.t('Copied'));
+		confirmButton(copyUrlBtn, { label: $i18n.t('Copied') });
 	};
 </script>
 
@@ -141,6 +142,7 @@
 				<div class="flex items-center gap-1">
 					<Tooltip content={$i18n.t('Copy URL')}>
 						<button
+							bind:this={copyUrlBtn}
 							type="button"
 							class="p-1.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition"
 							on:click={copyUrl}

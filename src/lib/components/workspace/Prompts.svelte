@@ -109,8 +109,6 @@
 	};
 
 	const shareHandler = async (prompt) => {
-		toast.success($i18n.t('Redirecting you to Open WebUI Community'));
-
 		const url = 'https://openwebui.com';
 
 		const tab = await window.open(`${url}/prompts/create`, '_blank');
@@ -163,10 +161,6 @@
 			toast.error(err);
 			return null;
 		});
-
-		if (res) {
-			toast.success($i18n.t(`Deleted {{name}}`, { name: command }));
-		}
 
 		page = 1;
 		getPromptList();

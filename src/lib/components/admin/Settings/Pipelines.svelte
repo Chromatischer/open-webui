@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { v4 as uuidv4 } from 'uuid';
 
-	import { toast } from 'svelte-sonner';
+	import { confirmButton } from '$lib/utils/confirmButton';
+	import { inlineError } from '$lib/utils/inlineError';
 	import { config, models, settings } from '$lib/stores';
 	import { getContext, onMount, tick } from 'svelte';
 	import type { Writable } from 'svelte/store';
@@ -27,6 +28,11 @@
 
 	let downloading = false;
 	let uploading = false;
+
+	let uploadBtn: HTMLButtonElement;
+	let downloadBtn: HTMLButtonElement;
+	let saveBtn: HTMLButtonElement;
+	let deleteBtn: HTMLButtonElement;
 
 	let pipelineFiles;
 
@@ -57,11 +63,11 @@
 				valves,
 				selectedPipelinesUrlIdx
 			).catch((error) => {
-				toast.error(`${error}`);
+				inlineError(saveBtn, `${error}`);
 			});
 
 			if (res) {
-				toast.success($i18n.t('Valves updated successfully'));
+				confirmButton(saveBtn, { label: $i18n.t('Saved') });
 				setPipelines();
 				models.set(
 					await getModels(
@@ -72,7 +78,7 @@
 				saveHandler();
 			}
 		} else {
-			toast.error($i18n.t('No valves to update'));
+			inlineError(saveBtn, $i18n.t('No valves to update'));
 		}
 	};
 
@@ -123,12 +129,12 @@
 			pipelineDownloadUrl,
 			selectedPipelinesUrlIdx
 		).catch((error) => {
-			toast.error(`${error}`);
+			inlineError(downloadBtn, `${error}`);
 			return null;
 		});
 
 		if (res) {
-			toast.success($i18n.t('Pipeline downloaded successfully'));
+			confirmButton(downloadBtn, { label: $i18n.t('Done') });
 			setPipelines();
 			models.set(
 				await getModels(
@@ -152,13 +158,13 @@
 			const res = await uploadPipeline(localStorage.token, file, selectedPipelinesUrlIdx).catch(
 				(error) => {
 					console.error(error);
-					toast.error($i18n.t('Something went wrong :/'));
+					inlineError(uploadBtn, $i18n.t('Something went wrong :/'));
 					return null;
 				}
 			);
 
 			if (res) {
-				toast.success($i18n.t('Pipeline downloaded successfully'));
+				confirmButton(uploadBtn, { label: $i18n.t('Done') });
 				setPipelines();
 				models.set(
 					await getModels(
@@ -168,7 +174,7 @@
 				);
 			}
 		} else {
-			toast.error($i18n.t('No file selected'));
+			inlineError(uploadBtn, $i18n.t('No file selected'));
 		}
 
 		pipelineFiles = null;
@@ -187,12 +193,11 @@
 			pipelines[selectedPipelineIdx].id,
 			selectedPipelinesUrlIdx
 		).catch((error) => {
-			toast.error(`${error}`);
+			inlineError(deleteBtn, `${error}`);
 			return null;
 		});
 
 		if (res) {
-			toast.success($i18n.t('Pipeline deleted successfully'));
 			setPipelines();
 			models.set(
 				await getModels(
@@ -286,6 +291,7 @@
 						</div>
 						<button
 							class="px-2.5 bg-gray-100 hover:bg-gray-200 text-gray-800 dark:bg-gray-850 dark:hover:bg-gray-800 dark:text-gray-100 rounded-lg transition"
+							bind:this={uploadBtn}
 							on:click={() => {
 								uploadPipelineHandler();
 							}}
@@ -355,6 +361,7 @@
 						</div>
 						<button
 							class="px-2.5 bg-gray-100 hover:bg-gray-200 text-gray-800 dark:bg-gray-850 dark:hover:bg-gray-800 dark:text-gray-100 rounded-lg transition"
+							bind:this={downloadBtn}
 							on:click={() => {
 								addPipelineHandler();
 							}}
@@ -450,6 +457,7 @@
 
 									<button
 										class="px-2.5 bg-gray-100 hover:bg-gray-200 text-gray-800 dark:bg-gray-850 dark:hover:bg-gray-800 dark:text-gray-100 rounded-lg transition"
+										bind:this={deleteBtn}
 										on:click={() => {
 											deletePipelineHandler();
 										}}
@@ -570,6 +578,7 @@
 		<div class="flex justify-end pt-3 text-sm font-medium">
 			<button
 				class="px-3.5 py-1.5 text-sm font-medium bg-black hover:bg-gray-900 text-white dark:bg-white dark:text-black dark:hover:bg-gray-100 transition rounded-full"
+				bind:this={saveBtn}
 				type="submit"
 			>
 				{$i18n.t('Save')}

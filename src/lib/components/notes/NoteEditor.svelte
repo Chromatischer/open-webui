@@ -619,7 +619,6 @@ ${content}
 		});
 
 		if (res) {
-			toast.success($i18n.t('Note deleted successfully'));
 			goto('/notes');
 		} else {
 			toast.error($i18n.t('Failed to delete note'));
@@ -883,7 +882,7 @@ Provide the enhanced notes in markdown format. Use markdown syntax for headings,
 			if (id) {
 				try {
 					await updateNoteAccessGrants(localStorage.token, id, note.access_grants ?? []);
-					toast.success($i18n.t('Saved'));
+					// autosaved on toggle — the control state is the feedback, no toast
 				} catch (error) {
 					toast.error(`${error}`);
 				}

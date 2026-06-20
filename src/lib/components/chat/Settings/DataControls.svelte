@@ -90,7 +90,7 @@
 			})
 		);
 		if (res) {
-			toast.success(`Successfully imported ${res.length} chats.`);
+			// list refreshes below — no confirmation needed
 		}
 
 		currentChatPage.set(1);

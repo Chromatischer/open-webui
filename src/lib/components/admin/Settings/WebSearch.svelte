@@ -1,10 +1,11 @@
 <script lang="ts">
 	import { getRAGConfig, updateRAGConfig } from '$lib/apis/retrieval';
+	import { confirmButton } from '$lib/utils/confirmButton';
+	import { inlineError } from '$lib/utils/inlineError';
 	import Switch from '$lib/components/common/Switch.svelte';
 
 	import { models } from '$lib/stores';
 	import { onMount, getContext } from 'svelte';
-	import { toast } from 'svelte-sonner';
 	import SensitiveInput from '$lib/components/common/SensitiveInput.svelte';
 	import Tooltip from '$lib/components/common/Tooltip.svelte';
 	import Textarea from '$lib/components/common/Textarea.svelte';
@@ -12,6 +13,8 @@
 	const i18n = getContext('i18n');
 
 	export let saveHandler: Function;
+
+	let saveBtn: HTMLButtonElement;
 
 	let webSearchEngines = [
 		'ollama_cloud',
@@ -89,6 +92,14 @@
 		if (Array.isArray(webConfig.YOUTUBE_LOADER_LANGUAGE)) {
 			webConfig.YOUTUBE_LOADER_LANGUAGE = webConfig.YOUTUBE_LOADER_LANGUAGE.join(',');
 		}
+
+		if (res) {
+			// the button is the confirmation — green wash + ✓, no toast
+			confirmButton(saveBtn, { label: $i18n.t('Saved') });
+			saveHandler();
+		} else {
+			inlineError(saveBtn, $i18n.t('Failed to update settings'));
+		}
 	};
 
 	onMount(async () => {
@@ -129,10 +140,7 @@
 
 <form
 	class="flex flex-col h-full justify-between space-y-3 text-sm"
-	on:submit|preventDefault={async () => {
-		await submitHandler();
-		saveHandler();
-	}}
+	on:submit|preventDefault={submitHandler}
 >
 	<div class=" space-y-3 overflow-y-scroll scrollbar-hidden h-full">
 		{#if webConfig}
@@ -1221,6 +1229,7 @@
 	</div>
 	<div class="flex justify-end pt-3 text-sm font-medium">
 		<button
+			bind:this={saveBtn}
 			class="px-3.5 py-1.5 text-sm font-medium bg-black hover:bg-gray-900 text-white dark:bg-white dark:text-black dark:hover:bg-gray-100 transition rounded-full"
 			type="submit"
 		>

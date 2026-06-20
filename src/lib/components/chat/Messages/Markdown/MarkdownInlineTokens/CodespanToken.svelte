@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { copyToClipboard, unescapeHtml } from '$lib/utils';
-	import { toast } from 'svelte-sonner';
 	import { inlineConfirm } from '$lib/utils/inlineConfirm';
 
 	import { getContext } from 'svelte';

@@ -103,7 +103,7 @@
 			return null;
 		});
 
-		toast.success($i18n.t('Redirecting you to Open WebUI Community'));
+		// navigation to external tab — no toast needed
 
 		const url = 'https://openwebui.com';
 
@@ -158,7 +158,6 @@
 		});
 
 		if (res) {
-			toast.success($i18n.t('Tool deleted successfully'));
 			await init();
 		}
 	};
@@ -380,7 +379,6 @@
 					});
 				}
 
-				toast.success($i18n.t('Tool imported successfully'));
 				await init();
 				importFiles = null;
 				toolsImportInputElement.value = '';

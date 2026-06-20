@@ -1,7 +1,6 @@
 <script lang="ts">
 	import Tooltip from '$lib/components/common/Tooltip.svelte';
 	import { tick, getContext, onMount, onDestroy } from 'svelte';
-	import { toast } from 'svelte-sonner';
 
 	import { getPrompts } from '$lib/apis/prompts';
 

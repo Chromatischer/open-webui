@@ -300,7 +300,6 @@
 		);
 
 		if (res) {
-			toast.success($i18n.t('Folder deleted successfully'));
 			onDelete(folderId);
 		}
 	};
@@ -332,9 +331,6 @@
 			if (data) {
 				folders[folderId].data = data;
 			}
-
-			// toast.success($i18n.t('Folder name updated successfully'));
-			toast.success($i18n.t('Folder updated successfully'));
 
 			if ($selectedFolder?.id === folderId) {
 				const folder = await getFolderById(localStorage.token, folderId).catch((error) => {

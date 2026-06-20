@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { toast } from 'svelte-sonner';
+	import { inlineError } from '$lib/utils/inlineError';
 
 	import { onMount, getContext, tick } from 'svelte';
 	import { models, tools, functions, user } from '$lib/stores';
@@ -34,6 +34,7 @@
 
 	export let onSubmit: Function;
 	export let onClose: null | Function = null;
+	export let onDelete: null | Function = null;
 
 	export let model = null;
 	export let edit = false;
@@ -42,6 +43,51 @@
 
 	let loading = false;
 	let loaded = false;
+	let sealBtnEl: HTMLButtonElement;
+
+	// ── slide-to-discard ──
+	// The quiet "Discard" trigger expands into a track; the wax-seal handle must
+	// be dragged the full length to fire — no dialog, the gesture is the consent.
+	const DISCARD_HANDLE = 36;
+	let discardArmed = false;
+	let discardTrackEl: HTMLDivElement;
+	let discardTrackW = 0;
+	let discardX = 0;
+	let discardDragging = false;
+	let discardSealing = false;
+
+	$: discardMax = Math.max(0, discardTrackW - DISCARD_HANDLE - 8);
+	$: discardPct = discardMax > 0 ? Math.min(1, discardX / discardMax) : 0;
+	$: discardReady = discardPct >= 0.92;
+
+	const onDiscardDown = (e: PointerEvent) => {
+		if (loading || discardSealing) return;
+		discardDragging = true;
+		(e.currentTarget as HTMLElement).setPointerCapture?.(e.pointerId);
+	};
+	const onDiscardMove = (e: PointerEvent) => {
+		if (!discardDragging) return;
+		const rect = discardTrackEl.getBoundingClientRect();
+		const x = e.clientX - rect.left - 4 - DISCARD_HANDLE / 2;
+		discardX = Math.max(0, Math.min(x, discardMax));
+	};
+	const onDiscardUp = async (e: PointerEvent) => {
+		if (!discardDragging) return;
+		discardDragging = false;
+		try {
+			(e.currentTarget as HTMLElement).releasePointerCapture?.(e.pointerId);
+		} catch {}
+		if (discardReady) {
+			// carried it home — stamp the seal, then let the folio go
+			discardX = discardMax;
+			discardSealing = true;
+			await new Promise((r) => setTimeout(r, 360));
+			await onDelete?.();
+		} else {
+			// short of the end — springs back to wait for another go
+			discardX = 0;
+		}
+	};
 
 	let filesInputElement;
 	let inputFiles;
@@ -233,19 +279,19 @@
 		info.name = name;
 
 		if (id === '') {
-			toast.error($i18n.t('Model ID is required.'));
+			inlineError(sealBtnEl, $i18n.t('Model ID is required.'));
 			loading = false;
 			return;
 		}
 
 		if (name === '') {
-			toast.error($i18n.t('Model Name is required.'));
+			inlineError(sealBtnEl, $i18n.t('Model Name is required.'));
 			loading = false;
 			return;
 		}
 
 		if (knowledge.some((item) => item.status === 'uploading')) {
-			toast.error($i18n.t('Please wait until all files are uploaded.'));
+			inlineError(sealBtnEl, $i18n.t('Please wait until all files are uploaded.'));
 			loading = false;
 			return;
 		}
@@ -1187,6 +1233,7 @@
 			{/if}
 
 			<button
+				bind:this={sealBtnEl}
 				class="mf-seal"
 				type="button"
 				disabled={!canSubmit || loading}
@@ -1211,6 +1258,84 @@
 					<span class="mf-json-lang">json</span>
 					<pre>{JSON.stringify(info, null, 2)}</pre>
 				</div>
+			{/if}
+
+			{#if edit && onDelete}
+				{#if !discardArmed}
+					<button
+						class="mf-discard"
+						type="button"
+						disabled={loading}
+						on:click={() => (discardArmed = true)}
+					>
+						{$i18n.t('Discard this folio')}
+					</button>
+				{:else}
+					<div
+						class="mf-slide"
+						class:ready={discardReady}
+						class:sealing={discardSealing}
+						bind:this={discardTrackEl}
+						bind:clientWidth={discardTrackW}
+					>
+						<div
+							class="mf-slide-fill"
+							class:dragging={discardDragging}
+							style:width="{discardX + DISCARD_HANDLE}px"
+						></div>
+						<span class="mf-slide-label" style:opacity={discardSealing ? 0 : 1 - discardPct}>
+							{$i18n.t('Slide to discard')}
+						</span>
+						{#if discardSealing}
+							<span class="mf-slide-done">{$i18n.t('Discarded')} <span class="fleuron">❧</span></span>
+						{/if}
+						<button
+							class="mf-slide-handle"
+							class:dragging={discardDragging}
+							class:ready={discardReady}
+							class:sealing={discardSealing}
+							type="button"
+							style:transform="translateX({discardX}px)"
+							on:pointerdown={onDiscardDown}
+							on:pointermove={onDiscardMove}
+							on:pointerup={onDiscardUp}
+							on:pointercancel={onDiscardUp}
+							aria-label={$i18n.t('Slide to discard')}
+						>
+							<span class="mf-slide-glyph" class:idle={!discardDragging && !discardSealing}>
+								{#if discardSealing}
+									<svg
+										width="16"
+										height="16"
+										viewBox="0 0 24 24"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2.2"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										aria-hidden="true"
+									>
+										<path d="M5 13l4 4L19 7" />
+									</svg>
+								{:else}
+									<svg
+										width="15"
+										height="15"
+										viewBox="0 0 24 24"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="1.9"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										aria-hidden="true"
+									>
+										<path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6M10 11v5M14 11v5" />
+									</svg>
+								{/if}
+							</span>
+						</button>
+					</div>
+				{/if}
 			{/if}
 		</div>
 	</div>
@@ -1969,6 +2094,213 @@
 	}
 	.mf-type-toggle:hover {
 		color: var(--vermilion);
+	}
+
+	/* discard — set apart from the seal, quiet until reached for */
+	.mf-discard {
+		margin-top: 22px;
+		padding: 4px 2px;
+		border: none;
+		background: none;
+		font-family: var(--serif);
+		font-style: italic;
+		font-size: 13px;
+		color: var(--ink-3);
+		cursor: pointer;
+		border-bottom: 1px dotted transparent;
+		transition:
+			color 0.2s,
+			border-color 0.2s;
+	}
+	.mf-discard:hover:not(:disabled) {
+		color: var(--vermilion);
+		border-bottom-color: color-mix(in srgb, var(--vermilion) 45%, transparent);
+	}
+	.mf-discard:disabled {
+		opacity: 0.5;
+		cursor: not-allowed;
+	}
+
+	/* ── slide-to-discard — the gesture is the confirmation ──
+	   It unfurls open with a left→right wipe (the direction you'll travel), the
+	   wax-seal handle beckons at rest, glows as it nears home, and stamps a seal
+	   on arrival before the folio is let go. */
+	.mf-slide {
+		position: relative;
+		margin-top: 22px;
+		width: 100%;
+		max-width: 320px;
+		height: 44px;
+		border-radius: 999px;
+		border: 1px dashed var(--rule);
+		background: transparent;
+		overflow: hidden;
+		user-select: none;
+		touch-action: none;
+		transition: border-color 0.25s;
+		animation: mfUnfurl 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+	}
+	.mf-slide.ready {
+		border-color: color-mix(in srgb, var(--vermilion) 55%, transparent);
+	}
+	.mf-slide.sealing {
+		border-style: solid;
+		border-color: var(--vermilion);
+	}
+	@keyframes mfUnfurl {
+		from {
+			clip-path: inset(0 100% 0 0 round 999px);
+			opacity: 0.3;
+		}
+		to {
+			clip-path: inset(0 0 0 0 round 999px);
+			opacity: 1;
+		}
+	}
+
+	.mf-slide-fill {
+		position: absolute;
+		left: 4px;
+		top: 4px;
+		bottom: 4px;
+		border-radius: 999px;
+		background: var(--vermilion-soft);
+		pointer-events: none;
+	}
+	.mf-slide-fill:not(.dragging) {
+		transition:
+			width 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
+			background 0.3s;
+	}
+	.mf-slide.sealing .mf-slide-fill {
+		background: var(--vermilion);
+	}
+
+	.mf-slide-label {
+		position: absolute;
+		inset: 0 14px 0 44px;
+		display: grid;
+		place-items: center;
+		font-family: var(--serif);
+		font-style: italic;
+		font-size: 13.5px;
+		color: var(--ink-3);
+		pointer-events: none;
+		transition: opacity 0.2s;
+	}
+	.mf-slide-done {
+		position: absolute;
+		inset: 0 14px 0 44px;
+		display: grid;
+		grid-auto-flow: column;
+		gap: 7px;
+		place-content: center;
+		place-items: center;
+		font-family: var(--serif);
+		font-style: italic;
+		font-size: 14px;
+		color: #fff8ef;
+		pointer-events: none;
+		animation: mfDone 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+	}
+	.mf-slide-done .fleuron {
+		font-size: 13px;
+		opacity: 0.85;
+	}
+	@keyframes mfDone {
+		from {
+			opacity: 0;
+			letter-spacing: 0.3em;
+		}
+		to {
+			opacity: 1;
+			letter-spacing: normal;
+		}
+	}
+
+	.mf-slide-handle {
+		position: absolute;
+		left: 4px;
+		top: 4px;
+		width: 36px;
+		height: 36px;
+		border-radius: 50%;
+		border: 1.5px solid var(--vermilion);
+		background: var(--vermilion);
+		color: #fff8ef;
+		display: grid;
+		place-items: center;
+		cursor: grab;
+		touch-action: none;
+		box-shadow: 0 4px 14px -6px color-mix(in srgb, var(--vermilion) 60%, transparent);
+	}
+	/* snap-back springs; the live drag tracks the finger 1:1 (no transition) */
+	.mf-slide-handle:not(.dragging) {
+		transition: transform 0.5s cubic-bezier(0.34, 1.7, 0.5, 1);
+	}
+	.mf-slide-handle:active {
+		cursor: grabbing;
+	}
+	/* a soft heartbeat once it's far enough to count */
+	.mf-slide-handle.ready:not(.sealing) {
+		animation: mfHeartbeat 0.95s ease-in-out infinite;
+	}
+	@keyframes mfHeartbeat {
+		0%,
+		100% {
+			box-shadow: 0 4px 14px -6px color-mix(in srgb, var(--vermilion) 60%, transparent);
+		}
+		50% {
+			box-shadow:
+				0 0 0 5px color-mix(in srgb, var(--vermilion) 16%, transparent),
+				0 5px 18px -6px color-mix(in srgb, var(--vermilion) 75%, transparent);
+		}
+	}
+
+	.mf-slide-glyph {
+		display: grid;
+		place-items: center;
+	}
+	/* at rest, the seal nudges rightward — a small "this way" beckon */
+	.mf-slide-glyph.idle {
+		animation: mfBeckon 1.5s ease-in-out infinite;
+	}
+	@keyframes mfBeckon {
+		0%,
+		58%,
+		100% {
+			transform: translateX(0);
+		}
+		32% {
+			transform: translateX(3px);
+		}
+	}
+	/* arrival: the seal presses down with a little flourish */
+	.mf-slide-handle.sealing .mf-slide-glyph {
+		animation: mfStamp 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+	}
+	@keyframes mfStamp {
+		0% {
+			transform: scale(0.2) rotate(-14deg);
+			opacity: 0;
+		}
+		55% {
+			transform: scale(1.18) rotate(4deg);
+			opacity: 1;
+		}
+		100% {
+			transform: scale(1) rotate(0);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.mf-slide,
+		.mf-slide-handle.ready,
+		.mf-slide-glyph.idle,
+		.mf-slide-handle.sealing .mf-slide-glyph,
+		.mf-slide-done {
+			animation: none !important;
+		}
 	}
 
 	.mf-json {

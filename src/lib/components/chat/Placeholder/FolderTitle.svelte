@@ -61,8 +61,6 @@
 				folder.data = data;
 			}
 
-			toast.success($i18n.t('Folder updated successfully'));
-
 			const _folder = await getFolderById(localStorage.token, folder.id).catch((error) => {
 				toast.error(`${error}`);
 				return null;
@@ -86,8 +84,6 @@
 		if (res) {
 			folder.meta = { ...folder.meta, icon: iconName ?? '' };
 
-			toast.success($i18n.t('Folder updated successfully'));
-
 			const _folder = await getFolderById(localStorage.token, folder.id).catch((error) => {
 				toast.error(`${error}`);
 				return null;
@@ -107,7 +103,6 @@
 		);
 
 		if (res) {
-			toast.success($i18n.t('Folder deleted successfully'));
 			onDelete(folder);
 		}
 	};

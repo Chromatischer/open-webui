@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { toast } from 'svelte-sonner';
+	import { inlineError } from '$lib/utils/inlineError';
 	import { onMount, getContext, tick, onDestroy } from 'svelte';
 	const i18n = getContext('i18n');
 
@@ -62,10 +63,6 @@
 		}).catch((error) => {
 			toast.error(error.message);
 		});
-
-		if (res) {
-			toast.success($i18n.t('Channel updated successfully'));
-		}
 
 		onUpdate();
 	}}
@@ -212,6 +209,7 @@
 				on:click={async (e) => {
 					e.stopImmediatePropagation();
 					e.stopPropagation();
+					const el = e.currentTarget as HTMLElement;
 
 					channels.update((chs) =>
 						chs.filter((ch) => {
@@ -221,7 +219,7 @@
 
 					await updateChannelMemberActiveStatusById(localStorage.token, channel.id, false).catch(
 						(error) => {
-							toast.error(`${error}`);
+							inlineError(el, `${error}`);
 						}
 					);
 				}}

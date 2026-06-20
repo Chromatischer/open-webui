@@ -138,10 +138,6 @@
 			return null;
 		});
 
-		if (res) {
-			toast.success($i18n.t('Skill deleted successfully'));
-		}
-
 		page = 1;
 		loadSkillItems();
 		await _skills.set(await getSkills(localStorage.token));
@@ -220,7 +216,6 @@
 									});
 								}
 
-								toast.success($i18n.t('Skill imported successfully'));
 								page = 1;
 								loadSkillItems();
 								_skills.set(await getSkills(localStorage.token));

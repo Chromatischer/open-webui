@@ -2,9 +2,10 @@
 	import { getContext, createEventDispatcher, onMount, tick } from 'svelte';
 	const i18n = getContext('i18n');
 
-	import { toast } from 'svelte-sonner';
 	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
+	import { confirmButton } from '$lib/utils/confirmButton';
+	import { inlineError } from '$lib/utils/inlineError';
 
 	import { updateUserStatus } from '$lib/apis/users';
 	import { settings, user } from '$lib/stores';
@@ -23,6 +24,7 @@
 	let message = '';
 
 	let loading = false;
+	let submitBtn: HTMLButtonElement;
 
 	const submitHandler = async () => {
 		loading = true;
@@ -30,16 +32,16 @@
 			status_emoji: emoji,
 			status_message: message
 		}).catch((error) => {
-			toast.error(`${error}`);
+			inlineError(submitBtn, `${error}`);
 			loading = false;
 			return null;
 		});
 
 		if (res) {
-			toast.success($i18n.t('Status updated successfully'));
+			confirmButton(submitBtn, { label: $i18n.t('Saved') });
 			onSave();
 		} else {
-			toast.error($i18n.t('Failed to update status'));
+			inlineError(submitBtn, $i18n.t('Failed to update status'));
 		}
 
 		show = false;
@@ -143,6 +145,7 @@
 
 					<div class="flex justify-end pt-3 text-sm font-medium gap-1.5">
 						<button
+							bind:this={submitBtn}
 							class="px-3.5 py-1.5 text-sm font-medium bg-black hover:bg-gray-950 text-white dark:bg-white dark:text-black dark:hover:bg-gray-100 transition rounded-full flex flex-row space-x-1 items-center {loading
 								? ' cursor-not-allowed'
 								: ''}"

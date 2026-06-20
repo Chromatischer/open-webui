@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { toast } from 'svelte-sonner';
+	import { inlineError } from '$lib/utils/inlineError';
 	import { getContext, onMount } from 'svelte';
 	const i18n = getContext('i18n');
 
@@ -19,22 +19,22 @@
 	let userIds = [];
 
 	let loading = false;
+	let submitBtn: HTMLButtonElement;
 
 	const submitHandler = async () => {
 		const res = await addMembersById(localStorage.token, channel.id, {
 			user_ids: userIds,
 			group_ids: groupIds
 		}).catch((error) => {
-			toast.error(`${error}`);
+			inlineError(submitBtn, `${error}`);
 			return null;
 		});
 
 		if (res) {
-			toast.success($i18n.t('Members added successfully'));
 			onUpdate();
 			show = false;
 		} else {
-			toast.error($i18n.t('Failed to add members'));
+			inlineError(submitBtn, $i18n.t('Failed to add members'));
 		}
 	};
 
@@ -83,6 +83,7 @@
 
 						<div class="flex justify-end pt-3 text-sm font-medium gap-1.5">
 							<button
+								bind:this={submitBtn}
 								class="px-3.5 py-1.5 text-sm font-medium bg-black hover:bg-gray-950 text-white dark:bg-white dark:text-black dark:hover:bg-gray-100 transition rounded-full flex flex-row space-x-1 items-center {loading
 									? ' cursor-not-allowed'
 									: ''}"

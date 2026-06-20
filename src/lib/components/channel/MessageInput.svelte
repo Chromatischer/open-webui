@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { toast } from 'svelte-sonner';
+	import { inlineError } from '$lib/utils/inlineError';
 	import { v4 as uuidv4 } from 'uuid';
 
 	import { tick, getContext, onMount } from 'svelte';
@@ -1019,12 +1020,14 @@
 												id="voice-input-button"
 												class=" text-gray-600 dark:text-gray-300 hover:text-gray-700 dark:hover:text-gray-200 transition rounded-full p-1.5 mr-0.5 self-center"
 												type="button"
-												on:click={async () => {
+												on:click={async (e) => {
+													const el = e.currentTarget as HTMLElement;
 													try {
 														let stream = await navigator.mediaDevices
 															.getUserMedia({ audio: true })
 															.catch(function (err) {
-																toast.error(
+																inlineError(
+																	el,
 																	$i18n.t(
 																		`Permission denied when accessing microphone: {{error}}`,
 																		{
@@ -1042,7 +1045,7 @@
 														}
 														stream = null;
 													} catch {
-														toast.error($i18n.t('Permission denied when accessing microphone'));
+														inlineError(el, $i18n.t('Permission denied when accessing microphone'));
 													}
 												}}
 												aria-label="Voice Input"

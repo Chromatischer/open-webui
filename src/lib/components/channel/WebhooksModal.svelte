@@ -1,6 +1,7 @@
 <script lang="ts">
-	import { toast } from 'svelte-sonner';
 	import { getContext } from 'svelte';
+	import { confirmButton } from '$lib/utils/confirmButton';
+	import { inlineError } from '$lib/utils/inlineError';
 
 	import {
 		getChannelWebhooks,
@@ -27,6 +28,8 @@
 
 	let showDeleteConfirmDialog = false;
 	let selectedWebhookId = null;
+	let saveBtn: HTMLButtonElement;
+	let createBtn: HTMLButtonElement;
 
 	// Track pending changes from child components
 	let pendingChanges: { [webhookId: string]: { name: string; profile_image_url: string } } = {};
@@ -52,7 +55,7 @@
 				selectedWebhookId = newWebhook.id;
 			}
 		} catch (error) {
-			toast.error(`${error}`);
+			inlineError(createBtn, `${error}`);
 		}
 		isSaving = false;
 	};
@@ -65,9 +68,9 @@
 			}
 			pendingChanges = {};
 			await loadWebhooks();
-			toast.success($i18n.t('Saved'));
+			confirmButton(saveBtn, { label: $i18n.t('Saved') });
 		} catch (error) {
-			toast.error(`${error}`);
+			inlineError(saveBtn, `${error}`);
 		}
 		isSaving = false;
 	};
@@ -77,10 +80,10 @@
 
 		try {
 			await deleteChannelWebhook(localStorage.token, channel.id, selectedWebhookId);
+			// Row is removed from the list — no toast needed.
 			webhooks = webhooks.filter((webhook) => webhook.id !== selectedWebhookId);
-			toast.success($i18n.t('Deleted'));
 		} catch (error) {
-			toast.error(`${error}`);
+			inlineError(saveBtn, `${error}`);
 		}
 
 		selectedWebhookId = null;
@@ -111,6 +114,7 @@
 						class="px-3 py-1.5 gap-1 rounded-xl bg-gray-100/50 dark:bg-gray-850/50 text-black dark:text-white transition font-medium text-xs flex items-center justify-center"
 						on:click={createHandler}
 						disabled={isSaving}
+						bind:this={createBtn}
 					>
 						<Plus className="size-3.5" />
 						<span>{$i18n.t('New Webhook')}</span>
@@ -165,6 +169,7 @@
 								: ''}"
 							type="submit"
 							disabled={isSaving}
+							bind:this={saveBtn}
 						>
 							{$i18n.t('Save')}
 							{#if isSaving}

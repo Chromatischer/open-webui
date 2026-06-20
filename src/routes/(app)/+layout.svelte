@@ -149,8 +149,9 @@
 		edgeTouchStart = null;
 	};
 
-	const defaultScratchboard =
-		'# Scratchboard\n\n- Capture useful context from this chat\n- Draft follow-up prompts\n- Keep implementation notes close to the conversation\n';
+	// Kept deliberately neutral: the scratchboard content can flow into model
+	// context, so the default must not read as instructions or steer behaviour.
+	const defaultScratchboard = '# Margin notes\n\nA free-form space for notes on this conversation.\n';
 
 	$: isChatSurface =
 		['/', '/home'].includes($page.url.pathname) || $page.url.pathname.startsWith('/c/');

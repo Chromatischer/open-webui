@@ -50,7 +50,6 @@
 		});
 
 		if (res) {
-			toast.success($i18n.t('Member removed successfully'));
 			onUpdate();
 		} else {
 			toast.error($i18n.t('Failed to remove member'));

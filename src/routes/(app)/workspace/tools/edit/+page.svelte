@@ -44,11 +44,13 @@
 		});
 
 		if (res) {
-			toast.success($i18n.t('Tool updated successfully'));
 			tools.set(await getTools(localStorage.token));
 
 			// await goto('/workspace/tools');
 		}
+
+		// returned to ToolkitEditor so it can flash its own Save button
+		return res;
 	};
 
 	onMount(async () => {
@@ -84,9 +86,7 @@
 		meta={tool.meta}
 		content={tool.content}
 		accessGrants={tool.access_grants ?? []}
-		onSave={(value) => {
-			saveHandler(value);
-		}}
+		onSave={(value) => saveHandler(value)}
 	/>
 {:else}
 	<div class="flex items-center justify-center h-full">

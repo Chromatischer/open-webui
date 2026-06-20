@@ -105,8 +105,6 @@
 			return null;
 		});
 
-		toast.success($i18n.t('Redirecting you to Open WebUI Community'));
-
 		const url = 'https://openwebui.com';
 
 		const tab = await window.open(`${url}/functions/create`, '_blank');
@@ -163,7 +161,6 @@
 		});
 
 		if (res) {
-			toast.success($i18n.t('Function deleted successfully'));
 			functions = functions.filter((f) => f.id !== func.id);
 
 			_functions.set(await getFunctions(localStorage.token));
@@ -184,16 +181,6 @@
 		});
 
 		if (res) {
-			if (func.is_global) {
-				func.type === 'filter'
-					? toast.success($i18n.t('Filter is now globally enabled'))
-					: toast.success($i18n.t('Function is now globally enabled'));
-			} else {
-				func.type === 'filter'
-					? toast.success($i18n.t('Filter is now globally disabled'))
-					: toast.success($i18n.t('Function is now globally disabled'));
-			}
-
 			_functions.set(await getFunctions(localStorage.token));
 			models.set(
 				await getModels(
@@ -680,7 +667,6 @@
 					});
 				}
 
-				toast.success($i18n.t('Functions imported successfully'));
 				functions = await getFunctionList(localStorage.token);
 				_functions.set(await getFunctions(localStorage.token));
 				models.set(

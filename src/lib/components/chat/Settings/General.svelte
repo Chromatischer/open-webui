@@ -1,5 +1,7 @@
 <script lang="ts">
 	import { toast } from 'svelte-sonner';
+	import { inlineError } from '$lib/utils/inlineError';
+	import { confirmButton } from '$lib/utils/confirmButton';
 	import { createEventDispatcher, onMount, getContext } from 'svelte';
 	import { getLanguages, changeLanguage } from '$lib/i18n';
 	const dispatch = createEventDispatcher();
@@ -27,6 +29,8 @@
 
 	let showAdvanced = false;
 
+	let notificationBtn: HTMLButtonElement;
+
 	const toggleNotification = async () => {
 		const permission = await Notification.requestPermission();
 
@@ -34,7 +38,8 @@
 			notificationEnabled = !notificationEnabled;
 			saveSettings({ notificationEnabled: notificationEnabled });
 		} else {
-			toast.error(
+			inlineError(
+				notificationBtn,
 				$i18n.t(
 					'Response notifications cannot be activated as the website permissions have been denied. Please visit your browser settings to grant the necessary access.'
 				)
@@ -109,7 +114,11 @@
 			}
 		});
 		dispatch('save');
+		// the button is the confirmation — green wash + ✓, no toast
+		confirmButton(saveBtn, { label: $i18n.t('Saved') });
 	};
+
+	let saveBtn: HTMLButtonElement;
 
 	onMount(async () => {
 		selectedTheme = localStorage.theme ?? 'system';
@@ -210,7 +219,7 @@
 				embedded
 				{saveSettings}
 				saveHandler={() => {
-					toast.success($i18n.t('Settings saved successfully!'));
+					// Account flashes its own Save button (confirmButton); nothing to do here
 				}}
 			/>
 
@@ -286,6 +295,7 @@
 
 					<button
 						class="p-1 px-3 text-xs flex rounded-sm transition"
+						bind:this={notificationBtn}
 						on:click={() => {
 							toggleNotification();
 						}}
@@ -366,6 +376,7 @@
 
 	<div class="flex justify-end pt-3 text-sm font-medium">
 		<button
+			bind:this={saveBtn}
 			class="px-4 py-2 text-sm font-medium bg-[var(--accent)] hover:opacity-90 text-white transition rounded-[10px]"
 			on:click={() => {
 				saveHandler();

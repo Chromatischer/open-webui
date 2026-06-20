@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { toast } from 'svelte-sonner';
+	import { inlineError } from '$lib/utils/inlineError';
 	import dayjs from 'dayjs';
 
 	import { onMount, getContext, createEventDispatcher } from 'svelte';
@@ -17,6 +17,7 @@
 	let content = '';
 
 	let voiceInput = false;
+	let saveBtn: HTMLButtonElement;
 </script>
 
 <Modal size="full" containerClassName="" className="h-full bg-white dark:bg-gray-900" bind:show>
@@ -36,7 +37,7 @@
 			class="flex flex-col w-full h-full"
 			on:submit|preventDefault={() => {
 				if (name.trim() === '' || content.trim() === '') {
-					toast.error($i18n.t('Please fill in all fields.'));
+					inlineError(saveBtn, $i18n.t('Please fill in all fields.'));
 					name = name.trim();
 					content = content.trim();
 					return;
@@ -98,12 +99,14 @@
 							<button
 								class=" p-2 bg-gray-50 text-gray-700 dark:bg-gray-700 dark:text-white transition rounded-full"
 								type="button"
-								on:click={async () => {
+								on:click={async (e) => {
+									const micBtn = e.currentTarget as HTMLElement;
 									try {
 										let stream = await navigator.mediaDevices
 											.getUserMedia({ audio: true })
 											.catch(function (err) {
-												toast.error(
+												inlineError(
+													micBtn,
 													$i18n.t(`Permission denied when accessing microphone: {{error}}`, {
 														error: err
 													})
@@ -118,7 +121,7 @@
 										}
 										stream = null;
 									} catch {
-										toast.error($i18n.t('Permission denied when accessing microphone'));
+										inlineError(micBtn, $i18n.t('Permission denied when accessing microphone'));
 									}
 								}}
 							>
@@ -131,6 +134,7 @@
 				<div class=" shrink-0">
 					<Tooltip content={$i18n.t('Save')}>
 						<button
+							bind:this={saveBtn}
 							class=" px-3.5 py-2 bg-black text-white dark:bg-white dark:text-black transition rounded-full"
 							type="submit"
 						>

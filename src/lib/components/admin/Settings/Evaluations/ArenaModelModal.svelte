@@ -9,7 +9,7 @@
 	import Plus from '$lib/components/icons/Plus.svelte';
 	import Minus from '$lib/components/icons/Minus.svelte';
 	import PencilSolid from '$lib/components/icons/PencilSolid.svelte';
-	import { toast } from 'svelte-sonner';
+	import { inlineError } from '$lib/utils/inlineError';
 	import AccessControl from '$lib/components/workspace/common/AccessControl.svelte';
 	import ConfirmDialog from '$lib/components/common/ConfirmDialog.svelte';
 	import XMark from '$lib/components/icons/XMark.svelte';
@@ -49,6 +49,7 @@
 	let imageInputElement;
 	let loading = false;
 	let showDeleteConfirmDialog = false;
+	let saveBtn;
 
 	const addModelHandler = () => {
 		if (selectedModelId) {
@@ -62,7 +63,7 @@
 
 		if (!name || !id) {
 			loading = false;
-			toast.error($i18n.t('Name and ID are required, please fill them out'));
+			inlineError(saveBtn, $i18n.t('Name and ID are required, please fill them out'));
 			return;
 		}
 
@@ -70,7 +71,7 @@
 			if ($models.find((model) => model.name === name)) {
 				loading = false;
 				name = '';
-				toast.error($i18n.t('Model name already exists, please choose a different one'));
+				inlineError(saveBtn, $i18n.t('Model name already exists, please choose a different one'));
 				return;
 			}
 		}
@@ -388,6 +389,7 @@
 						{/if}
 
 						<button
+							bind:this={saveBtn}
 							class="px-3.5 py-1.5 text-sm font-medium bg-black hover:bg-gray-950 text-white dark:bg-white dark:text-black dark:hover:bg-gray-100 transition rounded-full flex flex-row space-x-1 items-center {loading
 								? ' cursor-not-allowed'
 								: ''}"

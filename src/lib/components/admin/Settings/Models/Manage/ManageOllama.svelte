@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { toast } from 'svelte-sonner';
+	import { inlineError } from '$lib/utils/inlineError';
 	import { getContext, onMount } from 'svelte';
 	const i18n = getContext('i18n');
 
@@ -25,6 +26,8 @@
 	import Spinner from '$lib/components/common/Spinner.svelte';
 
 	let modelUploadInputElement: HTMLInputElement;
+	let pullModelBtn: HTMLButtonElement;
+	let createModelBtn: HTMLButtonElement;
 	let showModelDeleteConfirm = false;
 
 	let loading = true;
@@ -154,7 +157,8 @@
 		const sanitizedModelTag = modelTag.trim().replace(/^ollama\s+(run|pull)\s+/, '');
 		console.log($MODEL_DOWNLOAD_POOL);
 		if ($MODEL_DOWNLOAD_POOL[sanitizedModelTag]) {
-			toast.error(
+			inlineError(
+				pullModelBtn,
 				$i18n.t(`Model '{{modelTag}}' is already in queue for downloading.`, {
 					modelTag: sanitizedModelTag
 				})
@@ -162,7 +166,8 @@
 			return;
 		}
 		if (Object.keys($MODEL_DOWNLOAD_POOL).length === MAX_PARALLEL_DOWNLOADS) {
-			toast.error(
+			inlineError(
+				pullModelBtn,
 				$i18n.t('Maximum of 3 models can be downloaded simultaneously. Please try again later.')
 			);
 			return;
@@ -259,12 +264,6 @@
 			console.log($MODEL_DOWNLOAD_POOL[sanitizedModelTag]);
 
 			if ($MODEL_DOWNLOAD_POOL[sanitizedModelTag]?.done) {
-				toast.success(
-					$i18n.t(`Model '{{modelName}}' has been successfully downloaded.`, {
-						modelName: sanitizedModelTag
-					})
-				);
-
 				models.set(
 					await getModels(
 						localStorage.token,
@@ -443,7 +442,7 @@
 		});
 
 		if (res) {
-			toast.success($i18n.t(`Deleted {{deleteModelTag}}`, { deleteModelTag }));
+			// Model list refreshes below — no toast needed.
 		}
 
 		deleteModelTag = '';
@@ -480,7 +479,7 @@
 				...$MODEL_DOWNLOAD_POOL
 			});
 			await deleteModel(localStorage.token, model);
-			toast.success($i18n.t('{{model}} download has been canceled', { model: model }));
+			// Pool entry removed from UI — no toast needed.
 		}
 	};
 
@@ -492,7 +491,7 @@
 		try {
 			modelObject = JSON.parse(createModelObject);
 		} catch (error) {
-			toast.error(`${error}`);
+			inlineError(createModelBtn, `${error}`);
 			createModelLoading = false;
 			return;
 		}
@@ -655,6 +654,7 @@
 									pullModelHandler();
 								}}
 								disabled={modelLoading || modelTag.trim() === ''}
+								bind:this={pullModelBtn}
 							>
 								{#if modelLoading}
 									<div class="self-center">
@@ -882,6 +882,7 @@
 									disabled={createModelLoading ||
 										createModelName.trim() === '' ||
 										createModelObject.trim() === ''}
+									bind:this={createModelBtn}
 								>
 									<svg
 										xmlns="http://www.w3.org/2000/svg"

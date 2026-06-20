@@ -667,7 +667,7 @@
 						{getModels}
 						{saveSettings}
 						on:save={() => {
-							toast.success($i18n.t('Settings saved successfully!'));
+							// confirmation is the in-button green ✓ flash (see Settings/General.svelte)
 						}}
 					/>
 				{:else if selectedTab === 'interface'}
@@ -678,14 +678,14 @@
 					<Connections
 						saveSettings={async (updated) => {
 							await saveSettings(updated);
-							toast.success($i18n.t('Settings saved successfully!'));
+							// confirmation is the in-button green ✓ flash (see Settings/Connections.svelte)
 						}}
 					/>
 				{:else if selectedTab === 'tools'}
 					<Integrations
 						saveSettings={async (updated) => {
 							await saveSettings(updated);
-							toast.success($i18n.t('Settings saved successfully!'));
+							// confirmation is the in-button green ✓ flash (see Settings/Integrations.svelte)
 						}}
 					/>
 				{:else if selectedTab === 'shortcuts'}
@@ -795,7 +795,8 @@
 		display: flex;
 		align-items: center;
 		gap: 11px;
-		min-width: fit-content;
+		flex: none;
+		white-space: nowrap;
 		text-align: left;
 		padding: 9px 11px;
 		border-radius: 10px;
@@ -830,6 +831,12 @@
 	}
 	.st-sub {
 		display: none;
+	}
+	/* On mobile the rail is a single horizontal scroller — let the footer's tabs
+	   (shortcuts / admin / sign out) flow into that same row instead of stacking
+	   as a nested block. */
+	.st-rail-footer {
+		display: contents;
 	}
 	.st-no-results {
 		text-align: center;
@@ -892,6 +899,7 @@
 			color: var(--text);
 		}
 		.st-rail-footer {
+			display: block;
 			margin-top: auto;
 			padding-top: 6px;
 		}

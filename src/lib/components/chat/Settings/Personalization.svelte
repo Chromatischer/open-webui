@@ -57,7 +57,6 @@
 				return null;
 			});
 			if (res) {
-				toast.success($i18n.t('Memory deleted successfully'));
 				memories = await getMemories(localStorage.token);
 			}
 		} else {
@@ -130,7 +129,6 @@
 			return null;
 		});
 		if (res) {
-			toast.success($i18n.t('Memory added successfully'));
 			draft = '';
 			memories = await getMemories(localStorage.token);
 		}
@@ -162,7 +160,6 @@
 			return null;
 		});
 		if (res) {
-			toast.success($i18n.t('Memory updated successfully'));
 			memories = await getMemories(localStorage.token);
 			cancelEdit();
 		}
@@ -175,7 +172,6 @@
 			return null;
 		});
 		if (res && memories.length > 0) {
-			toast.success($i18n.t('Memory cleared successfully'));
 			memories = [];
 		}
 		clearArmed = false;

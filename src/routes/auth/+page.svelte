@@ -3,6 +3,7 @@
 	import { marked } from 'marked';
 
 	import { toast } from 'svelte-sonner';
+	import { inlineError } from '$lib/utils/inlineError';
 
 	import { onMount, getContext, tick } from 'svelte';
 	import { goto } from '$app/navigation';
@@ -30,6 +31,7 @@
 	const i18n = getContext('i18n');
 
 	let loaded = false;
+	let submitBtn: HTMLButtonElement;
 
 	let mode = $config?.features.enable_ldap ? 'ldap' : 'signin';
 
@@ -45,7 +47,6 @@
 	const setSessionUser = async (sessionUser, redirectPath: string | null = null) => {
 		if (sessionUser) {
 			console.log(sessionUser);
-			toast.success($i18n.t(`You're now logged in.`));
 			if (sessionUser.token) {
 				localStorage.token = sessionUser.token;
 			}
@@ -70,7 +71,7 @@
 
 	const signInHandler = async () => {
 		const sessionUser = await userSignIn(email, password).catch((error) => {
-			toast.error(`${error}`);
+			inlineError(submitBtn, `${error}`);
 			return null;
 		});
 
@@ -80,14 +81,14 @@
 	const signUpHandler = async () => {
 		if ($config?.features?.enable_signup_password_confirmation) {
 			if (password !== confirmPassword) {
-				toast.error($i18n.t('Passwords do not match.'));
+				inlineError(submitBtn, $i18n.t('Passwords do not match.'));
 				return;
 			}
 		}
 
 		const sessionUser = await userSignUp(name, email, password, generateInitialsImage(name)).catch(
 			(error) => {
-				toast.error(`${error}`);
+				inlineError(submitBtn, `${error}`);
 				return null;
 			}
 		);
@@ -97,7 +98,7 @@
 
 	const ldapSignInHandler = async () => {
 		const sessionUser = await ldapUserSignIn(ldapUsername, password).catch((error) => {
-			toast.error(`${error}`);
+			inlineError(submitBtn, `${error}`);
 			return null;
 		});
 		await setSessionUser(sessionUser);
@@ -368,11 +369,11 @@
 								<div class="mt-5">
 									{#if $config?.features.enable_login_form || $config?.features.enable_ldap || form}
 										{#if mode === 'ldap'}
-											<button class="btn-primary" type="submit">
+											<button bind:this={submitBtn} class="btn-primary" type="submit">
 												{$i18n.t('Authenticate')}
 											</button>
 										{:else}
-											<button class="btn-primary" type="submit">
+											<button bind:this={submitBtn} class="btn-primary" type="submit">
 												{mode === 'signin'
 													? $i18n.t('Sign in')
 													: ($config?.onboarding ?? false)

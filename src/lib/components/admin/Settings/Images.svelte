@@ -1,5 +1,7 @@
 <script lang="ts">
 	import { toast } from 'svelte-sonner';
+	import { confirmButton } from '$lib/utils/confirmButton';
+	import { inlineError } from '$lib/utils/inlineError';
 
 	import { createEventDispatcher, onMount, getContext } from 'svelte';
 	import { config as backendConfig, user } from '$lib/stores';
@@ -24,6 +26,7 @@
 	const i18n = getContext('i18n');
 
 	let loading = false;
+	let saveBtn: HTMLButtonElement;
 
 	let models = null;
 	let config = null;
@@ -103,17 +106,17 @@
 			config.IMAGE_GENERATION_ENGINE === 'automatic1111' &&
 			config.AUTOMATIC1111_BASE_URL === ''
 		) {
-			toast.error($i18n.t('AUTOMATIC1111 Base URL is required.'));
+			inlineError(saveBtn, $i18n.t('AUTOMATIC1111 Base URL is required.'));
 			config.ENABLE_IMAGE_GENERATION = false;
 
 			return null;
 		} else if (config.IMAGE_GENERATION_ENGINE === 'comfyui' && config.COMFYUI_BASE_URL === '') {
-			toast.error($i18n.t('ComfyUI Base URL is required.'));
+			inlineError(saveBtn, $i18n.t('ComfyUI Base URL is required.'));
 			config.ENABLE_IMAGE_GENERATION = false;
 
 			return null;
 		} else if (config.IMAGE_GENERATION_ENGINE === 'openai' && config.IMAGES_OPENAI_API_KEY === '') {
-			toast.error($i18n.t('OpenAI API Key is required.'));
+			inlineError(saveBtn, $i18n.t('OpenAI API Key is required.'));
 			config.ENABLE_IMAGE_GENERATION = false;
 
 			return null;
@@ -121,12 +124,12 @@
 			config.IMAGE_GENERATION_ENGINE === 'openrouter' &&
 			config.IMAGES_OPENROUTER_API_KEY === ''
 		) {
-			toast.error($i18n.t('OpenRouter API Key is required.'));
+			inlineError(saveBtn, $i18n.t('OpenRouter API Key is required.'));
 			config.ENABLE_IMAGE_GENERATION = false;
 
 			return null;
 		} else if (config.IMAGE_GENERATION_ENGINE === 'gemini' && config.IMAGES_GEMINI_API_KEY === '') {
-			toast.error($i18n.t('Gemini API Key is required.'));
+			inlineError(saveBtn, $i18n.t('Gemini API Key is required.'));
 			config.ENABLE_IMAGE_GENERATION = false;
 
 			return null;
@@ -149,7 +152,7 @@
 					? JSON.parse(config.IMAGES_OPENROUTER_API_PARAMS)
 					: {}
 		}).catch((error) => {
-			toast.error(`${error}`);
+			inlineError(saveBtn, `${error}`);
 			return null;
 		});
 
@@ -181,7 +184,7 @@
 
 		if (config?.COMFYUI_WORKFLOW) {
 			if (!validateJSON(config?.COMFYUI_WORKFLOW)) {
-				toast.error($i18n.t('Invalid JSON format for ComfyUI Workflow.'));
+				inlineError(saveBtn, $i18n.t('Invalid JSON format for ComfyUI Workflow.'));
 				loading = false;
 				return;
 			}
@@ -198,7 +201,7 @@
 
 		if (config?.IMAGES_EDIT_COMFYUI_WORKFLOW) {
 			if (!validateJSON(config?.IMAGES_EDIT_COMFYUI_WORKFLOW)) {
-				toast.error($i18n.t('Invalid JSON format for ComfyUI Edit Workflow.'));
+				inlineError(saveBtn, $i18n.t('Invalid JSON format for ComfyUI Edit Workflow.'));
 				loading = false;
 				return;
 			}
@@ -215,6 +218,8 @@
 
 		const res = await updateConfigHandler();
 		if (res) {
+			// the button is the confirmation — green wash + ✓, no toast
+			confirmButton(saveBtn, { label: $i18n.t('Saved') });
 			dispatch('save');
 		}
 
@@ -590,15 +595,16 @@
 										class="  transition"
 										type="button"
 										aria-label="verify connection"
-										on:click={async () => {
+										on:click={async (e) => {
+											const el = e.currentTarget as HTMLElement;
 											await updateConfigHandler();
 											const res = await verifyConfigUrl(localStorage.token).catch((error) => {
-												toast.error(`${error}`);
+												inlineError(el, `${error}`);
 												return null;
 											});
 
 											if (res) {
-												toast.success($i18n.t('Server connection verified'));
+												confirmButton(el, { label: $i18n.t('Verified') });
 											}
 										}}
 									>
@@ -704,15 +710,16 @@
 										class="  rounded-lg transition"
 										type="button"
 										aria-label="verify connection"
-										on:click={async () => {
+										on:click={async (e) => {
+											const el = e.currentTarget as HTMLElement;
 											await updateConfigHandler();
 											const res = await verifyConfigUrl(localStorage.token).catch((error) => {
-												toast.error(`${error}`);
+												inlineError(el, `${error}`);
 												return null;
 											});
 
 											if (res) {
-												toast.success($i18n.t('Server connection verified'));
+												confirmButton(el, { label: $i18n.t('Verified') });
 											}
 										}}
 									>
@@ -1155,15 +1162,16 @@
 										class="  transition"
 										type="button"
 										aria-label="verify connection"
-										on:click={async () => {
+										on:click={async (e) => {
+											const el = e.currentTarget as HTMLElement;
 											await updateConfigHandler();
 											const res = await verifyConfigUrl(localStorage.token).catch((error) => {
-												toast.error(`${error}`);
+												inlineError(el, `${error}`);
 												return null;
 											});
 
 											if (res) {
-												toast.success($i18n.t('Server connection verified'));
+												confirmButton(el, { label: $i18n.t('Verified') });
 											}
 										}}
 									>
@@ -1382,6 +1390,7 @@
 
 	<div class="flex justify-end pt-3 text-sm font-medium">
 		<button
+			bind:this={saveBtn}
 			class="px-3.5 py-1.5 text-sm font-medium bg-black hover:bg-gray-900 text-white dark:bg-white dark:text-black dark:hover:bg-gray-100 transition rounded-full flex items-center gap-2 whitespace-nowrap {loading
 				? ' cursor-not-allowed'
 				: ''}"

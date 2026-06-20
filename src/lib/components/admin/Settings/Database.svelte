@@ -9,10 +9,14 @@
 	import { getAllUserChats } from '$lib/apis/chats';
 	import { getAllUsers } from '$lib/apis/users';
 	import { exportConfig, importConfig } from '$lib/apis/configs';
+	import { confirmButton } from '$lib/utils/confirmButton';
+	import { inlineError } from '$lib/utils/inlineError';
 
 	const i18n = getContext('i18n');
 
 	export let saveHandler: Function;
+
+	let importBtn: HTMLButtonElement;
 
 	const exportAllUserChats = async () => {
 		let blob = new Blob([JSON.stringify(await getAllUserChats(localStorage.token))], {
@@ -63,12 +67,12 @@
 				reader.onload = async (e) => {
 					const res = await importConfig(localStorage.token, JSON.parse(e.target.result)).catch(
 						(error) => {
-							toast.error(`${error}`);
+							inlineError(importBtn, `${error}`);
 						}
 					);
 
 					if (res) {
-						toast.success($i18n.t('Config imported successfully'));
+						confirmButton(importBtn, { label: $i18n.t('Imported') });
 					}
 					e.target.value = null;
 				};
@@ -84,6 +88,7 @@
 				<div class="py-0.5 flex w-full justify-between">
 					<div class="self-center text-xs">{$i18n.t('Import Config')}</div>
 					<button
+						bind:this={importBtn}
 						class="p-1 px-3 text-xs flex rounded-sm transition"
 						on:click={() => {
 							document.getElementById('config-json-input').click();

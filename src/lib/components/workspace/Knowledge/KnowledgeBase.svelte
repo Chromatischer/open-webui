@@ -37,6 +37,7 @@
 	import { processWeb, processYoutubeVideo } from '$lib/apis/retrieval';
 
 	import { blobToFile, isYoutubeUrl } from '$lib/utils';
+	import { inlineError } from '$lib/utils/inlineError';
 
 	import Spinner from '$lib/components/common/Spinner.svelte';
 	import Files from './KnowledgeBase/Files.svelte';
@@ -520,7 +521,6 @@
 
 			if (res) {
 				fileItems = [];
-				toast.success($i18n.t('Knowledge reset successfully.'));
 
 				// Upload directory
 				uploadDirectoryHandler();
@@ -537,7 +537,6 @@
 		});
 
 		if (res) {
-			toast.success($i18n.t('File added successfully.'));
 			init();
 		} else {
 			toast.error($i18n.t('Failed to add file.'));
@@ -554,7 +553,6 @@
 			console.log('Knowledge base updated:', res);
 
 			if (res) {
-				toast.success($i18n.t('File removed successfully.'));
 				await init();
 			}
 		} catch (e) {
@@ -568,6 +566,7 @@
 
 	let dragged = false;
 	let isSaving = false;
+	let saveFileBtnEl: HTMLButtonElement;
 
 	const updateFileContentHandler = async () => {
 		if (isSaving) {
@@ -583,13 +582,11 @@
 				selectedFile.id,
 				selectedFileContent
 			).catch((e) => {
-				toast.error(`${e}`);
+				inlineError(saveFileBtnEl, `${e}`);
 				return null;
 			});
 
 			if (res) {
-				toast.success($i18n.t('File content updated successfully.'));
-
 				selectedFileId = null;
 				selectedFile = null;
 				selectedFileContent = '';
@@ -622,9 +619,6 @@
 				toast.error(`${e}`);
 			});
 
-			if (res) {
-				toast.success($i18n.t('Knowledge updated successfully'));
-			}
 		}, 1000);
 	};
 
@@ -683,9 +677,7 @@
 						}
 					);
 				} else {
-					toast.info($i18n.t('Uploading file...'));
 					uploadFileHandler(item.getAsFile());
-					toast.success($i18n.t('File uploaded!'));
 				}
 			}
 		};
@@ -842,7 +834,6 @@
 			onChange={async () => {
 				try {
 					await updateKnowledgeAccessGrants(localStorage.token, id, knowledge.access_grants ?? []);
-					toast.success($i18n.t('Saved'));
 				} catch (error) {
 					toast.error(`${error}`);
 				}
@@ -1092,6 +1083,7 @@
 										{#if knowledge?.write_access}
 											<div>
 												<button
+													bind:this={saveFileBtnEl}
 													class="flex self-center w-fit text-sm py-1 px-2.5 dark:text-gray-300 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/5 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"
 													disabled={isSaving}
 													on:click={() => {

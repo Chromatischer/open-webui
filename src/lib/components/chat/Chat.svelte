@@ -972,7 +972,6 @@
 			fileItem.url = `${uploadedFile.id}`;
 
 			files = files;
-			toast.success($i18n.t('File uploaded successfully'));
 		} catch (e) {
 			console.error('Error uploading file:', e);
 			files = files.filter((f) => f.itemId !== tempItemId);
@@ -3065,7 +3064,6 @@
 			await goto('/');
 			chats.set(await getChatList(localStorage.token, $currentChatPage));
 			pinnedChats.set(await getPinnedChatList(localStorage.token));
-			toast.success($i18n.t('Chat archived.'));
 		} catch (error) {
 			console.error('Error archiving chat:', error);
 			toast.error($i18n.t('Failed to archive chat.'));
@@ -3091,7 +3089,6 @@
 				chats.set(await getChatList(localStorage.token, $currentChatPage));
 				pinnedChats.set(await getPinnedChatList(localStorage.token));
 				allTags.set(await getAllTags(localStorage.token));
-				toast.success($i18n.t('Chat deleted.'));
 			}
 		} catch (error) {
 			console.error('Error deleting chat:', error);

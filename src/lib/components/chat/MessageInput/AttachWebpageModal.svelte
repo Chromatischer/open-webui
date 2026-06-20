@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { toast } from 'svelte-sonner';
-
 	import { getContext } from 'svelte';
 	const i18n = getContext('i18n');
 	import { settings } from '$lib/stores';
+
+	import { inlineError } from '$lib/utils/inlineError';
 
 	import Modal from '$lib/components/common/Modal.svelte';
 	import XMark from '$lib/components/icons/XMark.svelte';
@@ -13,6 +13,7 @@
 	export let onSubmit: (e) => void;
 
 	let url = '';
+	let submitBtn: HTMLButtonElement;
 
 	const submitHandler = () => {
 		let urls = url
@@ -24,7 +25,7 @@
 		urls = [...new Set(urls)];
 
 		if (urls.length === 0) {
-			toast.error($i18n.t('Please enter a valid URL.'));
+			inlineError(submitBtn, $i18n.t('Please enter a valid URL.'));
 			return;
 		}
 
@@ -81,6 +82,7 @@
 					<button
 						class="px-3.5 py-1.5 text-sm font-medium bg-black hover:bg-gray-800 text-white dark:bg-white dark:text-black dark:hover:bg-gray-200 transition rounded-full"
 						type="submit"
+						bind:this={submitBtn}
 					>
 						{$i18n.t('Add')}
 					</button>

@@ -2,7 +2,7 @@
 	import fileSaver from 'file-saver';
 	const { saveAs } = fileSaver;
 
-	import { toast } from 'svelte-sonner';
+	import { inlineError } from '$lib/utils/inlineError';
 
 	import { goto } from '$app/navigation';
 	import { onMount, tick, getContext } from 'svelte';
@@ -42,6 +42,7 @@
 
 	let selectedModelId = '';
 	let loading = false;
+	let runBtn: HTMLButtonElement;
 	let stopResponseFlag = false;
 
 	let systemTextareaElement: HTMLTextAreaElement;
@@ -87,7 +88,7 @@
 
 	const chatCompletionHandler = async () => {
 		if (selectedModelId === '') {
-			toast.error($i18n.t('Please select a model.'));
+			inlineError(runBtn, $i18n.t('Please select a model.'));
 			return;
 		}
 
@@ -278,7 +279,6 @@
 			type: 'application/json'
 		});
 		saveAs(blob, `playground-chat-${Date.now()}.json`);
-		toast.success($i18n.t('Chat exported successfully'));
 	};
 
 	const downloadTxt = () => {
@@ -298,7 +298,6 @@
 			type: 'text/plain'
 		});
 		saveAs(blob, `playground-chat-${Date.now()}.txt`);
-		toast.success($i18n.t('Chat exported successfully'));
 	};
 
 	onMount(async () => {
@@ -539,6 +538,7 @@
 										on:click={() => {
 											submitHandler();
 										}}
+										bind:this={runBtn}
 									>
 										{$i18n.t('Run')}
 									</button>

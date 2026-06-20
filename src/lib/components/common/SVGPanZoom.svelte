@@ -2,7 +2,6 @@
 	import fileSaver from 'file-saver';
 	const { saveAs } = fileSaver;
 
-	import { toast } from 'svelte-sonner';
 	import { inlineConfirm } from '$lib/utils/inlineConfirm';
 
 	import DOMPurify from 'dompurify';

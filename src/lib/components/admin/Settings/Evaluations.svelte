@@ -1,5 +1,7 @@
 <script lang="ts">
 	import { toast } from 'svelte-sonner';
+	import { confirmButton } from '$lib/utils/confirmButton';
+	import { inlineError } from '$lib/utils/inlineError';
 	import { models, settings, user, config } from '$lib/stores';
 	import { createEventDispatcher, onMount, getContext, tick } from 'svelte';
 
@@ -18,15 +20,16 @@
 
 	let evaluationConfig = null;
 	let showAddModel = false;
+	let saveBtnEl: HTMLButtonElement;
 
 	const submitHandler = async () => {
 		evaluationConfig = await updateConfig(localStorage.token, evaluationConfig).catch((err) => {
-			toast.error(err);
+			inlineError(saveBtnEl, err);
 			return null;
 		});
 
 		if (evaluationConfig) {
-			toast.success($i18n.t('Settings saved successfully!'));
+			confirmButton(saveBtnEl, { label: $i18n.t('Saved') });
 			models.set(
 				await getModels(
 					localStorage.token,
@@ -176,6 +179,7 @@
 
 	<div class="flex justify-end pt-3 text-sm font-medium">
 		<button
+			bind:this={saveBtnEl}
 			class="px-3.5 py-1.5 text-sm font-medium bg-black hover:bg-gray-900 text-white dark:bg-white dark:text-black dark:hover:bg-gray-100 transition rounded-full"
 			type="submit"
 		>

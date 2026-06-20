@@ -1,7 +1,6 @@
 <script lang="ts">
-	import { toast } from 'svelte-sonner';
-
 	import { onMount, getContext, tick } from 'svelte';
+	import { inlineError } from '$lib/utils/inlineError';
 	import { fade, fly, scale } from 'svelte/transition';
 	import { cubicOut, backOut } from 'svelte/easing';
 
@@ -131,20 +130,23 @@
 	// Required step is satisfied → model can be created at any point
 	$: canSubmit = name.trim() !== '' && (!preset || !!info.base_model_id);
 
-	const submitHandler = async () => {
+	let createBtn: HTMLButtonElement;
+
+	const submitHandler = async (e?: MouseEvent) => {
+		const el = (e?.currentTarget as HTMLElement) ?? createBtn;
 		loading = true;
 
 		info.id = id;
 		info.name = name;
 
 		if (id === '') {
-			toast.error($i18n.t('Model ID is required.'));
+			inlineError(el, $i18n.t('Model ID is required.'));
 			loading = false;
 			return;
 		}
 
 		if (name === '') {
-			toast.error($i18n.t('Model Name is required.'));
+			inlineError(el, $i18n.t('Model Name is required.'));
 			loading = false;
 			return;
 		}
@@ -667,6 +669,7 @@
 				{/if}
 
 				<button
+					bind:this={createBtn}
 					class="wz-btn create"
 					type="button"
 					disabled={!canSubmit || loading}

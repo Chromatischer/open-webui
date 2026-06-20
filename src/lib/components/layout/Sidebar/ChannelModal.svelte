@@ -3,6 +3,7 @@
 	const i18n = getContext('i18n');
 
 	import { toast } from 'svelte-sonner';
+	import { inlineError } from '$lib/utils/inlineError';
 	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
 
@@ -37,6 +38,7 @@
 	let userIds = [];
 
 	let loading = false;
+	let submitBtn: HTMLButtonElement;
 
 	$: if (name) {
 		name = name.replace(/\s/g, '-').toLocaleLowerCase();
@@ -57,7 +59,7 @@
 	const submitHandler = async () => {
 		loading = true;
 		if (name.length > 128) {
-			toast.error($i18n.t('Channel name must be less than 128 characters'));
+			inlineError(submitBtn, $i18n.t('Channel name must be less than 128 characters'));
 			loading = false;
 			return;
 		}
@@ -118,7 +120,6 @@
 		});
 
 		if (res) {
-			toast.success($i18n.t('Channel deleted successfully'));
 			onUpdate();
 
 			if ($page.url.pathname === `/channels/${channelId}`) {
@@ -289,6 +290,7 @@
 						{/if}
 
 						<button
+							bind:this={submitBtn}
 							class="px-3.5 py-1.5 text-sm font-medium bg-black hover:bg-gray-950 text-white dark:bg-white dark:text-black dark:hover:bg-gray-100 transition rounded-full flex flex-row space-x-1 items-center {loading
 								? ' cursor-not-allowed'
 								: ''}"

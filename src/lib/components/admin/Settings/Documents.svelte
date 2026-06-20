@@ -2,6 +2,8 @@
 	import { toast } from 'svelte-sonner';
 
 	import { onMount, getContext, createEventDispatcher } from 'svelte';
+	import { confirmButton } from '$lib/utils/confirmButton';
+	import { inlineError } from '$lib/utils/inlineError';
 
 	const dispatch = createEventDispatcher();
 
@@ -141,20 +143,22 @@
 		}
 	};
 
+	let saveBtn: HTMLButtonElement;
+
 	const submitHandler = async () => {
 		if (
 			RAGConfig.CONTENT_EXTRACTION_ENGINE === 'external' &&
 			RAGConfig.EXTERNAL_DOCUMENT_LOADER_URL === ''
 		) {
-			toast.error($i18n.t('External Document Loader URL required.'));
+			inlineError(saveBtn, $i18n.t('External Document Loader URL required.'));
 			return;
 		}
 		if (RAGConfig.CONTENT_EXTRACTION_ENGINE === 'tika' && RAGConfig.TIKA_SERVER_URL === '') {
-			toast.error($i18n.t('Tika Server URL required.'));
+			inlineError(saveBtn, $i18n.t('Tika Server URL required.'));
 			return;
 		}
 		if (RAGConfig.CONTENT_EXTRACTION_ENGINE === 'docling' && RAGConfig.DOCLING_SERVER_URL === '') {
-			toast.error($i18n.t('Docling Server URL required.'));
+			inlineError(saveBtn, $i18n.t('Docling Server URL required.'));
 			return;
 		}
 		if (
@@ -165,7 +169,7 @@
 			try {
 				JSON.parse(RAGConfig.DATALAB_MARKER_ADDITIONAL_CONFIG);
 			} catch (e) {
-				toast.error($i18n.t('Invalid JSON format in Additional Config'));
+				inlineError(saveBtn, $i18n.t('Invalid JSON format in Additional Config'));
 				return;
 			}
 		}
@@ -174,21 +178,21 @@
 			RAGConfig.CONTENT_EXTRACTION_ENGINE === 'document_intelligence' &&
 			RAGConfig.DOCUMENT_INTELLIGENCE_ENDPOINT === ''
 		) {
-			toast.error($i18n.t('Document Intelligence endpoint required.'));
+			inlineError(saveBtn, $i18n.t('Document Intelligence endpoint required.'));
 			return;
 		}
 		if (
 			RAGConfig.CONTENT_EXTRACTION_ENGINE === 'mistral_ocr' &&
 			RAGConfig.MISTRAL_OCR_API_KEY === ''
 		) {
-			toast.error($i18n.t('Mistral OCR API Key required.'));
+			inlineError(saveBtn, $i18n.t('Mistral OCR API Key required.'));
 			return;
 		}
 		if (
 			RAGConfig.CONTENT_EXTRACTION_ENGINE === 'paddleocr_vl' &&
 			RAGConfig.PADDLEOCR_VL_BASE_URL === ''
 		) {
-			toast.error($i18n.t('PaddleOCR-vl API URL required.'));
+			inlineError(saveBtn, $i18n.t('PaddleOCR-vl API URL required.'));
 			return;
 		}
 
@@ -197,7 +201,7 @@
 			RAGConfig.MINERU_API_MODE === 'cloud' &&
 			RAGConfig.MINERU_API_KEY === ''
 		) {
-			toast.error($i18n.t('MinerU API Key required for Cloud API mode.'));
+			inlineError(saveBtn, $i18n.t('MinerU API Key required for Cloud API mode.'));
 			return;
 		}
 
@@ -209,7 +213,8 @@
 			try {
 				JSON.parse(RAGConfig.DOCLING_PARAMS);
 			} catch (e) {
-				toast.error(
+				inlineError(
+					saveBtn,
 					$i18n.t('Invalid JSON format in {{NAME}}', {
 						NAME: $i18n.t('Docling Parameters')
 					})
@@ -221,7 +226,7 @@
 			try {
 				JSON.parse(RAGConfig.MINERU_PARAMS);
 			} catch (e) {
-				toast.error($i18n.t('Invalid JSON format in MinerU Parameters'));
+				inlineError(saveBtn, $i18n.t('Invalid JSON format in MinerU Parameters'));
 				return;
 			}
 		}
@@ -246,7 +251,14 @@
 					? JSON.parse(RAGConfig.MINERU_PARAMS)
 					: {}
 		});
-		dispatch('save');
+
+		if (res) {
+			// the button is the confirmation — green wash + ✓, no toast
+			confirmButton(saveBtn, { label: $i18n.t('Saved') });
+			dispatch('save');
+		} else {
+			inlineError(saveBtn, $i18n.t('Failed to update settings'));
+		}
 	};
 
 	const setEmbeddingConfig = async () => {
@@ -1571,6 +1583,7 @@
 		</div>
 		<div class="flex justify-end pt-3 text-sm font-medium">
 			<button
+				bind:this={saveBtn}
 				class="px-3.5 py-1.5 text-sm font-medium bg-black hover:bg-gray-900 text-white dark:bg-white dark:text-black dark:hover:bg-gray-100 transition rounded-full"
 				type="submit"
 			>

@@ -4,6 +4,7 @@
 	dayjs.extend(relativeTime);
 
 	import { toast } from 'svelte-sonner';
+	import { inlineError } from '$lib/utils/inlineError';
 	import { onMount, getContext, tick, onDestroy } from 'svelte';
 	const i18n = getContext('i18n');
 
@@ -119,7 +120,6 @@
 		});
 
 		if (res) {
-			toast.success($i18n.t('Knowledge deleted successfully.'));
 			init();
 		}
 	};
@@ -136,7 +136,6 @@
 				a.click();
 				document.body.removeChild(a);
 				URL.revokeObjectURL(url);
-				toast.success($i18n.t('Knowledge exported successfully'));
 			}
 		} catch (e) {
 			toast.error(`${e}`);
@@ -232,9 +231,10 @@
 					{#each items as item}
 						<button
 							class="ws-row"
-							on:click={() => {
+							on:click={(e) => {
 								if (item?.meta?.document) {
-									toast.error(
+									inlineError(
+										e.currentTarget as HTMLElement,
 										$i18n.t(
 											'Only collections can be edited, create a new knowledge base to edit/add documents.'
 										)

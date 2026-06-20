@@ -199,7 +199,7 @@
 			}
 
 			dispatch('change');
-			toast.success($i18n.t('Chat archived.'));
+			// UI changes (navigation + list refresh) — no toast needed
 		} catch (error) {
 			console.error('Error archiving chat:', error);
 			toast.error($i18n.t('Failed to archive chat.'));
@@ -223,8 +223,7 @@
 				await pinnedChats.set(await getPinnedChatList(localStorage.token));
 
 				dispatch('change');
-
-				toast.success($i18n.t('Chat moved successfully'));
+				// UI changes (list refresh + dispatch) — no toast needed
 			}
 		} else {
 			toast.error($i18n.t('Failed to move chat'));

@@ -116,7 +116,7 @@
 			return null;
 		});
 		if (response) {
-			toast.success($i18n.t('Feedback deleted successfully'));
+			// List refreshes — no toast needed.
 			page = 1;
 			getFeedbacks();
 		}

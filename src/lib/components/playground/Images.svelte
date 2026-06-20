@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { toast } from 'svelte-sonner';
 	import { onMount, getContext } from 'svelte';
+	import { inlineError } from '$lib/utils/inlineError';
 	import { goto } from '$app/navigation';
 
 	import { user } from '$lib/stores';
@@ -19,6 +19,7 @@
 
 	let promptTextareaElement: HTMLTextAreaElement;
 	let fileInputElement: HTMLInputElement;
+	let submitBtnElement: HTMLButtonElement;
 
 	const resizePromptTextarea = () => {
 		if (promptTextareaElement) {
@@ -66,7 +67,7 @@
 
 	const submitHandler = async () => {
 		if (!prompt.trim()) {
-			toast.error($i18n.t('Please enter a prompt'));
+			inlineError(submitBtnElement, $i18n.t('Please enter a prompt'));
 			return;
 		}
 
@@ -91,13 +92,13 @@
 			}
 		} catch (error) {
 			console.error('Image generation/edit error:', error);
-			toast.error(`${error}`);
+			inlineError(submitBtnElement, `${error}`);
 		} finally {
 			loading = false;
 		}
 	};
 
-	const downloadImage = async (url: string, index: number) => {
+	const downloadImage = async (el: HTMLElement, url: string, index: number) => {
 		try {
 			const response = await fetch(url);
 			const blob = await response.blob();
@@ -108,7 +109,7 @@
 			a.click();
 			URL.revokeObjectURL(blobUrl);
 		} catch (error) {
-			toast.error($i18n.t('Failed to download image'));
+			inlineError(el, $i18n.t('Failed to download image'));
 		}
 	};
 
@@ -136,7 +137,7 @@
 								{#each generatedImages as image, index}
 									<button
 										class="relative group cursor-pointer"
-										on:click={() => downloadImage(image.url, index)}
+										on:click={(e) => downloadImage(e.currentTarget, image.url, index)}
 									>
 										<img
 											src={image.url}
@@ -256,6 +257,7 @@
 						<div class="flex gap-2 shrink-0">
 							{#if !loading}
 								<button
+									bind:this={submitBtnElement}
 									disabled={prompt.trim() === ''}
 									class="px-3.5 py-1.5 text-sm font-medium bg-black hover:bg-gray-900 text-white dark:bg-white dark:text-black dark:hover:bg-gray-100 transition rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"
 									on:click={submitHandler}
