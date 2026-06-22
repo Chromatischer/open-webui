@@ -1,7 +1,6 @@
 export const DEFAULT_PERMISSIONS = {
 	workspace: {
 		models: false,
-		knowledge: false,
 		tools: false,
 		skills: false,
 		models_import: false,
@@ -12,8 +11,6 @@ export const DEFAULT_PERMISSIONS = {
 	sharing: {
 		models: false,
 		public_models: false,
-		knowledge: false,
-		public_knowledge: false,
 		tools: false,
 		public_tools: false,
 		skills: false,

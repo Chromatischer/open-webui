@@ -74,14 +74,6 @@ from open_webui.tools.builtin import (
     calculate_timestamp,
     search_chats,
     view_chat,
-    list_knowledge_bases,
-    search_knowledge_bases,
-    query_knowledge_bases,
-    search_knowledge_files,
-    query_knowledge_files,
-    list_knowledge,
-    view_file,
-    view_knowledge_file,
     view_skill,
     read_scratchboard,
     write_scratchboard,
@@ -419,38 +411,6 @@ async def get_builtin_tools(
     if is_builtin_tool_enabled('time'):
         builtin_functions.extend([get_current_timestamp, calculate_timestamp])
 
-    # Knowledge base tools - conditional injection based on model knowledge
-    # If model has attached knowledge (any type), only provide query_knowledge_files
-    # Otherwise, provide all KB browsing tools
-    model_knowledge = model.get('info', {}).get('meta', {}).get('knowledge', [])
-    # Merge folder-attached knowledge so builtin tools can search it
-    folder_knowledge = extra_params.get('__metadata__', {}).get('folder_knowledge')
-    if folder_knowledge:
-        model_knowledge = list(model_knowledge or []) + list(folder_knowledge)
-    if is_builtin_tool_enabled('knowledge'):
-        if model_knowledge:
-            # Model has attached knowledge - provide discovery, search and semantic tools
-            builtin_functions.append(list_knowledge)
-            builtin_functions.append(search_knowledge_files)
-            builtin_functions.append(query_knowledge_files)
-
-            knowledge_types = {item.get('type') for item in model_knowledge}
-            if 'file' in knowledge_types or 'collection' in knowledge_types:
-                builtin_functions.append(view_file)
-                builtin_functions.append(view_knowledge_file)
-        else:
-            # No model knowledge - allow full KB browsing
-            builtin_functions.extend(
-                [
-                    list_knowledge_bases,
-                    search_knowledge_bases,
-                    query_knowledge_bases,
-                    search_knowledge_files,
-                    query_knowledge_files,
-                    view_knowledge_file,
-                ]
-            )
-
     # Chats tools - search and fetch user's chat history
     if is_builtin_tool_enabled('chats'):
         builtin_functions.extend([search_chats, view_chat])
@@ -536,7 +496,6 @@ async def get_builtin_tools(
                 '__metadata__': extra_params.get('__metadata__'),
                 '__chat_id__': extra_params.get('__chat_id__'),
                 '__message_id__': extra_params.get('__message_id__'),
-                '__model_knowledge__': model_knowledge,
             },
         )
 

@@ -12,7 +12,6 @@
 
 	import AdvancedParams from '$lib/components/chat/Settings/Advanced/AdvancedParams.svelte';
 	import Tags from '$lib/components/common/Tags.svelte';
-	import Knowledge from '$lib/components/workspace/Models/Knowledge.svelte';
 	import AccessControl from '../common/AccessControl.svelte';
 	import Spinner from '$lib/components/common/Spinner.svelte';
 	import Tooltip from '$lib/components/common/Tooltip.svelte';
@@ -126,7 +125,6 @@
 		system: ''
 	};
 
-	let knowledge = [];
 	let toolIds = [];
 	let skillIds = [];
 
@@ -290,12 +288,6 @@
 			return;
 		}
 
-		if (knowledge.some((item) => item.status === 'uploading')) {
-			inlineError(sealBtnEl, $i18n.t('Please wait until all files are uploaded.'));
-			loading = false;
-			return;
-		}
-
 		info.params = { ...info.params, ...params };
 
 		info.access_grants = accessGrants;
@@ -303,12 +295,6 @@
 
 		// no Default/Custom toggle: empty = default (null), any text = custom
 		info.meta.description = info.meta.description?.trim() ? info.meta.description : null;
-
-		if (knowledge.length > 0) {
-			info.meta.knowledge = knowledge;
-		} else if (info.meta.knowledge) {
-			delete info.meta.knowledge;
-		}
 
 		if (toolIds.length > 0) {
 			info.meta.toolIds = toolIds;
@@ -506,25 +492,6 @@
 					)
 				: null;
 
-			knowledge = (model?.meta?.knowledge ?? []).map((item) => {
-				if (item?.collection_name && item?.type !== 'file') {
-					return {
-						id: item.collection_name,
-						name: item.name,
-						legacy: true
-					};
-				} else if (item?.collection_names) {
-					return {
-						name: item.name,
-						type: 'collection',
-						collection_names: item.collection_names,
-						legacy: true
-					};
-				} else {
-					return item;
-				}
-			});
-
 			toolIds = model?.meta?.toolIds ?? [];
 			skillIds = model?.meta?.skillIds ?? [];
 			filterIds = model?.meta?.filterIds ?? [];
@@ -718,25 +685,10 @@
 			</div>
 		</section>
 
-		<!-- ─── § 2 · the library ─── -->
+		<!-- ─── § 2 · instruments ─── -->
 		<section class="mf-sec reveal" style:--d="0.18s">
 			<div class="mf-sec-head">
 				<span class="mf-sec-no">§ 2</span>
-				<h2 class="mf-sec-title">{$i18n.t('The library')}</h2>
-			</div>
-			<p class="mf-sec-sub">
-				{$i18n.t('Collections and files the model may consult while it writes.')}
-			</p>
-
-			<Knowledge bind:selectedItems={knowledge}>
-				<span slot="label"></span>
-			</Knowledge>
-		</section>
-
-		<!-- ─── § 3 · instruments ─── -->
-		<section class="mf-sec reveal" style:--d="0.24s">
-			<div class="mf-sec-head">
-				<span class="mf-sec-no">§ 3</span>
 				<h2 class="mf-sec-title">{$i18n.t('Instruments')}</h2>
 			</div>
 			<p class="mf-sec-sub">
@@ -916,10 +868,10 @@
 			{/if}
 		</section>
 
-		<!-- ─── § 4 · faculties ─── -->
+		<!-- ─── § 3 · faculties ─── -->
 		<section class="mf-sec reveal" style:--d="0.3s">
 			<div class="mf-sec-head">
-				<span class="mf-sec-no">§ 4</span>
+				<span class="mf-sec-no">§ 3</span>
 				<h2 class="mf-sec-title">{$i18n.t('Faculties')}</h2>
 			</div>
 			<p class="mf-sec-sub">{$i18n.t('What the model is permitted to see and do.')}</p>
@@ -997,10 +949,10 @@
 			{/if}
 		</section>
 
-		<!-- ─── § 5 · tuning ─── -->
+		<!-- ─── § 4 · tuning ─── -->
 		<section class="mf-sec reveal" style:--d="0.36s">
 			<div class="mf-sec-head">
-				<span class="mf-sec-no">§ 5</span>
+				<span class="mf-sec-no">§ 4</span>
 				<h2 class="mf-sec-title">{$i18n.t('Tuning')}</h2>
 			</div>
 			<p class="mf-sec-sub">
@@ -1206,10 +1158,10 @@
 			</div>
 		</section>
 
-		<!-- ─── § 6 · audience ─── -->
+		<!-- ─── § 5 · audience ─── -->
 		<section class="mf-sec reveal" style:--d="0.42s">
 			<div class="mf-sec-head">
-				<span class="mf-sec-no">§ 6</span>
+				<span class="mf-sec-no">§ 5</span>
 				<h2 class="mf-sec-title">{$i18n.t('Audience')}</h2>
 			</div>
 			<p class="mf-sec-sub">{$i18n.t('Choose who can use this model.')}</p>

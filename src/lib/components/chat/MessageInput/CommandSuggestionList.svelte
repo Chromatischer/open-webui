@@ -1,5 +1,4 @@
 <script lang="ts">
-	import Knowledge from './Commands/Knowledge.svelte';
 	import Models from './Commands/Models.svelte';
 	import Skills from './Commands/Skills.svelte';
 	import Emojis from './Commands/Emojis.svelte';
@@ -58,32 +57,7 @@
 	id="suggestions-container"
 >
 	<div class="overflow-y-auto scrollbar-thin max-h-60">
-		{#if char === '#'}
-			<Knowledge
-				bind:this={suggestionElement}
-				{query}
-				bind:filteredItems
-				onSelect={(e) => {
-					const { type, data } = e;
-
-					if (type === 'knowledge') {
-						insertTextHandler('');
-
-						onUpload({
-							type: 'file',
-							data: data
-						});
-					} else if (type === 'web') {
-						insertTextHandler('');
-
-						onUpload({
-							type: 'web',
-							data: data
-						});
-					}
-				}}
-			/>
-		{:else if char === '@'}
+		{#if char === '@'}
 			<Models
 				bind:this={suggestionElement}
 				{query}

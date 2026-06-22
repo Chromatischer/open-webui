@@ -74,21 +74,6 @@
 			{/if}
 		</div>
 
-		<div class="flex flex-col w-full">
-			<div class="flex w-full justify-between my-1">
-				<div class=" self-center text-xs font-medium">
-					{$i18n.t('Knowledge Access')}
-				</div>
-				<Switch bind:state={permissions.workspace.knowledge} />
-			</div>
-			{#if defaultPermissions?.workspace?.knowledge && !permissions.workspace.knowledge}
-				<div>
-					<div class="text-xs text-gray-500">
-						{$i18n.t('This is a default user permission and will remain enabled.')}
-					</div>
-				</div>
-			{/if}
-		</div>
 
 		<div class="flex flex-col w-full">
 			<Tooltip
@@ -191,39 +176,6 @@
 			</div>
 		{/if}
 
-		<div class="flex flex-col w-full">
-			<div class="flex w-full justify-between my-1">
-				<div class=" self-center text-xs font-medium">
-					{$i18n.t('Knowledge Sharing')}
-				</div>
-				<Switch bind:state={permissions.sharing.knowledge} />
-			</div>
-			{#if defaultPermissions?.sharing?.knowledge && !permissions.sharing.knowledge}
-				<div>
-					<div class="text-xs text-gray-500">
-						{$i18n.t('This is a default user permission and will remain enabled.')}
-					</div>
-				</div>
-			{/if}
-		</div>
-
-		{#if permissions.sharing.knowledge}
-			<div class="flex flex-col w-full">
-				<div class="flex w-full justify-between my-1">
-					<div class=" self-center text-xs font-medium">
-						{$i18n.t('Knowledge Public Sharing')}
-					</div>
-					<Switch bind:state={permissions.sharing.public_knowledge} />
-				</div>
-				{#if defaultPermissions?.sharing?.public_knowledge && !permissions.sharing.public_knowledge}
-					<div>
-						<div class="text-xs text-gray-500">
-							{$i18n.t('This is a default user permission and will remain enabled.')}
-						</div>
-					</div>
-				{/if}
-			</div>
-		{/if}
 
 		<div class="flex flex-col w-full">
 			<div class="flex w-full justify-between my-1">

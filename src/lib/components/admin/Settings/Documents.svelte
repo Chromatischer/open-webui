@@ -19,12 +19,10 @@
 		updateRAGConfig
 	} from '$lib/apis/retrieval';
 
-	import { reindexKnowledgeFiles } from '$lib/apis/knowledge';
 	import { deleteAllFiles } from '$lib/apis/files';
 
 	import ResetUploadDirConfirmDialog from '$lib/components/common/ConfirmDialog.svelte';
 	import ResetVectorDBConfirmDialog from '$lib/components/common/ConfirmDialog.svelte';
-	import ReindexKnowledgeFilesConfirmDialog from '$lib/components/common/ConfirmDialog.svelte';
 	import SensitiveInput from '$lib/components/common/SensitiveInput.svelte';
 	import Tooltip from '$lib/components/common/Tooltip.svelte';
 	import Switch from '$lib/components/common/Switch.svelte';
@@ -38,7 +36,6 @@
 
 	let showResetConfirm = false;
 	let showResetUploadDirConfirm = false;
-	let showReindexConfirm = false;
 
 	let RAG_EMBEDDING_ENGINE = '';
 	let RAG_EMBEDDING_MODEL = '';
@@ -330,19 +327,6 @@
 	}}
 />
 
-<ReindexKnowledgeFilesConfirmDialog
-	bind:show={showReindexConfirm}
-	on:confirm={async () => {
-		const res = await reindexKnowledgeFiles(localStorage.token).catch((error) => {
-			toast.error(`${error}`);
-			return null;
-		});
-
-		if (res) {
-			toast.success($i18n.t('Success'));
-		}
-	}}
-/>
 
 <form
 	class="flex flex-col h-full justify-between space-y-3 text-sm"
@@ -1559,22 +1543,6 @@
 								}}
 							>
 								{$i18n.t('Reset')}
-							</button>
-						</div>
-					</div>
-					<div class="  mb-2.5 flex w-full justify-between">
-						<div class=" self-center text-xs font-medium">
-							{$i18n.t('Reindex Knowledge Base Vectors')}
-						</div>
-						<div class="flex items-center relative">
-							<button
-								class="text-xs"
-								type="button"
-								on:click={() => {
-									showReindexConfirm = true;
-								}}
-							>
-								{$i18n.t('Reindex')}
 							</button>
 						</div>
 					</div>

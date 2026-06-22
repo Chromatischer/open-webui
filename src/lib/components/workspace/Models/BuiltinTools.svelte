@@ -16,10 +16,6 @@
 			label: $i18n.t('Chat History'),
 			description: $i18n.t('Search and view user chat history')
 		},
-		knowledge: {
-			label: $i18n.t('Knowledge Base'),
-			description: $i18n.t('Browse and query knowledge bases')
-		},
 		web_search: {
 			label: $i18n.t('Web Search'),
 			description: $i18n.t('Search the web and fetch URLs')

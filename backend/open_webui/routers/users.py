@@ -168,7 +168,6 @@ async def get_user_permissisions(
 ############################
 class WorkspacePermissions(BaseModel):
     models: bool = False
-    knowledge: bool = False
     tools: bool = False
     skills: bool = False
     models_import: bool = False
@@ -180,8 +179,6 @@ class WorkspacePermissions(BaseModel):
 class SharingPermissions(BaseModel):
     models: bool = False
     public_models: bool = False
-    knowledge: bool = False
-    public_knowledge: bool = False
     tools: bool = False
     public_tools: bool = True
     skills: bool = False
