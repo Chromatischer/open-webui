@@ -1019,7 +1019,6 @@ async def get_admin_config(request: Request, user=Depends(get_admin_user)):
         'ENABLE_AUTOMATIONS': request.app.state.config.ENABLE_AUTOMATIONS,
         'ENABLE_CHANNELS': request.app.state.config.ENABLE_CHANNELS,
         'ENABLE_MEMORIES': request.app.state.config.ENABLE_MEMORIES,
-        'ENABLE_NOTES': request.app.state.config.ENABLE_NOTES,
         'ENABLE_USER_WEBHOOKS': request.app.state.config.ENABLE_USER_WEBHOOKS,
         'ENABLE_USER_STATUS': request.app.state.config.ENABLE_USER_STATUS,
         'PENDING_USER_OVERLAY_TITLE': request.app.state.config.PENDING_USER_OVERLAY_TITLE,
@@ -1048,7 +1047,6 @@ class AdminConfig(BaseModel):
     ENABLE_AUTOMATIONS: bool
     ENABLE_CHANNELS: bool
     ENABLE_MEMORIES: bool
-    ENABLE_NOTES: bool
     ENABLE_USER_WEBHOOKS: bool
     ENABLE_USER_STATUS: bool
     PENDING_USER_OVERLAY_TITLE: Optional[str] = None
@@ -1080,7 +1078,6 @@ async def update_admin_config(request: Request, form_data: AdminConfig, user=Dep
     request.app.state.config.ENABLE_AUTOMATIONS = form_data.ENABLE_AUTOMATIONS
     request.app.state.config.ENABLE_CHANNELS = form_data.ENABLE_CHANNELS
     request.app.state.config.ENABLE_MEMORIES = form_data.ENABLE_MEMORIES
-    request.app.state.config.ENABLE_NOTES = form_data.ENABLE_NOTES
 
     if form_data.DEFAULT_USER_ROLE in ['pending', 'user', 'admin']:
         request.app.state.config.DEFAULT_USER_ROLE = form_data.DEFAULT_USER_ROLE
@@ -1124,7 +1121,6 @@ async def update_admin_config(request: Request, form_data: AdminConfig, user=Dep
         'ENABLE_AUTOMATIONS': request.app.state.config.ENABLE_AUTOMATIONS,
         'ENABLE_CHANNELS': request.app.state.config.ENABLE_CHANNELS,
         'ENABLE_MEMORIES': request.app.state.config.ENABLE_MEMORIES,
-        'ENABLE_NOTES': request.app.state.config.ENABLE_NOTES,
         'ENABLE_USER_WEBHOOKS': request.app.state.config.ENABLE_USER_WEBHOOKS,
         'ENABLE_USER_STATUS': request.app.state.config.ENABLE_USER_STATUS,
         'PENDING_USER_OVERLAY_TITLE': request.app.state.config.PENDING_USER_OVERLAY_TITLE,

@@ -23,8 +23,6 @@ export const DEFAULT_PERMISSIONS = {
 		public_tools: false,
 		skills: false,
 		public_skills: false,
-		notes: false,
-		public_notes: false,
 		public_chats: false
 	},
 	access_grants: {
@@ -54,7 +52,6 @@ export const DEFAULT_PERMISSIONS = {
 	},
 	features: {
 		api_keys: false,
-		notes: true,
 		channels: true,
 		folders: true,
 		direct_tool_servers: false,

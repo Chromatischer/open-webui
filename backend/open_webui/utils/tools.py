@@ -72,16 +72,12 @@ from open_webui.tools.builtin import (
     list_memories,
     get_current_timestamp,
     calculate_timestamp,
-    search_notes,
     search_chats,
     search_channels,
     search_channel_messages,
-    view_note,
     view_chat,
     view_channel_message,
     view_channel_thread,
-    replace_note_content,
-    write_note,
     list_knowledge_bases,
     search_knowledge_bases,
     query_knowledge_bases,
@@ -451,8 +447,6 @@ async def get_builtin_tools(
             if 'file' in knowledge_types or 'collection' in knowledge_types:
                 builtin_functions.append(view_file)
                 builtin_functions.append(view_knowledge_file)
-            if 'note' in knowledge_types:
-                builtin_functions.append(view_note)
         else:
             # No model knowledge - allow full KB browsing
             builtin_functions.extend(
@@ -523,14 +517,6 @@ async def get_builtin_tools(
         and await has_user_permission('code_interpreter')
     ):
         builtin_functions.append(execute_code)
-
-    # Notes tools - search, view, create, and update user's notes
-    if (
-        is_builtin_tool_enabled('notes')
-        and getattr(request.app.state.config, 'ENABLE_NOTES', False)
-        and await has_user_permission('notes')
-    ):
-        builtin_functions.extend([search_notes, view_note, write_note, replace_note_content])
 
     # Channels tools - search channels and messages
     if (

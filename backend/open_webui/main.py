@@ -87,7 +87,6 @@ from open_webui.routers import (
     auths,
     channels,
     chats,
-    notes,
     folders,
     configs,
     groups,
@@ -412,7 +411,6 @@ from open_webui.config import (
     AUTOMATION_MAX_COUNT,
     AUTOMATION_MIN_INTERVAL,
     ENABLE_CHANNELS,
-    ENABLE_NOTES,
     ENABLE_USER_STATUS,
     ENABLE_COMMUNITY_SHARING,
     ENABLE_MESSAGE_RATING,
@@ -931,7 +929,6 @@ app.state.config.ENABLE_AUTOMATIONS = ENABLE_AUTOMATIONS
 app.state.config.AUTOMATION_MAX_COUNT = AUTOMATION_MAX_COUNT
 app.state.config.AUTOMATION_MIN_INTERVAL = AUTOMATION_MIN_INTERVAL
 app.state.config.ENABLE_CHANNELS = ENABLE_CHANNELS
-app.state.config.ENABLE_NOTES = ENABLE_NOTES
 app.state.config.ENABLE_COMMUNITY_SHARING = ENABLE_COMMUNITY_SHARING
 app.state.config.ENABLE_MESSAGE_RATING = ENABLE_MESSAGE_RATING
 app.state.config.ENABLE_USER_WEBHOOKS = ENABLE_USER_WEBHOOKS
@@ -1456,7 +1453,6 @@ app.include_router(users.router, prefix='/api/v1/users', tags=['users'])
 
 app.include_router(channels.router, prefix='/api/v1/channels', tags=['channels'])
 app.include_router(chats.router, prefix='/api/v1/chats', tags=['chats'])
-app.include_router(notes.router, prefix='/api/v1/notes', tags=['notes'])
 
 
 app.include_router(models.router, prefix='/api/v1/models', tags=['models'])
@@ -2400,7 +2396,6 @@ async def get_app_config(request: Request):
                     'folder_max_file_count': app.state.config.FOLDER_MAX_FILE_COUNT,
                     'enable_channels': app.state.config.ENABLE_CHANNELS,
                     'enable_automations': app.state.config.ENABLE_AUTOMATIONS,
-                    'enable_notes': app.state.config.ENABLE_NOTES,
                     'enable_web_search': app.state.config.ENABLE_WEB_SEARCH,
                     'enable_code_execution': app.state.config.ENABLE_CODE_EXECUTION,
                     'enable_code_interpreter': app.state.config.ENABLE_CODE_INTERPRETER,
