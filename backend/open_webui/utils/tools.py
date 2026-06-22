@@ -73,11 +73,7 @@ from open_webui.tools.builtin import (
     get_current_timestamp,
     calculate_timestamp,
     search_chats,
-    search_channels,
-    search_channel_messages,
     view_chat,
-    view_channel_message,
-    view_channel_thread,
     list_knowledge_bases,
     search_knowledge_bases,
     query_knowledge_bases,
@@ -517,21 +513,6 @@ async def get_builtin_tools(
         and await has_user_permission('code_interpreter')
     ):
         builtin_functions.append(execute_code)
-
-    # Channels tools - search channels and messages
-    if (
-        is_builtin_tool_enabled('channels')
-        and getattr(request.app.state.config, 'ENABLE_CHANNELS', False)
-        and await has_user_permission('channels')
-    ):
-        builtin_functions.extend(
-            [
-                search_channels,
-                search_channel_messages,
-                view_channel_thread,
-                view_channel_message,
-            ]
-        )
 
     # Skills tools - view_skill allows model to load full skill instructions on demand
     if extra_params.get('__skill_ids__'):

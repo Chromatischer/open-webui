@@ -6,8 +6,8 @@
 
 	import { goto } from '$app/navigation';
 	import { channels, models } from '$lib/stores';
-	import UserStatus from '$lib/components/channel/Messages/Message/UserStatus.svelte';
-	import UserStatusLinkPreview from '$lib/components/channel/Messages/Message/UserStatusLinkPreview.svelte';
+	import UserStatus from '$lib/components/common/User/UserStatus.svelte';
+	import UserStatusLinkPreview from '$lib/components/common/User/UserStatusLinkPreview.svelte';
 
 	const i18n = getContext('i18n');
 

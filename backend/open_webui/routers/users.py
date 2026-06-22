@@ -223,7 +223,6 @@ class ChatPermissions(BaseModel):
 
 class FeaturesPermissions(BaseModel):
     api_keys: bool = False
-    channels: bool = True
     folders: bool = True
     direct_tool_servers: bool = False
 

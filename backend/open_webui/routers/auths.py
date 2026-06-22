@@ -1017,7 +1017,6 @@ async def get_admin_config(request: Request, user=Depends(get_admin_user)):
         'AUTOMATION_MAX_COUNT': request.app.state.config.AUTOMATION_MAX_COUNT,
         'AUTOMATION_MIN_INTERVAL': request.app.state.config.AUTOMATION_MIN_INTERVAL,
         'ENABLE_AUTOMATIONS': request.app.state.config.ENABLE_AUTOMATIONS,
-        'ENABLE_CHANNELS': request.app.state.config.ENABLE_CHANNELS,
         'ENABLE_MEMORIES': request.app.state.config.ENABLE_MEMORIES,
         'ENABLE_USER_WEBHOOKS': request.app.state.config.ENABLE_USER_WEBHOOKS,
         'ENABLE_USER_STATUS': request.app.state.config.ENABLE_USER_STATUS,
@@ -1045,7 +1044,6 @@ class AdminConfig(BaseModel):
     AUTOMATION_MAX_COUNT: Optional[int | str] = None
     AUTOMATION_MIN_INTERVAL: Optional[int | str] = None
     ENABLE_AUTOMATIONS: bool
-    ENABLE_CHANNELS: bool
     ENABLE_MEMORIES: bool
     ENABLE_USER_WEBHOOKS: bool
     ENABLE_USER_STATUS: bool
@@ -1076,7 +1074,6 @@ async def update_admin_config(request: Request, form_data: AdminConfig, user=Dep
         int(form_data.AUTOMATION_MIN_INTERVAL) if form_data.AUTOMATION_MIN_INTERVAL else ''
     )
     request.app.state.config.ENABLE_AUTOMATIONS = form_data.ENABLE_AUTOMATIONS
-    request.app.state.config.ENABLE_CHANNELS = form_data.ENABLE_CHANNELS
     request.app.state.config.ENABLE_MEMORIES = form_data.ENABLE_MEMORIES
 
     if form_data.DEFAULT_USER_ROLE in ['pending', 'user', 'admin']:
@@ -1119,7 +1116,6 @@ async def update_admin_config(request: Request, form_data: AdminConfig, user=Dep
         'AUTOMATION_MAX_COUNT': request.app.state.config.AUTOMATION_MAX_COUNT,
         'AUTOMATION_MIN_INTERVAL': request.app.state.config.AUTOMATION_MIN_INTERVAL,
         'ENABLE_AUTOMATIONS': request.app.state.config.ENABLE_AUTOMATIONS,
-        'ENABLE_CHANNELS': request.app.state.config.ENABLE_CHANNELS,
         'ENABLE_MEMORIES': request.app.state.config.ENABLE_MEMORIES,
         'ENABLE_USER_WEBHOOKS': request.app.state.config.ENABLE_USER_WEBHOOKS,
         'ENABLE_USER_STATUS': request.app.state.config.ENABLE_USER_STATUS,
