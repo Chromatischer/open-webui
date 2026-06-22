@@ -2,13 +2,10 @@ export const DEFAULT_PERMISSIONS = {
 	workspace: {
 		models: false,
 		knowledge: false,
-		prompts: false,
 		tools: false,
 		skills: false,
 		models_import: false,
 		models_export: false,
-		prompts_import: false,
-		prompts_export: false,
 		tools_import: false,
 		tools_export: false
 	},
@@ -17,8 +14,6 @@ export const DEFAULT_PERMISSIONS = {
 		public_models: false,
 		knowledge: false,
 		public_knowledge: false,
-		prompts: false,
-		public_prompts: false,
 		tools: false,
 		public_tools: false,
 		skills: false,
