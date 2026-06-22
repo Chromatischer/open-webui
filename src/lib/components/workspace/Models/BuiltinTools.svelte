@@ -40,10 +40,6 @@
 			label: $i18n.t('Ask the User'),
 			description: $i18n.t('Put a structured multiple-choice question to the user and wait for the answer')
 		},
-		automations: {
-			label: $i18n.t('Automations'),
-			description: $i18n.t('Create and manage scheduled automations')
-		},
 		scratchboard: {
 			label: $i18n.t('Scratchboard'),
 			description: $i18n.t(

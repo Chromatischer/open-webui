@@ -88,11 +88,6 @@ from open_webui.tools.builtin import (
     edit_scratchboard,
     create_tasks,
     update_task,
-    create_automation,
-    update_automation,
-    list_automations,
-    toggle_automation,
-    delete_automation,
 )
 
 from open_webui.utils.access_control import has_permission
@@ -529,16 +524,6 @@ async def get_builtin_tools(
     # User interaction - put a structured question to the user and wait for the answer
     if is_builtin_tool_enabled('ask_user'):
         builtin_functions.append(ask_user)
-
-    # Automation tools - create and manage scheduled automations from chat
-    if (
-        is_builtin_tool_enabled('automations')
-        and getattr(request.app.state.config, 'ENABLE_AUTOMATIONS', False)
-        and await has_user_permission('automations')
-    ):
-        builtin_functions.extend(
-            [create_automation, update_automation, list_automations, toggle_automation, delete_automation]
-        )
 
     for func in builtin_functions:
         callable = await get_async_tool_function_and_apply_extra_params(

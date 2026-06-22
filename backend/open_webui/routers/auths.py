@@ -1014,9 +1014,6 @@ async def get_admin_config(request: Request, user=Depends(get_admin_user)):
         'ENABLE_MESSAGE_RATING': request.app.state.config.ENABLE_MESSAGE_RATING,
         'ENABLE_FOLDERS': request.app.state.config.ENABLE_FOLDERS,
         'FOLDER_MAX_FILE_COUNT': request.app.state.config.FOLDER_MAX_FILE_COUNT,
-        'AUTOMATION_MAX_COUNT': request.app.state.config.AUTOMATION_MAX_COUNT,
-        'AUTOMATION_MIN_INTERVAL': request.app.state.config.AUTOMATION_MIN_INTERVAL,
-        'ENABLE_AUTOMATIONS': request.app.state.config.ENABLE_AUTOMATIONS,
         'ENABLE_MEMORIES': request.app.state.config.ENABLE_MEMORIES,
         'ENABLE_USER_WEBHOOKS': request.app.state.config.ENABLE_USER_WEBHOOKS,
         'ENABLE_USER_STATUS': request.app.state.config.ENABLE_USER_STATUS,
@@ -1041,9 +1038,6 @@ class AdminConfig(BaseModel):
     ENABLE_MESSAGE_RATING: bool
     ENABLE_FOLDERS: bool
     FOLDER_MAX_FILE_COUNT: Optional[int | str] = None
-    AUTOMATION_MAX_COUNT: Optional[int | str] = None
-    AUTOMATION_MIN_INTERVAL: Optional[int | str] = None
-    ENABLE_AUTOMATIONS: bool
     ENABLE_MEMORIES: bool
     ENABLE_USER_WEBHOOKS: bool
     ENABLE_USER_STATUS: bool
@@ -1067,13 +1061,6 @@ async def update_admin_config(request: Request, form_data: AdminConfig, user=Dep
     request.app.state.config.FOLDER_MAX_FILE_COUNT = (
         int(form_data.FOLDER_MAX_FILE_COUNT) if form_data.FOLDER_MAX_FILE_COUNT else ''
     )
-    request.app.state.config.AUTOMATION_MAX_COUNT = (
-        int(form_data.AUTOMATION_MAX_COUNT) if form_data.AUTOMATION_MAX_COUNT else ''
-    )
-    request.app.state.config.AUTOMATION_MIN_INTERVAL = (
-        int(form_data.AUTOMATION_MIN_INTERVAL) if form_data.AUTOMATION_MIN_INTERVAL else ''
-    )
-    request.app.state.config.ENABLE_AUTOMATIONS = form_data.ENABLE_AUTOMATIONS
     request.app.state.config.ENABLE_MEMORIES = form_data.ENABLE_MEMORIES
 
     if form_data.DEFAULT_USER_ROLE in ['pending', 'user', 'admin']:
@@ -1113,9 +1100,6 @@ async def update_admin_config(request: Request, form_data: AdminConfig, user=Dep
         'ENABLE_MESSAGE_RATING': request.app.state.config.ENABLE_MESSAGE_RATING,
         'ENABLE_FOLDERS': request.app.state.config.ENABLE_FOLDERS,
         'FOLDER_MAX_FILE_COUNT': request.app.state.config.FOLDER_MAX_FILE_COUNT,
-        'AUTOMATION_MAX_COUNT': request.app.state.config.AUTOMATION_MAX_COUNT,
-        'AUTOMATION_MIN_INTERVAL': request.app.state.config.AUTOMATION_MIN_INTERVAL,
-        'ENABLE_AUTOMATIONS': request.app.state.config.ENABLE_AUTOMATIONS,
         'ENABLE_MEMORIES': request.app.state.config.ENABLE_MEMORIES,
         'ENABLE_USER_WEBHOOKS': request.app.state.config.ENABLE_USER_WEBHOOKS,
         'ENABLE_USER_STATUS': request.app.state.config.ENABLE_USER_STATUS,
