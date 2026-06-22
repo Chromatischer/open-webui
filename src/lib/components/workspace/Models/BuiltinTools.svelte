@@ -52,10 +52,6 @@
 			label: $i18n.t('Automations'),
 			description: $i18n.t('Create and manage scheduled automations')
 		},
-		calendar: {
-			label: $i18n.t('Calendar'),
-			description: $i18n.t('List calendars, search, create, update, and delete calendar events')
-		},
 		scratchboard: {
 			label: $i18n.t('Scratchboard'),
 			description: $i18n.t(

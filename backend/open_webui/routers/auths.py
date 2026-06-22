@@ -1018,7 +1018,6 @@ async def get_admin_config(request: Request, user=Depends(get_admin_user)):
         'AUTOMATION_MIN_INTERVAL': request.app.state.config.AUTOMATION_MIN_INTERVAL,
         'ENABLE_AUTOMATIONS': request.app.state.config.ENABLE_AUTOMATIONS,
         'ENABLE_CHANNELS': request.app.state.config.ENABLE_CHANNELS,
-        'ENABLE_CALENDAR': request.app.state.config.ENABLE_CALENDAR,
         'ENABLE_MEMORIES': request.app.state.config.ENABLE_MEMORIES,
         'ENABLE_NOTES': request.app.state.config.ENABLE_NOTES,
         'ENABLE_USER_WEBHOOKS': request.app.state.config.ENABLE_USER_WEBHOOKS,
@@ -1048,7 +1047,6 @@ class AdminConfig(BaseModel):
     AUTOMATION_MIN_INTERVAL: Optional[int | str] = None
     ENABLE_AUTOMATIONS: bool
     ENABLE_CHANNELS: bool
-    ENABLE_CALENDAR: bool
     ENABLE_MEMORIES: bool
     ENABLE_NOTES: bool
     ENABLE_USER_WEBHOOKS: bool
@@ -1081,7 +1079,6 @@ async def update_admin_config(request: Request, form_data: AdminConfig, user=Dep
     )
     request.app.state.config.ENABLE_AUTOMATIONS = form_data.ENABLE_AUTOMATIONS
     request.app.state.config.ENABLE_CHANNELS = form_data.ENABLE_CHANNELS
-    request.app.state.config.ENABLE_CALENDAR = form_data.ENABLE_CALENDAR
     request.app.state.config.ENABLE_MEMORIES = form_data.ENABLE_MEMORIES
     request.app.state.config.ENABLE_NOTES = form_data.ENABLE_NOTES
 
@@ -1126,7 +1123,6 @@ async def update_admin_config(request: Request, form_data: AdminConfig, user=Dep
         'AUTOMATION_MIN_INTERVAL': request.app.state.config.AUTOMATION_MIN_INTERVAL,
         'ENABLE_AUTOMATIONS': request.app.state.config.ENABLE_AUTOMATIONS,
         'ENABLE_CHANNELS': request.app.state.config.ENABLE_CHANNELS,
-        'ENABLE_CALENDAR': request.app.state.config.ENABLE_CALENDAR,
         'ENABLE_MEMORIES': request.app.state.config.ENABLE_MEMORIES,
         'ENABLE_NOTES': request.app.state.config.ENABLE_NOTES,
         'ENABLE_USER_WEBHOOKS': request.app.state.config.ENABLE_USER_WEBHOOKS,

@@ -1518,7 +1518,11 @@ export const getBackendConfig = async () => {
 		method: 'GET',
 		credentials: 'include',
 		headers: {
-			'Content-Type': 'application/json'
+			'Content-Type': 'application/json',
+			// Send the token when we have one so the backend resolves the user and
+			// includes user-gated feature flags (enable_folders, enable_notes, …).
+			// Without it, `/api/config` omits the whole authenticated features block.
+			...(localStorage.token && { authorization: `Bearer ${localStorage.token}` })
 		}
 	})
 		.then(async (res) => {

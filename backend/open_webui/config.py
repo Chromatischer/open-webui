@@ -1496,10 +1496,6 @@ USER_PERMISSIONS_NOTES_ALLOW_PUBLIC_SHARING = (
     os.environ.get('USER_PERMISSIONS_NOTES_ALLOW_PUBLIC_SHARING', 'False').lower() == 'true'
 )
 
-USER_PERMISSIONS_CALENDAR_ALLOW_PUBLIC_SHARING = (
-    os.environ.get('USER_PERMISSIONS_CALENDAR_ALLOW_PUBLIC_SHARING', 'False').lower() == 'true'
-)
-
 USER_PERMISSIONS_ACCESS_GRANTS_ALLOW_USERS = (
     os.environ.get('USER_PERMISSIONS_ACCESS_GRANTS_ALLOW_USERS', 'True').lower() == 'true'
 )
@@ -1586,9 +1582,6 @@ USER_PERMISSIONS_FEATURES_AUTOMATIONS = (
     os.environ.get('USER_PERMISSIONS_FEATURES_AUTOMATIONS', 'False').lower() == 'true'
 )
 
-USER_PERMISSIONS_FEATURES_CALENDAR = os.environ.get('USER_PERMISSIONS_FEATURES_CALENDAR', 'True').lower() == 'true'
-
-
 USER_PERMISSIONS_SETTINGS_INTERFACE = os.environ.get('USER_PERMISSIONS_SETTINGS_INTERFACE', 'True').lower() == 'true'
 
 
@@ -1620,7 +1613,6 @@ DEFAULT_USER_PERMISSIONS = {
         'notes': USER_PERMISSIONS_NOTES_ALLOW_SHARING,
         'public_notes': USER_PERMISSIONS_NOTES_ALLOW_PUBLIC_SHARING,
         'public_chats': USER_PERMISSIONS_CHAT_ALLOW_PUBLIC_SHARING,
-        'public_calendars': USER_PERMISSIONS_CALENDAR_ALLOW_PUBLIC_SHARING,
     },
     'access_grants': {
         'allow_users': USER_PERMISSIONS_ACCESS_GRANTS_ALLOW_USERS,
@@ -1660,7 +1652,6 @@ DEFAULT_USER_PERMISSIONS = {
         'code_interpreter': USER_PERMISSIONS_FEATURES_CODE_INTERPRETER,
         'memories': USER_PERMISSIONS_FEATURES_MEMORIES,
         'automations': USER_PERMISSIONS_FEATURES_AUTOMATIONS,
-        'calendar': USER_PERMISSIONS_FEATURES_CALENDAR,
     },
     'settings': {
         'interface': USER_PERMISSIONS_SETTINGS_INTERFACE,
@@ -1689,12 +1680,6 @@ ENABLE_CHANNELS = PersistentConfig(
     'ENABLE_CHANNELS',
     'channels.enable',
     os.environ.get('ENABLE_CHANNELS', 'False').lower() == 'true',
-)
-
-ENABLE_CALENDAR = PersistentConfig(
-    'ENABLE_CALENDAR',
-    'calendar.enable',
-    os.environ.get('ENABLE_CALENDAR', 'True').lower() == 'true',
 )
 
 ENABLE_AUTOMATIONS = PersistentConfig(

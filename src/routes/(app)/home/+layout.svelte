@@ -53,13 +53,6 @@
 							: 'nav-link-inactive'} transition"
 						href="/playground/notes">{$i18n.t('Notes')}</a
 					>
-
-					<a
-						class="min-w-fit p-1.5 {$page.url.pathname.includes('/playground/calendar')
-							? ''
-							: 'nav-link-inactive'} transition"
-						href="/playground/completions">{$i18n.t('Calendar')}</a
-					>
 				</div>
 			</div>
 		</div>

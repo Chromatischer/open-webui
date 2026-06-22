@@ -492,7 +492,7 @@
 				mouseOver = false;
 			}}
 			on:focus={(e) => {}}
-			draggable="false"
+			draggable={!confirmEdit}
 		>
 			<!-- Loading spinner for active chat (left side) -->
 			{#if $activeChatIds.has(id)}
