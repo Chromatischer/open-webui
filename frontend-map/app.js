@@ -1220,10 +1220,10 @@ function sortLayerByNeighbors(layer, neighborMap, neighborLayer = []) {
 }
 
 function neighborScore(id, neighborMap, neighborOrder) {
-	const scores = neighborMap
-		.get(id)
-		.map((neighborId) => neighborOrder.get(neighborId))
-		.filter((index) => Number.isFinite(index));
+	const scores = neighborMap.get(id).flatMap((neighborId) => {
+		const index = neighborOrder.get(neighborId);
+		return Number.isFinite(index) ? [index] : [];
+	});
 	if (!scores.length) return Number.MAX_SAFE_INTEGER;
 	return scores.reduce((sum, index) => sum + index, 0) / scores.length;
 }
@@ -1476,9 +1476,10 @@ function renderNodeList() {
 	nodeList.innerHTML = '';
 	const visible = visibleNodeIds();
 	for (const [groupName, ids] of overviewGroups) {
-		const nodes = ids
-			.map((id) => nodeById.get(id))
-			.filter((item) => item && enabledTypes.has(item.type) && visible.has(item.id));
+		const nodes = ids.flatMap((id) => {
+			const item = nodeById.get(id);
+			return item && enabledTypes.has(item.type) && visible.has(item.id) ? [item] : [];
+		});
 		if (!nodes.length) continue;
 		const details = document.createElement('details');
 		details.className = 'overview-group';
