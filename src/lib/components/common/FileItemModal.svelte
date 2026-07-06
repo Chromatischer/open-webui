@@ -327,7 +327,6 @@
 								• {$i18n.t('Formatting may be inconsistent from source.')}
 							</div>
 						{/if}
-
 					</div>
 
 					{#if edit}

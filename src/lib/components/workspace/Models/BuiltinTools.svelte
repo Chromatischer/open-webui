@@ -34,7 +34,9 @@
 		},
 		ask_user: {
 			label: $i18n.t('Ask the User'),
-			description: $i18n.t('Put a structured multiple-choice question to the user and wait for the answer')
+			description: $i18n.t(
+				'Put a structured multiple-choice question to the user and wait for the answer'
+			)
 		},
 		scratchboard: {
 			label: $i18n.t('Scratchboard'),

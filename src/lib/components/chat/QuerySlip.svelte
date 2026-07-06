@@ -186,7 +186,12 @@
 								{opt.title}
 								{#if opt.recommend}
 									<span class="opt-rec">
-										<svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"
+										<svg
+											width="9"
+											height="9"
+											viewBox="0 0 24 24"
+											fill="currentColor"
+											aria-hidden="true"
 											><path
 												d="M12 2l2.6 6.3 6.8.5-5.2 4.4 1.6 6.6L12 16.8 6.2 20.3l1.6-6.6L2.6 8.8l6.8-.5z"
 											/></svg

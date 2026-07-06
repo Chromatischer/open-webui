@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import { getContext, onMount, tick } from 'svelte';
 	import { confirmButton } from '$lib/utils/confirmButton';
 	import { inlineError } from '$lib/utils/inlineError';

@@ -402,8 +402,7 @@
 
 	let command = '';
 	export let showCommands = false;
-	$: showCommands =
-		['@', '$', ':'].includes(command?.charAt(0));
+	$: showCommands = ['@', '$', ':'].includes(command?.charAt(0));
 	let suggestions = null;
 
 	let showTools = false;

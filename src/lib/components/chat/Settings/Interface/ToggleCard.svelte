@@ -7,6 +7,8 @@
 	export let description = '';
 	export let state = false;
 	export let disabled = false;
+	// Root element, exposed so callers can anchor inline feedback (inlineError) to the card
+	export let el: HTMLElement | null = null;
 
 	const toggle = () => {
 		if (disabled) return;
@@ -17,6 +19,7 @@
 
 <!-- svelte-ignore a11y-no-static-element-interactions -->
 <div
+	bind:this={el}
 	class="ix-card {state ? 'on' : ''}"
 	role="button"
 	tabindex={disabled ? -1 : 0}

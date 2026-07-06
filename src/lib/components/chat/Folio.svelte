@@ -468,9 +468,21 @@
 	let activeIdx = $state(0);
 	let spineEl = $state(null);
 	let scroller = $state(null);
+
+	// Follow the writing edge only while the reader is already there: scrolling
+	// up releases the follow, returning to the bottom re-engages it. Checked by
+	// direction rather than raw distance so a smooth scroll-to-edge in flight
+	// (or a streaming repaint) never counts as the reader leaving.
+	const EDGE_SLACK = 72;
+	let followEdge = true;
+	let lastScrollTop = 0;
+
 	function onScroll() {
 		if (!scroller) return;
 		const max = scroller.scrollHeight - scroller.clientHeight;
+		if (max - scroller.scrollTop <= EDGE_SLACK) followEdge = true;
+		else if (scroller.scrollTop < lastScrollTop - 1) followEdge = false;
+		lastScrollTop = scroller.scrollTop;
 		progress = max > 0 ? scroller.scrollTop / max : 1;
 		const probe = scroller.scrollTop + scroller.clientHeight * 0.33;
 		let idx = 0;
@@ -496,15 +508,40 @@
 	function scrollToEdge() {
 		scroller?.scrollTo({ top: scroller.scrollHeight, behavior: 'smooth' });
 	}
+	function pinToEdge() {
+		if (scroller) scroller.scrollTop = scroller.scrollHeight;
+	}
 
-	// follow the writing edge as new sections/messages arrive
+	// a different folio always opens at the writing edge
+	let pageEl = $state(null);
 	let lastCount = 0;
 	$effect(() => {
+		void chatId;
+		followEdge = true;
+		lastCount = 0;
+		tick().then(pinToEdge);
+	});
+
+	// follow the writing edge as new sections/messages arrive — but only when
+	// the reader is already there, never pulling them off an earlier passage
+	$effect(() => {
 		const n = messages.length;
-		if (n !== lastCount) {
-			lastCount = n;
-			tick().then(scrollToEdge);
-		}
+		if (n === lastCount) return;
+		const firstLoad = lastCount === 0;
+		lastCount = n;
+		if (firstLoad) tick().then(pinToEdge);
+		else if (followEdge) tick().then(scrollToEdge);
+	});
+
+	// streamed deltas grow the page without changing the message count; keep the
+	// view pinned through that growth while the reader is following the edge
+	$effect(() => {
+		if (!pageEl) return;
+		const ro = new ResizeObserver(() => {
+			if (followEdge) pinToEdge();
+		});
+		ro.observe(pageEl);
+		return () => ro.disconnect();
 	});
 
 	// ─── Section actions: edit / regenerate / fork ───
@@ -605,7 +642,7 @@
 
 		<div class="desk-grid">
 			<div class="scroll" bind:this={scroller} onscroll={onScroll}>
-				<main class="page" class:zen={sections.length === 0}>
+				<main class="page" class:zen={sections.length === 0} bind:this={pageEl}>
 					{#if sections.length === 0}
 						<div class="zen-actions">{@render actions()}</div>
 
@@ -825,223 +862,228 @@
 		<div class="edge-host">{@render composer()}</div>
 	{:else}
 		<div class="edge-slot">
-		{#if query}
-			<div class="query-host" in:swap={{ duration: 380 }} out:swap={{ duration: 200 }}>
-				<QuerySlip question={query} onAnswer={onQueryAnswer} />
-			</div>
-		{:else}
-		<div class="edge" class:busy={generating} in:swap={{ duration: 300 }} out:swap={{ duration: 170 }}>
-			{#if files.length > 0}
-				<div class="clippings" role="list" aria-label="Enclosures">
-					{#each files as f, i (f.itemId ?? f.id ?? `${f.name}-${i}`)}
-						<div
-							class="clip"
-							class:waiting={f.status === 'uploading'}
-							role="listitem"
-							style:--tilt="{(i % 2 === 0 ? -1 : 1) * (0.7 + (i % 3) * 0.5)}deg"
-						>
-							{#if f.type === 'image'}
-								<img class="clip-thumb" src={f.url} alt={f.name ?? 'attached image'} />
-								<span class="clip-name">{f.name ?? 'plate'}</span>
-							{:else}
-								<span class="clip-sort" aria-hidden="true">{clipExt(f.name)}</span>
-								<span class="clip-name">{f.name}</span>
-							{/if}
-							{#if f.status === 'uploading'}
-								<span class="clip-wait" aria-label="uploading"><i></i><i></i><i></i></span>
-							{:else}
-								<button
-									class="clip-x"
-									title="Remove the enclosure"
-									aria-label="Remove {f.name ?? 'enclosure'}"
-									onclick={() => removeClipping(i)}
-								>
-									<svg
-										width="9"
-										height="9"
-										viewBox="0 0 12 12"
-										fill="none"
-										stroke="currentColor"
-										stroke-width="2"
-										stroke-linecap="round"><path d="M2.5 2.5l7 7M9.5 2.5l-7 7" /></svg
-									>
-								</button>
-							{/if}
-						</div>
-					{/each}
+			{#if query}
+				<div class="query-host" in:swap={{ duration: 380 }} out:swap={{ duration: 200 }}>
+					<QuerySlip question={query} onAnswer={onQueryAnswer} />
 				</div>
-			{/if}
-
-			<div class="edge-row">
-				<span class="pilcrow" class:hop={pilcrowHop} aria-hidden="true">¶</span>
-				<div class="edge-line">
-					<textarea
-						bind:this={composerEl}
-						bind:value={composerText}
-						rows="1"
-						placeholder={sections.length === 0 ? 'Write the first line…' : 'Continue…'}
-						disabled={generating}
-						onkeydown={onComposerKey}
-						oninput={autogrow}
-						onpaste={onComposerPaste}
-					></textarea>
-					<div class="rule" aria-hidden="true"></div>
-				</div>
-				<button
-					class="set-btn"
-					class:ready={composerText.trim().length > 0}
-					onclick={doSend}
-					disabled={generating}
-					title="Set in type (Enter)"
+			{:else}
+				<div
+					class="edge"
+					class:busy={generating}
+					in:swap={{ duration: 300 }}
+					out:swap={{ duration: 170 }}
 				>
-					<span class="set-label">Set in type</span>
-					<svg
-						width="14"
-						height="14"
-						viewBox="0 0 24 24"
-						fill="none"
-						stroke="currentColor"
-						stroke-width="2.2"
-						stroke-linecap="round"
-						stroke-linejoin="round"
-					>
-						<path d="M12 19V5M5 12l7-7 7 7" />
-					</svg>
-				</button>
-			</div>
-
-			<div class="edge-tools" class:held-open={typecaseOpen}>
-				<button
-					class="tool enclose"
-					onclick={() => fileInputEl?.click()}
-					onmousedown={(e) => e.preventDefault()}
-					title="Enclose a file with this prompt"
-					aria-label="Attach files"
-				>
-					<svg
-						width="13"
-						height="13"
-						viewBox="0 0 24 24"
-						fill="none"
-						stroke="currentColor"
-						stroke-width="1.8"
-						stroke-linecap="round"
-						stroke-linejoin="round"
-					>
-						<path
-							d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"
-						/>
-					</svg>
-					<span class="tool-label">enclose</span>
-				</button>
-
-				<span class="tool-sep" aria-hidden="true">·</span>
-
-				<div class="typecase" bind:this={typecaseEl}>
-					<button
-						class="tool voice"
-						class:unset={chosenIds.length === 0}
-						class:open={typecaseOpen}
-						onmousedown={(e) => {
-							if (!typecaseOpen) e.preventDefault();
-						}}
-						onclick={toggleTypecase}
-						aria-expanded={typecaseOpen}
-						aria-haspopup="listbox"
-						title="Choose the voice that sets the page"
-					>
-						<svg
-							class="nib"
-							width="13"
-							height="13"
-							viewBox="0 0 24 24"
-							fill="none"
-							stroke="currentColor"
-							stroke-width="1.8"
-							stroke-linecap="round"
-							stroke-linejoin="round"
-						>
-							<path d="M12 19l7-7 3 3-7 7-3-3z" />
-							<path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z" />
-							<path d="M2 2l7.586 7.586" />
-							<circle cx="11" cy="11" r="2" />
-						</svg>
-						<span class="tool-label">set by <em>{voiceLabel}</em></span>
-						<svg
-							class="caret"
-							width="9"
-							height="9"
-							viewBox="0 0 12 12"
-							fill="none"
-							stroke="currentColor"
-							stroke-width="2"
-							stroke-linecap="round"
-							stroke-linejoin="round"><path d="M2.5 7.5L6 4l3.5 3.5" /></svg
-						>
-					</button>
-
-					{#if typecaseOpen}
-						<div class="case-pop" role="listbox" aria-label="Models">
-							<div class="case-head">
-								<span class="case-kicker">The type case</span>
-								<span class="case-count"
-									>{typecase.length} voice{typecase.length === 1 ? '' : 's'}</span
+					{#if files.length > 0}
+						<div class="clippings" role="list" aria-label="Enclosures">
+							{#each files as f, i (f.itemId ?? f.id ?? `${f.name}-${i}`)}
+								<div
+									class="clip"
+									class:waiting={f.status === 'uploading'}
+									role="listitem"
+									style:--tilt="{(i % 2 === 0 ? -1 : 1) * (0.7 + (i % 3) * 0.5)}deg"
 								>
-							</div>
-							{#if typecase.length > 7}
-								<input
-									class="case-find"
-									bind:this={typecaseFindEl}
-									bind:value={typecaseQuery}
-									placeholder="find a voice…"
-									aria-label="Filter models"
-								/>
-							{/if}
-							<div class="case-list">
-								{#each shelf as m, i (m.id)}
-									<button
-										class="case-item"
-										class:chosen={chosenIds.includes(m.id)}
-										style:--i={i}
-										role="option"
-										aria-selected={chosenIds.includes(m.id)}
-										onclick={(e) => pickVoice(m.id, e.shiftKey)}
-									>
-										<span class="case-sort" aria-hidden="true"
-											>{(m.name ?? m.id).charAt(0).toUpperCase()}</span
+									{#if f.type === 'image'}
+										<img class="clip-thumb" src={f.url} alt={f.name ?? 'attached image'} />
+										<span class="clip-name">{f.name ?? 'plate'}</span>
+									{:else}
+										<span class="clip-sort" aria-hidden="true">{clipExt(f.name)}</span>
+										<span class="clip-name">{f.name}</span>
+									{/if}
+									{#if f.status === 'uploading'}
+										<span class="clip-wait" aria-label="uploading"><i></i><i></i><i></i></span>
+									{:else}
+										<button
+											class="clip-x"
+											title="Remove the enclosure"
+											aria-label="Remove {f.name ?? 'enclosure'}"
+											onclick={() => removeClipping(i)}
 										>
-										<span class="case-body">
-											<span class="case-name">{m.name ?? m.id}</span>
-											{#if m?.info?.meta?.description}
-												<span class="case-desc">{m.info.meta.description}</span>
-											{/if}
-										</span>
-										<svg
-											class="case-check"
-											width="11"
-											height="11"
-											viewBox="0 0 10 10"
-											fill="none"
-											stroke="currentColor"
-											stroke-width="2"
-											stroke-linecap="round"
-											stroke-linejoin="round"
-											aria-hidden="true"><path d="M1.5 5.5 4 8l4.5-6" /></svg
-										>
-									</button>
-								{:else}
-									<p class="case-empty">No type by that name in the case.</p>
-								{/each}
-							</div>
-							<div class="case-foot">⇧ click to write in ensemble</div>
+											<svg
+												width="9"
+												height="9"
+												viewBox="0 0 12 12"
+												fill="none"
+												stroke="currentColor"
+												stroke-width="2"
+												stroke-linecap="round"><path d="M2.5 2.5l7 7M9.5 2.5l-7 7" /></svg
+											>
+										</button>
+									{/if}
+								</div>
+							{/each}
 						</div>
 					{/if}
-				</div>
-			</div>
 
-			<input type="file" multiple hidden bind:this={fileInputEl} onchange={onFilesPicked} />
-		</div>
-		{/if}
+					<div class="edge-row">
+						<span class="pilcrow" class:hop={pilcrowHop} aria-hidden="true">¶</span>
+						<div class="edge-line">
+							<textarea
+								bind:this={composerEl}
+								bind:value={composerText}
+								rows="1"
+								placeholder={sections.length === 0 ? 'Write the first line…' : 'Continue…'}
+								disabled={generating}
+								onkeydown={onComposerKey}
+								oninput={autogrow}
+								onpaste={onComposerPaste}
+							></textarea>
+							<div class="rule" aria-hidden="true"></div>
+						</div>
+						<button
+							class="set-btn"
+							class:ready={composerText.trim().length > 0}
+							onclick={doSend}
+							disabled={generating}
+							title="Set in type (Enter)"
+						>
+							<span class="set-label">Set in type</span>
+							<svg
+								width="14"
+								height="14"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2.2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+							>
+								<path d="M12 19V5M5 12l7-7 7 7" />
+							</svg>
+						</button>
+					</div>
+
+					<div class="edge-tools" class:held-open={typecaseOpen}>
+						<button
+							class="tool enclose"
+							onclick={() => fileInputEl?.click()}
+							onmousedown={(e) => e.preventDefault()}
+							title="Enclose a file with this prompt"
+							aria-label="Attach files"
+						>
+							<svg
+								width="13"
+								height="13"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="1.8"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+							>
+								<path
+									d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"
+								/>
+							</svg>
+							<span class="tool-label">enclose</span>
+						</button>
+
+						<span class="tool-sep" aria-hidden="true">·</span>
+
+						<div class="typecase" bind:this={typecaseEl}>
+							<button
+								class="tool voice"
+								class:unset={chosenIds.length === 0}
+								class:open={typecaseOpen}
+								onmousedown={(e) => {
+									if (!typecaseOpen) e.preventDefault();
+								}}
+								onclick={toggleTypecase}
+								aria-expanded={typecaseOpen}
+								aria-haspopup="listbox"
+								title="Choose the voice that sets the page"
+							>
+								<svg
+									class="nib"
+									width="13"
+									height="13"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="1.8"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								>
+									<path d="M12 19l7-7 3 3-7 7-3-3z" />
+									<path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z" />
+									<path d="M2 2l7.586 7.586" />
+									<circle cx="11" cy="11" r="2" />
+								</svg>
+								<span class="tool-label">set by <em>{voiceLabel}</em></span>
+								<svg
+									class="caret"
+									width="9"
+									height="9"
+									viewBox="0 0 12 12"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"><path d="M2.5 7.5L6 4l3.5 3.5" /></svg
+								>
+							</button>
+
+							{#if typecaseOpen}
+								<div class="case-pop" role="listbox" aria-label="Models">
+									<div class="case-head">
+										<span class="case-kicker">The type case</span>
+										<span class="case-count"
+											>{typecase.length} voice{typecase.length === 1 ? '' : 's'}</span
+										>
+									</div>
+									{#if typecase.length > 7}
+										<input
+											class="case-find"
+											bind:this={typecaseFindEl}
+											bind:value={typecaseQuery}
+											placeholder="find a voice…"
+											aria-label="Filter models"
+										/>
+									{/if}
+									<div class="case-list">
+										{#each shelf as m, i (m.id)}
+											<button
+												class="case-item"
+												class:chosen={chosenIds.includes(m.id)}
+												style:--i={i}
+												role="option"
+												aria-selected={chosenIds.includes(m.id)}
+												onclick={(e) => pickVoice(m.id, e.shiftKey)}
+											>
+												<span class="case-sort" aria-hidden="true"
+													>{(m.name ?? m.id).charAt(0).toUpperCase()}</span
+												>
+												<span class="case-body">
+													<span class="case-name">{m.name ?? m.id}</span>
+													{#if m?.info?.meta?.description}
+														<span class="case-desc">{m.info.meta.description}</span>
+													{/if}
+												</span>
+												<svg
+													class="case-check"
+													width="11"
+													height="11"
+													viewBox="0 0 10 10"
+													fill="none"
+													stroke="currentColor"
+													stroke-width="2"
+													stroke-linecap="round"
+													stroke-linejoin="round"
+													aria-hidden="true"><path d="M1.5 5.5 4 8l4.5-6" /></svg
+												>
+											</button>
+										{:else}
+											<p class="case-empty">No type by that name in the case.</p>
+										{/each}
+									</div>
+									<div class="case-foot">⇧ click to write in ensemble</div>
+								</div>
+							{/if}
+						</div>
+					</div>
+
+					<input type="file" multiple hidden bind:this={fileInputEl} onchange={onFilesPicked} />
+				</div>
+			{/if}
 		</div>
 	{/if}
 {/snippet}
@@ -3082,12 +3124,56 @@
 			right: 22px;
 		}
 	}
+	/* touch: hover can't reveal the rail, so it stays visible */
+	@media (hover: none) {
+		.sec-rail {
+			opacity: 1;
+			translate: 0 0;
+			pointer-events: auto;
+		}
+	}
 	@media (max-width: 860px) {
 		.spine {
 			display: none;
 		}
+		/* no right margin to live in — the rail becomes a quiet row of
+		   touch-sized actions beneath the section heading */
+		.sec-head {
+			flex-wrap: wrap;
+		}
 		.sec-rail {
-			display: none;
+			position: static;
+			transform: none;
+			opacity: 1;
+			translate: 0 0;
+			pointer-events: auto;
+			flex-basis: 100%;
+			flex-direction: row;
+			align-items: center;
+			gap: 2px;
+		}
+		.sec-rail::before {
+			content: none;
+		}
+		.sec-time {
+			order: 1;
+			margin-left: auto;
+			padding-left: 0;
+		}
+		.sec-actions {
+			flex-direction: row;
+			gap: 2px;
+		}
+		.rail-btn {
+			width: 36px;
+			height: 36px;
+		}
+		.rail-btn svg {
+			width: 14px;
+			height: 14px;
+		}
+		.rail-btn:hover {
+			transform: none;
 		}
 		.edge {
 			margin-left: 0;

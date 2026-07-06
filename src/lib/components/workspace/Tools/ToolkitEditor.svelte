@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import { toast } from 'svelte-sonner';
 	import { getContext, onMount, tick } from 'svelte';
 	import { confirmButton } from '$lib/utils/confirmButton';

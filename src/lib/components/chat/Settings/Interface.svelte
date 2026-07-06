@@ -1,17 +1,17 @@
 <script lang="ts">
-	import { config, models, settings, user } from '$lib/stores';
+	import { config, settings, user } from '$lib/stores';
 	import { onMount, onDestroy, getContext } from 'svelte';
-	import { toast } from 'svelte-sonner';
-	import Tooltip from '$lib/components/common/Tooltip.svelte';
+	import { slide } from 'svelte/transition';
+	import { inlineError } from '$lib/utils/inlineError';
 	import { updateUserInfo } from '$lib/apis/users';
 	import { getUserPosition } from '$lib/utils';
 	import { setTextScale } from '$lib/utils/text-scale';
 
 	import Minus from '$lib/components/icons/Minus.svelte';
 	import Plus from '$lib/components/icons/Plus.svelte';
+	import XMark from '$lib/components/icons/XMark.svelte';
+	import Textarea from '$lib/components/common/Textarea.svelte';
 	import ToggleCard from './Interface/ToggleCard.svelte';
-	import ManageFloatingActionButtonsModal from './Interface/ManageFloatingActionButtonsModal.svelte';
-	import ManageImageCompressionModal from './Interface/ManageImageCompressionModal.svelte';
 
 	const i18n = getContext('i18n');
 
@@ -33,7 +33,6 @@
 	let userLocation = false;
 
 	// Interface
-	let defaultModelId = '';
 	let showUsername = false;
 
 	let notificationSound = true;
@@ -81,7 +80,6 @@
 		width: '',
 		height: ''
 	};
-	let imageCompressionInChannels = true;
 
 	// chat export
 	let stylizedPdfExport = true;
@@ -99,10 +97,96 @@
 	let iframeSandboxAllowSameOrigin = false;
 	let iframeSandboxAllowForms = false;
 
-	let showManageFloatingActionButtonsModal = false;
-	let showManageImageCompressionModal = false;
-
 	let textScale = null;
+
+	// inlineError anchors
+	let userLocationCard: HTMLElement | null = null;
+	let autoCopyCard: HTMLElement | null = null;
+
+	// Inline editors autosave silently after a short pause
+	let actionsSaveTimeout: ReturnType<typeof setTimeout> | null = null;
+	let sizeSaveTimeout: ReturnType<typeof setTimeout> | null = null;
+
+	const queueActionsSave = () => {
+		if (actionsSaveTimeout) clearTimeout(actionsSaveTimeout);
+		actionsSaveTimeout = setTimeout(() => {
+			actionsSaveTimeout = null;
+			saveSettings({ floatingActionButtons });
+		}, 500);
+	};
+
+	const saveActionsNow = () => {
+		if (actionsSaveTimeout) clearTimeout(actionsSaveTimeout);
+		actionsSaveTimeout = null;
+		saveSettings({ floatingActionButtons });
+	};
+
+	const customizeFloatingActions = () => {
+		floatingActionButtons = [
+			{
+				id: 'ask',
+				label: $i18n.t('Ask'),
+				input: true,
+				prompt: `{{SELECTED_CONTENT}}\n\n\n{{INPUT_CONTENT}}`
+			},
+			{
+				id: 'explain',
+				label: $i18n.t('Explain'),
+				input: false,
+				prompt: `{{SELECTED_CONTENT}}\n\n\n${$i18n.t('Explain')}`
+			}
+		];
+		saveActionsNow();
+	};
+
+	const addFloatingAction = () => {
+		let id = 'new-button';
+		let idx = 0;
+		while ((floatingActionButtons ?? []).some((b) => b.id === id)) {
+			idx++;
+			id = `new-button-${idx}`;
+		}
+		floatingActionButtons = [
+			...(floatingActionButtons ?? []),
+			{
+				id: id,
+				label: $i18n.t('New Button'),
+				input: true,
+				prompt: `{{CONTENT}}\n\n\n{{INPUT_CONTENT}}`
+			}
+		];
+		saveActionsNow();
+	};
+
+	const removeFloatingAction = (id) => {
+		floatingActionButtons = floatingActionButtons.filter((b) => b.id !== id);
+		saveActionsNow();
+	};
+
+	const resetFloatingActions = () => {
+		floatingActionButtons = null;
+		saveActionsNow();
+	};
+
+	const queueSizeSave = () => {
+		if (sizeSaveTimeout) clearTimeout(sizeSaveTimeout);
+		sizeSaveTimeout = setTimeout(() => {
+			sizeSaveTimeout = null;
+			saveSettings({ imageCompressionSize });
+		}, 500);
+	};
+
+	onDestroy(() => {
+		// flush pending autosaves so edits survive closing the modal mid-typing
+		if (actionsSaveTimeout) {
+			clearTimeout(actionsSaveTimeout);
+			saveSettings({ floatingActionButtons });
+		}
+		if (sizeSaveTimeout) {
+			clearTimeout(sizeSaveTimeout);
+			saveSettings({ imageCompressionSize });
+		}
+	});
 
 	const toggleLandingPageMode = async () => {
 		landingPageMode = landingPageMode === '' ? 'chat' : '';
@@ -112,7 +196,7 @@
 	const toggleUserLocation = async () => {
 		if (userLocation) {
 			const position = await getUserPosition().catch((error) => {
-				toast.error(error.message);
+				inlineError(userLocationCard, error.message);
 				return null;
 			});
 
@@ -149,7 +233,8 @@
 			saveSettings({ responseAutoCopy: responseAutoCopy });
 		} else {
 			responseAutoCopy = false;
-			toast.error(
+			inlineError(
+				autoCopyCard,
 				$i18n.t(
 					'Clipboard write permission denied. Please check your browser settings to grant the necessary access.'
 				)
@@ -171,13 +256,6 @@
 	const togglectrlEnterToSend = async () => {
 		ctrlEnterToSend = !ctrlEnterToSend;
 		saveSettings({ ctrlEnterToSend });
-	};
-
-	const updateInterfaceHandler = async () => {
-		saveSettings({
-			models: [defaultModelId],
-			imageCompressionSize: imageCompressionSize
-		});
 	};
 
 	const toggleWebSearch = async () => {
@@ -263,12 +341,6 @@
 
 		imageCompression = $settings?.imageCompression ?? false;
 		imageCompressionSize = $settings?.imageCompressionSize ?? { width: '', height: '' };
-		imageCompressionInChannels = $settings?.imageCompressionInChannels ?? true;
-
-		defaultModelId = $settings?.models?.at(0) ?? '';
-		if ($config?.default_models) {
-			defaultModelId = $config.default_models.split(',')[0];
-		}
 
 		backgroundImageUrl = $settings?.backgroundImageUrl ?? null;
 		webSearch = $settings?.webSearch ?? null;
@@ -276,23 +348,6 @@
 		textScale = $settings?.textScale ?? null;
 	});
 </script>
-
-<ManageFloatingActionButtonsModal
-	bind:show={showManageFloatingActionButtonsModal}
-	{floatingActionButtons}
-	onSave={(buttons) => {
-		floatingActionButtons = buttons;
-		saveSettings({ floatingActionButtons });
-	}}
-/>
-
-<ManageImageCompressionModal
-	bind:show={showManageImageCompressionModal}
-	size={imageCompressionSize}
-	onSave={(size) => {
-		saveSettings({ imageCompressionSize: size });
-	}}
-/>
 
 <div id="tab-interface" class="flex flex-col h-full justify-between space-y-3 text-sm">
 	<input
@@ -433,6 +488,7 @@
 				<ToggleCard
 					title={$i18n.t('Allow User Location')}
 					bind:state={userLocation}
+					bind:el={userLocationCard}
 					on:change={() => toggleUserLocation()}
 				/>
 				<ToggleCard
@@ -538,23 +594,11 @@
 					</button>
 				</div>
 
-				<div class="ix-row">
-					<div id="floating-action-buttons-label" class="ix-row-title">
-						{$i18n.t('Floating Quick Actions')}
-					</div>
-					<div class="flex items-center gap-3">
-						{#if showFloatingActionButtons}
-							<button
-								class="ix-link"
-								type="button"
-								aria-label={$i18n.t('Open Modal To Manage Floating Quick Actions')}
-								on:click={() => {
-									showManageFloatingActionButtonsModal = true;
-								}}
-							>
-								{$i18n.t('Manage')}
-							</button>
-						{/if}
+				<div class="ix-row ix-row-col">
+					<div class="flex w-full items-center justify-between">
+						<div id="floating-action-buttons-label" class="ix-row-title">
+							{$i18n.t('Floating Quick Actions')}
+						</div>
 						<button
 							type="button"
 							aria-labelledby="floating-action-buttons-label"
@@ -568,6 +612,69 @@
 							{showFloatingActionButtons ? $i18n.t('On') : $i18n.t('Off')}
 						</button>
 					</div>
+
+					{#if showFloatingActionButtons}
+						<div class="ix-editor" transition:slide={{ duration: 180 }}>
+							{#if floatingActionButtons === null}
+								<div class="ix-editor-hint">
+									<span>{$i18n.t('Default action buttons will be used.')}</span>
+									<button class="ix-link" type="button" on:click={customizeFloatingActions}>
+										{$i18n.t('Customize')}
+									</button>
+								</div>
+							{:else}
+								{#each floatingActionButtons as button (button.id)}
+									<div class="ix-action" transition:slide={{ duration: 150 }}>
+										<div class="ix-action-head">
+											<input
+												class="ix-action-label"
+												placeholder={$i18n.t('Button Label')}
+												aria-label={$i18n.t('Button Label')}
+												bind:value={button.label}
+												on:input={queueActionsSave}
+											/>
+											<button
+												class="ix-remove"
+												type="button"
+												aria-label={$i18n.t('Remove action')}
+												on:click={() => removeFloatingAction(button.id)}
+											>
+												<XMark className="size-3.5" />
+											</button>
+										</div>
+										<Textarea
+											className="ix-action-prompt"
+											placeholder={$i18n.t('Button Prompt')}
+											ariaLabel={$i18n.t('Button Prompt')}
+											bind:value={button.prompt}
+											onInput={queueActionsSave}
+										/>
+									</div>
+								{/each}
+
+								<div class="ix-editor-foot">
+									<button class="ix-add" type="button" on:click={addFloatingAction}>
+										<Plus className="size-3.5" />
+										<span>{$i18n.t('Add action')}</span>
+									</button>
+									<button
+										class="ix-link ix-link-quiet"
+										type="button"
+										on:click={resetFloatingActions}
+									>
+										{$i18n.t('Use defaults')}
+									</button>
+								</div>
+
+								<div class="ix-editor-note">
+									{$i18n.t('Prompts can reference {{selected}} and {{input}}.', {
+										selected: '{{SELECTED_CONTENT}}',
+										input: '{{INPUT_CONTENT}}'
+									})}
+								</div>
+							{/if}
+						</div>
+					{/if}
 				</div>
 			</div>
 
@@ -634,6 +741,7 @@
 				<ToggleCard
 					title={$i18n.t('Auto-Copy Response to Clipboard')}
 					bind:state={responseAutoCopy}
+					bind:el={autoCopyCard}
 					on:change={() => toggleResponseAutoCopy()}
 				/>
 				<ToggleCard
@@ -790,23 +898,11 @@
 			<div class="ix-group-label">{$i18n.t('File')}</div>
 
 			<div class="ix-rows">
-				<div class="ix-row">
-					<div id="image-compression-label" class="ix-row-title">
-						{$i18n.t('Image Compression')}
-					</div>
-					<div class="flex items-center gap-3">
-						{#if imageCompression}
-							<button
-								class="ix-link"
-								type="button"
-								aria-label={$i18n.t('Open Modal To Manage Image Compression')}
-								on:click={() => {
-									showManageImageCompressionModal = true;
-								}}
-							>
-								{$i18n.t('Manage')}
-							</button>
-						{/if}
+				<div class="ix-row ix-row-col">
+					<div class="flex w-full items-center justify-between">
+						<div id="image-compression-label" class="ix-row-title">
+							{$i18n.t('Image Compression')}
+						</div>
 						<button
 							type="button"
 							aria-labelledby="image-compression-label"
@@ -820,18 +916,35 @@
 							{imageCompression ? $i18n.t('On') : $i18n.t('Off')}
 						</button>
 					</div>
+
+					{#if imageCompression}
+						<div class="ix-editor" transition:slide={{ duration: 180 }}>
+							<div class="ix-size">
+								<span class="ix-size-label">{$i18n.t('Image Max Compression Size')}</span>
+								<input
+									class="ix-size-input"
+									type="number"
+									min="0"
+									placeholder={$i18n.t('Width')}
+									aria-label={$i18n.t('Image Max Compression Size width')}
+									bind:value={imageCompressionSize.width}
+									on:input={queueSizeSave}
+								/>
+								<span class="ix-size-x">×</span>
+								<input
+									class="ix-size-input"
+									type="number"
+									min="0"
+									placeholder={$i18n.t('Height')}
+									aria-label={$i18n.t('Image Max Compression Size height')}
+									bind:value={imageCompressionSize.height}
+									on:input={queueSizeSave}
+								/>
+							</div>
+						</div>
+					{/if}
 				</div>
 			</div>
-
-			{#if imageCompression}
-				<div class="ix-grid">
-					<ToggleCard
-						title={$i18n.t('Compress Images in Channels')}
-						bind:state={imageCompressionInChannels}
-						on:change={() => saveSettings({ imageCompressionInChannels })}
-					/>
-				</div>
-			{/if}
 		</div>
 	</div>
 </div>
@@ -906,6 +1019,166 @@
 		font-weight: 500;
 		color: var(--accent);
 		text-decoration: underline;
+	}
+	.ix-link-quiet {
+		color: var(--text-tertiary);
+		text-decoration: none;
+		transition: color 0.15s ease;
+	}
+	.ix-link-quiet:hover {
+		color: var(--accent);
+	}
+
+	/* ── Inline editors (unfold beneath a row; autosave, no modal) ── */
+	.ix-editor {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		width: 100%;
+		margin-top: 10px;
+		padding-top: 10px;
+		border-top: 1px solid var(--border);
+	}
+	.ix-editor-hint {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 12px;
+		font-size: 12px;
+		color: var(--text-secondary);
+	}
+	.ix-editor-note {
+		font-size: 11px;
+		color: var(--text-tertiary);
+	}
+	.ix-editor-foot {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 12px;
+	}
+	.ix-action {
+		display: flex;
+		flex-direction: column;
+		gap: 4px;
+		padding: 9px 11px;
+		border-radius: 10px;
+		border: 1px solid var(--border);
+		background: var(--bg-elevated);
+		transition: border-color 0.15s ease;
+	}
+	.ix-action:focus-within {
+		border-color: var(--accent);
+	}
+	.ix-action-head {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+	}
+	.ix-action-label {
+		flex: 1;
+		min-width: 0;
+		font-size: 12.5px;
+		font-weight: 600;
+		background: transparent;
+		outline: none;
+		color: var(--text);
+	}
+	.ix-action-label::placeholder {
+		color: var(--text-tertiary);
+		font-weight: 500;
+	}
+	.ix-action :global(.ix-action-prompt) {
+		width: 100%;
+		font-size: 12px;
+		line-height: 1.5;
+		background: transparent;
+		outline: none;
+		border: none;
+		padding: 0;
+		resize: none;
+		color: var(--text-secondary);
+	}
+	.ix-action :global(.ix-action-prompt:focus) {
+		color: var(--text);
+	}
+	.ix-action :global(.ix-action-prompt::placeholder) {
+		color: var(--text-tertiary);
+	}
+	.ix-remove {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex: none;
+		padding: 3px;
+		border-radius: 6px;
+		color: var(--text-tertiary);
+		transition:
+			color 0.15s ease,
+			background 0.15s ease;
+	}
+	.ix-remove:hover {
+		color: #e0533d;
+		background: var(--surface-hover);
+	}
+	.ix-add {
+		display: inline-flex;
+		align-items: center;
+		gap: 6px;
+		font-size: 12px;
+		font-weight: 500;
+		padding: 6px 10px;
+		border-radius: 8px;
+		border: 1px dashed var(--border-hover);
+		color: var(--text-secondary);
+		transition:
+			color 0.15s ease,
+			border-color 0.15s ease,
+			background 0.15s ease;
+	}
+	.ix-add:hover {
+		color: var(--accent);
+		border-color: var(--accent);
+		background: var(--accent-glow);
+	}
+	.ix-size {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+	}
+	.ix-size-label {
+		flex: 1;
+		font-size: 12px;
+		color: var(--text-secondary);
+	}
+	.ix-size-input {
+		width: 72px;
+		text-align: center;
+		font-size: 12.5px;
+		padding: 5px 8px;
+		border-radius: 8px;
+		border: 1px solid var(--border);
+		background: var(--bg-elevated);
+		color: var(--text);
+		outline: none;
+		transition: border-color 0.15s ease;
+		appearance: textfield;
+		-moz-appearance: textfield;
+	}
+	.ix-size-input::-webkit-outer-spin-button,
+	.ix-size-input::-webkit-inner-spin-button {
+		-webkit-appearance: none;
+		margin: 0;
+	}
+	.ix-size-input:focus {
+		border-color: var(--accent);
+	}
+	.ix-size-input::placeholder {
+		color: var(--text-tertiary);
+	}
+	.ix-size-x {
+		font-size: 12px;
+		color: var(--text-tertiary);
 	}
 	.ix-step {
 		display: flex;

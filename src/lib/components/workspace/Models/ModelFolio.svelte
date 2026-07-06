@@ -1239,7 +1239,9 @@
 							{$i18n.t('Slide to discard')}
 						</span>
 						{#if discardSealing}
-							<span class="mf-slide-done">{$i18n.t('Discarded')} <span class="fleuron">❧</span></span>
+							<span class="mf-slide-done"
+								>{$i18n.t('Discarded')} <span class="fleuron">❧</span></span
+							>
 						{/if}
 						<button
 							class="mf-slide-handle"

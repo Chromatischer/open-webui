@@ -212,8 +212,7 @@
 			const res = await updateModelById(localStorage.token, model.id, model).catch((error) => {
 				return null;
 			});
-
-			} else {
+		} else {
 			const res = await createNewModel(localStorage.token, {
 				meta: {},
 				id: model.id,

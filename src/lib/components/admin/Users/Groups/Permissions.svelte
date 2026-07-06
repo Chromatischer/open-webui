@@ -74,7 +74,6 @@
 			{/if}
 		</div>
 
-
 		<div class="flex flex-col w-full">
 			<Tooltip
 				className="flex w-full justify-between my-1"
@@ -175,7 +174,6 @@
 				{/if}
 			</div>
 		{/if}
-
 
 		<div class="flex flex-col w-full">
 			<div class="flex w-full justify-between my-1">
@@ -666,7 +664,6 @@
 				</div>
 			{/if}
 		</div>
-
 	</div>
 
 	<hr class=" border-gray-100/30 dark:border-gray-850/30" />
