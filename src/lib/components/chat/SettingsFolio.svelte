@@ -192,7 +192,10 @@
 		const rect = target?.getBoundingClientRect();
 		const x = rect ? rect.left + rect.width / 2 : window.innerWidth / 2;
 		const y = rect ? rect.top + rect.height / 2 : window.innerHeight / 2;
-		const maxR = Math.hypot(Math.max(x, window.innerWidth - x), Math.max(y, window.innerHeight - y));
+		const maxR = Math.hypot(
+			Math.max(x, window.innerWidth - x),
+			Math.max(y, window.innerHeight - y)
+		);
 		const oldBg = getComputedStyle(root).getPropertyValue('--bg-base').trim() || '#f5f1e8';
 		const gradient = `radial-gradient(circle var(--reveal-r) at ${x}px ${y}px, transparent 99.9%, black 100%)`;
 		const overlay = document.createElement('div');
@@ -508,7 +511,9 @@
 						<span class="row-label">
 							Drop caps
 							{#if stamps.dropcaps}<span class="stamp">saved</span>{/if}
-							<span class="row-hint">a large illuminated first letter on each conversation's opening reply</span>
+							<span class="row-hint"
+								>a large illuminated first letter on each conversation's opening reply</span
+							>
 						</span>
 						<button
 							class="tgl"
@@ -602,7 +607,11 @@
 							<span class="row-hint">used when a new chat doesn't pick one</span>
 						</span>
 						<span class="sel">
-							<select bind:value={defaultModelId} on:change={saveDefaultModel} aria-label="Default model">
+							<select
+								bind:value={defaultModelId}
+								on:change={saveDefaultModel}
+								aria-label="Default model"
+							>
 								<option value="">server default</option>
 								{#each $models.filter((m) => m?.name) as model}
 									<option value={model.id}>{model.name}</option>
@@ -682,7 +691,10 @@
 							aria-label="Auto-title chats"
 							on:click={() => {
 								titleAuto = !titleAuto;
-								saveSettings({ title: { ...($settings?.title ?? {}), auto: titleAuto } }, 'autotitle');
+								saveSettings(
+									{ title: { ...($settings?.title ?? {}), auto: titleAuto } },
+									'autotitle'
+								);
 							}}
 						>
 							<span class="tgl-dot"></span>
@@ -827,7 +839,11 @@
 						>
 					</button>
 
-					<button class="act danger" class:armed={armed === 'archive-all'} on:click={archiveEverything}>
+					<button
+						class="act danger"
+						class:armed={armed === 'archive-all'}
+						on:click={archiveEverything}
+					>
 						{#if armed === 'archive-all'}
 							<span>Click again to archive all chats</span>
 						{:else}
@@ -936,7 +952,7 @@
 	}
 	.press-kicker {
 		font-family: var(--mono);
-		font-size: 10.5px;
+		font-size: 12px;
 		font-weight: 650;
 		letter-spacing: 0.26em;
 		text-transform: uppercase;
@@ -976,7 +992,7 @@
 		gap: 10px;
 		margin: 0 0 4px;
 		font-family: var(--mono);
-		font-size: 10.5px;
+		font-size: 12px;
 		font-weight: 650;
 		letter-spacing: 0.22em;
 		text-transform: uppercase;
@@ -1036,7 +1052,7 @@
 		margin-left: 9px;
 		font-family: var(--mono);
 		font-style: normal;
-		font-size: 9.5px;
+		font-size: 12px;
 		font-weight: 500;
 		letter-spacing: 0.14em;
 		text-transform: uppercase;
@@ -1089,7 +1105,7 @@
 	}
 	.choice {
 		font-family: var(--mono);
-		font-size: 10px;
+		font-size: 12px;
 		font-weight: 500;
 		letter-spacing: 0.13em;
 		text-transform: uppercase;
@@ -1305,7 +1321,7 @@
 	}
 	.mem-sure {
 		font-family: var(--mono);
-		font-size: 9px;
+		font-size: 12px;
 		letter-spacing: 0.1em;
 		text-transform: uppercase;
 		padding: 0 7px;
@@ -1344,7 +1360,7 @@
 	.act-meta {
 		font-family: var(--mono);
 		font-style: normal;
-		font-size: 9.5px;
+		font-size: 12px;
 		letter-spacing: 0.12em;
 		text-transform: uppercase;
 		color: var(--ink-3);
@@ -1384,7 +1400,7 @@
 	.colo-line {
 		margin: 14px 0 0;
 		font-family: var(--mono);
-		font-size: 9.5px;
+		font-size: 12px;
 		letter-spacing: 0.16em;
 		text-transform: uppercase;
 		color: var(--ink-3);

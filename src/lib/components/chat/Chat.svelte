@@ -98,20 +98,12 @@
 	import { getFunctions } from '$lib/apis/functions';
 	import { updateFolderById } from '$lib/apis/folders';
 
-	import Banner from '../common/Banner.svelte';
-	import MessageInput from '$lib/components/chat/MessageInput.svelte';
-	import Messages from '$lib/components/chat/Messages.svelte';
 	import Folio from '$lib/components/chat/Folio.svelte';
-	import Navbar from '$lib/components/chat/Navbar.svelte';
 	import EventConfirmDialog from '../common/ConfirmDialog.svelte';
 	import DeleteConfirmDialog from '../common/ConfirmDialog.svelte';
-	import Placeholder from './Placeholder.svelte';
 	import FilesOverlay from './MessageInput/FilesOverlay.svelte';
 	import NotificationToast from '../NotificationToast.svelte';
 	import Spinner from '../common/Spinner.svelte';
-	import Tooltip from '../common/Tooltip.svelte';
-	import Sidebar from '../icons/Sidebar.svelte';
-	import Image from '../common/Image.svelte';
 	import { getBanners } from '$lib/apis/configs';
 
 	export let chatIdProp = '';
@@ -119,15 +111,7 @@
 	let loading = true;
 
 	const eventTarget = new EventTarget();
-	let messageInput: MessageInput | undefined;
-	let messagesRef: Messages | undefined;
-
-	let autoScroll = true;
-	let isNearTop = true;
 	let processing = '';
-	let messagesContainerElement: HTMLDivElement;
-
-	let navbarElement;
 
 	let showEventConfirmation = false;
 	let eventConfirmationTitle = '';
@@ -205,7 +189,6 @@
 		loading = true;
 
 		prompt = '';
-		messageInput?.setText('');
 
 		files = [];
 		selectedToolIds = [];
@@ -220,8 +203,6 @@
 		if (chatIdProp && (await loadChat())) {
 			await tick();
 			loading = false;
-			window.setTimeout(() => scrollToBottom(), 0);
-
 			await tick();
 
 			// Mark chat read when initially loading it
@@ -241,7 +222,6 @@
 					const input = JSON.parse(storageChatInput);
 
 					if (!$temporaryChatEnabled) {
-						messageInput?.setText(input.prompt);
 						files = input.files;
 						selectedToolIds = input.selectedToolIds;
 						selectedFilterIds = input.selectedFilterIds;
@@ -258,20 +238,6 @@
 			chatInput?.focus();
 		} else {
 			await goto('/');
-		}
-	};
-
-	const onSelect = async (e) => {
-		const { type, data } = e;
-
-		if (type === 'prompt') {
-			// Handle prompt selection
-			messageInput?.setText(data, async () => {
-				if (!($settings?.insertSuggestionPrompt ?? false)) {
-					await tick();
-					submitHandler(prompt);
-				}
-			});
 		}
 	};
 
@@ -522,12 +488,14 @@
 					}, 100);
 				} else if (type === 'chat:message:error') {
 					message.error = data.error;
+					const errorContent = data.error?.content ?? data.error;
+					toast.error(
+						typeof errorContent === 'string'
+							? errorContent
+							: JSON.stringify(errorContent ?? $i18n.t('The provider rejected the request.'))
+					);
 				} else if (type === 'chat:message:follow_ups') {
 					message.followUps = data.follow_ups;
-
-					if (autoScroll) {
-						scrollToBottom('smooth');
-					}
 				} else if (type === 'chat:outlet') {
 					// Outlet filter ran on backend — sync in-memory state
 					const outletMessages = data.messages ?? [];
@@ -682,7 +650,6 @@
 			const inputElement = document.getElementById('chat-input');
 
 			if (inputElement) {
-				messageInput?.setText(event.data.text);
 				inputElement.focus();
 			}
 		}
@@ -808,7 +775,6 @@
 
 			if (storageChatInput) {
 				prompt = '';
-				messageInput?.setText('');
 
 				files = [];
 				selectedToolIds = [];
@@ -821,7 +787,6 @@
 					const input = JSON.parse(storageChatInput);
 
 					if (!$temporaryChatEnabled) {
-						messageInput?.setText(input.prompt);
 						files = input.files;
 						selectedToolIds = input.selectedToolIds;
 						selectedFilterIds = input.selectedFilterIds;
@@ -1430,8 +1395,6 @@
 			window.history.replaceState(history.state, '', `/`);
 		}
 
-		autoScroll = true;
-
 		await resetInput();
 		await chatId.set('');
 		await chatTitle.set('');
@@ -1514,7 +1477,6 @@
 
 				if (query || eventFiles?.length) {
 					if (query) {
-						messageInput?.setText(query);
 					}
 					await tick();
 					submitHandler(query || '');
@@ -1522,7 +1484,6 @@
 			}
 		} else if ($page.url.searchParams.get('q')) {
 			const q = $page.url.searchParams.get('q') ?? '';
-			messageInput?.setText(q);
 
 			if (q) {
 				if (($page.url.searchParams.get('submit') ?? 'true') === 'true') {
@@ -1613,7 +1574,6 @@
 					scratchboardContentStore.set(chatContent.scratchboard ?? '');
 				}
 
-				autoScroll = true;
 				await tick();
 
 				// Mark all non-current assistant messages as done
@@ -1658,53 +1618,7 @@
 		}
 	};
 
-	const scrollToBottom = async (behavior = 'auto') => {
-		await tick();
-		if (messagesContainerElement) {
-			messagesContainerElement.scrollTo({
-				top: messagesContainerElement.scrollHeight,
-				behavior
-			});
-
-			// content-visibility: auto causes the initial scrollHeight to be based on
-			// estimated sizes (contain-intrinsic-size). After we scroll, previously
-			// off-screen messages become visible and the browser resolves their actual
-			// heights, which shifts scrollHeight. Re-layouts can cascade across frames
-			// (new sizes reveal more content, triggering further size resolution), so
-			// we re-scroll across two animation frames to land at the true bottom.
-			requestAnimationFrame(() => {
-				if (messagesContainerElement) {
-					messagesContainerElement.scrollTo({
-						top: messagesContainerElement.scrollHeight,
-						behavior
-					});
-					requestAnimationFrame(() => {
-						if (messagesContainerElement) {
-							messagesContainerElement.scrollTo({
-								top: messagesContainerElement.scrollHeight,
-								behavior
-							});
-						}
-					});
-				}
-			});
-		}
-	};
-
-	const scrollToTop = async () => {
-		await messagesRef?.scrollToTop();
-	};
-
-	let scrollRAF = null;
 	let contentsRAF = null;
-	const scheduleScrollToBottom = () => {
-		if (!scrollRAF) {
-			scrollRAF = requestAnimationFrame(async () => {
-				scrollRAF = null;
-				await scrollToBottom();
-			});
-		}
-	};
 
 	let processingQueueChats = new Set<string>();
 
@@ -1849,7 +1763,6 @@
 	};
 
 	const createMessagePair = async (userPrompt) => {
-		messageInput?.setText('');
 		if (selectedModels.length === 0) {
 			toast.error($i18n.t('Model not selected'));
 		} else {
@@ -1900,10 +1813,6 @@
 			history.currentId = responseMessageId;
 
 			await tick();
-
-			if (autoScroll) {
-				scrollToBottom();
-			}
 
 			if (messages.length === 0) {
 				await initChatHandler(history);
@@ -1964,10 +1873,6 @@
 
 		history.currentId = currentParentId;
 		await tick();
-
-		if (autoScroll) {
-			scrollToBottom();
-		}
 
 		if (messages.length === 0) {
 			await initChatHandler(history);
@@ -2055,9 +1960,6 @@
 			history = { ...history };
 
 			await tick();
-			if (autoScroll) {
-				scrollToBottom();
-			}
 
 			// Fire-and-forget: run chatCompletedHandler for background work
 			// (outlet filters, chat save, title gen, follow-ups, tags)
@@ -2075,10 +1977,6 @@
 
 		console.log(data);
 		await tick();
-
-		if (autoScroll) {
-			scheduleScrollToBottom();
-		}
 	};
 
 	//////////////////////////
@@ -2191,7 +2089,6 @@
 					[$chatId]: [...(q[$chatId] ?? []), { id: uuidv4(), prompt: userPrompt, files: _files }]
 				}));
 				// Clear input
-				messageInput?.setText('');
 				prompt = '';
 				files = [];
 				return;
@@ -2213,11 +2110,9 @@
 		}
 
 		// Clear input and submit
-		messageInput?.setText('');
 		prompt = '';
 		const _files = structuredClone(files);
 		files = [];
-		messageInput?.setText('');
 
 		await submitPrompt(userPrompt, _files);
 	};
@@ -2237,10 +2132,6 @@
 			regenerationPrompt?: string | null;
 		} = {}
 	) => {
-		if (autoScroll) {
-			scrollToBottom();
-		}
-
 		let _chatId = JSON.parse(JSON.stringify($chatId));
 		_history = structuredClone(_history);
 
@@ -2337,7 +2228,6 @@
 		if (primaryModel && primaryResponseMessageId) {
 			const chatEventEmitter = await getChatEventEmitter(primaryModel.id, _chatId);
 
-			scrollToBottom();
 			await sendMessageSocket(
 				primaryModel,
 				messages && messages.length > 0
@@ -2448,7 +2338,6 @@
 		// Remove duplicates
 		files = files.filter((item, index, array) => array.findIndex((i) => equal(i, item)) === index);
 
-		scrollToBottom();
 		eventTarget.dispatchEvent(
 			new CustomEvent('chat:start', {
 				detail: {
@@ -2710,7 +2599,6 @@
 		}
 
 		await tick();
-		scrollToBottom();
 	};
 
 	const handleOpenAIError = async (error, responseMessage) => {
@@ -2782,10 +2670,6 @@
 			}
 
 			history.messages[history.currentId] = responseMessage;
-
-			if (autoScroll) {
-				scrollToBottom();
-			}
 		}
 
 		if (generating) {
@@ -2825,10 +2709,6 @@
 
 		await tick();
 
-		if (autoScroll) {
-			scrollToBottom();
-		}
-
 		await sendMessage(history, userMessageId);
 	};
 
@@ -2843,9 +2723,13 @@
 				return;
 			}
 
-			if (autoScroll) {
-				scrollToBottom();
-			}
+			const currentModelIds = selectedModels.filter(Boolean);
+			const regenerationModelId =
+				currentModelIds.length === 1
+					? currentModelIds[0]
+					: (userMessage?.models ?? []).length > 1
+						? message.model
+						: null;
 
 			await sendMessage(history, userMessage.id, {
 				...(suggestionPrompt
@@ -2854,11 +2738,10 @@
 							regenerationPrompt: suggestionPrompt
 						}
 					: {}),
-				...((userMessage?.models ?? [...selectedModels]).length > 1
+				...(regenerationModelId
 					? {
-							// If multiple models are selected, use the model from the message
-							modelId: message.model,
-							modelIdx: message.modelIdx
+							modelId: regenerationModelId,
+							modelIdx: currentModelIds.length === 1 ? 0 : message.modelIdx
 						}
 					: {})
 			});
@@ -2929,10 +2812,6 @@
 					} else {
 						mergedResponse.content += value;
 						history.messages[messageId] = message;
-					}
-
-					if (autoScroll) {
-						scheduleScrollToBottom();
 					}
 				}
 

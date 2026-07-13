@@ -1989,7 +1989,29 @@ async def chat_completion(
                     error_body = json.loads(response.body.decode('utf-8', 'replace'))
                     detail = error_body.get('error', error_body) if isinstance(error_body, dict) else error_body
                     if isinstance(detail, dict):
-                        detail = detail.get('message', detail.get('detail', str(detail)))
+                        message = detail.get('message', detail.get('detail'))
+                        metadata = detail.get('metadata')
+                        metadata_detail = metadata if isinstance(metadata, dict) else {}
+                        context = [
+                            f'HTTP {response.status_code}',
+                            *(
+                                f'{key}: {detail[key]}'
+                                for key in ('type', 'code', 'param')
+                                if detail.get(key) is not None
+                            ),
+                            *(
+                                f'{key}: {metadata_detail[key]}'
+                                for key in ('error_type', 'provider_code', 'provider_name', 'model_slug')
+                                if metadata_detail.get(key) is not None
+                            ),
+                        ]
+                        if metadata_detail.get('reasons'):
+                            context.append(f'reasons: {", ".join(map(str, metadata_detail["reasons"]))}')
+                        if metadata_detail.get('patterns'):
+                            context.append(f'patterns: {", ".join(map(str, metadata_detail["patterns"]))}')
+                        detail = f'{message or json.dumps(detail, ensure_ascii=False)} ({", ".join(context)})'
+                    else:
+                        detail = f'{detail} (HTTP {response.status_code})'
                 except Exception:
                     detail = f'Provider returned HTTP {response.status_code}'
                 raise Exception(detail)

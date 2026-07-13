@@ -657,7 +657,7 @@
 
 <style>
 	.chat-item-time {
-		font-size: 10px;
+		font-size: 12px;
 		color: var(--text-tertiary);
 		font-weight: 500;
 		opacity: 0;

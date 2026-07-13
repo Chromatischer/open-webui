@@ -91,7 +91,7 @@
 	}
 
 	.wse-kicker {
-		font-size: 10.5px;
+		font-size: 12px;
 		font-weight: 650;
 		letter-spacing: 0.22em;
 		text-transform: uppercase;
@@ -215,7 +215,7 @@
 		background: none;
 		padding: 0;
 		font-family: var(--mono);
-		font-size: 11px;
+		font-size: 13px;
 		color: var(--ink-3);
 		cursor: pointer;
 		border-bottom: 1px dotted var(--rule);

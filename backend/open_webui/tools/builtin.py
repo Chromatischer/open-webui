@@ -569,12 +569,8 @@ from typing import List as _List
 
 class AskUserOption(_BaseModel):
     title: str = _Field(..., description='Short answer label shown to the user (a few words).')
-    explain: Optional[str] = _Field(
-        None, description='Optional one-sentence clarification of this option.'
-    )
-    recommend: Optional[bool] = _Field(
-        False, description='Set true on the single option you recommend.'
-    )
+    explain: Optional[str] = _Field(None, description='Optional one-sentence clarification of this option.')
+    recommend: Optional[bool] = _Field(False, description='Set true on the single option you recommend.')
 
 
 class AskUserQuestion(_BaseModel):
@@ -584,12 +580,8 @@ class AskUserQuestion(_BaseModel):
         False,
         description='True for multiple-choice (the user may pick several); false for single-choice.',
     )
-    allow_custom: Optional[bool] = _Field(
-        True, description='Allow the user to write their own answer.'
-    )
-    allow_skip: Optional[bool] = _Field(
-        True, description='Allow the user to skip / pick none of the options.'
-    )
+    allow_custom: Optional[bool] = _Field(True, description='Allow the user to write their own answer.')
+    allow_skip: Optional[bool] = _Field(True, description='Allow the user to skip / pick none of the options.')
 
 
 async def ask_user(
@@ -616,9 +608,7 @@ async def ask_user(
         opts = []
         for o in (d.get('options') or [])[:5]:
             od = (
-                o
-                if isinstance(o, dict)
-                else (o.model_dump(exclude_none=True) if hasattr(o, 'model_dump') else dict(o))
+                o if isinstance(o, dict) else (o.model_dump(exclude_none=True) if hasattr(o, 'model_dump') else dict(o))
             )
             title = str(od.get('title', '')).strip()
             if not title:
@@ -1008,7 +998,6 @@ async def view_chat(
     except Exception as e:
         log.exception(f'view_chat error: {e}')
         return json.dumps({'error': str(e)})
-
 
 
 # =============================================================================

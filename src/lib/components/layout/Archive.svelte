@@ -177,7 +177,9 @@
 	};
 
 	const newQuire = async () => {
-		const res = await createNewFolder(token(), { name: uniqueQuireName() } as any).catch(() => null);
+		const res = await createNewFolder(token(), { name: uniqueQuireName() } as any).catch(
+			() => null
+		);
 		if (res?.id) {
 			await loadFolders();
 			openMap[res.id] = true;
@@ -227,7 +229,9 @@
 		const id = dragId;
 		dragId = null;
 		dropQuire = null;
-		const res = await createNewFolder(token(), { name: uniqueQuireName() } as any).catch(() => null);
+		const res = await createNewFolder(token(), { name: uniqueQuireName() } as any).catch(
+			() => null
+		);
 		if (res?.id) {
 			if (id) await updateChatFolderIdById(token(), id, res.id).catch(() => {});
 			await loadFolders();
@@ -289,7 +293,9 @@
 					stroke-width="1.8"
 					stroke-linecap="round"
 					stroke-linejoin="round"
-					><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" /></svg
+					><path
+						d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"
+					/></svg
 				>
 			</button>
 		{/if}
@@ -539,7 +545,7 @@
 		padding: 0 8px 14px;
 	}
 	.arch-kicker {
-		font-size: 10.5px;
+		font-size: 12px;
 		font-weight: 650;
 		letter-spacing: 0.22em;
 		text-transform: uppercase;
@@ -547,7 +553,7 @@
 	}
 	.arch-count {
 		font-family: var(--mono);
-		font-size: 10px;
+		font-size: 12px;
 		color: var(--ink-3);
 		white-space: nowrap;
 	}
@@ -679,7 +685,7 @@
 		overflow: hidden;
 		text-overflow: ellipsis;
 		white-space: nowrap;
-		font-size: 10.5px;
+		font-size: 12px;
 		font-weight: 650;
 		letter-spacing: 0.18em;
 		text-transform: uppercase;
@@ -692,7 +698,7 @@
 	}
 	.quire-count {
 		font-family: var(--mono);
-		font-size: 10px;
+		font-size: 12px;
 		color: var(--ink-3);
 		margin-left: auto;
 		flex: none;
@@ -807,7 +813,7 @@
 		color: var(--ink);
 	}
 	.arch-meta {
-		font-size: 10.5px;
+		font-size: 12px;
 		color: var(--ink-3);
 	}
 	.arch-arrow {
@@ -909,7 +915,7 @@
 		color: var(--ink);
 	}
 	.arch-mail {
-		font-size: 10.5px;
+		font-size: 12px;
 		color: var(--ink-3);
 		white-space: nowrap;
 		overflow: hidden;

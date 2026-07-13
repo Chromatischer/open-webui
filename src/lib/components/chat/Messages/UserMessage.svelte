@@ -97,7 +97,10 @@
 
 	const editMessageConfirmHandler = async (submit = true) => {
 		if (!editedContent && (editedFiles ?? []).length === 0) {
-			inlineError(submit ? confirmEditBtn : saveEditBtn, $i18n.t('Please enter a message or attach a file.'));
+			inlineError(
+				submit ? confirmEditBtn : saveEditBtn,
+				$i18n.t('Please enter a message or attach a file.')
+			);
 			return;
 		}
 

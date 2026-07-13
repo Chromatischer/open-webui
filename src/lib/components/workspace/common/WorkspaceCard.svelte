@@ -122,7 +122,7 @@
 	}
 	.byline {
 		font-family: var(--mono);
-		font-size: 10px;
+		font-size: 12px;
 		color: var(--ink-3);
 		margin-top: 3px;
 		overflow: hidden;

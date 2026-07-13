@@ -70,11 +70,5 @@
 </script>
 
 {#if model}
-	<ModelFolio
-		edit={true}
-		{model}
-		{onSubmit}
-		{onDelete}
-		onClose={() => goto('/workspace/models')}
-	/>
+	<ModelFolio edit={true} {model} {onSubmit} {onDelete} onClose={() => goto('/workspace/models')} />
 {/if}

@@ -89,7 +89,7 @@
 	}
 	.sub {
 		font-family: var(--mono);
-		font-size: 10px;
+		font-size: 12px;
 		color: var(--ink-3);
 		transition: color 0.2s ease;
 	}

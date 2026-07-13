@@ -20,7 +20,10 @@ export interface ConfirmButtonOptions {
 	hold?: number;
 }
 
-export function confirmButton(el: HTMLElement | null | undefined, opts: ConfirmButtonOptions = {}): void {
+export function confirmButton(
+	el: HTMLElement | null | undefined,
+	opts: ConfirmButtonOptions = {}
+): void {
 	if (!el || typeof document === 'undefined') return;
 	// don't stack if pressed repeatedly
 	if (el.dataset.confirming === '1') return;

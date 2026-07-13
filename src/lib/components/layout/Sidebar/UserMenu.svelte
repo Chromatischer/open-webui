@@ -256,7 +256,7 @@
 	.um-mail {
 		margin-top: 2px;
 		font-family: var(--mono);
-		font-size: 10.5px;
+		font-size: 12px;
 		color: var(--ink-3);
 		white-space: nowrap;
 		overflow: hidden;
@@ -266,7 +266,7 @@
 		flex: none;
 		align-self: flex-start;
 		font-family: var(--mono);
-		font-size: 8.5px;
+		font-size: 12px;
 		letter-spacing: 0.14em;
 		text-transform: uppercase;
 		color: var(--ultramarine);

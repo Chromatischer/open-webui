@@ -727,7 +727,8 @@
 			const result = await deleteEntry(terminal.url, terminal.key, p.replace(/\/$/, ''));
 			if (result) ok++;
 		}
-		if (ok === 0) toast.error($i18n.t('Deleted {{ok}} of {{total}} items', { ok, total: paths.length }));
+		if (ok === 0)
+			toast.error($i18n.t('Deleted {{ok}} of {{total}} items', { ok, total: paths.length }));
 		clearSelection();
 		await loadDir(currentPath);
 	};

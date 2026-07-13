@@ -1787,46 +1787,51 @@
 <!-- ─── The edge: the document continues here (shared by zen + manuscript views) ─── -->
 {#snippet edgeArea()}
 	<div class="edge-slot">
-	{#if pendingQuery}
-		{@render querySlip()}
-	{:else}
-	<div class="edge" class:busy={generating} in:swap={{ duration: 300 }} out:swap={{ duration: 170 }}>
-		<span class="pilcrow" class:hop={pilcrowHop} aria-hidden="true">¶</span>
-		<div class="edge-line">
-			<textarea
-				bind:this={composerEl}
-				bind:value={composerText}
-				rows="1"
-				placeholder={current.sections.length === 0 ? 'Write the first line…' : 'Continue…'}
-				disabled={generating}
-				onkeydown={onComposerKey}
-				oninput={autogrow}
-			></textarea>
-			<div class="rule" aria-hidden="true"></div>
-		</div>
-		<button
-			class="set-btn"
-			class:ready={composerText.trim().length > 0}
-			onclick={send}
-			disabled={generating}
-			title="Set in type (Enter)"
-		>
-			<span class="set-label">Set in type</span>
-			<svg
-				width="14"
-				height="14"
-				viewBox="0 0 24 24"
-				fill="none"
-				stroke="currentColor"
-				stroke-width="2.2"
-				stroke-linecap="round"
-				stroke-linejoin="round"
+		{#if pendingQuery}
+			{@render querySlip()}
+		{:else}
+			<div
+				class="edge"
+				class:busy={generating}
+				in:swap={{ duration: 300 }}
+				out:swap={{ duration: 170 }}
 			>
-				<path d="M12 19V5M5 12l7-7 7 7" />
-			</svg>
-		</button>
-	</div>
-	{/if}
+				<span class="pilcrow" class:hop={pilcrowHop} aria-hidden="true">¶</span>
+				<div class="edge-line">
+					<textarea
+						bind:this={composerEl}
+						bind:value={composerText}
+						rows="1"
+						placeholder={current.sections.length === 0 ? 'Write the first line…' : 'Continue…'}
+						disabled={generating}
+						onkeydown={onComposerKey}
+						oninput={autogrow}
+					></textarea>
+					<div class="rule" aria-hidden="true"></div>
+				</div>
+				<button
+					class="set-btn"
+					class:ready={composerText.trim().length > 0}
+					onclick={send}
+					disabled={generating}
+					title="Set in type (Enter)"
+				>
+					<span class="set-label">Set in type</span>
+					<svg
+						width="14"
+						height="14"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2.2"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+					>
+						<path d="M12 19V5M5 12l7-7 7 7" />
+					</svg>
+				</button>
+			</div>
+		{/if}
 	</div>
 {/snippet}
 
@@ -1972,12 +1977,7 @@
 								>
 							</button>
 						{/if}
-						<button
-							class="q-next"
-							class:ready={qAnswered}
-							disabled={!qAnswered}
-							onclick={advance}
-						>
+						<button class="q-next" class:ready={qAnswered} disabled={!qAnswered} onclick={advance}>
 							<span class="next-label">{isLastQ ? 'Seal answer' : 'Next'}</span>
 							{#if isLastQ}
 								<svg

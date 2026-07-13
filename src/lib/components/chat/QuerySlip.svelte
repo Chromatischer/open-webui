@@ -186,7 +186,12 @@
 								{opt.title}
 								{#if opt.recommend}
 									<span class="opt-rec">
-										<svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"
+										<svg
+											width="9"
+											height="9"
+											viewBox="0 0 24 24"
+											fill="currentColor"
+											aria-hidden="true"
 											><path
 												d="M12 2l2.6 6.3 6.8.5-5.2 4.4 1.6 6.6L12 16.8 6.2 20.3l1.6-6.6L2.6 8.8l6.8-.5z"
 											/></svg
@@ -333,7 +338,7 @@
 	}
 	.q-kicker {
 		font-family: var(--mono);
-		font-size: 10.5px;
+		font-size: 12px;
 		font-weight: 650;
 		letter-spacing: 0.22em;
 		text-transform: uppercase;
@@ -368,7 +373,7 @@
 	}
 	.q-count {
 		font-family: var(--mono);
-		font-size: 10px;
+		font-size: 12px;
 		color: var(--ink-3);
 	}
 
@@ -393,7 +398,7 @@
 		display: inline-block;
 		margin: 7px 0 14px;
 		font-family: var(--mono);
-		font-size: 10px;
+		font-size: 12px;
 		letter-spacing: 0.18em;
 		text-transform: uppercase;
 		color: var(--ink-3);
@@ -458,7 +463,7 @@
 	}
 	.opt-letter {
 		font-family: var(--mono);
-		font-size: 11px;
+		font-size: 12px;
 		font-weight: 500;
 		line-height: 1;
 		color: var(--ink-3);
@@ -527,7 +532,7 @@
 		align-items: center;
 		gap: 4px;
 		font-family: var(--mono);
-		font-size: 9px;
+		font-size: 12px;
 		font-weight: 500;
 		letter-spacing: 0.08em;
 		text-transform: uppercase;
