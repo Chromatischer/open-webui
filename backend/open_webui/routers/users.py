@@ -168,14 +168,10 @@ async def get_user_permissisions(
 ############################
 class WorkspacePermissions(BaseModel):
     models: bool = False
-    knowledge: bool = False
-    prompts: bool = False
     tools: bool = False
     skills: bool = False
     models_import: bool = False
     models_export: bool = False
-    prompts_import: bool = False
-    prompts_export: bool = False
     tools_import: bool = False
     tools_export: bool = False
 
@@ -183,18 +179,11 @@ class WorkspacePermissions(BaseModel):
 class SharingPermissions(BaseModel):
     models: bool = False
     public_models: bool = False
-    knowledge: bool = False
-    public_knowledge: bool = False
-    prompts: bool = False
-    public_prompts: bool = False
     tools: bool = False
     public_tools: bool = True
     skills: bool = False
     public_skills: bool = False
-    notes: bool = False
-    public_notes: bool = True
     public_chats: bool = False
-    public_calendars: bool = False
 
 
 class AccessGrantsPermissions(BaseModel):
@@ -226,8 +215,6 @@ class ChatPermissions(BaseModel):
 
 class FeaturesPermissions(BaseModel):
     api_keys: bool = False
-    notes: bool = True
-    channels: bool = True
     folders: bool = True
     direct_tool_servers: bool = False
 
@@ -235,8 +222,6 @@ class FeaturesPermissions(BaseModel):
     image_generation: bool = True
     code_interpreter: bool = True
     memories: bool = True
-    automations: bool = False
-    calendar: bool = True
 
 
 class SettingsPermissions(BaseModel):

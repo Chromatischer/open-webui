@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { toast } from 'svelte-sonner';
+	import { confirmButton } from '$lib/utils/confirmButton';
+	import { inlineError } from '$lib/utils/inlineError';
 	import { createEventDispatcher, onMount, getContext, tick } from 'svelte';
 	import { v4 as uuidv4 } from 'uuid';
 	import { getModels as _getModels } from '$lib/apis';
@@ -32,6 +33,7 @@
 
 	export let saveSettings: Function;
 
+	let saveBtn: HTMLButtonElement;
 	let servers = null;
 	let showConnectionModal = false;
 
@@ -49,12 +51,12 @@
 		const res = await setToolServerConnections(localStorage.token, {
 			TOOL_SERVER_CONNECTIONS: servers
 		}).catch((err) => {
-			toast.error($i18n.t('Failed to save connections'));
+			inlineError(saveBtn, $i18n.t('Failed to save connections'));
 			return null;
 		});
 
 		if (res) {
-			toast.success($i18n.t('Connections saved successfully'));
+			confirmButton(saveBtn, { label: $i18n.t('Saved') });
 		}
 	};
 
@@ -62,12 +64,12 @@
 		const res = await setTerminalServerConnections(localStorage.token, {
 			TERMINAL_SERVER_CONNECTIONS: terminalConnections
 		}).catch((err) => {
-			toast.error($i18n.t('Failed to save terminal servers'));
+			inlineError(saveBtn, $i18n.t('Failed to save terminal servers'));
 			return null;
 		});
 
 		if (res) {
-			toast.success($i18n.t('Terminal servers saved'));
+			confirmButton(saveBtn, { label: $i18n.t('Saved') });
 
 			// Refresh the terminalServers store so changes are reflected immediately
 			// Preserve user direct terminals, refresh system terminals from backend
@@ -313,6 +315,7 @@
 
 	<div class="flex justify-end pt-3 text-sm font-medium">
 		<button
+			bind:this={saveBtn}
 			class="px-3.5 py-1.5 text-sm font-medium bg-black hover:bg-gray-900 text-white dark:bg-white dark:text-black dark:hover:bg-gray-100 transition rounded-full"
 			type="submit"
 		>

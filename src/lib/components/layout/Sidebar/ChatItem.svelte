@@ -199,7 +199,7 @@
 			}
 
 			dispatch('change');
-			toast.success($i18n.t('Chat archived.'));
+			// UI changes (navigation + list refresh) — no toast needed
 		} catch (error) {
 			console.error('Error archiving chat:', error);
 			toast.error($i18n.t('Failed to archive chat.'));
@@ -223,8 +223,7 @@
 				await pinnedChats.set(await getPinnedChatList(localStorage.token));
 
 				dispatch('change');
-
-				toast.success($i18n.t('Chat moved successfully'));
+				// UI changes (list refresh + dispatch) — no toast needed
 			}
 		} else {
 			toast.error($i18n.t('Failed to move chat'));
@@ -493,7 +492,7 @@
 				mouseOver = false;
 			}}
 			on:focus={(e) => {}}
-			draggable="false"
+			draggable={!confirmEdit}
 		>
 			<!-- Loading spinner for active chat (left side) -->
 			{#if $activeChatIds.has(id)}
@@ -658,7 +657,7 @@
 
 <style>
 	.chat-item-time {
-		font-size: 10px;
+		font-size: 12px;
 		color: var(--text-tertiary);
 		font-weight: 500;
 		opacity: 0;

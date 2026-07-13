@@ -1,6 +1,7 @@
 <script lang="ts">
-	import { toast } from 'svelte-sonner';
 	import { createEventDispatcher, onMount, getContext, tick } from 'svelte';
+	import { confirmButton } from '$lib/utils/confirmButton';
+	import { toast } from 'svelte-sonner';
 
 	const dispatch = createEventDispatcher();
 
@@ -53,7 +54,7 @@
 	let showAddOpenAIConnectionModal = false;
 	let showAddOllamaConnectionModal = false;
 
-	const updateOpenAIHandler = async () => {
+	const updateOpenAIHandler = async (el?: HTMLElement) => {
 		if (ENABLE_OPENAI_API !== null) {
 			// Remove trailing slashes
 			OPENAI_API_BASE_URLS = OPENAI_API_BASE_URLS.map((url) => url.replace(/\/$/, ''));
@@ -88,13 +89,13 @@
 			});
 
 			if (res) {
-				toast.success($i18n.t('OpenAI API settings updated'));
+				if (el) confirmButton(el, { label: $i18n.t('Saved') });
 				await models.set(await getModels());
 			}
 		}
 	};
 
-	const updateOllamaHandler = async () => {
+	const updateOllamaHandler = async (el?: HTMLElement) => {
 		if (ENABLE_OLLAMA_API !== null) {
 			// Remove trailing slashes
 			OLLAMA_BASE_URLS = OLLAMA_BASE_URLS.map((url) => url.replace(/\/$/, ''));
@@ -108,19 +109,19 @@
 			});
 
 			if (res) {
-				toast.success($i18n.t('Ollama API settings updated'));
+				if (el) confirmButton(el, { label: $i18n.t('Saved') });
 				await models.set(await getModels());
 			}
 		}
 	};
 
-	const updateConnectionsHandler = async () => {
+	const updateConnectionsHandler = async (el?: HTMLElement) => {
 		const res = await setConnectionsConfig(localStorage.token, connectionsConfig).catch((error) => {
 			toast.error(`${error}`);
 		});
 
 		if (res) {
-			toast.success($i18n.t('Connections settings updated'));
+			if (el) confirmButton(el, { label: $i18n.t('Saved') });
 			await models.set(await getModels());
 			await config.set(await getBackendConfig());
 		}
@@ -206,9 +207,11 @@
 		}
 	});
 
+	let saveBtn: HTMLButtonElement;
+
 	const submitHandler = async () => {
-		updateOpenAIHandler();
-		updateOllamaHandler();
+		updateOpenAIHandler(saveBtn);
+		updateOllamaHandler(saveBtn);
 
 		dispatch('save');
 
@@ -322,14 +325,14 @@
 								class="w-full text-sm bg-transparent outline-hidden"
 								placeholder={$i18n.t('API Base URL')}
 								bind:value={OPENROUTER_API_BASE_URL}
-								on:change={updateOpenAIHandler}
+								on:change={() => updateOpenAIHandler()}
 							/>
 							<SensitiveInput
 								inputClassName="w-full"
 								placeholder={$i18n.t('API Key')}
 								bind:value={OPENROUTER_API_KEY}
 								required={false}
-								on:change={updateOpenAIHandler}
+								on:change={() => updateOpenAIHandler()}
 							/>
 						</div>
 					{/if}
@@ -465,6 +468,7 @@
 
 	<div class="flex justify-end pt-3 text-sm font-medium">
 		<button
+			bind:this={saveBtn}
 			class="px-3.5 py-1.5 text-sm font-medium bg-black hover:bg-gray-900 text-white dark:bg-white dark:text-black dark:hover:bg-gray-100 transition rounded-full"
 			type="submit"
 		>

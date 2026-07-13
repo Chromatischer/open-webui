@@ -1,7 +1,6 @@
 <script>
 	import { getContext, tick } from 'svelte';
 	import { page } from '$app/stores';
-	import { toast } from 'svelte-sonner';
 
 	import { config } from '$lib/stores';
 	import { getBackendConfig } from '$lib/apis';
@@ -126,16 +125,17 @@
 		{#if selectedTab === 'general'}
 			<General
 				saveHandler={async () => {
-					toast.success($i18n.t('Settings saved successfully!'));
-
+					// confirmation is the in-button green ✓ flash (see General.svelte)
 					await tick();
 					await config.set(await getBackendConfig());
 				}}
 			/>
 		{:else if selectedTab === 'connections'}
 			<Connections
-				on:save={() => {
-					toast.success($i18n.t('Settings saved successfully!'));
+				on:save={async () => {
+					// confirmation is the in-button green ✓ flash (see Connections.svelte)
+					await tick();
+					await config.set(await getBackendConfig());
 				}}
 			/>
 		{:else if selectedTab === 'models'}
@@ -147,8 +147,7 @@
 		{:else if selectedTab === 'documents'}
 			<Documents
 				on:save={async () => {
-					toast.success($i18n.t('Settings saved successfully!'));
-
+					// confirmation is the in-button green ✓ flash (see Documents.svelte)
 					await tick();
 					await config.set(await getBackendConfig());
 				}}
@@ -156,8 +155,7 @@
 		{:else if selectedTab === 'web'}
 			<WebSearch
 				saveHandler={async () => {
-					toast.success($i18n.t('Settings saved successfully!'));
-
+					// confirmation is the in-button green ✓ flash (see WebSearch.svelte)
 					await tick();
 					await config.set(await getBackendConfig());
 				}}
@@ -165,34 +163,41 @@
 		{:else if selectedTab === 'more'}
 			<CodeExecution
 				saveHandler={async () => {
-					toast.success($i18n.t('Settings saved successfully!'));
-
+					// confirmation is the in-button green ✓ flash (see CodeExecution.svelte)
 					await tick();
 					await config.set(await getBackendConfig());
 				}}
 			/>
 		{:else if selectedTab === 'interface'}
 			<Interface
-				on:save={() => {
-					toast.success($i18n.t('Settings saved successfully!'));
+				on:save={async () => {
+					// confirmation is the in-button green ✓ flash (see Interface.svelte)
+					await tick();
+					await config.set(await getBackendConfig());
 				}}
 			/>
 		{:else if selectedTab === 'images'}
 			<Images
-				on:save={() => {
-					toast.success($i18n.t('Settings saved successfully!'));
+				on:save={async () => {
+					// confirmation is the in-button green ✓ flash (see Images.svelte)
+					await tick();
+					await config.set(await getBackendConfig());
 				}}
 			/>
 		{:else if selectedTab === 'db'}
 			<Database
-				saveHandler={() => {
-					toast.success($i18n.t('Settings saved successfully!'));
+				saveHandler={async () => {
+					// confirmation is the in-button green ✓ flash (see Database.svelte)
+					await tick();
+					await config.set(await getBackendConfig());
 				}}
 			/>
 		{:else if selectedTab === 'pipelines'}
 			<Pipelines
-				saveHandler={() => {
-					toast.success($i18n.t('Settings saved successfully!'));
+				saveHandler={async () => {
+					// confirmation is the in-button green ✓ flash (see Pipelines.svelte)
+					await tick();
+					await config.set(await getBackendConfig());
 				}}
 			/>
 		{/if}

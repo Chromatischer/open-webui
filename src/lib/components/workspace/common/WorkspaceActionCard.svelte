@@ -16,14 +16,14 @@
 
 <div class="action-card">
 	<button type="button" class="half new" on:click={onNew}>
-		<div class="glyph"><Plus className="size-4" strokeWidth="2.5" /></div>
+		<div class="glyph"><Plus className="size-4" strokeWidth="2" /></div>
 		<div class="lbl">{newLabel}</div>
 		<div class="sub">{newSub}</div>
 	</button>
 
 	{#if showImport}
 		<button type="button" class="half imp" on:click={onImport}>
-			<div class="glyph"><ArrowUpTray className="size-4" strokeWidth="2" /></div>
+			<div class="glyph"><ArrowUpTray className="size-4" strokeWidth="1.8" /></div>
 			<div class="lbl">{importLabel}</div>
 			<div class="sub">{importSub}</div>
 		</button>
@@ -35,16 +35,13 @@
 		display: flex;
 		flex-direction: row;
 		overflow: hidden;
-		border: 1px solid var(--border);
-		background: var(--surface);
-		border-radius: 16px;
-		transition:
-			box-shadow 0.2s ease,
-			border-color 0.2s ease;
+		border: 1px dashed var(--rule);
+		background: transparent;
+		border-radius: 14px;
+		transition: border-color 0.25s ease;
 	}
 	.action-card:hover {
-		border-color: var(--border-hover);
-		box-shadow: 0 4px 14px var(--shadow-color);
+		border-color: color-mix(in srgb, var(--vermilion) 45%, var(--rule));
 	}
 
 	.half {
@@ -52,44 +49,48 @@
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
-		gap: 8px;
+		gap: 5px;
 		padding: 18px 10px;
 		cursor: pointer;
-		color: var(--text);
+		color: var(--ink-2);
 		background: transparent;
 		border: none;
 		flex-basis: 0;
 		transition:
 			flex-grow 0.45s cubic-bezier(0.22, 1, 0.36, 1),
-			background 0.22s ease,
-			color 0.22s ease,
+			background 0.25s ease,
+			color 0.25s ease,
 			transform 0.15s ease;
 	}
 	.half:active {
 		transform: scale(0.97);
 	}
 	.half + .half {
-		border-left: 1px solid var(--border);
+		border-left: 1px dashed var(--rule);
 	}
 
 	.glyph {
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		width: 36px;
-		height: 36px;
-		border-radius: 11px;
+		width: 30px;
+		height: 30px;
+		color: var(--ink-3);
 		transition:
-			background 0.2s ease,
-			color 0.2s ease;
+			color 0.2s ease,
+			transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
 	}
 	.lbl {
-		font-weight: 600;
-		font-size: 13px;
+		font-family: var(--serif);
+		font-style: italic;
+		font-size: 15.5px;
+		font-weight: 400;
+		line-height: 1.2;
 	}
 	.sub {
-		font-size: 11px;
-		color: var(--text-tertiary);
+		font-family: var(--mono);
+		font-size: 12px;
+		color: var(--ink-3);
 		transition: color 0.2s ease;
 	}
 
@@ -104,29 +105,19 @@
 		flex-grow: 9;
 	}
 
-	/* New: idle = dark glyph on surface; hover = full negative (invert) */
-	.half.new .glyph {
-		background: var(--text);
-		color: var(--bg-elevated);
-	}
+	/* New: the press invites — vermilion ink wash, the cross turns */
 	.half.new:hover {
-		background: var(--text);
-		color: var(--bg-elevated);
+		background: var(--vermilion-soft);
+		color: var(--vermilion);
 	}
 	.half.new:hover .glyph {
-		background: var(--bg-elevated);
-		color: var(--text);
-	}
-	.half.new:hover .sub {
-		color: rgba(255, 255, 255, 0.6);
+		color: var(--vermilion);
+		transform: rotate(90deg);
 	}
 
-	/* Import: quieter, fills surface tint on hover */
-	.half.imp .glyph {
-		background: var(--surface-active);
-		color: var(--text-secondary);
-	}
+	/* Import: quieter, an ink-wash on hover */
 	.half.imp:hover {
-		background: var(--surface-hover);
+		background: var(--rule-faint);
+		color: var(--ink);
 	}
 </style>

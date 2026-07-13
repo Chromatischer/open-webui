@@ -3,6 +3,8 @@ export interface EdgeSwipeConfig {
 	edge: 'left' | 'right';
 	/** Whether the gesture is currently active (e.g. only on mobile). */
 	enabled: () => boolean;
+	/** Current open state of the drawer. */
+	isOpen: () => boolean;
 	/** Open (true) or close (false) the drawer. */
 	setOpen: (open: boolean) => void;
 	/** How close to the edge (px) the gesture must start to count. */
@@ -14,10 +16,15 @@ export interface EdgeSwipeConfig {
 /**
  * Shared edge-swipe logic for the left sidebar and right scratchboard drawers.
  *
- * A gesture that starts within `edgeThreshold` of the anchored edge and travels
- * far enough toggles the drawer: swiping *away* from the edge opens it, swiping
- * *back* toward the edge closes it. The result is idempotent, so it is safe to
- * evaluate both edges for every gesture regardless of current drawer state.
+ * Opening is an edge gesture: it must start within `edgeThreshold` of the
+ * anchored edge and travel *away* from it. Closing is more forgiving — once the
+ * drawer is open, a swipe back *toward* the anchored edge from anywhere on
+ * screen closes it (you grab the revealed drawer, not just its rim).
+ *
+ * Each gesture is still evaluated against both edges; callers gate `enabled` so
+ * the two drawers never fight (e.g. the scratchboard's open gesture is disabled
+ * while the sidebar is open), and the open/close split keeps a close swipe from
+ * doubling as the opposite drawer's open swipe.
  */
 export function handleEdgeSwipe(config: EdgeSwipeConfig, start: Touch, end: Touch): void {
 	if (!config.enabled()) return;
@@ -30,14 +37,25 @@ export function handleEdgeSwipe(config: EdgeSwipeConfig, start: Touch, end: Touc
 	if (swipeDistance < screenWidth / distanceDivisor) return;
 
 	const movedRight = end.screenX > start.screenX;
+	const open = config.isOpen();
 
 	if (config.edge === 'left') {
-		// Left-anchored: gesture must start near the left edge.
-		if (start.clientX > edgeThreshold) return;
-		config.setOpen(movedRight); // swipe right opens, swipe left closes
+		if (open) {
+			// Closing: swipe back toward the left edge, from anywhere.
+			if (!movedRight) config.setOpen(false);
+		} else {
+			// Opening: start near the left edge and travel right.
+			if (start.clientX > edgeThreshold) return;
+			if (movedRight) config.setOpen(true);
+		}
 	} else {
-		// Right-anchored: gesture must start near the right edge.
-		if (start.clientX < screenWidth - edgeThreshold) return;
-		config.setOpen(!movedRight); // swipe left opens, swipe right closes
+		if (open) {
+			// Closing: swipe back toward the right edge, from anywhere.
+			if (movedRight) config.setOpen(false);
+		} else {
+			// Opening: start near the right edge and travel left.
+			if (start.clientX < screenWidth - edgeThreshold) return;
+			if (!movedRight) config.setOpen(true);
+		}
 	}
 }

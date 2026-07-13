@@ -26,10 +26,8 @@ from open_webui.retrieval.vector.factory import VECTOR_DB_CLIENT
 
 from open_webui.models.users import UserModel
 from open_webui.models.files import Files
-from open_webui.models.knowledge import Knowledges
 
 from open_webui.models.chats import Chats
-from open_webui.models.notes import Notes
 from open_webui.models.access_grants import AccessGrants
 from open_webui.utils.access_control.files import has_access_to_file
 
@@ -1071,10 +1069,7 @@ async def filter_accessible_collections(
       - user-memory-*   → must match user's own memory collection
       - web-search-*    → ephemeral per-query collections, always allowed
       - knowledge-bases → always denied (system meta-collection)
-      - everything else → if the name matches a knowledge base, validated
-                          via Knowledges.check_access_by_user_id; if no
-                          such KB exists, the name is treated as an
-                          ephemeral/legacy collection and allowed
+      - everything else → treated as an ephemeral/legacy collection and allowed
     """
     if user.role == 'admin':
         return collection_names
@@ -1097,15 +1092,9 @@ async def filter_accessible_collections(
             # results scoped to the requesting user's session.
             validated.add(name)
         else:
-            # May be a knowledge-base ID or a legacy/ephemeral collection.
-            # If it IS a KB, enforce access control.  If no such KB
-            # exists, treat it as a non-sensitive collection (e.g. legacy
-            # model knowledge, process_text SHA256 collections) and allow.
-            if await Knowledges.check_access_by_user_id(name, user.id, permission=access_type):
-                validated.add(name)
-            elif not await Knowledges.get_knowledge_by_id(name):
-                # Not a KB at all — legacy/ephemeral collection, allow
-                validated.add(name)
+            # Legacy/ephemeral collection (e.g. process_text SHA256
+            # collections) — not sensitive, allow.
+            validated.add(name)
     return validated
 
 
@@ -1161,26 +1150,6 @@ async def get_sources_from_items(
                         'documents': [[item.get('content')]],
                         'metadatas': [[{'file_id': item.get('id'), 'name': item.get('name')}]],
                     }
-
-        elif item.get('type') == 'note':
-            # Note Attached
-            note = await Notes.get_note_by_id(item.get('id'))
-
-            if note and (
-                user.role == 'admin'
-                or note.user_id == user.id
-                or await AccessGrants.has_access(
-                    user_id=user.id,
-                    resource_type='note',
-                    resource_id=note.id,
-                    permission='read',
-                )
-            ):
-                # User has access to the note
-                query_result = {
-                    'documents': [[note.data.get('content', {}).get('md', '')]],
-                    'metadatas': [[{'file_id': note.id, 'name': note.title}]],
-                }
 
         elif item.get('type') == 'chat':
             # Chat Attached
@@ -1252,56 +1221,6 @@ async def get_sources_from_items(
                     collection_names.append(f'{item["id"]}')
                 else:
                     collection_names.append(f'file-{item["id"]}')
-
-        elif item.get('type') == 'collection':
-            # Manual Full Mode Toggle for Collection
-            knowledge_base = await Knowledges.get_knowledge_by_id(item.get('id'))
-
-            if knowledge_base and (
-                user.role == 'admin'
-                or knowledge_base.user_id == user.id
-                or await AccessGrants.has_access(
-                    user_id=user.id,
-                    resource_type='knowledge',
-                    resource_id=knowledge_base.id,
-                    permission='read',
-                )
-            ):
-                if item.get('context') == 'full' or request.app.state.config.BYPASS_EMBEDDING_AND_RETRIEVAL:
-                    if knowledge_base and (
-                        user.role == 'admin'
-                        or knowledge_base.user_id == user.id
-                        or await AccessGrants.has_access(
-                            user_id=user.id,
-                            resource_type='knowledge',
-                            resource_id=knowledge_base.id,
-                            permission='read',
-                        )
-                    ):
-                        files = await Knowledges.get_files_by_id(knowledge_base.id)
-
-                        documents = []
-                        metadatas = []
-                        for file in files:
-                            documents.append(file.data.get('content', ''))
-                            metadatas.append(
-                                {
-                                    'file_id': file.id,
-                                    'name': file.filename,
-                                    'source': file.filename,
-                                }
-                            )
-
-                        query_result = {
-                            'documents': [documents],
-                            'metadatas': [metadatas],
-                        }
-                else:
-                    # Fallback to collection names
-                    if item.get('legacy'):
-                        collection_names = item.get('collection_names', [])
-                    else:
-                        collection_names.append(item['id'])
 
         elif item.get('docs'):
             # BYPASS_WEB_SEARCH_EMBEDDING_AND_RETRIEVAL

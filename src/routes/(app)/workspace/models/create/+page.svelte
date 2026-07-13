@@ -8,7 +8,7 @@
 	import { createNewModel, getModelById } from '$lib/apis/models';
 	import { getModels } from '$lib/apis';
 
-	import ModelWizard from '$lib/components/workspace/Models/ModelWizard.svelte';
+	import ModelFolio from '$lib/components/workspace/Models/ModelFolio.svelte';
 
 	const i18n = getContext('i18n');
 
@@ -50,7 +50,6 @@
 						$config?.features?.enable_direct_connections && ($settings?.directConnections ?? null)
 					)
 				);
-				toast.success($i18n.t('Model created successfully!'));
 				await goto('/workspace/models');
 			}
 		}
@@ -98,5 +97,5 @@
 </script>
 
 {#key model}
-	<ModelWizard {model} {onSubmit} onClose={() => goto('/workspace/models')} />
+	<ModelFolio {model} {onSubmit} onClose={() => goto('/workspace/models')} />
 {/key}

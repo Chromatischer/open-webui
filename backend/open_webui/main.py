@@ -85,9 +85,7 @@ from open_webui.routers import (
     pipelines,
     tasks,
     auths,
-    channels,
     chats,
-    notes,
     folders,
     configs,
     groups,
@@ -95,8 +93,6 @@ from open_webui.routers import (
     functions,
     memories,
     models,
-    knowledge,
-    prompts,
     evaluations,
     skills,
     tools,
@@ -104,8 +100,6 @@ from open_webui.routers import (
     utils,
     scim,
     terminals,
-    automations,
-    calendar,
 )
 
 from open_webui.routers.retrieval import (
@@ -409,12 +403,6 @@ from open_webui.config import (
     API_KEYS_ALLOWED_ENDPOINTS,
     ENABLE_FOLDERS,
     FOLDER_MAX_FILE_COUNT,
-    ENABLE_AUTOMATIONS,
-    AUTOMATION_MAX_COUNT,
-    AUTOMATION_MIN_INTERVAL,
-    ENABLE_CHANNELS,
-    ENABLE_CALENDAR,
-    ENABLE_NOTES,
     ENABLE_USER_STATUS,
     ENABLE_COMMUNITY_SHARING,
     ENABLE_MESSAGE_RATING,
@@ -694,10 +682,6 @@ async def lifespan(app: FastAPI):
     asyncio.create_task(periodic_usage_pool_cleanup())
     asyncio.create_task(periodic_session_pool_cleanup())
 
-    from open_webui.utils.automations import scheduler_worker_loop
-
-    asyncio.create_task(scheduler_worker_loop(app))
-
     if app.state.config.ENABLE_BASE_MODELS_CACHE:
         try:
             await get_all_models(
@@ -929,12 +913,6 @@ app.state.config.BANNERS = WEBUI_BANNERS
 
 app.state.config.ENABLE_FOLDERS = ENABLE_FOLDERS
 app.state.config.FOLDER_MAX_FILE_COUNT = FOLDER_MAX_FILE_COUNT
-app.state.config.ENABLE_AUTOMATIONS = ENABLE_AUTOMATIONS
-app.state.config.AUTOMATION_MAX_COUNT = AUTOMATION_MAX_COUNT
-app.state.config.AUTOMATION_MIN_INTERVAL = AUTOMATION_MIN_INTERVAL
-app.state.config.ENABLE_CHANNELS = ENABLE_CHANNELS
-app.state.config.ENABLE_CALENDAR = ENABLE_CALENDAR
-app.state.config.ENABLE_NOTES = ENABLE_NOTES
 app.state.config.ENABLE_COMMUNITY_SHARING = ENABLE_COMMUNITY_SHARING
 app.state.config.ENABLE_MESSAGE_RATING = ENABLE_MESSAGE_RATING
 app.state.config.ENABLE_USER_WEBHOOKS = ENABLE_USER_WEBHOOKS
@@ -1457,14 +1435,10 @@ app.include_router(auths.router, prefix='/api/v1/auths', tags=['auths'])
 app.include_router(users.router, prefix='/api/v1/users', tags=['users'])
 
 
-app.include_router(channels.router, prefix='/api/v1/channels', tags=['channels'])
 app.include_router(chats.router, prefix='/api/v1/chats', tags=['chats'])
-app.include_router(notes.router, prefix='/api/v1/notes', tags=['notes'])
 
 
 app.include_router(models.router, prefix='/api/v1/models', tags=['models'])
-app.include_router(knowledge.router, prefix='/api/v1/knowledge', tags=['knowledge'])
-app.include_router(prompts.router, prefix='/api/v1/prompts', tags=['prompts'])
 app.include_router(tools.router, prefix='/api/v1/tools', tags=['tools'])
 app.include_router(skills.router, prefix='/api/v1/skills', tags=['skills'])
 
@@ -1478,8 +1452,6 @@ if ENABLE_ADMIN_ANALYTICS:
     app.include_router(analytics.router, prefix='/api/v1/analytics', tags=['analytics'])
 app.include_router(utils.router, prefix='/api/v1/utils', tags=['utils'])
 app.include_router(terminals.router, prefix='/api/v1/terminals', tags=['terminals'])
-app.include_router(automations.router, prefix='/api/v1/automations', tags=['automations'])
-app.include_router(calendar.router, prefix='/api/v1/calendars', tags=['calendars'])
 
 # SCIM 2.0 API for identity management
 if ENABLE_SCIM:
@@ -2017,7 +1989,29 @@ async def chat_completion(
                     error_body = json.loads(response.body.decode('utf-8', 'replace'))
                     detail = error_body.get('error', error_body) if isinstance(error_body, dict) else error_body
                     if isinstance(detail, dict):
-                        detail = detail.get('message', detail.get('detail', str(detail)))
+                        message = detail.get('message', detail.get('detail'))
+                        metadata = detail.get('metadata')
+                        metadata_detail = metadata if isinstance(metadata, dict) else {}
+                        context = [
+                            f'HTTP {response.status_code}',
+                            *(
+                                f'{key}: {detail[key]}'
+                                for key in ('type', 'code', 'param')
+                                if detail.get(key) is not None
+                            ),
+                            *(
+                                f'{key}: {metadata_detail[key]}'
+                                for key in ('error_type', 'provider_code', 'provider_name', 'model_slug')
+                                if metadata_detail.get(key) is not None
+                            ),
+                        ]
+                        if metadata_detail.get('reasons'):
+                            context.append(f'reasons: {", ".join(map(str, metadata_detail["reasons"]))}')
+                        if metadata_detail.get('patterns'):
+                            context.append(f'patterns: {", ".join(map(str, metadata_detail["patterns"]))}')
+                        detail = f'{message or json.dumps(detail, ensure_ascii=False)} ({", ".join(context)})'
+                    else:
+                        detail = f'{detail} (HTTP {response.status_code})'
                 except Exception:
                     detail = f'Provider returned HTTP {response.status_code}'
                 raise Exception(detail)
@@ -2402,10 +2396,6 @@ async def get_app_config(request: Request):
                     'enable_direct_connections': app.state.config.ENABLE_DIRECT_CONNECTIONS,
                     'enable_folders': app.state.config.ENABLE_FOLDERS,
                     'folder_max_file_count': app.state.config.FOLDER_MAX_FILE_COUNT,
-                    'enable_channels': app.state.config.ENABLE_CHANNELS,
-                    'enable_calendar': app.state.config.ENABLE_CALENDAR,
-                    'enable_automations': app.state.config.ENABLE_AUTOMATIONS,
-                    'enable_notes': app.state.config.ENABLE_NOTES,
                     'enable_web_search': app.state.config.ENABLE_WEB_SEARCH,
                     'enable_code_execution': app.state.config.ENABLE_CODE_EXECUTION,
                     'enable_code_interpreter': app.state.config.ENABLE_CODE_INTERPRETER,
@@ -2550,7 +2540,7 @@ async def get_app_latest_release_version(user=Depends(get_verified_user)):
         timeout = aiohttp.ClientTimeout(total=1)
         async with aiohttp.ClientSession(timeout=timeout, trust_env=True) as session:
             async with session.get(
-                'https://api.github.com/repos/open-webui/open-webui/releases/latest',
+                'https://api.github.com/repos/Chromatischer/open-webui/releases/latest',
                 ssl=AIOHTTP_CLIENT_SESSION_SSL,
             ) as response:
                 response.raise_for_status()

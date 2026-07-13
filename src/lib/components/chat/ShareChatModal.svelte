@@ -2,7 +2,6 @@
 	import { getContext } from 'svelte';
 	import { models, config } from '$lib/stores';
 
-	import { toast } from 'svelte-sonner';
 	import { deleteSharedChatById, getChatById } from '$lib/apis/chats';
 
 	import Modal from '../common/Modal.svelte';
@@ -17,7 +16,6 @@
 		const _chat = chat.chat;
 		console.log('share', _chat);
 
-		toast.success($i18n.t('Redirecting you to Open WebUI Community'));
 		const url = 'https://openwebui.com';
 		// const url = 'http://localhost:5173';
 

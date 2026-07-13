@@ -1,6 +1,7 @@
 <script lang="ts">
-	import { toast } from 'svelte-sonner';
 	import { getContext, onMount } from 'svelte';
+	import { confirmButton } from '$lib/utils/confirmButton';
+	import { inlineError } from '$lib/utils/inlineError';
 	const i18n = getContext('i18n');
 
 	import { settings } from '$lib/stores';
@@ -38,6 +39,9 @@
 	let showAccessControlModal = false;
 	let showDeleteConfirmDialog = false;
 	let accessGrants: any[] = [];
+
+	let verifyBtn: HTMLButtonElement;
+	let submitBtn: HTMLButtonElement;
 
 	// Policy / auto-detect state
 	let serverType: 'orchestrator' | 'terminal' | null = null;
@@ -108,7 +112,7 @@
 	const verifyHandler = async () => {
 		const _url = url.replace(/\/$/, '');
 		if (!_url) {
-			toast.error($i18n.t('Please enter a valid URL'));
+			inlineError(verifyBtn, $i18n.t('Please enter a valid URL'));
 			return;
 		}
 
@@ -125,11 +129,9 @@
 
 				if (type) {
 					serverType = type;
-					toast.success(
-						$i18n.t('Connected ({{type}})', {
-							type: type === 'orchestrator' ? 'Orchestrator' : 'Terminal'
-						})
-					);
+					confirmButton(verifyBtn, {
+						label: type === 'orchestrator' ? $i18n.t('Orchestrator') : $i18n.t('Terminal')
+					});
 					// Default policy_id to connection id when orchestrator detected
 					if (type === 'orchestrator' && !policyId) {
 						policyId =
@@ -143,20 +145,20 @@
 					}
 				} else {
 					serverType = null;
-					toast.error($i18n.t('Server connection failed'));
+					inlineError(verifyBtn, $i18n.t('Server connection failed'));
 				}
 			} else {
 				// Direct connection: verify from browser
 				const res = await getTerminalConfig(_url, key);
 				if (res) {
-					toast.success($i18n.t('Server connection verified'));
+					confirmButton(verifyBtn, { label: $i18n.t('Verified') });
 				} else {
-					toast.error($i18n.t('Server connection failed'));
+					inlineError(verifyBtn, $i18n.t('Server connection failed'));
 				}
 			}
 		} catch {
 			serverType = null;
-			toast.error($i18n.t('Server connection failed'));
+			inlineError(verifyBtn, $i18n.t('Server connection failed'));
 		} finally {
 			verifying = false;
 		}
@@ -193,7 +195,7 @@
 
 	const submitHandler = async () => {
 		if (url === '') {
-			toast.error($i18n.t('Please enter a valid URL'));
+			inlineError(submitBtn, $i18n.t('Please enter a valid URL'));
 			return;
 		}
 
@@ -205,7 +207,7 @@
 			try {
 				await putOrchestratorPolicy(localStorage.token, url, key, policyId, buildPolicyData());
 			} catch (err) {
-				toast.error($i18n.t('Failed to save policy: {{error}}', { error: err }));
+				inlineError(submitBtn, $i18n.t('Failed to save policy: {{error}}', { error: err }));
 				return;
 			}
 		}
@@ -329,6 +331,7 @@
 							<Tooltip content={$i18n.t('Verify Connection')} className="self-end -mb-1">
 								<button
 									class="self-center p-1 bg-transparent hover:bg-gray-100 dark:hover:bg-gray-850 rounded-lg transition"
+									bind:this={verifyBtn}
 									on:click={() => {
 										verifyHandler();
 									}}
@@ -726,6 +729,7 @@
 
 							<button
 								class="px-3.5 py-1.5 text-sm font-medium bg-black hover:bg-gray-900 text-white dark:bg-white dark:text-black dark:hover:bg-gray-100 transition rounded-full flex flex-row space-x-1 items-center"
+								bind:this={submitBtn}
 								type="submit"
 							>
 								{$i18n.t('Save')}

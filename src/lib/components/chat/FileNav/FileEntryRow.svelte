@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { toast } from 'svelte-sonner';
+	import { confirmButton } from '$lib/utils/confirmButton';
 	import { getContext, tick, onDestroy } from 'svelte';
 	import { formatFileSize } from '$lib/utils';
 	import type { FileEntry } from '$lib/apis/terminal';
@@ -340,12 +340,13 @@
 						class="select-none flex rounded-xl py-1.5 px-3 w-full hover:bg-gray-50 dark:hover:bg-gray-800 transition items-center gap-2 text-sm"
 						on:click={(e) => {
 							e.stopPropagation();
+							const el = e.currentTarget as HTMLElement;
 							const path =
 								entry.type === 'directory'
 									? `${currentPath}${entry.name}/`
 									: `${currentPath}${entry.name}`;
 							navigator.clipboard.writeText(path).then(() => {
-								toast.success($i18n.t('Path copied'));
+								confirmButton(el, { label: $i18n.t('Copied') });
 							});
 						}}
 					>

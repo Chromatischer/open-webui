@@ -46,8 +46,7 @@ const parsePngText = (arrayBuffer) => {
 	const chunks = readPngChunks(new Uint8Array(arrayBuffer));
 
 	const textChunk = chunks
-		.filter((chunk) => chunk.type === 'tEXt')
-		.map((chunk) => decodeTextChunk(chunk.data))
+		.flatMap((chunk) => (chunk.type === 'tEXt' ? [decodeTextChunk(chunk.data)] : []))
 		.find((entry) => entry.keyword === textChunkKeyword);
 
 	if (!textChunk) {

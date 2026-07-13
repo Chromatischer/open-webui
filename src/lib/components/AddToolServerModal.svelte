@@ -5,6 +5,8 @@
 	const { saveAs } = fileSaver;
 
 	import { toast } from 'svelte-sonner';
+	import { confirmButton } from '$lib/utils/confirmButton';
+	import { inlineError } from '$lib/utils/inlineError';
 	import { getContext, onMount } from 'svelte';
 	const i18n = getContext('i18n');
 
@@ -68,19 +70,23 @@
 	let showAccessControlModal = false;
 	let showDeleteConfirmDialog = false;
 
+	let verifyBtn: HTMLButtonElement;
+	let registerBtn: HTMLButtonElement;
+	let saveBtn: HTMLButtonElement;
+
 	const registerOAuthClientHandler = async () => {
 		if (url === '') {
-			toast.error($i18n.t('Please enter a valid URL'));
+			inlineError(registerBtn, $i18n.t('Please enter a valid URL'));
 			return;
 		}
 
 		if (id === '') {
-			toast.error($i18n.t('Please enter a valid ID'));
+			inlineError(registerBtn, $i18n.t('Please enter a valid ID'));
 			return;
 		}
 
 		if (auth_type === 'oauth_2.1_static' && (!oauthClientId || !oauthClientSecret)) {
-			toast.error($i18n.t('Please enter Client ID and Client Secret'));
+			inlineError(registerBtn, $i18n.t('Please enter Client ID and Client Secret'));
 			return;
 		}
 
@@ -101,7 +107,7 @@
 		};
 
 		const res = await registerOAuthClient(localStorage.token, formData, 'mcp').catch((err) => {
-			toast.error($i18n.t('Registration failed'));
+			inlineError(registerBtn, $i18n.t('Registration failed'));
 			return null;
 		});
 
@@ -111,7 +117,6 @@
 					'Please save the connection to persist the OAuth client information and do not change the ID'
 				)
 			);
-			toast.success($i18n.t('Registration successful'));
 
 			console.debug('Registration successful', res);
 			oauthClientInfo = res?.oauth_client_info ?? null;
@@ -120,18 +125,18 @@
 
 	const verifyHandler = async () => {
 		if (url === '') {
-			toast.error($i18n.t('Please enter a valid URL'));
+			inlineError(verifyBtn, $i18n.t('Please enter a valid URL'));
 			return;
 		}
 
 		if (['openapi', ''].includes(type)) {
 			if (spec_type === 'json' && spec === '') {
-				toast.error($i18n.t('Please enter a valid JSON spec'));
+				inlineError(verifyBtn, $i18n.t('Please enter a valid JSON spec'));
 				return;
 			}
 
 			if (spec_type === 'url' && path === '') {
-				toast.error($i18n.t('Please enter a valid path'));
+				inlineError(verifyBtn, $i18n.t('Please enter a valid path'));
 				return;
 			}
 		}
@@ -145,7 +150,7 @@
 				}
 				headers = JSON.stringify(_headers, null, 2);
 			} catch (error) {
-				toast.error($i18n.t('Headers must be a valid JSON object'));
+				inlineError(verifyBtn, $i18n.t('Headers must be a valid JSON object'));
 				return;
 			}
 		}
@@ -155,11 +160,11 @@
 				auth_type === 'bearer' ? key : localStorage.token,
 				path.includes('://') ? path : `${url}${path.startsWith('/') ? '' : '/'}${path}`
 			).catch((err) => {
-				toast.error($i18n.t('Connection failed'));
+				inlineError(verifyBtn, $i18n.t('Connection failed'));
 			});
 
 			if (res) {
-				toast.success($i18n.t('Connection successful'));
+				confirmButton(verifyBtn, { label: $i18n.t('Connected') });
 				console.debug('Connection successful', res);
 			}
 		} else {
@@ -180,11 +185,11 @@
 					description
 				}
 			}).catch((err) => {
-				toast.error($i18n.t('Connection failed'));
+				inlineError(verifyBtn, $i18n.t('Connection failed'));
 			});
 
 			if (res) {
-				toast.success($i18n.t('Connection successful'));
+				confirmButton(verifyBtn, { label: $i18n.t('Connected') });
 				console.debug('Connection successful', res);
 			}
 		}
@@ -231,8 +236,6 @@
 					enable = data.config.enable ?? true;
 					accessGrants = data.config.access_grants ?? [];
 				}
-
-				toast.success($i18n.t('Import successful'));
 			} catch (error) {
 				toast.error($i18n.t('Please select a valid JSON file'));
 			}
@@ -280,7 +283,7 @@
 			url = url.replace(/\/$/, '');
 		}
 		if (id.includes(':') || id.includes('|')) {
-			toast.error($i18n.t('ID cannot contain ":" or "|" characters'));
+			inlineError(saveBtn, $i18n.t('ID cannot contain ":" or "|" characters'));
 			loading = false;
 			return;
 		}
@@ -290,7 +293,7 @@
 			['oauth_2.1', 'oauth_2.1_static'].includes(auth_type) &&
 			!oauthClientInfo
 		) {
-			toast.error($i18n.t('Please register the OAuth client'));
+			inlineError(saveBtn, $i18n.t('Please register the OAuth client'));
 			loading = false;
 			return;
 		}
@@ -301,7 +304,7 @@
 				const specJSON = JSON.parse(spec);
 				spec = JSON.stringify(specJSON, null, 2);
 			} catch (e) {
-				toast.error($i18n.t('Please enter a valid JSON spec'));
+				inlineError(saveBtn, $i18n.t('Please enter a valid JSON spec'));
 				loading = false;
 				return;
 			}
@@ -315,7 +318,7 @@
 				}
 				headers = JSON.stringify(_headers, null, 2);
 			} catch (error) {
-				toast.error($i18n.t('Headers must be a valid JSON object'));
+				inlineError(saveBtn, $i18n.t('Headers must be a valid JSON object'));
 				loading = false;
 				return;
 			}
@@ -600,6 +603,7 @@
 										className="shrink-0 flex items-center mr-1"
 									>
 										<button
+											bind:this={verifyBtn}
 											class="self-center p-1 bg-transparent hover:bg-gray-100 dark:hover:bg-gray-850 rounded-lg transition"
 											on:click={() => {
 												verifyHandler();
@@ -651,6 +655,7 @@
 														: $i18n.t('Register Client')}
 												>
 													<button
+														bind:this={registerBtn}
 														class=" text-xs underline dark:text-gray-500 dark:hover:text-gray-200 text-gray-700 hover:text-gray-900 transition"
 														type="button"
 														on:click={() => {
@@ -964,6 +969,7 @@
 							class="px-3.5 py-1.5 text-sm font-medium bg-black hover:bg-gray-900 text-white dark:bg-white dark:text-black dark:hover:bg-gray-100 transition rounded-full flex items-center gap-2 whitespace-nowrap {loading
 								? ' cursor-not-allowed'
 								: ''}"
+							bind:this={saveBtn}
 							type="submit"
 							disabled={loading}
 						>

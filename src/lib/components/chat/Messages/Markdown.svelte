@@ -9,6 +9,7 @@
 	import { disableSingleTilde } from '$lib/utils/marked/strikethrough-extension';
 	import { mentionExtension } from '$lib/utils/marked/mention-extension';
 	import colonFenceExtension from '$lib/utils/marked/colon-fence-extension';
+	import markExtension from '$lib/utils/marked/mark-extension';
 
 	import MarkdownTokens from './Markdown/MarkdownTokens.svelte';
 	import footnoteExtension from '$lib/utils/marked/footnote-extension';
@@ -51,6 +52,7 @@
 	marked.use(citationExtension(options));
 	marked.use(footnoteExtension(options));
 	marked.use(colonFenceExtension(options));
+	marked.use(markExtension());
 	marked.use(disableSingleTilde);
 	marked.use({
 		extensions: [

@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { toast } from 'svelte-sonner';
+	import { inlineConfirm } from '$lib/utils/inlineConfirm';
 	import dayjs from 'dayjs';
 
 	import { createEventDispatcher, onDestroy } from 'svelte';
@@ -301,7 +302,7 @@
 
 		const res = await _copyToClipboard(text, null, $settings?.copyFormatted ?? false);
 		if (res) {
-			toast.success($i18n.t('Copying to clipboard was successful!'));
+			inlineConfirm($i18n.t('Copying to clipboard was successful!'));
 		}
 	};
 

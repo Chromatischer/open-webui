@@ -27,7 +27,6 @@
 		});
 
 		if (res) {
-			toast.success($i18n.t('Group updated successfully'));
 			setGroups();
 		}
 	};
@@ -39,7 +38,6 @@
 		});
 
 		if (res) {
-			toast.success($i18n.t('Group deleted successfully'));
 			setGroups();
 		}
 	};

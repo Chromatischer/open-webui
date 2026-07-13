@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { copyToClipboard, unescapeHtml } from '$lib/utils';
-	import { toast } from 'svelte-sonner';
+	import { inlineConfirm } from '$lib/utils/inlineConfirm';
 
 	import { getContext } from 'svelte';
 
@@ -16,6 +16,6 @@
 	class="codespan cursor-pointer {!done ? 'fade-in-token' : ''}"
 	on:click={() => {
 		copyToClipboard(unescapeHtml(token.text));
-		toast.success($i18n.t('Copied to clipboard'));
+		inlineConfirm($i18n.t('Copied to clipboard'));
 	}}>{unescapeHtml(token.text)}</code
 >

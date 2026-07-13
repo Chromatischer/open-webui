@@ -47,15 +47,20 @@
 		showFileNavDir,
 		chatRequestQueues,
 		desktopEvent,
-		scratchboardContent as scratchboardContentStore
+		scratchboardContent as scratchboardContentStore,
+		scratchboardAgentWriting,
+		showScratchboard
 	} from '$lib/stores';
 
 	import { WEBUI_API_BASE_URL } from '$lib/constants';
 
 	import {
 		convertMessagesToHistory,
+		convertHeicToJpeg,
+		compressImage,
 		copyToClipboard,
 		createMessagesList,
+		extractContentFromFile,
 		getPromptVariables,
 		processDetails,
 		getCodeBlockContents,
@@ -93,19 +98,12 @@
 	import { getFunctions } from '$lib/apis/functions';
 	import { updateFolderById } from '$lib/apis/folders';
 
-	import Banner from '../common/Banner.svelte';
-	import MessageInput from '$lib/components/chat/MessageInput.svelte';
-	import Messages from '$lib/components/chat/Messages.svelte';
-	import Navbar from '$lib/components/chat/Navbar.svelte';
+	import Folio from '$lib/components/chat/Folio.svelte';
 	import EventConfirmDialog from '../common/ConfirmDialog.svelte';
 	import DeleteConfirmDialog from '../common/ConfirmDialog.svelte';
-	import Placeholder from './Placeholder.svelte';
 	import FilesOverlay from './MessageInput/FilesOverlay.svelte';
 	import NotificationToast from '../NotificationToast.svelte';
 	import Spinner from '../common/Spinner.svelte';
-	import Tooltip from '../common/Tooltip.svelte';
-	import Sidebar from '../icons/Sidebar.svelte';
-	import Image from '../common/Image.svelte';
 	import { getBanners } from '$lib/apis/configs';
 
 	export let chatIdProp = '';
@@ -113,15 +111,7 @@
 	let loading = true;
 
 	const eventTarget = new EventTarget();
-	let messageInput: MessageInput | undefined;
-	let messagesRef: Messages | undefined;
-
-	let autoScroll = true;
-	let isNearTop = true;
 	let processing = '';
-	let messagesContainerElement: HTMLDivElement;
-
-	let navbarElement;
 
 	let showEventConfirmation = false;
 	let eventConfirmationTitle = '';
@@ -131,6 +121,10 @@
 	let eventConfirmationInputValue = '';
 	let eventConfirmationInputType = '';
 	let eventCallback = null;
+
+	// The agent's ask_user tool: a structured question that replaces the composer
+	// (the Folio edge) until the user answers, then returns the answer to the tool.
+	let pendingQuestion = null;
 
 	let selectedModels = [''];
 	let atSelectedModel: Model | undefined;
@@ -195,7 +189,6 @@
 		loading = true;
 
 		prompt = '';
-		messageInput?.setText('');
 
 		files = [];
 		selectedToolIds = [];
@@ -210,8 +203,6 @@
 		if (chatIdProp && (await loadChat())) {
 			await tick();
 			loading = false;
-			window.setTimeout(() => scrollToBottom(), 0);
-
 			await tick();
 
 			// Mark chat read when initially loading it
@@ -231,7 +222,6 @@
 					const input = JSON.parse(storageChatInput);
 
 					if (!$temporaryChatEnabled) {
-						messageInput?.setText(input.prompt);
 						files = input.files;
 						selectedToolIds = input.selectedToolIds;
 						selectedFilterIds = input.selectedFilterIds;
@@ -248,20 +238,6 @@
 			chatInput?.focus();
 		} else {
 			await goto('/');
-		}
-	};
-
-	const onSelect = async (e) => {
-		const { type, data } = e;
-
-		if (type === 'prompt') {
-			// Handle prompt selection
-			messageInput?.setText(data, async () => {
-				if (!($settings?.insertSuggestionPrompt ?? false)) {
-					await tick();
-					submitHandler(prompt);
-				}
-			});
 		}
 	};
 
@@ -512,12 +488,14 @@
 					}, 100);
 				} else if (type === 'chat:message:error') {
 					message.error = data.error;
+					const errorContent = data.error?.content ?? data.error;
+					toast.error(
+						typeof errorContent === 'string'
+							? errorContent
+							: JSON.stringify(errorContent ?? $i18n.t('The provider rejected the request.'))
+					);
 				} else if (type === 'chat:message:follow_ups') {
 					message.followUps = data.follow_ups;
-
-					if (autoScroll) {
-						scrollToBottom('smooth');
-					}
 				} else if (type === 'chat:outlet') {
 					// Outlet filter ran on backend — sync in-memory state
 					const outletMessages = data.messages ?? [];
@@ -617,6 +595,11 @@
 					eventConfirmationInputPlaceholder = data.placeholder;
 					eventConfirmationInputValue = data?.value ?? '';
 					eventConfirmationInputType = data?.type ?? '';
+				} else if (type === 'question') {
+					// ask_user tool: surface the structured question inline (replaces
+					// the composer) and return the user's answer as the tool result
+					eventCallback = cb;
+					pendingQuestion = data;
 				} else if (type.startsWith('terminal:')) {
 					terminalEventHandler(type, data);
 				} else {
@@ -624,6 +607,10 @@
 				}
 
 				history.messages[event.message_id] = message;
+				// Replace the top-level reference so runes children ($derived over the
+				// bound history prop) re-run on every streamed delta — in-place
+				// mutation keeps the same object identity and is filtered out there.
+				history = { ...history };
 			}
 		} else {
 			// Non-active chat completion: queue stays in the global store.
@@ -663,7 +650,6 @@
 			const inputElement = document.getElementById('chat-input');
 
 			if (inputElement) {
-				messageInput?.setText(event.data.text);
 				inputElement.focus();
 			}
 		}
@@ -789,7 +775,6 @@
 
 			if (storageChatInput) {
 				prompt = '';
-				messageInput?.setText('');
 
 				files = [];
 				selectedToolIds = [];
@@ -802,7 +787,6 @@
 					const input = JSON.parse(storageChatInput);
 
 					if (!$temporaryChatEnabled) {
-						messageInput?.setText(input.prompt);
 						files = input.files;
 						selectedToolIds = input.selectedToolIds;
 						selectedFilterIds = input.selectedFilterIds;
@@ -953,7 +937,6 @@
 			fileItem.url = `${uploadedFile.id}`;
 
 			files = files;
-			toast.success($i18n.t('File uploaded successfully'));
 		} catch (e) {
 			console.error('Error uploading file:', e);
 			files = files.filter((f) => f.itemId !== tempItemId);
@@ -1019,6 +1002,218 @@
 			await uploadGoogleDriveFile(data);
 		} else if (type === 'web') {
 			await uploadWeb(data);
+		}
+	};
+
+	const uploadFileHandler = async (file, process = true, itemData = {}) => {
+		if ($user?.role !== 'admin' && !($user?.permissions?.chat?.file_upload ?? true)) {
+			toast.error($i18n.t('You do not have permission to upload files.'));
+			return null;
+		}
+
+		const fileUploadCapableModels = selectedModels.filter(
+			(modelId) =>
+				$models.find((m) => m.id === modelId)?.info?.meta?.capabilities?.file_upload ?? true
+		);
+		if (fileUploadCapableModels.length !== selectedModels.length) {
+			toast.error($i18n.t('Model(s) do not support file upload'));
+			return null;
+		}
+
+		const tempItemId = uuidv4();
+		const fileItem = {
+			type: 'file',
+			file: '',
+			id: null,
+			url: '',
+			name: file.name,
+			collection_name: '',
+			status: 'uploading',
+			size: file.size,
+			error: '',
+			itemId: tempItemId,
+			...itemData
+		};
+
+		if (fileItem.size == 0) {
+			toast.error($i18n.t('You cannot upload an empty file.'));
+			return null;
+		}
+
+		files = [...files, fileItem];
+
+		if (!$temporaryChatEnabled) {
+			try {
+				// If the file is an audio file, provide the language for STT.
+				let metadata = null;
+				if (
+					(file.type.startsWith('audio/') || file.type.startsWith('video/')) &&
+					$settings?.audio?.stt?.language
+				) {
+					metadata = {
+						language: $settings?.audio?.stt?.language
+					};
+				}
+
+				// During the file upload, file content is automatically extracted.
+				const uploadedFile = await uploadFile(localStorage.token, file, metadata, process);
+
+				if (uploadedFile) {
+					if (uploadedFile.error) {
+						toast.warning(uploadedFile.error);
+					}
+
+					fileItem.status = 'uploaded';
+					fileItem.file = uploadedFile;
+					fileItem.id = uploadedFile.id;
+					fileItem.collection_name =
+						uploadedFile?.meta?.collection_name || uploadedFile?.collection_name;
+					fileItem.content_type = uploadedFile.meta?.content_type || uploadedFile.content_type;
+					fileItem.url = `${uploadedFile.id}`;
+
+					files = files;
+				} else {
+					files = files.filter((item) => item?.itemId !== tempItemId);
+				}
+			} catch (e) {
+				toast.error(`${e}`);
+				files = files.filter((item) => item?.itemId !== tempItemId);
+			}
+		} else {
+			// Temporary chat: extract the content locally instead of uploading.
+			const content = await extractContentFromFile(file).catch((error) => {
+				toast.error(
+					$i18n.t('Failed to extract content from the file: {{error}}', { error: error })
+				);
+				return null;
+			});
+
+			if (content === null) {
+				toast.error($i18n.t('Failed to extract content from the file.'));
+				files = files.filter((item) => item?.itemId !== tempItemId);
+				return null;
+			}
+
+			fileItem.status = 'uploaded';
+			fileItem.type = 'text';
+			fileItem.content = content;
+			fileItem.id = uuidv4();
+			files = files;
+		}
+	};
+
+	const inputFilesHandler = async (inputFiles) => {
+		if (
+			($config?.file?.max_count ?? null) !== null &&
+			files.length + inputFiles.length > $config?.file?.max_count
+		) {
+			toast.error(
+				$i18n.t(`You can only chat with a maximum of {{maxCount}} file(s) at a time.`, {
+					maxCount: $config?.file?.max_count
+				})
+			);
+			return;
+		}
+
+		inputFiles.forEach(async (file) => {
+			if (
+				($config?.file?.max_size ?? null) !== null &&
+				file.size > ($config?.file?.max_size ?? 0) * 1024 * 1024
+			) {
+				toast.error(
+					$i18n.t(`File size should not exceed {{maxSize}} MB.`, {
+						maxSize: $config?.file?.max_size
+					})
+				);
+				return;
+			}
+
+			if (file['type'].startsWith('image/')) {
+				const visionCapableModels = selectedModels.filter(
+					(modelId) =>
+						$models.find((m) => m.id === modelId)?.info?.meta?.capabilities?.vision ?? true
+				);
+				if (visionCapableModels.length === 0) {
+					toast.error($i18n.t('Selected model(s) do not support image inputs'));
+					return;
+				}
+
+				const compressImageHandler = async (imageUrl, settings = {}, config = {}) => {
+					const settingsCompression = settings?.imageCompression ?? false;
+					const configWidth = config?.file?.image_compression?.width ?? null;
+					const configHeight = config?.file?.image_compression?.height ?? null;
+
+					if (!settingsCompression && !configWidth && !configHeight) {
+						return imageUrl;
+					}
+
+					let width = null;
+					let height = null;
+
+					if (settingsCompression) {
+						width = settings?.imageCompressionSize?.width ?? null;
+						height = settings?.imageCompressionSize?.height ?? null;
+					}
+
+					// Apply config limits as an upper bound if any
+					if (configWidth && (width === null || width > configWidth)) {
+						width = configWidth;
+					}
+					if (configHeight && (height === null || height > configHeight)) {
+						height = configHeight;
+					}
+
+					if (width || height) {
+						return await compressImage(imageUrl, width, height);
+					}
+					return imageUrl;
+				};
+
+				let reader = new FileReader();
+				reader.onload = async (event) => {
+					let imageUrl = event.target.result;
+					imageUrl = await compressImageHandler(imageUrl, $settings, $config);
+
+					if ($temporaryChatEnabled) {
+						files = [
+							...files,
+							{
+								type: 'image',
+								url: imageUrl
+							}
+						];
+					} else {
+						const blob = await (await fetch(imageUrl)).blob();
+						const compressedFile = new File([blob], file.name, { type: file.type });
+						uploadFileHandler(compressedFile, false);
+					}
+				};
+				reader.readAsDataURL(file['type'] === 'image/heic' ? await convertHeicToJpeg(file) : file);
+			} else {
+				uploadFileHandler(file);
+			}
+		});
+	};
+
+	// Drag & drop onto the desk: files land as enclosures at the edge.
+	const onDragOver = (e: DragEvent) => {
+		e.preventDefault();
+		dragged = e.dataTransfer?.types?.includes('Files') ?? false;
+	};
+	const onDragLeave = (e: DragEvent) => {
+		if ((e.currentTarget as HTMLElement)?.contains(e.relatedTarget as Node)) {
+			return;
+		}
+		dragged = false;
+	};
+	const onDrop = async (e: DragEvent) => {
+		e.preventDefault();
+		dragged = false;
+		if (e.dataTransfer?.files) {
+			const inputFiles = Array.from(e.dataTransfer.files);
+			if (inputFiles.length > 0) {
+				inputFilesHandler(inputFiles);
+			}
 		}
 	};
 
@@ -1200,8 +1395,6 @@
 			window.history.replaceState(history.state, '', `/`);
 		}
 
-		autoScroll = true;
-
 		await resetInput();
 		await chatId.set('');
 		await chatTitle.set('');
@@ -1284,7 +1477,6 @@
 
 				if (query || eventFiles?.length) {
 					if (query) {
-						messageInput?.setText(query);
 					}
 					await tick();
 					submitHandler(query || '');
@@ -1292,7 +1484,6 @@
 			}
 		} else if ($page.url.searchParams.get('q')) {
 			const q = $page.url.searchParams.get('q') ?? '';
-			messageInput?.setText(q);
 
 			if (q) {
 				if (($page.url.searchParams.get('submit') ?? 'true') === 'true') {
@@ -1383,7 +1574,6 @@
 					scratchboardContentStore.set(chatContent.scratchboard ?? '');
 				}
 
-				autoScroll = true;
 				await tick();
 
 				// Mark all non-current assistant messages as done
@@ -1428,53 +1618,7 @@
 		}
 	};
 
-	const scrollToBottom = async (behavior = 'auto') => {
-		await tick();
-		if (messagesContainerElement) {
-			messagesContainerElement.scrollTo({
-				top: messagesContainerElement.scrollHeight,
-				behavior
-			});
-
-			// content-visibility: auto causes the initial scrollHeight to be based on
-			// estimated sizes (contain-intrinsic-size). After we scroll, previously
-			// off-screen messages become visible and the browser resolves their actual
-			// heights, which shifts scrollHeight. Re-layouts can cascade across frames
-			// (new sizes reveal more content, triggering further size resolution), so
-			// we re-scroll across two animation frames to land at the true bottom.
-			requestAnimationFrame(() => {
-				if (messagesContainerElement) {
-					messagesContainerElement.scrollTo({
-						top: messagesContainerElement.scrollHeight,
-						behavior
-					});
-					requestAnimationFrame(() => {
-						if (messagesContainerElement) {
-							messagesContainerElement.scrollTo({
-								top: messagesContainerElement.scrollHeight,
-								behavior
-							});
-						}
-					});
-				}
-			});
-		}
-	};
-
-	const scrollToTop = async () => {
-		await messagesRef?.scrollToTop();
-	};
-
-	let scrollRAF = null;
 	let contentsRAF = null;
-	const scheduleScrollToBottom = () => {
-		if (!scrollRAF) {
-			scrollRAF = requestAnimationFrame(async () => {
-				scrollRAF = null;
-				await scrollToBottom();
-			});
-		}
-	};
 
 	let processingQueueChats = new Set<string>();
 
@@ -1500,6 +1644,43 @@
 		}
 	};
 
+	// ─── The Margin: the agent writes follow-ups onto the shared scratchboard ───
+	// When a finished response carries a list (a plan / next steps), the agent
+	// streams those items into the margin live — the FOLIO "draft → margin notes".
+	const extractFollowups = (content: string): string[] => {
+		const items: string[] = [];
+		for (const ln of String(content ?? '').split('\n')) {
+			const m = ln.match(/^\s*(?:[-*]|\d+\.)\s+(.+)/);
+			if (m) {
+				const text = m[1].replace(/[*_`]/g, '').trim();
+				if (text) items.push(text.length > 90 ? `${text.slice(0, 88)}…` : text);
+			}
+		}
+		return items.slice(0, 4);
+	};
+
+	let marginWriteToken = 0;
+	const writeMarginNote = (text: string) => {
+		const token = ++marginWriteToken;
+		scratchboardAgentWriting.set(true);
+		showScratchboard.set(true);
+		let buf = get(scratchboardContentStore);
+		let i = 0;
+		const step = () => {
+			if (token !== marginWriteToken) return; // superseded by a newer note
+			if (i >= text.length) {
+				scratchboardAgentWriting.set(false);
+				return;
+			}
+			const n = 1 + Math.floor(Math.random() * 2);
+			buf += text.slice(i, i + n);
+			i += n;
+			scratchboardContentStore.set(buf);
+			setTimeout(step, 16 + Math.random() * 26);
+		};
+		setTimeout(step, 300);
+	};
+
 	const chatCompletedHandler = async (_chatId, modelId, responseMessageId, messages) => {
 		// Backend handles outlet filters and persistence inline.
 		// Just refresh the sidebar chat list.
@@ -1508,6 +1689,13 @@
 			await chats.set(await getChatList(localStorage.token, $currentChatPage));
 		}
 		taskIds = null;
+
+		// The agent writes the response's follow-ups into the margin
+		const completed = history?.messages?.[responseMessageId];
+		const followups = extractFollowups(completed?.content);
+		if (followups.length >= 2 && !get(scratchboardAgentWriting)) {
+			writeMarginNote(`\n\n## Follow-ups\n${followups.map((f) => `- ${f}`).join('\n')}`);
+		}
 	};
 
 	const chatActionHandler = async (_chatId, actionId, modelId, responseMessageId, event = null) => {
@@ -1575,7 +1763,6 @@
 	};
 
 	const createMessagePair = async (userPrompt) => {
-		messageInput?.setText('');
 		if (selectedModels.length === 0) {
 			toast.error($i18n.t('Model not selected'));
 		} else {
@@ -1626,10 +1813,6 @@
 			history.currentId = responseMessageId;
 
 			await tick();
-
-			if (autoScroll) {
-				scrollToBottom();
-			}
 
 			if (messages.length === 0) {
 				await initChatHandler(history);
@@ -1690,10 +1873,6 @@
 
 		history.currentId = currentParentId;
 		await tick();
-
-		if (autoScroll) {
-			scrollToBottom();
-		}
 
 		if (messages.length === 0) {
 			await initChatHandler(history);
@@ -1778,11 +1957,9 @@
 			);
 
 			history.messages[message.id] = message;
+			history = { ...history };
 
 			await tick();
-			if (autoScroll) {
-				scrollToBottom();
-			}
 
 			// Fire-and-forget: run chatCompletedHandler for background work
 			// (outlet filters, chat save, title gen, follow-ups, tags)
@@ -1800,10 +1977,6 @@
 
 		console.log(data);
 		await tick();
-
-		if (autoScroll) {
-			scheduleScrollToBottom();
-		}
 	};
 
 	//////////////////////////
@@ -1916,7 +2089,6 @@
 					[$chatId]: [...(q[$chatId] ?? []), { id: uuidv4(), prompt: userPrompt, files: _files }]
 				}));
 				// Clear input
-				messageInput?.setText('');
 				prompt = '';
 				files = [];
 				return;
@@ -1938,11 +2110,9 @@
 		}
 
 		// Clear input and submit
-		messageInput?.setText('');
 		prompt = '';
 		const _files = structuredClone(files);
 		files = [];
-		messageInput?.setText('');
 
 		await submitPrompt(userPrompt, _files);
 	};
@@ -1962,10 +2132,6 @@
 			regenerationPrompt?: string | null;
 		} = {}
 	) => {
-		if (autoScroll) {
-			scrollToBottom();
-		}
-
 		let _chatId = JSON.parse(JSON.stringify($chatId));
 		_history = structuredClone(_history);
 
@@ -2062,7 +2228,6 @@
 		if (primaryModel && primaryResponseMessageId) {
 			const chatEventEmitter = await getChatEventEmitter(primaryModel.id, _chatId);
 
-			scrollToBottom();
 			await sendMessageSocket(
 				primaryModel,
 				messages && messages.length > 0
@@ -2173,7 +2338,6 @@
 		// Remove duplicates
 		files = files.filter((item, index, array) => array.findIndex((i) => equal(i, item)) === index);
 
-		scrollToBottom();
 		eventTarget.dispatchEvent(
 			new CustomEvent('chat:start', {
 				detail: {
@@ -2435,7 +2599,6 @@
 		}
 
 		await tick();
-		scrollToBottom();
 	};
 
 	const handleOpenAIError = async (error, responseMessage) => {
@@ -2507,10 +2670,6 @@
 			}
 
 			history.messages[history.currentId] = responseMessage;
-
-			if (autoScroll) {
-				scrollToBottom();
-			}
 		}
 
 		if (generating) {
@@ -2550,10 +2709,6 @@
 
 		await tick();
 
-		if (autoScroll) {
-			scrollToBottom();
-		}
-
 		await sendMessage(history, userMessageId);
 	};
 
@@ -2568,9 +2723,13 @@
 				return;
 			}
 
-			if (autoScroll) {
-				scrollToBottom();
-			}
+			const currentModelIds = selectedModels.filter(Boolean);
+			const regenerationModelId =
+				currentModelIds.length === 1
+					? currentModelIds[0]
+					: (userMessage?.models ?? []).length > 1
+						? message.model
+						: null;
 
 			await sendMessage(history, userMessage.id, {
 				...(suggestionPrompt
@@ -2579,11 +2738,10 @@
 							regenerationPrompt: suggestionPrompt
 						}
 					: {}),
-				...((userMessage?.models ?? [...selectedModels]).length > 1
+				...(regenerationModelId
 					? {
-							// If multiple models are selected, use the model from the message
-							modelId: message.model,
-							modelIdx: message.modelIdx
+							modelId: regenerationModelId,
+							modelIdx: currentModelIds.length === 1 ? 0 : message.modelIdx
 						}
 					: {})
 			});
@@ -2654,10 +2812,6 @@
 					} else {
 						mergedResponse.content += value;
 						history.messages[messageId] = message;
-					}
-
-					if (autoScroll) {
-						scheduleScrollToBottom();
 					}
 				}
 
@@ -2789,7 +2943,6 @@
 			await goto('/');
 			chats.set(await getChatList(localStorage.token, $currentChatPage));
 			pinnedChats.set(await getPinnedChatList(localStorage.token));
-			toast.success($i18n.t('Chat archived.'));
 		} catch (error) {
 			console.error('Error archiving chat:', error);
 			toast.error($i18n.t('Failed to archive chat.'));
@@ -2815,7 +2968,6 @@
 				chats.set(await getChatList(localStorage.token, $currentChatPage));
 				pinnedChats.set(await getPinnedChatList(localStorage.token));
 				allTags.set(await getAllTags(localStorage.token));
-				toast.success($i18n.t('Chat deleted.'));
 			}
 		} catch (error) {
 			console.error('Error deleting chat:', error);
@@ -2893,229 +3045,55 @@
 				/>
 			{/if}
 
-			<div class="w-full h-full flex relative max-w-full flex-col">
+			<div
+				class="w-full h-full flex relative max-w-full flex-col"
+				role="region"
+				aria-label="Chat"
+				on:dragover={onDragOver}
+				on:dragleave={onDragLeave}
+				on:drop={onDrop}
+			>
 				<FilesOverlay show={dragged} />
-				<Navbar
-					bind:this={navbarElement}
-					chat={{
-						id: $chatId,
-						chat: {
-							title: $chatTitle,
-							models: selectedModels,
-							system: $settings.system ?? undefined,
-							params: params,
-							history: history,
-							timestamp: Date.now()
-						}
-					}}
-					{history}
-					title={$chatTitle}
-					bind:selectedModels
-					scratchboardEnabled={true}
-					shareEnabled={!!history.currentId}
-					{initNewChat}
-					scrollToTop={!isNearTop ? scrollToTop : null}
-					{archiveChatHandler}
-					{deleteChatHandler}
-					{moveChatHandler}
-					onSaveTempChat={async () => {
-						try {
-							if (!history?.currentId || !Object.keys(history.messages).length) {
-								toast.error($i18n.t('No conversation to save'));
-								return;
-							}
-							const messages = createMessagesList(history, history.currentId);
-							const title = messages.find((m) => m.role === 'user')?.content ?? $i18n.t('New Chat');
 
-							const savedChat = await createNewChat(
-								localStorage.token,
-								{
-									id: uuidv4(),
-									title: title.length > 50 ? `${title.slice(0, 50)}...` : title,
-									models: selectedModels,
-									params: params,
-									scratchboard: get(scratchboardContentStore),
-									history: history,
-									messages: messages,
-									timestamp: Date.now()
-								},
-								null
-							);
-
-							if (savedChat) {
-								temporaryChatEnabled.set(false);
-								chatId.set(savedChat.id);
-								chats.set(await getChatList(localStorage.token, $currentChatPage));
-
-								await goto(`/c/${savedChat.id}`);
-								toast.success($i18n.t('Conversation saved successfully'));
-							}
-						} catch (error) {
-							console.error('Error saving conversation:', error);
-							toast.error($i18n.t('Failed to save conversation'));
-						}
-					}}
-				/>
-
-				<div id="chat-pane" class="flex flex-col flex-auto z-10 w-full @container overflow-auto">
-					{#if ($settings?.landingPageMode === 'chat' && !$selectedFolder) || createMessagesList(history, history.currentId).length > 0}
-						<div
-							class=" pb-2.5 flex flex-col justify-between w-full flex-auto overflow-auto h-0 max-w-full z-10 ds-scrollable"
-							id="messages-container"
-							bind:this={messagesContainerElement}
-							on:scroll={(e) => {
-								autoScroll =
-									messagesContainerElement.scrollHeight - messagesContainerElement.scrollTop <=
-									messagesContainerElement.clientHeight + 5;
-								isNearTop = messagesContainerElement.scrollTop <= 100;
+				<div
+					id="chat-pane"
+					class="flex flex-col flex-auto z-10 w-full @container overflow-hidden min-h-0"
+				>
+					<div class="relative flex-1 min-h-0 w-full">
+						<Folio
+							bind:history
+							bind:selectedModels
+							bind:files
+							chatId={$chatId}
+							chatTitle={$chatTitle}
+							{generating}
+							user={$user}
+							query={pendingQuestion}
+							onQueryAnswer={(result) => {
+								if (eventCallback) eventCallback(result);
+								eventCallback = null;
+								pendingQuestion = null;
 							}}
-						>
-							<div class=" h-full w-full flex flex-col">
-								<Messages
-									bind:this={messagesRef}
-									chatId={$chatId}
-									bind:history
-									bind:autoScroll
-									bind:prompt
-									setInputText={(text) => {
-										messageInput?.setText(text);
-									}}
-									{selectedModels}
-									{atSelectedModel}
-									{sendMessage}
-									{showMessage}
-									{submitMessage}
-									{continueResponse}
-									{regenerateResponse}
-									{mergeResponses}
-									{chatActionHandler}
-									{addMessages}
-									topPadding={true}
-									bottomPadding={files.length > 0}
-									{onSelect}
-								/>
-							</div>
-						</div>
-
-						<div class=" pb-2 {dragged ? 'z-0' : 'z-10'}">
-							<MessageInput
-								bind:this={messageInput}
-								{history}
-								{taskIds}
-								{selectedModels}
-								bind:files
-								bind:prompt
-								bind:autoScroll
-								bind:selectedToolIds
-								bind:selectedFilterIds
-								bind:imageGenerationEnabled
-								bind:codeInterpreterEnabled
-								{pendingOAuthTools}
-								bind:webSearchEnabled
-								bind:atSelectedModel
-								bind:showCommands
-								bind:dragged
-								toolServers={$toolServers}
-								{generating}
-								{stopResponse}
-								{createMessagePair}
-								{onUpload}
-								messageQueue={$chatRequestQueues[$chatId] ?? []}
-								{chatTasks}
-								onQueueSendNow={async (id) => {
-									const queue = $chatRequestQueues[$chatId] ?? [];
-									const item = queue.find((m) => m.id === id);
-									if (item) {
-										// Remove from queue
-										chatRequestQueues.update((q) => ({
-											...q,
-											[$chatId]: queue.filter((m) => m.id !== id)
-										}));
-										await stopResponse(false);
-										await tick();
-										await submitPrompt(item.prompt, item.files);
-									}
-								}}
-								onQueueEdit={(id) => {
-									const queue = $chatRequestQueues[$chatId] ?? [];
-									const item = queue.find((m) => m.id === id);
-									if (item) {
-										// Remove from queue
-										chatRequestQueues.update((q) => ({
-											...q,
-											[$chatId]: queue.filter((m) => m.id !== id)
-										}));
-										// Set files and restore prompt to input
-										files = item.files;
-										messageInput?.setText(item.prompt);
-									}
-								}}
-								onQueueDelete={(id) => {
-									const queue = $chatRequestQueues[$chatId] ?? [];
-									chatRequestQueues.update((q) => ({
-										...q,
-										[$chatId]: queue.filter((m) => m.id !== id)
-									}));
-								}}
-								onChange={(data) => {
-									if (!$temporaryChatEnabled) {
-										saveDraft(data, $chatId);
-									}
-								}}
-								on:submit={async (e) => {
-									clearDraft($chatId);
-									if (e.detail || files.length > 0) {
-										await tick();
-
-										submitHandler(e.detail);
-									}
-								}}
-							/>
-
-							<div
-								class="absolute bottom-1 text-xs text-gray-500 text-center line-clamp-1 right-0 left-0"
-							>
-								<!-- {$i18n.t('LLMs can make mistakes. Verify important information.')} -->
-							</div>
-						</div>
-					{:else}
-						<div class="flex items-center h-full">
-							<Placeholder
-								{history}
-								{selectedModels}
-								bind:messageInput
-								bind:files
-								bind:prompt
-								bind:autoScroll
-								bind:selectedToolIds
-								bind:selectedFilterIds
-								bind:imageGenerationEnabled
-								bind:codeInterpreterEnabled
-								bind:webSearchEnabled
-								bind:atSelectedModel
-								bind:showCommands
-								bind:dragged
-								{pendingOAuthTools}
-								toolServers={$toolServers}
-								{stopResponse}
-								{createMessagePair}
-								{onSelect}
-								{onUpload}
-								onChange={(data) => {
-									if (!$temporaryChatEnabled) {
-										saveDraft(data);
-									}
-								}}
-								on:submit={async (e) => {
-									clearDraft();
-									if (e.detail || files.length > 0) {
-										await tick();
-										submitHandler(e.detail);
-									}
-								}}
-							/>
-						</div>
-					{/if}
+							onUploadFiles={(fl) => inputFilesHandler(fl)}
+							onSubmit={(text) => submitHandler(text)}
+							onNewChat={initNewChat}
+							onRegenerate={(m) => regenerateResponse(m)}
+							onRenameChat={async (t) => {
+								chatTitle.set(t);
+								if ($chatId && !$temporaryChatEnabled) {
+									await updateChatById(localStorage.token, $chatId, { title: t });
+									currentChatPage.set(1);
+									await chats.set(await getChatList(localStorage.token, $currentChatPage));
+								}
+							}}
+							onEditPrompt={(id, content) => {
+								if (history.messages[id]) {
+									history.messages[id].content = content;
+									history = history;
+								}
+							}}
+						/>
+					</div>
 				</div>
 			</div>
 		</div>

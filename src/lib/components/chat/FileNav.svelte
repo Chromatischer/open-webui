@@ -5,6 +5,7 @@
 
 <script lang="ts">
 	import { toast } from 'svelte-sonner';
+	import { inlineConfirm } from '$lib/utils/inlineConfirm';
 	import { getContext, onMount, onDestroy, tick } from 'svelte';
 	import {
 		terminalServers,
@@ -560,9 +561,7 @@
 			`${currentPath}${name}`,
 			chatId ?? undefined
 		);
-		toast[result ? 'success' : 'error'](
-			$i18n.t(result ? 'Folder created' : 'Failed to create folder')
-		);
+		if (!result) toast.error($i18n.t('Failed to create folder'));
 		await loadDir(currentPath);
 	};
 
@@ -585,7 +584,7 @@
 
 		const emptyFile = new File([''], name, { type: 'application/octet-stream' });
 		const result = await uploadToTerminal(terminal.url, terminal.key, currentPath, emptyFile);
-		toast[result ? 'success' : 'error']($i18n.t(result ? 'File created' : 'Failed to create file'));
+		if (!result) toast.error($i18n.t('Failed to create file'));
 		await loadDir(currentPath);
 	};
 
@@ -595,9 +594,7 @@
 		if (!terminal) return;
 
 		const result = await deleteEntry(terminal.url, terminal.key, path, chatId ?? undefined);
-		toast[result ? 'success' : 'error'](
-			$i18n.t(result ? '{{name}} deleted' : 'Failed to delete {{name}}', { name })
-		);
+		if (!result) toast.error($i18n.t('Failed to delete {{name}}', { name }));
 		await loadDir(currentPath);
 	};
 
@@ -629,8 +626,6 @@
 		);
 		if ('error' in result) {
 			toast.error(result.error);
-		} else {
-			toast.success($i18n.t('Moved {{name}}', { name: fileName }));
 		}
 		await loadDir(currentPath);
 	};
@@ -654,8 +649,6 @@
 		);
 		if ('error' in result) {
 			toast.error(result.error);
-		} else {
-			toast.success($i18n.t('Renamed to {{name}}', { name: newName }));
 		}
 		await loadDir(currentPath);
 	};
@@ -734,9 +727,8 @@
 			const result = await deleteEntry(terminal.url, terminal.key, p.replace(/\/$/, ''));
 			if (result) ok++;
 		}
-		toast[ok > 0 ? 'success' : 'error'](
-			$i18n.t('Deleted {{ok}} of {{total}} items', { ok, total: paths.length })
-		);
+		if (ok === 0)
+			toast.error($i18n.t('Deleted {{ok}} of {{total}} items', { ok, total: paths.length }));
 		clearSelection();
 		await loadDir(currentPath);
 	};
@@ -1186,7 +1178,7 @@
 							class="shrink-0 p-1 rounded hover:bg-gray-100 dark:hover:bg-gray-800 transition text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-400"
 							on:click={async () => {
 								await navigator.clipboard.writeText(fileContent ?? '');
-								toast.success($i18n.t('Copied to clipboard'));
+								inlineConfirm($i18n.t('Copied to clipboard'));
 							}}
 							aria-label={$i18n.t('Copy')}
 						>
@@ -1302,9 +1294,7 @@
 						const dir = selectedFile.substring(0, selectedFile.lastIndexOf('/') + 1) || '/';
 						const file = new File([content], fileName, { type: 'text/plain' });
 						const result = await uploadToTerminal(terminal.url, terminal.key, dir, file);
-						toast[result ? 'success' : 'error'](
-							$i18n.t(result ? 'File saved' : 'Failed to save file')
-						);
+						if (!result) toast.error($i18n.t('Failed to save file'));
 						if (result) fileContent = content;
 					}}
 				/>

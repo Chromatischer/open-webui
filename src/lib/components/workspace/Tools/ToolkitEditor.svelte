@@ -1,6 +1,8 @@
 <script>
 	import { toast } from 'svelte-sonner';
 	import { getContext, onMount, tick } from 'svelte';
+	import { confirmButton } from '$lib/utils/confirmButton';
+	import { inlineError } from '$lib/utils/inlineError';
 
 	const i18n = getContext('i18n');
 
@@ -17,6 +19,7 @@
 	import AccessControlModal from '../common/AccessControlModal.svelte';
 
 	let formElement = null;
+	let saveBtn;
 	let loading = false;
 
 	let showConfirm = false;
@@ -159,13 +162,21 @@ class Tools:
 
 	const saveHandler = async () => {
 		loading = true;
-		onSave({
+		const res = await onSave({
 			id,
 			name,
 			meta,
 			content,
 			access_grants: accessGrants
 		});
+		loading = false;
+
+		if (res) {
+			// the button is the confirmation — green wash + ✓, no toast
+			confirmButton(saveBtn, { label: $i18n.t('Saved') });
+		} else {
+			inlineError(saveBtn, $i18n.t('Failed to save'));
+		}
 	};
 
 	const submitHandler = async () => {
@@ -199,7 +210,7 @@ class Tools:
 		if (edit && id) {
 			try {
 				await updateToolAccessGrants(localStorage.token, id, accessGrants);
-				toast.success($i18n.t('Saved'));
+				// autosaved on toggle — the control state is the feedback, no toast
 			} catch (error) {
 				toast.error(`${error}`);
 			}
@@ -333,6 +344,7 @@ class Tools:
 					</div>
 
 					<button
+						bind:this={saveBtn}
 						class="px-3.5 py-1.5 text-sm font-medium bg-black hover:bg-gray-900 text-white dark:bg-white dark:text-black dark:hover:bg-gray-100 transition rounded-full"
 						type="submit"
 					>

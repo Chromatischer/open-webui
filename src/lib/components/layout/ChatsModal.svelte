@@ -1,6 +1,7 @@
 <script lang="ts">
-	import { toast } from 'svelte-sonner';
 	import { getContext } from 'svelte';
+	import { toast } from 'svelte-sonner';
+	import { confirmButton } from '$lib/utils/confirmButton';
 
 	import dayjs from 'dayjs';
 	import localizedFormat from 'dayjs/plugin/localizedFormat';
@@ -329,9 +330,10 @@
 															on:click={async (e) => {
 																e.stopImmediatePropagation();
 																e.stopPropagation();
+																const el = e.currentTarget as HTMLElement;
 																const shareUrl = `${window.location.origin}/s/${chat.share_id}`;
 																await navigator.clipboard.writeText(shareUrl);
-																toast.success($i18n.t('Share link copied to clipboard.'));
+																confirmButton(el, { label: $i18n.t('Copied') });
 															}}
 														>
 															<Clipboard class="size-4" strokeWidth="1.5" />

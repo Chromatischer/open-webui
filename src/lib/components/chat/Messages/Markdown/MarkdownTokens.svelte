@@ -61,7 +61,23 @@
 
 	// Render tokens in their natural order so reasoning, tool calls and response
 	// text stay interleaved exactly as the model produced them.
-	$: displayTokens = tokens;
+	// Merge consecutive tool-call tokens into a single ledger group (FOLIO /design style)
+	$: displayTokens = (() => {
+		const out = [];
+		for (const t of tokens ?? []) {
+			if (t?.type === 'details' && t?.attributes?.type === 'tool_calls') {
+				const last = out[out.length - 1];
+				if (last?.type === 'tool_group') {
+					last.entries.push(t);
+				} else {
+					out.push({ type: 'tool_group', entries: [t] });
+				}
+			} else {
+				out.push(t);
+			}
+		}
+		return out;
+	})();
 
 	const exportTableToCSVHandler = (token, tokenIdx = 0) => {
 		console.log('Exporting table to CSV');
@@ -104,7 +120,20 @@
 
 <!-- {JSON.stringify(tokens)} -->
 {#each displayTokens as token, tokenIdx (tokenIdx)}
-	{#if token.type === 'hr'}
+	{#if token.type === 'tool_group'}
+		<!-- Consecutive tool calls rendered as one manuscript ledger -->
+		<div class="folio-ledger" role="log" aria-label="Agent actions">
+			{#each token.entries as entry, ei}
+				<ToolCallDisplay
+					id={`${id}-${tokenIdx}-${ei}-tc`}
+					attributes={entry.attributes}
+					resultContent={getDetailTextContent(entry)}
+					open={$settings?.expandDetails ?? false}
+					className="w-full"
+				/>
+			{/each}
+		</div>
+	{:else if token.type === 'hr'}
 		<hr class=" border-gray-100/30 dark:border-gray-850/30" />
 	{:else if token.type === 'heading'}
 		<svelte:element this={headerComponent(token.depth)} dir="auto">

@@ -44,11 +44,13 @@
 		});
 
 		if (res) {
-			toast.success($i18n.t('Tool created successfully'));
 			tools.set(await getTools(localStorage.token));
 
 			await goto('/workspace/tools');
 		}
+
+		// returned to ToolkitEditor so it can flash / inline-error its Save button
+		return res;
 	};
 
 	onMount(() => {
@@ -89,9 +91,7 @@
 			content={tool?.content ?? ''}
 			accessGrants={tool?.access_grants !== undefined ? tool.access_grants : []}
 			{clone}
-			onSave={(value) => {
-				saveHandler(value);
-			}}
+			onSave={(value) => saveHandler(value)}
 		/>
 	{/key}
 {/if}

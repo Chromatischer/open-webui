@@ -1,5 +1,7 @@
 <script>
 	import { getContext, onMount, tick } from 'svelte';
+	import { confirmButton } from '$lib/utils/confirmButton';
+	import { inlineError } from '$lib/utils/inlineError';
 	import { goto } from '$app/navigation';
 
 	const i18n = getContext('i18n');
@@ -13,6 +15,7 @@
 
 	let formElement = null;
 	let loading = false;
+	let saveBtn;
 	let showConfirm = false;
 
 	export let onSave = () => {};
@@ -258,12 +261,20 @@ class Pipe:
 
 	const saveHandler = async () => {
 		loading = true;
-		onSave({
+		const res = await onSave({
 			id,
 			name,
 			meta,
 			content
 		});
+		loading = false;
+
+		if (res) {
+			// the button is the confirmation — green wash + ✓, no toast
+			confirmButton(saveBtn, { label: $i18n.t('Saved') });
+		} else {
+			inlineError(saveBtn, $i18n.t('Failed to save'));
+		}
 	};
 
 	const submitHandler = async () => {
@@ -396,6 +407,7 @@ class Pipe:
 					</div>
 
 					<button
+						bind:this={saveBtn}
 						class="px-3.5 py-1.5 text-sm font-medium bg-black hover:bg-gray-900 text-white dark:bg-white dark:text-black dark:hover:bg-gray-100 transition rounded-full"
 						type="submit"
 					>

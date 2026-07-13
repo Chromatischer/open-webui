@@ -14,11 +14,6 @@
 		if ($user?.role !== 'admin') {
 			if ($page.url.pathname.includes('/models') && !$user?.permissions?.workspace?.models) {
 				goto('/');
-			} else if (
-				$page.url.pathname.includes('/knowledge') ||
-				$page.url.pathname.includes('/prompts')
-			) {
-				goto('/');
 			} else if ($page.url.pathname.includes('/tools') && !$user?.permissions?.workspace?.tools) {
 				goto('/');
 			} else if ($page.url.pathname.includes('/skills') && !$user?.permissions?.workspace?.skills) {

@@ -14,6 +14,7 @@
 	import ModelItemMenu from './ModelItemMenu.svelte';
 	import EllipsisHorizontal from '$lib/components/icons/EllipsisHorizontal.svelte';
 	import { toast } from 'svelte-sonner';
+	import { inlineConfirm } from '$lib/utils/inlineConfirm';
 	import Tag from '$lib/components/icons/Tag.svelte';
 	import Label from '$lib/components/icons/Label.svelte';
 
@@ -35,7 +36,7 @@
 		const res = await copyToClipboard(`${baseUrl}/?model=${encodeURIComponent(model.id)}`);
 
 		if (res) {
-			toast.success($i18n.t('Copied link to clipboard'));
+			inlineConfirm($i18n.t('Copied link to clipboard'));
 		} else {
 			toast.error($i18n.t('Failed to copy link'));
 		}

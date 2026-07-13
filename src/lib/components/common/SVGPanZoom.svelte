@@ -2,7 +2,7 @@
 	import fileSaver from 'file-saver';
 	const { saveAs } = fileSaver;
 
-	import { toast } from 'svelte-sonner';
+	import { inlineConfirm } from '$lib/utils/inlineConfirm';
 
 	import DOMPurify from 'dompurify';
 
@@ -108,7 +108,7 @@
 						class="p-1.5 rounded-lg border border-gray-100 dark:border-none dark:bg-gray-850 hover:bg-gray-50 dark:hover:bg-gray-800 transition"
 						on:click={() => {
 							copyToClipboard(content);
-							toast.success($i18n.t('Copied to clipboard'));
+							inlineConfirm($i18n.t('Copied to clipboard'));
 						}}
 					>
 						<Clipboard className=" size-4" strokeWidth="1.5" />

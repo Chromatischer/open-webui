@@ -38,7 +38,6 @@ from langchain_core.documents import Document
 
 from open_webui.models.files import FileModel, FileUpdateForm, Files
 from open_webui.utils.access_control.files import has_access_to_file
-from open_webui.models.knowledge import Knowledges
 from open_webui.storage.provider import Storage
 from open_webui.internal.db import get_async_db, get_async_session
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -2552,7 +2551,6 @@ async def delete_entries_from_collection(
 @router.post('/reset/db')
 async def reset_vector_db(user=Depends(get_admin_user), db: AsyncSession = Depends(get_async_session)):
     await ASYNC_VECTOR_DB_CLIENT.reset()
-    await Knowledges.delete_all_knowledge(db=db)
 
 
 @router.post('/reset/uploads')

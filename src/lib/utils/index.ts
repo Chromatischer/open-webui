@@ -32,10 +32,13 @@ import { decode } from 'html-entities';
 
 export const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
+const compactNumberFormatter = new Intl.NumberFormat('en-US', {
+	notation: 'compact',
+	maximumFractionDigits: 1
+});
+
 export const formatNumber = (num: number): string => {
-	return new Intl.NumberFormat('en-US', { notation: 'compact', maximumFractionDigits: 1 }).format(
-		num
-	);
+	return compactNumberFormatter.format(num);
 };
 
 function escapeRegExp(string: string): string {
@@ -933,13 +936,20 @@ export const cleanText = (content: string) => {
 	return removeFormattings(removeEmojis(content.trim()));
 };
 
+const detailsByTypeRegexCache = new Map<string, RegExp>();
+const getDetailsByTypeRegex = (type: string): RegExp => {
+	let regex = detailsByTypeRegexCache.get(type);
+	if (!regex) {
+		regex = new RegExp(`<details\\s+type="${type}"[^>]*>.*?<\\/details>`, 'gis');
+		detailsByTypeRegexCache.set(type, regex);
+	}
+	return regex;
+};
+
 export const removeDetails = (content, types) => {
 	return replaceOutsideCode(content, (segment) => {
 		for (const type of types) {
-			segment = segment.replace(
-				new RegExp(`<details\\s+type="${type}"[^>]*>.*?<\\/details>`, 'gis'),
-				''
-			);
+			segment = segment.replace(getDetailsByTypeRegex(type), '');
 		}
 		return segment;
 	}).trim();
@@ -1015,7 +1025,10 @@ export const extractSentences = (text: string) => {
 		return sentence.replace(/\u0000(\d+)\u0000/g, (_, idx) => codeBlocks[idx]);
 	});
 
-	return sentences.map(cleanText).filter(Boolean);
+	return sentences.flatMap((sentence) => {
+		const cleaned = cleanText(sentence);
+		return cleaned ? [cleaned] : [];
+	});
 };
 
 export const extractParagraphsForAudio = (text: string) => {
@@ -1038,7 +1051,10 @@ export const extractParagraphsForAudio = (text: string) => {
 		return paragraph.replace(/\u0000(\d+)\u0000/g, (_, idx) => codeBlocks[idx]);
 	});
 
-	return paragraphs.map(cleanText).filter(Boolean);
+	return paragraphs.flatMap((paragraph) => {
+		const cleaned = cleanText(paragraph);
+		return cleaned ? [cleaned] : [];
+	});
 };
 
 export const extractSentencesForAudio = (text: string) => {
@@ -1723,17 +1739,16 @@ export const extractContentFromFile = async (file: File) => {
 
 	// Uses pdfjs to extract text from PDF
 	async function extractPdfText(file: File) {
-		const pdfjsLib = await ensurePDFjsLoaded();
-		const arrayBuffer = await file.arrayBuffer();
+		const [pdfjsLib, arrayBuffer] = await Promise.all([ensurePDFjsLoaded(), file.arrayBuffer()]);
 		const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
-		let allText = '';
-		for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
-			const page = await pdf.getPage(pageNum);
-			const content = await page.getTextContent();
-			const strings = content.items.map((item: any) => item.str);
-			allText += strings.join(' ') + '\n';
-		}
-		return allText;
+		const pageTexts = await Promise.all(
+			Array.from({ length: pdf.numPages }, async (_, i) => {
+				const page = await pdf.getPage(i + 1);
+				const content = await page.getTextContent();
+				return content.items.map((item: any) => item.str).join(' ') + '\n';
+			})
+		);
+		return pageTexts.join('');
 	}
 
 	// Reads file as text using FileReader
@@ -1952,13 +1967,17 @@ export const getCodeBlockContents = (content: string): object => {
 		html: htmlContent.trim(),
 		css: cssContent.trim(),
 		js: jsContent.trim(),
-		htmlGroups: htmlGroups
-			.filter((g) => g.html.trim() || g.css.trim() || g.js.trim())
-			.map((g) => ({
-				html: g.html.trim(),
-				css: g.css.trim(),
-				js: g.js.trim()
-			}))
+		htmlGroups: htmlGroups.flatMap((g) =>
+			g.html.trim() || g.css.trim() || g.js.trim()
+				? [
+						{
+							html: g.html.trim(),
+							css: g.css.trim(),
+							js: g.js.trim()
+						}
+					]
+				: []
+		)
 	};
 };
 export const parseFrontmatter = (content) => {

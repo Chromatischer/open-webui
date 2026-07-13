@@ -21,13 +21,16 @@
 	import type { Banner } from '$lib/types';
 	import { compareVersion } from '$lib/utils';
 	import { onMount, getContext } from 'svelte';
-	import { toast } from 'svelte-sonner';
+	import { confirmButton } from '$lib/utils/confirmButton';
+	import { inlineError } from '$lib/utils/inlineError';
 	import Textarea from '$lib/components/common/Textarea.svelte';
 	import Banners from './Interface/Banners.svelte';
 
 	const i18n = getContext('i18n');
 
 	export let saveHandler: Function;
+
+	let saveButton: HTMLButtonElement;
 
 	let updateAvailable = null;
 	let version = {
@@ -75,13 +78,9 @@
 
 	const updateLdapServerHandler = async () => {
 		if (!ENABLE_LDAP) return;
-		const res = await updateLdapServer(localStorage.token, LDAP_SERVER).catch((error) => {
-			toast.error(`${error}`);
-			return null;
+		await updateLdapServer(localStorage.token, LDAP_SERVER).catch((error) => {
+			inlineError(saveButton, `${error}`);
 		});
-		if (res) {
-			toast.success($i18n.t('LDAP server updated'));
-		}
 	};
 
 	const updateBanners = async () => {
@@ -99,9 +98,11 @@
 		await config.set(await getBackendConfig());
 
 		if (res) {
+			// the button is the confirmation — green wash + ✓, no toast
+			confirmButton(saveButton, { label: $i18n.t('Saved') });
 			saveHandler();
 		} else {
-			toast.error($i18n.t('Failed to update settings'));
+			inlineError(saveButton, $i18n.t('Failed to update settings'));
 		}
 	};
 
@@ -750,38 +751,6 @@
 
 					<div class="mb-2.5 flex w-full items-center justify-between pr-2">
 						<div class=" self-center text-xs font-medium">
-							{$i18n.t('Notes')} ({$i18n.t('Beta')})
-						</div>
-
-						<Switch bind:state={adminConfig.ENABLE_NOTES} />
-					</div>
-
-					<div class="mb-2.5 flex w-full items-center justify-between pr-2">
-						<div class=" self-center text-xs font-medium">
-							{$i18n.t('Channels')} ({$i18n.t('Beta')})
-						</div>
-
-						<Switch bind:state={adminConfig.ENABLE_CHANNELS} />
-					</div>
-
-					<div class="mb-2.5 flex w-full items-center justify-between pr-2">
-						<div class=" self-center text-xs font-medium">
-							{$i18n.t('Calendar')}
-						</div>
-
-						<Switch bind:state={adminConfig.ENABLE_CALENDAR} />
-					</div>
-
-					<div class="mb-2.5 flex w-full items-center justify-between pr-2">
-						<div class=" self-center text-xs font-medium">
-							{$i18n.t('Automations')}
-						</div>
-
-						<Switch bind:state={adminConfig.ENABLE_AUTOMATIONS} />
-					</div>
-
-					<div class="mb-2.5 flex w-full items-center justify-between pr-2">
-						<div class=" self-center text-xs font-medium">
 							{$i18n.t('User Webhooks')}
 						</div>
 
@@ -887,6 +856,7 @@
 
 	<div class="flex justify-end pt-3 text-sm font-medium">
 		<button
+			bind:this={saveButton}
 			class="px-3.5 py-1.5 text-sm font-medium bg-black hover:bg-gray-900 text-white dark:bg-white dark:text-black dark:hover:bg-gray-100 transition rounded-full"
 			type="submit"
 		>

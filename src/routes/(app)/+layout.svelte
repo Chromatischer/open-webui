@@ -45,9 +45,9 @@
 		scratchboardContent as scratchboardContentStore
 	} from '$lib/stores';
 
-	import Sidebar from '$lib/components/layout/Sidebar.svelte';
+	import Archive from '$lib/components/layout/Archive.svelte';
 	import Scratchboard from '$lib/components/design/Scratchboard.svelte';
-	import SettingsModal from '$lib/components/chat/SettingsModal.svelte';
+	import SettingsFolio from '$lib/components/chat/SettingsFolio.svelte';
 	import ShortcutsModal from '$lib/components/chat/ShortcutsModal.svelte';
 	import ChangelogModal from '$lib/components/ChangelogModal.svelte';
 	import AccountPending from '$lib/components/layout/Overlay/AccountPending.svelte';
@@ -122,14 +122,24 @@
 		if (!edgeTouchStart) return;
 		const touchEnd = e.changedTouches[0];
 		handleEdgeSwipe(
-			{ edge: 'left', enabled: () => $mobile, setOpen: (open) => showSidebar.set(open) },
+			{
+				edge: 'left',
+				// Disabled while the scratchboard is open so its close swipe can't
+				// double as the sidebar's open swipe.
+				enabled: () => $mobile && !$showScratchboard,
+				isOpen: () => $showSidebar,
+				setOpen: (open) => showSidebar.set(open)
+			},
 			edgeTouchStart,
 			touchEnd
 		);
 		handleEdgeSwipe(
 			{
 				edge: 'right',
-				enabled: () => $mobile && isChatSurface,
+				// Disabled while the sidebar is open so its close swipe can't
+				// double as the scratchboard's open swipe.
+				enabled: () => $mobile && isChatSurface && !$showSidebar,
+				isOpen: () => $showScratchboard,
 				setOpen: (open) => showScratchboard.set(open)
 			},
 			edgeTouchStart,
@@ -138,8 +148,10 @@
 		edgeTouchStart = null;
 	};
 
+	// Kept deliberately neutral: the scratchboard content can flow into model
+	// context, so the default must not read as instructions or steer behaviour.
 	const defaultScratchboard =
-		'# Scratchboard\n\n- Capture useful context from this chat\n- Draft follow-up prompts\n- Keep implementation notes close to the conversation\n';
+		'# Margin notes\n\nA free-form space for notes on this conversation.\n';
 
 	$: isChatSurface =
 		['/', '/home'].includes($page.url.pathname) || $page.url.pathname.startsWith('/c/');
@@ -470,7 +482,7 @@
 	};
 </script>
 
-<SettingsModal bind:show={$showSettings} />
+<SettingsFolio bind:show={$showSettings} />
 <ShortcutsModal bind:show={$showShortcuts} />
 <ChangelogModal bind:show={$showChangelog} />
 
@@ -498,7 +510,7 @@
 		role="presentation"
 	>
 		<div class="sidebar-layer">
-			<Sidebar peeled={true} />
+			<Archive />
 		</div>
 
 		{#if isChatSurface && $mobile && !$showSidebar}
@@ -748,6 +760,18 @@
 		border-radius: 20px;
 		transform: translateX(calc(-1 * var(--sidebar-w)));
 		box-shadow: 12px 0 48px rgba(0, 0, 0, 0.22);
+	}
+
+	/* On mobile the shell is full-screen, so transitioning the blurred box-shadow
+	   and the border-radius repaints the whole chat every frame and the slide
+	   stutters (or appears not to animate). Animate only the GPU-composited
+	   transform and let radius/shadow snap — they're hidden behind the slide.
+	   Placed after the base rules so it wins on source order. */
+	@media (max-width: 767px) {
+		.app-shell {
+			transition: transform 0.34s cubic-bezier(0.16, 1, 0.3, 1);
+			will-change: transform;
+		}
 	}
 
 	.notch {

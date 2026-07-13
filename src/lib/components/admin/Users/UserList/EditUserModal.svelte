@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { toast } from 'svelte-sonner';
+	import { inlineError } from '$lib/utils/inlineError';
 	import dayjs from 'dayjs';
 	import { createEventDispatcher } from 'svelte';
 	import { onMount, getContext } from 'svelte';
@@ -34,6 +35,8 @@
 		}
 	};
 
+	let saveBtnEl: HTMLButtonElement;
+
 	let _user = {
 		profile_image_url: '',
 		role: 'pending',
@@ -46,7 +49,7 @@
 
 	const submitHandler = async () => {
 		const res = await updateUserById(localStorage.token, selectedUser.id, _user).catch((error) => {
-			toast.error(`${error}`);
+			inlineError(saveBtnEl, `${error}`);
 		});
 
 		if (res) {
@@ -220,6 +223,7 @@
 
 						<div class="flex justify-end pt-3 text-sm font-medium">
 							<button
+								bind:this={saveBtnEl}
 								class="px-3.5 py-1.5 text-sm font-medium bg-black hover:bg-gray-900 text-white dark:bg-white dark:text-black dark:hover:bg-gray-100 transition rounded-full flex flex-row space-x-1 items-center"
 								type="submit"
 							>

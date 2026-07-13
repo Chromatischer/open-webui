@@ -2939,7 +2939,7 @@ async def process_chat_payload(request, form_data, user, metadata, model):
                 builtin_tools = {
                     name: tool_dict
                     for name, tool_dict in builtin_tools.items()
-                    if name in ('read_scratchboard', 'write_scratchboard', 'edit_scratchboard')
+                    if name in ('read_scratchboard', 'write_scratchboard', 'edit_scratchboard', 'ask_user')
                 }
 
             for name, tool_dict in builtin_tools.items():

@@ -1,5 +1,5 @@
 <script>
-	import { toast } from 'svelte-sonner';
+	import { inlineError } from '$lib/utils/inlineError';
 
 	import { createEventDispatcher, getContext, onMount } from 'svelte';
 	const i18n = getContext('i18n');
@@ -52,6 +52,7 @@
 
 	let loading = false;
 	let showResetModal = false;
+	let saveBtnEl;
 	let showDefaultCapabilities = false;
 	let showDefaultParams = false;
 
@@ -128,11 +129,10 @@
 		if (res) {
 			await _config.set(await getBackendConfig());
 
-			toast.success($i18n.t('Models configuration saved successfully'));
 			initHandler();
 			show = false;
 		} else {
-			toast.error($i18n.t('Failed to save models configuration'));
+			inlineError(saveBtnEl, $i18n.t('Failed to save models configuration'));
 		}
 
 		loading = false;
@@ -150,7 +150,6 @@
 	onConfirm={async () => {
 		const res = deleteAllModels(localStorage.token);
 		if (res) {
-			toast.success($i18n.t('All models deleted successfully'));
 			initHandler();
 		}
 	}}
@@ -392,6 +391,7 @@
 										</Tooltip>
 									</div>
 									<button
+										bind:this={saveBtnEl}
 										class="px-3.5 py-1.5 text-sm font-medium bg-black hover:bg-gray-900 text-white dark:bg-white dark:text-black dark:hover:bg-gray-100 transition rounded-full flex items-center gap-2 whitespace-nowrap {loading
 											? ' cursor-not-allowed'
 											: ''}"

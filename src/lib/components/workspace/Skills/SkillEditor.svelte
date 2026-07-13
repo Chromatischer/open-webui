@@ -2,7 +2,8 @@
 	import { onMount, tick, getContext } from 'svelte';
 
 	import Textarea from '$lib/components/common/Textarea.svelte';
-	import { toast } from 'svelte-sonner';
+	import { confirmButton } from '$lib/utils/confirmButton';
+	import { inlineError } from '$lib/utils/inlineError';
 	import Tooltip from '$lib/components/common/Tooltip.svelte';
 	import LockClosed from '$lib/components/icons/LockClosed.svelte';
 	import ChevronLeft from '$lib/components/icons/ChevronLeft.svelte';
@@ -22,6 +23,8 @@
 	const i18n = getContext('i18n');
 
 	let loading = false;
+	let submitBtn: HTMLButtonElement;
+	let accessBtn: HTMLButtonElement;
 
 	let name = '';
 	let id = '';
@@ -74,7 +77,7 @@
 
 	const submitHandler = async () => {
 		if (disabled) {
-			toast.error($i18n.t('You do not have permission to edit this skill.'));
+			inlineError(submitBtn, $i18n.t('You do not have permission to edit this skill.'));
 			return;
 		}
 		loading = true;
@@ -119,9 +122,9 @@
 		if (edit && skill?.id) {
 			try {
 				await updateSkillAccessGrants(localStorage.token, skill.id, accessGrants);
-				toast.success($i18n.t('Saved'));
+				confirmButton(accessBtn, { label: $i18n.t('Saved') });
 			} catch (error) {
-				toast.error(`${error}`);
+				inlineError(accessBtn, `${error}`);
 			}
 		}
 	}}
@@ -169,6 +172,7 @@
 									class="bg-gray-50 hover:bg-gray-100 text-black dark:bg-gray-850 dark:hover:bg-gray-800 dark:text-white transition px-2 py-1 rounded-full flex gap-1 items-center"
 									type="button"
 									on:click={() => (showAccessControlModal = true)}
+									bind:this={accessBtn}
 								>
 									<LockClosed strokeWidth="2.5" className="size-3.5" />
 
@@ -255,6 +259,7 @@
 							class="px-3.5 py-1.5 text-sm font-medium bg-black hover:bg-gray-900 text-white dark:bg-white dark:text-black dark:hover:bg-gray-100 transition rounded-full flex items-center gap-2 whitespace-nowrap"
 							type="submit"
 							disabled={loading}
+							bind:this={submitBtn}
 						>
 							{$i18n.t(edit ? 'Save' : 'Save & Create')}
 							{#if loading}

@@ -398,12 +398,6 @@
 			}
 
 			if ($MODEL_DOWNLOAD_POOL[sanitizedModelTag].done) {
-				toast.success(
-					$i18n.t(`Model '{{modelName}}' has been successfully downloaded.`, {
-						modelName: sanitizedModelTag
-					})
-				);
-
 				models.set(
 					await getModels(
 						localStorage.token,
@@ -453,7 +447,6 @@
 				...$MODEL_DOWNLOAD_POOL
 			});
 			await deleteModel(localStorage.token, model);
-			toast.success($i18n.t('{{model}} download has been canceled', { model: model }));
 		}
 	};
 
@@ -463,7 +456,6 @@
 		});
 
 		if (res) {
-			toast.success($i18n.t('Model unloaded successfully'));
 			models.set(
 				await getModels(
 					localStorage.token,
@@ -490,11 +482,6 @@
 		});
 
 		if (res) {
-			// $i18n.t('Model {{modelId}} not found')
-			toast.success(
-				$i18n.t('Model {{modelName}} deleted successfully', { modelName: model.name ?? model.id })
-			);
-
 			// If the deleted model was selected, clear the selection
 			if (value === model.id) {
 				value = '';

@@ -3,6 +3,8 @@
 	import { config, settings } from '$lib/stores';
 	import { createEventDispatcher, onMount, getContext } from 'svelte';
 	import { toast } from 'svelte-sonner';
+	import { inlineError } from '$lib/utils/inlineError';
+	import { confirmButton } from '$lib/utils/confirmButton';
 
 	import { getBaseModels } from '$lib/apis/models';
 
@@ -35,8 +37,19 @@
 		VOICE_MODE_PROMPT_TEMPLATE: ''
 	};
 
+	let saveBtn: HTMLButtonElement;
+
 	const updateInterfaceHandler = async () => {
-		taskConfig = await updateTaskConfig(localStorage.token, taskConfig);
+		const res = await updateTaskConfig(localStorage.token, taskConfig);
+
+		if (res) {
+			taskConfig = res;
+			// the button is the confirmation — green wash + ✓, no toast
+			confirmButton(saveBtn, { label: $i18n.t('Saved') });
+			dispatch('save');
+		} else {
+			inlineError(saveBtn, $i18n.t('Failed to update settings'));
+		}
 	};
 
 	let workspaceModels = null;
@@ -86,10 +99,7 @@
 {#if models !== null && taskConfig}
 	<form
 		class="flex flex-col h-full justify-between space-y-3 text-sm"
-		on:submit|preventDefault={() => {
-			updateInterfaceHandler();
-			dispatch('save');
-		}}
+		on:submit|preventDefault={updateInterfaceHandler}
 	>
 		<div class="  overflow-y-scroll scrollbar-hidden h-full pr-1.5">
 			<div class="mb-3.5">
@@ -128,7 +138,7 @@
 							class="w-full rounded-lg py-2 px-4 text-sm bg-gray-50 dark:text-gray-300 dark:bg-gray-850 outline-hidden"
 							bind:value={taskConfig.TASK_MODEL}
 							placeholder={$i18n.t('Select a model')}
-							on:change={() => {
+							on:change={(e) => {
 								if (taskConfig.TASK_MODEL) {
 									const model = models.find((m) => m.id === taskConfig.TASK_MODEL);
 									if (model) {
@@ -141,7 +151,8 @@
 													g.permission === 'read'
 											)
 										) {
-											toast.error(
+											inlineError(
+												e.currentTarget as HTMLElement,
 												$i18n.t(
 													'This model is not publicly available. Please select another model.'
 												)
@@ -171,7 +182,7 @@
 							class="w-full rounded-lg py-2 px-4 text-sm bg-gray-50 dark:text-gray-300 dark:bg-gray-850 outline-hidden"
 							bind:value={taskConfig.TASK_MODEL_EXTERNAL}
 							placeholder={$i18n.t('Select a model')}
-							on:change={() => {
+							on:change={(e) => {
 								if (taskConfig.TASK_MODEL_EXTERNAL) {
 									const model = models.find((m) => m.id === taskConfig.TASK_MODEL_EXTERNAL);
 									if (model) {
@@ -184,7 +195,8 @@
 													g.permission === 'read'
 											)
 										) {
-											toast.error(
+											inlineError(
+												e.currentTarget as HTMLElement,
 												$i18n.t(
 													'This model is not publicly available. Please select another model.'
 												)
@@ -410,6 +422,7 @@
 
 		<div class="flex justify-end text-sm font-medium">
 			<button
+				bind:this={saveBtn}
 				class="px-3.5 py-1.5 text-sm font-medium bg-black hover:bg-gray-900 text-white dark:bg-white dark:text-black dark:hover:bg-gray-100 transition rounded-full"
 				type="submit"
 			>

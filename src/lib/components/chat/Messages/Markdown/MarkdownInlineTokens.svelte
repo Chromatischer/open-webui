@@ -1,6 +1,5 @@
 <script lang="ts">
 	import DOMPurify from 'dompurify';
-	import { toast } from 'svelte-sonner';
 
 	import type { Token } from 'marked';
 	import { getContext } from 'svelte';
@@ -80,6 +79,22 @@
 		<br />
 	{:else if token.type === 'del'}
 		<del><svelte:self id={`${id}-del`} tokens={token.tokens} {onSourceClick} /></del>
+	{:else if token.type === 'mark'}
+		{#if token.tokens}
+			<mark><svelte:self id={`${id}-mark`} tokens={token.tokens} {onSourceClick} {done} /></mark>
+		{:else}
+			<mark>{token.text}</mark>
+		{/if}
+	{:else if token.type === 'colorHl'}
+		{#if token.tokens}
+			<span class="md-hl"
+				><svelte:self id={`${id}-hl`} tokens={token.tokens} {onSourceClick} {done} /></span
+			>
+		{:else}
+			<span class="md-hl">{token.text}</span>
+		{/if}
+	{:else if token.type === 'animBold'}
+		<span class="md-anim" data-text={token.text}>{token.text}</span>
 	{:else if token.type === 'inlineKatex'}
 		{#if token.text}
 			<KatexRenderer content={token.text} displayMode={token?.displayMode ?? false} />

@@ -64,6 +64,7 @@ from open_webui.tools.builtin import (
     generate_image,
     edit_image,
     execute_code,
+    ask_user,
     search_memories,
     add_memory,
     replace_memory_content,
@@ -71,39 +72,14 @@ from open_webui.tools.builtin import (
     list_memories,
     get_current_timestamp,
     calculate_timestamp,
-    search_notes,
     search_chats,
-    search_channels,
-    search_channel_messages,
-    view_note,
     view_chat,
-    view_channel_message,
-    view_channel_thread,
-    replace_note_content,
-    write_note,
-    list_knowledge_bases,
-    search_knowledge_bases,
-    query_knowledge_bases,
-    search_knowledge_files,
-    query_knowledge_files,
-    list_knowledge,
-    view_file,
-    view_knowledge_file,
     view_skill,
     read_scratchboard,
     write_scratchboard,
     edit_scratchboard,
     create_tasks,
     update_task,
-    create_automation,
-    update_automation,
-    list_automations,
-    toggle_automation,
-    delete_automation,
-    search_calendar_events,
-    create_calendar_event,
-    update_calendar_event,
-    delete_calendar_event,
 )
 
 from open_webui.utils.access_control import has_permission
@@ -435,40 +411,6 @@ async def get_builtin_tools(
     if is_builtin_tool_enabled('time'):
         builtin_functions.extend([get_current_timestamp, calculate_timestamp])
 
-    # Knowledge base tools - conditional injection based on model knowledge
-    # If model has attached knowledge (any type), only provide query_knowledge_files
-    # Otherwise, provide all KB browsing tools
-    model_knowledge = model.get('info', {}).get('meta', {}).get('knowledge', [])
-    # Merge folder-attached knowledge so builtin tools can search it
-    folder_knowledge = extra_params.get('__metadata__', {}).get('folder_knowledge')
-    if folder_knowledge:
-        model_knowledge = list(model_knowledge or []) + list(folder_knowledge)
-    if is_builtin_tool_enabled('knowledge'):
-        if model_knowledge:
-            # Model has attached knowledge - provide discovery, search and semantic tools
-            builtin_functions.append(list_knowledge)
-            builtin_functions.append(search_knowledge_files)
-            builtin_functions.append(query_knowledge_files)
-
-            knowledge_types = {item.get('type') for item in model_knowledge}
-            if 'file' in knowledge_types or 'collection' in knowledge_types:
-                builtin_functions.append(view_file)
-                builtin_functions.append(view_knowledge_file)
-            if 'note' in knowledge_types:
-                builtin_functions.append(view_note)
-        else:
-            # No model knowledge - allow full KB browsing
-            builtin_functions.extend(
-                [
-                    list_knowledge_bases,
-                    search_knowledge_bases,
-                    query_knowledge_bases,
-                    search_knowledge_files,
-                    query_knowledge_files,
-                    view_knowledge_file,
-                ]
-            )
-
     # Chats tools - search and fetch user's chat history
     if is_builtin_tool_enabled('chats'):
         builtin_functions.extend([search_chats, view_chat])
@@ -527,29 +469,6 @@ async def get_builtin_tools(
     ):
         builtin_functions.append(execute_code)
 
-    # Notes tools - search, view, create, and update user's notes
-    if (
-        is_builtin_tool_enabled('notes')
-        and getattr(request.app.state.config, 'ENABLE_NOTES', False)
-        and await has_user_permission('notes')
-    ):
-        builtin_functions.extend([search_notes, view_note, write_note, replace_note_content])
-
-    # Channels tools - search channels and messages
-    if (
-        is_builtin_tool_enabled('channels')
-        and getattr(request.app.state.config, 'ENABLE_CHANNELS', False)
-        and await has_user_permission('channels')
-    ):
-        builtin_functions.extend(
-            [
-                search_channels,
-                search_channel_messages,
-                view_channel_thread,
-                view_channel_message,
-            ]
-        )
-
     # Skills tools - view_skill allows model to load full skill instructions on demand
     if extra_params.get('__skill_ids__'):
         builtin_functions.append(view_skill)
@@ -562,25 +481,9 @@ async def get_builtin_tools(
     if is_builtin_tool_enabled('tasks'):
         builtin_functions.extend([create_tasks, update_task])
 
-    # Automation tools - create and manage scheduled automations from chat
-    if (
-        is_builtin_tool_enabled('automations')
-        and getattr(request.app.state.config, 'ENABLE_AUTOMATIONS', False)
-        and await has_user_permission('automations')
-    ):
-        builtin_functions.extend(
-            [create_automation, update_automation, list_automations, toggle_automation, delete_automation]
-        )
-
-    # Calendar tools - search/create/update/delete events
-    if (
-        is_builtin_tool_enabled('calendar')
-        and getattr(request.app.state.config, 'ENABLE_CALENDAR', False)
-        and await has_user_permission('calendar')
-    ):
-        builtin_functions.extend(
-            [search_calendar_events, create_calendar_event, update_calendar_event, delete_calendar_event]
-        )
+    # User interaction - put a structured question to the user and wait for the answer
+    if is_builtin_tool_enabled('ask_user'):
+        builtin_functions.append(ask_user)
 
     for func in builtin_functions:
         callable = await get_async_tool_function_and_apply_extra_params(
@@ -593,7 +496,6 @@ async def get_builtin_tools(
                 '__metadata__': extra_params.get('__metadata__'),
                 '__chat_id__': extra_params.get('__chat_id__'),
                 '__message_id__': extra_params.get('__message_id__'),
-                '__model_knowledge__': model_knowledge,
             },
         )
 

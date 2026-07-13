@@ -18,7 +18,7 @@
 	import XMark from '$lib/components/icons/XMark.svelte';
 
 	import ModelWizard from '$lib/components/workspace/Models/ModelWizard.svelte';
-	import { toast } from 'svelte-sonner';
+
 	import Badge from '$lib/components/common/Badge.svelte';
 	import ModelSettingsModal from './Models/ModelSettingsModal.svelte';
 	import EllipsisHorizontal from '$lib/components/icons/EllipsisHorizontal.svelte';
@@ -150,7 +150,6 @@
 			)
 		);
 
-		toast.success($i18n.t('All models are now visible'));
 		await tick();
 		await init();
 	};
@@ -169,7 +168,6 @@
 			)
 		);
 
-		toast.success($i18n.t('All models are now hidden'));
 		await tick();
 		await init();
 	};
@@ -214,10 +212,6 @@
 			const res = await updateModelById(localStorage.token, model.id, model).catch((error) => {
 				return null;
 			});
-
-			if (res && showToast) {
-				toast.success($i18n.t('Model updated successfully'));
-			}
 		} else {
 			const res = await createNewModel(localStorage.token, {
 				meta: {},
@@ -232,7 +226,6 @@
 			});
 
 			if (res && showToast) {
-				toast.success($i18n.t('Model updated successfully'));
 				await init();
 			}
 		}
@@ -288,15 +281,7 @@
 
 		upsertModelHandler(model, { meta: model.meta }, false);
 
-		toast.success(
-			model.meta.hidden
-				? $i18n.t(`Model {{name}} is now hidden`, {
-						name: model.id
-					})
-				: $i18n.t(`Model {{name}} is now visible`, {
-						name: model.id
-					})
-		);
+		// card state updates reactively — no confirmation needed
 	};
 
 	onMount(async () => {

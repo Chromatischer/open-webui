@@ -18,7 +18,7 @@
 <script lang="ts">
 	import { onMount, getContext } from 'svelte';
 	import { copyToClipboard } from '$lib/utils';
-	import { toast } from 'svelte-sonner';
+	import { inlineConfirm } from '$lib/utils/inlineConfirm';
 
 	const i18n = getContext('i18n');
 
@@ -40,7 +40,7 @@
 		class="cursor-pointer"
 		on:click={() => {
 			copyToClipboard(content);
-			toast.success($i18n.t('Copied to clipboard'));
+			inlineConfirm($i18n.t('Copied to clipboard'));
 		}}
 	>
 		{@html renderToString(content, { displayMode, throwOnError: false })}

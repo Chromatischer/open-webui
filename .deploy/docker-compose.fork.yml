@@ -1,0 +1,60 @@
+services:
+  open-webui:
+    image: ghcr.io/chromatischer/open-webui:main
+    container_name: open-webui
+    network_mode: host
+    volumes:
+      - open-webui-fork:/app/backend/data
+    environment:
+      - PORT=80
+      - PIPELINES_URLS=http://localhost:9099
+    restart: unless-stopped
+    depends_on:
+      - pipelines
+  pipelines:
+    image: ghcr.io/open-webui/pipelines:latest
+    container_name: pipelines
+    network_mode: host
+    volumes:
+      - pipelines:/app/pipelines
+    restart: unless-stopped
+  db-backup:
+    image: alpine:latest
+    container_name: db-backup
+    volumes:
+      - open-webui-fork:/data:ro
+      - db-backup-fork:/backup
+    environment:
+      - TZ=UTC
+    entrypoint: /bin/sh
+    command:
+      - -c
+      - |
+        apk add --no-cache sqlite > /dev/null 2>&1
+        echo "Backup scheduler started. Backups at 2:45 UTC daily."
+        while true; do
+          target=$$(date -u -d "tomorrow 02:45" +%s 2>/dev/null || date -u -d "02:45" +%s)
+          now=$$(date -u +%s)
+          [ "$$target" -le "$$now" ] && target=$$((target + 86400))
+          sleep_secs=$$((target - now))
+          echo "Next backup in $$sleep_secs seconds"
+          sleep $$sleep_secs
+          echo "Starting backup at $$(date -u)"
+          sqlite3 /data/webui.db ".backup /backup/webui.db.bak"
+          echo "Backup complete: $$(ls -lh /backup/webui.db.bak)"
+        done
+    restart: unless-stopped
+  watchtower:
+    image: containrrr/watchtower:latest
+    container_name: watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - WATCHTOWER_CLEANUP=true
+      - WATCHTOWER_SCHEDULE=0 0 3 * * *
+      - TZ=UTC
+    restart: unless-stopped
+volumes:
+  open-webui-fork:
+  pipelines:
+  db-backup-fork:

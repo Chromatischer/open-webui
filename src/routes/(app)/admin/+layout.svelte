@@ -102,7 +102,7 @@
 			</div>
 
 			{#each navGroups as group}
-				<div class="rail-group flex md:contents">
+				<div class="rail-group flex gap-1 md:contents">
 					<div class="rail-group-label hidden md:block">{group.label}</div>
 					{#each group.items as item}
 						<a
@@ -158,7 +158,8 @@
 	.rail-item {
 		display: flex;
 		align-items: center;
-		min-width: fit-content;
+		flex: none;
+		white-space: nowrap;
 		padding: 7px 12px;
 		border-radius: 10px;
 		font-size: 13.5px;
