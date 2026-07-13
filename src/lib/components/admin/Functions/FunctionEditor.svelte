@@ -15,10 +15,10 @@
 
 	let formElement = null;
 	let loading = false;
-	let saveBtn: HTMLButtonElement;
+	let saveBtn;
 	let showConfirm = false;
 
-	export let onSave: (data: any) => any = () => {};
+	export let onSave = () => {};
 
 	export let edit = false;
 	export let clone = false;

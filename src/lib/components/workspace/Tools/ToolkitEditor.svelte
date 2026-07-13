@@ -19,7 +19,7 @@
 	import AccessControlModal from '../common/AccessControlModal.svelte';
 
 	let formElement = null;
-	let saveBtn: HTMLButtonElement;
+	let saveBtn;
 	let loading = false;
 
 	let showConfirm = false;
@@ -28,7 +28,7 @@
 	export let edit = false;
 	export let clone = false;
 
-	export let onSave: (data: any) => any = () => {};
+	export let onSave = () => {};
 
 	export let id = '';
 	export let name = '';

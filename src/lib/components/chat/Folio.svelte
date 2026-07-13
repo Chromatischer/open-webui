@@ -1,7 +1,7 @@
 <script>
 	import { tick } from 'svelte';
 	import { browser } from '$app/environment';
-	import { theme, showSidebar, models as modelsStore } from '$lib/stores';
+	import { theme, showSidebar, settings, models as modelsStore } from '$lib/stores';
 	import { deleteFileById } from '$lib/apis/files';
 	import Markdown from './Messages/Markdown.svelte';
 	import QuerySlip from './QuerySlip.svelte';
@@ -370,7 +370,9 @@
 		onSubmit(text);
 	}
 	function onComposerKey(e) {
-		if (e.key === 'Enter' && !e.shiftKey) {
+		if (e.key !== 'Enter') return;
+		const ctrlSend = $settings?.ctrlEnterToSend ?? false;
+		if (ctrlSend ? e.ctrlKey || e.metaKey : !e.shiftKey) {
 			e.preventDefault();
 			doSend();
 		}
@@ -568,7 +570,7 @@
 
 <svelte:window onpointerdown={onDeskPointerDown} onkeydown={onDeskKeydown} />
 
-<div class="folio">
+<div class="folio" class:no-dropcap={!($settings?.dropCaps ?? true)}>
 	<div class="grain" aria-hidden="true"></div>
 
 	<div class="desk">
@@ -605,7 +607,11 @@
 
 		<div class="desk-grid">
 			<div class="scroll" bind:this={scroller} onscroll={onScroll}>
-				<main class="page" class:zen={sections.length === 0}>
+				<main
+					class="page"
+					class:zen={sections.length === 0}
+					class:wide={$settings?.wideFolio ?? false}
+				>
 					{#if sections.length === 0}
 						<div class="zen-actions">{@render actions()}</div>
 
@@ -1527,6 +1533,9 @@
 		margin: 0 auto;
 		padding: 9vh 28px 0;
 	}
+	.page.wide {
+		max-width: 880px;
+	}
 
 	/* zen: a blank folio is the greeting, the line, and nothing else */
 	.page.zen {
@@ -1895,6 +1904,15 @@
 		float: left;
 		padding: 4px 8px 0 0;
 		color: var(--ultramarine);
+	}
+	/* drop caps are a setting — reset the illuminated letter when turned off */
+	.folio.no-dropcap .sec:first-of-type .passage :global(p:first-of-type::first-letter) {
+		font-family: inherit;
+		font-size: inherit;
+		line-height: inherit;
+		float: none;
+		padding: 0;
+		color: inherit;
 	}
 
 	.quote {

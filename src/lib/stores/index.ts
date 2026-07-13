@@ -233,6 +233,8 @@ type Settings = {
 	splitLargeDeltas?: boolean;
 	chatDirection?: 'LTR' | 'RTL' | 'auto';
 	ctrlEnterToSend?: boolean;
+	wideFolio?: boolean;
+	dropCaps?: boolean;
 	renderMarkdownInPreviews?: boolean;
 	recentEmojis?: string[];
 	pinnedMenuItems?: string[];

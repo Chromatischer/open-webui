@@ -47,7 +47,7 @@
 
 	import Archive from '$lib/components/layout/Archive.svelte';
 	import Scratchboard from '$lib/components/design/Scratchboard.svelte';
-	import SettingsModal from '$lib/components/chat/SettingsModal.svelte';
+	import SettingsFolio from '$lib/components/chat/SettingsFolio.svelte';
 	import ShortcutsModal from '$lib/components/chat/ShortcutsModal.svelte';
 	import ChangelogModal from '$lib/components/ChangelogModal.svelte';
 	import AccountPending from '$lib/components/layout/Overlay/AccountPending.svelte';
@@ -481,7 +481,7 @@
 	};
 </script>
 
-<SettingsModal bind:show={$showSettings} />
+<SettingsFolio bind:show={$showSettings} />
 <ShortcutsModal bind:show={$showShortcuts} />
 <ChangelogModal bind:show={$showChangelog} />
 
