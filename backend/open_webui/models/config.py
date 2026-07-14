@@ -28,7 +28,6 @@ DICT_CONFIG_KEY_ALIASES = {
     'rag.docling_params': ('DOCLING_PARAMS',),
     'image_generation.automatic1111.api_params': ('AUTOMATIC1111_PARAMS',),
     'image_generation.openai.params': ('IMAGES_OPENAI_API_PARAMS',),
-    'audio.tts.openai.params': ('AUDIO_TTS_OPENAI_PARAMS',),
     'models.default_metadata': ('DEFAULT_MODEL_METADATA',),
     'models.default_params': ('DEFAULT_MODEL_PARAMS',),
     'user.permissions': ('USER_PERMISSIONS',),

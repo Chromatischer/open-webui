@@ -24,7 +24,6 @@ from open_webui.config import (
     CODE_INTERPRETER_PYODIDE_PROMPT,
     DEFAULT_CODE_INTERPRETER_PROMPT,
     DEFAULT_TOOLS_FUNCTION_CALLING_PROMPT_TEMPLATE,
-    DEFAULT_VOICE_MODE_PROMPT_TEMPLATE,
 )
 from open_webui.constants import TASKS
 from open_webui.env import (
@@ -2411,18 +2410,6 @@ async def process_chat_payload(request, form_data, user, metadata, model):
     features = form_data.pop('features', None) or {}
     extra_params['__features__'] = features
     if features:
-        if 'voice' in features and features['voice']:
-            if await Config.get('task.voice.prompt.enable'):
-                if await Config.get('task.voice.prompt_template'):
-                    template = await Config.get('task.voice.prompt_template')
-                else:
-                    template = DEFAULT_VOICE_MODE_PROMPT_TEMPLATE
-
-                form_data['messages'] = add_or_update_system_message(
-                    template,
-                    form_data['messages'],
-                )
-
         if 'memory' in features and features['memory'] and await Config.get('memories.system_context.enable'):
             form_data = await add_memory_context(request, form_data, user, model)
 

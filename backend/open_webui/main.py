@@ -1810,10 +1810,6 @@ async def get_app_config(request: Request):
         'ui.prompt_suggestions',
         'code_execution.engine',
         'code_interpreter.engine',
-        'audio.tts.engine',
-        'audio.tts.voice',
-        'audio.tts.split_on',
-        'audio.stt.engine',
         'rag.file.max_size',
         'rag.file.max_count',
         'file.image_compression_width',
@@ -1891,16 +1887,6 @@ async def get_app_config(request: Request):
                 'code': {
                     'engine': config.get('code_execution.engine'),
                     'interpreter_engine': config.get('code_interpreter.engine'),
-                },
-                'audio': {
-                    'tts': {
-                        'engine': config.get('audio.tts.engine'),
-                        'voice': config.get('audio.tts.voice'),
-                        'split_on': config.get('audio.tts.split_on'),
-                    },
-                    'stt': {
-                        'engine': config.get('audio.stt.engine'),
-                    },
                 },
                 'file': {
                     'max_size': config.get('rag.file.max_size'),

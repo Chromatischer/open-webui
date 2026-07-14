@@ -1470,100 +1470,6 @@ IMAGES_EDIT_COMFYUI_WORKFLOW_NODES = images_edit_comfyui_workflow_nodes
 ####################################
 
 # Transcription
-WHISPER_MODEL = os.getenv('WHISPER_MODEL', 'base')
-
-WHISPER_COMPUTE_TYPE = os.getenv('WHISPER_COMPUTE_TYPE', 'int8')
-WHISPER_MODEL_DIR = os.getenv('WHISPER_MODEL_DIR', f'{CACHE_DIR}/whisper/models')
-WHISPER_MODEL_AUTO_UPDATE = not OFFLINE_MODE and os.getenv('WHISPER_MODEL_AUTO_UPDATE', '').lower() == 'true'
-
-WHISPER_VAD_FILTER = os.getenv('WHISPER_VAD_FILTER', 'False').lower() == 'true'
-
-WHISPER_MULTILINGUAL = os.getenv('WHISPER_MULTILINGUAL', 'False').lower() == 'true'
-
-WHISPER_LANGUAGE = os.getenv('WHISPER_LANGUAGE', '').lower() or None
-
-# Add Deepgram configuration
-DEEPGRAM_API_KEY = os.getenv('DEEPGRAM_API_KEY', '')
-
-# ElevenLabs configuration
-ELEVENLABS_API_BASE_URL = os.getenv('ELEVENLABS_API_BASE_URL', 'https://api.elevenlabs.io')
-
-AUDIO_STT_OPENAI_API_BASE_URL = os.getenv('AUDIO_STT_OPENAI_API_BASE_URL', OPENAI_API_BASE_URL)
-
-AUDIO_STT_OPENAI_API_KEY = os.getenv('AUDIO_STT_OPENAI_API_KEY', OPENAI_API_KEY)
-
-AUDIO_STT_OPENAI_API_REQUEST_FORMAT = os.getenv('AUDIO_STT_OPENAI_API_REQUEST_FORMAT', 'multipart')
-
-AUDIO_STT_ENGINE = os.getenv('AUDIO_STT_ENGINE', '')
-
-AUDIO_STT_MODEL = os.getenv('AUDIO_STT_MODEL', '')
-
-AUDIO_STT_SUPPORTED_CONTENT_TYPES = [
-    content_type.strip()
-    for content_type in os.getenv('AUDIO_STT_SUPPORTED_CONTENT_TYPES', '').split(',')
-    if content_type.strip()
-]
-
-AUDIO_STT_ALLOWED_EXTENSIONS = [
-    ext.strip()
-    for ext in os.getenv(
-        'AUDIO_STT_ALLOWED_EXTENSIONS',
-        'mp3,wav,m4a,webm,ogg,flac,mp4,mpga,mpeg',
-    ).split(',')
-    if ext.strip()
-]
-
-AUDIO_STT_AZURE_API_KEY = os.getenv('AUDIO_STT_AZURE_API_KEY', '')
-
-AUDIO_STT_AZURE_REGION = os.getenv('AUDIO_STT_AZURE_REGION', '')
-
-AUDIO_STT_AZURE_LOCALES = os.getenv('AUDIO_STT_AZURE_LOCALES', '')
-
-AUDIO_STT_AZURE_BASE_URL = os.getenv('AUDIO_STT_AZURE_BASE_URL', '')
-
-AUDIO_STT_AZURE_MAX_SPEAKERS = os.getenv('AUDIO_STT_AZURE_MAX_SPEAKERS', '')
-
-AUDIO_STT_MISTRAL_API_KEY = os.getenv('AUDIO_STT_MISTRAL_API_KEY', '')
-
-AUDIO_STT_MISTRAL_API_BASE_URL = os.getenv('AUDIO_STT_MISTRAL_API_BASE_URL', 'https://api.mistral.ai/v1')
-
-AUDIO_STT_MISTRAL_USE_CHAT_COMPLETIONS = os.getenv('AUDIO_STT_MISTRAL_USE_CHAT_COMPLETIONS', 'false').lower() == 'true'
-
-AUDIO_TTS_OPENAI_API_BASE_URL = os.getenv('AUDIO_TTS_OPENAI_API_BASE_URL', OPENAI_API_BASE_URL)
-AUDIO_TTS_OPENAI_API_KEY = os.getenv('AUDIO_TTS_OPENAI_API_KEY', OPENAI_API_KEY)
-
-audio_tts_openai_params = os.getenv('AUDIO_TTS_OPENAI_PARAMS', '')
-try:
-    audio_tts_openai_params = json.loads(audio_tts_openai_params)
-except json.JSONDecodeError:
-    audio_tts_openai_params = {}
-
-AUDIO_TTS_OPENAI_PARAMS = audio_tts_openai_params
-
-
-AUDIO_TTS_API_KEY = os.getenv('AUDIO_TTS_API_KEY', '')
-
-AUDIO_TTS_ENGINE = os.getenv('AUDIO_TTS_ENGINE', '')
-
-
-AUDIO_TTS_MODEL = os.getenv('AUDIO_TTS_MODEL', 'tts-1')
-
-AUDIO_TTS_VOICE = os.getenv('AUDIO_TTS_VOICE', 'alloy')
-
-AUDIO_TTS_SPLIT_ON = os.getenv('AUDIO_TTS_SPLIT_ON', 'punctuation')
-
-AUDIO_TTS_AZURE_SPEECH_REGION = os.getenv('AUDIO_TTS_AZURE_SPEECH_REGION', '')
-
-AUDIO_TTS_AZURE_SPEECH_BASE_URL = os.getenv('AUDIO_TTS_AZURE_SPEECH_BASE_URL', '')
-
-AUDIO_TTS_AZURE_SPEECH_OUTPUT_FORMAT = os.getenv(
-    'AUDIO_TTS_AZURE_SPEECH_OUTPUT_FORMAT', 'audio-24khz-160kbitrate-mono-mp3'
-)
-
-AUDIO_TTS_MISTRAL_API_KEY = os.getenv('AUDIO_TTS_MISTRAL_API_KEY', '')
-
-AUDIO_TTS_MISTRAL_API_BASE_URL = os.getenv('AUDIO_TTS_MISTRAL_API_BASE_URL', 'https://api.mistral.ai/v1')
-
 ####################################
 # WEBUI
 ####################################
@@ -2251,35 +2157,6 @@ Output:
 """
 
 
-VOICE_MODE_PROMPT_TEMPLATE = os.getenv('VOICE_MODE_PROMPT_TEMPLATE', '')
-
-ENABLE_VOICE_MODE_PROMPT = os.getenv('ENABLE_VOICE_MODE_PROMPT', 'True').lower() == 'true'
-
-DEFAULT_VOICE_MODE_PROMPT_TEMPLATE = """You are a friendly, concise voice assistant.
-
-Everything you say will be spoken aloud.
-Keep responses short, clear, and natural.
-
-STYLE:
-- Use simple words and short sentences.
-- Sound warm and conversational.
-- Avoid long explanations, lists, or complex phrasing.
-
-BEHAVIOR:
-- Give the quickest helpful answer first.
-- Offer extra detail only if needed.
-- Ask for clarification only when necessary.
-
-VOICE OPTIMIZATION:
-- Break information into small, easy-to-hear chunks.
-- Avoid dense wording or anything that sounds like reading text.
-
-ERROR HANDLING:
-- If unsure, say so briefly and offer options.
-- If something is unsafe or impossible, decline kindly and suggest a safe alternative.
-
-Stay consistent, helpful, and easy to listen to."""
-
 TOOLS_FUNCTION_CALLING_PROMPT_TEMPLATE = os.getenv('TOOLS_FUNCTION_CALLING_PROMPT_TEMPLATE', '')
 
 
@@ -2897,36 +2774,6 @@ DEFAULT_CONFIG = {
     'images.edit.comfyui.api_key': IMAGES_EDIT_COMFYUI_API_KEY,
     'images.edit.comfyui.workflow': IMAGES_EDIT_COMFYUI_WORKFLOW,
     'images.edit.comfyui.nodes': IMAGES_EDIT_COMFYUI_WORKFLOW_NODES,
-    'audio.stt.whisper_model': WHISPER_MODEL,
-    'audio.stt.deepgram.api_key': DEEPGRAM_API_KEY,
-    'audio.stt.openai.api_base_url': AUDIO_STT_OPENAI_API_BASE_URL,
-    'audio.stt.openai.api_key': AUDIO_STT_OPENAI_API_KEY,
-    'audio.stt.openai.api_request_format': AUDIO_STT_OPENAI_API_REQUEST_FORMAT,
-    'audio.stt.engine': AUDIO_STT_ENGINE,
-    'audio.stt.model': AUDIO_STT_MODEL,
-    'audio.stt.supported_content_types': AUDIO_STT_SUPPORTED_CONTENT_TYPES,
-    'audio.stt.allowed_extensions': AUDIO_STT_ALLOWED_EXTENSIONS,
-    'audio.stt.azure.api_key': AUDIO_STT_AZURE_API_KEY,
-    'audio.stt.azure.region': AUDIO_STT_AZURE_REGION,
-    'audio.stt.azure.locales': AUDIO_STT_AZURE_LOCALES,
-    'audio.stt.azure.base_url': AUDIO_STT_AZURE_BASE_URL,
-    'audio.stt.azure.max_speakers': AUDIO_STT_AZURE_MAX_SPEAKERS,
-    'audio.stt.mistral.api_key': AUDIO_STT_MISTRAL_API_KEY,
-    'audio.stt.mistral.api_base_url': AUDIO_STT_MISTRAL_API_BASE_URL,
-    'audio.stt.mistral.use_chat_completions': AUDIO_STT_MISTRAL_USE_CHAT_COMPLETIONS,
-    'audio.tts.openai.api_base_url': AUDIO_TTS_OPENAI_API_BASE_URL,
-    'audio.tts.openai.api_key': AUDIO_TTS_OPENAI_API_KEY,
-    'audio.tts.openai.params': AUDIO_TTS_OPENAI_PARAMS,
-    'audio.tts.api_key': AUDIO_TTS_API_KEY,
-    'audio.tts.engine': AUDIO_TTS_ENGINE,
-    'audio.tts.model': AUDIO_TTS_MODEL,
-    'audio.tts.voice': AUDIO_TTS_VOICE,
-    'audio.tts.split_on': AUDIO_TTS_SPLIT_ON,
-    'audio.tts.azure.speech_region': AUDIO_TTS_AZURE_SPEECH_REGION,
-    'audio.tts.azure.speech_base_url': AUDIO_TTS_AZURE_SPEECH_BASE_URL,
-    'audio.tts.azure.speech_output_format': AUDIO_TTS_AZURE_SPEECH_OUTPUT_FORMAT,
-    'audio.tts.mistral.api_key': AUDIO_TTS_MISTRAL_API_KEY,
-    'audio.tts.mistral.api_base_url': AUDIO_TTS_MISTRAL_API_BASE_URL,
     'webui.url': WEBUI_URL,
     'ui.enable_signup': ENABLE_SIGNUP,
     'ui.enable_login_form': ENABLE_LOGIN_FORM,
@@ -2974,8 +2821,6 @@ DEFAULT_CONFIG = {
     'task.autocomplete.enable': ENABLE_AUTOCOMPLETE_GENERATION,
     'task.autocomplete.input_max_length': AUTOCOMPLETE_GENERATION_INPUT_MAX_LENGTH,
     'task.autocomplete.prompt_template': AUTOCOMPLETE_GENERATION_PROMPT_TEMPLATE,
-    'task.voice.prompt_template': VOICE_MODE_PROMPT_TEMPLATE,
-    'task.voice.prompt.enable': ENABLE_VOICE_MODE_PROMPT,
     'task.tools.prompt_template': TOOLS_FUNCTION_CALLING_PROMPT_TEMPLATE,
     'auth.enable_api_keys': ENABLE_API_KEYS,
     'auth.api_key.endpoint_restrictions': ENABLE_API_KEYS_ENDPOINT_RESTRICTIONS,
