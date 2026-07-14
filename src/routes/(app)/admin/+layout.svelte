@@ -32,6 +32,7 @@
 			label: $i18n.t('Core'),
 			items: [
 				{ title: $i18n.t('General'), href: '/admin/settings/general' },
+				{ title: $i18n.t('Authentication'), href: '/admin/settings/authentication' },
 				{ title: $i18n.t('Connections'), href: '/admin/settings/connections' },
 				{ title: $i18n.t('Models'), href: '/admin/settings/models' },
 				{ title: $i18n.t('Integrations'), href: '/admin/settings/integrations' }
@@ -49,7 +50,7 @@
 		{
 			label: $i18n.t('Operations'),
 			items: [
-				{ title: $i18n.t('Arena'), href: '/admin/settings/evaluations' },
+				{ title: $i18n.t('Events'), href: '/admin/settings/events' },
 				{ title: $i18n.t('Pipelines'), href: '/admin/settings/pipelines' },
 				{ title: $i18n.t('Design'), href: '/admin/settings/interface' },
 				{ title: $i18n.t('Database'), href: '/admin/settings/db' }

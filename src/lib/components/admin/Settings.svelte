@@ -7,6 +7,8 @@
 	import Database from './Settings/Database.svelte';
 
 	import General from './Settings/General.svelte';
+	import Authentication from './Settings/Authentication.svelte';
+	import Events from './Settings/Events.svelte';
 	import Pipelines from './Settings/Pipelines.svelte';
 	import Images from './Settings/Images.svelte';
 	import Interface from './Settings/Interface.svelte';
@@ -18,7 +20,6 @@
 	import Documents from './Settings/Documents.svelte';
 	import WebSearch from './Settings/WebSearch.svelte';
 
-	import Evaluations from './Settings/Evaluations.svelte';
 	import CodeExecution from './Settings/CodeExecution.svelte';
 	import Integrations from './Settings/Integrations.svelte';
 
@@ -27,9 +28,10 @@
 	let selectedTab = 'general';
 	const settingsTabIds = [
 		'general',
+		'authentication',
 		'connections',
 		'models',
-		'evaluations',
+		'events',
 		'integrations',
 		'documents',
 		'web',
@@ -59,7 +61,11 @@
 	$: pageMeta = {
 		general: {
 			title: $i18n.t('General'),
-			description: $i18n.t('Instance defaults, authentication, and feature toggles.')
+			description: $i18n.t('Instance defaults and feature toggles.')
+		},
+		authentication: {
+			title: $i18n.t('Authentication'),
+			description: $i18n.t('Sign-in, directory, and identity-provider access.')
 		},
 		connections: {
 			title: $i18n.t('Connections'),
@@ -69,9 +75,9 @@
 			title: $i18n.t('Models'),
 			description: $i18n.t('Manage, import, and configure the models available to users.')
 		},
-		evaluations: {
-			title: $i18n.t('Arena'),
-			description: $i18n.t('Model arena, feedback collection, and leaderboard settings.')
+		events: {
+			title: $i18n.t('Events'),
+			description: $i18n.t('Deliver system activity to trusted endpoints.')
 		},
 		integrations: {
 			title: $i18n.t('Integrations'),
@@ -130,6 +136,8 @@
 					await config.set(await getBackendConfig());
 				}}
 			/>
+		{:else if selectedTab === 'authentication'}
+			<Authentication />
 		{:else if selectedTab === 'connections'}
 			<Connections
 				on:save={async () => {
@@ -140,8 +148,8 @@
 			/>
 		{:else if selectedTab === 'models'}
 			<Models embedded={true} />
-		{:else if selectedTab === 'evaluations'}
-			<Evaluations />
+		{:else if selectedTab === 'events'}
+			<Events />
 		{:else if selectedTab === 'integrations'}
 			<Integrations />
 		{:else if selectedTab === 'documents'}
