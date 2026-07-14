@@ -884,8 +884,6 @@ except json.JSONDecodeError:
 
 MINERU_PARAMS = mineru_params
 
-MINERU_FILE_EXTENSIONS = [ext.strip() for ext in os.getenv('MINERU_FILE_EXTENSIONS', 'pdf').split(',') if ext.strip()]
-
 EXTERNAL_DOCUMENT_LOADER_URL = os.getenv('EXTERNAL_DOCUMENT_LOADER_URL', '')
 
 EXTERNAL_DOCUMENT_LOADER_API_KEY = os.getenv('EXTERNAL_DOCUMENT_LOADER_API_KEY', '')
@@ -2786,7 +2784,6 @@ DEFAULT_CONFIG = {
     'rag.mineru_api_timeout': MINERU_API_TIMEOUT,
     'rag.mineru_api_key': MINERU_API_KEY,
     'rag.mineru_params': MINERU_PARAMS,
-    'rag.mineru_file_extensions': MINERU_FILE_EXTENSIONS,
     'rag.external_document_loader_url': EXTERNAL_DOCUMENT_LOADER_URL,
     'rag.external_document_loader_api_key': EXTERNAL_DOCUMENT_LOADER_API_KEY,
     'rag.external_document_loader_headers': EXTERNAL_DOCUMENT_LOADER_HEADERS,

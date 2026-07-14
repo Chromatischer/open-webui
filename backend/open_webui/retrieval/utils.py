@@ -105,7 +105,6 @@ LOADER_CONFIG_KEYS = {
     'MINERU_API_KEY': 'rag.mineru_api_key',
     'MINERU_API_TIMEOUT': 'rag.mineru_api_timeout',
     'MINERU_PARAMS': 'rag.mineru_params',
-    'MINERU_FILE_EXTENSIONS': 'rag.mineru_file_extensions',
 }
 
 

@@ -528,7 +528,7 @@ class Loader:
                     azure_credential=DefaultAzureCredential(),
                     api_model=self.kwargs.get('DOCUMENT_INTELLIGENCE_MODEL'),
                 )
-        elif self.engine == 'mineru' and file_ext in self.kwargs.get('MINERU_FILE_EXTENSIONS', ['pdf']):
+        elif self.engine == 'mineru' and file_ext == 'pdf':
             mineru_timeout = self.kwargs.get('MINERU_API_TIMEOUT', 300)
             if mineru_timeout:
                 try:

@@ -318,7 +318,6 @@ RETRIEVAL_CONFIG_KEYS = {
     'MINERU_API_MODE': 'rag.mineru_api_mode',
     'MINERU_API_TIMEOUT': 'rag.mineru_api_timeout',
     'MINERU_API_URL': 'rag.mineru_api_url',
-    'MINERU_FILE_EXTENSIONS': 'rag.mineru_file_extensions',
     'MINERU_PARAMS': 'rag.mineru_params',
     'MICROSOFT_WEB_IQ_API_BASE_URL': 'web.search.microsoft_web_iq_api_base_url',
     'MICROSOFT_WEB_IQ_API_KEY': 'web.search.microsoft_web_iq_api_key',
@@ -659,7 +658,6 @@ async def get_rag_config(request: Request, user=Depends(get_admin_user)):
         'MINERU_API_KEY': config.MINERU_API_KEY,
         'MINERU_API_TIMEOUT': config.MINERU_API_TIMEOUT,
         'MINERU_PARAMS': config.MINERU_PARAMS,
-        'MINERU_FILE_EXTENSIONS': config.MINERU_FILE_EXTENSIONS,
         # Reranking settings
         'RAG_RERANKING_MODEL': config.RAG_RERANKING_MODEL,
         'RAG_RERANKING_ENGINE': config.RAG_RERANKING_ENGINE,
@@ -891,7 +889,6 @@ class ConfigForm(BaseModel):
     MINERU_API_KEY: str | None = None
     MINERU_API_TIMEOUT: int | None = None
     MINERU_PARAMS: dict | None = None
-    MINERU_FILE_EXTENSIONS: list[str] | None = None
 
     # Reranking settings
     RAG_RERANKING_MODEL: str | None = None
@@ -1096,12 +1093,6 @@ async def update_rag_config(request: Request, form_data: ConfigForm, user=Depend
         form_data.MINERU_API_TIMEOUT if form_data.MINERU_API_TIMEOUT is not None else config.MINERU_API_TIMEOUT
     )
     config.MINERU_PARAMS = form_data.MINERU_PARAMS if form_data.MINERU_PARAMS is not None else config.MINERU_PARAMS
-    config.MINERU_FILE_EXTENSIONS = (
-        form_data.MINERU_FILE_EXTENSIONS
-        if form_data.MINERU_FILE_EXTENSIONS is not None
-        else config.MINERU_FILE_EXTENSIONS
-    )
-
     # Reranking settings
     if config.RAG_RERANKING_ENGINE == '':
         # Unloading the internal reranker and clear VRAM memory
