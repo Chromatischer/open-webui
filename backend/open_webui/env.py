@@ -1,5 +1,4 @@
 import datetime as dt
-import importlib.metadata
 import json
 import logging
 import os
@@ -131,17 +130,7 @@ SRC_LOG_LEVELS = {}  # Legacy variable, do not remove
 
 ENV = os.getenv('ENV', 'dev')
 
-FROM_INIT_PY = os.getenv('FROM_INIT_PY', 'False').lower() == 'true'
-
-if FROM_INIT_PY:
-    PACKAGE_DATA = {'version': importlib.metadata.version('open-webui')}
-else:
-    try:
-        PACKAGE_DATA = json.loads((BASE_DIR / 'package.json').read_text())
-    except Exception:
-        PACKAGE_DATA = {'version': '0.0.0'}
-
-VERSION = PACKAGE_DATA['version']
+VERSION = '0.1.0'
 
 
 DEPLOYMENT_ID = os.getenv('DEPLOYMENT_ID', '')
@@ -630,8 +619,8 @@ WEBUI_AUTH_COOKIE_SECURE = (
 if WEBUI_AUTH and WEBUI_SECRET_KEY == '':
     raise SystemExit(
         'WEBUI_SECRET_KEY is not set. It is a hard requirement when authentication is enabled.\n'
-        'The supported start methods set or auto-generate it for you: use start.sh (Linux/macOS), '
-        'start_windows.bat (Windows), or `open-webui serve`.\n'
+        'The supported start methods set or auto-generate it for you: use backend/start.sh '
+        '(Linux/macOS), backend/start_windows.bat (Windows), or dev-up.sh for local development.\n'
         'If you start the backend another way (e.g. invoking uvicorn directly, which is unsupported), '
         'you must set WEBUI_SECRET_KEY yourself to a long random value.\n'
         'See https://docs.openwebui.com/reference/env-configuration#webui_secret_key'
