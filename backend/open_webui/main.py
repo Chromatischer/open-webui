@@ -128,11 +128,9 @@ from open_webui.events import (
 )
 from open_webui.internal.db import engine, get_async_session
 from open_webui.models.access_grants import AccessGrants
-from open_webui.models.channels import Channels
 from open_webui.models.chats import ChatForm, Chats
 from open_webui.models.config import Config
 from open_webui.models.functions import Functions
-from open_webui.models.messages import Messages
 from open_webui.models.models import Models
 from open_webui.models.users import Users
 from open_webui.routers import (
@@ -338,10 +336,6 @@ async def lifespan(app: FastAPI):
 
     asyncio.create_task(periodic_usage_pool_cleanup())
     asyncio.create_task(periodic_session_pool_cleanup())
-
-    from open_webui.utils.automations import scheduler_worker_loop
-
-    asyncio.create_task(scheduler_worker_loop(app))
 
     if await Config.get('models.base_models_cache'):
         try:
@@ -1147,48 +1141,7 @@ async def chat_completion(
         if metadata.get('chat_id') and user:
             chat_id = metadata['chat_id']
 
-            # Gate channel: branch — caller needs write access on the channel
-            # and the supplied message_id must belong to that channel.
-            if chat_id.startswith('channel:'):
-                channel_id = chat_id.removeprefix('channel:')
-                channel = await Channels.get_channel_by_id(channel_id)
-                if not channel:
-                    raise HTTPException(
-                        status_code=status.HTTP_404_NOT_FOUND,
-                        detail=ERROR_MESSAGES.NOT_FOUND,
-                    )
-                if user.role != 'admin':
-                    if channel.type in ['group', 'dm']:
-                        if not await Channels.is_user_channel_member(channel.id, user.id):
-                            raise HTTPException(
-                                status_code=status.HTTP_403_FORBIDDEN,
-                                detail=ERROR_MESSAGES.DEFAULT(),
-                            )
-                    else:
-                        if not await AccessGrants.has_access(
-                            user_id=user.id,
-                            resource_type='channel',
-                            resource_id=channel.id,
-                            permission='write',
-                        ):
-                            raise HTTPException(
-                                status_code=status.HTTP_403_FORBIDDEN,
-                                detail=ERROR_MESSAGES.DEFAULT(),
-                            )
-                for entry in message_ids:
-                    target_message_id = entry.get('message_id')
-                    if not target_message_id:
-                        continue
-                    target_message = await Messages.get_message_by_id(target_message_id)
-                    if target_message and target_message.channel_id != channel.id:
-                        raise HTTPException(
-                            status_code=status.HTTP_403_FORBIDDEN,
-                            detail=ERROR_MESSAGES.DEFAULT(),
-                        )
-
-            if not chat_id.startswith('local:') and not chat_id.startswith(
-                'channel:'
-            ):  # temporary/channel chats are not stored
+            if not chat_id.startswith('local:'):  # temporary chats are not stored
                 if is_new_chat:
                     # Build the full history upfront with ALL assistant placeholders
                     user_message = metadata.get('user_message') or {}
@@ -1841,10 +1794,6 @@ async def get_app_config(request: Request):
         'direct.enable',
         'folders.enable',
         'folders.max_file_count',
-        'channels.enable',
-        'calendar.enable',
-        'automations.enable',
-        'notes.enable',
         'web.search.enable',
         'code_execution.enable',
         'code_interpreter.enable',
@@ -1906,10 +1855,6 @@ async def get_app_config(request: Request):
                     'enable_direct_connections': config.get('direct.enable'),
                     'enable_folders': config.get('folders.enable'),
                     'folder_max_file_count': config.get('folders.max_file_count'),
-                    'enable_channels': config.get('channels.enable'),
-                    'enable_calendar': config.get('calendar.enable'),
-                    'enable_automations': config.get('automations.enable'),
-                    'enable_notes': config.get('notes.enable'),
                     'enable_web_search': config.get('web.search.enable'),
                     'enable_code_execution': config.get('code_execution.enable'),
                     'enable_code_interpreter': config.get('code_interpreter.enable'),

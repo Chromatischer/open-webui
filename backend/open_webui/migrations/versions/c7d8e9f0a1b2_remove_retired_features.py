@@ -61,7 +61,37 @@ _TABLES = (
     'skill',
     'feedback',
 )
-_CONFIG_PREFIXES = tuple(f'{name}.' for name in _RETIRED_NAMES)
+_CONFIG_PREFIXES = (
+    'audio.',
+    'automations.',
+    'calendar.',
+    'channels.',
+    'evaluations.',
+    'knowledge.',
+    'notes.',
+    'skills.',
+)
+_RETIRED_JSON_KEYS = {
+    'automation_id',
+    'automation_ids',
+    'calendar_id',
+    'calendar_ids',
+    'channel_id',
+    'channel_ids',
+    'evaluation_id',
+    'evaluation_ids',
+    'feedback_id',
+    'feedback_ids',
+    'knowledge',
+    'knowledge_id',
+    'knowledge_ids',
+    'note_id',
+    'note_ids',
+    'prompt_ids',
+    'prompts',
+    'skill_ids',
+    'skills',
+}
 _JSON_COLUMNS = {
     'chat': ('chat', 'meta'),
     'model': ('meta', 'params'),
@@ -71,9 +101,9 @@ _JSON_COLUMNS = {
 
 
 def _retired_key(key: object) -> bool:
-    value = str(key).lower().replace('-', '_')
-    parts = set(value.replace('.', '_').split('_'))
-    return bool(parts & _RETIRED_NAMES)
+    value = str(key).replace('-', '_')
+    snake_case = ''.join(f'_{char.lower()}' if char.isupper() else char for char in value).lstrip('_')
+    return snake_case.lower() in _RETIRED_JSON_KEYS
 
 
 def _clean_json(value: Any) -> Any:
@@ -120,7 +150,6 @@ def upgrade() -> None:
     if 'config' in existing:
         config = sa.table('config', sa.column('key', sa.Text()))
         conditions = [sa.func.lower(config.c.key).like(f'{prefix}%') for prefix in _CONFIG_PREFIXES]
-        conditions.extend(sa.func.lower(config.c.key).like(f'%.{name}.%') for name in _RETIRED_NAMES)
         bind.execute(sa.delete(config).where(sa.or_(*conditions)))
 
     _clean_persisted_json(bind, inspector)

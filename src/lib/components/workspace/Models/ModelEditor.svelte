@@ -13,7 +13,6 @@
 	import AdvancedParams from '$lib/components/chat/Settings/Advanced/AdvancedParams.svelte';
 	import ModelSelector from '$lib/components/chat/ModelSelector/Selector.svelte';
 	import Tags from '$lib/components/common/Tags.svelte';
-	import Knowledge from '$lib/components/workspace/Models/Knowledge.svelte';
 	import ToolsSelector from '$lib/components/workspace/Models/ToolsSelector.svelte';
 	import FiltersSelector from '$lib/components/workspace/Models/FiltersSelector.svelte';
 	import ActionsSelector from '$lib/components/workspace/Models/ActionsSelector.svelte';
@@ -90,7 +89,6 @@
 		system: ''
 	};
 
-	let knowledge = [];
 	let toolIds = [];
 
 	let filterIds = [];
@@ -162,13 +160,6 @@
 			return;
 		}
 
-		if (knowledge.some((item) => item.status === 'uploading')) {
-			toast.error($i18n.t('Please wait until all files are uploaded.'));
-			loading = false;
-
-			return;
-		}
-
 		info.params = { ...info.params, ...params };
 
 		info.access_grants = accessGrants;
@@ -178,14 +169,6 @@
 			info.meta.description = info.meta.description.trim() === '' ? null : info.meta.description;
 		} else {
 			info.meta.description = null;
-		}
-
-		if (knowledge.length > 0) {
-			info.meta.knowledge = knowledge;
-		} else {
-			if (info.meta.knowledge) {
-				delete info.meta.knowledge;
-			}
 		}
 
 		if (toolIds.length > 0) {
@@ -272,7 +255,6 @@
 		if (suggestionTags.length === 0) {
 			await loadSuggestionTags();
 		}
-
 		// Fetch admin-configured default model metadata so the editor
 		// reflects the actual defaults rather than hardcoded values
 		const modelsConfig = await getModelsDefaults(localStorage.token).catch(() => null);
@@ -321,25 +303,6 @@
 						','
 					)
 				: null;
-
-			knowledge = (model?.meta?.knowledge ?? []).map((item) => {
-				if (item?.collection_name && item?.type !== 'file') {
-					return {
-						id: item.collection_name,
-						name: item.name,
-						legacy: true
-					};
-				} else if (item?.collection_names) {
-					return {
-						name: item.name,
-						type: 'collection',
-						collection_names: item.collection_names,
-						legacy: true
-					};
-				} else {
-					return item;
-				}
-			});
 
 			toolIds = model?.meta?.toolIds ?? [];
 			filterIds = model?.meta?.filterIds ?? [];
@@ -767,10 +730,6 @@
 						{#if info?.meta?.suggestion_prompts}
 							<PromptSuggestions bind:promptSuggestions={info.meta.suggestion_prompts} />
 						{/if}
-					</div>
-
-					<div class="my-4">
-						<Knowledge bind:selectedItems={knowledge} />
 					</div>
 
 					<div class="my-4">

@@ -29,7 +29,6 @@ from open_webui.models.users import (
     UserUpdateForm,
 )
 from open_webui.models.access_grants import AccessGrants
-from open_webui.models.knowledge import Knowledges
 from open_webui.models.models import Models
 from open_webui.models.tools import Tools
 from open_webui.socket.main import disconnect_user_sessions
@@ -169,35 +168,19 @@ async def get_user_permissisions(
 ############################
 class WorkspacePermissions(BaseModel):
     models: bool = False
-    knowledge: bool = False
-    prompts: bool = False
     tools: bool = False
-    skills: bool = False
     models_import: bool = False
     models_export: bool = False
-    prompts_import: bool = False
-    prompts_export: bool = False
     tools_import: bool = False
     tools_export: bool = False
-    skills_import: bool = False
-    skills_export: bool = False
 
 
 class SharingPermissions(BaseModel):
     models: bool = False
     public_models: bool = False
-    knowledge: bool = False
-    public_knowledge: bool = False
-    prompts: bool = False
-    public_prompts: bool = False
     tools: bool = False
     public_tools: bool = True
-    skills: bool = False
-    public_skills: bool = False
-    notes: bool = False
-    public_notes: bool = True
     public_chats: bool = False
-    public_calendars: bool = False
 
 
 class AccessGrantsPermissions(BaseModel):
@@ -222,9 +205,6 @@ class ChatPermissions(BaseModel):
     share: bool = True
     export: bool = True
     import_: bool = Field(default=True, alias='import')
-    stt: bool = True
-    tts: bool = True
-    call: bool = True
     multiple_models: bool = True
     temporary: bool = True
     temporary_enforced: bool = False
@@ -232,8 +212,6 @@ class ChatPermissions(BaseModel):
 
 class FeaturesPermissions(BaseModel):
     api_keys: bool = False
-    notes: bool = True
-    channels: bool = True
     folders: bool = True
     direct_tool_servers: bool = False
 
@@ -241,8 +219,6 @@ class FeaturesPermissions(BaseModel):
     image_generation: bool = True
     code_interpreter: bool = True
     memories: bool = True
-    automations: bool = False
-    calendar: bool = True
     webhooks: bool = False
 
 
@@ -805,16 +781,6 @@ async def get_user_preview(
         db=db,
     )
 
-    all_knowledge = await Knowledges.get_knowledge_bases(db=db)
-    accessible_knowledge_ids = await AccessGrants.get_accessible_resource_ids(
-        user_id=user_id,
-        resource_type='knowledge',
-        resource_ids=[k.id for k in all_knowledge],
-        permission='read',
-        user_group_ids=user_group_ids,
-        db=db,
-    )
-
     all_tools = await Tools.get_tools(defer_content=True, db=db)
     accessible_tool_ids = await AccessGrants.get_accessible_resource_ids(
         user_id=user_id,
@@ -833,10 +799,6 @@ async def get_user_preview(
         'models': {
             'items': [{'id': m.id, 'name': m.name} for m in active_models if m.id in accessible_model_ids],
             'total': len(active_models),
-        },
-        'knowledge': {
-            'items': [{'id': k.id, 'name': k.name} for k in all_knowledge if k.id in accessible_knowledge_ids],
-            'total': len(all_knowledge),
         },
         'tools': {
             'items': [{'id': t.id, 'name': t.name} for t in all_tools if t.id in accessible_tool_ids],
