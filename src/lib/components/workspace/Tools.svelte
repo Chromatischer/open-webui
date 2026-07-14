@@ -65,12 +65,12 @@
 
 	let showImportModal = false;
 
-	const handleSearchInput = () => {
+	$: if (query !== undefined) {
 		clearTimeout(searchDebounceTimer);
 		searchDebounceTimer = setTimeout(() => {
 			setFilteredItems();
 		}, 300);
-	};
+	}
 
 	$: if (tools && viewOption !== undefined) {
 		setFilteredItems();
@@ -190,13 +190,13 @@
 
 		window.addEventListener('keydown', onKeyDown);
 		window.addEventListener('keyup', onKeyUp);
-		window.addEventListener('blur', onBlur);
+		window.addEventListener('blur-sm', onBlur);
 
 		return () => {
 			clearTimeout(searchDebounceTimer);
 			window.removeEventListener('keydown', onKeyDown);
 			window.removeEventListener('keyup', onKeyUp);
-			window.removeEventListener('blur', onBlur);
+			window.removeEventListener('blur-sm', onBlur);
 		};
 	});
 
@@ -255,12 +255,10 @@
 				<Search className="size-3.5" />
 				<input
 					bind:value={query}
-					on:input={handleSearchInput}
 					aria-label={$i18n.t('Search Tools')}
 					placeholder={$i18n.t('Search Tools')}
 				/>
 				{#if query}
-<<<<<<< HEAD
 					<button
 						class="btn-clear p-0.5"
 						aria-label={$i18n.t('Clear search')}
@@ -270,20 +268,6 @@
 					>
 						<XMark className="size-3" strokeWidth="2" />
 					</button>
-=======
-					<div class="self-center pl-1.5 translate-y-[0.5px] rounded-l-xl bg-transparent">
-						<button
-							class="p-0.5 rounded-full hover:bg-gray-100 dark:hover:bg-gray-900 transition"
-							aria-label={$i18n.t('Clear search')}
-							on:click={() => {
-								query = '';
-								handleSearchInput();
-							}}
-						>
-							<XMark className="size-3" strokeWidth="2" />
-						</button>
-					</div>
->>>>>>> upstream/main
 				{/if}
 			</div>
 

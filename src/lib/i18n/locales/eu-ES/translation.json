@@ -5,67 +5,21 @@
 	"(e.g. `sh webui.sh --api`)": "(adib. `sh webui.sh --api`)",
 	"(latest)": "(azkena)",
 	"(leave blank for to use commercial endpoint)": "",
-<<<<<<< HEAD
 	"{{COUNT}} extracted lines": "",
 	"{{COUNT}} hidden lines": "",
 	"{{COUNT}} members": "",
 	"{{COUNT}} Rows": "",
 	"{{count}} selected_one": "",
 	"{{count}} selected_other": "",
-=======
-	"[Last] dddd [at] h:mm A": "",
-	"[Today at] h:mm A": "",
-	"[Yesterday at] h:mm A": "",
-	"{{ models }}": "{{ models }}",
-	"{{COUNT}} Available Skills": "",
-	"{{COUNT}} Available Tools": "",
-	"{{COUNT}} characters": "",
-	"{{COUNT}} extracted lines": "",
-	"{{COUNT}} files": "",
-	"{{count}} files selected. Only new and modified files will be uploaded. Deleted files will be removed. The folder structure will be mirrored. Continue?_one": "",
-	"{{count}} files selected. Only new and modified files will be uploaded. Deleted files will be removed. The folder structure will be mirrored. Continue?_other": "",
-	"{{count}} filters_one": "",
-	"{{count}} filters_other": "",
-	"{{count}} groups_one": "",
-	"{{count}} groups_other": "",
-	"{{COUNT}} hidden lines": "",
-	"{{COUNT}} members": "",
-	"{{count}} of {{total}} accessible_one": "",
-	"{{count}} of {{total}} accessible_other": "",
-	"{{COUNT}} Replies": "",
-	"{{COUNT}} Rows": "",
-	"{{count}} selected_one": "",
-	"{{count}} selected_other": "",
-	"{{COUNT}} Sources": "",
-	"{{count}} users_one": "",
-	"{{count}} users_other": "",
-	"{{COUNT}} words": "",
->>>>>>> upstream/main
 	"{{COUNT}}d_time_ago": "",
 	"{{COUNT}}h_time_ago": "",
 	"{{COUNT}}m_time_ago": "",
 	"{{COUNT}}w_time_ago": "",
 	"{{COUNT}}y_time_ago": "",
-<<<<<<< HEAD
-=======
-	"{{label}} contains invalid JSON": "",
-	"{{label}} must be a JSON object": "",
-	"{{LOCALIZED_DATE}} at {{LOCALIZED_TIME}}": "",
-	"{{model}} download has been canceled": "",
->>>>>>> upstream/main
 	"{{modelName}} profile image": "",
 	"{{user}}'s Chats": "{{user}}-ren Txatak",
 	"{{webUIName}} Backend Required": "{{webUIName}} Backend-a Beharrezkoa",
 	"*Prompt node ID(s) are required for image generation": "Prompt nodoaren IDa(k) beharrezkoak dira irudiak sortzeko",
-<<<<<<< HEAD
-=======
-	"1 group": "",
-	"1 hour before": "",
-	"1 Source": "",
-	"1 user": "",
-	"10 minutes before": "",
-	"15 minutes before": "",
->>>>>>> upstream/main
 	"1m_time_ago": "",
 	"a line about what this model is for…": "",
 	"A model binds a base mind to a system prompt, tools and knowledge — compose one and summon it in any chat.": "",
@@ -77,11 +31,6 @@
 	"Access Control": "Sarbide Kontrola",
 	"Access Grants": "",
 	"Access List": "",
-<<<<<<< HEAD
-=======
-	"Access prohibited": "",
-	"Access updated": "",
->>>>>>> upstream/main
 	"Accessible to all users": "Erabiltzaile guztientzat eskuragarri",
 	"Account Activation Pending": "Kontuaren Aktibazioa Zain",
 	"Accurate information": "Informazio zehatza",
@@ -92,7 +41,6 @@
 	"Activity": "",
 	"Add": "Gehitu",
 	"Add a model ID": "Gehitu eredu ID bat",
-	"Add a preference, fact, or instruction about you": "",
 	"Add a short description about what this model does": "Gehitu eredu honek egiten duenaren deskribapen labur bat",
 	"Add a tag": "Gehitu etiketa bat",
 	"Add a tag...": "",
@@ -102,17 +50,7 @@
 	"Add Custom Parameter": "",
 	"Add Custom Prompt": "",
 	"Add Details": "",
-	"Add durable context for future chats": "",
 	"Add Files": "Gehitu Fitxategiak",
-<<<<<<< HEAD
-=======
-	"Add Image": "",
-	"Add Knowledge Connection": "",
-	"Add location": "",
-	"Add Member": "",
-	"Add Members": "",
-	"Add Memory": "Gehitu Memoria",
->>>>>>> upstream/main
 	"Add Model": "Gehitu Eredua",
 	"Add tag": "",
 	"Add Tag": "Gehitu Etiketa",
@@ -120,11 +58,6 @@
 	"Add to favorites": "",
 	"Add User": "Gehitu Erabiltzailea",
 	"Add User Group": "Gehitu Erabiltzaile Taldea",
-<<<<<<< HEAD
-=======
-	"Add webhook": "",
-	"Add webpage": "",
->>>>>>> upstream/main
 	"Add your Open Terminal URL and API key in Settings → Integrations.": "",
 	"Additional Config": "",
 	"Additional configuration options for marker. This should be a JSON string with key-value pairs. For example, '{\"key\": \"value\"}'. Supported keys include: disable_links, keep_pageheader_in_output, keep_pagefooter_in_output, filter_blank_pages, drop_repeated_text, layout_coverage_threshold, merge_threshold, height_tolerance, gap_threshold, image_threshold, min_line_length, level_count, default_level": "",
@@ -135,40 +68,18 @@
 	"Admin": "Administratzailea",
 	"Admin Contact Email": "",
 	"Admin Panel": "Administrazio Panela",
-<<<<<<< HEAD
-=======
-	"Admin Roles": "",
-	"Admin Settings": "Administrazio Ezarpenak",
-	"Admin-managed service account": "",
->>>>>>> upstream/main
 	"Admins have access to all tools at all times; users need tools assigned per model in the workspace.": "Administratzaileek tresna guztietarako sarbidea dute beti; erabiltzaileek lan-eremuan eredu bakoitzeko esleituak behar dituzte tresnak.",
 	"Advanced": "",
 	"Advanced parameters for MinerU parsing (enable_ocr, enable_formula, enable_table, language, model_version, page_ranges)": "",
 	"Advanced Params": "Parametro Aurreratuak",
 	"After updating or changing the embedding model, you must reindex the knowledge base for the changes to take effect. You can do this using the \"Reindex\" button below.": "",
 	"All": "",
-<<<<<<< HEAD
 	"All time": "",
 	"All Users": "",
-=======
-	"All chats have been unarchived.": "",
-	"All day": "",
-	"All events": "",
-	"All models are now hidden": "",
-	"All models are now visible": "",
-	"All models deleted successfully": "Eredu guztiak ongi ezabatu dira",
-	"All shared chats have been unshared.": "",
-	"All Sources": "",
-	"All time": "",
-	"All Users": "",
-	"All users and system events": "",
-	"Allow Call": "",
->>>>>>> upstream/main
 	"Allow Chat Controls": "",
 	"Allow Chat Delete": "Baimendu Txata Ezabatzea",
 	"Allow Chat Edit": "Baimendu Txata Editatzea",
 	"Allow Chat Export": "",
-	"Allow Chat Import": "",
 	"Allow Chat Params": "",
 	"Allow Chat Share": "",
 	"Allow Chat System Prompt": "",
@@ -183,11 +94,9 @@
 	"Allow Sharing With Users": "",
 	"Allow Text to Speech": "",
 	"Allow Web Upload": "",
-	"Allowed Domains": "",
 	"Allowed Endpoints": "",
 	"Allowed File Extensions": "",
 	"Allowed file extensions for upload. Separate multiple extensions with commas. Leave empty for all file types.": "",
-	"Allowed Roles": "",
 	"Already have an account?": "Baduzu kontu bat?",
 	"Alternative to the top_p, and aims to ensure a balance of quality and variety. The parameter p represents the minimum probability for a token to be considered, relative to the probability of the most likely token. For example, with p=0.05 and the most likely token having a probability of 0.9, logits with a value less than 0.045 are filtered out.": "",
 	"Amazing": "Harrigarria",
@@ -199,11 +108,6 @@
 	"API Base URL": "API Oinarri URLa",
 	"API Base URL for Datalab Marker service. Defaults to: https://www.datalab.to/api/v1/marker": "",
 	"API Key": "API Gakoa",
-<<<<<<< HEAD
-=======
-	"API Key / Token": "",
-	"API Key created.": "API Gakoa sortu da.",
->>>>>>> upstream/main
 	"API Key Endpoint Restrictions": "",
 	"API Keys": "",
 	"API Mode": "",
@@ -220,31 +124,13 @@
 	"Are you sure you want to delete \"{{NAME}}\"?": "",
 	"Are you sure you want to delete **{{modelName}}**?": "",
 	"Are you sure you want to delete this connection? This action cannot be undone.": "",
-<<<<<<< HEAD
 	"Are you sure you want to delete this?": "",
 	"Arena": "",
-=======
-	"Are you sure you want to delete this directory?": "",
-	"Are you sure you want to delete this memory? This action cannot be undone.": "",
-	"Are you sure you want to delete this message?": "",
-	"Are you sure you want to delete this version? Child versions will be relinked to this version's parent.": "",
-	"Are you sure you want to delete this webhook? This action cannot be undone.": "",
-	"Are you sure you want to delete this?": "",
-	"Are you sure you want to reset all permissions to their default values? You will still need to save to apply the changes.": "",
-	"Are you sure you want to unarchive all archived chats?": "Ziur zaude artxibatutako txat guztiak desartxibatu nahi dituzula?",
-	"Are you sure you want to unshare all shared chats? This will remove all share links.": "",
->>>>>>> upstream/main
 	"Arena Models": "Arena Ereduak",
 	"Artifacts": "Artefaktuak",
 	"Ask": "",
 	"Ask a question": "Egin galdera bat",
-<<<<<<< HEAD
 	"Ask the User": "",
-=======
-	"Ask a test question": "",
-	"Ask this knowledge source a test question": "",
-	"Assistant": "Laguntzailea",
->>>>>>> upstream/main
 	"Async Embedding Processing": "",
 	"Attach File From Knowledge": "",
 	"Attention to detail": "Xehetasunei arreta",
@@ -253,33 +139,20 @@
 	"Audience": "",
 	"August": "Abuztua",
 	"Auth": "",
-	"Auth Mode": "",
-	"Auth required": "",
 	"Authenticate": "Autentifikatu",
 	"Authentication": "",
 	"Auto (Random)": "",
-<<<<<<< HEAD
 	"Auto-inject system tools for Agents (timestamps, memory, notes, etc.)": "",
-=======
-	"Auto Redirect": "",
-	"Auto-Copy Response to Clipboard": "Automatikoki Kopiatu Erantzuna Arbelera",
-	"Auto-Create Groups": "",
-	"Auto-Playback Response": "Automatikoki erreproduzitu erantzuna",
->>>>>>> upstream/main
 	"Autocomplete Generation": "",
 	"Autocomplete Generation Input Max Length": "",
-	"Autocomplete Generation Prompt": "",
-	"Automatic": "",
 	"Automatic1111": "Automatic1111",
 	"AUTOMATIC1111 Api Auth String": "AUTOMATIC1111 Api Autentifikazio Katea",
 	"AUTOMATIC1111 Base URL": "AUTOMATIC1111 Oinarri URLa",
 	"AUTOMATIC1111 Base URL is required.": "AUTOMATIC1111 Oinarri URLa beharrezkoa da.",
 	"Available list": "Zerrenda erabilgarria",
 	"Available models": "",
-	"Available Skills": "",
 	"Available Tools": "",
 	"available users": "erabilgarri dauden erabiltzaileak",
-	"Available variables": "",
 	"available!": "eskuragarri!",
 	"Awful": "Penagarria",
 	"Azure AI Speech": "Azure AI Hizketa",
@@ -290,30 +163,16 @@
 	"Backup, export, and import instance data.": "",
 	"Bad Response": "Erantzun Txarra",
 	"Banners": "Bannerrak",
-<<<<<<< HEAD
 	"Base model": "",
-=======
-	"Base Model (From)": "Oinarrizko Eredua (Nondik)",
-	"Base Model is required.": "",
->>>>>>> upstream/main
 	"Base Model List Cache speeds up access by fetching base models only at startup or on settings save—faster, but may not show recent base model changes.": "",
 	"Bearer": "",
 	"Begin a new folio": "",
 	"Being lazy": "Alferra izatea",
-<<<<<<< HEAD
 	"Beta": "",
 	"Bind the model": "",
 	"Bing": "",
 	"Bing Search V7 Endpoint": "Bing Bilaketa V7 Endpointua",
 	"Bing Search V7 Subscription Key": "Bing Bilaketa V7 Harpidetza Gakoa",
-=======
-	"Bing": "",
-	"Bing Search V7 Endpoint": "Bing Bilaketa V7 Endpointua",
-	"Bing Search V7 Subscription Key": "Bing Bilaketa V7 Harpidetza Gakoa",
-	"Bio": "",
-	"Birth Date": "",
-	"Blocked Groups": "",
->>>>>>> upstream/main
 	"BM25 Weight": "",
 	"Bocha Search API Key": "",
 	"Bold": "",
@@ -341,12 +200,6 @@
 	"Chat": "Txata",
 	"Chat Completions": "",
 	"Chat Conversation": "",
-<<<<<<< HEAD
-=======
-	"Chat deleted.": "",
-	"Chat Direction": "Txataren norabidea",
-	"Chat exported successfully": "",
->>>>>>> upstream/main
 	"Chat History": "",
 	"Chat ID": "",
 	"Chat moved successfully": "",
@@ -406,11 +259,6 @@
 	"Code Interpreter Prompt Template": "",
 	"Collapse": "",
 	"Collection": "Bilduma",
-<<<<<<< HEAD
-=======
-	"Collection Field": "",
-	"Collections": "",
->>>>>>> upstream/main
 	"Color": "Kolorea",
 	"ComfyUI": "ComfyUI",
 	"ComfyUI API Key": "",
@@ -419,25 +267,9 @@
 	"ComfyUI Workflow": "ComfyUI Lan-fluxua",
 	"ComfyUI Workflow Nodes": "ComfyUI Lan-fluxu Nodoak",
 	"Comma separated Node Ids (e.g. 1 or 1,2)": "",
-<<<<<<< HEAD
-=======
-	"Comma-separated group names": "",
-	"Comma-separated list of file extensions MinerU will handle (e.g. pdf, docx, pptx, xlsx)": "",
-	"command": "",
-	"Command": "Komandoa",
->>>>>>> upstream/main
 	"Comment": "",
 	"Community Reviews": "",
-<<<<<<< HEAD
 	"Compose your first model": "",
-=======
-	"Compacting context": "",
-	"Comparing with knowledge base...": "",
-	"Completions": "Osatzeak",
-	"Compress Images in Channels": "",
-	"Computing checksums ({{count}} files)_one": "",
-	"Computing checksums ({{count}} files)_other": "",
->>>>>>> upstream/main
 	"Concurrent Requests": "Eskari Konkurrenteak",
 	"Config": "",
 	"Configure": "Konfiguratu",
@@ -450,10 +282,6 @@
 	"Connect to Open Terminal instances. All users will have access to file browsing and terminal tools through these servers.": "",
 	"Connect to your own OpenAPI compatible external tool servers.": "",
 	"Connected": "",
-<<<<<<< HEAD
-=======
-	"Connected ({{type}})": "",
->>>>>>> upstream/main
 	"Connection failed": "",
 	"Connection lost. Reconnecting...": "",
 	"Connection Type": "",
@@ -462,16 +290,8 @@
 	"Contact Admin for WebUI Access": "Jarri harremanetan Administratzailearekin WebUI Sarbiderako",
 	"Content": "Edukia",
 	"Content Extraction Engine": "",
-	"Content Field": "",
 	"Content lengths (character counts only)": "",
-	"Context": "",
-	"Context compacted": "",
-	"Context Compaction": "",
-	"Context compaction failed": "",
-	"Context Compaction Prompt": "",
-	"Context Compaction Threshold": "",
 	"Context Tokens": "",
-	"Continue": "",
 	"Continue Response": "Jarraitu Erantzuna",
 	"Continue with {{provider}}": "Jarraitu {{provider}}-rekin",
 	"Continue with Email": "Jarraitu Posta Elektronikoarekin",
@@ -502,16 +322,6 @@
 	"Create Image": "",
 	"Create model": "",
 	"Create Model": "",
-<<<<<<< HEAD
-=======
-	"Create new key": "Sortu gako berria",
-	"Create new secret key": "Sortu gako sekretu berria",
-	"Create note": "",
-	"Create Note": "",
-	"Create one read-only Knowledge source per external collection. Test must pass before the source is created.": "",
-	"Create scheduled prompts that run automatically on a recurring basis.": "",
-	"Create your first note by clicking on the plus button below.": "",
->>>>>>> upstream/main
 	"Created at": "Sortze data",
 	"Created At": "Sortze Data",
 	"Created by": "Sortzailea",
@@ -522,12 +332,7 @@
 	"Custom color": "",
 	"Custom Parameter Name": "",
 	"Custom Parameter Value": "",
-<<<<<<< HEAD
 	"Custom presets that pair a base model with a system prompt, tools, knowledge and capabilities — build your own assistants and reuse them anywhere in chat.": "",
-=======
-	"Custom range": "",
-	"Daily": "",
->>>>>>> upstream/main
 	"Daily Messages": "",
 	"Danger Zone": "",
 	"Database": "Datu-basea",
@@ -543,6 +348,7 @@
 	"Default Features": "",
 	"Default Filters": "",
 	"Default Group": "",
+	"Default mode works with a wider range of models by calling tools once before execution. Native mode leverages the model's built-in tool-calling capabilities, but requires the model to inherently support this feature.": "",
 	"Default Model": "Eredu Lehenetsia",
 	"Default permissions": "Baimen lehenetsiak",
 	"Default Prompt Suggestions": "Prompt Iradokizun Lehenetsiak",
@@ -550,25 +356,13 @@
 	"Default to ALL": "Lehenetsi GUZTIAK",
 	"Default to segmented retrieval for focused and relevant content extraction, this is recommended for most cases.": "",
 	"Default User Role": "Erabiltzaile Rol Lehenetsia",
-	"Default webhook": "",
 	"Defaults": "",
 	"Delete": "Ezabatu",
 	"Delete {{name}}": "",
 	"Delete a model": "Ezabatu eredu bat",
-<<<<<<< HEAD
-=======
-	"Delete All": "",
-	"Delete All Chats": "Ezabatu Txat Guztiak",
-	"Delete all contents inside this directory": "",
->>>>>>> upstream/main
 	"Delete all contents inside this folder": "",
 	"Delete Chat": "Ezabatu Txata",
 	"Delete chat?": "Ezabatu txata?",
-<<<<<<< HEAD
-=======
-	"Delete directory?": "",
-	"Delete Event": "",
->>>>>>> upstream/main
 	"Delete File": "",
 	"Delete folder?": "Ezabatu karpeta?",
 	"Delete function?": "Ezabatu funtzioa?",
@@ -589,20 +383,9 @@
 	"Direct Connections": "",
 	"Direct Connections allow users to connect to their own OpenAI compatible API endpoints.": "",
 	"Direct Tool Servers": "",
-<<<<<<< HEAD
-=======
-	"Directory created.": "",
-	"Directory deleted.": "",
-	"Directory moved.": "",
-	"Directory name": "",
-	"Directory renamed.": "",
-	"Directory selection was cancelled": "",
->>>>>>> upstream/main
 	"Disable All": "",
 	"Disable Image Extraction": "",
 	"Disable image extraction from the PDF. If Use LLM is enabled, images will be automatically captioned. Defaults to False.": "",
-	"Disable Image Generation": "",
-	"Disable Web Search": "",
 	"Disabled": "Desgaituta",
 	"Discard this folio": "",
 	"Discarded": "",
@@ -611,13 +394,6 @@
 	"Discover wonders": "Aurkitu mirariak",
 	"Discover, download, and explore custom functions": "Aurkitu, deskargatu eta esploratu funtzio pertsonalizatuak",
 	"Display": "Bistaratu",
-<<<<<<< HEAD
-=======
-	"Display Chat Title in Tab": "",
-	"Display Emoji in Call": "Bistaratu Emojiak Deietan",
-	"Display Multi-model Responses in Tabs": "",
-	"Display the Username Instead of You in the Chat": "Erakutsi erabiltzaile-izena Zu-ren ordez Txatean",
->>>>>>> upstream/main
 	"Displays citations in the response": "Erakutsi aipamenak erantzunean",
 	"Displays status updates (e.g., web search progress) in the response": "",
 	"Dissolve": "",
@@ -630,7 +406,6 @@
 	"Docling Parameters": "",
 	"Docling Server URL required.": "",
 	"Document": "Dokumentua",
-	"Document ID Field": "",
 	"Document Intelligence": "",
 	"Document Intelligence endpoint required.": "",
 	"Document Intelligence Model": "",
@@ -684,60 +459,41 @@
 	"Edit Default Permissions": "Editatu Baimen Lehenetsiak",
 	"Edit Folder": "",
 	"Edit Image": "",
-	"Edit Knowledge Connection": "",
 	"Edit Last Message": "",
 	"Edit Model": "",
 	"Edit Terminal Connection": "",
 	"Edit User": "Editatu Erabiltzailea",
 	"Edit User Group": "Editatu Erabiltzaile Taldea",
-	"Edit webhook": "",
 	"Edit workflow.json content": "",
 	"Eject": "",
 	"Eject model": "",
 	"ElevenLabs": "ElevenLabs",
 	"Email": "Posta elektronikoa",
-	"Email Claim": "",
 	"Embark on adventures": "Hasi abenturak",
 	"Embedding": "",
 	"Embedding Batch Size": "Embedding Batch Tamaina",
 	"Embedding Concurrent Requests": "",
 	"Embedding Model": "Embedding Eredua",
 	"Embedding Model Engine": "Embedding Eredu Motorea",
-	"Emoji": "",
 	"Emojis": "",
-<<<<<<< HEAD
-=======
-	"Empty": "",
-	"Empty message": "",
->>>>>>> upstream/main
 	"Enable All": "",
 	"Enable API Keys": "",
 	"Enable autocomplete generation for chat messages": "",
 	"Enable Code Execution": "",
 	"Enable Code Interpreter": "",
 	"Enable Community Sharing": "Gaitu Komunitatearen Partekatzea",
-	"Enable Group Mapping": "",
-	"Enable Image Generation": "",
 	"Enable Memory Locking (mlock) to prevent model data from being swapped out of RAM. This option locks the model's working set of pages into RAM, ensuring that they will not be swapped out to disk. This can help maintain performance by avoiding page faults and ensuring fast data access.": "Gaitu Memoria Blokeatzea (mlock) ereduaren datuak RAM memoriatik kanpo ez trukatzeko. Aukera honek ereduaren lan-orri multzoa RAMean blokatzen du, diskora ez direla trukatuko ziurtatuz. Honek errendimendua mantentzen lagun dezake, orri-hutsegiteak saihestuz eta datuen sarbide azkarra bermatuz.",
 	"Enable Memory Mapping (mmap) to load model data. This option allows the system to use disk storage as an extension of RAM by treating disk files as if they were in RAM. This can improve model performance by allowing for faster data access. However, it may not work correctly with all systems and can consume a significant amount of disk space.": "Gaitu Memoria Mapaketa (mmap) ereduaren datuak kargatzeko. Aukera honek sistemari disko-biltegiratzea RAM memoriaren luzapen gisa erabiltzea ahalbidetzen dio, diskoko fitxategiak RAMean baleude bezala tratatuz. Honek ereduaren errendimendua hobe dezake, datuen sarbide azkarragoa ahalbidetuz. Hala ere, baliteke sistema guztietan behar bezala ez funtzionatzea eta disko-espazio handia kontsumitu dezake.",
 	"Enable Message Rating": "Gaitu Mezuen Balorazioa",
 	"Enable Mirostat sampling for controlling perplexity.": "",
 	"Enable New Sign Ups": "Gaitu Izena Emate Berriak",
-	"Enable OAuth Signup": "",
-	"Enable Role Mapping": "",
-	"Enable Web Search": "",
 	"Enable, disable, or customize the reasoning tags used by the model. \"Enabled\" uses default tags, \"Disabled\" turns off reasoning tags, and \"Custom\" lets you specify your own start and end tags.": "",
 	"Enabled": "Gaituta",
 	"End Tag": "",
-	"Endpoint": "",
 	"Endpoint URL": "",
 	"Enrich Hybrid Search Text": "",
 	"Ensure your CSV file includes 4 columns in this order: Name, Email, Password, Role.": "Ziurtatu zure CSV fitxategiak 4 zutabe dituela ordena honetan: Izena, Posta elektronikoa, Pasahitza, Rola.",
-<<<<<<< HEAD
 	"Enter a name first": "",
-=======
-	"Enter {{role}} message here": "Sartu {{role}} mezua hemen",
->>>>>>> upstream/main
 	"Enter a title for the pending user info overlay. Leave empty for default.": "",
 	"Enter a watermark for the response. Leave empty for none.": "",
 	"Enter additional headers in JSON format": "",
@@ -754,8 +510,6 @@
 	"Enter Chunk Min Size Target": "",
 	"Enter Chunk Overlap": "Sartu Zatien Gainjartzea (chunk overlap)",
 	"Enter Chunk Size": "Sartu Zati Tamaina",
-	"Enter Client ID": "",
-	"Enter Client Secret": "",
 	"Enter comma-separated \"token:bias_value\" pairs (example: 5432:100, 413:-100)": "",
 	"Enter content for the pending user info overlay. Leave empty for default.": "",
 	"Enter coordinates (e.g. 51.505, -0.09)": "",
@@ -792,15 +546,7 @@
 	"Enter Jupyter Token": "",
 	"Enter Jupyter URL": "",
 	"Enter Kagi Search API Key": "",
-<<<<<<< HEAD
-=======
-	"Enter Key Behavior": "",
-	"Enter language": "",
->>>>>>> upstream/main
 	"Enter language codes": "Sartu hizkuntza kodeak",
-	"Enter Linkup API Key": "",
-	"Enter Microsoft Web IQ API Base URL": "",
-	"Enter Microsoft Web IQ API Key": "",
 	"Enter MinerU API Key": "",
 	"Enter Mistral API Base URL": "",
 	"Enter Mistral API Key": "",
@@ -819,7 +565,6 @@
 	"Enter Playwright WebSocket URL": "",
 	"Enter proxy URL (e.g. https://user:password@host:port)": "",
 	"Enter reasoning effort": "",
-	"Enter Redirect URI": "",
 	"Enter Score": "Sartu Puntuazioa",
 	"Enter SearchApi API Key": "Sartu SearchApi API Gakoa",
 	"Enter SearchApi Engine": "Sartu SearchApi Motorea",
@@ -829,7 +574,6 @@
 	"Enter SerpApi API Key": "",
 	"Enter SerpApi Engine": "",
 	"Enter Serper API Key": "Sartu Serper API Gakoa",
-	"Enter SERPHouse API Key": "",
 	"Enter Serply API Key": "Sartu Serply API Gakoa",
 	"Enter Serpstack API Key": "Sartu Serpstack API Gakoa",
 	"Enter server host": "Sartu zerbitzariaren ostalaria",
@@ -847,12 +591,6 @@
 	"Enter the URL to import": "",
 	"Enter Tika Server URL": "Sartu Tika Zerbitzari URLa",
 	"Enter timeout in seconds": "",
-<<<<<<< HEAD
-=======
-	"Enter to Send": "",
-	"Enter token threshold": "",
-	"Enter Tokenizer Model": "",
->>>>>>> upstream/main
 	"Enter Top K": "Sartu Top K",
 	"Enter Top K Reranker": "",
 	"Enter URL (e.g. http://127.0.0.1:7860/)": "Sartu URLa (adib. http://127.0.0.1:7860/)",
@@ -882,19 +620,8 @@
 	"Error: A model with the ID '{{modelId}}' already exists. Please select a different ID to proceed.": "",
 	"Error: Model ID cannot be empty. Please enter a valid ID to proceed.": "",
 	"Evaluations": "Ebaluazioak",
-<<<<<<< HEAD
 	"Every craft begins bare-handed.": "",
-=======
-	"Event": "",
-	"Event created": "",
-	"Event deleted": "",
-	"Event names may change as Open WebUI evolves. Use broad patterns like user.* for integrations that should continue across new related events.": "",
-	"Event title": "",
-	"Event updated": "",
-	"Events": "",
->>>>>>> upstream/main
 	"Exa API Key": "",
-	"Example": "",
 	"Example: (&(objectClass=inetOrgPerson)(uid=%s))": "Adibidea: (&(objectClass=inetOrgPerson)(uid=%s))",
 	"Example: ALL": "Adibidea: GUZTIAK",
 	"Example: mail": "",
@@ -916,29 +643,18 @@
 	"Export chat (.json)": "Esportatu txata (.json)",
 	"Export Config": "",
 	"Export Models": "",
-<<<<<<< HEAD
-=======
-	"Export Prompts": "",
-	"Export Skills": "",
->>>>>>> upstream/main
 	"Export to CSV": "Esportatu CSVra",
 	"Export Tools": "",
 	"Export Users": "",
 	"External": "",
-	"External connection not found.": "",
 	"External Document Loader URL required.": "",
-	"External Knowledge Source": "",
-	"External Knowledge Sources": "",
 	"External Task Model": "",
-	"External Tool Servers": "",
-	"External vectors must be generated with the same embedding model configured in Open WebUI.": "",
 	"External Web Loader API Key": "",
 	"External Web Loader URL": "",
 	"External Web Search API Key": "",
 	"External Web Search URL": "",
 	"Faculties": "",
 	"Failed to archive chat.": "",
-<<<<<<< HEAD
 	"Failed to connect to {{URL}} OpenAPI tool server": "",
 	"Failed to connect to {{URL}} terminal server": "",
 	"Failed to copy link": "",
@@ -948,39 +664,11 @@
 	"Failed to extract content from the file: {{error}}": "",
 	"Failed to extract content from the file.": "",
 	"Failed to fetch models": "",
-=======
-	"Failed to attach file": "",
-	"Failed to clear status": "",
-	"Failed to compare files.": "",
-	"Failed to connect to {{URL}} OpenAPI tool server": "",
-	"Failed to connect to {{URL}} terminal server": "",
-	"Failed to copy link": "",
-	"Failed to create API Key.": "Huts egin du API Gakoa sortzean.",
-	"Failed to delete calendar": "",
-	"Failed to delete note": "",
-	"Failed to delete webhook": "",
-	"Failed to disconnect": "",
-	"Failed to download image": "",
-	"Failed to extract content from the file: {{error}}": "",
-	"Failed to extract content from the file.": "",
-	"Failed to fetch models": "",
-	"Failed to generate title": "",
-	"Failed to import models": "",
-	"Failed to load chat": "",
-	"Failed to load chat preview": "",
->>>>>>> upstream/main
 	"Failed to load DOCX file. Please try downloading it instead.": "",
 	"Failed to load Excel/CSV file. Please try downloading it instead.": "",
 	"Failed to load Interface settings": "",
 	"Failed to load PPTX file. Please try downloading it instead.": "",
 	"Failed to move chat": "",
-<<<<<<< HEAD
-=======
-	"Failed to process URL: {{url}}": "",
-	"Failed to read clipboard contents": "Huts egin du arbelaren edukia irakurtzean",
-	"Failed to refresh terminals: {{error}}": "",
-	"Failed to remove member": "",
->>>>>>> upstream/main
 	"Failed to render diagram": "",
 	"Failed to render visualization": "",
 	"Failed to save": "",
@@ -989,16 +677,10 @@
 	"Failed to save models configuration": "Huts egin du ereduen konfigurazioa gordetzean",
 	"Failed to save policy: {{error}}": "",
 	"Failed to save terminal servers": "",
-	"Failed to save webhook": "",
 	"Failed to unshare chat.": "",
 	"Failed to update settings": "Huts egin du ezarpenak eguneratzean",
 	"Failed to update status": "",
-<<<<<<< HEAD
 	"Favicons": "",
-=======
-	"Failed to update webhook": "",
-	"Failed to upload file.": "Huts egin du fitxategia igotzean.",
->>>>>>> upstream/main
 	"Features": "",
 	"Features Permissions": "",
 	"February": "Otsaila",
@@ -1011,32 +693,14 @@
 	"File": "Fitxategia",
 	"File browser": "",
 	"File Context": "",
-<<<<<<< HEAD
-=======
-	"File deleted successfully.": "",
-	"File Extensions": "",
->>>>>>> upstream/main
 	"File Mode": "Fitxategi Modua",
-	"File moved.": "",
 	"File name": "",
 	"File not found.": "Ez da fitxategia aurkitu.",
-<<<<<<< HEAD
 	"File size should not exceed {{maxSize}} MB.": "Fitxategiaren tamainak ez luke {{maxSize}} MB gainditu behar.",
 	"File Upload": "",
 	"Filename": "",
 	"Files": "Fitxategiak",
 	"Fill name + base model to create": "",
-=======
-	"File removed successfully.": "Fitxategia ongi ezabatu da.",
-	"File renamed.": "",
-	"File size should not exceed {{maxSize}} MB.": "Fitxategiaren tamainak ez luke {{maxSize}} MB gainditu behar.",
-	"File Upload": "",
-	"File uploaded successfully": "",
-	"Filename": "",
-	"Files": "Fitxategiak",
-	"Fill the required fields first.": "",
-	"Fill the source fields and test query first.": "",
->>>>>>> upstream/main
 	"Filter": "",
 	"Filters": "Iragazkiak",
 	"Filters, valves, and middleware workflows.": "",
@@ -1054,12 +718,8 @@
 	"Folder name cannot be empty.": "Karpetaren izena ezin da hutsik egon.",
 	"Folder options": "",
 	"Folders": "",
-<<<<<<< HEAD
 	"folio": "",
 	"folios": "",
-=======
-	"Folders Sharing": "",
->>>>>>> upstream/main
 	"Follow up": "",
 	"Follow Up Generation": "",
 	"Follow Up Generation Prompt": "",
@@ -1087,11 +747,6 @@
 	"Function imported successfully": "",
 	"Function Name": "Funtzioaren Izena",
 	"Function Name Filter List": "",
-<<<<<<< HEAD
-=======
-	"Function starter": "",
-	"Function updated successfully": "Funtzioa ongi eguneratu da",
->>>>>>> upstream/main
 	"Functions": "Funtzioak",
 	"Functions allow arbitrary code execution.": "Funtzioek kode arbitrarioa exekutatzea ahalbidetzen dute.",
 	"Gather a quire": "",
@@ -1119,15 +774,6 @@
 	"Google PSE Engine Id": "Google PSE Motor IDa",
 	"Gravatar": "",
 	"Grokipedia": "",
-<<<<<<< HEAD
-=======
-	"group": "",
-	"Group": "",
-	"Group Channel": "",
-	"Group Claim": "",
-	"Group created successfully": "Taldea ongi sortu da",
-	"Group deleted successfully": "Taldea ongi ezabatu da",
->>>>>>> upstream/main
 	"Group Description": "Taldearen Deskribapena",
 	"Group Name": "Taldearen Izena",
 	"groups": "",
@@ -1135,11 +781,6 @@
 	"H1": "",
 	"H2": "",
 	"H3": "",
-<<<<<<< HEAD
-=======
-	"Haptic Feedback": "Feedback Haptikoa",
-	"Header variables": "",
->>>>>>> upstream/main
 	"Headers": "",
 	"Headers must be a valid JSON object": "",
 	"Hello, {{name}}": "Kaixo, {{name}}",
@@ -1168,12 +809,6 @@
 	"I acknowledge that I have read and I understand the implications of my action. I am aware of the risks associated with executing arbitrary code and I have verified the trustworthiness of the source.": "Onartzen dut irakurri dudala eta nire ekintzaren ondorioak ulertzen ditudala. Kode arbitrarioa exekutatzearekin lotutako arriskuez jabetzen naiz eta iturriaren fidagarritasuna egiaztatu dut.",
 	"ID": "IDa",
 	"ID cannot contain \":\" or \"|\" characters": "",
-<<<<<<< HEAD
-=======
-	"ID copied to clipboard": "",
-	"Identity audit": "",
-	"Idle only": "",
->>>>>>> upstream/main
 	"Idle Timeout": "",
 	"Ignite curiosity": "Piztu jakin-mina",
 	"Image": "",
@@ -1193,12 +828,6 @@
 	"Import Config": "",
 	"Import From Link": "",
 	"Import Models": "",
-<<<<<<< HEAD
-=======
-	"Import Prompts": "",
-	"Import Skills": "",
-	"Import successful": "",
->>>>>>> upstream/main
 	"Import Tools": "",
 	"Important Update": "Eguneratze garrantzitsua",
 	"Imported": "",
@@ -1235,11 +864,6 @@
 	"Jina API Key": "Jina API Gakoa",
 	"join our Discord for help.": "batu gure Discord-era laguntzarako.",
 	"JSON": "JSON",
-<<<<<<< HEAD
-=======
-	"JSON Base64": "",
-	"JSON Preview": "JSON Aurrebista",
->>>>>>> upstream/main
 	"JSON Spec": "",
 	"July": "Uztaila",
 	"June": "Ekaina",
@@ -1250,26 +874,9 @@
 	"Keep in Sidebar": "",
 	"Key": "Gakoa",
 	"Key is required": "",
+	"Keyboard shortcuts": "Teklatuko lasterbideak",
 	"Keyboard Shortcuts": "",
 	"Knowledge": "Ezagutza",
-<<<<<<< HEAD
-=======
-	"Knowledge Access": "Ezagutzarako Sarbidea",
-	"Knowledge Base": "",
-	"Knowledge base has been reset": "",
-	"Knowledge created successfully.": "Ezagutza ongi sortu da.",
-	"Knowledge deleted successfully.": "Ezagutza ongi ezabatu da.",
-	"Knowledge Description": "",
-	"Knowledge exported successfully": "",
-	"Knowledge Name": "",
-	"Knowledge Public Sharing": "",
-	"Knowledge Sharing": "",
-	"Knowledge source created.": "",
-	"Knowledge source updated.": "",
-	"Knowledge updated successfully": "Ezagutza ongi eguneratu da.",
-	"Kokoro.js (Browser)": "",
-	"Kokoro.js Dtype": "",
->>>>>>> upstream/main
 	"Label": "Etiketa",
 	"Language Locales": "",
 	"Last 24 hours": "",
@@ -1298,18 +905,9 @@
 	"Leave model field empty to use the default model.": "",
 	"lexical": "",
 	"License": "",
-	"Lifecycle JSON": "",
 	"Lift List": "",
 	"Limit concurrent search queries. 0 = unlimited (default). Set to 1 for sequential execution (recommended for APIs with strict rate limits like Brave free tier).": "",
 	"Limits the number of concurrent embedding requests. Set to 0 for unlimited.": "",
-<<<<<<< HEAD
-=======
-	"Linkup API Key": "",
-	"List": "",
-	"List calendars, search, create, update, and delete calendar events": "",
-	"Listening...": "Entzuten...",
-	"Live": "",
->>>>>>> upstream/main
 	"llama.cpp": "",
 	"Llama.cpp": "",
 	"Loaded": "",
@@ -1320,11 +918,6 @@
 	"Local Task Model": "",
 	"Lost": "Galduta",
 	"Low": "",
-<<<<<<< HEAD
-=======
-	"Lower the context compaction token threshold for this model. The global context compaction threshold remains the maximum.": "",
-	"LTR": "LTR",
->>>>>>> upstream/main
 	"Made by Open WebUI Community": "OpenWebUI Komunitateak egina",
 	"Make password visible in the user interface": "",
 	"Make sure to export a workflow.json file as API format from ComfyUI.": "Ziurtatu workflow.json fitxategia API formatu gisa esportatzen duzula ComfyUI-tik.",
@@ -1336,12 +929,7 @@
 	"Manage OpenAI API Connections": "Kudeatu OpenAI API Konexioak",
 	"Manage Pipelines": "Kudeatu Pipeline-ak",
 	"Manage Tool Servers": "",
-<<<<<<< HEAD
 	"Manage, import, and configure the models available to users.": "",
-=======
-	"Manage your account information.": "",
-	"Mapped Source": "",
->>>>>>> upstream/main
 	"March": "Martxoa",
 	"Markdown": "",
 	"Markdown Header Text Splitter": "",
@@ -1362,15 +950,6 @@
 	"Members": "",
 	"Memories": "",
 	"Memory": "Memoria",
-<<<<<<< HEAD
-=======
-	"Memory added successfully": "Memoria ongi gehitu da",
-	"Memory cleared successfully": "Memoria ongi garbitu da",
-	"Memory deleted successfully": "Memoria ongi ezabatu da",
-	"Memory System Context": "",
-	"Memory updated successfully": "Memoria ongi eguneratu da",
-	"Merge Accounts by Email": "",
->>>>>>> upstream/main
 	"Merge Responses": "Batu erantzunak",
 	"Merged Response": "Erantzun bateratua",
 	"Message": "",
@@ -1380,16 +959,6 @@
 	"Message text...": "",
 	"messages": "",
 	"Messages": "",
-<<<<<<< HEAD
-=======
-	"Messages you send after creating your link won't be shared. Users with the URL will be able to view the shared chat.": "Esteka sortu ondoren bidaltzen dituzun mezuak ez dira partekatuko. URLa duten erabiltzaileek partekatutako txata ikusi ahal izango dute.",
-	"Metadata Field": "",
-	"Microsoft OneDrive": "",
-	"Microsoft OneDrive (personal)": "",
-	"Microsoft OneDrive (work/school)": "",
-	"Microsoft Web IQ API Base URL": "",
-	"Microsoft Web IQ API Key": "",
->>>>>>> upstream/main
 	"min": "",
 	"MinerU": "",
 	"MinerU API Key required for Cloud API mode.": "",
@@ -1431,42 +1000,18 @@
 	"Models Sharing": "",
 	"Mojeek": "",
 	"Mojeek Search API Key": "Mojeek bilaketa API gakoa",
-<<<<<<< HEAD
-=======
-	"Monday – Friday": "",
-	"Month": "",
-	"Monthly": "",
->>>>>>> upstream/main
 	"More": "Gehiago",
 	"More Concise": "",
 	"More Options": "",
 	"Move": "",
-<<<<<<< HEAD
-=======
-	"Moved {{name}}": "",
-	"Multipart Upload": "",
-	"Mute": "",
-	"Muted": "",
->>>>>>> upstream/main
 	"My Terminal": "",
 	"Name": "Izena",
 	"Name and ID are required, please fill them out": "",
 	"Name this model…": "",
 	"Name your model": "",
 	"Native": "",
-<<<<<<< HEAD
-=======
-	"Native mode (default) leverages the model's built-in tool-calling capabilities. Legacy mode works with a wider range of models by calling tools once before execution via prompt injection.": "",
-	"Never": "",
->>>>>>> upstream/main
 	"New": "",
 	"New Chat": "Txat berria",
-<<<<<<< HEAD
-=======
-	"New directory": "",
-	"New Directory": "",
-	"New Event": "",
->>>>>>> upstream/main
 	"New File": "",
 	"New Folder": "",
 	"New Function": "",
@@ -1481,7 +1026,6 @@
 	"Next message": "",
 	"No access grants. Private to you.": "",
 	"No activity data": "",
-	"No additional headers are sent unless configured.": "",
 	"No authentication": "",
 	"No chats found": "",
 	"No chats found for this user.": "",
@@ -1490,13 +1034,7 @@
 	"No data": "",
 	"No data found": "",
 	"No distance available": "Ez dago distantziarik eskuragarri",
-<<<<<<< HEAD
-=======
-	"No event webhooks configured.": "",
-	"No execution logs available yet": "",
->>>>>>> upstream/main
 	"No expiration can pose security risks.": "",
-	"No external knowledge sources configured.": "",
 	"No feedback found": "",
 	"No file selected": "Ez da fitxategirik hautatu",
 	"No files found": "",
@@ -1506,27 +1044,14 @@
 	"No HTML, CSS, or JavaScript content found.": "Ez da HTML, CSS, edo JavaScript edukirik aurkitu.",
 	"No inference engine with management support found": "",
 	"No kernel": "",
-<<<<<<< HEAD
-=======
-	"No knowledge bases accessible": "",
-	"No knowledge bases found.": "",
-	"No knowledge found": "Ez da ezagutzarik aurkitu",
->>>>>>> upstream/main
 	"No limit": "",
 	"No model IDs": "Ez dago modelo IDrik",
-	"No models accessible": "",
 	"No models available": "",
 	"No models found": "Ez da modelorik aurkitu",
 	"No models match your search.": "",
 	"No models selected": "Ez da modelorik hautatu",
 	"No one": "",
 	"No output items": "",
-<<<<<<< HEAD
-=======
-	"No pinned messages": "",
-	"No prompts found": "",
-	"No Repeat": "",
->>>>>>> upstream/main
 	"No results": "Ez da emaitzarik aurkitu",
 	"No results found": "Ez da emaitzarik aurkitu",
 	"No search query generated": "Ez da bilaketa kontsultarik sortu",
@@ -1538,18 +1063,12 @@
 	"No Terminal connection configured.": "",
 	"No terminal connections configured.": "",
 	"No tool server connections configured.": "",
-<<<<<<< HEAD
 	"No tools match your search.": "",
-=======
-	"No tools accessible": "",
-	"No tools found": "",
->>>>>>> upstream/main
 	"No users were found.": "Ez da erabiltzailerik aurkitu.",
 	"No valves": "",
 	"No valves to update": "Ez dago balbularik eguneratzeko",
 	"Node Ids": "",
 	"None": "Bat ere ez",
-	"Not configured": "",
 	"Not factually correct": "Ez da faktikoki zuzena",
 	"Not helpful": "Ez da lagungarria",
 	"Not Registered": "",
@@ -1559,31 +1078,21 @@
 	"Nothing has been rehearsed yet.": "",
 	"November": "Azaroa",
 	"OAuth": "",
-	"OAuth / OIDC": "",
 	"OAuth 2.1": "",
 	"OAuth 2.1 (Static)": "",
 	"OAuth ID": "OAuth ID",
-	"OAuth Resource Parameter": "",
-	"OAuth Scopes": "",
 	"OAuth Server URL": "",
 	"October": "Urria",
 	"Off": "Itzalita",
 	"Okay, Let's Go!": "Ados, Goazen!",
-<<<<<<< HEAD
-=======
-	"Older messages are summarized when estimated context exceeds this token limit.": "",
-	"OLED Dark": "OLED iluna",
->>>>>>> upstream/main
 	"Ollama": "Ollama",
 	"Ollama API": "Ollama API",
 	"Ollama Cloud API Key": "",
 	"Ollama Version": "Ollama bertsioa",
-	"Omit": "",
 	"On": "Piztuta",
 	"On by default": "",
 	"On by default for new chats": "",
 	"OneDrive": "",
-	"Only active during Voice Mode.": "",
 	"Only active when \"Paste Large Text as File\" setting is toggled on.": "",
 	"Only active when the chat input is in focus and an LLM is generating a response.": "",
 	"Only active when the chat input is in focus.": "",
@@ -1653,39 +1162,21 @@
 	"Participate in community leaderboards and evaluations! Syncing aggregated usage stats helps drive research and improvements to Open WebUI. Your privacy is paramount: no message content is ever shared.": "",
 	"Password": "Pasahitza",
 	"Passwords do not match.": "",
-<<<<<<< HEAD
 	"PDF document (.pdf)": "PDF dokumentua (.pdf)",
 	"PDF Extract Images (OCR)": "PDF irudiak erauzi (OCR)",
 	"PDF Loader Mode": "",
 	"Penalties & Mirostat": "",
-=======
-	"Paste Large Text as File": "Itsatsi testu luzea fitxategi gisa",
-	"Path": "",
-	"Path copied": "",
-	"Paused": "",
-	"PDF document (.pdf)": "PDF dokumentua (.pdf)",
-	"PDF Extract Images (OCR)": "PDF irudiak erauzi (OCR)",
-	"PDF Loader Mode": "",
-	"pdf, docx, pptx, xlsx": "",
->>>>>>> upstream/main
 	"pending": "zain",
 	"Pending": "",
-	"Pending Accounts": "",
 	"Pending User Overlay Content": "",
 	"Pending User Overlay Title": "",
 	"Permissions": "Baimenak",
-	"Permissions reset to defaults": "",
 	"Perplexity API Key": "",
 	"Perplexity Model": "",
 	"Perplexity Search API URL": "",
 	"Perplexity Search Context Usage": "",
 	"Persistent": "",
-<<<<<<< HEAD
 	"Pick an icon or emoji": "",
-=======
-	"Personalization": "Pertsonalizazioa",
-	"Picture Claim": "",
->>>>>>> upstream/main
 	"Pin": "Ainguratu",
 	"Pinned Models": "",
 	"Pioneer insights": "Ikuspegi aitzindariak",
@@ -1708,14 +1199,9 @@
 	"Please enter Client ID and Client Secret": "",
 	"Please register the OAuth client": "",
 	"Please save the connection to persist the OAuth client information and do not change the ID": "",
-<<<<<<< HEAD
-=======
-	"Please select a model.": "",
->>>>>>> upstream/main
 	"Please select a reason": "Mesedez, hautatu arrazoi bat",
 	"Please select a valid JSON file": "",
 	"Policy ID": "",
-	"Policy ID is required": "",
 	"Port": "Ataka",
 	"Ports": "",
 	"Positive attitude": "Jarrera positiboa",
@@ -1723,7 +1209,6 @@
 	"Prefix ID is used to avoid conflicts with other connections by adding a prefix to the model IDs - leave empty to disable": "Aurrizki IDa erabiltzen da beste konexioekin gatazkak saihesteko modelo IDei aurrizki bat gehituz - utzi hutsik desgaitzeko",
 	"Prevent File Creation": "",
 	"Preview": "",
-	"Preview Access": "",
 	"Previous 30 days": "Aurreko 30 egunak",
 	"Previous 7 days": "Aurreko 7 egunak",
 	"Previous message": "",
@@ -1732,8 +1217,6 @@
 	"Prompt": "",
 	"Prompt Template": "",
 	"Provider": "",
-	"Provider Name": "",
-	"Provider URL": "",
 	"Public": "",
 	"Public shared chat links are disabled for this workspace.": "",
 	"Pull \"{{searchValue}}\" from Ollama.com": "Ekarri \"{{searchValue}}\" Ollama.com-etik",
@@ -1756,38 +1239,18 @@
 	"Read": "",
 	"Read Aloud": "Irakurri ozen",
 	"Read more →": "",
-<<<<<<< HEAD
 	"read only": "",
-=======
-	"Read only": "",
->>>>>>> upstream/main
 	"Read Only": "",
 	"Read, write, and diff-edit durable notes for the current chat Scratchboard": "",
 	"Reason": "",
 	"Reasoning Effort": "",
 	"Reasoning Tags": "",
 	"Reasoning text...": "",
-	"Receives matching events across the instance, including system/config events and events associated with any user.": "",
-	"Receives matching events that are not associated with a user.": "",
-	"Receives matching user-associated events only when the actor, user subject, or user data matches these users or current group members. System/config events are not sent.": "",
 	"Recently Used": "",
 	"Reconnected": "",
-<<<<<<< HEAD
 	"Redirecting you to Open WebUI Community": "OpenWebUI Komunitatera berbideratzen",
 	"Reduces the probability of generating nonsense. A higher value (e.g. 100) will give more diverse answers, while a lower value (e.g. 10) will be more conservative.": "",
-=======
-	"Record": "",
-	"Record voice": "Grabatu ahotsa",
-	"Redirect URI": "",
-	"Redirecting you to Open WebUI Community": "OpenWebUI Komunitatera berbideratzen",
-	"Reduces the probability of generating nonsense. A higher value (e.g. 100) will give more diverse answers, while a lower value (e.g. 10) will be more conservative.": "",
-	"Reference Chats": "",
->>>>>>> upstream/main
 	"Refresh": "",
-	"Refresh requested: {{count}} terminal(s)_one": "",
-	"Refresh requested: {{count}} terminal(s)_other": "",
-	"Refresh Terminals": "",
-	"Refreshing...": "",
 	"Refused when it shouldn't have": "Ukatu duenean ukatu behar ez zuenean",
 	"Regenerate": "Bersortu",
 	"Regenerate Response": "",
@@ -1806,38 +1269,15 @@
 	"Remove from favorites": "",
 	"Remove image": "",
 	"Remove Model": "Kendu modeloa",
-	"Removing {{count}} stale files..._one": "",
-	"Removing {{count}} stale files..._other": "",
 	"Rename": "Berrizendatu",
 	"Reorder Models": "Berrantolatu modeloak",
-<<<<<<< HEAD
-=======
-	"Repeat": "",
-	"Repeats": "",
-	"Reply": "",
-	"Reply in Thread": "",
-	"Reply to thread...": "",
-	"Replying to {{NAME}}": "",
-	"Request Format": "",
-	"Require users to confirm before using Web Search.": "",
-	"required": "",
->>>>>>> upstream/main
 	"Reranking Batch Size": "",
 	"Reranking Engine": "",
 	"Reranking Model": "Berrantolatze modeloa",
-	"Research Knowledge": "",
 	"Reset": "Berrezarri",
 	"Reset All Models": "",
-	"Reset all permissions to their initial configuration values": "",
-	"Reset group permissions to match the current default user permissions": "",
 	"Reset Image": "Berrezarri irudia",
-<<<<<<< HEAD
 	"Reset to default": "",
-=======
-	"Reset knowledge base?": "",
-	"Reset persisted files": "",
-	"Reset to Defaults": "",
->>>>>>> upstream/main
 	"Reset Upload Directory": "Berrezarri karga direktorioa",
 	"Reset Vector Storage/Knowledge": "Berrezarri bektore biltegia/ezagutza",
 	"Reset view": "",
@@ -1858,11 +1298,6 @@
 	"Return token usage information in the response when supported": "",
 	"Reusable instruction packs that teach your models a procedure or domain — import a markdown skill or write your own, then enable it where you need it.": "",
 	"Role": "Rola",
-<<<<<<< HEAD
-=======
-	"Roles Claim": "",
-	"RTL": "RTL",
->>>>>>> upstream/main
 	"Run": "Exekutatu",
 	"Run All": "",
 	"Running": "Exekutatzen",
@@ -1875,18 +1310,10 @@
 	"Save As Copy": "Gorde kopia gisa",
 	"Saved": "Gordeta",
 	"Saving chat logs directly to your browser's storage is no longer supported. Please take a moment to download and delete your chat logs by clicking the button below. Don't worry, you can easily re-import your chat logs to the backend through": "Txat erregistroak zuzenean zure nabigatzailearen biltegian gordetzea ez da jadanik onartzen. Mesedez, hartu une bat zure txat erregistroak deskargatu eta ezabatzeko beheko botoia sakatuz. Ez kezkatu, zure txat erregistroak erraz inportatu ditzakezu berriro backendera honen bidez",
-<<<<<<< HEAD
 	"Scratchboard": "",
-=======
-	"Schedule": "",
-	"Scheduled time must be in the future": "",
-	"Scopes": "",
-	"Scroll On Branch Change": "",
->>>>>>> upstream/main
 	"Scroll to Top": "",
 	"Search": "Bilatu",
 	"Search a model": "Bilatu modelo bat",
-	"Search actions": "",
 	"Search all emojis": "",
 	"Search and manage user memories": "",
 	"Search and view user chat history": "",
@@ -1894,7 +1321,6 @@
 	"Search Chats": "Bilatu txatak",
 	"Search engines and web content loaders for live results.": "",
 	"Search Files": "",
-	"Search filters": "",
 	"Search Filters": "Bilaketa iragazkiak",
 	"search for archived chats": "",
 	"search for folders": "",
@@ -1906,22 +1332,10 @@
 	"Search In Models": "",
 	"Search Models": "Bilatu modeloak",
 	"Search options": "Bilaketa aukerak",
-<<<<<<< HEAD
-=======
-	"Search or add pattern": "",
-	"Search Prompts": "Bilatu prompt-ak",
->>>>>>> upstream/main
 	"Search Result Count": "Bilaketa emaitzen kopurua",
-	"Search skills": "",
 	"Search Skills": "",
 	"Search the web and fetch URLs": "",
-	"Search tools": "",
 	"Search Tools": "Bilaketa tresnak",
-<<<<<<< HEAD
-=======
-	"Search users or groups": "",
-	"Search, view, and manage user notes": "",
->>>>>>> upstream/main
 	"SearchApi API Key": "SearchApi API gakoa",
 	"SearchApi Engine": "SearchApi motorra",
 	"Searched {{count}} sites": "",
@@ -1936,12 +1350,7 @@
 	"Seed": "Hazia",
 	"Select": "",
 	"Select {{modelName}} model": "",
-<<<<<<< HEAD
 	"Select a base model": "Hautatu oinarrizko modeloa",
-=======
-	"Select a base model (e.g. llama3, gpt-4o)": "",
-	"Select a conversation to preview": "",
->>>>>>> upstream/main
 	"Select a engine": "Hautatu motor bat",
 	"Select a function": "Hautatu funtzio bat",
 	"Select a group": "Hautatu talde bat",
@@ -1971,36 +1380,15 @@
 	"Selected Models": "",
 	"semantic": "",
 	"Send": "Bidali",
-<<<<<<< HEAD
-=======
-	"Send a Message": "Bidali mezu bat",
-	"Send events for": "",
-	"Send message": "Bidali mezua",
-	"Send now": "",
-	"Send product events as JSON to external services. Chat destinations receive readable messages.": "",
-	"Send the PDF as a base64 data URL instead of uploading it first.": "",
-	"Sends `stream_options: { include_usage: true }` in the request.\nSupported providers will return token usage information in the response when set.": "Bidaltzen du `stream_options: { include_usage: true }` eskaeran.\nOnartutako hornitzaileek token erabileraren informazioa itzuliko dute erantzunean ezarrita dagoenean.",
->>>>>>> upstream/main
 	"September": "Iraila",
 	"sequences that end a response — comma separated": "",
 	"SerpApi API Key": "",
 	"SerpApi Engine": "",
 	"Serper API Key": "Serper API gakoa",
-	"SERPHouse API Key": "",
-	"SERPHouse Domain": "",
 	"Serply API Key": "Serply API gakoa",
 	"Serpstack API Key": "Serpstack API gakoa",
 	"Server connection failed": "",
-<<<<<<< HEAD
 	"Session": "",
-=======
-	"Server connection verified": "Zerbitzari konexioa egiaztatuta",
-	"Service Account": "",
-	"Session": "",
-	"Session expired. Please sign in again.": "",
-	"Set as default": "Ezarri lehenetsi gisa",
-	"Set as Production": "",
->>>>>>> upstream/main
 	"Set embedding model": "Ezarri txertatze modeloa",
 	"Set embedding model (e.g. {{model}})": "Ezarri txertatze modeloa (adib. {{model}})",
 	"Set reranking model (e.g. {{model}})": "Ezarri berrantolatze modeloa (adib. {{model}})",
@@ -2024,28 +1412,13 @@
 	"Share": "Partekatu",
 	"Share Chat": "Partekatu txata",
 	"Share to Open WebUI Community": "Partekatu OpenWebUI komunitatearekin",
-<<<<<<< HEAD
-=======
-	"Share your background and interests": "",
-	"Shared": "",
->>>>>>> upstream/main
 	"Shared Chats": "",
 	"Shared with you": "",
 	"Sharing Permissions": "",
 	"Show": "Erakutsi",
-<<<<<<< HEAD
 	"Show Admin Details in Account Pending Overlay": "Erakutsi administratzaile xehetasunak kontu zain geruzan",
 	"Show All": "",
 	"Show all ({{COUNT}} characters)": "",
-=======
-	"Show \"What's New\" Modal on Login": "Erakutsi \"Berritasunak\" modala saioa hastean",
-	"Show Admin Details in Account Pending Overlay": "Erakutsi administratzaile xehetasunak kontu zain geruzan",
-	"Show All": "",
-	"Show all ({{COUNT}} characters)": "",
-	"Show Files": "",
-	"Show Files on Terminal Select": "",
-	"Show Formatting Toolbar": "",
->>>>>>> upstream/main
 	"Show image preview": "",
 	"Show Model": "",
 	"Show Shortcuts": "",
@@ -2087,13 +1460,7 @@
 	"Sougou Search API sID": "",
 	"Sougou Search API SK": "",
 	"Source": "Iturria",
-<<<<<<< HEAD
 	"Sources used": "",
-=======
-	"Specific users or groups": "",
-	"Speech Playback Speed": "Ahots erreprodukzio abiadura",
-	"Speech recognition error: {{error}}": "Ahots ezagutze errorea: {{error}}",
->>>>>>> upstream/main
 	"Speech-to-Text": "",
 	"Speech-to-Text Engine": "Ahotsetik-testura motorra",
 	"Split documents by markdown headers before applying character/token splitting.": "",
@@ -2117,13 +1484,6 @@
 	"Strip Existing OCR": "",
 	"Strip existing OCR text from the PDF and re-run OCR. Ignored if Force OCR is enabled. Defaults to False.": "",
 	"STT Model": "STT modeloa",
-<<<<<<< HEAD
-=======
-	"STT Settings": "STT ezarpenak",
-	"Stylized PDF Export": "",
-	"Su_day_of_week": "",
-	"Sub Claim": "",
->>>>>>> upstream/main
 	"Submit question": "",
 	"Submit suggestion": "",
 	"Subtitle": "",
@@ -2137,22 +1497,13 @@
 	"Switch to JSON editor": "",
 	"Switch to visual editor": "",
 	"Sync": "",
-	"Sync a local directory with this knowledge base. Only new and modified files will be uploaded. The directory structure will be mirrored.": "",
-	"Sync complete: {{added}} added, {{modified}} modified, {{deleted}} deleted, {{unmodified}} unmodified": "",
 	"Sync Complete!": "",
 	"Sync Failed": "",
 	"Sync Usage Stats": "",
 	"Syncing stats...": "",
 	"Syncing...": "",
 	"Syncs only chats with updates after your last sync timestamp. Disable to re-sync all chats.": "",
-<<<<<<< HEAD
-=======
-	"System": "Sistema",
-	"System events only": "",
-	"System Instructions": "Sistema jarraibideak",
->>>>>>> upstream/main
 	"System Prompt": "Sistema prompta",
-	"Table": "",
 	"Tag": "",
 	"Tags": "",
 	"Tags Generation": "",
@@ -2172,16 +1523,6 @@
 	"Temperature": "Tenperatura",
 	"Temporary Chat": "Behin-behineko txata",
 	"Terminal": "",
-<<<<<<< HEAD
-=======
-	"Terminal servers saved": "",
-	"Test": "",
-	"Test Query": "",
-	"Test returned no results.": "",
-	"Test succeeded.": "",
-	"Test the source before creating it.": "",
-	"Test the source before saving it.": "",
->>>>>>> upstream/main
 	"Text Splitter": "Testu banatzailea",
 	"Text-to-Speech": "",
 	"Text-to-Speech Engine": "Testutik-ahotsera motorra",
@@ -2196,11 +1537,8 @@
 	"The height in pixels to compress images to. Leave empty for no compression.": "",
 	"The LDAP attribute that maps to the mail that users use to sign in.": "",
 	"The LDAP attribute that maps to the username that users use to sign in.": "Erabiltzaileek saioa hasteko erabiltzen duten erabiltzaile-izenarekin mapeatzen den LDAP atributua.",
-<<<<<<< HEAD
 	"The leaderboard is currently in beta, and we may adjust the rating calculations as we refine the algorithm.": "Sailkapena beta fasean dago, eta balorazioen kalkuluak doitu ditzakegu algoritmoa fintzen dugun heinean.",
 	"the longest single response it may set": "",
-=======
->>>>>>> upstream/main
 	"The maximum file size in MB. If the file size exceeds this limit, the file will not be uploaded.": "Fitxategiaren gehienezko tamaina MB-tan. Fitxategiaren tamainak muga hau gainditzen badu, fitxategia ez da kargatuko.",
 	"The maximum number of files that can be used at once in chat. If the number of files exceeds this limit, the files will not be uploaded.": "Txatean aldi berean erabili daitezkeen fitxategien gehienezko kopurua. Fitxategi kopuruak muga hau gainditzen badu, fitxategiak ez dira kargatuko.",
 	"The only required step — refine everything else now or later.": "",
@@ -2226,11 +1564,6 @@
 	"This feature is currently experimental and may not work as expected.": "",
 	"This folder is empty": "",
 	"This is a default user permission and will remain enabled.": "",
-<<<<<<< HEAD
-=======
-	"This is an experimental feature, it may not function as expected and is subject to change at any time.": "Hau funtzionalitate esperimental bat da, baliteke espero bezala ez funtzionatzea eta edozein unetan aldaketak izatea.",
-	"This knowledge base retrieves from a connected source. Open WebUI can query it, but cannot upload, sync, edit, delete, reset, or reindex its source data.": "",
->>>>>>> upstream/main
 	"This model is not publicly available. Please select another model.": "",
 	"This option controls how long the model will stay loaded into memory following the request (default: 5m)": "",
 	"This option controls how many tokens are preserved when refreshing the context. For example, if set to 2, the last 2 tokens of the conversation context will be retained. Preserving context can help maintain the continuity of a conversation, but it may reduce the ability to respond to new topics.": "",
@@ -2242,11 +1575,6 @@
 	"This will delete <strong>{{NAME}}</strong> and <strong>all its contents</strong>.": "Honek <strong>{{NAME}}</strong> eta <strong>bere eduki guztiak</strong> ezabatuko ditu.",
 	"This will delete all models including custom models": "Honek modelo guztiak ezabatuko ditu, modelo pertsonalizatuak barne",
 	"This will delete all models including custom models and cannot be undone.": "Honek modelo guztiak ezabatuko ditu, modelo pertsonalizatuak barne, eta ezin da desegin.",
-<<<<<<< HEAD
-=======
-	"This will permanently delete the calendar \"{{name}}\" and all its events. This action cannot be undone.": "",
-	"This will remove all files and directories from this knowledge base. This action cannot be undone.": "",
->>>>>>> upstream/main
 	"Thorough explanation": "Azalpen sakona",
 	"Thought": "",
 	"Thought for {{DURATION}}": "",
@@ -2269,23 +1597,12 @@
 	"To learn more about available endpoints, visit our documentation.": "",
 	"To select skills here, add them to the \"Skills\" workspace first.": "",
 	"To select toolkits here, add them to the \"Tools\" workspace first.": "Tresna-multzoak hemen hautatzeko, gehitu itzazu lehenik \"Tresnak\" lan-eremura.",
-<<<<<<< HEAD
-=======
-	"Toast Notifications for New Updates": "Toast jakinarazpenak eguneraketa berrientzat",
->>>>>>> upstream/main
 	"Today": "Gaur",
 	"Toggle details": "",
-<<<<<<< HEAD
-=======
-	"Toggle Dictation": "",
-	"Toggle Mute": "",
->>>>>>> upstream/main
 	"Toggle Sidebar": "",
 	"Toggle whether current connection is active.": "",
 	"Token": "Tokena",
 	"Token counts are estimates and may not reflect actual API usage": "",
-	"Token Threshold": "",
-	"Tokenizer Model": "",
 	"tokens": "",
 	"Tokens": "",
 	"Too verbose": "Luzeegia",
@@ -2330,25 +1647,10 @@
 	"Unlock mysteries": "Askatu misterioak",
 	"Unpin": "Kendu aingura",
 	"Unravel secrets": "Askatu sekretuak",
-	"Unshare All": "",
-	"Unshare All Shared Chats": "",
 	"Unshare Chat": "",
 	"Untagged": "Etiketatu gabea",
-<<<<<<< HEAD
 	"Untitled folio": "",
 	"Update for the latest features and improvements.": "Eguneratu azken ezaugarri eta hobekuntzak izateko.",
-=======
-	"Untitled": "",
-	"Update": "Eguneratu",
-	"Update and Copy Link": "Eguneratu eta kopiatu esteka",
-	"Update Email": "",
-	"Update for the latest features and improvements.": "Eguneratu azken ezaugarri eta hobekuntzak izateko.",
-	"Update Name": "",
-	"Update password": "Eguneratu pasahitza",
-	"Update Picture": "",
-	"Update your status": "",
-	"Updated": "Eguneratuta",
->>>>>>> upstream/main
 	"Updated at": "Noiz eguneratuta",
 	"Updated At": "Noiz eguneratuta",
 	"Upgrade to a licensed plan for enhanced capabilities, including custom theming and branding, and dedicated support.": "",
@@ -2360,40 +1662,24 @@
 	"Upload profile image": "",
 	"Upload Progress": "Kargaren aurrerapena",
 	"Uploaded files or images": "",
-<<<<<<< HEAD
-=======
-	"Uploading {{current}}/{{total}}: {{file}}": "",
->>>>>>> upstream/main
 	"Uploading...": "",
 	"URL": "URLa",
 	"URL is required": "",
 	"URL Mode": "URL modua",
 	"Usage": "",
 	"Use /v1/chat/completions endpoint instead of /v1/audio/transcriptions for potentially better accuracy.": "",
-	"Use a valid event name or pattern like user.*": "",
-	"Use Base64": "",
 	"Use Chat Completions API": "",
-	"Use discovered scopes": "",
 	"Use groups to organize your users and assign permissions.": "",
 	"Use LLM": "",
 	"Use no proxy to fetch page contents.": "",
 	"Use proxy designated by http_proxy and https_proxy environment variables to fetch page contents.": "",
-	"Use Web Search?": "",
 	"user": "erabiltzailea",
 	"User": "Erabiltzailea",
-	"User Access": "",
 	"User Activity": "",
 	"User Groups": "",
-<<<<<<< HEAD
-=======
-	"User location successfully retrieved.": "Erabiltzailearen kokapena ongi berreskuratu da.",
-	"User menu": "",
-	"User Preview": "",
->>>>>>> upstream/main
 	"User ratings (thumbs up/down)": "",
 	"User Webhooks": "",
 	"Username": "Erabiltzaile-izena",
-	"Username Claim": "",
 	"users": "",
 	"Users": "Erabiltzaileak",
 	"Uses DefaultAzureCredential to authenticate": "",
@@ -2404,14 +1690,7 @@
 	"Valid time units:": "Denbora unitate baliozkoak:",
 	"Validate certificate": "",
 	"Valves": "Balbulak",
-<<<<<<< HEAD
 	"Verified": "",
-=======
-	"Valves updated": "Balbulak eguneratuta",
-	"Valves updated successfully": "Balbulak ongi eguneratu dira",
-	"variable": "aldagaia",
-	"Vector Field": "",
->>>>>>> upstream/main
 	"Verify Connection": "",
 	"Verify SSL Certificate": "",
 	"Version": "Bertsioa",
@@ -2432,20 +1711,9 @@
 	"Web API": "Web APIa",
 	"Web Loader Engine": "",
 	"Web Search": "Web bilaketa",
-	"Web Search Confirmation": "",
-	"Web Search Confirmation Content": "",
 	"Web Search Engine": "Web bilaketa motorra",
 	"Web Search Query Generation": "",
-<<<<<<< HEAD
 	"Webhook URL": "Webhook URLa",
-=======
-	"Webhook deleted": "",
-	"Webhook Name": "",
-	"Webhook saved": "",
-	"Webhooks": "",
-	"Webpage URLs": "",
-	"WebUI Settings": "WebUI ezarpenak",
->>>>>>> upstream/main
 	"WebUI URL": "",
 	"WebUI will make requests to \"{{url}}\"": "",
 	"WebUI will make requests to \"{{url}}/api/chat\"": "WebUI-k eskaerak egingo ditu \"{{url}}/api/chat\"-era",
@@ -2476,7 +1744,6 @@
 	"Yandex Web Search API Key": "",
 	"Yandex Web Search config": "",
 	"Yandex Web Search URL": "",
-	"Yearly": "",
 	"Yesterday": "Atzo",
 	"You": "Zu",
 	"You are a careful editor: terse, concrete, kind…": "",
@@ -2496,7 +1763,6 @@
 	"Your browser does not support the video tag.": "",
 	"Your entire contribution will go directly to the plugin developer; Open WebUI does not take any percentage. However, the chosen funding platform might have its own fees.": "Zure ekarpen osoa zuzenean plugin garatzaileari joango zaio; Open WebUI-k ez du ehunekorik hartzen. Hala ere, aukeratutako finantzaketa plataformak bere komisioak izan ditzake.",
 	"Your message text or inputs": "",
-	"Your query will be sent to the configured web search provider.": "",
 	"Your usage stats have been successfully synced.": "",
 	"Youtube Language": "",
 	"Youtube Proxy URL": ""

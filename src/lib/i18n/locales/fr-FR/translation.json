@@ -5,82 +5,26 @@
 	"(e.g. `sh webui.sh --api`)": "(par exemple `sh webui.sh --api`)",
 	"(latest)": "(dernière version)",
 	"(leave blank for to use commercial endpoint)": "laisser vide pour l'utilisation d'un point d'extension commercial",
-<<<<<<< HEAD
 	"{{COUNT}} extracted lines": "{{COUNT}} lignes extraites",
 	"{{COUNT}} hidden lines": "Nombres de lignes cachées {{COUNT}}",
 	"{{COUNT}} members": "{{COUNT}} membres",
-=======
-	"[Last] dddd [at] h:mm A": "dddd [dernier] à H[h]mm",
-	"[Today at] h:mm A": "[Aujourd'hui à] H[h]mm",
-	"[Yesterday at] h:mm A": "[Hier à] H[h]mm",
-	"{{ models }}": "{{ models }}",
-	"{{COUNT}} Available Skills": "",
-	"{{COUNT}} Available Tools": "{{COUNT}} outils disponibles ",
-	"{{COUNT}} characters": "{{COUNT}} caractères",
-	"{{COUNT}} extracted lines": "{{COUNT}} lignes extraites",
-	"{{COUNT}} files": "{{COUNT}} fichiers",
-	"{{count}} files selected. Only new and modified files will be uploaded. Deleted files will be removed. The folder structure will be mirrored. Continue?_one": "",
-	"{{count}} files selected. Only new and modified files will be uploaded. Deleted files will be removed. The folder structure will be mirrored. Continue?_many": "",
-	"{{count}} files selected. Only new and modified files will be uploaded. Deleted files will be removed. The folder structure will be mirrored. Continue?_other": "",
-	"{{count}} filters_one": "",
-	"{{count}} filters_many": "",
-	"{{count}} filters_other": "",
-	"{{count}} groups_one": "",
-	"{{count}} groups_many": "",
-	"{{count}} groups_other": "",
-	"{{COUNT}} hidden lines": "Nombres de lignes cachées {{COUNT}}",
-	"{{COUNT}} members": "{{COUNT}} membres",
-	"{{count}} of {{total}} accessible_one": "",
-	"{{count}} of {{total}} accessible_many": "",
-	"{{count}} of {{total}} accessible_other": "",
-	"{{COUNT}} Replies": "{{COUNT}} réponses",
->>>>>>> upstream/main
 	"{{COUNT}} Rows": "{{COUNT}} lignes",
 	"{{count}} selected_one": "",
 	"{{count}} selected_many": "",
 	"{{count}} selected_other": "",
-<<<<<<< HEAD
-=======
-	"{{COUNT}} Sources": "{{COUNT}} Sources",
-	"{{count}} users_one": "",
-	"{{count}} users_many": "",
-	"{{count}} users_other": "",
-	"{{COUNT}} words": "{{COUNT}} mots",
->>>>>>> upstream/main
 	"{{COUNT}}d_time_ago": "{{COUNT}}j",
 	"{{COUNT}}h_time_ago": "{{COUNT}}h",
 	"{{COUNT}}m_time_ago": "{{COUNT}}min",
 	"{{COUNT}}w_time_ago": "{{COUNT}}sem",
 	"{{COUNT}}y_time_ago": "{{COUNT}}a",
-<<<<<<< HEAD
-=======
-	"{{label}} contains invalid JSON": "",
-	"{{label}} must be a JSON object": "",
-	"{{LOCALIZED_DATE}} at {{LOCALIZED_TIME}}": "{{LOCALIZED_DATE}} à {{LOCALIZED_TIME}}",
-	"{{model}} download has been canceled": "Le téléchargement de {{model}} a été annulé",
->>>>>>> upstream/main
 	"{{modelName}} profile image": "Image de profil de {{modelName}}",
 	"{{user}}'s Chats": "Conversations de {{user}}",
 	"{{webUIName}} Backend Required": "Backend {{webUIName}} requis",
 	"*Prompt node ID(s) are required for image generation": "*Les ID de noeud du prompt sont nécessaires pour la génération d'image",
-<<<<<<< HEAD
 	"1m_time_ago": "1min",
 	"a line about what this model is for…": "",
 	"A model binds a base mind to a system prompt, tools and knowledge — compose one and summon it in any chat.": "",
 	"A name and a base model, and it can be bound.": "",
-=======
-	"1 group": "",
-	"1 hour before": "1 heure avant",
-	"1 Source": "1 Source",
-	"1 user": "",
-	"10 minutes before": "10 minutes avant",
-	"15 minutes before": "15 minutes avant",
-	"1m_time_ago": "1min",
-	"30 minutes before": "30 minutes avant",
-	"5 minutes before": "5 minutes avant",
-	"A collaboration channel where people join as members": "Un canal collaboratif où les membres rejoignent librement",
-	"A discussion channel where access is controlled by groups and permissions": "Un canal de discussion où l'accès est contrôlé par les groupes et les permissions",
->>>>>>> upstream/main
 	"A new version (v{{LATEST_VERSION}}) is now available.": "Une nouvelle version (v{{LATEST_VERSION}}) est disponible.",
 	"A task model is used when performing tasks such as generating titles for chats and web search queries": "Un modèle de tâche est utilisé lors de l'exécution de tâches telles que la génération de titres pour les conversations et les requêtes de recherche sur le web.",
 	"Accept Autocomplete Generation\nJump to Prompt Variable": "Accepter l'autocomplétion\nRenseigner les variables du prompt",
@@ -88,11 +32,6 @@
 	"Access Control": "Contrôle d'accès",
 	"Access Grants": "Droits d'accès",
 	"Access List": "Liste des accès",
-<<<<<<< HEAD
-=======
-	"Access prohibited": "",
-	"Access updated": "Accès mis à jour",
->>>>>>> upstream/main
 	"Accessible to all users": "Accessible à tous les utilisateurs",
 	"Account Activation Pending": "Activation du compte en attente",
 	"Accurate information": "Information exacte",
@@ -103,7 +42,6 @@
 	"Activity": "Activité",
 	"Add": "Ajouter",
 	"Add a model ID": "Ajouter un ID de modèle",
-	"Add a preference, fact, or instruction about you": "",
 	"Add a short description about what this model does": "Ajoutez une brève description de ce que fait ce modèle.",
 	"Add a tag": "Ajouter un tag",
 	"Add a tag...": "Ajouter un tag...",
@@ -112,22 +50,8 @@
 	"Add Connection": "Ajouter une connexion",
 	"Add Custom Parameter": "Ajoutez votre réglage personnalisé",
 	"Add Custom Prompt": "Ajouter un prompt personnalisé",
-<<<<<<< HEAD
-=======
-	"Add description": "Ajouter une description",
->>>>>>> upstream/main
 	"Add Details": "Ajouter des détails",
-	"Add durable context for future chats": "",
 	"Add Files": "Ajouter des fichiers",
-<<<<<<< HEAD
-=======
-	"Add Image": "Ajouter une image",
-	"Add Knowledge Connection": "",
-	"Add location": "Ajouter un lieu",
-	"Add Member": "Ajouter un membre",
-	"Add Members": "Ajouter des membres",
-	"Add Memory": "Ajouter un souvenir",
->>>>>>> upstream/main
 	"Add Model": "Ajouter un modèle",
 	"Add tag": "Ajouter un tag",
 	"Add Tag": "Ajouter un tag",
@@ -135,11 +59,6 @@
 	"Add to favorites": "Ajouter aux favoris",
 	"Add User": "Ajouter un utilisateur",
 	"Add User Group": "Ajouter un groupe d'utilisateurs",
-<<<<<<< HEAD
-=======
-	"Add webhook": "",
-	"Add webpage": "Ajouter une page web",
->>>>>>> upstream/main
 	"Add your Open Terminal URL and API key in Settings → Integrations.": "Ajoutez votre URL Open Terminal et votre clé API dans Réglages → Intégrations.",
 	"Additional Config": "Configuration supplémentaire",
 	"Additional configuration options for marker. This should be a JSON string with key-value pairs. For example, '{\"key\": \"value\"}'. Supported keys include: disable_links, keep_pageheader_in_output, keep_pagefooter_in_output, filter_blank_pages, drop_repeated_text, layout_coverage_threshold, merge_threshold, height_tolerance, gap_threshold, image_threshold, min_line_length, level_count, default_level": "Options de configuration supplémentaires pour Marker. Cela doit être un JSON avec des paires clé-valeur. Par exemple, '{\"key\": \"value\"}'. Les clés supportées incluent : disable_links, keep_pageheader_in_output, keep_pagefooter_in_output, filter_blank_pages, drop_repeated_text, layout_coverage_threshold, merge_threshold, height_tolerance, gap_threshold, image_threshold, min_line_length, level_count, default_level",
@@ -150,40 +69,18 @@
 	"Admin": "Administrateur",
 	"Admin Contact Email": "Email de contact de l'administrateur",
 	"Admin Panel": "Panneau d'administration",
-<<<<<<< HEAD
-=======
-	"Admin Roles": "",
-	"Admin Settings": "Réglages d'administration",
-	"Admin-managed service account": "",
->>>>>>> upstream/main
 	"Admins have access to all tools at all times; users need tools assigned per model in the workspace.": "Les administrateurs ont accès à tous les outils en permanence ; les utilisateurs doivent se voir attribuer des outils pour chaque modèle dans l'espace de travail.",
 	"Advanced": "Avancé",
 	"Advanced parameters for MinerU parsing (enable_ocr, enable_formula, enable_table, language, model_version, page_ranges)": "Paramètres avancés pour l'analyse MinerU (enable_ocr, enable_formula, enable_table, language, model_version, page_ranges)",
 	"Advanced Params": "Réglages avancés",
 	"After updating or changing the embedding model, you must reindex the knowledge base for the changes to take effect. You can do this using the \"Reindex\" button below.": "Après avoir mis à jour ou modifié le modèle d'embedding, vous devez réindexer la base de connaissances pour que les changements prennent effet. Vous pouvez le faire en utilisant le bouton « Réindexer » ci-dessous.",
 	"All": "Tout",
-<<<<<<< HEAD
 	"All time": "Toute la période",
 	"All Users": "Tous les utilisateurs",
-=======
-	"All chats have been unarchived.": "Toutes les conversations ont été désarchivées.",
-	"All day": "Toute la journée",
-	"All events": "",
-	"All models are now hidden": "Tous les modèles sont maintenant masqués",
-	"All models are now visible": "Tous les modèles sont maintenant visibles",
-	"All models deleted successfully": "Tous les modèles supprimés avec succès",
-	"All shared chats have been unshared.": "",
-	"All Sources": "",
-	"All time": "Toute la période",
-	"All Users": "Tous les utilisateurs",
-	"All users and system events": "",
-	"Allow Call": "Autoriser les appels",
->>>>>>> upstream/main
 	"Allow Chat Controls": "Autoriser les contrôles de la conversation",
 	"Allow Chat Delete": "Autoriser la suppression de la conversation",
 	"Allow Chat Edit": "Autoriser la modification de la conversation",
 	"Allow Chat Export": "Autoriser l'exportation de la conversation",
-	"Allow Chat Import": "",
 	"Allow Chat Params": "Autoriser les paramètres de discussion",
 	"Allow Chat Share": "Autoriser le partage de la conversation",
 	"Allow Chat System Prompt": "Autoriser le prompt système de la conversation",
@@ -192,22 +89,15 @@
 	"Allow Delete Messages": "Autoriser la suppression des messages",
 	"Allow File Upload": "Autoriser le téléversement de fichiers",
 	"Allow Multiple Models in Chat": "Autoriser plusieurs modèles dans la conversation",
-<<<<<<< HEAD
 	"Allow public write access": "",
-=======
-	"Allow non-local voices": "Autoriser les voix non locales",
-	"Allow public write access": "Autoriser l'accès en écriture public",
->>>>>>> upstream/main
 	"Allow Rate Response": "Autoriser l'évaluation de la réponse",
 	"Allow Regenerate Response": "Autoriser la regénération de la réponse",
 	"Allow Sharing With Users": "Autoriser le partage aux utilisateurs",
 	"Allow Text to Speech": "Autoriser la synthèse vocale",
 	"Allow Web Upload": "Autoriser le téléversement depuis le web",
-	"Allowed Domains": "",
 	"Allowed Endpoints": "Points de terminaison autorisés",
 	"Allowed File Extensions": "Extensions de fichier autorisées",
 	"Allowed file extensions for upload. Separate multiple extensions with commas. Leave empty for all file types.": "Autoriser les extensions de fichier pour le téléversement. Séparez plusieurs extensions par des virgules. Laissez vide pour tous les types de fichiers.",
-	"Allowed Roles": "",
 	"Already have an account?": "Avez-vous déjà un compte ?",
 	"Alternative to the top_p, and aims to ensure a balance of quality and variety. The parameter p represents the minimum probability for a token to be considered, relative to the probability of the most likely token. For example, with p=0.05 and the most likely token having a probability of 0.9, logits with a value less than 0.045 are filtered out.": "Alternative à top_p, et vise à assurer un équilibre entre qualité et variété. Le paramètre p représente la probabilité minimale pour qu'un token soit considéré, par rapport à la probabilité du token le plus probable. Par exemple, avec p=0.05 et le token le plus probable ayant une probabilité de 0.9, les logits d'une valeur inférieure à 0.045 sont filtrés.",
 	"Amazing": "Incroyable",
@@ -219,11 +109,6 @@
 	"API Base URL": "URL de base de l'API",
 	"API Base URL for Datalab Marker service. Defaults to: https://www.datalab.to/api/v1/marker": "URL de base de l'API pour le service Datalab Marker. Par défaut : https://www.datalab.to/api/v1/marker",
 	"API Key": "Clé API",
-<<<<<<< HEAD
-=======
-	"API Key / Token": "",
-	"API Key created.": "Clé API générée.",
->>>>>>> upstream/main
 	"API Key Endpoint Restrictions": "Restrictions des points de terminaison de la clé API",
 	"API Keys": "Clés API",
 	"API Mode": "Mode API",
@@ -238,90 +123,37 @@
 	"Archive": "Archiver",
 	"Archived Chats": "Conversations archivées",
 	"Are you sure you want to delete \"{{NAME}}\"?": "Êtes-vous sûr de vouloir supprimer \"{{NAME}}\" ?",
-<<<<<<< HEAD
 	"Are you sure you want to delete **{{modelName}}**?": "",
 	"Are you sure you want to delete this connection? This action cannot be undone.": "",
 	"Are you sure you want to delete this?": "Êtes-vous sûr de vouloir supprimer ceci ?",
 	"Arena": "",
-=======
-	"Are you sure you want to delete **{{modelName}}**?": "Êtes-vous sûr de vouloir supprimer **{{modelName}}** ?",
-	"Are you sure you want to delete all chats? This action cannot be undone.": "Êtes-vous sûr de vouloir supprimer toutes les conversations ? Cette action est irréversible.",
-	"Are you sure you want to delete this channel?": "Êtes-vous sûr de vouloir supprimer ce canal ?",
-	"Are you sure you want to delete this connection? This action cannot be undone.": "Êtes-vous sûr de vouloir supprimer cette connexion ? Cette action est irréversible.",
-	"Are you sure you want to delete this directory?": "",
-	"Are you sure you want to delete this memory? This action cannot be undone.": "Êtes-vous sûr de vouloir supprimer ce souvenir ? Cette action est irréversible.",
-	"Are you sure you want to delete this message?": "Êtes-vous sûr de vouloir supprimer ce message ?",
-	"Are you sure you want to delete this version? Child versions will be relinked to this version's parent.": "Êtes-vous sûr de vouloir supprimer cette version ? Les versions enfants seront rattachées à la version parente.",
-	"Are you sure you want to delete this webhook? This action cannot be undone.": "",
-	"Are you sure you want to delete this?": "Êtes-vous sûr de vouloir supprimer ceci ?",
-	"Are you sure you want to reset all permissions to their default values? You will still need to save to apply the changes.": "",
-	"Are you sure you want to unarchive all archived chats?": "Êtes-vous sûr de vouloir désarchiver toutes les conversations ?",
-	"Are you sure you want to unshare all shared chats? This will remove all share links.": "",
->>>>>>> upstream/main
 	"Arena Models": "Modèles d'arène",
 	"Artifacts": "Artéfacts",
 	"Ask": "Demander",
 	"Ask a question": "Posez votre question",
-<<<<<<< HEAD
 	"Ask the User": "",
 	"Async Embedding Processing": "Traitement asynchrone des embeddings",
 	"Attach File From Knowledge": "Joindre un fichier depuis les connaissances",
-=======
-	"Ask a test question": "",
-	"Ask this knowledge source a test question": "",
-	"Assistant": "Assistant",
-	"Async Embedding Processing": "Traitement asynchrone des embeddings",
-	"At time of event": "Au moment de l'événement",
-	"Attach File From Knowledge": "Joindre un fichier depuis les connaissances",
-	"Attach Files": "Joindre des fichiers",
-	"Attach Knowledge": "Joindre une connaissance",
-	"Attach Notes": "Joindre une note",
-	"Attach Webpage": "Joindre une page web",
->>>>>>> upstream/main
 	"Attention to detail": "Attention aux détails",
 	"Attribute for Mail": "Attribut pour l'e-mail",
 	"Attribute for Username": "Attribut pour le nom d'utilisateur",
 	"Audience": "",
 	"August": "Août",
 	"Auth": "Auth",
-	"Auth Mode": "",
-	"Auth required": "",
 	"Authenticate": "Authentifier",
 	"Authentication": "Authentification",
 	"Auto (Random)": "Auto (Aléatoire)",
-<<<<<<< HEAD
 	"Auto-inject system tools for Agents (timestamps, memory, notes, etc.)": "",
-=======
-	"Auto Redirect": "",
-	"Auto-Copy Response to Clipboard": "Copie automatique de la réponse vers le presse-papiers",
-	"Auto-Create Groups": "",
-	"Auto-Playback Response": "Lire automatiquement la réponse",
->>>>>>> upstream/main
 	"Autocomplete Generation": "Génération des suggestions",
 	"Autocomplete Generation Input Max Length": "Longueur maximale pour la génération des suggestions",
-	"Autocomplete Generation Prompt": "",
-	"Automatic": "",
 	"Automatic1111": "Automatic1111",
 	"AUTOMATIC1111 Api Auth String": "AUTOMATIC1111 Chaîne d'authentification de l'API",
 	"AUTOMATIC1111 Base URL": "URL de base AUTOMATIC1111",
 	"AUTOMATIC1111 Base URL is required.": "L'URL de base {AUTOMATIC1111} est requise.",
-<<<<<<< HEAD
-=======
-	"Automatically inject system tools in native function calling mode (e.g., timestamps, memory, chat history, notes, etc.)": "Injecte automatiquement les outils système en mode d'appel de fonctions natif (par ex. horodatage, mémoire, historique des conversations, notes, etc.)",
-	"Automation": "Automatisation",
-	"Automation created": "Automatisation créée",
-	"Automation Name": "Nom de l'automatisation",
-	"Automation title": "Titre de l'automatisation",
-	"Automation triggered": "Automatisation déclenchée",
-	"Automation updated": "Automatisation mise à jour",
-	"Automations": "Automatisations",
->>>>>>> upstream/main
 	"Available list": "Liste disponible",
 	"Available models": "Modèles disponibles",
-	"Available Skills": "",
 	"Available Tools": "Outils disponibles",
 	"available users": "utilisateurs disponibles",
-	"Available variables": "",
 	"available!": "disponible !",
 	"Awful": "Horrible",
 	"Azure AI Speech": "Azure AI Speech",
@@ -332,68 +164,30 @@
 	"Backup, export, and import instance data.": "",
 	"Bad Response": "Mauvaise réponse",
 	"Banners": "Bannières",
-<<<<<<< HEAD
 	"Base model": "",
-=======
-	"Base Model (From)": "Modèle de base (à partir de)",
-	"Base Model is required.": "",
->>>>>>> upstream/main
 	"Base Model List Cache speeds up access by fetching base models only at startup or on settings save—faster, but may not show recent base model changes.": "La mise en cache de la liste des modèles de base accélère l'accès en ne récupérant les modèles de base qu'au démarrage ou lors de la sauvegarde des réglages - plus rapide, mais peut ne pas afficher les modifications récentes des modèles de base.",
 	"Bearer": "Bearer",
 	"Begin a new folio": "",
 	"Being lazy": "Être fainéant",
-<<<<<<< HEAD
 	"Beta": "Bêta",
 	"Bind the model": "",
 	"Bing": "Bing",
 	"Bing Search V7 Endpoint": "Point de terminaison Bing Search V7",
 	"Bing Search V7 Subscription Key": "Clé d'abonnement Bing Search V7",
-=======
-	"Bing": "Bing",
-	"Bing Search V7 Endpoint": "Point de terminaison Bing Search V7",
-	"Bing Search V7 Subscription Key": "Clé d'abonnement Bing Search V7",
-	"Bio": "Bio",
-	"Birth Date": "Date de naissance",
-	"Blocked Groups": "",
->>>>>>> upstream/main
 	"BM25 Weight": "Poids BM25",
 	"Bocha Search API Key": "Clé API Bocha Search",
 	"Bold": "Gras",
 	"Boosting or penalizing specific tokens for constrained responses. Bias values will be clamped between -100 and 100 (inclusive). (Default: none)": "Renforcer ou pénaliser des éléments spécifiques pour les réponses contraintes. Les valeurs du biais seront comprises entre -100 et 100 (inclus). (Par défaut : aucun)",
 	"Brave": "Brave",
 	"Brave Search API Key": "Clé API Brave Search",
-<<<<<<< HEAD
 	"Break down complex requests into trackable steps": "",
-=======
-	"Break down complex requests into trackable steps": "Décomposer les demandes complexes en étapes traçables",
-	"Browse and query knowledge bases": "Parcourir et interroger les bases de connaissances",
->>>>>>> upstream/main
 	"Builtin Tools": "Outils intégrés",
 	"Bulk actions": "",
 	"Bullet List": "Liste à puces",
-<<<<<<< HEAD
-=======
-	"Button ID": "ID du bouton",
-	"Button Label": "Étiquette du bouton",
-	"Button Prompt": "Invite du bouton",
-	"by {{name}}": "par {{name}}",
->>>>>>> upstream/main
 	"By {{name}}": "Par {{name}}",
 	"Bypass Embedding and Retrieval": "Ignorer l'Embedding et le Retrieval",
 	"Bypass Web Loader": "Ignorer le chargeur Web",
 	"Cache Base Model List": "Mettre en cache la liste des modèles de base",
-<<<<<<< HEAD
-=======
-	"Calendar": "Calendrier",
-	"Calendar created": "Calendrier créé",
-	"Calendar deleted": "Calendrier supprimé",
-	"Calendar name": "Nom du calendrier",
-	"Calendars": "Calendriers",
-	"Calendars Public Sharing": "Partage public des calendriers",
-	"Call": "Appeler",
-	"Call feature is not supported when using Web STT engine": "La fonction d'appel n'est pas prise en charge lors de l'utilisation du moteur Web STT",
-	"Camera": "Appareil photo",
->>>>>>> upstream/main
 	"Cancel": "Annuler",
 	"Cancel download of {{model}}": "Annuler le téléchargement de {{model}}",
 	"Capabilities": "Capacités",
@@ -407,19 +201,13 @@
 	"Chat": "Conversation",
 	"Chat Completions": "Chat Completions",
 	"Chat Conversation": "Conversation par chat",
-<<<<<<< HEAD
-=======
-	"Chat deleted.": "Conversation supprimée.",
-	"Chat Direction": "Direction de la conversation",
-	"Chat exported successfully": "Conversation exportée avec succès",
->>>>>>> upstream/main
 	"Chat History": "Historique des conversations",
 	"Chat ID": "ID de chat",
 	"Chat moved successfully": "Conversation déplacée avec succès",
 	"Chat Permissions": "Autorisations de la conversation",
 	"chats": "conversations",
 	"Chats": "Conversations",
-	"Chats Public Sharing": "Partage public des conversations",
+	"Chats Public Sharing": "",
 	"Check Again": "Vérifiez à nouveau.",
 	"Check for updates": "Vérifier les mises à jour disponibles",
 	"Checking for updates...": "Recherche de mises à jour...",
@@ -444,11 +232,6 @@
 	"Click here to upload a workflow.json file.": "Cliquez ici pour téléverser un fichier workflow.json.",
 	"click here.": "cliquez ici.",
 	"Click on the user role button to change a user's role.": "Cliquez sur le bouton de rôle d'utilisateur pour modifier son rôle.",
-<<<<<<< HEAD
-=======
-	"Click to connect": "Cliquez pour vous connecter",
-	"Click to copy ID": "Cliquez pour copier l'ID",
->>>>>>> upstream/main
 	"Client ID": "",
 	"Client Secret": "",
 	"Clone": "Cloner",
@@ -477,11 +260,6 @@
 	"Code Interpreter Prompt Template": "Modèle d'invite pour l'interpréteur de code",
 	"Collapse": "Réduire",
 	"Collection": "Collection",
-<<<<<<< HEAD
-=======
-	"Collection Field": "",
-	"Collections": "Collections",
->>>>>>> upstream/main
 	"Color": "Couleur",
 	"ComfyUI": "ComfyUI",
 	"ComfyUI API Key": "Clé API ComfyUI",
@@ -490,67 +268,31 @@
 	"ComfyUI Workflow": "Workflow ComfyUI",
 	"ComfyUI Workflow Nodes": "Noeuds du workflow ComfyUI",
 	"Comma separated Node Ids (e.g. 1 or 1,2)": "ID de nœud séparés par des virgules (Ex : 1 ou 1,2)",
-<<<<<<< HEAD
-=======
-	"Comma-separated group names": "",
-	"Comma-separated list of file extensions MinerU will handle (e.g. pdf, docx, pptx, xlsx)": "",
-	"command": "commande",
-	"Command": "Commande",
->>>>>>> upstream/main
 	"Comment": "Commentaire",
 	"Community Reviews": "Avis de la communauté",
-<<<<<<< HEAD
 	"Compose your first model": "",
 	"Concurrent Requests": "Demandes concurrentes",
 	"Config": "Configuration",
-=======
-	"Compacting context": "",
-	"Comparing with knowledge base...": "",
-	"Completions": "Complétions",
-	"Compress Images in Channels": "Compresser les images dans les canaux",
-	"Computing checksums ({{count}} files)_one": "",
-	"Computing checksums ({{count}} files)_many": "",
-	"Computing checksums ({{count}} files)_other": "",
-	"Concurrent Requests": "Demandes concurrentes",
-	"Config": "Configuration",
-	"Config imported successfully": "Configuration importée avec succès",
-	"Configuration": "Configuration",
->>>>>>> upstream/main
 	"Configure": "Configurer",
 	"Confirm": "Confirmer",
 	"Confirm Password": "Confirmer le mot de passe",
-	"Confirm Prompt from Embed": "Confirmer le prompt de l'embed",
+	"Confirm Prompt from Embed": "",
 	"Confirm your action": "Confirmer votre action",
 	"Confirm Your Password": "Confirmez votre mot de passe",
 	"Connect to an AI provider to start chatting": "Connectez-vous à un fournisseur d'IA pour commencer à discuter",
 	"Connect to Open Terminal instances. All users will have access to file browsing and terminal tools through these servers.": "Connectez-vous à des instances Open Terminal. Tous les utilisateurs auront accès à la navigation de fichiers et aux outils de terminal via ces serveurs.",
 	"Connect to your own OpenAPI compatible external tool servers.": "Connectez-vous à vos serveurs d'outils externes.",
 	"Connected": "",
-<<<<<<< HEAD
 	"Connection failed": "Échec de la connexion",
 	"Connection lost. Reconnecting...": "",
-=======
-	"Connected ({{type}})": "Connecté ({{type}})",
-	"Connection failed": "Échec de la connexion",
-	"Connection lost. Reconnecting...": "Connexion perdue. Reconnexion...",
-	"Connection successful": "Connexion réussie",
->>>>>>> upstream/main
 	"Connection Type": "Type de connexion",
 	"Connections": "Connexions",
 	"Constrains effort on reasoning for reasoning models. Only applicable to reasoning models from specific providers that support reasoning effort.": "Contraint l'effort de raisonnement pour les modèles de raisonnement. Applicable uniquement aux modèles de raisonnement de certains fournisseurs qui prennent en charge l'effort de raisonnement.",
 	"Contact Admin for WebUI Access": "Contacter l'administrateur pour obtenir l'accès à WebUI",
 	"Content": "Contenu",
 	"Content Extraction Engine": "Moteur d'extraction de contenu",
-	"Content Field": "",
 	"Content lengths (character counts only)": "Longueur du contenu (nombre de caractères uniquement)",
-	"Context": "",
-	"Context compacted": "",
-	"Context Compaction": "",
-	"Context compaction failed": "",
-	"Context Compaction Prompt": "",
-	"Context Compaction Threshold": "",
-	"Context Tokens": "Tokens de contexte",
-	"Continue": "",
+	"Context Tokens": "",
 	"Continue Response": "Continuer la réponse",
 	"Continue with {{provider}}": "Continuer avec {{provider}}",
 	"Continue with Email": "Continuer avec l'email",
@@ -566,41 +308,21 @@
 	"Copy Last Code Block": "Copier le dernier bloc de code",
 	"Copy Last Response": "Copier la dernière réponse",
 	"Copy Link": "Copier le lien",
-<<<<<<< HEAD
 	"Copy Path": "",
-=======
-	"Copy Path": "Copier le chemin",
-	"Copy Prompt": "Copier le prompt",
->>>>>>> upstream/main
 	"Copy Share Link": "Copier le lien de partage",
 	"Copy to clipboard": "Copier dans le presse-papiers",
 	"Copying to clipboard was successful!": "La copie dans le presse-papiers a réussi !",
 	"Core": "",
 	"Could not read file.": "Impossible de lire le fichier.",
-	"CPU": "CPU",
+	"CPU": "",
 	"Create": "Créer",
 	"Create a model": "Créer un modèle",
 	"Create Account": "Créer un compte",
 	"Create Admin Account": "Créer un compte administrateur",
-<<<<<<< HEAD
-=======
-	"Create and manage scheduled automations": "Créer et gérer des automatations planifiées",
-	"Create Channel": "Créer un canal",
->>>>>>> upstream/main
 	"Create Folder": "Créer un dossier",
 	"Create Image": "Création d'image",
 	"Create model": "",
 	"Create Model": "Créer le modèle",
-<<<<<<< HEAD
-=======
-	"Create new key": "Créer une nouvelle clé",
-	"Create new secret key": "Créer une nouvelle clé secrète",
-	"Create note": "Créer une note",
-	"Create Note": "Créer une note",
-	"Create one read-only Knowledge source per external collection. Test must pass before the source is created.": "",
-	"Create scheduled prompts that run automatically on a recurring basis.": "Créer des invites planifiées qui s'exécutent automatiquement de manière récurrente.",
-	"Create your first note by clicking on the plus button below.": "Créer votre première note en cliquant sur le boutton ci-dessous",
->>>>>>> upstream/main
 	"Created at": "Créé le",
 	"Created At": "Créé le",
 	"Created by": "Créé par",
@@ -608,31 +330,15 @@
 	"CSV Import": "Import CSV",
 	"Current Model": "Modèle actuel",
 	"Custom": "Sur mesure",
-<<<<<<< HEAD
 	"Custom color": "",
 	"Custom Parameter Name": "Nom du réglage personnalisé",
 	"Custom Parameter Value": "Valeur du réglage personnalisé",
 	"Custom presets that pair a base model with a system prompt, tools, knowledge and capabilities — build your own assistants and reuse them anywhere in chat.": "",
-=======
-	"Custom color": "Couleur personnalisée",
-	"Custom description enabled": "Description personnalisée activée",
-	"Custom Gender": "Genre personnalisé",
-	"Custom Parameter Name": "Nom du réglage personnalisé",
-	"Custom Parameter Value": "Valeur du réglage personnalisé",
-	"Custom range": "",
-	"Daily": "Journalier",
->>>>>>> upstream/main
 	"Daily Messages": "Messages par jour",
 	"Danger Zone": "Zone de danger",
 	"Database": "Base de données",
 	"Datalab Marker API": "API Datalab Marker",
-<<<<<<< HEAD
 	"Date Modified": "",
-=======
-	"Date Modified": "Modifié le",
-	"Day": "Jour",
-	"DD/MM/YYYY": "DD/MM/YYYY",
->>>>>>> upstream/main
 	"DDGS Backend": "DDGS Backend",
 	"December": "Décembre",
 	"Deepgram": "Deepgram",
@@ -643,6 +349,7 @@
 	"Default Features": "Fonctionnalités par défaut",
 	"Default Filters": "Filtres par défaut",
 	"Default Group": "Groupe par défaut",
+	"Default mode works with a wider range of models by calling tools once before execution. Native mode leverages the model's built-in tool-calling capabilities, but requires the model to inherently support this feature.": "Le mode par défaut fonctionne avec une plus large gamme de modèles en appelant les outils une fois avant l'exécution. Le mode natif exploite les capacités d'appel d'outils intégrées du modèle, mais nécessite que le modèle prenne en charge cette fonctionnalité.",
 	"Default Model": "Modèle standard",
 	"Default permissions": "Autorisations par défaut",
 	"Default Prompt Suggestions": "Suggestions de prompts par défaut",
@@ -650,100 +357,44 @@
 	"Default to ALL": "Par défaut à TOUS",
 	"Default to segmented retrieval for focused and relevant content extraction, this is recommended for most cases.": "La recherche segmentée par défaut permet d'extraire un contenu ciblé et pertinent, ce qui est recommandé dans la plupart des cas.",
 	"Default User Role": "Rôle utilisateur par défaut",
-	"Default webhook": "",
 	"Defaults": "Valeurs par défaut",
 	"Delete": "Supprimer",
 	"Delete {{name}}": "Supprimer {{name}}",
 	"Delete a model": "Supprimer un modèle",
-<<<<<<< HEAD
 	"Delete all contents inside this folder": "Supprimer tout le contenu de ce dossier",
 	"Delete Chat": "Supprimer la Conversation",
 	"Delete chat?": "Supprimer la conversation ?",
 	"Delete File": "Supprimer le fichier",
 	"Delete folder?": "Supprimer le dossier ?",
 	"Delete function?": "Supprimer la fonction ?",
-=======
-	"Delete All": "Tout supprimer",
-	"Delete All Chats": "Supprimer toutes les conversations",
-	"Delete all contents inside this directory": "",
-	"Delete all contents inside this folder": "Supprimer tout le contenu de ce dossier",
-	"Delete automation?": "Supprimer l'automation ?",
-	"Delete calendar": "Supprimer le calendrier",
-	"Delete Calendar": "Supprimer le calendrier",
-	"Delete Chat": "Supprimer la Conversation",
-	"Delete chat?": "Supprimer la conversation ?",
-	"Delete directory?": "",
-	"Delete Event": "Supprimer l'événement",
-	"Delete File": "Supprimer le fichier",
-	"Delete folder?": "Supprimer le dossier ?",
-	"Delete function?": "Supprimer la fonction ?",
-	"Delete Memory?": "Supprimer la mémoire ?",
-	"Delete Message": "Supprimer le message",
->>>>>>> upstream/main
 	"Delete message?": "Supprimer le message ?",
 	"Delete Model": "Supprimer le modèle",
 	"Delete skill?": "Supprimer le skill ?",
 	"delete this link": "supprimer ce lien",
 	"Delete tool?": "Effacer l'outil ?",
 	"Delete User": "Supprimer le compte d'utilisateur",
-<<<<<<< HEAD
 	"Deleted {{ok}} of {{total}} items": "",
-=======
-	"Delete Version": "Supprimer la version",
-	"Deleted": "Supprimé",
-	"Deleted {{deleteModelTag}}": "Supprimé {{deleteModelTag}}",
-	"Deleted {{name}}": "Supprimé {{name}}",
-	"Deleted {{ok}} of {{total}} items": "Supprimé {{ok}} sur {{total}} éléments",
->>>>>>> upstream/main
 	"Deleted User": "Utilisateur supprimé",
 	"Deployment names are required for Azure OpenAI": "Les noms de déploiement sont requis pour Azure OpenAI",
 	"Description": "Description",
-<<<<<<< HEAD
 	"Deselect": "",
 	"Design": "",
-=======
-	"Deselect": "Désélectionner",
-	"Detect Artifacts Automatically": "Détection automatique des Artifacts",
-	"Dictate": "Dicter",
->>>>>>> upstream/main
 	"Didn't fully follow instructions": "N'a pas entièrement respecté les instructions",
 	"Direct": "Direct",
 	"Direct Connections": "Direct connexions",
 	"Direct Connections allow users to connect to their own OpenAI compatible API endpoints.": "Les connexions directes permettent aux utilisateurs de se connecter à leurs propres points d'extension API compatibles OpenAI.",
 	"Direct Tool Servers": "Serveur d'outils directs",
-<<<<<<< HEAD
-=======
-	"Directory created.": "",
-	"Directory deleted.": "",
-	"Directory moved.": "",
-	"Directory name": "",
-	"Directory renamed.": "",
-	"Directory selection was cancelled": "La sélection du répertoire a été annulée",
->>>>>>> upstream/main
 	"Disable All": "Désactiver tout",
 	"Disable Image Extraction": "Empecher l'extraction d'image",
 	"Disable image extraction from the PDF. If Use LLM is enabled, images will be automatically captioned. Defaults to False.": "Désactive l'extraction d'images du PDF. Si l'option Utiliser le LLM est activée, les images seront automatiquement légendées. La valeur par défaut est False.",
-	"Disable Image Generation": "",
-	"Disable Web Search": "",
 	"Disabled": "Désactivé",
-<<<<<<< HEAD
 	"Discard this folio": "",
 	"Discarded": "",
-=======
-	"Disconnect OAuth": "Déconnecter OAuth",
->>>>>>> upstream/main
 	"Discover a function": "Trouvez une fonction",
 	"Discover how to use Open WebUI and seek support from the community.": "Découvrez comment utiliser Open WebUI et obtenir de l'aide de la communauté.",
 	"Discover wonders": "Découvrir des merveilles",
 	"Discover, download, and explore custom functions": "Découvrez, téléchargez et explorez des fonctions personnalisées",
 	"Display": "Afficher",
-<<<<<<< HEAD
-=======
-	"Display Chat Title in Tab": "Afficher le nom de la conversation dans l'onglet",
-	"Display Emoji in Call": "Afficher les emojis pendant l'appel",
-	"Display Multi-model Responses in Tabs": "Afficher les réponses multi-modèles dans des onglets",
-	"Display the Username Instead of You in the Chat": "Afficher le nom d'utilisateur à la place de \"Vous\" dans la conversation",
->>>>>>> upstream/main
 	"Displays citations in the response": "Affiche les citations dans la réponse",
 	"Displays status updates (e.g., web search progress) in the response": "Affiche les mises à jour du statut dans la réponse (par ex : la progression de la recherche sur le Web)",
 	"Dissolve": "",
@@ -756,7 +407,6 @@
 	"Docling Parameters": "Paramètres Docling",
 	"Docling Server URL required.": "URL du serveur Docling requise.",
 	"Document": "Document",
-	"Document ID Field": "",
 	"Document Intelligence": "Document Intelligence",
 	"Document Intelligence endpoint required.": "Endpoint Document Intelligence requis.",
 	"Document Intelligence Model": "Modèle Document Intelligence",
@@ -810,60 +460,41 @@
 	"Edit Default Permissions": "Modifier les autorisations par défaut",
 	"Edit Folder": "Modifier le dossier",
 	"Edit Image": "Modification d'image",
-	"Edit Knowledge Connection": "",
 	"Edit Last Message": "Modifier le dernier message",
 	"Edit Model": "",
 	"Edit Terminal Connection": "Modifier la connexion à un terminal",
 	"Edit User": "Modifier l'utilisateur",
 	"Edit User Group": "Modifier le groupe d'utilisateurs",
-	"Edit webhook": "",
 	"Edit workflow.json content": "Modifier le contenu de workflow.json",
 	"Eject": "Ejecte",
 	"Eject model": "Éjecter le modèle",
 	"ElevenLabs": "ElevenLabs",
 	"Email": "E-mail",
-	"Email Claim": "",
 	"Embark on adventures": "Embarquez pour des aventures",
 	"Embedding": "Embedding",
 	"Embedding Batch Size": "Taille du lot d'embedding",
 	"Embedding Concurrent Requests": "Requêtes d'embedding simultanées",
 	"Embedding Model": "Modèle d'embedding",
 	"Embedding Model Engine": "Moteur de modèle d'embedding",
-	"Emoji": "",
 	"Emojis": "",
-<<<<<<< HEAD
-=======
-	"Empty": "",
-	"Empty message": "Message vide",
->>>>>>> upstream/main
 	"Enable All": "Activer tout",
 	"Enable API Keys": "Autoriser les clés API",
 	"Enable autocomplete generation for chat messages": "Activer la génération des suggestions pour les messages",
 	"Enable Code Execution": "Autoriser l'exécution de code",
 	"Enable Code Interpreter": "Autoriser l'interprétation de code",
 	"Enable Community Sharing": "Activer le partage communautaire",
-	"Enable Group Mapping": "",
-	"Enable Image Generation": "",
 	"Enable Memory Locking (mlock) to prevent model data from being swapped out of RAM. This option locks the model's working set of pages into RAM, ensuring that they will not be swapped out to disk. This can help maintain performance by avoiding page faults and ensuring fast data access.": "Activer le verrouillage de la mémoire (mlock) pour empêcher les données du modèle d'être échangées de la RAM. Cette option verrouille l'ensemble de pages de travail du modèle en RAM, garantissant qu'elles ne seront pas échangées vers le disque. Cela peut aider à maintenir les performances en évitant les défauts de page et en assurant un accès rapide aux données.",
 	"Enable Memory Mapping (mmap) to load model data. This option allows the system to use disk storage as an extension of RAM by treating disk files as if they were in RAM. This can improve model performance by allowing for faster data access. However, it may not work correctly with all systems and can consume a significant amount of disk space.": "Activer le mappage de la mémoire (mmap) pour charger les données du modèle. Cette option permet au système d'utiliser le stockage disque comme une extension de la RAM en traitant les fichiers disque comme s'ils étaient en RAM. Cela peut améliorer les performances du modèle en permettant un accès plus rapide aux données. Cependant, cela peut ne pas fonctionner correctement avec tous les systèmes et peut consommer une quantité significative d'espace disque.",
 	"Enable Message Rating": "Activer l'évaluation des messages",
 	"Enable Mirostat sampling for controlling perplexity.": "Activer l'échantillonnage Mirostat pour contrôler Perplexité.",
 	"Enable New Sign Ups": "Activer les nouvelles inscriptions",
-	"Enable OAuth Signup": "",
-	"Enable Role Mapping": "",
-	"Enable Web Search": "",
 	"Enable, disable, or customize the reasoning tags used by the model. \"Enabled\" uses default tags, \"Disabled\" turns off reasoning tags, and \"Custom\" lets you specify your own start and end tags.": "Activer, désactiver ou personnaliser les balises de raisonnement utilisées par le modèle. « Activé » utilise les balises par défaut, « Désactivé » désactive les balises de raisonnement, et « Sur mesure » permet de spécifier vos propres balises de début et de fin.",
 	"Enabled": "Activé",
 	"End Tag": "Tag de fin",
-	"Endpoint": "",
 	"Endpoint URL": "URL du point de terminaison",
 	"Enrich Hybrid Search Text": "Enrichir le texte de recherche hybride",
 	"Ensure your CSV file includes 4 columns in this order: Name, Email, Password, Role.": "Vérifiez que votre fichier CSV comprenne les 4 colonnes dans cet ordre : Name, Email, Password, Role.",
-<<<<<<< HEAD
 	"Enter a name first": "",
-=======
-	"Enter {{role}} message here": "Entrez le message {{role}} ici",
->>>>>>> upstream/main
 	"Enter a title for the pending user info overlay. Leave empty for default.": "Entrez un titre pour l'interface utilisateur en attente. Laissez vide pour le défaut.",
 	"Enter a watermark for the response. Leave empty for none.": "Entrez un filigrane pour la réponse. Laissez vide pour aucun.",
 	"Enter additional headers in JSON format": "Entrez les en-têtes supplémentaires au format JSON",
@@ -880,8 +511,6 @@
 	"Enter Chunk Min Size Target": "Entrez la taille minimale cible des chunks",
 	"Enter Chunk Overlap": "Entrez le chevauchement des chunks",
 	"Enter Chunk Size": "Entrez la taille des chunks",
-	"Enter Client ID": "",
-	"Enter Client Secret": "",
 	"Enter comma-separated \"token:bias_value\" pairs (example: 5432:100, 413:-100)": "Entrez des paires \"token:valeur_biais\" séparées par des virgules (exemple : 5432:100, 413:-100)",
 	"Enter content for the pending user info overlay. Leave empty for default.": "Entrez le contenu pour l'interface utilisateur en attente. Laissez vide pour le défaut.",
 	"Enter coordinates (e.g. 51.505, -0.09)": "Entrez les coordonnées (Ex : 51.505, -0.09)",
@@ -918,15 +547,7 @@
 	"Enter Jupyter Token": "Entrez le Token Jupyter",
 	"Enter Jupyter URL": "Entrez l'URL de Jupyter",
 	"Enter Kagi Search API Key": "Entrez la clé API Kagi",
-<<<<<<< HEAD
-=======
-	"Enter Key Behavior": "Comportement de la touche Entrée",
-	"Enter language": "",
->>>>>>> upstream/main
 	"Enter language codes": "Entrez les codes de langue",
-	"Enter Linkup API Key": "",
-	"Enter Microsoft Web IQ API Base URL": "",
-	"Enter Microsoft Web IQ API Key": "",
 	"Enter MinerU API Key": "Entrez la clé API MinerU",
 	"Enter Mistral API Base URL": "Entrez l'URL de base de l'API Mistral",
 	"Enter Mistral API Key": "Entrez la clé API Mistral",
@@ -943,13 +564,8 @@
 	"Enter Perplexity Search API URL": "Entrez l'URL de l'API Perplexity",
 	"Enter Playwright Timeout": "Entrez le délai d'expiration Playwright",
 	"Enter Playwright WebSocket URL": "Entrez l'URL du websocket Playwright",
-<<<<<<< HEAD
-=======
-	"Enter prompt here.": "Entrez le prompt ici.",
->>>>>>> upstream/main
 	"Enter proxy URL (e.g. https://user:password@host:port)": "Entrez l'URL du proxy (par ex. https://user:password@host:port)",
 	"Enter reasoning effort": "Entrez l'effort de raisonnement",
-	"Enter Redirect URI": "",
 	"Enter Score": "Entrez votre score",
 	"Enter SearchApi API Key": "Entrez la clé API SearchApi",
 	"Enter SearchApi Engine": "Entrez le moteur de recherche SearchApi",
@@ -959,7 +575,6 @@
 	"Enter SerpApi API Key": "Entrez la clé API SerpApi",
 	"Enter SerpApi Engine": "Entrez le moteur SerpApi",
 	"Enter Serper API Key": "Entrez la clé API Serper",
-	"Enter SERPHouse API Key": "",
 	"Enter Serply API Key": "Entrez la clé API Serply",
 	"Enter Serpstack API Key": "Entrez la clé API Serpstack",
 	"Enter server host": "Entrez l'hôte du serveur",
@@ -977,12 +592,6 @@
 	"Enter the URL to import": "Entrez l'URL à importer",
 	"Enter Tika Server URL": "Entrez l'URL du serveur Tika",
 	"Enter timeout in seconds": "Entrez le délai d'expiration en secondes",
-<<<<<<< HEAD
-=======
-	"Enter to Send": "Taper entrer pour envoyer",
-	"Enter token threshold": "",
-	"Enter Tokenizer Model": "",
->>>>>>> upstream/main
 	"Enter Top K": "Entrez la valeur Top K",
 	"Enter Top K Reranker": "Entrez la valeur Top K pour le Reranker",
 	"Enter URL (e.g. http://127.0.0.1:7860/)": "Entrez l'URL (par ex. {http://127.0.0.1:7860/})",
@@ -1002,37 +611,18 @@
 	"Enter Your Role": "Entrez votre rôle",
 	"Enter Your Username": "Entrez votre nom d'utilisateur",
 	"Entra ID": "Entra ID",
-	"Environment Variables": "Variables d'environnement",
-	"Ephemeral": "Éphémère",
+	"Environment Variables": "",
+	"Ephemeral": "",
 	"Error": "Erreur",
 	"ERROR": "ERREUR",
-<<<<<<< HEAD
 	"Error deleting model: {{error}}": "",
-=======
-	"Error accessing directory": "Erreur d'accès au répertoire",
-	"Error accessing Google Drive: {{error}}": "Erreur d'accès à Google Drive : {{error}}",
-	"Error accessing media devices.": "Erreur lors de l'accès aux dispositifs medias",
-	"Error deleting model: {{error}}": "Erreur lors de la suppression du modèle : {{error}}",
-	"Error starting recording.": "Erreur lors du démarrage de l'enregistrement",
->>>>>>> upstream/main
 	"Error unloading model: {{error}}": "Erreur lors du déchargement du modèle : {{error}}",
 	"Error uploading file: {{error}}": "Erreur de téléversement du fichier : {{error}}",
 	"Error: A model with the ID '{{modelId}}' already exists. Please select a different ID to proceed.": "Erreur : Un modèle avec l'ID '{{modelId}}' existe déjà. Veuillez sélectionner un ID différent pour continuer.",
 	"Error: Model ID cannot be empty. Please enter a valid ID to proceed.": "Erreur : l'ID du modèle ne peut pas être vide. Veuillez saisir un ID valide pour continuer.",
 	"Evaluations": "Évaluations",
-<<<<<<< HEAD
 	"Every craft begins bare-handed.": "",
-=======
-	"Event": "",
-	"Event created": "Événement créé",
-	"Event deleted": "Événement supprimé",
-	"Event names may change as Open WebUI evolves. Use broad patterns like user.* for integrations that should continue across new related events.": "",
-	"Event title": "Titre de l'événement",
-	"Event updated": "Événement mis à jour",
-	"Events": "",
->>>>>>> upstream/main
 	"Exa API Key": "Clé API Exa",
-	"Example": "",
 	"Example: (&(objectClass=inetOrgPerson)(uid=%s))": "Exemple: (&(objectClass=inetOrgPerson)(uid=%s))",
 	"Example: ALL": "Exemple: TOUS",
 	"Example: mail": "Exemple: mail",
@@ -1041,48 +631,31 @@
 	"Exceeded the number of seats in your license. Please contact support to increase the number of seats.": "Le nombre de sièges de votre licence est dépassé. Veuillez contacter le support pour augmenter le nombre de sièges.",
 	"Exclude": "Exclure",
 	"Execute code": "Exécuter du code",
-<<<<<<< HEAD
-=======
-	"Execute code for analysis": "Exécuter le code pour l'analyse",
-	"Executing **{{NAME}}**...": "Exécution de **{{NAME}}**...",
-	"Execution Logs": "Logs d'exécution",
->>>>>>> upstream/main
 	"Expand": "Développer",
 	"Experimental": "Expérimental",
 	"Explain": "Explique",
 	"Explore the cosmos": "Explorer le cosmos",
-	"Explored": "Exploré",
-	"Exploring": "Explorer",
+	"Explored": "",
+	"Exploring": "",
 	"Export": "Exporter",
 	"Export All Chats (All Users)": "Exporter toutes les conversations (de tous les utilisateurs)",
-	"Export as CSV": "Exporter au format CSV",
-	"Export as JSON": "Exporter au format JSON",
+	"Export as CSV": "",
+	"Export as JSON": "",
 	"Export chat (.json)": "Exporter la conversation (.json)",
 	"Export Config": "Exporter la configuration",
 	"Export Models": "Exporter les modèles",
-<<<<<<< HEAD
-=======
-	"Export Prompts": "Exporter les prompts",
-	"Export Skills": "",
->>>>>>> upstream/main
 	"Export to CSV": "Exporter en CSV",
 	"Export Tools": "Exporter les outils",
 	"Export Users": "Exporter les utilisateurs",
 	"External": "Externe",
-	"External connection not found.": "",
 	"External Document Loader URL required.": "URL du chargeur de document externe requis",
-	"External Knowledge Source": "",
-	"External Knowledge Sources": "",
-	"External Task Model": "Modèle de tâche externe",
-	"External Tool Servers": "",
-	"External vectors must be generated with the same embedding model configured in Open WebUI.": "",
+	"External Task Model": "Model de tâche externe",
 	"External Web Loader API Key": "Clé API du chargeur Web externe",
 	"External Web Loader URL": "URL du chargeur Web externe",
 	"External Web Search API Key": "Clé API de la recherche Web externe",
 	"External Web Search URL": "URL de la recherche Web externe",
 	"Faculties": "",
 	"Failed to archive chat.": "Échec de l'archivage de la conversation.",
-<<<<<<< HEAD
 	"Failed to connect to {{URL}} OpenAPI tool server": "Échec de la connexion au serveur d'outils OpenAPI {{URL}}",
 	"Failed to connect to {{URL}} terminal server": "Échec de la connexion au serveur de terminal {{URL}}",
 	"Failed to copy link": "Échec de la copie du lien",
@@ -1092,57 +665,23 @@
 	"Failed to extract content from the file: {{error}}": "Échec de l'extraction du contenu du fichier : {{error}}",
 	"Failed to extract content from the file.": "Échec de l'extraction du contenu du fichier",
 	"Failed to fetch models": "Échec de la récupération des modèles",
-=======
-	"Failed to attach file": "Échec de l'ajout du fichier",
-	"Failed to clear status": "Échec de l'effacement du statut",
-	"Failed to compare files.": "",
-	"Failed to connect to {{URL}} OpenAPI tool server": "Échec de la connexion au serveur d'outils OpenAPI {{URL}}",
-	"Failed to connect to {{URL}} terminal server": "Échec de la connexion au serveur de terminal {{URL}}",
-	"Failed to copy link": "Échec de la copie du lien",
-	"Failed to create API Key.": "Échec de la création de la clé API.",
-	"Failed to delete calendar": "Échec de la suppression du calendrier",
-	"Failed to delete note": "Échec de la délétion de la note",
-	"Failed to delete webhook": "",
-	"Failed to disconnect": "Échec de la déconnexion",
-	"Failed to download image": "Échec du téléchargement de l'image",
-	"Failed to extract content from the file: {{error}}": "Échec de l'extraction du contenu du fichier : {{error}}",
-	"Failed to extract content from the file.": "Échec de l'extraction du contenu du fichier",
-	"Failed to fetch models": "Échec de la récupération des modèles",
-	"Failed to generate title": "Échec de la génération du titre",
-	"Failed to import models": "Échec de l'importation des modèles",
-	"Failed to load chat": "",
-	"Failed to load chat preview": "Échec du chargement de l'aperçu du chat",
->>>>>>> upstream/main
 	"Failed to load DOCX file. Please try downloading it instead.": "Échec du chargement du fichier DOCX. Essayez plutôt de le télécharger.",
 	"Failed to load Excel/CSV file. Please try downloading it instead.": "Échec du chargement du fichier Excel/CSV. Essayez plutôt de le télécharger.",
 	"Failed to load Interface settings": "Échec du chargement des réglages de l'interface",
 	"Failed to load PPTX file. Please try downloading it instead.": "Échec du chargement du fichier PPTX. Essayez plutôt de le télécharger.",
 	"Failed to move chat": "Échec du déplacement du chat",
-<<<<<<< HEAD
-=======
-	"Failed to process URL: {{url}}": "Échec du traitement de l'URL : {{url}}",
-	"Failed to read clipboard contents": "Échec de la lecture du contenu du presse-papiers",
-	"Failed to refresh terminals: {{error}}": "",
-	"Failed to remove member": "Échec de la suppression du membre",
->>>>>>> upstream/main
 	"Failed to render diagram": "Échec du rendu du diagramme",
 	"Failed to render visualization": "Échec du rendu de la visualisation",
 	"Failed to save": "",
 	"Failed to save connections": "Échec de la sauvegarde des connexions",
 	"Failed to save file": "",
 	"Failed to save models configuration": "Échec de la sauvegarde de la configuration des modèles",
-	"Failed to save policy: {{error}}": "Échec de la sauvegarde de la politique : {{error}}",
+	"Failed to save policy: {{error}}": "",
 	"Failed to save terminal servers": "Échec de la sauvegarde des serveurs de terminal",
-	"Failed to save webhook": "",
 	"Failed to unshare chat.": "Échec de l'annulation du partage de la conversation.",
 	"Failed to update settings": "Échec de la mise à jour des réglages",
 	"Failed to update status": "Échec de la mise à jour du statut",
-<<<<<<< HEAD
 	"Favicons": "",
-=======
-	"Failed to update webhook": "",
-	"Failed to upload file.": "Échec du téléversement du fichier.",
->>>>>>> upstream/main
 	"Features": "Fonctionnalités",
 	"Features Permissions": "Autorisations des fonctionnalités",
 	"February": "Février",
@@ -1155,32 +694,14 @@
 	"File": "Fichier",
 	"File browser": "Explorateur de fichiers",
 	"File Context": "Fichier dans le contexte",
-<<<<<<< HEAD
-=======
-	"File deleted successfully.": "Fichier supprimé avec succès.",
-	"File Extensions": "",
->>>>>>> upstream/main
 	"File Mode": "Mode fichier",
-	"File moved.": "",
 	"File name": "Nom du fichier",
 	"File not found.": "Fichier introuvable.",
-<<<<<<< HEAD
 	"File size should not exceed {{maxSize}} MB.": "La taille du fichier ne doit pas dépasser {{maxSize}} Mo.",
 	"File Upload": "Téléversement du fichier",
 	"Filename": "Nom du fichier",
 	"Files": "Fichiers",
 	"Fill name + base model to create": "",
-=======
-	"File removed successfully.": "Fichier supprimé avec succès.",
-	"File renamed.": "",
-	"File size should not exceed {{maxSize}} MB.": "La taille du fichier ne doit pas dépasser {{maxSize}} Mo.",
-	"File Upload": "Téléversement du fichier",
-	"File uploaded successfully": "Fichier téléversé avec succès",
-	"Filename": "Nom du fichier",
-	"Files": "Fichiers",
-	"Fill the required fields first.": "",
-	"Fill the source fields and test query first.": "",
->>>>>>> upstream/main
 	"Filter": "Filtre",
 	"Filters": "Filtres",
 	"Filters, valves, and middleware workflows.": "",
@@ -1198,12 +719,8 @@
 	"Folder name cannot be empty.": "Le nom du dossier ne peut pas être vide.",
 	"Folder options": "Options du dossier",
 	"Folders": "Dossiers",
-<<<<<<< HEAD
 	"folio": "",
 	"folios": "",
-=======
-	"Folders Sharing": "",
->>>>>>> upstream/main
 	"Follow up": "Questions de suivi",
 	"Follow Up Generation": "Génération de questions de suivi",
 	"Follow Up Generation Prompt": "Prompt de génération de questions de suivi",
@@ -1231,11 +748,6 @@
 	"Function imported successfully": "Fonction importée avec succès",
 	"Function Name": "Nom de la fonction",
 	"Function Name Filter List": "Liste de filtrage des fonctions par nom",
-<<<<<<< HEAD
-=======
-	"Function starter": "",
-	"Function updated successfully": "Fonction mise à jour avec succès",
->>>>>>> upstream/main
 	"Functions": "Fonctions",
 	"Functions allow arbitrary code execution.": "Les fonctions permettent l'exécution de code arbitraire.",
 	"Gather a quire": "",
@@ -1263,15 +775,6 @@
 	"Google PSE Engine Id": "ID du moteur de recherche PSE de Google",
 	"Gravatar": "Gravatar",
 	"Grokipedia": "Grokipedia",
-<<<<<<< HEAD
-=======
-	"group": "",
-	"Group": "",
-	"Group Channel": "Canal de groupe",
-	"Group Claim": "",
-	"Group created successfully": "Groupe créé avec succès",
-	"Group deleted successfully": "Groupe supprimé avec succès",
->>>>>>> upstream/main
 	"Group Description": "Description du groupe",
 	"Group Name": "Nom du groupe",
 	"groups": "groupes",
@@ -1279,11 +782,6 @@
 	"H1": "H1",
 	"H2": "H2",
 	"H3": "H3",
-<<<<<<< HEAD
-=======
-	"Haptic Feedback": "Retour haptique",
-	"Header variables": "",
->>>>>>> upstream/main
 	"Headers": "En-têtes HTTP",
 	"Headers must be a valid JSON object": "Les en-têtes doivent être au format JSON valide",
 	"Hello, {{name}}": "Bonjour, {{name}}.",
@@ -1300,10 +798,6 @@
 	"High": "Elevé",
 	"Home": "Home",
 	"Host": "Hôte",
-<<<<<<< HEAD
-=======
-	"Hourly": "Par heure",
->>>>>>> upstream/main
 	"Hourly Messages": "Messages par heure",
 	"how adventurous the wording runs — low is measured, high is fervent": "",
 	"How can I help you today?": "Comment puis-je vous aider aujourd'hui ?",
@@ -1316,16 +810,7 @@
 	"I acknowledge that I have read and I understand the implications of my action. I am aware of the risks associated with executing arbitrary code and I have verified the trustworthiness of the source.": "Je reconnais avoir lu et compris les implications de mes actions. Je suis conscient des risques associés à l'exécution d'un code arbitraire et j'ai vérifié la fiabilité de la source.",
 	"ID": "ID",
 	"ID cannot contain \":\" or \"|\" characters": "L'ID ne peut pas contenir les caractères « : » ou « | »",
-<<<<<<< HEAD
 	"Idle Timeout": "",
-=======
-	"ID copied to clipboard": "ID copié dans le presse-papiers",
-	"Identity audit": "",
-	"Idle only": "",
-	"Idle Timeout": "Délai d'inactivité",
-	"iframe Sandbox Allow Forms": "Autoriser les formulaires dans l'iframe sandbox",
-	"iframe Sandbox Allow Same Origin": "Autoriser même origine dans l'iframe sandbox",
->>>>>>> upstream/main
 	"Ignite curiosity": "Éveiller la curiosité",
 	"Image": "Image",
 	"Image Compression Height": "Compression de la hauteur de l'image",
@@ -1344,12 +829,6 @@
 	"Import Config": "Importer la configuration",
 	"Import From Link": "Importer depuis le lien",
 	"Import Models": "Importer les modèles",
-<<<<<<< HEAD
-=======
-	"Import Prompts": "Importer les prompts",
-	"Import Skills": "",
-	"Import successful": "Import réussi",
->>>>>>> upstream/main
 	"Import Tools": "Importer les outils",
 	"Important Update": "Mise à jour importante",
 	"Imported": "",
@@ -1365,14 +844,9 @@
 	"Input": "Entrée",
 	"Input Key (e.g. text, unet_name, steps)": "Clé de la variable d'entrée (par ex. text, unet_name, steps)",
 	"Install from Github URL": "Installer depuis une URL GitHub",
-<<<<<<< HEAD
 	"Instance defaults, authentication, and feature toggles.": "",
 	"Instructions": "",
 	"Instruments": "",
-=======
-	"Instant Auto-Send After Voice Transcription": "Envoi automatique après la transcription",
-	"Instructions": "Instructions",
->>>>>>> upstream/main
 	"Integration": "Intégration",
 	"Integrations": "Intégrations",
 	"Interface appearance, banners, and task generation prompts.": "",
@@ -1391,11 +865,6 @@
 	"Jina API Key": "Clé API Jina",
 	"join our Discord for help.": "Rejoignez notre Discord pour obtenir de l'aide.",
 	"JSON": "JSON",
-<<<<<<< HEAD
-=======
-	"JSON Base64": "",
-	"JSON Preview": "Aperçu JSON",
->>>>>>> upstream/main
 	"JSON Spec": "Spécification JSON",
 	"July": "Juillet",
 	"June": "Juin",
@@ -1406,26 +875,9 @@
 	"Keep in Sidebar": "Epingler dans la barre latérale",
 	"Key": "Clé",
 	"Key is required": "La clé est requise",
+	"Keyboard shortcuts": "Raccourcis clavier",
 	"Keyboard Shortcuts": "Raccourcis clavier",
 	"Knowledge": "Connaissances",
-<<<<<<< HEAD
-=======
-	"Knowledge Access": "Accès aux connaissances",
-	"Knowledge Base": "Base de connaissances",
-	"Knowledge base has been reset": "",
-	"Knowledge created successfully.": "Connaissance créée avec succès.",
-	"Knowledge deleted successfully.": "Connaissance supprimée avec succès.",
-	"Knowledge Description": "Description des connaissances",
-	"Knowledge exported successfully": "Connaissance exportée avec succès",
-	"Knowledge Name": "Nom de la connaissance",
-	"Knowledge Public Sharing": "Partage public des Connaissances",
-	"Knowledge Sharing": "Partage des connaissances",
-	"Knowledge source created.": "",
-	"Knowledge source updated.": "",
-	"Knowledge updated successfully": "Connaissance mise à jour avec succès",
-	"Kokoro.js (Browser)": "Kokoro.js (Navigateur)",
-	"Kokoro.js Dtype": "Kokoro.js Dtype",
->>>>>>> upstream/main
 	"Label": "Étiquette",
 	"Language Locales": "Réglages régionaux de langue",
 	"Last 24 hours": "Dernières 24 heures",
@@ -1454,39 +906,19 @@
 	"Leave model field empty to use the default model.": "Laisser le champ du modèle vide pour utiliser le modèle par défaut.",
 	"lexical": "lexical",
 	"License": "Licence",
-	"Lifecycle JSON": "",
 	"Lift List": "Réduire l'indentation",
 	"Limit concurrent search queries. 0 = unlimited (default). Set to 1 for sequential execution (recommended for APIs with strict rate limits like Brave free tier).": "Limite les requêtes de recherche simultanées. 0 = illimité (par défaut). Définir à 1 pour une exécution séquentielle (recommandé pour les API avec des limites de débit strictes comme Brave gratuit).",
 	"Limits the number of concurrent embedding requests. Set to 0 for unlimited.": "Limite le nombre de requêtes d'embedding simultanées. Définir à 0 pour illimité.",
-<<<<<<< HEAD
 	"llama.cpp": "",
-=======
-	"Linkup API Key": "",
-	"List": "Liste",
-	"List calendars, search, create, update, and delete calendar events": "",
-	"Listening...": "Écoute en cours...",
-	"Live": "Actif",
-	"llama.cpp": "llama.cpp",
->>>>>>> upstream/main
 	"Llama.cpp": "Llama.cpp",
 	"Loaded": "",
 	"Loader": "Chargeur",
 	"Loading...": "Chargement de...",
 	"local": "local",
 	"Local": "Local",
-<<<<<<< HEAD
 	"Local Task Model": "Model de tâche local",
 	"Lost": "Perdu",
 	"Low": "Faible",
-=======
-	"Local Task Model": "Modèle de tâche local",
-	"Location": "Localisation",
-	"Location access not allowed": "Accès à la localisation non autorisé",
-	"Lost": "Perdu",
-	"Low": "Faible",
-	"Lower the context compaction token threshold for this model. The global context compaction threshold remains the maximum.": "",
-	"LTR": "LTR",
->>>>>>> upstream/main
 	"Made by Open WebUI Community": "Réalisé par la communauté OpenWebUI",
 	"Make password visible in the user interface": "Rendre visible les mots de passe dans l'interface",
 	"Make sure to export a workflow.json file as API format from ComfyUI.": "Veillez à exporter un fichier workflow.json au format API depuis ComfyUI.",
@@ -1498,22 +930,13 @@
 	"Manage OpenAI API Connections": "Gérer les connexions API OpenAI",
 	"Manage Pipelines": "Gérer les pipelines",
 	"Manage Tool Servers": "Gérer les serveurs d'outils",
-<<<<<<< HEAD
 	"Manage, import, and configure the models available to users.": "",
-=======
-	"Manage your account information.": "Gérez les informations de votre compte.",
-	"Mapped Source": "",
->>>>>>> upstream/main
 	"March": "Mars",
 	"Markdown": "Markdown",
 	"Markdown Header Text Splitter": "Découpage par en-têtes markdown",
 	"Max Speakers": "Nombre maximal d'intervenants",
-<<<<<<< HEAD
 	"Max Tokens": "",
 	"Max tokens to retrieve (1024-32768, default 8192)": "",
-=======
-	"Max tokens to retrieve (1024-32768, default 8192)": "Max tokens à récupérer (1024-32768, par défaut 8192)",
->>>>>>> upstream/main
 	"Max Upload Count": "Nombre maximal de téléversements",
 	"Max Upload Size": "Limite de taille de téléversement",
 	"Maximum characters to return from fetched URLs. Leave empty for no limit.": "",
@@ -1528,36 +951,16 @@
 	"Members": "Membres",
 	"Memories": "Souvenirs",
 	"Memory": "Mémoire",
-<<<<<<< HEAD
-=======
-	"Memory added successfully": "Souvenir ajouté avec succès",
-	"Memory cleared successfully": "Souvenir effacé avec succès",
-	"Memory deleted successfully": "Souvenir supprimé avec succès",
-	"Memory System Context": "",
-	"Memory updated successfully": "Souvenir mis à jour avec succès",
-	"Merge Accounts by Email": "",
->>>>>>> upstream/main
 	"Merge Responses": "Fusionner les réponses",
 	"Merged Response": "Réponse fusionnée",
 	"Message": "Envoyer un message",
 	"Message counts and response timestamps": "Nombre de messages et horodatage des réponses",
 	"Message counts are based on assistant responses.": "Le nombre de messages est basé sur le nombre de réponses de l'assistant.",
 	"Message rating should be enabled to use this feature": "L'évaluation des messages doit être activée pour pouvoir utiliser cette fonctionnalité",
-	"Message text...": "Texte du message...",
+	"Message text...": "",
 	"messages": "messages",
 	"Messages": "Messages",
-<<<<<<< HEAD
 	"min": "",
-=======
-	"Messages you send after creating your link won't be shared. Users with the URL will be able to view the shared chat.": "Les messages que vous envoyez après avoir créé votre lien ne seront pas partagés. Les utilisateurs disposant de l'URL pourront voir la conversation partagée.",
-	"Metadata Field": "",
-	"Microsoft OneDrive": "Microsoft OneDrive",
-	"Microsoft OneDrive (personal)": "Microsoft OneDrive (personnel)",
-	"Microsoft OneDrive (work/school)": "Microsoft OneDrive (travail/école)",
-	"Microsoft Web IQ API Base URL": "",
-	"Microsoft Web IQ API Key": "",
-	"min": "min",
->>>>>>> upstream/main
 	"MinerU": "MinerU",
 	"MinerU API Key required for Cloud API mode.": "Clé API MinerU requise pour le mode API Cloud.",
 	"Mistral OCR": "Mistral OCR",
@@ -1565,20 +968,11 @@
 	"MistralAI": "MistralAI",
 	"Model": "Modèle",
 	"Model '{{modelTag}}' is already in queue for downloading.": "Le modèle '{{modelTag}}' est déjà dans la file d'attente pour le téléchargement.",
-<<<<<<< HEAD
-=======
-	"Model {{modelId}} not found": "Le modèle {{modelId}} est introuvable",
-	"Model {{modelName}} deleted successfully": "Le modèle {{modelName}} a été supprimé avec succès",
->>>>>>> upstream/main
 	"Model {{modelName}} is not vision capable": "Le modèle {{modelName}} n'a pas de fonctionnalité de vision",
 	"Model accepts file inputs": "Le modèle accepte des fichiers en entrée",
 	"Model accepts image inputs": "Le modèle accepte des images en entrée",
-<<<<<<< HEAD
 	"Model arena, feedback collection, and leaderboard settings.": "",
 	"Model can access Open Terminal for command execution and file management": "",
-=======
-	"Model can access Open Terminal for command execution and file management": "Le modèle peut accéder au terminal ouvert pour l'exécution de commandes et la gestion des fichiers",
->>>>>>> upstream/main
 	"Model can execute code and perform calculations": "Le modèle peut exécuter du code et faire des calculs",
 	"Model can generate images based on text prompts": "Le modèle peut générer des images à partir de prompts",
 	"Model can search the web for information": "Le modèle peut faire des recherches sur internet pour trouver des informations",
@@ -1603,26 +997,14 @@
 	"Modelfile Content": "Contenu du Fichier de Modèle",
 	"Models": "Modèles",
 	"Models Access": "Accès aux modèles",
-<<<<<<< HEAD
-=======
-	"Models configuration saved successfully": "Configuration des modèles enregistrée avec succès",
-	"Models imported successfully": "Modèles importés avec succès",
->>>>>>> upstream/main
 	"Models Public Sharing": "Partage public des modèles",
 	"Models Sharing": "Partage des modèles",
 	"Mojeek": "Mojeek",
 	"Mojeek Search API Key": "Clé API Mojeek",
-<<<<<<< HEAD
-=======
-	"Monday – Friday": "",
-	"Month": "Mois",
-	"Monthly": "Mensuel",
->>>>>>> upstream/main
 	"More": "Plus",
 	"More Concise": "Plus concis",
 	"More Options": "Plus d'options",
 	"Move": "Déplacer",
-<<<<<<< HEAD
 	"My Terminal": "Mon terminal",
 	"Name": "Nom d'utilisateur",
 	"Name and ID are required, please fill them out": "Le nom et l'ID sont obligatoires, veuillez les remplir",
@@ -1631,30 +1013,6 @@
 	"Native": "Natif",
 	"New": "Nouveaux",
 	"New Chat": "Nouvelle conversation",
-=======
-	"Moved {{name}}": "{{name}} déplacé",
-	"Multipart Upload": "",
-	"Mute": "Désactiver le son",
-	"Muted": "Son désactivé",
-	"My Terminal": "Mon terminal",
-	"Name": "Nom d'utilisateur",
-	"Name and ID are required, please fill them out": "Le nom et l'ID sont obligatoires, veuillez les remplir",
-	"Name is required": "Le nom est obligatoire",
-	"Name your knowledge base": "Nommez votre base de connaissances",
-	"Name, prompt, and model are required": "Le nom, le prompt et le modèle sont requis",
-	"Native": "Natif",
-	"Native mode (default) leverages the model's built-in tool-calling capabilities. Legacy mode works with a wider range of models by calling tools once before execution via prompt injection.": "",
-	"Never": "Jamais",
-	"New": "Nouveaux",
-	"New Automation": "Nouvelle automatisation",
-	"New Button": "Nouveau bouton",
-	"New calendar": "Nouveau calendrier",
-	"New Calendar": "Nouveau calendrier",
-	"New Chat": "Nouvelle conversation",
-	"New directory": "",
-	"New Directory": "",
-	"New Event": "Nouvel événement",
->>>>>>> upstream/main
 	"New File": "Nouveau fichier",
 	"New Folder": "Nouveau dossier",
 	"New Function": "Nouvelle fonction",
@@ -1667,18 +1025,9 @@
 	"New Tool": "Nouvel outil",
 	"Next": "",
 	"Next message": "Message suivant",
-<<<<<<< HEAD
-=======
-	"Next run": "Prochaine exécution",
->>>>>>> upstream/main
 	"No access grants. Private to you.": "Aucun partage. Visible uniquement par vous.",
 	"No activity data": "Aucune activité",
-	"No additional headers are sent unless configured.": "",
 	"No authentication": "Aucune authentification",
-<<<<<<< HEAD
-=======
-	"No automations found": "Aucune automatisation trouvée",
->>>>>>> upstream/main
 	"No chats found": "Aucune discussion trouvée",
 	"No chats found for this user.": "Pas de conversation trouvée pour cet utilisateur.",
 	"No chats found.": "Pas de conversation trouvée.",
@@ -1686,13 +1035,7 @@
 	"No data": "Aucune donnée",
 	"No data found": "Aucune donnée trouvée",
 	"No distance available": "Aucune distance disponible",
-<<<<<<< HEAD
-=======
-	"No event webhooks configured.": "",
-	"No execution logs available yet": "Aucun journal d'exécution disponible pour le moment",
->>>>>>> upstream/main
 	"No expiration can pose security risks.": "L'absence d'expiration peut présenter des risques de sécurité.",
-	"No external knowledge sources configured.": "",
 	"No feedback found": "Aucun avis trouvé",
 	"No file selected": "Aucun fichier sélectionné",
 	"No files found": "Aucun fichier trouvé",
@@ -1702,29 +1045,14 @@
 	"No HTML, CSS, or JavaScript content found.": "Aucun contenu HTML, CSS ou JavaScript trouvé.",
 	"No inference engine with management support found": "Aucun moteur d'inférence avec support trouvé",
 	"No kernel": "Aucun noyau",
-<<<<<<< HEAD
 	"No limit": "",
-=======
-	"No knowledge bases accessible": "",
-	"No knowledge bases found.": "Aucune base de connaissances trouvée.",
-	"No knowledge found": "Aucune connaissance trouvée",
-	"No limit": "Aucune limite",
-	"No memories to clear": "Aucun souvenir à effacer",
->>>>>>> upstream/main
 	"No model IDs": "Aucun ID de modèle",
-	"No models accessible": "",
 	"No models available": "Aucun modèle disponible",
 	"No models found": "Aucun modèle trouvé",
 	"No models match your search.": "",
 	"No models selected": "Aucun modèle sélectionné",
 	"No one": "Personne",
 	"No output items": "",
-<<<<<<< HEAD
-=======
-	"No pinned messages": "Aucun message épinglé",
-	"No prompts found": "Aucun prompt trouvé",
-	"No Repeat": "",
->>>>>>> upstream/main
 	"No results": "Aucun résultat trouvé",
 	"No results found": "Aucun résultat trouvé",
 	"No search query generated": "Aucune requête de recherche générée",
@@ -1736,65 +1064,36 @@
 	"No Terminal connection configured.": "Aucune connexion à un terminal configurée.",
 	"No terminal connections configured.": "Aucune connexion à un terminal configurée.",
 	"No tool server connections configured.": "Aucune connexion à un serveur d'outils configurée.",
-<<<<<<< HEAD
 	"No tools match your search.": "",
-=======
-	"No tools accessible": "",
-	"No tools found": "Aucun outil trouvé",
->>>>>>> upstream/main
 	"No users were found.": "Aucun utilisateur trouvé.",
 	"No valves": "Aucune vanne trouvée",
 	"No valves to update": "Aucune vanne à mettre à jour",
 	"Node Ids": "ID des noeuds",
 	"None": "Aucun",
-	"Not configured": "",
 	"Not factually correct": "Non factuellement correct",
 	"Not helpful": "Pas utile",
 	"Not Registered": "Non enregistré",
-<<<<<<< HEAD
-=======
-	"Not scheduled": "Non planifié",
->>>>>>> upstream/main
 	"Note": "Note",
 	"Note: If you set a minimum score, the search will only return documents with a score greater than or equal to the minimum score.": "Note : Si vous définissez un score minimum, seuls les documents ayant un score supérieur ou égal à ce score minimum seront retournés par la recherche.",
 	"nothing gathered yet — drag a chat in": "",
 	"Nothing has been rehearsed yet.": "",
 	"November": "Novembre",
 	"OAuth": "OAuth",
-	"OAuth / OIDC": "",
 	"OAuth 2.1": "OAuth 2.1",
-	"OAuth 2.1 (Static)": "OAuth 2.1 (Statique)",
+	"OAuth 2.1 (Static)": "",
 	"OAuth ID": "ID OAuth",
-<<<<<<< HEAD
 	"OAuth Server URL": "",
 	"October": "Octobre",
 	"Off": "Désactivé",
 	"Okay, Let's Go!": "D'accord, allons-y !",
-=======
-	"OAuth Resource Parameter": "",
-	"OAuth Scopes": "",
-	"OAuth Server URL": "URL du serveur OAuth",
-	"OAuth session disconnected": "Session OAuth déconnectée",
-	"October": "Octobre",
-	"Off": "Désactivé",
-	"Okay, Let's Go!": "D'accord, allons-y !",
-	"Older messages are summarized when estimated context exceeds this token limit.": "",
-	"OLED Dark": "Noir OLED",
->>>>>>> upstream/main
 	"Ollama": "Ollama",
 	"Ollama API": "API Ollama",
 	"Ollama Cloud API Key": "Clé API Ollama Cloud",
 	"Ollama Version": "Version d'Ollama",
-	"Omit": "",
 	"On": "Activé",
-<<<<<<< HEAD
 	"On by default": "",
 	"On by default for new chats": "",
-=======
-	"Once": "Une fois",
->>>>>>> upstream/main
 	"OneDrive": "OneDrive",
-	"Only active during Voice Mode.": "",
 	"Only active when \"Paste Large Text as File\" setting is toggled on.": "Uniquement lorsque le paramètre \"Coller un texte volumineux comme fichier\" est activé.",
 	"Only active when the chat input is in focus and an LLM is generating a response.": "Uniquement lorsque la zone de saisie de la conversation est active et qu'un LLM génère une réponse.",
 	"Only active when the chat input is in focus.": "Uniquement lorsque la zone de saisie de la conversation est active.",
@@ -1807,19 +1106,14 @@
 	"Oops! You're using an unsupported method (frontend only). Please serve the WebUI from the backend.": "Oups ! Vous utilisez une méthode non prise en charge (frontend uniquement). Veuillez servir l'interface Web à partir du backend.",
 	"Open file": "Ouvrir le fichier",
 	"Open in full screen": "Ouvrir en plein écran",
-	"Open in new tab": "Ouvrir dans un nouvel onglet",
+	"Open in new tab": "",
 	"Open link": "Ouvrir le lien",
 	"Open Model Selector": "Ouvrir la liste des modèles",
 	"Open Scratchboard": "",
 	"Open Settings": "Ouvrir les réglages",
 	"Open Sidebar": "Ouvrir la barre latérale",
-<<<<<<< HEAD
 	"Open Terminal": "Open Terminal",
 	"open the full type case": "",
-=======
-	"Open Terminal": "Ouvrir le terminal",
-	"Open User Profile Menu": "Ouvrir le menu du profil utilisateur",
->>>>>>> upstream/main
 	"Open WebUI can use tools provided by any OpenAPI server.": "Open WebUI peut utiliser les outils fournis par n'importe quel serveur OpenAPI.",
 	"Open WebUI uses faster-whisper internally.": "Open WebUI utilise faster-whisper en interne.",
 	"Open WebUI uses SpeechT5 and CMU Arctic speaker embeddings.": "Open WebUI utilise SpeechT5 et les embeddings de locuteur CMU Arctic.",
@@ -1869,45 +1163,22 @@
 	"Participate in community leaderboards and evaluations! Syncing aggregated usage stats helps drive research and improvements to Open WebUI. Your privacy is paramount: no message content is ever shared.": "Participez aux classements et évaluations de la communauté ! La synchronisation des statistiques d'utilisation agrégées contribue à l'amélioration d'Open WebUI. Votre vie privée est primordiale : aucun contenu de message n'est jamais partagé.",
 	"Password": "Mot de passe",
 	"Passwords do not match.": "Les mots de passe ne correspondent pas.",
-<<<<<<< HEAD
 	"PDF document (.pdf)": "Document au format PDF (.pdf)",
 	"PDF Extract Images (OCR)": "Extraction d'images PDF (OCR)",
 	"PDF Loader Mode": "Mode de chargement des PDF",
 	"Penalties & Mirostat": "",
-=======
-	"Paste Large Text as File": "Coller un texte volumineux comme fichier",
-	"Path": "",
-	"Path copied": "Chemin copié",
-	"Paused": "En pause",
-	"PDF document (.pdf)": "Document au format PDF (.pdf)",
-	"PDF Extract Images (OCR)": "Extraction d'images PDF (OCR)",
-	"PDF Loader Mode": "Mode de chargement des PDF",
-	"pdf, docx, pptx, xlsx": "",
->>>>>>> upstream/main
 	"pending": "en attente",
 	"Pending": "en attente",
-	"Pending Accounts": "",
 	"Pending User Overlay Content": "Contenu de l'overlay utilisateur en attente",
 	"Pending User Overlay Title": "Titre de l'overlay utilisateur en attente",
 	"Permissions": "Permissions",
-	"Permissions reset to defaults": "",
 	"Perplexity API Key": "Clé API Perplexity",
 	"Perplexity Model": "Modèle de Perplexity",
 	"Perplexity Search API URL": "URL de l'API Perplexity Search",
 	"Perplexity Search Context Usage": "Utilisation du contexte de recherche de Perplexity",
-<<<<<<< HEAD
 	"Persistent": "",
 	"Pick an icon or emoji": "",
 	"Pin": "Épingler",
-=======
-	"Persistent": "Persistant",
-	"Personalization": "Personnalisation",
-	"Picture Claim": "",
-	"Pin": "Épingler",
-	"Pin to Sidebar": "Épingler à la barre latérale",
-	"Pinned": "Épinglé",
-	"Pinned Messages": "Messages épinglés",
->>>>>>> upstream/main
 	"Pinned Models": "Modèles épinglés",
 	"Pioneer insights": "Explorer de nouvelles perspectives",
 	"Pipe": "Pipeline",
@@ -1919,12 +1190,7 @@
 	"Playwright Timeout (ms)": "Délai d'attente Playwright (ms)",
 	"Playwright WebSocket URL": "URL du websocket Playwright",
 	"Please carefully review the following warnings:": "Veuillez lire attentivement les avertissements suivants :",
-<<<<<<< HEAD
 	"Please connect all required integrations before sending a message": "",
-=======
-	"Please connect all required integrations before sending a message": "Veuillez connecter toutes les intégrations requises avant d'envoyer un message",
-	"Please do not close the settings page while loading the model.": "Veuillez ne pas fermer les réglages pendant le chargement du modèle.",
->>>>>>> upstream/main
 	"Please enter a message or attach a file.": "Veuillez saisir un message ou joindre un fichier.",
 	"Please enter a prompt": "Veuillez saisir un prompt",
 	"Please enter a valid ID": "Veuillez entrer un ID valide",
@@ -1934,14 +1200,9 @@
 	"Please enter Client ID and Client Secret": "",
 	"Please register the OAuth client": "Veuillez enregistrer le client OAuth",
 	"Please save the connection to persist the OAuth client information and do not change the ID": "Veuillez enregistrer la connexion pour conserver les informations du client OAuth et ne modifiez pas l'ID",
-<<<<<<< HEAD
-=======
-	"Please select a model.": "Veuillez sélectionner un modèle.",
->>>>>>> upstream/main
 	"Please select a reason": "Veuillez sélectionner une raison",
 	"Please select a valid JSON file": "Veuillez sélectionner un fichier JSON valide",
 	"Policy ID": "",
-	"Policy ID is required": "",
 	"Port": "Port",
 	"Ports": "Ports",
 	"Positive attitude": "Attitude positive",
@@ -1949,7 +1210,6 @@
 	"Prefix ID is used to avoid conflicts with other connections by adding a prefix to the model IDs - leave empty to disable": "Le préfixe ID est utilisé pour éviter les conflits avec d'autres connexions en ajoutant un préfixe aux ID de modèle - laissez vide pour désactiver",
 	"Prevent File Creation": "Empêcher la création de fichier",
 	"Preview": "Aperçu",
-	"Preview Access": "",
 	"Previous 30 days": "30 derniers jours",
 	"Previous 7 days": "7 derniers jours",
 	"Previous message": "Message précédent",
@@ -1958,8 +1218,6 @@
 	"Prompt": "Prompt",
 	"Prompt Template": "",
 	"Provider": "",
-	"Provider Name": "",
-	"Provider URL": "",
 	"Public": "Public",
 	"Public shared chat links are disabled for this workspace.": "",
 	"Pull \"{{searchValue}}\" from Ollama.com": "Récupérer « {{searchValue}} » depuis Ollama.com",
@@ -1971,22 +1229,17 @@
 	"Python sandbox and code interpreter configuration.": "",
 	"Query Generation Prompt": "Prompt de génération de requête",
 	"Querying": "Requête en cours",
-<<<<<<< HEAD
 	"quire": "",
 	"quires": "",
-=======
-	"Quick Actions": "Actions rapides",
->>>>>>> upstream/main
 	"RAG Template": "Modèle RAG",
-	"Ran {{COUNT}} analyses": "{{COUNT}} analyses effectuées",
-	"Ran {{COUNT}} analysis": "{{COUNT}} analyse effectuée",
+	"Ran {{COUNT}} analyses": "",
+	"Ran {{COUNT}} analysis": "",
 	"Rate {{rating}} out of 10": "Noter {{rating}} sur 10",
 	"Rating": "Note",
 	"Re-rank models by topic similarity": "Reclasser les modèles par similarité de sujet",
 	"Read": "Lire",
 	"Read Aloud": "Lire à haute voix",
 	"Read more →": "En savoir plus →",
-<<<<<<< HEAD
 	"read only": "",
 	"Read Only": "Lecture seule",
 	"Read, write, and diff-edit durable notes for the current chat Scratchboard": "",
@@ -1998,32 +1251,7 @@
 	"Reconnected": "",
 	"Redirecting you to Open WebUI Community": "Redirection vers la communauté OpenWebUI",
 	"Reduces the probability of generating nonsense. A higher value (e.g. 100) will give more diverse answers, while a lower value (e.g. 10) will be more conservative.": "Réduit la probabilité de générer du contenu incohérent. Une valeur plus élevée (ex. : 100) produira des réponses plus variées, tandis qu'une valeur plus faible (ex. : 10) sera plus conservatrice.",
-=======
-	"Read only": "",
-	"Read Only": "Lecture seule",
-	"Read-Only Access": "Accès en lecture seule",
-	"Reason": "Raison",
-	"Reasoning Effort": "Effort de raisonnement",
-	"Reasoning Tags": "Balises de raisonnement",
-	"Reasoning text...": "Texte de raisonnement...",
-	"Receives matching events across the instance, including system/config events and events associated with any user.": "",
-	"Receives matching events that are not associated with a user.": "",
-	"Receives matching user-associated events only when the actor, user subject, or user data matches these users or current group members. System/config events are not sent.": "",
-	"Recently Used": "Récemment utilisé",
-	"Reconnected": "Reconnecté",
-	"Record": "Enregistrement",
-	"Record voice": "Enregistrer la voix",
-	"Redirect URI": "",
-	"Redirecting you to Open WebUI Community": "Redirection vers la communauté OpenWebUI",
-	"Reduces the probability of generating nonsense. A higher value (e.g. 100) will give more diverse answers, while a lower value (e.g. 10) will be more conservative.": "Réduit la probabilité de générer du contenu incohérent. Une valeur plus élevée (ex. : 100) produira des réponses plus variées, tandis qu'une valeur plus faible (ex. : 10) sera plus conservatrice.",
-	"Reference Chats": "Discussions de référence",
->>>>>>> upstream/main
 	"Refresh": "Actualiser",
-	"Refresh requested: {{count}} terminal(s)_one": "",
-	"Refresh requested: {{count}} terminal(s)_many": "",
-	"Refresh requested: {{count}} terminal(s)_other": "",
-	"Refresh Terminals": "",
-	"Refreshing...": "",
 	"Refused when it shouldn't have": "Refusé alors qu'il n'aurait pas dû l'être",
 	"Regenerate": "Regénérer",
 	"Regenerate Response": "Regénérer la réponse",
@@ -2036,54 +1264,21 @@
 	"Relevance": "Pertinence",
 	"Relevance Threshold": "Seuil de pertinence",
 	"Remember Dismissal": "Se souvenir du rejet",
-<<<<<<< HEAD
-=======
-	"Reminder": "Rappel",
->>>>>>> upstream/main
 	"Remove": "Retirer",
 	"Remove {{MODELID}} from list.": "Retirer {{MODELID}} de la liste.",
 	"Remove File": "Retirer le fichier",
 	"Remove from favorites": "Retirer des favoris",
 	"Remove image": "Retirer l'image",
 	"Remove Model": "Retirer le modèle",
-	"Removing {{count}} stale files..._one": "",
-	"Removing {{count}} stale files..._many": "",
-	"Removing {{count}} stale files..._other": "",
 	"Rename": "Renommer",
-<<<<<<< HEAD
 	"Reorder Models": "Réorganiser les modèles",
-=======
-	"Renamed to {{name}}": "Renommé en {{name}}",
-	"Render Markdown in Assistant Messages": "Afficher le Markdown dans les messages de l'assistant",
-	"Render Markdown in Previews": "Afficher le Markdown dans les aperçus",
-	"Render Markdown in User Messages": "Afficher le Markdown dans les messages de l'utilisateur",
-	"Reorder Models": "Réorganiser les modèles",
-	"Repeat": "",
-	"Repeats": "",
-	"Reply": "Répondre",
-	"Reply in Thread": "Répondre dans le fil de discussion",
-	"Reply to thread...": "Répondre au fil de discussion...",
-	"Replying to {{NAME}}": "En réponse à {{NAME}}",
-	"Request Format": "",
-	"Require users to confirm before using Web Search.": "",
-	"required": "requis",
->>>>>>> upstream/main
 	"Reranking Batch Size": "",
 	"Reranking Engine": "Moteur de ré-ranking",
 	"Reranking Model": "Modèle de ré-ranking",
-	"Research Knowledge": "",
 	"Reset": "Réinitialiser",
 	"Reset All Models": "Réinitialiser tous les modèles",
-	"Reset all permissions to their initial configuration values": "",
-	"Reset group permissions to match the current default user permissions": "",
 	"Reset Image": "Réinitialiser l’image",
-<<<<<<< HEAD
 	"Reset to default": "",
-=======
-	"Reset knowledge base?": "",
-	"Reset persisted files": "",
-	"Reset to Defaults": "",
->>>>>>> upstream/main
 	"Reset Upload Directory": "Réinitialiser le répertoire de téléchargement",
 	"Reset Vector Storage/Knowledge": "Réinitialiser le stockage vectoriel/connaissances",
 	"Reset view": "Réinitialiser la vue",
@@ -2105,17 +1300,8 @@
 	"Return token usage information in the response when supported": "",
 	"Reusable instruction packs that teach your models a procedure or domain — import a markdown skill or write your own, then enable it where you need it.": "",
 	"Role": "Rôle",
-<<<<<<< HEAD
 	"Run": "Exécuter",
 	"Run All": "Tout exécuter",
-=======
-	"Roles Claim": "",
-	"RTL": "RTL",
-	"Run": "Exécuter",
-	"Run All": "Tout exécuter",
-	"Run now": "Exécuter maintenant",
-	"Run Now": "Exécuter maintenant",
->>>>>>> upstream/main
 	"Running": "Exécution",
 	"Running...": "Exécution...",
 	"Runs embedding tasks concurrently to speed up processing. Turn off if rate limits become an issue.": "Exécute les tâches d'embedding en parallèle pour accélérer le traitement. Désactivez si les limites de débit posent problème.",
@@ -2126,31 +1312,17 @@
 	"Save As Copy": "Enregistrer comme copie",
 	"Saved": "Enregistré",
 	"Saving chat logs directly to your browser's storage is no longer supported. Please take a moment to download and delete your chat logs by clicking the button below. Don't worry, you can easily re-import your chat logs to the backend through": "La sauvegarde des journaux de conversation directement dans le stockage de votre navigateur n'est plus prise en charge. Veuillez prendre un instant pour télécharger et supprimer vos journaux de conversation en cliquant sur le bouton ci-dessous. Ne vous inquiétez pas, vous pouvez facilement réimporter vos journaux de conversation dans le backend via",
-<<<<<<< HEAD
 	"Scratchboard": "",
 	"Scroll to Top": "",
-=======
-	"Schedule": "Planifier",
-	"Scheduled time must be in the future": "L'heure prévue doit être située dans le futur",
-	"Scopes": "",
-	"Scroll On Branch Change": "Défilement lors du changement de branche",
-	"Scroll to Top": "Retour en haut",
->>>>>>> upstream/main
 	"Search": "Recherche",
 	"Search a model": "Rechercher un modèle",
-	"Search actions": "",
 	"Search all emojis": "Rechercher tous les emojis",
 	"Search and manage user memories": "Rechercher et gérer les éléments mémorisés de l'utilisateur",
 	"Search and view user chat history": "Rechercher et afficher l'historique des conversations de l'utilisateur",
-<<<<<<< HEAD
-=======
-	"Search Automations": "Rechercher des automatisations",
->>>>>>> upstream/main
 	"Search Base": "Base de recherche",
 	"Search Chats": "Rechercher des conversations",
 	"Search engines and web content loaders for live results.": "",
 	"Search Files": "Rechercher des fichiers",
-	"Search filters": "",
 	"Search Filters": "Filtres de recherche",
 	"search for archived chats": "Rechercher les conversations archivées",
 	"search for folders": "Rechercher tous les dossiers",
@@ -2160,29 +1332,12 @@
 	"Search Functions": "Rechercher des fonctions",
 	"Search Groups": "Rechercher des groupes",
 	"Search In Models": "Rechercher dans les modèles",
-<<<<<<< HEAD
-=======
-	"Search Knowledge": "Rechercher des connaissances",
-	"Search Memories": "Rechercher des éléments mémorisés",
->>>>>>> upstream/main
 	"Search Models": "Rechercher des modèles",
 	"Search options": "Options de recherche",
-<<<<<<< HEAD
-=======
-	"Search or add pattern": "",
-	"Search Prompts": "Rechercher des prompts",
->>>>>>> upstream/main
 	"Search Result Count": "Nombre de résultats de recherche",
-	"Search skills": "",
 	"Search Skills": "Rechercher des skills",
 	"Search the web and fetch URLs": "Rechercher sur le web et récupérer le contenu de sites web à partir d'une URL",
-	"Search tools": "",
 	"Search Tools": "Rechercher des outils",
-<<<<<<< HEAD
-=======
-	"Search users or groups": "",
-	"Search, view, and manage user notes": "Rechercher, afficher et gérer les notes de l'utilisateur",
->>>>>>> upstream/main
 	"SearchApi API Key": "Clé API SearchApi",
 	"SearchApi Engine": "Moteur de recherche SearchApi",
 	"Searched {{count}} sites": "{{count}} sites recherchés",
@@ -2197,12 +1352,7 @@
 	"Seed": "Seed",
 	"Select": "Choisir",
 	"Select {{modelName}} model": "Sélectionner le modèle {{modelName}}",
-<<<<<<< HEAD
 	"Select a base model": "Sélectionnez un modèle de base",
-=======
-	"Select a base model (e.g. llama3, gpt-4o)": "Chosir un modèle de base (ex : lamma3, gpt-4o)",
-	"Select a conversation to preview": "Choisir une conversation pour la prévisualiser",
->>>>>>> upstream/main
 	"Select a engine": "Sélectionnez un moteur",
 	"Select a function": "Sélectionnez une fonction",
 	"Select a group": "Sélectionner un groupe",
@@ -2215,7 +1365,7 @@
 	"Select a role": "Sélectionnez un rôle",
 	"Select a tool": "Sélectionnez un outil",
 	"Select a voice": "Sélectionnez une voix",
-	"Select All": "Tout sélectionner",
+	"Select All": "",
 	"Select an auth method": "Veuillez sélectionner une méthode de connexion",
 	"Select an embedding model engine": "Sélectionnez un moteur de modèle d'embedding",
 	"Select an engine": "Sélectionnez un moteur",
@@ -2226,48 +1376,21 @@
 	"Select how to split message text for TTS requests": "Sélectionnez comment diviser le texte du message pour les requêtes TTS",
 	"Select icon": "",
 	"Select Method": "Sélectionner une méthode",
-<<<<<<< HEAD
-=======
-	"Select model": "Sélectionnez un modèle",
-	"Select only one model to call": "Sélectionnez seulement un modèle pour appeler",
->>>>>>> upstream/main
 	"Select view": "Sélectionner la vue",
 	"Selected model: {{modelName}}": "Modèle sélectionné : {{modelName}}",
 	"Selected model(s) do not support image inputs": "Les modèle(s) sélectionné(s) ne prennent pas en charge les entrées d'images",
 	"Selected Models": "Modèles sélectionnés par défaut",
 	"semantic": "sémantique",
 	"Send": "Envoyer",
-<<<<<<< HEAD
-=======
-	"Send a Message": "Envoyer un message",
-	"Send events for": "",
-	"Send message": "Envoyer un message",
-	"Send now": "Envoyer maintenant",
-	"Send product events as JSON to external services. Chat destinations receive readable messages.": "",
-	"Send the PDF as a base64 data URL instead of uploading it first.": "",
-	"Sends `stream_options: { include_usage: true }` in the request.\nSupported providers will return token usage information in the response when set.": "Envoie `stream_options: { include_usage: true }` dans la requête.\nLes fournisseurs pris en charge renverront des informations sur l'utilisation des tokens dans la réponse lorsque cette option est activée.",
->>>>>>> upstream/main
 	"September": "Septembre",
 	"sequences that end a response — comma separated": "",
 	"SerpApi API Key": "Clé API SerpApi",
 	"SerpApi Engine": "Moteur SerpAPI",
 	"Serper API Key": "Clé API Serper",
-	"SERPHouse API Key": "",
-	"SERPHouse Domain": "",
 	"Serply API Key": "Clé API Serply",
 	"Serpstack API Key": "Clé API Serpstack",
-<<<<<<< HEAD
 	"Server connection failed": "",
 	"Session": "Session",
-=======
-	"Server connection failed": "Connexion au serveur échouée",
-	"Server connection verified": "Connexion au serveur vérifiée",
-	"Service Account": "",
-	"Session": "Session",
-	"Session expired. Please sign in again.": "",
-	"Set as default": "Définir comme valeur par défaut",
-	"Set as Production": "Définir comme version active",
->>>>>>> upstream/main
 	"Set embedding model": "Définir le modèle d'embedding",
 	"Set embedding model (e.g. {{model}})": "Définir le modèle d'embedding (par ex. {{model}})",
 	"Set reranking model (e.g. {{model}})": "Définir le modèle de ré-ranking (par ex. {{model}})",
@@ -2291,28 +1414,13 @@
 	"Share": "Partager",
 	"Share Chat": "Partage de conversation",
 	"Share to Open WebUI Community": "Partager avec la communauté OpenWebUI",
-<<<<<<< HEAD
-=======
-	"Share your background and interests": "Partagez votre parcours et vos intérêts",
-	"Shared": "",
->>>>>>> upstream/main
 	"Shared Chats": "Conversations partagées",
 	"Shared with you": "Partagé avec vous",
 	"Sharing Permissions": "Autorisation de partage",
 	"Show": "Afficher",
-<<<<<<< HEAD
 	"Show Admin Details in Account Pending Overlay": "Afficher les coordonnées de l'administrateur aux comptes en attente",
 	"Show All": "Afficher tout",
 	"Show all ({{COUNT}} characters)": "Tout afficher ({{COUNT}} caractères)",
-=======
-	"Show \"What's New\" Modal on Login": "Afficher la fenêtre modale \"Quoi de neuf\" lors de la connexion",
-	"Show Admin Details in Account Pending Overlay": "Afficher les coordonnées de l'administrateur aux comptes en attente",
-	"Show All": "Afficher tout",
-	"Show all ({{COUNT}} characters)": "Tout afficher ({{COUNT}} caractères)",
-	"Show Files": "Afficher les fichiers",
-	"Show Files on Terminal Select": "",
-	"Show Formatting Toolbar": "Afficher la barre d'outils de formatage",
->>>>>>> upstream/main
 	"Show image preview": "Afficher l'aperçu de l'image",
 	"Show Model": "Afficher le modèle",
 	"Show Shortcuts": "Afficher les raccourcis clavier",
@@ -2354,30 +1462,14 @@
 	"Sougou Search API sID": "Identifiant API Sougou Search (sID)",
 	"Sougou Search API SK": "Clé secrète API Sougou Search (SK)",
 	"Source": "Source",
-<<<<<<< HEAD
 	"Sources used": "",
-=======
-	"Specific users or groups": "",
-	"Speech Playback Speed": "Vitesse de lecture de la parole",
-	"Speech recognition error: {{error}}": "Erreur de reconnaissance vocale : {{error}}",
->>>>>>> upstream/main
 	"Speech-to-Text": "Reconnaissance vocale",
 	"Speech-to-Text Engine": "Moteur de reconnaissance vocale",
 	"Split documents by markdown headers before applying character/token splitting.": "Découper les documents par en-têtes markdown avant d'appliquer le découpage par caractères/tokens.",
 	"Start from scratch": "",
 	"Start Tag": "Balise de départ",
-<<<<<<< HEAD
 	"Starters & Access": "",
 	"Starting kernel...": "Démarrage du noyau...",
-=======
-	"Starting in {{count}} minutes_one": "Démarrage dans {{count}} minute",
-	"Starting in {{count}} minutes_many": "Démarrage dans {{count}} minutes",
-	"Starting in {{count}} minutes_other": "Démarrage dans {{count}} minutes",
-	"Starting in 1 minute": "Démarrage dans 1 minute",
-	"Starting kernel...": "Démarrage du noyau...",
-	"Starting now": "Démarrage maintenant",
-	"State": "État",
->>>>>>> upstream/main
 	"Status": "Statut",
 	"Status Updates": "Mises à jour de statut",
 	"STDOUT/STDERR": "STDOUT/STDERR",
@@ -2394,13 +1486,6 @@
 	"Strip Existing OCR": "Supprimer l'OCR existant",
 	"Strip existing OCR text from the PDF and re-run OCR. Ignored if Force OCR is enabled. Defaults to False.": "Supprimer le texte OCR existant du PDF et réexécuter l'OCR. Ignoré si la fonction Force OCR est activée. Par défaut à False.",
 	"STT Model": "Modèle de Speech-to-Text",
-<<<<<<< HEAD
-=======
-	"STT Settings": "Réglages de Speech-to-Text",
-	"Stylized PDF Export": "Export de PDF stylisés",
-	"Su_day_of_week": "",
-	"Sub Claim": "",
->>>>>>> upstream/main
 	"Submit question": "Envoyer la question",
 	"Submit suggestion": "Soumettre la suggestion",
 	"Subtitle": "Sous-titre",
@@ -2411,25 +1496,16 @@
 	"Support": "Supporter",
 	"Support this plugin:": "Supporter ce module",
 	"Supported MIME Types": "Types MIME pris en charge",
-	"Switch to JSON editor": "Passer à l'éditeur JSON",
-	"Switch to visual editor": "Passer à l'éditeur visuel",
+	"Switch to JSON editor": "",
+	"Switch to visual editor": "",
 	"Sync": "Synchroniser",
-	"Sync a local directory with this knowledge base. Only new and modified files will be uploaded. The directory structure will be mirrored.": "",
-	"Sync complete: {{added}} added, {{modified}} modified, {{deleted}} deleted, {{unmodified}} unmodified": "",
 	"Sync Complete!": "Synchronisation terminée !",
 	"Sync Failed": "Échec de la synchronisation",
 	"Sync Usage Stats": "Synchroniser les statistiques d'utilisation",
 	"Syncing stats...": "Synchronisation des statistiques en cours...",
 	"Syncing...": "Synchronisation en cours...",
 	"Syncs only chats with updates after your last sync timestamp. Disable to re-sync all chats.": "Synchronise uniquement les conversations mises à jour depuis la dernière synchronisation. Désactivez pour re-synchroniser toutes les conversations.",
-<<<<<<< HEAD
-=======
-	"System": "Système",
-	"System events only": "",
-	"System Instructions": "Instructions système",
->>>>>>> upstream/main
 	"System Prompt": "Prompt système",
-	"Table": "",
 	"Tag": "Tag",
 	"Tags": "Tags",
 	"Tags Generation": "Génération de tags",
@@ -2437,10 +1513,10 @@
 	"Tail free sampling is used to reduce the impact of less probable tokens from the output. A higher value (e.g., 2.0) will reduce the impact more, while a value of 1.0 disables this setting.": "Le sampling sans queue est utilisé pour réduire l'impact des tokens moins probables dans la sortie. Une valeur plus élevée (par exemple, 2.0) réduira davantage l'impact, tandis qu'une valeur de 1.0 désactive ce réglage.",
 	"Talk to Model": "Parler au modèle",
 	"Task List": "Liste pour les tâches",
-	"Task Management": "Gestion des tâches",
+	"Task Management": "",
 	"Task Model": "Modèle pour les tâches",
 	"Tasks": "Tâches",
-	"tasks completed": "tâches terminées",
+	"tasks completed": "",
 	"Tavily API Key": "Clé API Tavily",
 	"Tavily Extract Depth": "Profondeur d'extraction Tavily",
 	"Teach your first skill": "",
@@ -2449,16 +1525,6 @@
 	"Temperature": "Température",
 	"Temporary Chat": "conversation temporaire",
 	"Terminal": "Terminal",
-<<<<<<< HEAD
-=======
-	"Terminal servers saved": "Serveurs de terminal sauvegardés",
-	"Test": "",
-	"Test Query": "",
-	"Test returned no results.": "",
-	"Test succeeded.": "",
-	"Test the source before creating it.": "",
-	"Test the source before saving it.": "",
->>>>>>> upstream/main
 	"Text Splitter": "Découpage du texte",
 	"Text-to-Speech": "Text-to-Speech",
 	"Text-to-Speech Engine": "Moteur de Text-to-Speech",
@@ -2473,11 +1539,8 @@
 	"The height in pixels to compress images to. Leave empty for no compression.": "Hauteur en pixels à laquelle les images doivent être compressées. Laisser vide pour ne pas compresser.",
 	"The LDAP attribute that maps to the mail that users use to sign in.": "L'attribut LDAP qui correspond à l'adresse e-mail que les utilisateurs utilisent pour se connecter.",
 	"The LDAP attribute that maps to the username that users use to sign in.": "L'attribut LDAP qui correspond au nom d'utilisateur que les utilisateurs utilisent pour se connecter.",
-<<<<<<< HEAD
 	"The leaderboard is currently in beta, and we may adjust the rating calculations as we refine the algorithm.": "Le classement est actuellement en version bêta et nous pouvons ajuster les calculs de notation à mesure que nous peaufinons l'algorithme.",
 	"the longest single response it may set": "",
-=======
->>>>>>> upstream/main
 	"The maximum file size in MB. If the file size exceeds this limit, the file will not be uploaded.": "La taille maximale du fichier en Mo. Si la taille du fichier dépasse cette limite, le fichier ne sera pas téléchargé.",
 	"The maximum number of files that can be used at once in chat. If the number of files exceeds this limit, the files will not be uploaded.": "Le nombre maximal de fichiers pouvant être utilisés en même temps dans la conversation. Si le nombre de fichiers dépasse cette limite, les fichiers ne seront pas téléchargés.",
 	"The only required step — refine everything else now or later.": "",
@@ -2503,11 +1566,6 @@
 	"This feature is currently experimental and may not work as expected.": "Cette fonctionnalité est actuellement expérimentale et peut ne pas fonctionner comme prévu.",
 	"This folder is empty": "Ce dossier est vide",
 	"This is a default user permission and will remain enabled.": "Ceci est une permission utilisateur par défaut et restera activée.",
-<<<<<<< HEAD
-=======
-	"This is an experimental feature, it may not function as expected and is subject to change at any time.": "Il s'agit d'une fonctionnalité expérimentale, elle peut ne pas fonctionner comme prévu et est sujette à modification à tout moment.",
-	"This knowledge base retrieves from a connected source. Open WebUI can query it, but cannot upload, sync, edit, delete, reset, or reindex its source data.": "",
->>>>>>> upstream/main
 	"This model is not publicly available. Please select another model.": "Ce modèle n'est pas disponible au public. Veuillez sélectionner un autre modèle.",
 	"This option controls how long the model will stay loaded into memory following the request (default: 5m)": "Cette option détermine la durée pendant laquelle le modèle restera chargé en mémoire après la demande (par défaut : 5m).",
 	"This option controls how many tokens are preserved when refreshing the context. For example, if set to 2, the last 2 tokens of the conversation context will be retained. Preserving context can help maintain the continuity of a conversation, but it may reduce the ability to respond to new topics.": "Cette option détermine combien de Token sont conservés lors du rafraîchissement du contexte. Par exemple, avec une valeur de 2, les 2 derniers Token seront conservés. Cela aide à maintenir la continuité de la conversation, mais peut limiter la capacité à traiter de nouveaux sujets.",
@@ -2519,13 +1577,8 @@
 	"This will delete <strong>{{NAME}}</strong> and <strong>all its contents</strong>.": "Cela supprimera <strong>{{NAME}}</strong> et <strong>tout son contenu</strong>.",
 	"This will delete all models including custom models": "Cela supprimera tous les modèles, y compris les modèles personnalisés",
 	"This will delete all models including custom models and cannot be undone.": "Cela supprimera tous les modèles, y compris les modèles personnalisés, et ne peut pas être annulé.",
-<<<<<<< HEAD
-=======
-	"This will permanently delete the calendar \"{{name}}\" and all its events. This action cannot be undone.": "",
-	"This will remove all files and directories from this knowledge base. This action cannot be undone.": "",
->>>>>>> upstream/main
 	"Thorough explanation": "Explication approfondie",
-	"Thought": "Réflexion",
+	"Thought": "",
 	"Thought for {{DURATION}}": "Réflexion de {{DURATION}}",
 	"Thought for {{DURATION}} seconds": "Réflexion pendant {{DURATION}} secondes",
 	"Thought for less than a second": "Réflexion pendant moins d'une seconde",
@@ -2533,20 +1586,12 @@
 	"Tika": "Tika",
 	"Tika Server URL required.": "URL du serveur Tika requise.",
 	"Tiktoken": "Tiktoken",
-<<<<<<< HEAD
-=======
-	"Time": "Temps",
->>>>>>> upstream/main
 	"Time & Calculation": "Horodatage",
 	"Timeout": "Délai d'expiration",
 	"Title": "Titre",
 	"Title cannot be an empty string.": "Le titre ne peut pas être une chaîne de caractères vide.",
 	"Title Generation": "Génération du Titre",
 	"Title Generation Prompt": "Prompt de génération de titre",
-<<<<<<< HEAD
-=======
-	"Title is required": "Le titre est requis",
->>>>>>> upstream/main
 	"TLS": "TLS",
 	"To access the available model names for downloading,": "Pour accéder aux noms des modèles disponibles,",
 	"To access the GGUF models available for downloading,": "Pour accéder aux modèles GGUF disponibles,",
@@ -2554,26 +1599,12 @@
 	"To learn more about available endpoints, visit our documentation.": "Pour en savoir plus sur les points de terminaison disponibles, consultez notre documentation.",
 	"To select skills here, add them to the \"Skills\" workspace first.": "Pour sélectionner des skills ici, ajoutez-les d'abord à l'espace de travail « Skills ».",
 	"To select toolkits here, add them to the \"Tools\" workspace first.": "Pour sélectionner des outils ici, ajoutez-les d'abord à l'espace de travail « Outils ». ",
-<<<<<<< HEAD
 	"Today": "Aujourd'hui",
 	"Toggle details": "",
-=======
-	"Toast Notifications for New Updates": "Notifications toast pour les nouvelles mises à jour",
-	"Today": "Aujourd'hui",
-	"Today at": "Aujourd'hui à",
-	"Today at {{LOCALIZED_TIME}}": "Aujourd'hui à {{LOCALIZED_TIME}}",
-	"Toggle {{COUNT}} sources": "Afficher/masquer {{COUNT}} sources",
-	"Toggle 1 source": "Afficher/masquer 1 source",
-	"Toggle details": "Afficher/masquer les détails",
-	"Toggle Dictation": "Activer/Désactiver la dictée",
-	"Toggle Mute": "",
->>>>>>> upstream/main
 	"Toggle Sidebar": "Afficher/Masquer la barre latérale",
 	"Toggle whether current connection is active.": "Afficher/masquer si la connection courante est active",
 	"Token": "Token",
 	"Token counts are estimates and may not reflect actual API usage": "Le nombre de tokens est une estimation et peut ne pas refléter l'utilisation réelle de l'API",
-	"Token Threshold": "",
-	"Tokenizer Model": "",
 	"tokens": "tokens",
 	"Tokens": "Tokens",
 	"Too verbose": "Trop détaillé",
@@ -2616,33 +1647,12 @@
 	"Unknown": "Inconnu",
 	"Unloads {{FROM_NOW}}": "Décharge {{FROM_NOW}}",
 	"Unlock mysteries": "Déverrouiller les mystères",
-<<<<<<< HEAD
 	"Unpin": "Désépingler",
-=======
-	"Unmute": "Activer le son",
-	"Unpin": "Désépingler",
-	"Unpin from Sidebar": "Désépingler de la barre latérale",
->>>>>>> upstream/main
 	"Unravel secrets": "Dévoiler les secrets",
-	"Unshare All": "",
-	"Unshare All Shared Chats": "",
 	"Unshare Chat": "Annuler le partage de la conversation",
 	"Untagged": "Pas de tag",
-<<<<<<< HEAD
 	"Untitled folio": "",
 	"Update for the latest features and improvements.": "Mettez à jour pour bénéficier des dernières fonctionnalités et améliorations.",
-=======
-	"Untitled": "Sans titre",
-	"Update": "Mise à jour",
-	"Update and Copy Link": "Mettre à jour et copier le lien",
-	"Update Email": "",
-	"Update for the latest features and improvements.": "Mettez à jour pour bénéficier des dernières fonctionnalités et améliorations.",
-	"Update Name": "",
-	"Update password": "Mettre à jour le mot de passe",
-	"Update Picture": "",
-	"Update your status": "Mettre à jour votre statut",
-	"Updated": "Mis à jour",
->>>>>>> upstream/main
 	"Updated at": "Mise à jour le",
 	"Updated At": "Mise à jour le",
 	"Upgrade to a licensed plan for enhanced capabilities, including custom theming and branding, and dedicated support.": "Effectuez la mise à niveau vers le plan payant pour bénéficier de fonctionnalités améliorées, notamment les thèmes et le branding personnalisé, ainsi qu'un support dédié.",
@@ -2654,40 +1664,24 @@
 	"Upload profile image": "Téléverser une image de profil",
 	"Upload Progress": "Progression de l'envoi",
 	"Uploaded files or images": "Les fichiers ou images téléversés",
-<<<<<<< HEAD
-=======
-	"Uploading {{current}}/{{total}}: {{file}}": "",
->>>>>>> upstream/main
 	"Uploading...": "Téléversement en cours...",
 	"URL": "URL",
 	"URL is required": "L'URL est requise",
 	"URL Mode": "Mode d'URL",
 	"Usage": "Consommation de tokens",
 	"Use /v1/chat/completions endpoint instead of /v1/audio/transcriptions for potentially better accuracy.": "Utilise le endpoint /v1/chat/completions au lieu de /v1/audio/transcriptions pour une meilleure précision potentielle.",
-	"Use a valid event name or pattern like user.*": "",
-	"Use Base64": "",
 	"Use Chat Completions API": "Utiliser l'API Chat Completions",
-	"Use discovered scopes": "",
 	"Use groups to organize your users and assign permissions.": "Utilisez les groupes pour organiser vos utilisateurs et attribuer des permissions.",
 	"Use LLM": "Utiliser le LLM",
 	"Use no proxy to fetch page contents.": "Ne pas utiliser de proxy pour récupérer le contenu des pages.",
 	"Use proxy designated by http_proxy and https_proxy environment variables to fetch page contents.": "Utiliser le proxy défini par les variables d'environnement http_proxy et https_proxy pour récupérer le contenu des pages.",
-	"Use Web Search?": "",
 	"user": "utilisateur",
 	"User": "Utilisateur",
-	"User Access": "",
 	"User Activity": "Activité des utilisateurs",
 	"User Groups": "Groupes d'utilisateurs",
-<<<<<<< HEAD
-=======
-	"User location successfully retrieved.": "Emplacement de l'utilisateur récupéré avec succès.",
-	"User menu": "Menu utilisateur",
-	"User Preview": "",
->>>>>>> upstream/main
 	"User ratings (thumbs up/down)": "Évaluations des utilisateurs (pouces vers le haut/bas)",
 	"User Webhooks": "Webhooks utilisateur",
 	"Username": "Nom d'utilisateur",
-	"Username Claim": "",
 	"users": "utilisateurs",
 	"Users": "Utilisateurs",
 	"Uses DefaultAzureCredential to authenticate": "Utilise DefaultAzureCredential pour s'authentifier",
@@ -2698,14 +1692,7 @@
 	"Valid time units:": "Unités de temps valides\u00a0:",
 	"Validate certificate": "Valider le certificat",
 	"Valves": "Vannes",
-<<<<<<< HEAD
 	"Verified": "",
-=======
-	"Valves updated": "Vannes mises à jour",
-	"Valves updated successfully": "Vannes mises à jour avec succès",
-	"variable": "variable",
-	"Vector Field": "",
->>>>>>> upstream/main
 	"Verify Connection": "Vérifier la connexion",
 	"Verify SSL Certificate": "Vérifier le certificat SSL",
 	"Version": "Version:",
@@ -2717,60 +1704,27 @@
 	"Visible": "Visible",
 	"Visible to all users": "Visible pour tous les utilisateurs",
 	"Vision": "Vision",
-<<<<<<< HEAD
 	"Visual": "",
-=======
-	"Visual": "Visuel",
-	"Voice": "Voix",
-	"Voice Input": "Saisie vocale",
-	"Voice mode": "Mode vocal",
->>>>>>> upstream/main
 	"Voice Mode Prompt": "Prompt du mode vocal",
 	"Warning": "Avertissement",
 	"Warning:": "Avertissement :",
-<<<<<<< HEAD
-=======
-	"Warning: Enabling this will allow users to run scheduled prompts automatically.": "Avertissement : Activer cette option permettra aux utilisateurs d'exécuter automatiquement des prompts programmés.",
->>>>>>> upstream/main
 	"Warning: Enabling this will allow users to upload arbitrary code on the server.": "Avertissement : Activer cette option permettra aux utilisateurs de télécharger du code arbitraire sur le serveur.",
 	"Warning: Jupyter execution enables arbitrary code execution, posing severe security risks—proceed with extreme caution.": "Avertissement : L'exécution Jupyter permet l'exécution de code arbitraire, ce qui présente des risques de sécurité importants. Procédez avec une extrême prudence.",
 	"Web API": "API Web",
 	"Web Loader Engine": "Moteur de chargement Web",
 	"Web Search": "Recherche Web",
-	"Web Search Confirmation": "",
-	"Web Search Confirmation Content": "",
 	"Web Search Engine": "Moteur de recherche Web",
 	"Web Search Query Generation": "Génération de requête de recherche Web",
-<<<<<<< HEAD
 	"Webhook URL": "URL du webhook",
-=======
-	"Webhook deleted": "",
-	"Webhook Name": "Nom du webhook",
-	"Webhook saved": "",
-	"Webhooks": "Webhooks",
-	"Webpage URLs": "URL des pages web",
-	"WebUI Settings": "Réglages de WebUI",
->>>>>>> upstream/main
 	"WebUI URL": "URL de WebUI",
 	"WebUI will make requests to \"{{url}}\"": "WebUI effectuera des requêtes vers \"{{url}}\"",
 	"WebUI will make requests to \"{{url}}/api/chat\"": "WebUI fera des requêtes à \"{{url}}/api/chat\"",
 	"WebUI will make requests to \"{{url}}/chat/completions\"": "WebUI fera des requêtes à \"{{url}}/chat/completions\"",
-<<<<<<< HEAD
-=======
-	"Week": "Semaine",
-	"Weekly": "Hebdomadaire",
-	"What are you trying to achieve?": "Que cherchez-vous à accomplir ?",
-	"What are you working on?": "Sur quoi travaillez-vous ?",
->>>>>>> upstream/main
 	"What is NOT shared:": "Ce qui n'est PAS partagé :",
 	"What is shared:": "Ce qui est partagé :",
 	"What the model is permitted to see and do.": "",
 	"What's New in": "Quoi de neuf dans",
 	"What's on your mind?": "Quoi de neuf ?",
-<<<<<<< HEAD
-=======
-	"When": "Quand",
->>>>>>> upstream/main
 	"When enabled, the model will respond to each chat message in real-time, generating a response as soon as the user sends a message. This mode is useful for live chat applications, but may impact performance on slower hardware.": "Lorsqu'il est activé, le modèle répondra à chaque message de la conversation en temps réel, générant une réponse dès que l'utilisateur envoie un message. Ce mode est utile pour les applications de conversation en direct, mais peut affecter les performances sur un matériel plus lent.",
 	"wherever you are": "où que vous soyez",
 	"Whether to paginate the output. Each page will be separated by a horizontal rule and page number. Defaults to False.": "Indique si la sortie doit être paginée. Chaque page sera séparée par une règle horizontale et un numéro de page. La valeur par défaut est False.",
@@ -2792,7 +1746,6 @@
 	"Yandex Web Search API Key": "Clé API de recherche web Yandex",
 	"Yandex Web Search config": "Configuration de recherche web Yandex",
 	"Yandex Web Search URL": "URL de recherche web Yandex",
-	"Yearly": "",
 	"Yesterday": "Hier",
 	"You": "Vous",
 	"You are a careful editor: terse, concrete, kind…": "",
@@ -2812,13 +1765,7 @@
 	"Your browser does not support the video tag.": "Votre navigateur ne prend pas en charge la balise « video ».",
 	"Your entire contribution will go directly to the plugin developer; Open WebUI does not take any percentage. However, the chosen funding platform might have its own fees.": "L'intégralité de votre contribution ira directement au développeur du plugin ; Open WebUI ne prend aucun pourcentage. Cependant, la plateforme de financement choisie peut avoir ses propres frais.",
 	"Your message text or inputs": "Vos messages envoyés",
-	"Your query will be sent to the configured web search provider.": "",
 	"Your usage stats have been successfully synced.": "Vos statistiques d'utilisation ont été synchronisées avec succès.",
-<<<<<<< HEAD
 	"Youtube Language": "Langue de Youtube",
-=======
-	"YouTube": "YouTube",
-	"Youtube Language": "Langue de YouTube",
->>>>>>> upstream/main
 	"Youtube Proxy URL": "URL du proxy YouTube"
 }

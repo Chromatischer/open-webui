@@ -5,88 +5,27 @@
 	"(e.g. `sh webui.sh --api`)": "(например, `sh webui.sh --api`)",
 	"(latest)": "(последняя)",
 	"(leave blank for to use commercial endpoint)": "(оставьте пустым поле для использования коммерческой конечной точки)",
-<<<<<<< HEAD
 	"{{COUNT}} extracted lines": "{{COUNT}} извлеченных строк",
 	"{{COUNT}} hidden lines": "{{COUNT}} скрытых строк",
 	"{{COUNT}} members": "{{COUNT}} участников",
-=======
-	"[Last] dddd [at] h:mm A": "[Последний] dddd [в] h:mm A",
-	"[Today at] h:mm A": "[Сегодня в] h:mm A",
-	"[Yesterday at] h:mm A": "[Вчера в] h:mm A",
-	"{{ models }}": "{{ модели }}",
-	"{{COUNT}} Available Skills": "",
-	"{{COUNT}} Available Tools": "{{COUNT}} доступных инструментов",
-	"{{COUNT}} characters": "{{COUNT}} символов",
-	"{{COUNT}} extracted lines": "{{COUNT}} извлеченных строк",
-	"{{COUNT}} files": "{{COUNT}} файлов",
-	"{{count}} files selected. Only new and modified files will be uploaded. Deleted files will be removed. The folder structure will be mirrored. Continue?_one": "",
-	"{{count}} files selected. Only new and modified files will be uploaded. Deleted files will be removed. The folder structure will be mirrored. Continue?_few": "",
-	"{{count}} files selected. Only new and modified files will be uploaded. Deleted files will be removed. The folder structure will be mirrored. Continue?_many": "",
-	"{{count}} files selected. Only new and modified files will be uploaded. Deleted files will be removed. The folder structure will be mirrored. Continue?_other": "",
-	"{{count}} filters_one": "",
-	"{{count}} filters_few": "",
-	"{{count}} filters_many": "",
-	"{{count}} filters_other": "",
-	"{{count}} groups_one": "",
-	"{{count}} groups_few": "",
-	"{{count}} groups_many": "",
-	"{{count}} groups_other": "",
-	"{{COUNT}} hidden lines": "{{COUNT}} скрытых строк",
-	"{{COUNT}} members": "{{COUNT}} участников",
-	"{{count}} of {{total}} accessible_one": "",
-	"{{count}} of {{total}} accessible_few": "",
-	"{{count}} of {{total}} accessible_many": "",
-	"{{count}} of {{total}} accessible_other": "",
-	"{{COUNT}} Replies": "{{COUNT}} Ответов",
->>>>>>> upstream/main
 	"{{COUNT}} Rows": "{{COUNT}} Строк",
 	"{{count}} selected_one": "{{count}} выбран",
 	"{{count}} selected_few": "{{count}} выбрано",
 	"{{count}} selected_many": "{{count}} выбрано",
 	"{{count}} selected_other": "{{count}} выбрано",
-<<<<<<< HEAD
-=======
-	"{{COUNT}} Sources": "{{COUNT}} Источников",
-	"{{count}} users_one": "",
-	"{{count}} users_few": "",
-	"{{count}} users_many": "",
-	"{{count}} users_other": "",
-	"{{COUNT}} words": "{{COUNT}} слов",
->>>>>>> upstream/main
 	"{{COUNT}}d_time_ago": "{{COUNT}} д назад",
 	"{{COUNT}}h_time_ago": "{{COUNT}} ч назад",
 	"{{COUNT}}m_time_ago": "{{COUNT}} мин назад",
 	"{{COUNT}}w_time_ago": "{{COUNT}} нед назад",
 	"{{COUNT}}y_time_ago": "{{COUNT}} г назад",
-<<<<<<< HEAD
-=======
-	"{{label}} contains invalid JSON": "",
-	"{{label}} must be a JSON object": "",
-	"{{LOCALIZED_DATE}} at {{LOCALIZED_TIME}}": "{{LOCALIZED_DATE}} в {{LOCALIZED_TIME}}",
-	"{{model}} download has been canceled": "{{model}} загрузка была отменена",
->>>>>>> upstream/main
 	"{{modelName}} profile image": "Изображение профиля {{modelName}}",
 	"{{user}}'s Chats": "Чаты {{user}}'а",
 	"{{webUIName}} Backend Required": "Необходимо подключение к серверу {{webUIName}}",
 	"*Prompt node ID(s) are required for image generation": "ID узлов промптов обязательны для генерации изображения",
-<<<<<<< HEAD
 	"1m_time_ago": "1 мин назад",
 	"a line about what this model is for…": "",
 	"A model binds a base mind to a system prompt, tools and knowledge — compose one and summon it in any chat.": "",
 	"A name and a base model, and it can be bound.": "",
-=======
-	"1 group": "",
-	"1 hour before": "За 1 час",
-	"1 Source": "1 Источник",
-	"1 user": "",
-	"10 minutes before": "За 10 минут",
-	"15 minutes before": "За 15 минут",
-	"1m_time_ago": "1 мин назад",
-	"30 minutes before": "За 30 минут",
-	"5 minutes before": "За 5 минут",
-	"A collaboration channel where people join as members": "Канал для совместной работы с присоединением участников",
-	"A discussion channel where access is controlled by groups and permissions": "Канал для обсуждений с доступом по группам и разрешениям",
->>>>>>> upstream/main
 	"A new version (v{{LATEST_VERSION}}) is now available.": "Новая версия (v{{LATEST_VERSION}}) теперь доступна.",
 	"A task model is used when performing tasks such as generating titles for chats and web search queries": "Модель задач используется при выполнении таких задач, как генерация заголовков для чатов и поисковых запросов в Интернете",
 	"Accept Autocomplete Generation\nJump to Prompt Variable": "Доступ к автозаполнению\nПерейти к переменной запроса",
@@ -94,11 +33,6 @@
 	"Access Control": "Контроль доступа",
 	"Access Grants": "Права доступа",
 	"Access List": "Список доступов",
-<<<<<<< HEAD
-=======
-	"Access prohibited": "",
-	"Access updated": "Доступ обновлен",
->>>>>>> upstream/main
 	"Accessible to all users": "Доступно всем пользователям",
 	"Account Activation Pending": "Ожидание активации учетной записи",
 	"Accurate information": "Точная информация",
@@ -109,7 +43,6 @@
 	"Activity": "Активность",
 	"Add": "Добавить",
 	"Add a model ID": "Добавить ID модели",
-	"Add a preference, fact, or instruction about you": "",
 	"Add a short description about what this model does": "Добавьте краткое описание того, что делает эта модель",
 	"Add a tag": "Добавьте тег",
 	"Add a tag...": "Добавить тег...",
@@ -118,22 +51,8 @@
 	"Add Connection": "Добавить соединение",
 	"Add Custom Parameter": "Добавить пользовательский параметр",
 	"Add Custom Prompt": "Добавить пользовательский запрос",
-<<<<<<< HEAD
-=======
-	"Add description": "Добавить описание",
->>>>>>> upstream/main
 	"Add Details": "Добавить детали",
-	"Add durable context for future chats": "",
 	"Add Files": "Добавить файлы",
-<<<<<<< HEAD
-=======
-	"Add Image": "Добавить изображение",
-	"Add Knowledge Connection": "",
-	"Add location": "Добавить место",
-	"Add Member": "Добавить участника",
-	"Add Members": "Добавить участников",
-	"Add Memory": "Добавить воспоминание",
->>>>>>> upstream/main
 	"Add Model": "Добавить модель",
 	"Add tag": "Добавить тег",
 	"Add Tag": "Добавить тег",
@@ -141,11 +60,6 @@
 	"Add to favorites": "Добавить в избранное",
 	"Add User": "Добавить пользователя",
 	"Add User Group": "Добавить группу пользователей",
-<<<<<<< HEAD
-=======
-	"Add webhook": "",
-	"Add webpage": "Добавить веб-страницу",
->>>>>>> upstream/main
 	"Add your Open Terminal URL and API key in Settings → Integrations.": "Добавьте URL и API-ключ Open Terminal в Настройки → Интеграции.",
 	"Additional Config": "Дополнительные настройки",
 	"Additional configuration options for marker. This should be a JSON string with key-value pairs. For example, '{\"key\": \"value\"}'. Supported keys include: disable_links, keep_pageheader_in_output, keep_pagefooter_in_output, filter_blank_pages, drop_repeated_text, layout_coverage_threshold, merge_threshold, height_tolerance, gap_threshold, image_threshold, min_line_length, level_count, default_level": "Дополнительные настройки для marker. Это должна быть строка JSON с ключами и значениями. Например, '{\"key\": \"value\"}'. Поддерживаемые ключи включают: disable_links, keep_pageheader_in_output, keep_pagefooter_in_output, filter_blank_pages, drop_repeated_text, layout_coverage_threshold, merge_threshold, height_tolerance, gap_threshold, image_threshold, min_line_length, level_count, default_level",
@@ -156,44 +70,22 @@
 	"Admin": "Админ",
 	"Admin Contact Email": "Адрес электронной почты администратора",
 	"Admin Panel": "Панель администратора",
-<<<<<<< HEAD
-=======
-	"Admin Roles": "",
-	"Admin Settings": "Настройки администратора",
-	"Admin-managed service account": "",
->>>>>>> upstream/main
 	"Admins have access to all tools at all times; users need tools assigned per model in the workspace.": "Администраторы всегда имеют доступ ко всем инструментам; пользователям нужны инструменты, назначенные для каждой модели в рабочем пространстве.",
 	"Advanced": "Расширенные",
 	"Advanced parameters for MinerU parsing (enable_ocr, enable_formula, enable_table, language, model_version, page_ranges)": "Дополнительные параметры для анализа MinerU (enable_ocr, enable_formula, enable_table, language, model_version, page_ranges)",
 	"Advanced Params": "Расширенные параметры",
 	"After updating or changing the embedding model, you must reindex the knowledge base for the changes to take effect. You can do this using the \"Reindex\" button below.": "После обновления или изменения модели встраивания необходимо пересоздать базу знаний для применения изменений. Вы можете это сделать, используя кнопку \"Пересоздать\" ниже.",
 	"All": "Все",
-<<<<<<< HEAD
 	"All time": "За всё время",
 	"All Users": "Все пользователи",
-=======
-	"All chats have been unarchived.": "Все чаты были разархивированы.",
-	"All day": "Весь день",
-	"All events": "",
-	"All models are now hidden": "Все модели скрыты",
-	"All models are now visible": "Все модели видимы",
-	"All models deleted successfully": "Все модели успешно удалены",
-	"All shared chats have been unshared.": "",
-	"All Sources": "",
-	"All time": "За всё время",
-	"All Users": "Все пользователи",
-	"All users and system events": "",
-	"Allow Call": "Разрешить звонки",
->>>>>>> upstream/main
 	"Allow Chat Controls": "Разрешить управление чатом",
 	"Allow Chat Delete": "Разрешить удаление чата",
 	"Allow Chat Edit": "Разрешить редактирование чата",
 	"Allow Chat Export": "Разрешить экспорт чата",
-	"Allow Chat Import": "",
 	"Allow Chat Params": "Разрешить параметры чата",
 	"Allow Chat Share": "Разрешить общий доступ к чату",
 	"Allow Chat System Prompt": "Разрешить системный промпт чата",
-	"Allow Chat Valves": "Разрешить параметры чата",
+	"Allow Chat Valves": "Разрешить вентили чата",
 	"Allow Continue Response": "Разрешить продолжение ответа",
 	"Allow Delete Messages": "Разрешить удаление сообщений",
 	"Allow File Upload": "Разрешить загрузку файлов",
@@ -204,11 +96,9 @@
 	"Allow Sharing With Users": "Разрешить делиться с пользователями",
 	"Allow Text to Speech": "Разрешить преобразование текста в речь",
 	"Allow Web Upload": "Разрешить загрузку из интернета",
-	"Allowed Domains": "",
 	"Allowed Endpoints": "Разрешенные энд-поинты",
 	"Allowed File Extensions": "Разрешенные расширения файлов",
 	"Allowed file extensions for upload. Separate multiple extensions with commas. Leave empty for all file types.": "Разрешенные расширения файлов для загрузки. Разделите несколько расширений запятыми. Оставьте поле пустым для всех типов файлов.",
-	"Allowed Roles": "",
 	"Already have an account?": "У вас уже есть учетная запись?",
 	"Alternative to the top_p, and aims to ensure a balance of quality and variety. The parameter p represents the minimum probability for a token to be considered, relative to the probability of the most likely token. For example, with p=0.05 and the most likely token having a probability of 0.9, logits with a value less than 0.045 are filtered out.": "Альтернатива top_p и направлена на обеспечение баланса качества и разнообразия. Параметр p представляет минимальную вероятность того, что токен будет рассмотрен, по сравнению с вероятностью наиболее вероятного токена. Например, при p=0,05 и наиболее вероятном значении токена, имеющем вероятность 0,9, логиты со значением менее 0,045 отфильтровываются.",
 	"Amazing": "Удивительно",
@@ -220,11 +110,6 @@
 	"API Base URL": "Базовый адрес API",
 	"API Base URL for Datalab Marker service. Defaults to: https://www.datalab.to/api/v1/marker": "Базовый URL API для сервиса Datalab Marker. По умолчанию: https://www.datalab.to/api/v1/marker",
 	"API Key": "Ключ API",
-<<<<<<< HEAD
-=======
-	"API Key / Token": "",
-	"API Key created.": "Ключ API создан.",
->>>>>>> upstream/main
 	"API Key Endpoint Restrictions": "Ограничения на энд-поинт API",
 	"API Keys": "Ключи API",
 	"API Mode": "Режим API",
@@ -239,99 +124,38 @@
 	"Archive": "Архив",
 	"Archived Chats": "Архив чатов",
 	"Are you sure you want to delete \"{{NAME}}\"?": "Вы уверены, что хотите удалить \"{{NAME}}\"?",
-<<<<<<< HEAD
 	"Are you sure you want to delete **{{modelName}}**?": "",
 	"Are you sure you want to delete this connection? This action cannot be undone.": "Вы уверены, что хотите удалить это подключение? Это действие нельзя отменить.",
 	"Are you sure you want to delete this?": "Вы уверены, что хотите удалить это?",
 	"Arena": "",
-=======
-	"Are you sure you want to delete **{{modelName}}**?": "Вы уверены, что хотите удалить **{{modelName}}**?",
-	"Are you sure you want to delete all chats? This action cannot be undone.": "Вы уверены, что хотите удалить все чаты? Это действие нельзя отменить.",
-	"Are you sure you want to delete this channel?": "Вы уверены, что хотите удалить этот канал?",
-	"Are you sure you want to delete this connection? This action cannot be undone.": "Вы уверены, что хотите удалить это подключение? Это действие нельзя отменить.",
-	"Are you sure you want to delete this directory?": "",
-	"Are you sure you want to delete this memory? This action cannot be undone.": "Вы уверены, что хотите удалить это воспоминание? Это действие нельзя отменить.",
-	"Are you sure you want to delete this message?": "Вы уверены, что хотите удалить это сообщение?",
-	"Are you sure you want to delete this version? Child versions will be relinked to this version's parent.": "Вы уверены, что хотите удалить эту версию? Дочерние версии будут привязаны к родительской.",
-	"Are you sure you want to delete this webhook? This action cannot be undone.": "",
-	"Are you sure you want to delete this?": "Вы уверены, что хотите удалить это?",
-	"Are you sure you want to reset all permissions to their default values? You will still need to save to apply the changes.": "",
-	"Are you sure you want to unarchive all archived chats?": "Вы уверены, что хотите разархивировать все заархивированные чаты?",
-	"Are you sure you want to unshare all shared chats? This will remove all share links.": "",
->>>>>>> upstream/main
 	"Arena Models": "Арена моделей",
 	"Artifacts": "Артефакты",
 	"Ask": "Спросить",
 	"Ask a question": "Задать вопрос",
-<<<<<<< HEAD
 	"Ask the User": "",
 	"Async Embedding Processing": "Асинхронная обработка эмбеддингов",
 	"Attach File From Knowledge": "Прикрепить файл из знаний",
-=======
-	"Ask a test question": "",
-	"Ask this knowledge source a test question": "",
-	"Assistant": "Ассистент",
-	"Async Embedding Processing": "Асинхронная обработка эмбеддингов",
-	"At time of event": "В момент события",
-	"Attach File From Knowledge": "Прикрепить файл из знаний",
-	"Attach Files": "Прикрепить файлы",
-	"Attach Knowledge": "Прикрепить знания",
-	"Attach Notes": "Прикрепить заметки",
-	"Attach Webpage": "Прикрепить веб-страницу",
->>>>>>> upstream/main
 	"Attention to detail": "Внимание к деталям",
 	"Attribute for Mail": "Атрибут для почты",
 	"Attribute for Username": "Атрибут для имени пользователя",
 	"Audience": "",
 	"August": "Август",
 	"Auth": "Вход",
-	"Auth Mode": "",
-	"Auth required": "",
 	"Authenticate": "Аутентификация",
 	"Authentication": "Аутентификация",
 	"Auto (Random)": "Автоматически (случайно)",
-<<<<<<< HEAD
 	"Auto-inject system tools for Agents (timestamps, memory, notes, etc.)": "",
-=======
-	"Auto Redirect": "",
-	"Auto-Copy Response to Clipboard": "Автоматическое копирование ответа в буфер обмена",
-	"Auto-Create Groups": "",
-	"Auto-Playback Response": "Автоматическое воспроизведение ответа",
->>>>>>> upstream/main
 	"Autocomplete Generation": "Генерация автозаполнения",
 	"Autocomplete Generation Input Max Length": "Максимальная длина входных данных автозаполнения",
-	"Autocomplete Generation Prompt": "",
-	"Automatic": "",
 	"Automatic1111": "Automatic1111",
-<<<<<<< HEAD
 	"AUTOMATIC1111 Api Auth String": "строка авторизации API AUTOMATIC1111",
 	"AUTOMATIC1111 Base URL": "Базовый URL адрес AUTOMATIC1111",
 	"AUTOMATIC1111 Base URL is required.": "Необходим базовый адрес URL AUTOMATIC1111.",
 	"Available list": "Список доступных",
-=======
-	"AUTOMATIC1111 Api Auth String": "Строка авторизации API AUTOMATIC1111",
-	"AUTOMATIC1111 Base URL": "Базовый URL AUTOMATIC1111",
-	"AUTOMATIC1111 Base URL is required.": "Требуется базовый URL AUTOMATIC1111.",
-	"Automatically inject system tools in native function calling mode (e.g., timestamps, memory, chat history, notes, etc.)": "Автоматически подключать системные инструменты в режиме вызова функций (временные метки, воспоминания, история чата, заметки и т.д.)",
-	"Automation": "Автоматизация",
-	"Automation created": "Автоматизация создана",
-	"Automation Name": "Название автоматизации",
-	"Automation title": "Название автоматизации",
-	"Automation triggered": "Автоматизация запущена",
-	"Automation updated": "Автоматизация обновлена",
-	"Automations": "Автоматизации",
-	"Available list": "Список вариантов",
->>>>>>> upstream/main
 	"Available models": "Доступные модели",
-	"Available Skills": "",
 	"Available Tools": "Доступные инструменты",
 	"available users": "доступные пользователи",
-	"Available variables": "",
 	"available!": "доступно!",
-<<<<<<< HEAD
-=======
-	"Away": "Нет на месте",
->>>>>>> upstream/main
 	"Awful": "Ужасно",
 	"Azure AI Speech": "Azure AI Speech",
 	"Azure OpenAI": "Azure OpenAI",
@@ -341,42 +165,23 @@
 	"Backup, export, and import instance data.": "",
 	"Bad Response": "Плохой ответ",
 	"Banners": "Баннеры",
-<<<<<<< HEAD
 	"Base model": "",
-=======
-	"Base Model (From)": "Базовая модель (от)",
-	"Base Model is required.": "",
->>>>>>> upstream/main
 	"Base Model List Cache speeds up access by fetching base models only at startup or on settings save—faster, but may not show recent base model changes.": "Кэш списка базовых моделей ускоряет доступ, загружая базовые модели только при запуске или сохранении настроек — быстрее, но может не показывать новые изменения в базовых моделях.",
 	"Bearer": "Bearer",
 	"Begin a new folio": "",
 	"Being lazy": "Лениво",
-<<<<<<< HEAD
 	"Beta": "Бета",
 	"Bind the model": "",
 	"Bing": "Bing",
 	"Bing Search V7 Endpoint": "Энд-поинт поиска Bing V7",
 	"Bing Search V7 Subscription Key": "Ключ API Bing Search V7",
-=======
-	"Bing": "Bing",
-	"Bing Search V7 Endpoint": "Энд-поинт поиска Bing V7",
-	"Bing Search V7 Subscription Key": "Ключ API Bing Search V7",
-	"Bio": "О себе",
-	"Birth Date": "Дата рождения",
-	"Blocked Groups": "",
->>>>>>> upstream/main
 	"BM25 Weight": "Вес BM25",
 	"Bocha Search API Key": "Ключ API поиска Bocha",
 	"Bold": "Полужирный",
-	"Boosting or penalizing specific tokens for constrained responses. Bias values will be clamped between -100 and 100 (inclusive). (Default: none)": "Повышает или снижает вероятность отдельных токенов для ограниченных ответов. Значения смещения будут ограничены диапазоном от -100 до 100 включительно. По умолчанию: нет.",
+	"Boosting or penalizing specific tokens for constrained responses. Bias values will be clamped between -100 and 100 (inclusive). (Default: none)": "Увеличение или отмена определенных токенов за ограниченные ответы. Значения смещения будут находиться в диапазоне от -100 до 100 (включительно). (По умолчанию: ничего)",
 	"Brave": "Brave",
 	"Brave Search API Key": "Ключ API поиска Brave",
-<<<<<<< HEAD
 	"Break down complex requests into trackable steps": "",
-=======
-	"Break down complex requests into trackable steps": "Разбивать сложные запросы на отслеживаемые шаги",
-	"Browse and query knowledge bases": "Обзор и запрос баз знаний",
->>>>>>> upstream/main
 	"Builtin Tools": "Встроенные инструменты",
 	"Bulk actions": "",
 	"Bullet List": "Маркированный список",
@@ -384,18 +189,6 @@
 	"Bypass Embedding and Retrieval": "Обход встраивания и извлечения данных",
 	"Bypass Web Loader": "Обход веб-загрузчика",
 	"Cache Base Model List": "Кэшировать список базовых моделей",
-<<<<<<< HEAD
-=======
-	"Calendar": "Календарь",
-	"Calendar created": "Календарь создан",
-	"Calendar deleted": "Календарь удален",
-	"Calendar name": "Название календаря",
-	"Calendars": "Календари",
-	"Calendars Public Sharing": "Публичный доступ к календарям",
-	"Call": "Вызов",
-	"Call feature is not supported when using Web STT engine": "Функция вызова не поддерживается при использовании Web STT (распознавание речи) движка",
-	"Camera": "Камера",
->>>>>>> upstream/main
 	"Cancel": "Отменить",
 	"Cancel download of {{model}}": "Отменить загрузку {{model}}",
 	"Capabilities": "Возможности",
@@ -407,31 +200,15 @@
 	"Character limit for autocomplete generation input": "Ограничение количества символов для ввода при генерации автозаполнения",
 	"Chart new frontiers": "Наметьте новые границы",
 	"Chat": "Чат",
-<<<<<<< HEAD
 	"Chat Completions": "Chat Completions",
 	"Chat Conversation": "Обсуждение в чате",
-=======
-	"Chat archived.": "Чат архивирован.",
-	"Chat Background Image": "Фоновое изображение чата",
-	"Chat Bubble UI": "Чат с пузырями сообщений",
-	"Chat Completions": "Chat Completions",
-	"Chat Conversation": "Обсуждение в чате",
-	"Chat deleted.": "Чат удален.",
-	"Chat Direction": "Направление чата",
-	"Chat exported successfully": "Чат успешно экспортирован",
->>>>>>> upstream/main
 	"Chat History": "История чата",
 	"Chat ID": "ID чата",
 	"Chat moved successfully": "Чат успешно перемещён",
 	"Chat Permissions": "Разрешения для чата",
-<<<<<<< HEAD
-=======
-	"Chat Tags Auto-Generation": "Автогенерация тегов чата",
-	"Chat unshared successfully.": "Общий доступ к чату отключен.",
->>>>>>> upstream/main
 	"chats": "чаты",
 	"Chats": "Чаты",
-	"Chats Public Sharing": "Публичный доступ к чатам",
+	"Chats Public Sharing": "",
 	"Check Again": "Перепроверьте ещё раз",
 	"Check for updates": "Проверить обновления",
 	"Checking for updates...": "Проверка обновлений...",
@@ -484,46 +261,19 @@
 	"Code Interpreter Prompt Template": "Шаблон промпта интерпретатора кода",
 	"Collapse": "Свернуть",
 	"Collection": "Коллекция",
-<<<<<<< HEAD
-=======
-	"Collection Field": "",
-	"Collections": "Коллекции",
->>>>>>> upstream/main
 	"Color": "Цвет",
 	"ComfyUI": "ComfyUI",
-	"ComfyUI API Key": "Ключ API ComfyUI",
-	"ComfyUI Base URL": "Базовый URL ComfyUI",
-	"ComfyUI Base URL is required.": "Требуется базовый URL ComfyUI.",
+	"ComfyUI API Key": "ComfyUI ключ API",
+	"ComfyUI Base URL": "Базовый адрес URL ComfyUI",
+	"ComfyUI Base URL is required.": "Необходим базовый адрес URL ComfyUI.",
 	"ComfyUI Workflow": "Рабочий процесс ComfyUI",
 	"ComfyUI Workflow Nodes": "Узлы рабочего процесса ComfyUI",
 	"Comma separated Node Ids (e.g. 1 or 1,2)": "ID узлов через запятую (напр., 1 или 1,2)",
-<<<<<<< HEAD
-=======
-	"Comma-separated group names": "",
-	"Comma-separated list of file extensions MinerU will handle (e.g. pdf, docx, pptx, xlsx)": "",
-	"command": "команда",
-	"Command": "Команда",
->>>>>>> upstream/main
 	"Comment": "Комментарий",
 	"Community Reviews": "Отзывы сообщества",
-<<<<<<< HEAD
 	"Compose your first model": "",
 	"Concurrent Requests": "Одновременные запросы",
 	"Config": "Конфигурация",
-=======
-	"Compacting context": "",
-	"Comparing with knowledge base...": "",
-	"Completions": "Завершения",
-	"Compress Images in Channels": "Сжимать изображения в каналах",
-	"Computing checksums ({{count}} files)_one": "",
-	"Computing checksums ({{count}} files)_few": "",
-	"Computing checksums ({{count}} files)_many": "",
-	"Computing checksums ({{count}} files)_other": "",
-	"Concurrent Requests": "Одновременные запросы",
-	"Config": "Конфигурация",
-	"Config imported successfully": "Конфигурация успешно импортирована",
-	"Configuration": "Конфигурация",
->>>>>>> upstream/main
 	"Configure": "Настроить",
 	"Confirm": "Подтвердить",
 	"Confirm Password": "Подтвердите пароль",
@@ -534,31 +284,16 @@
 	"Connect to Open Terminal instances. All users will have access to file browsing and terminal tools through these servers.": "Подключение к экземплярам Open Terminal. Все пользователи получат доступ к файлам и терминалу через эти серверы.",
 	"Connect to your own OpenAPI compatible external tool servers.": "Подключитесь к вашим собственным внешним инструментальным серверам, совместимым с OpenAPI.",
 	"Connected": "",
-<<<<<<< HEAD
 	"Connection failed": "Подключение не удалось",
 	"Connection lost. Reconnecting...": "",
-=======
-	"Connected ({{type}})": "Подключено ({{type}})",
-	"Connection failed": "Подключение не удалось",
-	"Connection lost. Reconnecting...": "Соединение потеряно. Повторное подключение...",
-	"Connection successful": "Успешное подключение",
->>>>>>> upstream/main
 	"Connection Type": "Тип подключения",
 	"Connections": "Подключения",
 	"Constrains effort on reasoning for reasoning models. Only applicable to reasoning models from specific providers that support reasoning effort.": "Ограничивает усилия по обоснованию для моделей обоснования. Применимо только к моделям обоснования от конкретных поставщиков, которые поддерживают усилия по обоснованию.",
 	"Contact Admin for WebUI Access": "Обратитесь к администратору для получения доступа к WebUI",
 	"Content": "Содержание",
 	"Content Extraction Engine": "Механизм извлечения контента",
-	"Content Field": "",
 	"Content lengths (character counts only)": "Длина контента (только количество символов)",
-	"Context": "",
-	"Context compacted": "",
-	"Context Compaction": "",
-	"Context compaction failed": "",
-	"Context Compaction Prompt": "",
-	"Context Compaction Threshold": "",
-	"Context Tokens": "Токены контекста",
-	"Continue": "",
+	"Context Tokens": "",
 	"Continue Response": "Продолжить ответ",
 	"Continue with {{provider}}": "Продолжить с {{provider}}",
 	"Continue with Email": "Продолжить с Email",
@@ -574,12 +309,7 @@
 	"Copy Last Code Block": "Копировать последний блок кода",
 	"Copy Last Response": "Копировать последний ответ",
 	"Copy Link": "Копировать ссылку",
-<<<<<<< HEAD
 	"Copy Path": "",
-=======
-	"Copy Path": "Копировать путь",
-	"Copy Prompt": "Копировать запрос",
->>>>>>> upstream/main
 	"Copy Share Link": "Копировать ссылку для обмена",
 	"Copy to clipboard": "Скопировать в буфер обмена",
 	"Copying to clipboard was successful!": "Копирование в буфер обмена прошло успешно!",
@@ -590,25 +320,10 @@
 	"Create a model": "Создание модели",
 	"Create Account": "Создать аккаунт",
 	"Create Admin Account": "Создать аккаунт Администратора",
-<<<<<<< HEAD
-=======
-	"Create and manage scheduled automations": "Создавайте запланированные автоматизации и управляйте ими",
-	"Create Channel": "Создать канал",
->>>>>>> upstream/main
 	"Create Folder": "Создать папку",
 	"Create Image": "Создать изображение",
 	"Create model": "",
 	"Create Model": "Создать модель",
-<<<<<<< HEAD
-=======
-	"Create new key": "Создать новый ключ",
-	"Create new secret key": "Создать новый секретный ключ",
-	"Create note": "Создать заметку",
-	"Create Note": "Создать заметку",
-	"Create one read-only Knowledge source per external collection. Test must pass before the source is created.": "",
-	"Create scheduled prompts that run automatically on a recurring basis.": "Создавайте запланированные промпты, которые автоматически запускаются по повторяющемуся расписанию.",
-	"Create your first note by clicking on the plus button below.": "Создайте свою первую заметку, нажав на кнопку плюс ниже.",
->>>>>>> upstream/main
 	"Created at": "Создан(а)",
 	"Created At": "Создано",
 	"Created by": "Создано",
@@ -616,31 +331,15 @@
 	"CSV Import": "Импорт CSV",
 	"Current Model": "Текущая модель",
 	"Custom": "Пользовательский",
-<<<<<<< HEAD
 	"Custom color": "",
 	"Custom Parameter Name": "Название пользовательского параметра",
 	"Custom Parameter Value": "Значение пользовательского параметра",
 	"Custom presets that pair a base model with a system prompt, tools, knowledge and capabilities — build your own assistants and reuse them anywhere in chat.": "",
-=======
-	"Custom color": "Пользовательский цвет",
-	"Custom description enabled": "Пользовательское описание включено",
-	"Custom Gender": "Другой пол",
-	"Custom Parameter Name": "Название пользовательского параметра",
-	"Custom Parameter Value": "Значение пользовательского параметра",
-	"Custom range": "",
-	"Daily": "Ежедневно",
->>>>>>> upstream/main
 	"Daily Messages": "Сообщений в день",
 	"Danger Zone": "Опасная зона",
 	"Database": "База данных",
 	"Datalab Marker API": "Datalab Marker API",
-<<<<<<< HEAD
 	"Date Modified": "",
-=======
-	"Date Modified": "Дата изменения",
-	"Day": "День",
-	"DD/MM/YYYY": "ДД/ММ/ГГГГ",
->>>>>>> upstream/main
 	"DDGS Backend": "Бэкенд DDGS",
 	"December": "Декабрь",
 	"Deepgram": "Deepgram",
@@ -651,6 +350,7 @@
 	"Default Features": "Функции по умолчанию",
 	"Default Filters": "Фильтры по умолчанию",
 	"Default Group": "Дефолтная группа",
+	"Default mode works with a wider range of models by calling tools once before execution. Native mode leverages the model's built-in tool-calling capabilities, but requires the model to inherently support this feature.": "Режим по умолчанию работает с более широким спектром моделей, вызывая инструменты один раз перед выполнением. Режим Нативно использует встроенные в модель возможности вызова инструментов, но требует, чтобы модель изначально поддерживала эту функцию.",
 	"Default Model": "Модель по умолчанию",
 	"Default permissions": "Разрешения по умолчанию",
 	"Default Prompt Suggestions": "Предложения промптов по умолчанию",
@@ -658,28 +358,13 @@
 	"Default to ALL": "По умолчанию ВСЕ",
 	"Default to segmented retrieval for focused and relevant content extraction, this is recommended for most cases.": "По умолчанию используется сегментированный поиск для целенаправленного извлечения релевантного контента, что рекомендуется в большинстве случаев.",
 	"Default User Role": "Роль пользователя по умолчанию",
-	"Default webhook": "",
 	"Defaults": "По умолчанию",
 	"Delete": "Удалить",
 	"Delete {{name}}": "Удалить {{name}}",
 	"Delete a model": "Удалить модель",
-<<<<<<< HEAD
 	"Delete all contents inside this folder": "Удалить все содержимое внутри этой папки",
 	"Delete Chat": "Удалить Чат",
 	"Delete chat?": "Удалить чат?",
-=======
-	"Delete All": "Удалить ВСЕ",
-	"Delete All Chats": "Удалить ВСЕ Чаты",
-	"Delete all contents inside this directory": "",
-	"Delete all contents inside this folder": "Удалить все содержимое внутри этой папки",
-	"Delete automation?": "Удалить автоматизацию?",
-	"Delete calendar": "Удалить календарь",
-	"Delete Calendar": "Удалить календарь",
-	"Delete Chat": "Удалить Чат",
-	"Delete chat?": "Удалить чат?",
-	"Delete directory?": "",
-	"Delete Event": "Удалить событие",
->>>>>>> upstream/main
 	"Delete File": "Удалить файл",
 	"Delete folder?": "Удалить папку?",
 	"Delete function?": "Удалить функцию?",
@@ -700,39 +385,17 @@
 	"Direct Connections": "Прямые подключения",
 	"Direct Connections allow users to connect to their own OpenAI compatible API endpoints.": "Прямые подключения позволяют пользователям подключаться к своим собственным конечным точкам API, совместимым с OpenAI.",
 	"Direct Tool Servers": "Доступ к серверам инструментов",
-<<<<<<< HEAD
-=======
-	"Directory created.": "",
-	"Directory deleted.": "",
-	"Directory moved.": "",
-	"Directory name": "",
-	"Directory renamed.": "",
-	"Directory selection was cancelled": "Выбор папки был отменён",
->>>>>>> upstream/main
 	"Disable All": "Отключить все",
 	"Disable Image Extraction": "Отключить извлечение изображений",
 	"Disable image extraction from the PDF. If Use LLM is enabled, images will be automatically captioned. Defaults to False.": "Отключить извлечение изображений из PDF. Если включена параметр Использовать LLM, изображения будут подписаны автоматически. По умолчанию установлено значение Выкл.",
-	"Disable Image Generation": "",
-	"Disable Web Search": "",
 	"Disabled": "Отключено",
-<<<<<<< HEAD
 	"Discard this folio": "",
 	"Discarded": "",
-=======
-	"Disconnect OAuth": "Отключить OAuth",
->>>>>>> upstream/main
 	"Discover a function": "Найти функцию",
 	"Discover how to use Open WebUI and seek support from the community.": "Узнайте, как использовать Open WebUI, и обратитесь за поддержкой к сообществу.",
 	"Discover wonders": "Откройте для себя чудеса",
 	"Discover, download, and explore custom functions": "Открывайте для себя, загружайте и исследуйте пользовательские функции",
 	"Display": "Отображать",
-<<<<<<< HEAD
-=======
-	"Display Chat Title in Tab": "Показывать заголовок чата во вкладке",
-	"Display Emoji in Call": "Отображать эмодзи в вызовах",
-	"Display Multi-model Responses in Tabs": "Отображать ответы нескольких моделей во вкладках",
-	"Display the Username Instead of You in the Chat": "Отображать имя пользователя вместо 'Вы' в чате",
->>>>>>> upstream/main
 	"Displays citations in the response": "Отображает цитаты в ответе",
 	"Displays status updates (e.g., web search progress) in the response": "Отображает обновления статуса (например, прогресс поиска в сети) в ответе",
 	"Dissolve": "",
@@ -745,7 +408,6 @@
 	"Docling Parameters": "Параметры Docling",
 	"Docling Server URL required.": "Необходим URL сервера Docling",
 	"Document": "Документ",
-	"Document ID Field": "",
 	"Document Intelligence": "Интеллектуальный анализ документов",
 	"Document Intelligence endpoint required.": "Требуется конечная точка Document Intelligence.",
 	"Document Intelligence Model": "Модель Document Intelligence",
@@ -799,61 +461,41 @@
 	"Edit Default Permissions": "Изменить разрешения по умолчанию",
 	"Edit Folder": "Редактировать папку",
 	"Edit Image": "Редактировать изображение",
-	"Edit Knowledge Connection": "",
 	"Edit Last Message": "Редактировать последнее сообщение",
 	"Edit Model": "",
 	"Edit Terminal Connection": "Редактировать подключение к терминалу",
 	"Edit User": "Редактировать пользователя",
 	"Edit User Group": "Редактировать Пользовательскую Группу",
-	"Edit webhook": "",
 	"Edit workflow.json content": "Редактировать содержимое workflow.json",
 	"Eject": "Выгрузить",
 	"Eject model": "Выгрузить модель",
 	"ElevenLabs": "ElevenLabs",
 	"Email": "Электронная почта",
-	"Email Claim": "",
 	"Embark on adventures": "Отправляйтесь в приключения",
 	"Embedding": "Встраивание",
 	"Embedding Batch Size": "Размер пакета для встраивания",
 	"Embedding Concurrent Requests": "Параллельные запросы эмбеддингов",
 	"Embedding Model": "Модель встраивания",
 	"Embedding Model Engine": "Движок модели встраивания",
-<<<<<<< HEAD
 	"Emojis": "",
-=======
-	"Emoji": "",
-	"Emojis": "Эмодзи",
-	"Empty": "",
-	"Empty message": "Пустое сообщение",
->>>>>>> upstream/main
 	"Enable All": "Включить Все",
 	"Enable API Keys": "Включить API-ключи",
 	"Enable autocomplete generation for chat messages": "Включить генерацию автозаполнения для сообщений чата",
 	"Enable Code Execution": "Включить исполнение кода",
 	"Enable Code Interpreter": "Включить интерпретатор кода",
 	"Enable Community Sharing": "Включить совместное использование",
-	"Enable Group Mapping": "",
-	"Enable Image Generation": "",
 	"Enable Memory Locking (mlock) to prevent model data from being swapped out of RAM. This option locks the model's working set of pages into RAM, ensuring that they will not be swapped out to disk. This can help maintain performance by avoiding page faults and ensuring fast data access.": "Включите блокировку памяти (mlock), чтобы предотвратить выгрузку данных модели из ОЗУ. Эта опция блокирует рабочий набор страниц модели в оперативной памяти, гарантируя, что они не будут выгружены на диск. Это может помочь поддерживать производительность, избегая ошибок страниц и обеспечивая быстрый доступ к данным.",
 	"Enable Memory Mapping (mmap) to load model data. This option allows the system to use disk storage as an extension of RAM by treating disk files as if they were in RAM. This can improve model performance by allowing for faster data access. However, it may not work correctly with all systems and can consume a significant amount of disk space.": "Включите отображение памяти (mmap), чтобы загрузить данные модели. Эта опция позволяет системе использовать дисковое хранилище в качестве расширения оперативной памяти, обрабатывая дисковые файлы так, как если бы они находились в оперативной памяти. Это может улучшить производительность модели за счет более быстрого доступа к данным. Однако он может работать некорректно со всеми системами и занимать значительный объем дискового пространства.",
 	"Enable Message Rating": "Разрешить оценку ответов",
 	"Enable Mirostat sampling for controlling perplexity.": "Включите выборку Mirostat для контроля путаницы.",
 	"Enable New Sign Ups": "Разрешить новые регистрации",
-	"Enable OAuth Signup": "",
-	"Enable Role Mapping": "",
-	"Enable Web Search": "",
 	"Enable, disable, or customize the reasoning tags used by the model. \"Enabled\" uses default tags, \"Disabled\" turns off reasoning tags, and \"Custom\" lets you specify your own start and end tags.": "Включить, отключить или настроить теги рассуждения, используемые моделью. \"Включено\" использует теги по умолчанию, \"Отключено\" выключает теги рассуждения, а \"Пользовательские\" позволяет указать собственные начальные и конечные теги.",
 	"Enabled": "Включено",
 	"End Tag": "Конечный тег",
-	"Endpoint": "",
 	"Endpoint URL": "URL-адрес конечной точки",
 	"Enrich Hybrid Search Text": "Обогащать текст гибридного поиска",
 	"Ensure your CSV file includes 4 columns in this order: Name, Email, Password, Role.": "Убедитесь, что ваш CSV-файл включает в себя 4 столбца в следующем порядке: Имя, Электронная почта, Пароль, Роль.",
-<<<<<<< HEAD
 	"Enter a name first": "",
-=======
-	"Enter {{role}} message here": "Введите сообщение {{role}} здесь",
->>>>>>> upstream/main
 	"Enter a title for the pending user info overlay. Leave empty for default.": "Введите заголовок информационного оверлея для ожидающего пользователя. Оставьте поле пустым для параметра по умолчанию.",
 	"Enter a watermark for the response. Leave empty for none.": "Укажите водяной знак для ответа. Оставьте пустым чтобы не было никакого.",
 	"Enter additional headers in JSON format": "Введите дополнительные заголовки в формате JSON",
@@ -870,8 +512,6 @@
 	"Enter Chunk Min Size Target": "Введите минимальный размер чанка",
 	"Enter Chunk Overlap": "Введите перекрытие фрагмента",
 	"Enter Chunk Size": "Введите размер фрагмента",
-	"Enter Client ID": "",
-	"Enter Client Secret": "",
 	"Enter comma-separated \"token:bias_value\" pairs (example: 5432:100, 413:-100)": "Введите пары \"token:bias_value\", разделенные запятыми (пример: 5432:100, 413:-100).",
 	"Enter content for the pending user info overlay. Leave empty for default.": "Введите содержимое информационного оверлея для ожидающего пользователя. Оставьте поле пустым для параметра по умолчанию.",
 	"Enter coordinates (e.g. 51.505, -0.09)": "Введите координаты (напр. 51.505, -0.09)",
@@ -908,15 +548,7 @@
 	"Enter Jupyter Token": "Введите токен Jupyter",
 	"Enter Jupyter URL": "Введите URL Jupyter",
 	"Enter Kagi Search API Key": "Введите ключ API поиска Kagi",
-<<<<<<< HEAD
-=======
-	"Enter Key Behavior": "Введите ключ поведения",
-	"Enter language": "",
->>>>>>> upstream/main
 	"Enter language codes": "Введите коды языков",
-	"Enter Linkup API Key": "",
-	"Enter Microsoft Web IQ API Base URL": "",
-	"Enter Microsoft Web IQ API Key": "",
 	"Enter MinerU API Key": "Введите API-ключ MinerU",
 	"Enter Mistral API Base URL": "Введите базовый URL Mistral API",
 	"Enter Mistral API Key": "Введите ключ API для Mistral",
@@ -927,19 +559,14 @@
 	"Enter New Password": "Введите новый пароль",
 	"Enter Number of Steps (e.g. 50)": "Введите количество шагов (например, 50)",
 	"Enter Ollama Cloud API Key": "Введите API-ключ Ollama Cloud",
-	"Enter PaddleOCR-vl API Base URL": "Введите базовый URL API PaddleOCR-vl",
-	"Enter PaddleOCR-vl API Token": "Введите токен API PaddleOCR-vl",
+	"Enter PaddleOCR-vl API Base URL": "",
+	"Enter PaddleOCR-vl API Token": "",
 	"Enter Perplexity API Key": "Введите ключ API Perplexity",
 	"Enter Perplexity Search API URL": "Введите URL Perplexity Search API",
 	"Enter Playwright Timeout": "Введите таймаут для Playwright",
 	"Enter Playwright WebSocket URL": "Введите URL-адрес Playwright WebSocket",
-<<<<<<< HEAD
-=======
-	"Enter prompt here.": "Введите промпт здесь.",
->>>>>>> upstream/main
 	"Enter proxy URL (e.g. https://user:password@host:port)": "Введите URL прокси-сервера (например, https://user:password@host:port)",
 	"Enter reasoning effort": "Введите причинность рассудения",
-	"Enter Redirect URI": "",
 	"Enter Score": "Введите оценку",
 	"Enter SearchApi API Key": "Введите ключ API SearchApi",
 	"Enter SearchApi Engine": "Введите SearchApi движок",
@@ -949,7 +576,6 @@
 	"Enter SerpApi API Key": "Введите ключ API SerpApi",
 	"Enter SerpApi Engine": "Введите движок SerpApi",
 	"Enter Serper API Key": "Введите ключ API Serper",
-	"Enter SERPHouse API Key": "",
 	"Enter Serply API Key": "Введите ключ API Serply",
 	"Enter Serpstack API Key": "Введите ключ API Serpstack",
 	"Enter server host": "Введите хост сервера",
@@ -962,21 +588,11 @@
 	"Enter system prompt": "Введите системный промпт",
 	"Enter Tavily API Key": "Введите ключ API Tavily",
 	"Enter Tavily Extract Depth": "Укажите глубину извлечения Tavily",
-<<<<<<< HEAD
-=======
-	"Enter the prompt instructions for this automation...": "Введите инструкции промпта для этой автоматизации...",
->>>>>>> upstream/main
 	"Enter the public URL of your WebUI. This URL will be used to generate links in the notifications.": "Введите общедоступный URL вашего WebUI. Этот URL будет использоваться для создания ссылок в уведомлениях.",
 	"Enter the URL of the function to import": "Введите URL-адрес функции для импорта",
 	"Enter the URL to import": "Введите URL-адрес для импорта",
 	"Enter Tika Server URL": "Введите URL-адрес сервера Tika",
 	"Enter timeout in seconds": "Введите время ожидания в секундах",
-<<<<<<< HEAD
-=======
-	"Enter to Send": "Enter для отправки",
-	"Enter token threshold": "",
-	"Enter Tokenizer Model": "",
->>>>>>> upstream/main
 	"Enter Top K": "Введите Top K",
 	"Enter Top K Reranker": "Введите Top K переоценщика",
 	"Enter URL (e.g. http://127.0.0.1:7860/)": "Введите URL-адрес (например, http://127.0.0.1:7860/)",
@@ -1000,33 +616,14 @@
 	"Ephemeral": "Временное",
 	"Error": "Ошибка",
 	"ERROR": "ОШИБКА",
-<<<<<<< HEAD
 	"Error deleting model: {{error}}": "",
-=======
-	"Error accessing directory": "Ошибка доступа к директории",
-	"Error accessing Google Drive: {{error}}": "Ошибка доступа к Google Drive: {{error}}",
-	"Error accessing media devices.": "Ошибка доступа к мультимедийным устройствам.",
-	"Error deleting model: {{error}}": "Ошибка удаления модели: {{error}}",
-	"Error starting recording.": "Ошибка при запуске записи.",
->>>>>>> upstream/main
 	"Error unloading model: {{error}}": "Ошибка загрузки модели: {{error}}",
 	"Error uploading file: {{error}}": "Ошибка загрузки файла: {{error}}",
 	"Error: A model with the ID '{{modelId}}' already exists. Please select a different ID to proceed.": "Ошибка: Модель с ID '{{modelId}}' уже существует. Пожалуйста, выберите другой ID для продолжения.",
 	"Error: Model ID cannot be empty. Please enter a valid ID to proceed.": "Ошибка: ID модели не может быть пустым. Пожалуйста, введите корректный ID для продолжения.",
 	"Evaluations": "Оценки",
-<<<<<<< HEAD
 	"Every craft begins bare-handed.": "",
-=======
-	"Event": "",
-	"Event created": "Событие создано",
-	"Event deleted": "Событие удалено",
-	"Event names may change as Open WebUI evolves. Use broad patterns like user.* for integrations that should continue across new related events.": "",
-	"Event title": "Название события",
-	"Event updated": "Событие обновлено",
-	"Events": "",
->>>>>>> upstream/main
 	"Exa API Key": "Ключ API для Exa",
-	"Example": "",
 	"Example: (&(objectClass=inetOrgPerson)(uid=%s))": "Например: (&(objectClass=inetOrgPerson)(uid=%s))",
 	"Example: ALL": "Например: ALL",
 	"Example: mail": "Example: mail",
@@ -1035,12 +632,6 @@
 	"Exceeded the number of seats in your license. Please contact support to increase the number of seats.": "Превышено количество мест в вашей лицензии. Пожалуйста, свяжитесь со службой поддержки, чтобы увеличить количество мест.",
 	"Exclude": "Исключать",
 	"Execute code": "Выполнить код",
-<<<<<<< HEAD
-=======
-	"Execute code for analysis": "Выполнить код для анализа",
-	"Executing **{{NAME}}**...": "Выполняю **{{NAME}}**...",
-	"Execution Logs": "Журналы выполнения",
->>>>>>> upstream/main
 	"Expand": "Расширить",
 	"Experimental": "Экспериментальное",
 	"Explain": "Объяснить",
@@ -1049,34 +640,23 @@
 	"Exploring": "Изучение",
 	"Export": "Экспорт",
 	"Export All Chats (All Users)": "Экспортировать все чаты (всех пользователей)",
-	"Export as CSV": "Экспортировать как CSV",
-	"Export as JSON": "Экспортировать как JSON",
+	"Export as CSV": "",
+	"Export as JSON": "",
 	"Export chat (.json)": "Экспортировать чат (.json)",
 	"Export Config": "Экспортировать конфигурации",
 	"Export Models": "Экспортировать модели",
-<<<<<<< HEAD
-=======
-	"Export Prompts": "Экспортировать промпты",
-	"Export Skills": "",
->>>>>>> upstream/main
 	"Export to CSV": "Экспортировать в CSV",
 	"Export Tools": "Экспортировать инструменты",
 	"Export Users": "Экспортировать пользователей",
 	"External": "Внешнее",
-	"External connection not found.": "",
 	"External Document Loader URL required.": "Требуется URL-адрес внешнего загрузчика документов.",
-	"External Knowledge Source": "",
-	"External Knowledge Sources": "",
 	"External Task Model": "Модель внешней задачи",
-	"External Tool Servers": "",
-	"External vectors must be generated with the same embedding model configured in Open WebUI.": "",
 	"External Web Loader API Key": "Ключ API внешнего веб-загрузчика",
 	"External Web Loader URL": "URL-адрес внешнего веб-загрузчика",
 	"External Web Search API Key": "Внешний ключ API веб-поиска",
 	"External Web Search URL": "URL-адрес внешнего веб-поиска",
 	"Faculties": "",
 	"Failed to archive chat.": "Не удалось архивировать чат.",
-<<<<<<< HEAD
 	"Failed to connect to {{URL}} OpenAPI tool server": "Не удалось подключиться к серверу инструмента OpenAI {{URL}}",
 	"Failed to connect to {{URL}} terminal server": "Не удалось подключиться к серверу терминала {{URL}}",
 	"Failed to copy link": "Не удалось скопировать ссылку",
@@ -1086,39 +666,11 @@
 	"Failed to extract content from the file: {{error}}": "Не удалось извлечь содержимое из файла: {{error}}",
 	"Failed to extract content from the file.": "Не удалось извлечь содержимое из файла.",
 	"Failed to fetch models": "Не удалось получить модели",
-=======
-	"Failed to attach file": "Не удалось прикрепить файл",
-	"Failed to clear status": "Не удалось очистить статус",
-	"Failed to compare files.": "",
-	"Failed to connect to {{URL}} OpenAPI tool server": "Не удалось подключиться к серверу инструментов OpenAPI {{URL}}",
-	"Failed to connect to {{URL}} terminal server": "Не удалось подключиться к серверу терминала {{URL}}",
-	"Failed to copy link": "Не удалось скопировать ссылку",
-	"Failed to create API Key.": "Не удалось создать ключ API.",
-	"Failed to delete calendar": "Не удалось удалить календарь",
-	"Failed to delete note": "Не удалось удалить заметку",
-	"Failed to delete webhook": "",
-	"Failed to disconnect": "Не удалось отключиться",
-	"Failed to download image": "Не удалось загрузить изображение",
-	"Failed to extract content from the file: {{error}}": "Не удалось извлечь содержимое из файла: {{error}}",
-	"Failed to extract content from the file.": "Не удалось извлечь содержимое из файла.",
-	"Failed to fetch models": "Не удалось получить модели",
-	"Failed to generate title": "Не удалось сгенерировать заголовок",
-	"Failed to import models": "Не удалось импортировать модели",
-	"Failed to load chat": "",
-	"Failed to load chat preview": "Не удалось загрузить предпросмотр чата",
->>>>>>> upstream/main
 	"Failed to load DOCX file. Please try downloading it instead.": "Не удалось загрузить файл DOCX. Попробуйте скачать его.",
 	"Failed to load Excel/CSV file. Please try downloading it instead.": "Не удалось загрузить файл Excel/CSV. Попробуйте скачать его.",
 	"Failed to load Interface settings": "Не удалось загрузить настройки Интерфейса",
 	"Failed to load PPTX file. Please try downloading it instead.": "Не удалось загрузить файл PPTX. Попробуйте скачать его.",
 	"Failed to move chat": "Не удалось переместить чат",
-<<<<<<< HEAD
-=======
-	"Failed to process URL: {{url}}": "Не удалось обработать URL: {{url}}",
-	"Failed to read clipboard contents": "Не удалось прочитать содержимое буфера обмена",
-	"Failed to refresh terminals: {{error}}": "",
-	"Failed to remove member": "Не удалось удалить участника",
->>>>>>> upstream/main
 	"Failed to render diagram": "Не удалось отрисовать диаграмму",
 	"Failed to render visualization": "Не удалось отрисовать визуализацию",
 	"Failed to save": "",
@@ -1127,16 +679,10 @@
 	"Failed to save models configuration": "Не удалось сохранить конфигурацию моделей",
 	"Failed to save policy: {{error}}": "Не удалось сохранить политику: {{error}}",
 	"Failed to save terminal servers": "Не удалось сохранить серверы терминала",
-	"Failed to save webhook": "",
 	"Failed to unshare chat.": "Не удалось отменить публикацию чата.",
 	"Failed to update settings": "Не удалось обновить настройки",
 	"Failed to update status": "Не удалось обновить статус",
-<<<<<<< HEAD
 	"Favicons": "",
-=======
-	"Failed to update webhook": "",
-	"Failed to upload file.": "Не удалось загрузить файл.",
->>>>>>> upstream/main
 	"Features": "Функции",
 	"Features Permissions": "Разрешения для функций",
 	"February": "Февраль",
@@ -1149,32 +695,14 @@
 	"File": "Файл",
 	"File browser": "Файловый менеджер",
 	"File Context": "Контекст файла",
-<<<<<<< HEAD
-=======
-	"File deleted successfully.": "Файл успешно удалён.",
-	"File Extensions": "",
->>>>>>> upstream/main
 	"File Mode": "Режим файла",
-	"File moved.": "",
 	"File name": "Имя файла",
 	"File not found.": "Файл не найден.",
-<<<<<<< HEAD
 	"File size should not exceed {{maxSize}} MB.": "Размер файла не должен превышать {{maxSize}} МБ.",
 	"File Upload": "Загрузка файла",
 	"Filename": "Имя файла",
 	"Files": "Файлы",
 	"Fill name + base model to create": "",
-=======
-	"File removed successfully.": "Файл успешно удален.",
-	"File renamed.": "",
-	"File size should not exceed {{maxSize}} MB.": "Размер файла не должен превышать {{maxSize}} МБ.",
-	"File Upload": "Загрузка файла",
-	"File uploaded successfully": "Файл успешно загружен",
-	"Filename": "Имя файла",
-	"Files": "Файлы",
-	"Fill the required fields first.": "",
-	"Fill the source fields and test query first.": "",
->>>>>>> upstream/main
 	"Filter": "Фильтр",
 	"Filters": "Фильтры",
 	"Filters, valves, and middleware workflows.": "",
@@ -1192,12 +720,8 @@
 	"Folder name cannot be empty.": "Название папки не может быть пустым.",
 	"Folder options": "Параметры папки",
 	"Folders": "Папки",
-<<<<<<< HEAD
 	"folio": "",
 	"folios": "",
-=======
-	"Folders Sharing": "",
->>>>>>> upstream/main
 	"Follow up": "Продолжить",
 	"Follow Up Generation": "Генерация продолжения",
 	"Follow Up Generation Prompt": "Промпт генерации продолжения",
@@ -1214,13 +738,9 @@
 	"Forward": "Вперёд",
 	"Forwards system user OAuth access token to authenticate": "Передаёт токен доступа OAuth системного пользователя для аутентификации",
 	"Forwards system user session credentials to authenticate": "Перенаправляет учетные данные сеанса системного пользователя для проверки подлинности",
-<<<<<<< HEAD
 	"Frequency Penalty": "",
 	"From .json file": "",
 	"From .md or .json": "",
-=======
-	"Fr_day_of_week": "Пт",
->>>>>>> upstream/main
 	"Full Context Mode": "Режим полного контекста",
 	"Function": "Функция",
 	"Function Calling": "Вызов функции",
@@ -1229,17 +749,12 @@
 	"Function imported successfully": "Функция успешно импортирована",
 	"Function Name": "Название Функции",
 	"Function Name Filter List": "Фильтр по именам функций",
-<<<<<<< HEAD
-=======
-	"Function starter": "",
-	"Function updated successfully": "Функция успешно обновлена",
->>>>>>> upstream/main
 	"Functions": "Функции",
 	"Functions allow arbitrary code execution.": "Функции позволяют выполнять произвольный код.",
 	"Gather a quire": "",
 	"Gemini": "Gemini",
-	"Gemini API Key": "Ключ API Gemini",
-	"Gemini API Key is required.": "Требуется ключ API Gemini.",
+	"Gemini API Key": "API-Ключ Gemini",
+	"Gemini API Key is required.": "Требуется API ключ для Gemini.",
 	"Gemini Base URL": "Базовый URL Gemini",
 	"Gemini Endpoint Method": "Метод эндпоинта Gemini",
 	"General": "Общее",
@@ -1261,15 +776,6 @@
 	"Google PSE Engine Id": "Id движка Google PSE",
 	"Gravatar": "Gravatar",
 	"Grokipedia": "Grokipedia",
-<<<<<<< HEAD
-=======
-	"group": "",
-	"Group": "",
-	"Group Channel": "Групповой канал",
-	"Group Claim": "",
-	"Group created successfully": "Группа успешно создана",
-	"Group deleted successfully": "Группа успешно удалена",
->>>>>>> upstream/main
 	"Group Description": "Описание группы",
 	"Group Name": "Название группы",
 	"groups": "группы",
@@ -1277,11 +783,6 @@
 	"H1": "H1",
 	"H2": "H2",
 	"H3": "H3",
-<<<<<<< HEAD
-=======
-	"Haptic Feedback": "Тактильная обратная связь",
-	"Header variables": "",
->>>>>>> upstream/main
 	"Headers": "Заголовки",
 	"Headers must be a valid JSON object": "Заголовки должны быть валидным JSON-объектом",
 	"Hello, {{name}}": "Привет, {{name}}",
@@ -1298,10 +799,6 @@
 	"High": "Высокий",
 	"Home": "Домой",
 	"Host": "Хост",
-<<<<<<< HEAD
-=======
-	"Hourly": "Ежечасно",
->>>>>>> upstream/main
 	"Hourly Messages": "Сообщений в час",
 	"how adventurous the wording runs — low is measured, high is fervent": "",
 	"How can I help you today?": "Чем я могу помочь вам сегодня?",
@@ -1314,12 +811,6 @@
 	"I acknowledge that I have read and I understand the implications of my action. I am aware of the risks associated with executing arbitrary code and I have verified the trustworthiness of the source.": "Я подтверждаю, что прочитал и осознаю последствия своих действий. Я осознаю риски, связанные с выполнением произвольного кода, и я проверил достоверность источника.",
 	"ID": "ID",
 	"ID cannot contain \":\" or \"|\" characters": "ID не может содержать символы «:» и «|»",
-<<<<<<< HEAD
-=======
-	"ID copied to clipboard": "ID скопирован в буфер обмена",
-	"Identity audit": "",
-	"Idle only": "",
->>>>>>> upstream/main
 	"Idle Timeout": "Тайм-аут простоя",
 	"Ignite curiosity": "Разожгите любопытство",
 	"Image": "Изображение",
@@ -1339,12 +830,6 @@
 	"Import Config": "Импортировать конфигурации",
 	"Import From Link": "Импортировать по ссылке",
 	"Import Models": "Импортировать модели",
-<<<<<<< HEAD
-=======
-	"Import Prompts": "Импортировать промпты",
-	"Import Skills": "",
-	"Import successful": "Импорт выполнен",
->>>>>>> upstream/main
 	"Import Tools": "Импортировать инструменты",
 	"Important Update": "Важное обновление",
 	"Imported": "",
@@ -1360,14 +845,9 @@
 	"Input": "Ввод",
 	"Input Key (e.g. text, unet_name, steps)": "Введите ключ (например, text, unet_name, steps)",
 	"Install from Github URL": "Установка с URL-адреса Github",
-<<<<<<< HEAD
 	"Instance defaults, authentication, and feature toggles.": "",
 	"Instructions": "",
 	"Instruments": "",
-=======
-	"Instant Auto-Send After Voice Transcription": "Мгновенная автоматическая отправка после расшифровки голоса",
-	"Instructions": "Инструкции",
->>>>>>> upstream/main
 	"Integration": "Интеграция",
 	"Integrations": "Интеграции",
 	"Interface appearance, banners, and task generation prompts.": "",
@@ -1386,47 +866,19 @@
 	"Jina API Key": "Ключ API для Jina",
 	"join our Discord for help.": "присоединяйтесь к нашему Discord для помощи.",
 	"JSON": "JSON",
-<<<<<<< HEAD
-=======
-	"JSON Base64": "",
-	"JSON Preview": "Предварительный просмотр JSON",
->>>>>>> upstream/main
 	"JSON Spec": "JSON-спецификация",
 	"July": "Июль",
 	"June": "Июнь",
 	"Jupyter Auth": "Вход Jupyter",
 	"Jupyter URL": "Jupyter URL",
 	"JWT Expiration": "Истечение срока JWT",
-<<<<<<< HEAD
 	"Kagi Search API Key": "API ключ поиска Kagi",
-=======
-	"JWT Token": "Токен JWT",
-	"Kagi Search API Key": "Ключ API поиска Kagi",
-	"Keep Follow-Up Prompts in Chat": "Оставлять последующие промпты в чате",
->>>>>>> upstream/main
 	"Keep in Sidebar": "Оставить на боковой панели",
 	"Key": "Ключ",
 	"Key is required": "Ключ обязателен",
+	"Keyboard shortcuts": "Горячие клавиши",
 	"Keyboard Shortcuts": "Горячие клавиши",
 	"Knowledge": "Знания",
-<<<<<<< HEAD
-=======
-	"Knowledge Access": "Доступ к знаниям",
-	"Knowledge Base": "База знаний",
-	"Knowledge base has been reset": "",
-	"Knowledge created successfully.": "Знания созданы успешно.",
-	"Knowledge deleted successfully.": "Знания успешно удалены.",
-	"Knowledge Description": "Описание знаний",
-	"Knowledge exported successfully": "Знания успешно экспортированы",
-	"Knowledge Name": "Название знаний",
-	"Knowledge Public Sharing": "Публичный доступ к базам знаний",
-	"Knowledge Sharing": "Общий доступ к знаниям",
-	"Knowledge source created.": "",
-	"Knowledge source updated.": "",
-	"Knowledge updated successfully": "Знания успешно обновлены",
-	"Kokoro.js (Browser)": "Kokoro.js (Браузер)",
-	"Kokoro.js Dtype": "Kokoro.js Dtype",
->>>>>>> upstream/main
 	"Label": "Пометка",
 	"Language Locales": "Языковые особенности",
 	"Last 24 hours": "Последние 24 часа",
@@ -1435,11 +887,6 @@
 	"Last 90 days": "Последние 90 дней",
 	"Last Active": "Последняя активность",
 	"Last Modified": "Последнее изменение",
-<<<<<<< HEAD
-=======
-	"Last ran": "Последний запуск",
-	"Last reply": "Последний ответ",
->>>>>>> upstream/main
 	"LDAP": "LDAP",
 	"Leaderboard": "Таблица лидеров",
 	"Learn More": "Узнать больше",
@@ -1454,47 +901,25 @@
 	"Leave empty to include all models from \"{{url}}/models\" endpoint": "Оставьте поле пустым, чтобы включить все модели из конечной точки \"{{url}}/models\"",
 	"Leave empty to include all models or select specific models": "Оставьте поле пустым, чтобы включить все модели или выбрать конкретные модели",
 	"Leave empty to use first admin user": "Оставьте пустым, чтобы использовать первого администратора",
-	"Leave empty to use the default config, or enter a valid json (see https://yandex.cloud/en/docs/search-api/api-ref/WebSearch/search#yandex.cloud.searchapi.v2.WebSearchRequest)": "Оставьте пустым, чтобы использовать конфигурацию по умолчанию, или введите валидный JSON (см. https://yandex.cloud/en/docs/search-api/api-ref/WebSearch/search#yandex.cloud.searchapi.v2.WebSearchRequest)",
+	"Leave empty to use the default config, or enter a valid json (see https://yandex.cloud/en/docs/search-api/api-ref/WebSearch/search#yandex.cloud.searchapi.v2.WebSearchRequest)": "Оставьте пустым, чтобы использовать конфигурацию по умолчанию или введите валидный JSON (смотри https://yandex.cloud/en/docs/search-api/api-ref/WebSearch/search#yandex.cloud.searchapi.v2.WebSearchRequest)",
 	"Leave empty to use the default model (voxtral-mini-latest).": "Оставьте пустым, чтобы использовать модель по умолчанию (voxtral-mini-latest).",
 	"Leave empty to use the default prompt, or enter a custom prompt": "Оставьте пустым, чтобы использовать промпт по умолчанию, или введите пользовательский промпт",
 	"Leave model field empty to use the default model.": "Оставьте поле model пустым, чтобы использовать модель по умолчанию.",
 	"lexical": "лексический",
 	"License": "Лицензия",
-	"Lifecycle JSON": "",
 	"Lift List": "Поднять список",
 	"Limit concurrent search queries. 0 = unlimited (default). Set to 1 for sequential execution (recommended for APIs with strict rate limits like Brave free tier).": "Лимит параллельных поисковых запросов. 0 = без ограничений (по умолчанию). Установите 1 для последовательного выполнения (рекомендуется для API со строгими лимитами, например, бесплатный тариф Brave).",
 	"Limits the number of concurrent embedding requests. Set to 0 for unlimited.": "Ограничивает число параллельных запросов эмбеддингов. 0 — без ограничений.",
-<<<<<<< HEAD
 	"llama.cpp": "",
 	"Llama.cpp": "Llama.cpp",
 	"Loaded": "",
-=======
-	"Linkup API Key": "",
-	"List": "Список",
-	"List calendars, search, create, update, and delete calendar events": "Просматривайте календари, ищите, создавайте, обновляйте и удаляйте события календаря",
-	"Listening...": "Слушаю...",
-	"Live": "Активно",
-	"llama.cpp": "llama.cpp",
-	"Llama.cpp": "Llama.cpp",
-	"LLMs can make mistakes. Verify important information.": "LLMs могут допускать ошибки. Проверяйте важную информацию.",
-	"Loaded": "Загружено",
->>>>>>> upstream/main
 	"Loader": "Загрузчик",
 	"Loading...": "Загрузка...",
 	"local": "локально",
 	"Local": "Локально",
 	"Local Task Model": "Модель локальной задачи",
-<<<<<<< HEAD
 	"Lost": "Поражение",
 	"Low": "Низкий",
-=======
-	"Location": "Место",
-	"Location access not allowed": "Доступ к местоположению запрещен",
-	"Lost": "Поражение",
-	"Low": "Низкий",
-	"Lower the context compaction token threshold for this model. The global context compaction threshold remains the maximum.": "",
-	"LTR": "LTR",
->>>>>>> upstream/main
 	"Made by Open WebUI Community": "Сделано сообществом OpenWebUI",
 	"Make password visible in the user interface": "Показать пароль в пользовательском интерфейсе",
 	"Make sure to export a workflow.json file as API format from ComfyUI.": "Убедитесь, что экспортируете файл workflow.json в формате API из ComfyUI.",
@@ -1506,22 +931,13 @@
 	"Manage OpenAI API Connections": "Управление соединениями API OpenAI",
 	"Manage Pipelines": "Управление конвейерами",
 	"Manage Tool Servers": "Управление серверами инструментов",
-<<<<<<< HEAD
 	"Manage, import, and configure the models available to users.": "",
-=======
-	"Manage your account information.": "Управляйте информацией о своей учетной записи.",
-	"Mapped Source": "",
->>>>>>> upstream/main
 	"March": "Март",
 	"Markdown": "Markdown",
 	"Markdown Header Text Splitter": "Разделение текста по заголовкам Markdown",
 	"Max Speakers": "Максимальное количество динамиков",
-<<<<<<< HEAD
 	"Max Tokens": "",
 	"Max tokens to retrieve (1024-32768, default 8192)": "",
-=======
-	"Max tokens to retrieve (1024-32768, default 8192)": "Максимум токенов для извлечения (1024-32768, по умолчанию 8192)",
->>>>>>> upstream/main
 	"Max Upload Count": "Максимальное количество загрузок",
 	"Max Upload Size": "Максимальный размер загрузок",
 	"Maximum characters to return from fetched URLs. Leave empty for no limit.": "Максимальное количество символов, возвращаемых из загруженных URL. Оставьте пустым для снятия ограничения.",
@@ -1536,60 +952,28 @@
 	"Members": "Участники",
 	"Memories": "Воспоминания",
 	"Memory": "Воспоминания",
-<<<<<<< HEAD
-=======
-	"Memory added successfully": "Воспоминание успешно добавлено",
-	"Memory cleared successfully": "Воспоминания успешно очищены",
-	"Memory deleted successfully": "Воспоминание успешно удалено",
-	"Memory System Context": "",
-	"Memory updated successfully": "Воспоминание успешно обновлено",
-	"Merge Accounts by Email": "",
->>>>>>> upstream/main
 	"Merge Responses": "Объединить ответы",
 	"Merged Response": "Объединенный ответ",
 	"Message": "Сообщение",
 	"Message counts and response timestamps": "Количество сообщений и временные метки ответов",
 	"Message counts are based on assistant responses.": "Количество сообщений основано на ответах ассистента.",
 	"Message rating should be enabled to use this feature": "Чтобы использовать эту функцию, необходимо включить оценку сообщения.",
-	"Message text...": "Текст сообщения...",
+	"Message text...": "",
 	"messages": "сообщения",
 	"Messages": "Сообщения",
-<<<<<<< HEAD
-=======
-	"Messages you send after creating your link won't be shared. Users with the URL will be able to view the shared chat.": "Сообщения, отправленные вами после создания ссылки, не будут передаваться другим. Пользователи, у которых есть URL, смогут просматривать общий чат.",
-	"Metadata Field": "",
-	"Microsoft OneDrive": "Microsoft OneDrive",
-	"Microsoft OneDrive (personal)": "Microsoft OneDrive (личный)",
-	"Microsoft OneDrive (work/school)": "Microsoft OneDrive (работа/школа)",
-	"Microsoft Web IQ API Base URL": "",
-	"Microsoft Web IQ API Key": "",
->>>>>>> upstream/main
 	"min": "мин",
 	"MinerU": "MinerU",
 	"MinerU API Key required for Cloud API mode.": "API-ключ MinerU необходим для режима Cloud API.",
 	"Mistral OCR": "Mistral OCR",
-	"Mistral OCR API Key required.": "Требуется ключ API Mistral OCR.",
+	"Mistral OCR API Key required.": "Требуется API ключ Mistral OCR.",
 	"MistralAI": "MistralAI",
-<<<<<<< HEAD
-=======
-	"Mo_day_of_week": "Пн",
->>>>>>> upstream/main
 	"Model": "Модель",
 	"Model '{{modelTag}}' is already in queue for downloading.": "Модель '{{modelTag}}' уже находится в очереди на загрузку.",
-<<<<<<< HEAD
-=======
-	"Model {{modelId}} not found": "Модель {{modelId}} не найдена",
-	"Model {{modelName}} deleted successfully": "Модель {{modelName}} успешно удалена",
->>>>>>> upstream/main
 	"Model {{modelName}} is not vision capable": "Модель {{modelName}} не поддерживает зрение",
 	"Model accepts file inputs": "Модель принимает входные данные файла",
 	"Model accepts image inputs": "Модель принимает изображения как входные данные",
-<<<<<<< HEAD
 	"Model arena, feedback collection, and leaderboard settings.": "",
 	"Model can access Open Terminal for command execution and file management": "",
-=======
-	"Model can access Open Terminal for command execution and file management": "Модель может обращаться к Open Terminal для выполнения команд и управления файлами",
->>>>>>> upstream/main
 	"Model can execute code and perform calculations": "Модель может выполнять код и выполнять вычисления",
 	"Model can generate images based on text prompts": "Модель может генерировать изображения на основе текстовых промптов",
 	"Model can search the web for information": "Модель может искать информацию в Интернете",
@@ -1614,27 +998,14 @@
 	"Modelfile Content": "Содержимое файла модели",
 	"Models": "Модели",
 	"Models Access": "Доступ к моделям",
-<<<<<<< HEAD
 	"Models Public Sharing": "Публичный обмен моделями",
 	"Models Sharing": "Общий доступ к моделям",
 	"Mojeek": "Mojeek",
 	"Mojeek Search API Key": "Ключ API для поиска Mojeek",
-=======
-	"Models configuration saved successfully": "Конфигурация моделей успешно сохранена.",
-	"Models imported successfully": "Модели успешно импортированы",
-	"Models Public Sharing": "Публичный доступ к моделям",
-	"Models Sharing": "Общий доступ к моделям",
-	"Mojeek": "Mojeek",
-	"Mojeek Search API Key": "Ключ API для поиска Mojeek",
-	"Monday – Friday": "",
-	"Month": "Месяц",
-	"Monthly": "Ежемесячно",
->>>>>>> upstream/main
 	"More": "Больше",
 	"More Concise": "Более кратко",
 	"More Options": "Больше опций",
 	"Move": "Переместить",
-<<<<<<< HEAD
 	"My Terminal": "Мой Терминал",
 	"Name": "Имя",
 	"Name and ID are required, please fill them out": "Имя и ID обязательны, пожалуйста, заполните их",
@@ -1643,30 +1014,6 @@
 	"Native": "Нативно",
 	"New": "Новый",
 	"New Chat": "Новый чат",
-=======
-	"Moved {{name}}": "Перемещено: {{name}}",
-	"Multipart Upload": "",
-	"Mute": "Выключить микрофон",
-	"Muted": "Микрофон выключен",
-	"My Terminal": "Мой терминал",
-	"Name": "Имя",
-	"Name and ID are required, please fill them out": "Имя и ID обязательны, пожалуйста, заполните их",
-	"Name is required": "Требуется название",
-	"Name your knowledge base": "Назовите свою базу знаний",
-	"Name, prompt, and model are required": "Требуются название, промпт и модель",
-	"Native": "Нативный",
-	"Native mode (default) leverages the model's built-in tool-calling capabilities. Legacy mode works with a wider range of models by calling tools once before execution via prompt injection.": "",
-	"Never": "Никогда",
-	"New": "Новый",
-	"New Automation": "Новая автоматизация",
-	"New Button": "Новая кнопка",
-	"New calendar": "Новый календарь",
-	"New Calendar": "Новый календарь",
-	"New Chat": "Новый чат",
-	"New directory": "",
-	"New Directory": "",
-	"New Event": "Новое событие",
->>>>>>> upstream/main
 	"New File": "Новый файл",
 	"New Folder": "Новая папка",
 	"New Function": "Новая функция",
@@ -1679,33 +1026,17 @@
 	"New Tool": "Новый инструмент",
 	"Next": "",
 	"Next message": "Следующее сообщение",
-<<<<<<< HEAD
-=======
-	"Next run": "Следующий запуск",
->>>>>>> upstream/main
 	"No access grants. Private to you.": "Нет прав доступа. Доступно только вам.",
 	"No activity data": "Нет данных об активности",
-	"No additional headers are sent unless configured.": "",
 	"No authentication": "Без аутентификации",
-<<<<<<< HEAD
-=======
-	"No automations found": "Автоматизации не найдены",
->>>>>>> upstream/main
 	"No chats found": "Чаты не найдены",
 	"No chats found for this user.": "Для этого пользователя не найдено ни одного чата.",
 	"No chats found.": "Не найдено ни одного чата",
 	"No content to speak": "Нечего говорить",
 	"No data": "Нет данных",
 	"No data found": "Данные не найдены",
-<<<<<<< HEAD
 	"No distance available": "Никаких доступных растояний",
-=======
-	"No distance available": "Расстояние недоступно",
-	"No event webhooks configured.": "",
-	"No execution logs available yet": "Журналы выполнения пока отсутствуют",
->>>>>>> upstream/main
 	"No expiration can pose security risks.": "Отсутствие срока действия может представлять угрозу безопасности.",
-	"No external knowledge sources configured.": "",
 	"No feedback found": "Отзывы не найдены",
 	"No file selected": "Файлы не выбраны",
 	"No files found": "Файлы не найдены",
@@ -1713,30 +1044,16 @@
 	"No functions found": "Функции не найдены",
 	"No groups found": "Группы не найдены",
 	"No HTML, CSS, or JavaScript content found.": "Содержимое в формате HTML, CSS или JavaScript не найдено.",
-	"No inference engine with management support found": "Инференс-движок с поддержкой управления не найден",
+	"No inference engine with management support found": "Механизм логического вывода с поддержкой управления не найден",
 	"No kernel": "Нет ядра",
-<<<<<<< HEAD
-=======
-	"No knowledge bases accessible": "",
-	"No knowledge bases found.": "Базы знаний не найдены.",
-	"No knowledge found": "Знания не найдены",
->>>>>>> upstream/main
 	"No limit": "Без ограничений",
 	"No model IDs": "Нет ID модели",
-	"No models accessible": "",
 	"No models available": "Нет доступных моделей",
 	"No models found": "Модели не найдены",
 	"No models match your search.": "",
 	"No models selected": "Модели не выбраны",
 	"No one": "Никто",
-<<<<<<< HEAD
 	"No output items": "",
-=======
-	"No output items": "Нет элементов вывода",
-	"No pinned messages": "Нет закреплённых сообщений",
-	"No prompts found": "Промпты не найдены",
-	"No Repeat": "",
->>>>>>> upstream/main
 	"No results": "Результатов не найдено",
 	"No results found": "Результатов не найдено",
 	"No search query generated": "Поисковый запрос не сгенерирован",
@@ -1748,78 +1065,36 @@
 	"No Terminal connection configured.": "Подключение к терминалу не настроено.",
 	"No terminal connections configured.": "Подключения к терминалу не настроены.",
 	"No tool server connections configured.": "Подключения к серверам инструментов не настроены.",
-<<<<<<< HEAD
 	"No tools match your search.": "",
 	"No users were found.": "Пользователи не найдены.",
 	"No valves": "Нет клапанов",
 	"No valves to update": "Нет вентилей для обновления",
-=======
-	"No tools accessible": "",
-	"No tools found": "Инструменты не найдены",
-	"No users were found.": "Пользователи не найдены.",
-	"No valves": "Нет параметров",
-	"No valves to update": "Нет параметров для обновления",
-	"No webhooks yet": "Вебхуков пока нет",
->>>>>>> upstream/main
 	"Node Ids": "ID узлов",
 	"None": "Нет",
-	"Not configured": "",
 	"Not factually correct": "Не соответствует действительности",
 	"Not helpful": "Бесполезно",
 	"Not Registered": "Не зарегистрирован",
-<<<<<<< HEAD
-=======
-	"Not scheduled": "Не запланировано",
->>>>>>> upstream/main
 	"Note": "Заметка",
 	"Note: If you set a minimum score, the search will only return documents with a score greater than or equal to the minimum score.": "Обратите внимание: Если вы установите минимальный балл, поиск будет возвращать только документы с баллом больше или равным минимальному баллу.",
-<<<<<<< HEAD
 	"nothing gathered yet — drag a chat in": "",
 	"Nothing has been rehearsed yet.": "",
-=======
-	"Notes": "Заметки",
-	"Notes Public Sharing": "Публичный доступ к заметкам",
-	"Notes Sharing": "Общий доступ к заметкам",
-	"Notification Sound": "Звук уведомления",
-	"Notification Webhook": "Веб-хук уведомления",
-	"Notifications": "Уведомления",
->>>>>>> upstream/main
 	"November": "Ноябрь",
 	"OAuth": "OAuth",
-	"OAuth / OIDC": "",
 	"OAuth 2.1": "OAuth 2.1",
 	"OAuth 2.1 (Static)": "OAuth 2.1 (Static)",
 	"OAuth ID": "OAuth ID",
-<<<<<<< HEAD
 	"OAuth Server URL": "",
 	"October": "Октябрь",
 	"Off": "Выключено",
 	"Okay, Let's Go!": "Давайте начнём!",
-=======
-	"OAuth Resource Parameter": "",
-	"OAuth Scopes": "",
-	"OAuth Server URL": "URL сервера OAuth",
-	"OAuth session disconnected": "Сеанс OAuth отключен",
-	"October": "Октябрь",
-	"Off": "Выключено",
-	"Okay, Let's Go!": "Давайте начнём!",
-	"Older messages are summarized when estimated context exceeds this token limit.": "",
-	"OLED Dark": "OLED темная",
->>>>>>> upstream/main
 	"Ollama": "Ollama",
 	"Ollama API": "Ollama API",
 	"Ollama Cloud API Key": "API-ключ Ollama Cloud",
 	"Ollama Version": "Версия Ollama",
-	"Omit": "",
 	"On": "Включено",
-<<<<<<< HEAD
 	"On by default": "",
 	"On by default for new chats": "",
-=======
-	"Once": "Один раз",
->>>>>>> upstream/main
 	"OneDrive": "OneDrive",
-	"Only active during Voice Mode.": "",
 	"Only active when \"Paste Large Text as File\" setting is toggled on.": "Активно только при включённой настройке «Вставлять большой текст как файл».",
 	"Only active when the chat input is in focus and an LLM is generating a response.": "Активно только при фокусе на поле ввода и генерации ответа.",
 	"Only active when the chat input is in focus.": "Активно только при фокусе на поле ввода.",
@@ -1827,10 +1102,6 @@
 	"Only invited users can access": "Доступ только для приглашённых",
 	"Only select users and groups with permission can access": "Доступ имеют только избранные пользователи и группы, имеющие разрешение.",
 	"Only sync new/updated chats": "Синхронизировать только новые/обновлённые чаты",
-<<<<<<< HEAD
-=======
-	"Oops! Looks like the URL is invalid. Please double-check and try again.": "Похоже, URL некорректен. Проверьте его и попробуйте еще раз.",
->>>>>>> upstream/main
 	"Oops! There are files still uploading. Please wait for the upload to complete.": "Упс! Есть файлы, которые все еще загружаются. Пожалуйста, дождитесь завершения загрузки.",
 	"Oops! There was an error in the previous response.": "Упс! В предыдущем ответе была ошибка.",
 	"Oops! You're using an unsupported method (frontend only). Please serve the WebUI from the backend.": "Упс! Вы используете неподдерживаемый метод (только фронтенд). Пожалуйста, обслуживайте веб-интерфейс из бэкенда.",
@@ -1845,8 +1116,8 @@
 	"Open Terminal": "Open Terminal",
 	"open the full type case": "",
 	"Open WebUI can use tools provided by any OpenAPI server.": "Open WebUI может использовать инструменты, предоставляемые любым сервером OpenAPI.",
-	"Open WebUI uses faster-whisper internally.": "Open WebUI использует faster-whisper внутри.",
-	"Open WebUI uses SpeechT5 and CMU Arctic speaker embeddings.": "Open WebUI использует SpeechT5 и голосовые эмбеддинги CMU Arctic.",
+	"Open WebUI uses faster-whisper internally.": "Open WebUI использует более быстрый внутренний интерфейс whisper.",
+	"Open WebUI uses SpeechT5 and CMU Arctic speaker embeddings.": "В Open WebUI используются встраиваемые движки генерации речи SpeechT5 и CMU Arctic.",
 	"Open WebUI version": "Версия Open WebUI",
 	"Open WebUI version (v{{OPEN_WEBUI_VERSION}}) is lower than required version (v{{REQUIRED_VERSION}})": "Версия Open WebUI (v{{OPEN_WEBUI_VERSION}}) ниже требуемой версии (v{{REQUIRED_VERSION}})",
 	"OpenAI": "Open AI",
@@ -1876,14 +1147,14 @@
 	"Orchestrator": "",
 	"Ordered List": "Нумерованный список",
 	"Other": "Прочее",
-	"out of": "из",
+	"out of": "",
 	"Output": "Вывод",
 	"OUTPUT": "ВЫВОД",
 	"Output format": "Формат вывода",
 	"Output Format": "Формат Вывода",
 	"Overview": "Обзор",
-	"PaddleOCR-vl": "PaddleOCR-vl",
-	"PaddleOCR-vl API URL required.": "Требуется URL API PaddleOCR-vl.",
+	"PaddleOCR-vl": "",
+	"PaddleOCR-vl API URL required.": "",
 	"page": "страница",
 	"Page": "Страница",
 	"Page mode creates one document per page. Single mode combines all pages into one document for better chunking across page boundaries.": "Постраничный режим создаёт отдельный документ для каждой страницы. Общий режим объединяет все страницы в один документ для более качественного разбиения на фрагменты без привязки к границам страниц.",
@@ -1893,56 +1164,29 @@
 	"Participate in community leaderboards and evaluations! Syncing aggregated usage stats helps drive research and improvements to Open WebUI. Your privacy is paramount: no message content is ever shared.": "Участвуйте в рейтингах и оценках сообщества! Синхронизация агрегированной статистики помогает развитию Open WebUI. Ваша конфиденциальность приоритетна: содержимое сообщений никогда не передаётся.",
 	"Password": "Пароль",
 	"Passwords do not match.": "Пароли не совпадают.",
-<<<<<<< HEAD
 	"PDF document (.pdf)": "PDF-документ (.pdf)",
 	"PDF Extract Images (OCR)": "Извлечение изображений из PDF (OCR)",
 	"PDF Loader Mode": "Режим загрузки PDF",
 	"Penalties & Mirostat": "",
-=======
-	"Paste Large Text as File": "Вставить большой текст как файл",
-	"Path": "",
-	"Path copied": "Путь скопирован",
-	"Paused": "Приостановлено",
-	"PDF document (.pdf)": "PDF-документ (.pdf)",
-	"PDF Extract Images (OCR)": "Извлечение изображений из PDF (OCR)",
-	"PDF Loader Mode": "Режим загрузки PDF",
-	"pdf, docx, pptx, xlsx": "",
->>>>>>> upstream/main
 	"pending": "ожидающий",
 	"Pending": "Ожидающий",
-	"Pending Accounts": "",
 	"Pending User Overlay Content": "Содержимое оверлея ожидающего пользователя",
 	"Pending User Overlay Title": "Заголовк оверлея ожидающего пользователя",
 	"Permissions": "Разрешения",
-	"Permissions reset to defaults": "",
 	"Perplexity API Key": "Ключ API для Perplexity",
 	"Perplexity Model": "Модель Perplexity",
 	"Perplexity Search API URL": "Perplexity Search API URL",
 	"Perplexity Search Context Usage": "Использование контекста поиска Perplexity",
 	"Persistent": "Постоянный",
-<<<<<<< HEAD
 	"Pick an icon or emoji": "",
 	"Pin": "Закрепить",
-=======
-	"Personalization": "Персонализация",
-	"Picture Claim": "",
-	"Pin": "Закрепить",
-	"Pin to Sidebar": "Закрепить на боковой панели",
-	"Pinned": "Закреплено",
-	"Pinned Messages": "Закреплённые сообщения",
->>>>>>> upstream/main
 	"Pinned Models": "Закреплённые модели",
 	"Pioneer insights": "Новаторские идеи",
 	"Pipe": "Канал",
 	"Pipelines": "Конвейеры",
 	"Pipelines are a plugin system with arbitrary code execution —": "Конвейеры — это система плагинов с выполнением произвольного кода —",
 	"Pipelines Not Detected": "Конвейеры не обнаружены",
-<<<<<<< HEAD
 	"Pipelines Valves": "Вентили конвейеров",
-=======
-	"Pipelines Valves": "Параметры конвейеров",
-	"Plain text (.md)": "Обычный текст (.md)",
->>>>>>> upstream/main
 	"Plain text (.txt)": "Обычный текст (.txt)",
 	"Playwright Timeout (ms)": "Таймаут Playwright (мс)",
 	"Playwright WebSocket URL": "Playwright WebSocket URL",
@@ -1957,14 +1201,9 @@
 	"Please enter Client ID and Client Secret": "Пожалуйста, введите Client ID и Client Secret",
 	"Please register the OAuth client": "Пожалуйста, зарегистрируйте OAuth-клиент",
 	"Please save the connection to persist the OAuth client information and do not change the ID": "Пожалуйста, сохраните подключение для сохранения данных OAuth-клиента и не меняйте ID",
-<<<<<<< HEAD
-=======
-	"Please select a model.": "Пожалуйста, выберите модель.",
->>>>>>> upstream/main
 	"Please select a reason": "Пожалуйста, выберите причину",
 	"Please select a valid JSON file": "Пожалуйста, выберите корректный JSON-файл",
 	"Policy ID": "ID политики",
-	"Policy ID is required": "",
 	"Port": "Порт",
 	"Ports": "Порты",
 	"Positive attitude": "Позитивный настрой",
@@ -1972,32 +1211,14 @@
 	"Prefix ID is used to avoid conflicts with other connections by adding a prefix to the model IDs - leave empty to disable": "ID префикса используется для предотвращения конфликтов с другими подключениями путем добавления префикса к идентификаторам моделей - оставьте пустым, чтобы отключить",
 	"Prevent File Creation": "Запретить создание файлов",
 	"Preview": "Предпросмотр",
-	"Preview Access": "",
 	"Previous 30 days": "Предыдущие 30 дней",
 	"Previous 7 days": "Предыдущие 7 дней",
 	"Previous message": "Предыдущее сообщение",
 	"Private": "Частное",
 	"Profile": "Профиль",
 	"Prompt": "Промпт",
-<<<<<<< HEAD
 	"Prompt Template": "",
 	"Provider": "",
-=======
-	"Prompt Autocompletion": "Автодополнение промпта",
-	"Prompt Content": "Содержание промпта",
-	"Prompt created successfully": "Промпт успешно создан",
-	"Prompt Name": "Название промпта",
-	"Prompt Suggestions": "Рекомендуемые промпты",
-	"Prompt Template": "Шаблон промпта",
-	"Prompt updated successfully": "Промпт успешно обновлён",
-	"Prompts": "Промпты",
-	"Prompts Access": "Доступ к промптам",
-	"Prompts Public Sharing": "Публичный доступ к промптам",
-	"Prompts Sharing": "Общий доступ к промптам",
-	"Provider": "Провайдер",
-	"Provider Name": "",
-	"Provider URL": "",
->>>>>>> upstream/main
 	"Public": "Публичное",
 	"Public shared chat links are disabled for this workspace.": "",
 	"Pull \"{{searchValue}}\" from Ollama.com": "Загрузить \"{{searchValue}}\" с Ollama.com",
@@ -2020,44 +1241,19 @@
 	"Read": "Прочитать",
 	"Read Aloud": "Прочитать вслух",
 	"Read more →": "Читать далее →",
-<<<<<<< HEAD
 	"read only": "",
-=======
-	"Read only": "",
->>>>>>> upstream/main
 	"Read Only": "Только чтение",
 	"Read, write, and diff-edit durable notes for the current chat Scratchboard": "",
 	"Reason": "Причина",
 	"Reasoning Effort": "Усилия для рассуждения",
 	"Reasoning Tags": "Теги рассуждения",
-<<<<<<< HEAD
 	"Reasoning text...": "",
 	"Recently Used": "",
 	"Reconnected": "",
 	"Redirecting you to Open WebUI Community": "Перенаправляем вас в сообщество OpenWebUI",
 	"Reduces the probability of generating nonsense. A higher value (e.g. 100) will give more diverse answers, while a lower value (e.g. 10) will be more conservative.": "Снижает вероятность появления бессмыслицы. Большее значение (например, 100) даст более разнообразные ответы, в то время как меньшее значение (например, 10) будет более консервативным.",
-=======
-	"Reasoning text...": "Текст рассуждения...",
-	"Receives matching events across the instance, including system/config events and events associated with any user.": "",
-	"Receives matching events that are not associated with a user.": "",
-	"Receives matching user-associated events only when the actor, user subject, or user data matches these users or current group members. System/config events are not sent.": "",
-	"Recently Used": "Недавно использованные",
-	"Reconnected": "Подключение восстановлено",
-	"Record": "Запись",
-	"Record voice": "Записать голос",
-	"Redirect URI": "",
-	"Redirecting you to Open WebUI Community": "Перенаправляем вас в сообщество OpenWebUI",
-	"Reduces the probability of generating nonsense. A higher value (e.g. 100) will give more diverse answers, while a lower value (e.g. 10) will be more conservative.": "Снижает вероятность появления бессмыслицы. Большее значение (например, 100) даст более разнообразные ответы, в то время как меньшее значение (например, 10) будет более консервативным.",
-	"Reference Chats": "Чаты для контекста",
->>>>>>> upstream/main
 	"Refresh": "Обновить",
-	"Refresh requested: {{count}} terminal(s)_one": "",
-	"Refresh requested: {{count}} terminal(s)_few": "",
-	"Refresh requested: {{count}} terminal(s)_many": "",
-	"Refresh requested: {{count}} terminal(s)_other": "",
-	"Refresh Terminals": "",
-	"Refreshing...": "",
-	"Refused when it shouldn't have": "Необоснованный отказ",
+	"Refused when it shouldn't have": "Отказано в доступе, когда это не должно было произойти",
 	"Regenerate": "Перегенерировать",
 	"Regenerate Response": "Перегенерировать ответ",
 	"Register Again": "Зарегистрировать повторно",
@@ -2069,56 +1265,21 @@
 	"Relevance": "Релевантность",
 	"Relevance Threshold": "Порог релевантности",
 	"Remember Dismissal": "Запомнить отклонение",
-<<<<<<< HEAD
-=======
-	"Reminder": "Напоминание",
->>>>>>> upstream/main
 	"Remove": "Удалить",
 	"Remove {{MODELID}} from list.": "Удалить {{MODELID}} из списка.",
 	"Remove File": "Удалить файл",
 	"Remove from favorites": "Удалить из избранного",
 	"Remove image": "Удалить изображение",
 	"Remove Model": "Удалить модель",
-	"Removing {{count}} stale files..._one": "",
-	"Removing {{count}} stale files..._few": "",
-	"Removing {{count}} stale files..._many": "",
-	"Removing {{count}} stale files..._other": "",
 	"Rename": "Переименовать",
-<<<<<<< HEAD
 	"Reorder Models": "Изменение порядка моделей",
 	"Reranking Batch Size": "",
-=======
-	"Renamed to {{name}}": "Переименовано в {{name}}",
-	"Render Markdown in Assistant Messages": "Отображать Markdown в сообщениях ассистента",
-	"Render Markdown in Previews": "Отображать Markdown в предпросмотре",
-	"Render Markdown in User Messages": "Отображать Markdown в сообщениях пользователя",
-	"Reorder Models": "Изменение порядка моделей",
-	"Repeat": "",
-	"Repeats": "Повторяется",
-	"Reply": "Ответить",
-	"Reply in Thread": "Ответить в обсуждении",
-	"Reply to thread...": "Ответить в обсуждении...",
-	"Replying to {{NAME}}": "Ответ для {{NAME}}",
-	"Request Format": "",
-	"Require users to confirm before using Web Search.": "",
-	"required": "обязательно",
-	"Reranking Batch Size": "Размер пакета реранжирования",
->>>>>>> upstream/main
 	"Reranking Engine": "Движок реранжирования",
 	"Reranking Model": "Модель реранжирования",
-	"Research Knowledge": "",
 	"Reset": "Сбросить",
 	"Reset All Models": "Сбросить все модели",
-	"Reset all permissions to their initial configuration values": "",
-	"Reset group permissions to match the current default user permissions": "",
 	"Reset Image": "Сбросить изображение",
-<<<<<<< HEAD
 	"Reset to default": "",
-=======
-	"Reset knowledge base?": "",
-	"Reset persisted files": "",
-	"Reset to Defaults": "",
->>>>>>> upstream/main
 	"Reset Upload Directory": "Сбросить каталог загрузок",
 	"Reset Vector Storage/Knowledge": "Сброс векторного хранилища/знаний",
 	"Reset view": "Сбросить вид",
@@ -2141,7 +1302,6 @@
 	"Return token usage information in the response when supported": "",
 	"Reusable instruction packs that teach your models a procedure or domain — import a markdown skill or write your own, then enable it where you need it.": "",
 	"Role": "Роль",
-<<<<<<< HEAD
 	"Run": "Запустить",
 	"Run All": "Запустить все",
 	"Running": "Выполняется",
@@ -2149,48 +1309,22 @@
 	"Runs embedding tasks concurrently to speed up processing. Turn off if rate limits become an issue.": "Параллельное выполнение задач эмбеддингов для ускорения. Отключите при проблемах с лимитами запросов.",
 	"Runtime & Ollama": "",
 	"Sampling & Length": "",
-=======
-	"Roles Claim": "",
-	"RTL": "RTL",
-	"Run": "Запустить",
-	"Run All": "Запустить все",
-	"Run now": "Запустить сейчас",
-	"Run Now": "Запустить сейчас",
-	"Running": "Выполняется",
-	"Running...": "Выполняется...",
-	"Runs embedding tasks concurrently to speed up processing. Turn off if rate limits become an issue.": "Параллельное выполнение задач эмбеддингов для ускорения. Отключите при проблемах с лимитами запросов.",
-	"Sa_day_of_week": "Сб",
->>>>>>> upstream/main
 	"Save": "Сохранить",
 	"Save & Update": "Сохранить и обновить",
 	"Save As Copy": "Сохранить как копию",
 	"Saved": "Сохранено",
 	"Saving chat logs directly to your browser's storage is no longer supported. Please take a moment to download and delete your chat logs by clicking the button below. Don't worry, you can easily re-import your chat logs to the backend through": "Прямое сохранение журналов чата в хранилище вашего браузера больше не поддерживается. Пожалуйста, потратьте минуту, чтобы скачать и удалить ваши журналы чата, нажав на кнопку ниже. Не волнуйтесь, вы легко сможете повторно импортировать свои журналы чата в бэкенд через",
-<<<<<<< HEAD
 	"Scratchboard": "",
 	"Scroll to Top": "",
-=======
-	"Schedule": "Расписание",
-	"Scheduled time must be in the future": "Запланированное время должно быть в будущем",
-	"Scopes": "",
-	"Scroll On Branch Change": "Прокручивать при изменении ветки",
-	"Scroll to Top": "Прокрутить наверх",
->>>>>>> upstream/main
 	"Search": "Поиск",
 	"Search a model": "Поиск по моделям",
-	"Search actions": "",
 	"Search all emojis": "Поиск по всем эмодзи",
 	"Search and manage user memories": "Поиск и управление воспоминаниями пользователя",
 	"Search and view user chat history": "Поиск и просмотр истории чатов пользователя",
-<<<<<<< HEAD
-=======
-	"Search Automations": "Поиск автоматизаций",
->>>>>>> upstream/main
 	"Search Base": "Поиск в базе",
 	"Search Chats": "Поиск в чатах",
 	"Search engines and web content loaders for live results.": "",
 	"Search Files": "Поиск файлов",
-	"Search filters": "",
 	"Search Filters": "Поиск фильтров",
 	"search for archived chats": "поиск архивных чатов",
 	"search for folders": "поиск папок",
@@ -2202,22 +1336,10 @@
 	"Search In Models": "Поиск в моделях",
 	"Search Models": "Поиск моделей",
 	"Search options": "Параметры поиска",
-<<<<<<< HEAD
-=======
-	"Search or add pattern": "",
-	"Search Prompts": "Поиск промптов",
->>>>>>> upstream/main
 	"Search Result Count": "Количество результатов поиска",
-	"Search skills": "",
 	"Search Skills": "Поиск скиллов",
 	"Search the web and fetch URLs": "Поиск в интернете и загрузка URL",
-	"Search tools": "",
 	"Search Tools": "Поиск инструментов",
-<<<<<<< HEAD
-=======
-	"Search users or groups": "",
-	"Search, view, and manage user notes": "Поиск, просмотр и управление заметками пользователя",
->>>>>>> upstream/main
 	"SearchApi API Key": "Ключ SearchApi API",
 	"SearchApi Engine": "Движок SearchApi",
 	"Searched {{count}} sites": "Поиск по {{count}} сайтам",
@@ -2232,12 +1354,7 @@
 	"Seed": "Начальное значение",
 	"Select": "Выбрать",
 	"Select {{modelName}} model": "Выбрать модель {{modelName}}",
-<<<<<<< HEAD
 	"Select a base model": "Выберите базовую модель",
-=======
-	"Select a base model (e.g. llama3, gpt-4o)": "Выберите базовую модель (напр. llama3, gpt-4o)",
-	"Select a conversation to preview": "Выберите разговор для предварительного просмотра",
->>>>>>> upstream/main
 	"Select a engine": "Выберите движок",
 	"Select a function": "Выберите функцию",
 	"Select a group": "Выбрать группу",
@@ -2245,7 +1362,7 @@
 	"Select a model": "Выберите модель",
 	"Select a model (optional)": "Выберите модель (необязательно)",
 	"Select a pipeline": "Выберите конвейер",
-	"Select a pipeline url": "Выберите URL конвейера",
+	"Select a pipeline url": "Выберите URL-адрес конвейера",
 	"Select a reranking model engine": "Выберите движок модели переранжирования",
 	"Select a role": "Выберите роль",
 	"Select a tool": "Выберите инструмент",
@@ -2254,54 +1371,28 @@
 	"Select an auth method": "Выбрать метод аутентификации",
 	"Select an embedding model engine": "Выберите движок для модели векторного представления",
 	"Select an engine": "Выберите движок",
-	"Select an Ollama instance": "Выберите экземпляр Ollama",
+	"Select an Ollama instance": "Выбрать инстанс Ollama",
 	"Select an option": "Выберите вариант",
 	"Select an output format": "Выберите формат вывода",
 	"Select Engine": "Выберите движок",
 	"Select how to split message text for TTS requests": "Выберите, как разделять текст сообщения для TTS запросов",
 	"Select icon": "",
 	"Select Method": "Выберите метод",
-<<<<<<< HEAD
-=======
-	"Select model": "Выберите модель",
-	"Select only one model to call": "Выберите только одну модель для вызова",
->>>>>>> upstream/main
 	"Select view": "Выберите вид",
 	"Selected model: {{modelName}}": "Выбранная модель: {{modelName}}",
 	"Selected model(s) do not support image inputs": "Выбранные модели не поддерживают ввод изображений",
 	"Selected Models": "Выбранные модели",
 	"semantic": "семантический",
 	"Send": "Отправить",
-<<<<<<< HEAD
-=======
-	"Send a Message": "Отправить сообщение",
-	"Send events for": "",
-	"Send message": "Отправить сообщение",
-	"Send now": "Отправить сейчас",
-	"Send product events as JSON to external services. Chat destinations receive readable messages.": "",
-	"Send the PDF as a base64 data URL instead of uploading it first.": "",
-	"Sends `stream_options: { include_usage: true }` in the request.\nSupported providers will return token usage information in the response when set.": "Отправляет в запросе \"stream_options: { include_usage: true }\".\nПоддерживаемые провайдеры будут возвращать информацию об использовании токена в ответе, когда это будет установлено.",
->>>>>>> upstream/main
 	"September": "Сентябрь",
 	"sequences that end a response — comma separated": "",
 	"SerpApi API Key": "Ключ API для SerpApi",
 	"SerpApi Engine": "Движок SerpApi",
 	"Serper API Key": "Ключ API Serper",
-	"SERPHouse API Key": "",
-	"SERPHouse Domain": "",
 	"Serply API Key": "Ключ API Serply",
 	"Serpstack API Key": "Ключ API Serpstack",
 	"Server connection failed": "Ошибка подключения к серверу",
-<<<<<<< HEAD
 	"Session": "Сессия",
-=======
-	"Server connection verified": "Соединение с сервером проверено",
-	"Service Account": "",
-	"Session": "Сессия",
-	"Session expired. Please sign in again.": "",
-	"Set as default": "Установить по умолчанию",
-	"Set as Production": "Сделать рабочей",
->>>>>>> upstream/main
 	"Set embedding model": "Установить модель эмбеддинга",
 	"Set embedding model (e.g. {{model}})": "Установить модель эмбеддинга (например, {{model}})",
 	"Set reranking model (e.g. {{model}})": "Установить модель реранжирования (например, {{model}})",
@@ -2325,28 +1416,13 @@
 	"Share": "Поделиться",
 	"Share Chat": "Поделиться чатом",
 	"Share to Open WebUI Community": "Поделиться с сообществом OpenWebUI",
-<<<<<<< HEAD
-=======
-	"Share your background and interests": "Расскажите о своём опыте и интересах",
-	"Shared": "",
->>>>>>> upstream/main
 	"Shared Chats": "Общие чаты",
 	"Shared with you": "Доступные вам",
 	"Sharing Permissions": "Разрешения на общий доступ",
 	"Show": "Показать",
-<<<<<<< HEAD
 	"Show Admin Details in Account Pending Overlay": "Показывать данные администратора в оверлее ожидающей учетной записи",
 	"Show All": "Показать все",
 	"Show all ({{COUNT}} characters)": "Показать всё ({{COUNT}} символов)",
-=======
-	"Show \"What's New\" Modal on Login": "Показывать окно «Что нового» при входе в систему",
-	"Show Admin Details in Account Pending Overlay": "Показывать данные администратора в оверлее ожидающей учетной записи",
-	"Show All": "Показать все",
-	"Show all ({{COUNT}} characters)": "Показать всё ({{COUNT}} символов)",
-	"Show Files": "Показать файлы",
-	"Show Files on Terminal Select": "",
-	"Show Formatting Toolbar": "Показать панель форматирования",
->>>>>>> upstream/main
 	"Show image preview": "Показать предварительный просмотр изображения",
 	"Show Model": "Показать модель",
 	"Show Shortcuts": "Показать горячие клавиши",
@@ -2371,12 +1447,8 @@
 	"Skill Name": "Название скилла",
 	"Skills": "Скиллы",
 	"Skills Access": "Доступ к скиллам",
-<<<<<<< HEAD
 	"Skills are instruction packs that teach a model a procedure or a domain — write one, and any model can learn it.": "",
 	"Skills Public Sharing": "Публичный обмен скиллами",
-=======
-	"Skills Public Sharing": "Публичный доступ к скиллам",
->>>>>>> upstream/main
 	"Skills Sharing": "Общий доступ к скиллам",
 	"Skip Cache": "Пропустить кэширование",
 	"Skip the cache and re-run the inference. Defaults to False.": "Пропустить кэширование и перезапустить вывод. По умолчанию установлено значение Выкл.",
@@ -2392,31 +1464,14 @@
 	"Sougou Search API sID": "Sougou Search API sID",
 	"Sougou Search API SK": "Sougou Search API SK",
 	"Source": "Источник",
-<<<<<<< HEAD
 	"Sources used": "",
-=======
-	"Specific users or groups": "",
-	"Speech Playback Speed": "Скорость воспроизведения речи",
-	"Speech recognition error: {{error}}": "Ошибка распознавания речи: {{error}}",
->>>>>>> upstream/main
 	"Speech-to-Text": "Речь в текст",
 	"Speech-to-Text Engine": "Система распознавания речи",
 	"Split documents by markdown headers before applying character/token splitting.": "Разделять документы по заголовкам Markdown перед разбиением на символы/токены.",
 	"Start from scratch": "",
 	"Start Tag": "Начальный тег",
-<<<<<<< HEAD
 	"Starters & Access": "",
 	"Starting kernel...": "Запуск ядра...",
-=======
-	"Starting in {{count}} minutes_one": "Начнется через {{count}} минуту",
-	"Starting in {{count}} minutes_few": "Начнется через {{count}} минуты",
-	"Starting in {{count}} minutes_many": "Начнется через {{count}} минут",
-	"Starting in {{count}} minutes_other": "Начнется через {{count}} мин.",
-	"Starting in 1 minute": "Начнется через 1 минуту",
-	"Starting kernel...": "Запуск ядра...",
-	"Starting now": "Начинается сейчас",
-	"State": "Состояние",
->>>>>>> upstream/main
 	"Status": "Статус",
 	"Status Updates": "Обновления статуса",
 	"STDOUT/STDERR": "STDOUT/STDERR",
@@ -2433,13 +1488,6 @@
 	"Strip Existing OCR": "Удалять существующие OCR",
 	"Strip existing OCR text from the PDF and re-run OCR. Ignored if Force OCR is enabled. Defaults to False.": "Удалять существующий текст OCR из PDF и перезапустить OCR. Игнорируется если Принудительное OCR включено. По умолчанию установлено значение Выкл.",
 	"STT Model": "Модель распознавания речи",
-<<<<<<< HEAD
-=======
-	"STT Settings": "Настройки распознавания речи",
-	"Stylized PDF Export": "Стилизованный экспорт в формате PDF",
-	"Su_day_of_week": "Вс",
-	"Sub Claim": "",
->>>>>>> upstream/main
 	"Submit question": "Отправить вопрос",
 	"Submit suggestion": "Отправить предложение",
 	"Subtitle": "Подзаголовок",
@@ -2450,25 +1498,16 @@
 	"Support": "Поддержать",
 	"Support this plugin:": "Поддержите этот плагин",
 	"Supported MIME Types": "Поддерживаемые MIME типы",
-	"Switch to JSON editor": "Переключиться на редактор JSON",
-	"Switch to visual editor": "Переключиться на визуальный редактор",
+	"Switch to JSON editor": "",
+	"Switch to visual editor": "",
 	"Sync": "Синхронизация",
-	"Sync a local directory with this knowledge base. Only new and modified files will be uploaded. The directory structure will be mirrored.": "",
-	"Sync complete: {{added}} added, {{modified}} modified, {{deleted}} deleted, {{unmodified}} unmodified": "",
 	"Sync Complete!": "Синхронизация завершена!",
 	"Sync Failed": "Ошибка синхронизации",
 	"Sync Usage Stats": "Синхронизировать статистику использования",
 	"Syncing stats...": "Синхронизация статистики...",
 	"Syncing...": "Синхронизация...",
 	"Syncs only chats with updates after your last sync timestamp. Disable to re-sync all chats.": "Синхронизирует только чаты, обновлённые после последней синхронизации. Отключите для повторной синхронизации всех чатов.",
-<<<<<<< HEAD
-=======
-	"System": "Система",
-	"System events only": "",
-	"System Instructions": "Системные инструкции",
->>>>>>> upstream/main
 	"System Prompt": "Системный промпт",
-	"Table": "",
 	"Tag": "Тег",
 	"Tags": "Теги",
 	"Tags Generation": "Генерация тегов",
@@ -2476,10 +1515,10 @@
 	"Tail free sampling is used to reduce the impact of less probable tokens from the output. A higher value (e.g., 2.0) will reduce the impact more, while a value of 1.0 disables this setting.": "Выборка без хвостов используется для уменьшения влияния менее вероятных токенов на выходные данные. Более высокое значение (например, 2.0) еще больше уменьшит влияние, в то время как значение 1.0 отключает эту настройку.",
 	"Talk to Model": "Говорить с моделью",
 	"Task List": "Список задач",
-	"Task Management": "Управление задачами",
+	"Task Management": "",
 	"Task Model": "Модель задачи",
 	"Tasks": "Задачи",
-	"tasks completed": "задач выполнено",
+	"tasks completed": "",
 	"Tavily API Key": "Ключ API Tavily",
 	"Tavily Extract Depth": "Глубина извлечения Tavily",
 	"Teach your first skill": "",
@@ -2488,24 +1527,9 @@
 	"Temperature": "Температура",
 	"Temporary Chat": "Временный чат",
 	"Terminal": "Терминал",
-<<<<<<< HEAD
 	"Text Splitter": "Разделитель текста",
 	"Text-to-Speech": "Текст в речь",
 	"Text-to-Speech Engine": "Система синтеза речи",
-=======
-	"Terminal servers saved": "Серверы терминала сохранены",
-	"Test": "",
-	"Test Query": "",
-	"Test returned no results.": "",
-	"Test succeeded.": "",
-	"Test the source before creating it.": "",
-	"Test the source before saving it.": "",
-	"Text Splitter": "Разделитель текста",
-	"Text-to-Speech": "Текст в речь",
-	"Text-to-Speech Engine": "Система синтеза речи",
-	"Th_day_of_week": "Чт",
-	"Thanks for your feedback!": "Спасибо за вашу обратную связь!",
->>>>>>> upstream/main
 	"The Application Account DN you bind with for search": "Логин учетной записи приложения, к которому вы привязываетесь для поиска",
 	"The Archive": "",
 	"The base to search for users": "База для поиска пользователей",
@@ -2517,11 +1541,8 @@
 	"The height in pixels to compress images to. Leave empty for no compression.": "Высота в пикселях для сжатия картинок. Оставьте пустым, чтобы не сжимать.",
 	"The LDAP attribute that maps to the mail that users use to sign in.": "Атрибут LDAP, который сопоставляется с почтой, используемой пользователями для входа в систему.",
 	"The LDAP attribute that maps to the username that users use to sign in.": "Атрибут LDAP, который сопоставляется с именем пользователя, используемым пользователями для входа в систему.",
-<<<<<<< HEAD
 	"The leaderboard is currently in beta, and we may adjust the rating calculations as we refine the algorithm.": "В настоящее время таблица лидеров находится в стадии бета-тестирования, и мы можем скорректировать расчеты рейтинга по мере доработки алгоритма.",
 	"the longest single response it may set": "",
-=======
->>>>>>> upstream/main
 	"The maximum file size in MB. If the file size exceeds this limit, the file will not be uploaded.": "Максимальный размер файла в МБ. Если размер файла превысит это ограничение, файл не будет загружен.",
 	"The maximum number of files that can be used at once in chat. If the number of files exceeds this limit, the files will not be uploaded.": "Максимальное количество файлов, которые могут быть использованы одновременно в чате. Если количество файлов превысит это ограничение, файлы не будут загружены.",
 	"The only required step — refine everything else now or later.": "",
@@ -2547,27 +1568,17 @@
 	"This feature is currently experimental and may not work as expected.": "Эта функция экспериментальна и может работать не так, как ожидается.",
 	"This folder is empty": "Эта папка пуста",
 	"This is a default user permission and will remain enabled.": "Это разрешение по умолчанию, оно остаётся включённым.",
-<<<<<<< HEAD
-=======
-	"This is an experimental feature, it may not function as expected and is subject to change at any time.": "Это экспериментальная функция, она может работать не так, как ожидалось, и может быть изменена в любое время.",
-	"This knowledge base retrieves from a connected source. Open WebUI can query it, but cannot upload, sync, edit, delete, reset, or reindex its source data.": "",
->>>>>>> upstream/main
 	"This model is not publicly available. Please select another model.": "Эта модель недоступна в открытом доступе. Пожалуйста, выберите другую модель.",
 	"This option controls how long the model will stay loaded into memory following the request (default: 5m)": "Этот параметр определяет, как долго модель будет оставаться загруженной в память после запроса (по умолчанию: 5 месяцев).",
 	"This option controls how many tokens are preserved when refreshing the context. For example, if set to 2, the last 2 tokens of the conversation context will be retained. Preserving context can help maintain the continuity of a conversation, but it may reduce the ability to respond to new topics.": "Этот параметр определяет, сколько токенов сохраняется при обновлении контекста. Например, если задано значение 2, будут сохранены последние 2 токена контекста беседы. Сохранение контекста может помочь сохранить непрерывность беседы, но может уменьшить возможность отвечать на новые темы.",
 	"This option enables or disables the use of the reasoning feature in Ollama, which allows the model to think before generating a response. When enabled, the model can take a moment to process the conversation context and generate a more thoughtful response.": "Эта опция включает или отключает использование функции рассуждения в Ollama, которая позволяет модели подумать, прежде чем генерировать ответ. Если она включена, модель может потратить некоторое время на обработку контекста разговора и выработку более продуманного ответа.",
 	"This option sets the maximum number of tokens the model can generate in its response. Increasing this limit allows the model to provide longer answers, but it may also increase the likelihood of unhelpful or irrelevant content being generated.": "Этот параметр устанавливает максимальное количество токенов, которые модель может генерировать в своем ответе. Увеличение этого ограничения позволяет модели предоставлять более длинные ответы, но также может увеличить вероятность создания бесполезного или нерелевантного контента.",
 	"This response was generated by \"{{model}}\"": "Этот ответ был сгенерирован для \"{{model}}\"",
-	"This template contains multiple context placeholders ([context] or {{CONTEXT}}). Context will be injected at each occurrence.": "Этот шаблон содержит несколько заполнителей контекста ([context] или {{CONTEXT}}). Контекст будет добавлен в каждое место.",
+	"This template contains multiple context placeholders ([context] or {{CONTEXT}}). Context will be injected at each occurrence.": "",
 	"This will delete": "Это приведет к удалению",
 	"This will delete <strong>{{NAME}}</strong> and <strong>all its contents</strong>.": "При этом будет удален <strong>{{NAME}}</strong> и <strong>все его содержимое</strong>.",
 	"This will delete all models including custom models": "Это приведет к удалению всех моделей, включая пользовательские модели.",
 	"This will delete all models including custom models and cannot be undone.": "При этом будут удалены все модели, включая пользовательские, и это действие нельзя будет отменить.",
-<<<<<<< HEAD
-=======
-	"This will permanently delete the calendar \"{{name}}\" and all its events. This action cannot be undone.": "Календарь \"{{name}}\" и все его события будут удалены безвозвратно. Это действие нельзя отменить.",
-	"This will remove all files and directories from this knowledge base. This action cannot be undone.": "",
->>>>>>> upstream/main
 	"Thorough explanation": "Подробное объяснение",
 	"Thought": "Рассуждение",
 	"Thought for {{DURATION}}": "Рассуждаю {{DURATION}}",
@@ -2577,20 +1588,12 @@
 	"Tika": "Tika",
 	"Tika Server URL required.": "Требуется URL-адрес сервера Tika.",
 	"Tiktoken": "Tiktoken",
-<<<<<<< HEAD
-=======
-	"Time": "Время",
->>>>>>> upstream/main
 	"Time & Calculation": "Время и вычисления",
 	"Timeout": "Тайм-аут",
 	"Title": "Заголовок",
 	"Title cannot be an empty string.": "Заголовок не может быть пустой строкой.",
 	"Title Generation": "Генерация заголовка",
 	"Title Generation Prompt": "Промпт для генерации заголовка",
-<<<<<<< HEAD
-=======
-	"Title is required": "Требуется заголовок",
->>>>>>> upstream/main
 	"TLS": "TLS",
 	"To access the available model names for downloading,": "Чтобы получить доступ к доступным для загрузки названиям моделей,",
 	"To access the GGUF models available for downloading,": "Чтобы получить доступ к моделям GGUF, доступным для загрузки,",
@@ -2598,46 +1601,21 @@
 	"To learn more about available endpoints, visit our documentation.": "Чтобы узнать больше о доступных энд-поинтах, ознакомьтесь с нашей документацией.",
 	"To select skills here, add them to the \"Skills\" workspace first.": "Чтобы выбрать скиллы здесь, сначала добавьте их в раздел «Скиллы».",
 	"To select toolkits here, add them to the \"Tools\" workspace first.": "Чтобы выбрать инструменты, сначала добавьте их в \"Инструменты\" рабочего пространства.",
-<<<<<<< HEAD
 	"Today": "Сегодня",
 	"Toggle details": "Показать/скрыть подробности",
-=======
-	"Toast Notifications for New Updates": "Уведомления о обновлениях",
-	"Today": "Сегодня",
-	"Today at": "Сегодня в",
-	"Today at {{LOCALIZED_TIME}}": "Сегодня в {{LOCALIZED_TIME}}",
-	"Toggle {{COUNT}} sources": "Показать/скрыть {{COUNT}} источников",
-	"Toggle 1 source": "Показать/скрыть 1 источник",
-	"Toggle details": "Показать/скрыть подробности",
-	"Toggle Dictation": "Включить/выключить диктовку",
-	"Toggle Mute": "",
->>>>>>> upstream/main
 	"Toggle Sidebar": "Показать/скрыть боковую панель",
 	"Toggle whether current connection is active.": "Переключить, активно ли текущее соединение.",
 	"Token": "Токен",
 	"Token counts are estimates and may not reflect actual API usage": "Количество токенов является приблизительным и может не отражать фактическое использование API",
-	"Token Threshold": "",
-	"Tokenizer Model": "",
 	"tokens": "токены",
 	"Tokens": "Токены",
 	"Too verbose": "Слишком многословно",
-<<<<<<< HEAD
 	"Tool": "",
 	"Tool Description": "Описание Инструмента",
 	"Tool ID": "ID Инструмента",
 	"Tool imported successfully": "Инструмент успешно импортирован",
 	"Tool Name": "Название Инструмента",
 	"Tool Servers": "Сервер Инструмента",
-=======
-	"Tool created successfully": "Инструмент успешно создан",
-	"Tool deleted successfully": "Инструмент успешно удален",
-	"Tool Description": "Описание инструмента",
-	"Tool ID": "ID инструмента",
-	"Tool imported successfully": "Инструмент успешно импортирован",
-	"Tool Name": "Название инструмента",
-	"Tool Servers": "Серверы инструментов",
-	"Tool updated successfully": "Инструмент успешно обновлен",
->>>>>>> upstream/main
 	"Tools": "Инструменты",
 	"Tools & Skills": "",
 	"Tools Access": "Доступ к инструментам",
@@ -2645,18 +1623,14 @@
 	"Tools are Python instruments a model can pick up mid-conversation — fetch data, run code, reach other services.": "",
 	"Tools Function Calling Prompt": "Промпт на вызов функции Инструменты",
 	"Tools have a function calling system that allows arbitrary code execution.": "Инструменты имеют систему вызова функций, которая позволяет выполнять произвольный код.",
-	"Tools Public Sharing": "Публичный доступ к инструментам",
+	"Tools Public Sharing": "Публичный обмен инструментами",
 	"Tools Sharing": "Общий доступ к инструментам",
 	"Tools, OpenAPI servers, and external plugins.": "",
 	"Tools, skills and filters the model may take up mid-conversation.": "",
 	"Top": "Вверх",
 	"Top K": "Top K",
-<<<<<<< HEAD
 	"Top K Reranker": "Top K переранжировщик",
 	"Top P": "",
-=======
-	"Top K Reranker": "Top K реранкера",
->>>>>>> upstream/main
 	"Transformers": "Transformers",
 	"Trouble accessing Ollama?": "Проблемы с доступом к Ollama?",
 	"Trust Proxy Environment": "Доверять заданным параметрам прокси",
@@ -2664,48 +1638,23 @@
 	"Try Again": "Попробовать снова",
 	"TTS Model": "Модель TTS",
 	"TTS Voice": "Голос TTS",
-<<<<<<< HEAD
 	"Tuning": "",
-=======
-	"Tu_day_of_week": "Вт",
->>>>>>> upstream/main
 	"Type": "Тип",
 	"Type here...": "Введите текст...",
 	"Type Hugging Face Resolve (Download) URL": "Введите URL-адрес Hugging Face Resolve (загрузки)",
-	"Uh-oh! There was an issue with the response.": "Ошибка генерации ответа.",
+	"Uh-oh! There was an issue with the response.": "Печаль-беда! Возникла проблема с ответом.",
 	"UI": "Пользовательский интерфейс",
 	"Unarchive Chat": "Разархивировать чат",
 	"Underline": "Подчёркнутый",
 	"Unknown": "Неизвестно",
 	"Unloads {{FROM_NOW}}": "Выгрузка из памяти {{FROM_NOW}}",
 	"Unlock mysteries": "Разблокируйте тайны",
-<<<<<<< HEAD
 	"Unpin": "Открепить",
-=======
-	"Unmute": "Включить микрофон",
-	"Unpin": "Открепить",
-	"Unpin from Sidebar": "Открепить от боковой панели",
->>>>>>> upstream/main
 	"Unravel secrets": "Разгадать секреты",
-	"Unshare All": "",
-	"Unshare All Shared Chats": "",
 	"Unshare Chat": "Отменить публикацию чата",
 	"Untagged": "Без тегов",
-<<<<<<< HEAD
 	"Untitled folio": "",
 	"Update for the latest features and improvements.": "Обновитесь для получения последних функций и улучшений.",
-=======
-	"Untitled": "Без заголовка",
-	"Update": "Обновить",
-	"Update and Copy Link": "Обновить и скопировать ссылку",
-	"Update Email": "",
-	"Update for the latest features and improvements.": "Обновитесь для получения последних функций и улучшений.",
-	"Update Name": "",
-	"Update password": "Обновить пароль",
-	"Update Picture": "",
-	"Update your status": "Обновите свой статус",
-	"Updated": "Обновлено",
->>>>>>> upstream/main
 	"Updated at": "Обновлено",
 	"Updated At": "Обновлено в",
 	"Upgrade to a licensed plan for enhanced capabilities, including custom theming and branding, and dedicated support.": "Перейдите на лицензионный тарифный план, чтобы получить расширенные возможности, включая настраиваемую тематику и фирменный стиль, а также специальную поддержку.",
@@ -2717,40 +1666,24 @@
 	"Upload profile image": "Загрузить аватар",
 	"Upload Progress": "Прогресс загрузки",
 	"Uploaded files or images": "Загруженные файлы или изображения",
-<<<<<<< HEAD
-=======
-	"Uploading {{current}}/{{total}}: {{file}}": "",
->>>>>>> upstream/main
 	"Uploading...": "Загрузка...",
 	"URL": "URL",
 	"URL is required": "Требуется URL",
 	"URL Mode": "Режим URL",
 	"Usage": "Использование",
 	"Use /v1/chat/completions endpoint instead of /v1/audio/transcriptions for potentially better accuracy.": "Используйте эндпоинт /v1/chat/completions вместо /v1/audio/transcriptions для потенциально лучшей точности.",
-	"Use a valid event name or pattern like user.*": "",
-	"Use Base64": "",
 	"Use Chat Completions API": "Использовать Chat Completions API",
-	"Use discovered scopes": "",
 	"Use groups to organize your users and assign permissions.": "Используйте группы для организации пользователей и назначения прав.",
 	"Use LLM": "Использовать LLM",
 	"Use no proxy to fetch page contents.": "Не используйте прокси-сервер для получения содержимого страницы.",
 	"Use proxy designated by http_proxy and https_proxy environment variables to fetch page contents.": "Используйте прокси-сервер, обозначенный переменными окружения http_proxy и https_proxy, для получения содержимого страницы.",
-	"Use Web Search?": "",
 	"user": "пользователь",
 	"User": "Пользователь",
-	"User Access": "",
 	"User Activity": "Активность пользователей",
 	"User Groups": "Группы пользователей",
-<<<<<<< HEAD
-=======
-	"User location successfully retrieved.": "Местоположение пользователя успешно получено.",
-	"User menu": "Меню пользователя",
-	"User Preview": "",
->>>>>>> upstream/main
 	"User ratings (thumbs up/down)": "Оценки пользователей (нравится/не нравится)",
 	"User Webhooks": "Пользовательские веб-хуки",
 	"Username": "Имя пользователя",
-	"Username Claim": "",
 	"users": "пользователи",
 	"Users": "Пользователи",
 	"Uses DefaultAzureCredential to authenticate": "Использует DefaultAzureCredential для аутентификации",
@@ -2760,16 +1693,8 @@
 	"Using the default arena model with all models. Click the plus button to add custom models.": "Использование модели арены по умолчанию со всеми моделями. Нажмите кнопку «плюс», чтобы добавить пользовательские модели.",
 	"Valid time units:": "Допустимые единицы времени:",
 	"Validate certificate": "Проверять сертификат",
-<<<<<<< HEAD
 	"Valves": "Вентили",
 	"Verified": "",
-=======
-	"Valves": "Параметры",
-	"Valves updated": "Параметры обновлены",
-	"Valves updated successfully": "Параметры успешно обновлены",
-	"variable": "переменная",
-	"Vector Field": "",
->>>>>>> upstream/main
 	"Verify Connection": "Проверить подключение",
 	"Verify SSL Certificate": "Проверять SSL-сертификат",
 	"Version": "Версия",
@@ -2781,64 +1706,27 @@
 	"Visible": "Видимо",
 	"Visible to all users": "Видимо всем пользователям",
 	"Vision": "Видение",
-<<<<<<< HEAD
 	"Visual": "",
-=======
-	"Visual": "Визуальный",
-	"Voice": "Голос",
-	"Voice Input": "Ввод голоса",
-	"Voice mode": "Режим голоса",
->>>>>>> upstream/main
 	"Voice Mode Prompt": "Промпт голосового режима",
 	"Warning": "Предупреждение",
 	"Warning:": "Предупреждение:",
-<<<<<<< HEAD
 	"Warning: Enabling this will allow users to upload arbitrary code on the server.": "Предупреждение. Включение этого параметра позволит пользователям загружать произвольный код на сервер.",
 	"Warning: Jupyter execution enables arbitrary code execution, posing severe security risks—proceed with extreme caution.": "Предупреждение: Выполнение Jupyter позволяет выполнять произвольный код, что создает серьезные угрозы безопасности — действуйте с особой осторожностью.",
-=======
-	"Warning: Enabling this will allow users to run scheduled prompts automatically.": "Предупреждение: включение позволит пользователям автоматически запускать запланированные промпты.",
-	"Warning: Enabling this will allow users to upload arbitrary code on the server.": "Предупреждение. Включение этого параметра позволит пользователям загружать произвольный код на сервер.",
-	"Warning: Jupyter execution enables arbitrary code execution, posing severe security risks—proceed with extreme caution.": "Предупреждение: Выполнение Jupyter позволяет выполнять произвольный код, что создает серьезные угрозы безопасности — действуйте с особой осторожностью.",
-	"We_day_of_week": "Ср",
-	"Web": "Веб",
->>>>>>> upstream/main
 	"Web API": "Веб API",
 	"Web Loader Engine": "Движок веб-загрузчика",
 	"Web Search": "Веб-поиск",
-	"Web Search Confirmation": "",
-	"Web Search Confirmation Content": "",
 	"Web Search Engine": "Поисковая система",
 	"Web Search Query Generation": "Генерация запросов веб-поиска",
-<<<<<<< HEAD
 	"Webhook URL": "URL-адрес веб-хука",
-=======
-	"Webhook deleted": "",
-	"Webhook Name": "Название вебхука",
-	"Webhook saved": "",
-	"Webhooks": "Вебхуки",
-	"Webpage URLs": "URL веб-страниц",
-	"WebUI Settings": "Настройки WebUI",
->>>>>>> upstream/main
 	"WebUI URL": "WebUI URL",
 	"WebUI will make requests to \"{{url}}\"": "WebUI будет отправлять запросы к \"{{url}}\"",
 	"WebUI will make requests to \"{{url}}/api/chat\"": "WebUI будет отправлять запросы к \"{{url}}/api/chat\"",
 	"WebUI will make requests to \"{{url}}/chat/completions\"": "WebUI будет отправлять запросы к \"{{url}}/chat/completions\"",
-<<<<<<< HEAD
-=======
-	"Week": "Неделя",
-	"Weekly": "Еженедельно",
-	"What are you trying to achieve?": "Чего вы пытаетесь достичь?",
-	"What are you working on?": "Над чем вы работаете?",
->>>>>>> upstream/main
 	"What is NOT shared:": "Что НЕ передаётся:",
 	"What is shared:": "Что передаётся:",
 	"What the model is permitted to see and do.": "",
 	"What's New in": "Что нового в",
 	"What's on your mind?": "О чём хотите поговорить?",
-<<<<<<< HEAD
-=======
-	"When": "Когда",
->>>>>>> upstream/main
 	"When enabled, the model will respond to each chat message in real-time, generating a response as soon as the user sends a message. This mode is useful for live chat applications, but may impact performance on slower hardware.": "Если эта функция включена, модель будет отвечать на каждое сообщение чата в режиме реального времени, генерируя ответ, как только пользователь отправит сообщение. Этот режим полезен для приложений живого чата, но может повлиять на производительность на более медленном оборудовании.",
 	"wherever you are": "где бы вы ни были",
 	"Whether to paginate the output. Each page will be separated by a horizontal rule and page number. Defaults to False.": "Следует ли разбивать выходные данные на страницы. Каждая страница будет разделена горизонтальной линией и номером страницы. По умолчанию установлено значение Выкл.",
@@ -2847,10 +1735,6 @@
 	"Why?": "Почему?",
 	"Wikipedia": "Википедия",
 	"Won": "Победа",
-<<<<<<< HEAD
-=======
-	"Working Directory": "Рабочий каталог",
->>>>>>> upstream/main
 	"Works together with top-k. A higher value (e.g., 0.95) will lead to more diverse text, while a lower value (e.g., 0.5) will generate more focused and conservative text.": "Работает совместно с top-k. Более высокое значение (например, 0,95) приведет к более разнообразному тексту, в то время как более низкое значение (например, 0,5) приведет к созданию более сфокусированного и консервативного текста.",
 	"Workspace": "Рабочее пространство",
 	"Workspace Permissions": "Разрешения для Рабочего пространства",
@@ -2864,7 +1748,6 @@
 	"Yandex Web Search API Key": "API-ключ Яндекс Поиска",
 	"Yandex Web Search config": "Настройки Яндекс Поиска",
 	"Yandex Web Search URL": "URL Яндекс Поиска",
-	"Yearly": "",
 	"Yesterday": "Вчера",
 	"You": "Вы",
 	"You are a careful editor: terse, concrete, kind…": "",
@@ -2884,7 +1767,6 @@
 	"Your browser does not support the video tag.": "Ваш браузер не поддерживает тег video.",
 	"Your entire contribution will go directly to the plugin developer; Open WebUI does not take any percentage. However, the chosen funding platform might have its own fees.": "Весь ваш взнос будет направлен непосредственно разработчику плагина; Open WebUI не взимает никаких процентов. Однако выбранная платформа финансирования может иметь свои собственные сборы.",
 	"Your message text or inputs": "Текст ваших сообщений",
-	"Your query will be sent to the configured web search provider.": "",
 	"Your usage stats have been successfully synced.": "Ваша статистика использования успешно синхронизирована.",
 	"Youtube Language": "Язык YouTube",
 	"Youtube Proxy URL": "URL прокси для YouTube"

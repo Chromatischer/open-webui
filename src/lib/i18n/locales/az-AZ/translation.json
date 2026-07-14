@@ -5,67 +5,21 @@
 	"(e.g. `sh webui.sh --api`)": "(məs. `sh webui.sh --api`)",
 	"(latest)": "(ən sonuncu)",
 	"(leave blank for to use commercial endpoint)": "(kommersiya son nöqtəsindən istifadə etmək üçün boş buraxın)",
-<<<<<<< HEAD
 	"{{COUNT}} extracted lines": "{{COUNT}} çıxarılmış sətir",
 	"{{COUNT}} hidden lines": "{{COUNT}} gizli sətir",
 	"{{COUNT}} members": "{{COUNT}} üzv",
 	"{{COUNT}} Rows": "{{COUNT}} Sətir",
 	"{{count}} selected_one": "",
 	"{{count}} selected_other": "",
-=======
-	"[Last] dddd [at] h:mm A": "[Sonuncu] dddd [saat] h:mm A",
-	"[Today at] h:mm A": "[Bu gün saat] h:mm A",
-	"[Yesterday at] h:mm A": "[Dünən saat] h:mm A",
-	"{{ models }}": "{{ models }}",
-	"{{COUNT}} Available Skills": "",
-	"{{COUNT}} Available Tools": "{{COUNT}} Mövcud Alət",
-	"{{COUNT}} characters": "{{COUNT}} simvol",
-	"{{COUNT}} extracted lines": "{{COUNT}} çıxarılmış sətir",
-	"{{COUNT}} files": "{{COUNT}} fayl",
-	"{{count}} files selected. Only new and modified files will be uploaded. Deleted files will be removed. The folder structure will be mirrored. Continue?_one": "",
-	"{{count}} files selected. Only new and modified files will be uploaded. Deleted files will be removed. The folder structure will be mirrored. Continue?_other": "",
-	"{{count}} filters_one": "",
-	"{{count}} filters_other": "",
-	"{{count}} groups_one": "",
-	"{{count}} groups_other": "",
-	"{{COUNT}} hidden lines": "{{COUNT}} gizli sətir",
-	"{{COUNT}} members": "{{COUNT}} üzv",
-	"{{count}} of {{total}} accessible_one": "",
-	"{{count}} of {{total}} accessible_other": "",
-	"{{COUNT}} Replies": "{{COUNT}} Cavab",
-	"{{COUNT}} Rows": "{{COUNT}} Sətir",
-	"{{count}} selected_one": "",
-	"{{count}} selected_other": "",
-	"{{COUNT}} Sources": "{{COUNT}} Mənbə",
-	"{{count}} users_one": "",
-	"{{count}} users_other": "",
-	"{{COUNT}} words": "{{COUNT}} söz",
->>>>>>> upstream/main
 	"{{COUNT}}d_time_ago": "{{COUNT}} gün əvvəl",
 	"{{COUNT}}h_time_ago": "{{COUNT}} saat əvvəl",
 	"{{COUNT}}m_time_ago": "{{COUNT}} dəq əvvəl",
 	"{{COUNT}}w_time_ago": "{{COUNT}} həftə əvvəl",
 	"{{COUNT}}y_time_ago": "{{COUNT}} il əvvəl",
-<<<<<<< HEAD
-=======
-	"{{label}} contains invalid JSON": "",
-	"{{label}} must be a JSON object": "",
-	"{{LOCALIZED_DATE}} at {{LOCALIZED_TIME}}": "{{LOCALIZED_DATE}}, saat {{LOCALIZED_TIME}}",
-	"{{model}} download has been canceled": "{{model}} yüklənməsi ləğv edildi",
->>>>>>> upstream/main
 	"{{modelName}} profile image": "{{modelName}} profil şəkli",
 	"{{user}}'s Chats": "{{user}} adlı istifadəçinin söhbətləri",
 	"{{webUIName}} Backend Required": "{{webUIName}} üçün Backend tələb olunur",
 	"*Prompt node ID(s) are required for image generation": "*Şəkil yaradılması üçün sorğu (prompt) qovşaq ID-ləri tələb olunur",
-<<<<<<< HEAD
-=======
-	"1 group": "",
-	"1 hour before": "",
-	"1 Source": "1 Mənbə",
-	"1 user": "",
-	"10 minutes before": "",
-	"15 minutes before": "",
->>>>>>> upstream/main
 	"1m_time_ago": "1 dəq əvvəl",
 	"a line about what this model is for…": "",
 	"A model binds a base mind to a system prompt, tools and knowledge — compose one and summon it in any chat.": "",
@@ -77,11 +31,6 @@
 	"Access Control": "Girişə nəzarət",
 	"Access Grants": "Giriş icazələri",
 	"Access List": "Giriş siyahısı",
-<<<<<<< HEAD
-=======
-	"Access prohibited": "",
-	"Access updated": "",
->>>>>>> upstream/main
 	"Accessible to all users": "Bütün istifadəçilər üçün əlçatandır",
 	"Account Activation Pending": "Hesabın aktivləşdirilməsi gözlənilir",
 	"Accurate information": "Dəqiq məlumat",
@@ -92,7 +41,6 @@
 	"Activity": "Fəaliyyət",
 	"Add": "Əlavə et",
 	"Add a model ID": "Model ID-si əlavə edin",
-	"Add a preference, fact, or instruction about you": "",
 	"Add a short description about what this model does": "Bu modelin nə etdiyi barədə qısa təsvir əlavə edin",
 	"Add a tag": "Teq əlavə et",
 	"Add a tag...": "Teq əlavə et...",
@@ -102,17 +50,7 @@
 	"Add Custom Parameter": "Fərdi parametr əlavə et",
 	"Add Custom Prompt": "Fərdi prompt əlavə et",
 	"Add Details": "Detallar əlavə et",
-	"Add durable context for future chats": "",
 	"Add Files": "Fayl əlavə et",
-<<<<<<< HEAD
-=======
-	"Add Image": "Şəkil əlavə et",
-	"Add Knowledge Connection": "",
-	"Add location": "",
-	"Add Member": "Üzv əlavə et",
-	"Add Members": "Üzvlər əlavə et",
-	"Add Memory": "Yaddaş əlavə et",
->>>>>>> upstream/main
 	"Add Model": "Model əlavə et",
 	"Add tag": "teq əlavə et",
 	"Add Tag": "Teq əlavə et",
@@ -120,11 +58,6 @@
 	"Add to favorites": "Favoritlərə əlavə et",
 	"Add User": "İstifadəçi əlavə et",
 	"Add User Group": "İstifadəçi qrupu əlavə et",
-<<<<<<< HEAD
-=======
-	"Add webhook": "",
-	"Add webpage": "Veb səhifə əlavə et",
->>>>>>> upstream/main
 	"Add your Open Terminal URL and API key in Settings → Integrations.": "Ayarlar → İnteqrasiyalar bölməsində Open Terminal URL və API açarınızı əlavə edin.",
 	"Additional Config": "Əlavə konfiqurasiya",
 	"Additional configuration options for marker. This should be a JSON string with key-value pairs. For example, '{\"key\": \"value\"}'. Supported keys include: disable_links, keep_pageheader_in_output, keep_pagefooter_in_output, filter_blank_pages, drop_repeated_text, layout_coverage_threshold, merge_threshold, height_tolerance, gap_threshold, image_threshold, min_line_length, level_count, default_level": "Marker üçün əlavə konfiqurasiya seçimləri. Bu, açar-dəyər cütləri olan JSON sətiri olmalıdır. Məsələn: '{\"key\": \"value\"}'. Dəstəklənən açarlar: disable_links, keep_pageheader_in_output, keep_pagefooter_in_output, filter_blank_pages, drop_repeated_text, layout_coverage_threshold, merge_threshold, height_tolerance, gap_threshold, image_threshold, min_line_length, level_count, default_level",
@@ -135,40 +68,18 @@
 	"Admin": "Admin",
 	"Admin Contact Email": "Admin əlaqə e-poçtu",
 	"Admin Panel": "Admin Paneli",
-<<<<<<< HEAD
-=======
-	"Admin Roles": "",
-	"Admin Settings": "Admin Ayarları",
-	"Admin-managed service account": "",
->>>>>>> upstream/main
 	"Admins have access to all tools at all times; users need tools assigned per model in the workspace.": "Adminlərin hər zaman bütün alətlərə çıxışı var; istifadəçilər üçün isə alətlər iş sahəsindəki hər bir modelə uyğun təyin edilməlidir.",
 	"Advanced": "Təkmil",
 	"Advanced parameters for MinerU parsing (enable_ocr, enable_formula, enable_table, language, model_version, page_ranges)": "MinerU tərəfindən emal (parsing) üçün təkmil parametrlər (enable_ocr, enable_formula, enable_table, language, model_version, page_ranges)",
 	"Advanced Params": "Təkmil parametrlər",
 	"After updating or changing the embedding model, you must reindex the knowledge base for the changes to take effect. You can do this using the \"Reindex\" button below.": "Yerləşdirmə (embedding) modelini yenilədikdən və ya dəyişdirdikdən sonra dəyişikliklərin qüvvəyə minməsi üçün bilik bazasını yenidən indeksləşdirməlisiniz. Bunu aşağıdakı \"Yenidən indekslə\" düyməsi ilə edə bilərsiniz.",
 	"All": "Hamısı",
-<<<<<<< HEAD
 	"All time": "Bütün zamanlar",
 	"All Users": "Bütün istifadəçilər",
-=======
-	"All chats have been unarchived.": "Bütün çatlar arxivdən çıxarıldı.",
-	"All day": "",
-	"All events": "",
-	"All models are now hidden": "Bütün modellər indi gizlidir",
-	"All models are now visible": "Bütün modellər indi görünür",
-	"All models deleted successfully": "Bütün modellər uğurla silindi",
-	"All shared chats have been unshared.": "",
-	"All Sources": "",
-	"All time": "Bütün zamanlar",
-	"All Users": "Bütün istifadəçilər",
-	"All users and system events": "",
-	"Allow Call": "Zəngə icazə ver",
->>>>>>> upstream/main
 	"Allow Chat Controls": "Çat idarəetməsinə icazə ver",
 	"Allow Chat Delete": "Çatın silinməsinə icazə ver",
 	"Allow Chat Edit": "Çatın redaktəsinə icazə ver",
 	"Allow Chat Export": "Çatın ixracına icazə ver",
-	"Allow Chat Import": "",
 	"Allow Chat Params": "Çat parametrlərinə icazə ver",
 	"Allow Chat Share": "Çatın paylaşılmasına icazə ver",
 	"Allow Chat System Prompt": "Çat sistem göstərişinə (prompt) icazə ver",
@@ -183,11 +94,9 @@
 	"Allow Sharing With Users": "İstifadəçilərlə paylaşmağa icazə ver",
 	"Allow Text to Speech": "Mətndən səsə (TTS) keçidinə icazə ver",
 	"Allow Web Upload": "Veb yükləməyə icazə ver",
-	"Allowed Domains": "",
 	"Allowed Endpoints": "İcazə verilən son nöqtələr (Endpoints)",
 	"Allowed File Extensions": "İcazə verilən fayl uzantıları",
 	"Allowed file extensions for upload. Separate multiple extensions with commas. Leave empty for all file types.": "Yükləmə üçün icazə verilən fayl uzantıları. Birdən çox uzantını vergüllə ayırın. Bütün fayl növləri üçün boş saxlayın.",
-	"Allowed Roles": "",
 	"Already have an account?": "Artıq hesabınız var?",
 	"Alternative to the top_p, and aims to ensure a balance of quality and variety. The parameter p represents the minimum probability for a token to be considered, relative to the probability of the most likely token. For example, with p=0.05 and the most likely token having a probability of 0.9, logits with a value less than 0.045 are filtered out.": "Top_p-yə alternativdir və keyfiyyətlə müxtəliflik arasında balans təmin etmək məqsədi daşıyır. p parametri ən yüksək ehtimallı tokenin ehtimalına nisbətən nəzərə alınacaq minimum ehtimalı təmsil edir. Məsələn, p=0.05 olduqda və ən ehtimallı token 0.9 ehtimala malikdirsə, 0.045-dən kiçik dəyəri olan logit-lər kənarlaşdırılır.",
 	"Amazing": "Möhtəşəm",
@@ -199,11 +108,6 @@
 	"API Base URL": "API Baza URL-i",
 	"API Base URL for Datalab Marker service. Defaults to: https://www.datalab.to/api/v1/marker": "Datalab Marker xidməti üçün API Baza URL-i. Standart olaraq: https://www.datalab.to/api/v1/marker",
 	"API Key": "API Açarı",
-<<<<<<< HEAD
-=======
-	"API Key / Token": "",
-	"API Key created.": "API açarı yaradıldı.",
->>>>>>> upstream/main
 	"API Key Endpoint Restrictions": "API Açarı Son Nöqtə (Endpoint) Məhdudiyyətləri",
 	"API Keys": "API Açarları",
 	"API Mode": "API Rejimi",
@@ -220,31 +124,13 @@
 	"Are you sure you want to delete \"{{NAME}}\"?": "\"{{NAME}}\" elementini silmək istədiyinizə əminsiniz?",
 	"Are you sure you want to delete **{{modelName}}**?": "",
 	"Are you sure you want to delete this connection? This action cannot be undone.": "",
-<<<<<<< HEAD
 	"Are you sure you want to delete this?": "Bunu silmək istədiyinizə əminsiniz?",
 	"Arena": "",
-=======
-	"Are you sure you want to delete this directory?": "",
-	"Are you sure you want to delete this memory? This action cannot be undone.": "",
-	"Are you sure you want to delete this message?": "Bu mesajı silmək istədiyinizə əminsiniz?",
-	"Are you sure you want to delete this version? Child versions will be relinked to this version's parent.": "Bu versiyanı silmək istədiyinizə əminsiniz? Alt versiyalar bu versiyanın valideyninə yenidən bağlanacaq.",
-	"Are you sure you want to delete this webhook? This action cannot be undone.": "",
-	"Are you sure you want to delete this?": "Bunu silmək istədiyinizə əminsiniz?",
-	"Are you sure you want to reset all permissions to their default values? You will still need to save to apply the changes.": "",
-	"Are you sure you want to unarchive all archived chats?": "Bütün arxivləşdirilmiş çatları arxivdən çıxarmaq istədiyinizə əminsiniz?",
-	"Are you sure you want to unshare all shared chats? This will remove all share links.": "",
->>>>>>> upstream/main
 	"Arena Models": "Arena Modelləri",
 	"Artifacts": "Artefaktlar",
 	"Ask": "Soruş",
 	"Ask a question": "Sual verin",
-<<<<<<< HEAD
 	"Ask the User": "",
-=======
-	"Ask a test question": "",
-	"Ask this knowledge source a test question": "",
-	"Assistant": "Köməkçi",
->>>>>>> upstream/main
 	"Async Embedding Processing": "Asinxron Yerləşdirmə (Embedding) Emalı",
 	"Attach File From Knowledge": "Bilik bazasından fayl əlavə et",
 	"Attention to detail": "Detallara diqqət",
@@ -253,33 +139,20 @@
 	"Audience": "",
 	"August": "Avqust",
 	"Auth": "Səlahiyyətləndirmə (Auth)",
-	"Auth Mode": "",
-	"Auth required": "",
 	"Authenticate": "Autentifikasiya et",
 	"Authentication": "Autentifikasiya",
 	"Auto (Random)": "Avto (Təsadüfi)",
-<<<<<<< HEAD
 	"Auto-inject system tools for Agents (timestamps, memory, notes, etc.)": "",
-=======
-	"Auto Redirect": "",
-	"Auto-Copy Response to Clipboard": "Cavabı mübadilə buferinə avtomatik kopyala",
-	"Auto-Create Groups": "",
-	"Auto-Playback Response": "Cavabı avtomatik səsləndir",
->>>>>>> upstream/main
 	"Autocomplete Generation": "Avtomatik tamamlama yaradılması",
 	"Autocomplete Generation Input Max Length": "Avtomatik tamamlama girişinin maksimum uzunluğu",
-	"Autocomplete Generation Prompt": "",
-	"Automatic": "",
 	"Automatic1111": "Automatic1111",
 	"AUTOMATIC1111 Api Auth String": "AUTOMATIC1111 Api Səlahiyyət Sətri",
 	"AUTOMATIC1111 Base URL": "AUTOMATIC1111 Baza URL-i",
 	"AUTOMATIC1111 Base URL is required.": "AUTOMATIC1111 Baza URL-i tələb olunur.",
 	"Available list": "Mövcud siyahı",
 	"Available models": "Mövcud modellər",
-	"Available Skills": "",
 	"Available Tools": "Mövcud alətlər",
 	"available users": "mövcud istifadəçilər",
-	"Available variables": "",
 	"available!": "mövcuddur!",
 	"Awful": "Bərbad",
 	"Azure AI Speech": "Azure AI Speech",
@@ -290,30 +163,16 @@
 	"Backup, export, and import instance data.": "",
 	"Bad Response": "Pis cavab",
 	"Banners": "Bannerlər",
-<<<<<<< HEAD
 	"Base model": "",
-=======
-	"Base Model (From)": "Əsas Model (Mənbə)",
-	"Base Model is required.": "",
->>>>>>> upstream/main
 	"Base Model List Cache speeds up access by fetching base models only at startup or on settings save—faster, but may not show recent base model changes.": "Əsas model siyahısı keşlənməsi, modelləri yalnız sistem açılışında və ya ayarları yadda saxladıqda gətirərək girişi sürətləndirir — daha sürətlidir, lakin ən son model dəyişikliklərini dərhal göstərməyə bilər.",
 	"Bearer": "Bearer (Daşıyıcı)",
 	"Begin a new folio": "",
 	"Being lazy": "Tənbəllik edir",
-<<<<<<< HEAD
 	"Beta": "Beta",
 	"Bind the model": "",
 	"Bing": "Bing",
 	"Bing Search V7 Endpoint": "Bing Search V7 Son Nöqtəsi",
 	"Bing Search V7 Subscription Key": "Bing Search V7 Abunəlik Açarı",
-=======
-	"Bing": "Bing",
-	"Bing Search V7 Endpoint": "Bing Search V7 Son Nöqtəsi",
-	"Bing Search V7 Subscription Key": "Bing Search V7 Abunəlik Açarı",
-	"Bio": "Bioqrafiya (Bio)",
-	"Birth Date": "Doğum Tarixi",
-	"Blocked Groups": "",
->>>>>>> upstream/main
 	"BM25 Weight": "BM25 Çəkisi",
 	"Bocha Search API Key": "Bocha Search API Açarı",
 	"Bold": "Qalın",
@@ -341,12 +200,6 @@
 	"Chat": "Çat",
 	"Chat Completions": "Çat tamamlamaları",
 	"Chat Conversation": "Çat söhbəti",
-<<<<<<< HEAD
-=======
-	"Chat deleted.": "",
-	"Chat Direction": "Çat istiqaməti",
-	"Chat exported successfully": "Çat uğurla ixrac edildi",
->>>>>>> upstream/main
 	"Chat History": "Çat tarixçəsi",
 	"Chat ID": "Çat ID-si",
 	"Chat moved successfully": "Çat uğurla köçürüldü",
@@ -406,11 +259,6 @@
 	"Code Interpreter Prompt Template": "Kod tərcüməçisi göstəriş şablonu",
 	"Collapse": "Bük / Yığcamlaşdır",
 	"Collection": "Kolleksiya",
-<<<<<<< HEAD
-=======
-	"Collection Field": "",
-	"Collections": "Kolleksiyalar",
->>>>>>> upstream/main
 	"Color": "Rəng",
 	"ComfyUI": "ComfyUI",
 	"ComfyUI API Key": "ComfyUI API Açarı",
@@ -419,25 +267,9 @@
 	"ComfyUI Workflow": "ComfyUI iş axını (Workflow)",
 	"ComfyUI Workflow Nodes": "ComfyUI iş axını düyünləri (Nodes)",
 	"Comma separated Node Ids (e.g. 1 or 1,2)": "Vergüllə ayrılmış düyün ID-ləri (məsələn: 1 və ya 1,2)",
-<<<<<<< HEAD
-=======
-	"Comma-separated group names": "",
-	"Comma-separated list of file extensions MinerU will handle (e.g. pdf, docx, pptx, xlsx)": "",
-	"command": "əmr",
-	"Command": "Əmr",
->>>>>>> upstream/main
 	"Comment": "Şərh",
 	"Community Reviews": "İcma rəyləri",
-<<<<<<< HEAD
 	"Compose your first model": "",
-=======
-	"Compacting context": "",
-	"Comparing with knowledge base...": "",
-	"Completions": "Tamamlamalar",
-	"Compress Images in Channels": "Kanallarda şəkilləri sıx",
-	"Computing checksums ({{count}} files)_one": "",
-	"Computing checksums ({{count}} files)_other": "",
->>>>>>> upstream/main
 	"Concurrent Requests": "Eyni vaxtda olan sorğular",
 	"Config": "Konfiqurasiya",
 	"Configure": "Konfiqurasiya et",
@@ -450,10 +282,6 @@
 	"Connect to Open Terminal instances. All users will have access to file browsing and terminal tools through these servers.": "Open Terminal instansiyalarına qoşulun. Bütün istifadəçilər bu serverlər vasitəsilə fayllara baxmaq və terminal alətlərindən istifadə etmək imkanına malik olacaqlar.",
 	"Connect to your own OpenAPI compatible external tool servers.": "Öz OpenAPI uyğun xarici alət serverlərinizə qoşulun.",
 	"Connected": "",
-<<<<<<< HEAD
-=======
-	"Connected ({{type}})": "",
->>>>>>> upstream/main
 	"Connection failed": "Bağlantı uğursuz oldu",
 	"Connection lost. Reconnecting...": "",
 	"Connection Type": "Bağlantı növü",
@@ -462,16 +290,8 @@
 	"Contact Admin for WebUI Access": "WebUI girişi üçün administratorla əlaqə saxlayın",
 	"Content": "Məzmun",
 	"Content Extraction Engine": "Məzmun çıxarma mühərriki",
-	"Content Field": "",
 	"Content lengths (character counts only)": "Məzmun uzunluğu (yalnız simvol sayı)",
-	"Context": "",
-	"Context compacted": "",
-	"Context Compaction": "",
-	"Context compaction failed": "",
-	"Context Compaction Prompt": "",
-	"Context Compaction Threshold": "",
 	"Context Tokens": "",
-	"Continue": "",
 	"Continue Response": "Cavabı davam etdir",
 	"Continue with {{provider}}": "{{provider}} ilə davam et",
 	"Continue with Email": "E-poçt ilə davam et",
@@ -502,16 +322,6 @@
 	"Create Image": "Şəkil yarat",
 	"Create model": "",
 	"Create Model": "Model Yarat",
-<<<<<<< HEAD
-=======
-	"Create new key": "Yeni açar yarat",
-	"Create new secret key": "Yeni gizli açar yarat",
-	"Create note": "Qeyd yarat",
-	"Create Note": "Qeyd Yarat",
-	"Create one read-only Knowledge source per external collection. Test must pass before the source is created.": "",
-	"Create scheduled prompts that run automatically on a recurring basis.": "",
-	"Create your first note by clicking on the plus button below.": "Aşağıdakı 'plus' düyməsinə klikləyərək ilk qeydinizi yaradın.",
->>>>>>> upstream/main
 	"Created at": "Yaradılma vaxtı",
 	"Created At": "Yaradılma Tarixi",
 	"Created by": "Yaradan:",
@@ -522,12 +332,7 @@
 	"Custom color": "",
 	"Custom Parameter Name": "Fərdi parametr adı",
 	"Custom Parameter Value": "Fərdi parametr dəyəri",
-<<<<<<< HEAD
 	"Custom presets that pair a base model with a system prompt, tools, knowledge and capabilities — build your own assistants and reuse them anywhere in chat.": "",
-=======
-	"Custom range": "",
-	"Daily": "",
->>>>>>> upstream/main
 	"Daily Messages": "Gündəlik mesajlar",
 	"Danger Zone": "Təhlükəli zona",
 	"Database": "Verilənlər bazası",
@@ -543,6 +348,7 @@
 	"Default Features": "Standart funksiyalar",
 	"Default Filters": "Standart filtrlər",
 	"Default Group": "Standart qrup",
+	"Default mode works with a wider range of models by calling tools once before execution. Native mode leverages the model's built-in tool-calling capabilities, but requires the model to inherently support this feature.": "Standart rejim, icradan əvvəl alətləri bir dəfə çağıraraq daha geniş model diapazonu ilə işləyir. Yerli (Native) rejim modelin daxili alət çağırma imkanlarından istifadə edir, lakin bu, modelin bu funksiyanı təbii şəkildə dəstəkləməsini tələb edir.",
 	"Default Model": "Standart model",
 	"Default permissions": "Standart icazələr",
 	"Default Prompt Suggestions": "Standart göstəriş təklifləri",
@@ -550,25 +356,13 @@
 	"Default to ALL": "Standart olaraq HAMISI",
 	"Default to segmented retrieval for focused and relevant content extraction, this is recommended for most cases.": "Fokuslanmış və müvafiq məzmun çıxarılması üçün standart olaraq seqmentləşdirilmiş axtarışdan istifadə edin; bu, əksər hallar üçün tövsiyə olunur.",
 	"Default User Role": "Standart istifadəçi rolu",
-	"Default webhook": "",
 	"Defaults": "Standartlar",
 	"Delete": "Sil",
 	"Delete {{name}}": "{{name}} sil",
 	"Delete a model": "Modeli sil",
-<<<<<<< HEAD
-=======
-	"Delete All": "Hamısını sil",
-	"Delete All Chats": "Bütün çatları sil",
-	"Delete all contents inside this directory": "",
->>>>>>> upstream/main
 	"Delete all contents inside this folder": "Bu qovluğun daxilindəki bütün məzmunu sil",
 	"Delete Chat": "Çatı sil",
 	"Delete chat?": "Çat silinsin?",
-<<<<<<< HEAD
-=======
-	"Delete directory?": "",
-	"Delete Event": "",
->>>>>>> upstream/main
 	"Delete File": "Faylı sil",
 	"Delete folder?": "Qovluq silinsin?",
 	"Delete function?": "Funksiya silinsin?",
@@ -589,20 +383,9 @@
 	"Direct Connections": "Birbaşa bağlantılar",
 	"Direct Connections allow users to connect to their own OpenAI compatible API endpoints.": "Birbaşa bağlantılar istifadəçilərə öz OpenAI uyğun API son nöqtələrinə qoşulmağa imkan verir.",
 	"Direct Tool Servers": "Birbaşa alət serverləri",
-<<<<<<< HEAD
-=======
-	"Directory created.": "",
-	"Directory deleted.": "",
-	"Directory moved.": "",
-	"Directory name": "",
-	"Directory renamed.": "",
-	"Directory selection was cancelled": "Kataloq seçimi ləğv edildi",
->>>>>>> upstream/main
 	"Disable All": "Hamısını söndür",
 	"Disable Image Extraction": "Şəkil çıxarılmasını söndür",
 	"Disable image extraction from the PDF. If Use LLM is enabled, images will be automatically captioned. Defaults to False.": "PDF-dən şəkil çıxarılmasını söndürün. 'LLM istifadə et' aktivdirsə, şəkillərə avtomatik altyazı veriləcək. Standart olaraq 'Xeyr' (False) təyin edilib.",
-	"Disable Image Generation": "",
-	"Disable Web Search": "",
 	"Disabled": "Söndürülüb",
 	"Discard this folio": "",
 	"Discarded": "",
@@ -611,13 +394,6 @@
 	"Discover wonders": "Möcüzələri kəşf edin",
 	"Discover, download, and explore custom functions": "Fərdi funksiyaları kəşf edin, yükləyin və araşdırın",
 	"Display": "Görüntü",
-<<<<<<< HEAD
-=======
-	"Display Chat Title in Tab": "Çat başlığını tab-da göstər",
-	"Display Emoji in Call": "Zəng zamanı emojiləri göstər",
-	"Display Multi-model Responses in Tabs": "Çox-modelli cavabları tab-larda göstər",
-	"Display the Username Instead of You in the Chat": "Çatda 'Siz' əvəzinə istifadəçi adını göstər",
->>>>>>> upstream/main
 	"Displays citations in the response": "Cavabda sitatları göstərir",
 	"Displays status updates (e.g., web search progress) in the response": "Cavabda status yeniləmələrini (məs. veb axtarış gedişatı) göstərir",
 	"Dissolve": "",
@@ -630,7 +406,6 @@
 	"Docling Parameters": "Docling parametrləri",
 	"Docling Server URL required.": "Docling Server URL-i tələb olunur.",
 	"Document": "Sənəd",
-	"Document ID Field": "",
 	"Document Intelligence": "Sənəd intellekti (Document Intelligence)",
 	"Document Intelligence endpoint required.": "Sənəd intellekti son nöqtəsi tələb olunur.",
 	"Document Intelligence Model": "Sənəd intellekti modeli",
@@ -684,60 +459,41 @@
 	"Edit Default Permissions": "Standart icazələri redaktə et",
 	"Edit Folder": "Qovluğu redaktə et",
 	"Edit Image": "Şəkli redaktə et",
-	"Edit Knowledge Connection": "",
 	"Edit Last Message": "Son mesajı redaktə et",
 	"Edit Model": "",
 	"Edit Terminal Connection": "Terminal bağlantısını redaktə et",
 	"Edit User": "İstifadəçini redaktə et",
 	"Edit User Group": "İstifadəçi qrupunu redaktə et",
-	"Edit webhook": "",
 	"Edit workflow.json content": "workflow.json məzmununu redaktə et",
 	"Eject": "Çıxar",
 	"Eject model": "Modeli yaddaşdan çıxar",
 	"ElevenLabs": "ElevenLabs",
 	"Email": "E-poçt",
-	"Email Claim": "",
 	"Embark on adventures": "Macəralara atılın",
 	"Embedding": "Yerləşdirmə (Embedding)",
 	"Embedding Batch Size": "Yerləşdirmə paket ölçüsü",
 	"Embedding Concurrent Requests": "Eyni vaxtda olan yerləşdirmə sorğuları",
 	"Embedding Model": "Yerləşdirmə modeli",
 	"Embedding Model Engine": "Yerləşdirmə modeli mühərriki",
-	"Emoji": "",
 	"Emojis": "",
-<<<<<<< HEAD
-=======
-	"Empty": "",
-	"Empty message": "Boş mesaj",
->>>>>>> upstream/main
 	"Enable All": "Hamısını aktiv et",
 	"Enable API Keys": "API açarlarını aktiv et",
 	"Enable autocomplete generation for chat messages": "Çat mesajları üçün avtomatik tamamlama yaradılmasını aktiv et",
 	"Enable Code Execution": "Kodun icrasını aktiv et",
 	"Enable Code Interpreter": "Kod tərcüməçisini (Interpreter) aktiv et",
 	"Enable Community Sharing": "İcma ilə paylaşımı aktiv et",
-	"Enable Group Mapping": "",
-	"Enable Image Generation": "",
 	"Enable Memory Locking (mlock) to prevent model data from being swapped out of RAM. This option locks the model's working set of pages into RAM, ensuring that they will not be swapped out to disk. This can help maintain performance by avoiding page faults and ensuring fast data access.": "Model məlumatlarının RAM-dan diskə köçürülməsinin (swap) qarşısını almaq üçün Yaddaş Kilidləməni (mlock) aktiv edin. Bu seçim modelin işçi vərəqlərini RAM-da kilidləyərək onların diskə köçürülməyəcəyinə zəmanət verir. Bu, səhifə xətalarının qarşısını almaqla və məlumatlara sürətli girişi təmin etməklə performansı qorumağa kömək edir.",
 	"Enable Memory Mapping (mmap) to load model data. This option allows the system to use disk storage as an extension of RAM by treating disk files as if they were in RAM. This can improve model performance by allowing for faster data access. However, it may not work correctly with all systems and can consume a significant amount of disk space.": "Model məlumatlarını yükləmək üçün Yaddaş Xəritələməsini (mmap) aktiv edin. Bu seçim sistemin disk fayllarını RAM-daymış kimi rəftar edərək disk sahəsindən RAM-ın davamı kimi istifadə etməsinə imkan verir. Bu, məlumatlara daha sürətli giriş təmin edərək model performansını artıra bilər. Lakin, bütün sistemlərdə düzgün işləməyə bilər və əhəmiyyətli dərəcədə disk sahəsi istifadə edə bilər.",
 	"Enable Message Rating": "Mesaj qiymətləndirməni aktiv et",
 	"Enable Mirostat sampling for controlling perplexity.": "Qeyri-müəyyənliyi (perplexity) idarə etmək üçün Mirostat seçməsini aktiv edin.",
 	"Enable New Sign Ups": "Yeni qeydiyyatları aktiv et",
-	"Enable OAuth Signup": "",
-	"Enable Role Mapping": "",
-	"Enable Web Search": "",
 	"Enable, disable, or customize the reasoning tags used by the model. \"Enabled\" uses default tags, \"Disabled\" turns off reasoning tags, and \"Custom\" lets you specify your own start and end tags.": "Model tərəfindən istifadə olunan mühakimə (reasoning) etiketlərini aktivləşdirin, söndürün və ya fərdiləşdirin. \"Aktivdir\" standart etiketlərdən istifadə edir, \"Söndürülüb\" mühakimə etiketlərini bağlayır, \"Fərdi\" isə öz başlanğıc və son etiketlərinizi təyin etməyə imkan verir.",
 	"Enabled": "Aktivdir",
 	"End Tag": "Son etiketi",
-	"Endpoint": "",
 	"Endpoint URL": "Son nöqtə (Endpoint) URL-i",
 	"Enrich Hybrid Search Text": "Hibrid axtarış mətnini zənginləşdir",
 	"Ensure your CSV file includes 4 columns in this order: Name, Email, Password, Role.": "CSV faylınızda bu ardıcıllıqla 4 sütun olduğundan əmin olun: Ad, E-poçt, Şifrə, Rol.",
-<<<<<<< HEAD
 	"Enter a name first": "",
-=======
-	"Enter {{role}} message here": "{{role}} mesajını bura daxil edin",
->>>>>>> upstream/main
 	"Enter a title for the pending user info overlay. Leave empty for default.": "Gözləyən istifadəçi məlumatı qatı üçün başlıq daxil edin. Standart başlıq üçün boş saxlayın.",
 	"Enter a watermark for the response. Leave empty for none.": "Cavab üçün su nişanı (watermark) daxil edin. Heç biri üçün boş saxlayın.",
 	"Enter additional headers in JSON format": "Əlavə başlıqları (headers) JSON formatında daxil edin",
@@ -754,8 +510,6 @@
 	"Enter Chunk Min Size Target": "Hissə (chunk) hədəf minimum ölçüsünü daxil edin",
 	"Enter Chunk Overlap": "Hissələrin kəsişmə (overlap) ölçüsünü daxil edin",
 	"Enter Chunk Size": "Hissə ölçüsünü daxil edin",
-	"Enter Client ID": "",
-	"Enter Client Secret": "",
 	"Enter comma-separated \"token:bias_value\" pairs (example: 5432:100, 413:-100)": "Vergüllə ayrılmış \"token:bias_value\" cütlərini daxil edin (məsələn: 5432:100, 413:-100)",
 	"Enter content for the pending user info overlay. Leave empty for default.": "Gözləyən istifadəçi məlumatı qatı üçün məzmun daxil edin. Standart məzmun üçün boş saxlayın.",
 	"Enter coordinates (e.g. 51.505, -0.09)": "Koordinatları daxil edin (məs. 51.505, -0.09)",
@@ -792,15 +546,7 @@
 	"Enter Jupyter Token": "Jupyter tokenini daxil edin",
 	"Enter Jupyter URL": "Jupyter URL-ini daxil edin",
 	"Enter Kagi Search API Key": "Kagi Search API açarını daxil edin",
-<<<<<<< HEAD
-=======
-	"Enter Key Behavior": "Açar davranışını (Key Behavior) daxil edin",
-	"Enter language": "",
->>>>>>> upstream/main
 	"Enter language codes": "Dil kodlarını daxil edin",
-	"Enter Linkup API Key": "",
-	"Enter Microsoft Web IQ API Base URL": "",
-	"Enter Microsoft Web IQ API Key": "",
 	"Enter MinerU API Key": "MinerU API açarını daxil edin",
 	"Enter Mistral API Base URL": "Mistral API baza URL-ini daxil edin",
 	"Enter Mistral API Key": "Mistral API açarını daxil edin",
@@ -819,7 +565,6 @@
 	"Enter Playwright WebSocket URL": "Playwright WebSocket URL-ini daxil edin",
 	"Enter proxy URL (e.g. https://user:password@host:port)": "Proksi URL-ini daxil edin (məs. https://istifadəçi:şifrə@host:port)",
 	"Enter reasoning effort": "Mühakimə səyini (reasoning effort) daxil edin",
-	"Enter Redirect URI": "",
 	"Enter Score": "Bal daxil edin",
 	"Enter SearchApi API Key": "SearchApi API açarını daxil edin",
 	"Enter SearchApi Engine": "SearchApi mühərrikini daxil edin",
@@ -829,7 +574,6 @@
 	"Enter SerpApi API Key": "SerpApi API açarını daxil edin",
 	"Enter SerpApi Engine": "SerpApi mühərrikini daxil edin",
 	"Enter Serper API Key": "Serper API açarını daxil edin",
-	"Enter SERPHouse API Key": "",
 	"Enter Serply API Key": "Serply API açarını daxil edin",
 	"Enter Serpstack API Key": "Serpstack API açarını daxil edin",
 	"Enter server host": "Server hostunu daxil edin",
@@ -847,12 +591,6 @@
 	"Enter the URL to import": "İdxal ediləcək URL-i daxil edin",
 	"Enter Tika Server URL": "Tika server URL-ini daxil edin",
 	"Enter timeout in seconds": "Vaxt aşımını saniyə ilə daxil edin",
-<<<<<<< HEAD
-=======
-	"Enter to Send": "Göndərmək üçün Enter",
-	"Enter token threshold": "",
-	"Enter Tokenizer Model": "",
->>>>>>> upstream/main
 	"Enter Top K": "Top K dəyərini daxil edin",
 	"Enter Top K Reranker": "Top K Reranker dəyərini daxil edin",
 	"Enter URL (e.g. http://127.0.0.1:7860/)": "URL daxil edin (məs. http://127.0.0.1:7860/)",
@@ -882,19 +620,8 @@
 	"Error: A model with the ID '{{modelId}}' already exists. Please select a different ID to proceed.": "Xəta: '{{modelId}}' ID-li model artıq mövcuddur. Davam etmək üçün fərqli bir ID seçin.",
 	"Error: Model ID cannot be empty. Please enter a valid ID to proceed.": "Xəta: Model ID-si boş ola bilməz. Davam etmək üçün etibarlı bir ID daxil edin.",
 	"Evaluations": "Qiymətləndirmələr",
-<<<<<<< HEAD
 	"Every craft begins bare-handed.": "",
-=======
-	"Event": "",
-	"Event created": "",
-	"Event deleted": "",
-	"Event names may change as Open WebUI evolves. Use broad patterns like user.* for integrations that should continue across new related events.": "",
-	"Event title": "",
-	"Event updated": "",
-	"Events": "",
->>>>>>> upstream/main
 	"Exa API Key": "Exa API Açarı",
-	"Example": "",
 	"Example: (&(objectClass=inetOrgPerson)(uid=%s))": "Nümunə: (&(objectClass=inetOrgPerson)(uid=%s))",
 	"Example: ALL": "Nümunə: ALL (HAMISI)",
 	"Example: mail": "Nümunə: mail",
@@ -916,29 +643,18 @@
 	"Export chat (.json)": "Çatı ixrac et (.json)",
 	"Export Config": "Konfiqurasiyanı İxrac Et",
 	"Export Models": "Modelləri İxrac Et",
-<<<<<<< HEAD
-=======
-	"Export Prompts": "Göstərişləri İxrac Et",
-	"Export Skills": "",
->>>>>>> upstream/main
 	"Export to CSV": "CSV-yə ixrac et",
 	"Export Tools": "Alətləri İxrac Et",
 	"Export Users": "İstifadəçiləri İxrac Et",
 	"External": "Xarici",
-	"External connection not found.": "",
 	"External Document Loader URL required.": "Xarici sənəd yükləyici URL-i tələb olunur.",
-	"External Knowledge Source": "",
-	"External Knowledge Sources": "",
 	"External Task Model": "Xarici tapşırıq modeli",
-	"External Tool Servers": "",
-	"External vectors must be generated with the same embedding model configured in Open WebUI.": "",
 	"External Web Loader API Key": "Xarici veb yükləyici API açarı",
 	"External Web Loader URL": "Xarici veb yükləyici URL-i",
 	"External Web Search API Key": "Xarici veb axtarış API açarı",
 	"External Web Search URL": "Xarici veb axtarış URL-i",
 	"Faculties": "",
 	"Failed to archive chat.": "Çat arxivləşdirilmədi.",
-<<<<<<< HEAD
 	"Failed to connect to {{URL}} OpenAPI tool server": "{{URL}} OpenAPI alət serverinə qoşulmaq mümkün olmadı",
 	"Failed to connect to {{URL}} terminal server": "{{URL}} terminal serverinə qoşulmaq mümkün olmadı",
 	"Failed to copy link": "Link kopyalanmadı",
@@ -948,39 +664,11 @@
 	"Failed to extract content from the file: {{error}}": "Fayldan məzmun çıxarıla bilmədi: {{error}}",
 	"Failed to extract content from the file.": "Fayldan məzmun çıxarıla bilmədi.",
 	"Failed to fetch models": "Modelləri gətirmək mümkün olmadı",
-=======
-	"Failed to attach file": "Fayl əlavə edilmədi",
-	"Failed to clear status": "Status təmizlənmədi",
-	"Failed to compare files.": "",
-	"Failed to connect to {{URL}} OpenAPI tool server": "{{URL}} OpenAPI alət serverinə qoşulmaq mümkün olmadı",
-	"Failed to connect to {{URL}} terminal server": "{{URL}} terminal serverinə qoşulmaq mümkün olmadı",
-	"Failed to copy link": "Link kopyalanmadı",
-	"Failed to create API Key.": "API açarı yaradılmadı.",
-	"Failed to delete calendar": "",
-	"Failed to delete note": "Qeyd silinmədi",
-	"Failed to delete webhook": "",
-	"Failed to disconnect": "",
-	"Failed to download image": "Şəkil yüklənmədi",
-	"Failed to extract content from the file: {{error}}": "Fayldan məzmun çıxarıla bilmədi: {{error}}",
-	"Failed to extract content from the file.": "Fayldan məzmun çıxarıla bilmədi.",
-	"Failed to fetch models": "Modelləri gətirmək mümkün olmadı",
-	"Failed to generate title": "Başlıq yaradılmadı",
-	"Failed to import models": "Modellər idxal edilmədi",
-	"Failed to load chat": "",
-	"Failed to load chat preview": "Çatın önizləməsi yüklənmədi",
->>>>>>> upstream/main
 	"Failed to load DOCX file. Please try downloading it instead.": "DOCX faylı yüklənmədi. Zəhmət olmasa, onu yükləməyə çalışın.",
 	"Failed to load Excel/CSV file. Please try downloading it instead.": "Excel/CSV faylı yüklənmədi. Zəhmət olmasa, onu yükləməyə çalışın.",
 	"Failed to load Interface settings": "İnterfeys ayarları yüklənmədi",
 	"Failed to load PPTX file. Please try downloading it instead.": "PPTX faylı yüklənmədi. Zəhmət olmasa, onu yükləməyə çalışın.",
 	"Failed to move chat": "Çatı köçürmək mümkün olmadı",
-<<<<<<< HEAD
-=======
-	"Failed to process URL: {{url}}": "URL emal edilmədi: {{url}}",
-	"Failed to read clipboard contents": "Mübadilə buferi oxuna bilmədi",
-	"Failed to refresh terminals: {{error}}": "",
-	"Failed to remove member": "Üzv çıxarıla bilmədi",
->>>>>>> upstream/main
 	"Failed to render diagram": "Diaqram yaradılmadı",
 	"Failed to render visualization": "Vizuallaşdırma yaradılmadı",
 	"Failed to save": "",
@@ -989,16 +677,10 @@
 	"Failed to save models configuration": "Modellərin konfiqurasiyası yadda saxlanılmadı",
 	"Failed to save policy: {{error}}": "",
 	"Failed to save terminal servers": "Terminal serverlərini yadda saxlamaq mümkün olmadı",
-	"Failed to save webhook": "",
 	"Failed to unshare chat.": "Çatın paylaşımı dayandırıla bilmədi.",
 	"Failed to update settings": "Ayarlar yenilənmədi",
 	"Failed to update status": "Status yenilənmədi",
-<<<<<<< HEAD
 	"Favicons": "",
-=======
-	"Failed to update webhook": "",
-	"Failed to upload file.": "Fayl yüklənmədi.",
->>>>>>> upstream/main
 	"Features": "Özəlliklər",
 	"Features Permissions": "Özəllik icazələri",
 	"February": "Fevral",
@@ -1011,32 +693,14 @@
 	"File": "Fayl",
 	"File browser": "Fayl brauzeri",
 	"File Context": "Fayl konteksti",
-<<<<<<< HEAD
-=======
-	"File deleted successfully.": "Fayl uğurla silindi.",
-	"File Extensions": "",
->>>>>>> upstream/main
 	"File Mode": "Fayl rejimi",
-	"File moved.": "",
 	"File name": "Fayl adı",
 	"File not found.": "Fayl tapılmadı.",
-<<<<<<< HEAD
 	"File size should not exceed {{maxSize}} MB.": "Fayl ölçüsü {{maxSize}} MB-ı keçməməlidir.",
 	"File Upload": "Fayl yükləmə",
 	"Filename": "Fayl adı",
 	"Files": "Fayllar",
 	"Fill name + base model to create": "",
-=======
-	"File removed successfully.": "Fayl uğurla çıxarıldı.",
-	"File renamed.": "",
-	"File size should not exceed {{maxSize}} MB.": "Fayl ölçüsü {{maxSize}} MB-ı keçməməlidir.",
-	"File Upload": "Fayl yükləmə",
-	"File uploaded successfully": "Fayl uğurla yükləndi",
-	"Filename": "Fayl adı",
-	"Files": "Fayllar",
-	"Fill the required fields first.": "",
-	"Fill the source fields and test query first.": "",
->>>>>>> upstream/main
 	"Filter": "Süzgəc (Filter)",
 	"Filters": "Süzgəclər",
 	"Filters, valves, and middleware workflows.": "",
@@ -1054,12 +718,8 @@
 	"Folder name cannot be empty.": "Qovluq adı boş ola bilməz.",
 	"Folder options": "Qovluq seçimləri",
 	"Folders": "Qovluqlar",
-<<<<<<< HEAD
 	"folio": "",
 	"folios": "",
-=======
-	"Folders Sharing": "",
->>>>>>> upstream/main
 	"Follow up": "Davam sualı",
 	"Follow Up Generation": "Davam suallarının yaradılması",
 	"Follow Up Generation Prompt": "Davam sualı yaratma göstərişi",
@@ -1087,11 +747,6 @@
 	"Function imported successfully": "Funksiya uğurla idxal edildi",
 	"Function Name": "Funksiya adı",
 	"Function Name Filter List": "Funksiya adı süzgəc siyahısı",
-<<<<<<< HEAD
-=======
-	"Function starter": "",
-	"Function updated successfully": "Funksiya uğurla yeniləndi",
->>>>>>> upstream/main
 	"Functions": "Funksiyalar",
 	"Functions allow arbitrary code execution.": "Funksiyalar ixtiyari kodun icrasına icazə verir.",
 	"Gather a quire": "",
@@ -1119,15 +774,6 @@
 	"Google PSE Engine Id": "Google PSE Mühərrik ID-si",
 	"Gravatar": "Gravatar",
 	"Grokipedia": "Grokipedia",
-<<<<<<< HEAD
-=======
-	"group": "",
-	"Group": "",
-	"Group Channel": "Qrup kanalı",
-	"Group Claim": "",
-	"Group created successfully": "Qrup uğurla yaradıldı",
-	"Group deleted successfully": "Qrup uğurla silindi",
->>>>>>> upstream/main
 	"Group Description": "Qrup təsviri",
 	"Group Name": "Qrup Adı",
 	"groups": "qruplar",
@@ -1135,11 +781,6 @@
 	"H1": "Başlıq 1",
 	"H2": "Başlıq 2",
 	"H3": "Başlıq 3",
-<<<<<<< HEAD
-=======
-	"Haptic Feedback": "Haptik rəy (Titrəyiş)",
-	"Header variables": "",
->>>>>>> upstream/main
 	"Headers": "Başlıqlar (Headers)",
 	"Headers must be a valid JSON object": "Başlıqlar etibarlı bir JSON obyekti olmalıdır",
 	"Hello, {{name}}": "Salam, {{name}}",
@@ -1168,12 +809,6 @@
 	"I acknowledge that I have read and I understand the implications of my action. I am aware of the risks associated with executing arbitrary code and I have verified the trustworthiness of the source.": "Mən oxuduğumu və hərəkətimin nəticələrini anladığımı təsdiqləyirəm. İxtiyari kodun icrası ilə bağlı risklərdən xəbərdaram və mənbənin etibarlılığını yoxlamışam.",
 	"ID": "ID",
 	"ID cannot contain \":\" or \"|\" characters": "ID-də \":\" və ya \"|\" simvolları ola bilməz",
-<<<<<<< HEAD
-=======
-	"ID copied to clipboard": "ID mübadilə buferinə kopyalandı",
-	"Identity audit": "",
-	"Idle only": "",
->>>>>>> upstream/main
 	"Idle Timeout": "",
 	"Ignite curiosity": "Marağı alovlandırın",
 	"Image": "Şəkil",
@@ -1193,12 +828,6 @@
 	"Import Config": "Konfiqurasiyanı idxal et",
 	"Import From Link": "Linkdən idxal et",
 	"Import Models": "Modelləri idxal et",
-<<<<<<< HEAD
-=======
-	"Import Prompts": "Göstərişləri idxal et",
-	"Import Skills": "",
-	"Import successful": "İdxal uğurludur",
->>>>>>> upstream/main
 	"Import Tools": "Alətləri idxal et",
 	"Important Update": "Vacib yeniləmə",
 	"Imported": "",
@@ -1235,11 +864,6 @@
 	"Jina API Key": "Jina API Açarı",
 	"join our Discord for help.": "kömək üçün Discord kanalımıza qoşulun.",
 	"JSON": "JSON",
-<<<<<<< HEAD
-=======
-	"JSON Base64": "",
-	"JSON Preview": "JSON Önizləmə",
->>>>>>> upstream/main
 	"JSON Spec": "JSON Spesifikasiyası",
 	"July": "İyul",
 	"June": "İyun",
@@ -1250,26 +874,9 @@
 	"Keep in Sidebar": "Yan paneldə saxla",
 	"Key": "Açar",
 	"Key is required": "Açar tələb olunur",
+	"Keyboard shortcuts": "Klaviatura qısayolları",
 	"Keyboard Shortcuts": "Klaviatura Qısayolları",
 	"Knowledge": "Bilik",
-<<<<<<< HEAD
-=======
-	"Knowledge Access": "Bilik bazasına giriş",
-	"Knowledge Base": "Bilik bazası",
-	"Knowledge base has been reset": "",
-	"Knowledge created successfully.": "Bilik uğurla yaradıldı.",
-	"Knowledge deleted successfully.": "Bilik uğurla silindi.",
-	"Knowledge Description": "Bilik təsviri",
-	"Knowledge exported successfully": "Bilik uğurla ixrac edildi",
-	"Knowledge Name": "Bilik adı",
-	"Knowledge Public Sharing": "Biliyin ictimai paylaşımı",
-	"Knowledge Sharing": "Biliyin paylaşılması",
-	"Knowledge source created.": "",
-	"Knowledge source updated.": "",
-	"Knowledge updated successfully": "Bilik uğurla yeniləndi",
-	"Kokoro.js (Browser)": "Kokoro.js (Brauzer)",
-	"Kokoro.js Dtype": "Kokoro.js Dtype",
->>>>>>> upstream/main
 	"Label": "Etiket",
 	"Language Locales": "Dil lokalları",
 	"Last 24 hours": "Son 24 saat",
@@ -1298,18 +905,9 @@
 	"Leave model field empty to use the default model.": "Standart modeli istifadə etmək üçün model sahəsini boş saxlayın.",
 	"lexical": "leksik",
 	"License": "Lisenziya",
-	"Lifecycle JSON": "",
 	"Lift List": "Qaldırma siyahısı (Lift List)",
 	"Limit concurrent search queries. 0 = unlimited (default). Set to 1 for sequential execution (recommended for APIs with strict rate limits like Brave free tier).": "Eyni vaxtda aparılan axtarış sorğularını məhdudlaşdırın. 0 = limitsiz (standart). Ardıcıl icra üçün 1 təyin edin.",
 	"Limits the number of concurrent embedding requests. Set to 0 for unlimited.": "Eyni vaxtda olan yerləşdirmə (embedding) sorğularının sayını məhdudlaşdırır. Limitsiz üçün 0 təyin edin.",
-<<<<<<< HEAD
-=======
-	"Linkup API Key": "",
-	"List": "Siyahı",
-	"List calendars, search, create, update, and delete calendar events": "",
-	"Listening...": "Dinlənilir...",
-	"Live": "Canlı",
->>>>>>> upstream/main
 	"llama.cpp": "",
 	"Llama.cpp": "Llama.cpp",
 	"Loaded": "",
@@ -1320,11 +918,6 @@
 	"Local Task Model": "Yerli tapşırıq modeli",
 	"Lost": "İtirildi",
 	"Low": "Aşağı",
-<<<<<<< HEAD
-=======
-	"Lower the context compaction token threshold for this model. The global context compaction threshold remains the maximum.": "",
-	"LTR": "Soldan sağa (LTR)",
->>>>>>> upstream/main
 	"Made by Open WebUI Community": "Open WebUI İcması tərəfindən hazırlanıb",
 	"Make password visible in the user interface": "Şifrəni interfeysdə görünən et",
 	"Make sure to export a workflow.json file as API format from ComfyUI.": "ComfyUI-dən workflow.json faylını API formatında ixrac etdiyinizdən əmin olun.",
@@ -1336,12 +929,7 @@
 	"Manage OpenAI API Connections": "OpenAI API bağlantılarını idarə et",
 	"Manage Pipelines": "Pipeline-ları idarə et",
 	"Manage Tool Servers": "Alət serverlərini idarə et",
-<<<<<<< HEAD
 	"Manage, import, and configure the models available to users.": "",
-=======
-	"Manage your account information.": "Hesab məlumatlarınızı idarə edin.",
-	"Mapped Source": "",
->>>>>>> upstream/main
 	"March": "Mart",
 	"Markdown": "Markdown",
 	"Markdown Header Text Splitter": "Markdown başlıq mətni bölücüsü",
@@ -1362,15 +950,6 @@
 	"Members": "Üzvlər",
 	"Memories": "Yaddaşlar (Memories)",
 	"Memory": "Yaddaş",
-<<<<<<< HEAD
-=======
-	"Memory added successfully": "Yaddaş uğurla əlavə edildi",
-	"Memory cleared successfully": "Yaddaş uğurla təmizləndi",
-	"Memory deleted successfully": "Yaddaş uğurla silindi",
-	"Memory System Context": "",
-	"Memory updated successfully": "Yaddaş uğurla yeniləndi",
-	"Merge Accounts by Email": "",
->>>>>>> upstream/main
 	"Merge Responses": "Cavabları birləşdir",
 	"Merged Response": "Birləşdirilmiş cavab",
 	"Message": "Mesaj",
@@ -1380,16 +959,6 @@
 	"Message text...": "",
 	"messages": "mesajlar",
 	"Messages": "Mesajlar",
-<<<<<<< HEAD
-=======
-	"Messages you send after creating your link won't be shared. Users with the URL will be able to view the shared chat.": "Linki yaratdıqdan sonra göndərdiyiniz mesajlar paylaşılmayacaq. URL-ə sahib olan istifadəçilər paylaşılan çata baxa biləcəklər.",
-	"Metadata Field": "",
-	"Microsoft OneDrive": "Microsoft OneDrive",
-	"Microsoft OneDrive (personal)": "Microsoft OneDrive (şəxsi)",
-	"Microsoft OneDrive (work/school)": "Microsoft OneDrive (iş/məktəb)",
-	"Microsoft Web IQ API Base URL": "",
-	"Microsoft Web IQ API Key": "",
->>>>>>> upstream/main
 	"min": "",
 	"MinerU": "MinerU",
 	"MinerU API Key required for Cloud API mode.": "Bulud API rejimi üçün MinerU API açarı tələb olunur.",
@@ -1431,42 +1000,18 @@
 	"Models Sharing": "Modellərin paylaşılması",
 	"Mojeek": "Mojeek",
 	"Mojeek Search API Key": "Mojeek Axtarış API Açarı",
-<<<<<<< HEAD
-=======
-	"Monday – Friday": "",
-	"Month": "",
-	"Monthly": "",
->>>>>>> upstream/main
 	"More": "Daha çox",
 	"More Concise": "Daha yığcam",
 	"More Options": "Daha Çox Seçim",
 	"Move": "Köçür",
-<<<<<<< HEAD
-=======
-	"Moved {{name}}": "{{name}} köçürüldü",
-	"Multipart Upload": "",
-	"Mute": "",
-	"Muted": "",
->>>>>>> upstream/main
 	"My Terminal": "Mənim Terminalım",
 	"Name": "Ad",
 	"Name and ID are required, please fill them out": "Ad və ID tələb olunur, zəhmət olmasa doldurun",
 	"Name this model…": "",
 	"Name your model": "",
 	"Native": "Yerli (Native)",
-<<<<<<< HEAD
-=======
-	"Native mode (default) leverages the model's built-in tool-calling capabilities. Legacy mode works with a wider range of models by calling tools once before execution via prompt injection.": "",
-	"Never": "",
->>>>>>> upstream/main
 	"New": "Yeni",
 	"New Chat": "Yeni Çat",
-<<<<<<< HEAD
-=======
-	"New directory": "",
-	"New Directory": "",
-	"New Event": "",
->>>>>>> upstream/main
 	"New File": "Yeni Fayl",
 	"New Folder": "Yeni Qovluq",
 	"New Function": "Yeni Funksiya",
@@ -1481,7 +1026,6 @@
 	"Next message": "Növbəti mesaj",
 	"No access grants. Private to you.": "Giriş icazəsi yoxdur. Sizin üçün özəldir.",
 	"No activity data": "Fəaliyyət məlumatı yoxdur",
-	"No additional headers are sent unless configured.": "",
 	"No authentication": "Autentifikasiya yoxdur",
 	"No chats found": "Heç bir çat tapılmadı",
 	"No chats found for this user.": "Bu istifadəçi üçün çat tapılmadı.",
@@ -1490,13 +1034,7 @@
 	"No data": "Məlumat yoxdur",
 	"No data found": "Məlumat tapılmadı",
 	"No distance available": "Məsafə məlumatı yoxdur",
-<<<<<<< HEAD
-=======
-	"No event webhooks configured.": "",
-	"No execution logs available yet": "",
->>>>>>> upstream/main
 	"No expiration can pose security risks.": "Müddətin bitməməsi təhlükəsizlik riski yarada bilər.",
-	"No external knowledge sources configured.": "",
 	"No feedback found": "Rəy tapılmadı",
 	"No file selected": "Fayl seçilməyib",
 	"No files found": "Fayl tapılmadı",
@@ -1506,27 +1044,14 @@
 	"No HTML, CSS, or JavaScript content found.": "HTML, CSS və ya JavaScript məzmunu tapılmadı.",
 	"No inference engine with management support found": "İdarəetmə dəstəyi olan çıxarış mühərriki (inference engine) tapılmadı",
 	"No kernel": "Nüvə (kernel) yoxdur",
-<<<<<<< HEAD
-=======
-	"No knowledge bases accessible": "",
-	"No knowledge bases found.": "Bilik bazası tapılmadı.",
-	"No knowledge found": "Bilik tapılmadı",
->>>>>>> upstream/main
 	"No limit": "",
 	"No model IDs": "Model ID-si yoxdur",
-	"No models accessible": "",
 	"No models available": "Mövcud model yoxdur",
 	"No models found": "Model tapılmadı",
 	"No models match your search.": "",
 	"No models selected": "Model seçilməyib",
 	"No one": "Heç kim",
 	"No output items": "",
-<<<<<<< HEAD
-=======
-	"No pinned messages": "Bərkidilmiş mesaj yoxdur",
-	"No prompts found": "Göstəriş tapılmadı",
-	"No Repeat": "",
->>>>>>> upstream/main
 	"No results": "Nəticə yoxdur",
 	"No results found": "Nəticə tapılmadı",
 	"No search query generated": "Axtarış sorğusu yaradılmadı",
@@ -1538,18 +1063,12 @@
 	"No Terminal connection configured.": "Konfiqurasiya edilmiş Terminal bağlantısı yoxdur.",
 	"No terminal connections configured.": "Konfiqurasiya edilmiş terminal bağlantıları yoxdur.",
 	"No tool server connections configured.": "Konfiqurasiya edilmiş alət serveri bağlantıları yoxdur.",
-<<<<<<< HEAD
 	"No tools match your search.": "",
-=======
-	"No tools accessible": "",
-	"No tools found": "Alət tapılmadı",
->>>>>>> upstream/main
 	"No users were found.": "İstifadəçi tapılmadı.",
 	"No valves": "Klapan (valve) yoxdur",
 	"No valves to update": "Yenilənəcək klapan yoxdur",
 	"Node Ids": "Düyün (Node) ID-ləri",
 	"None": "Heç biri",
-	"Not configured": "",
 	"Not factually correct": "Faktiki olaraq doğru deyil",
 	"Not helpful": "Faydalı deyil",
 	"Not Registered": "Qeydiyyatdan keçməyib",
@@ -1559,31 +1078,21 @@
 	"Nothing has been rehearsed yet.": "",
 	"November": "Noyabr",
 	"OAuth": "OAuth",
-	"OAuth / OIDC": "",
 	"OAuth 2.1": "OAuth 2.1",
 	"OAuth 2.1 (Static)": "",
 	"OAuth ID": "OAuth ID",
-	"OAuth Resource Parameter": "",
-	"OAuth Scopes": "",
 	"OAuth Server URL": "",
 	"October": "Oktyabr",
 	"Off": "Bağlı",
 	"Okay, Let's Go!": "Yaxşı, başlayaq!",
-<<<<<<< HEAD
-=======
-	"Older messages are summarized when estimated context exceeds this token limit.": "",
-	"OLED Dark": "OLED Qara",
->>>>>>> upstream/main
 	"Ollama": "Ollama",
 	"Ollama API": "Ollama API",
 	"Ollama Cloud API Key": "Ollama Cloud API Açarı",
 	"Ollama Version": "Ollama Versiyası",
-	"Omit": "",
 	"On": "Açıq",
 	"On by default": "",
 	"On by default for new chats": "",
 	"OneDrive": "OneDrive",
-	"Only active during Voice Mode.": "",
 	"Only active when \"Paste Large Text as File\" setting is toggled on.": "Yalnız \"Böyük mətni fayl kimi yapışdır\" ayarı aktiv olduqda işləyir.",
 	"Only active when the chat input is in focus and an LLM is generating a response.": "Yalnız çat girişi fokusda olduqda və LLM cavab yaratdıqda aktiv olur.",
 	"Only active when the chat input is in focus.": "Yalnız çat girişi fokusda olduqda aktiv olur.",
@@ -1653,39 +1162,21 @@
 	"Participate in community leaderboards and evaluations! Syncing aggregated usage stats helps drive research and improvements to Open WebUI. Your privacy is paramount: no message content is ever shared.": "İcma liderlər cədvəli və qiymətləndirmələrdə iştirak edin! Ümumiləşdirilmiş istifadə statistikalarını sinxronlaşdırmaq Open WebUI-nin tədqiqatına və təkmilləşdirilməsinə kömək edir. Məxfiliyiniz hər şeydən üstündür: mesaj məzmunu heç vaxt paylaşılmır.",
 	"Password": "Şifrə",
 	"Passwords do not match.": "Şifrələr uyğun gəlmir.",
-<<<<<<< HEAD
 	"PDF document (.pdf)": "PDF sənədi (.pdf)",
 	"PDF Extract Images (OCR)": "PDF-dən şəkillərin çıxarılması (OCR)",
 	"PDF Loader Mode": "PDF yükləyici rejimi",
 	"Penalties & Mirostat": "",
-=======
-	"Paste Large Text as File": "Böyük mətni fayl kimi yapışdır",
-	"Path": "",
-	"Path copied": "",
-	"Paused": "",
-	"PDF document (.pdf)": "PDF sənədi (.pdf)",
-	"PDF Extract Images (OCR)": "PDF-dən şəkillərin çıxarılması (OCR)",
-	"PDF Loader Mode": "PDF yükləyici rejimi",
-	"pdf, docx, pptx, xlsx": "",
->>>>>>> upstream/main
 	"pending": "gözləmədə",
 	"Pending": "Gözləmədə",
-	"Pending Accounts": "",
 	"Pending User Overlay Content": "Gözləyən istifadəçi örtük məzmunu",
 	"Pending User Overlay Title": "Gözləyən istifadəçi örtük başlığı",
 	"Permissions": "İcazələr",
-	"Permissions reset to defaults": "",
 	"Perplexity API Key": "Perplexity API Açarı",
 	"Perplexity Model": "Perplexity Modeli",
 	"Perplexity Search API URL": "Perplexity Axtarış API URL-i",
 	"Perplexity Search Context Usage": "Perplexity Axtarış Kontekst İstifadəsi",
 	"Persistent": "",
-<<<<<<< HEAD
 	"Pick an icon or emoji": "",
-=======
-	"Personalization": "Fərdiləşdirmə",
-	"Picture Claim": "",
->>>>>>> upstream/main
 	"Pin": "Bərkit",
 	"Pinned Models": "Bərkidilmiş modellər",
 	"Pioneer insights": "Öncül anlayışlar",
@@ -1708,14 +1199,9 @@
 	"Please enter Client ID and Client Secret": "",
 	"Please register the OAuth client": "Zəhmət olmasa OAuth klientini qeydiyyatdan keçirin",
 	"Please save the connection to persist the OAuth client information and do not change the ID": "Zəhmət olmasa OAuth klient məlumatlarını qalıcı etmək üçün bağlantını yadda saxlayın və ID-ni dəyişməyin",
-<<<<<<< HEAD
-=======
-	"Please select a model.": "Zəhmət olmasa bir model seçin.",
->>>>>>> upstream/main
 	"Please select a reason": "Zəhmət olmasa bir səbəb seçin",
 	"Please select a valid JSON file": "Zəhmət olmasa etibarlı bir JSON faylı seçin",
 	"Policy ID": "",
-	"Policy ID is required": "",
 	"Port": "Port",
 	"Ports": "Portlar",
 	"Positive attitude": "Müsbət yanaşma",
@@ -1723,7 +1209,6 @@
 	"Prefix ID is used to avoid conflicts with other connections by adding a prefix to the model IDs - leave empty to disable": "Prefiks ID model ID-lərinə prefiks əlavə edərək digər bağlantılarla ziddiyyətlərin qarşısını almaq üçün istifadə olunur - söndürmək üçün boş saxlayın",
 	"Prevent File Creation": "Fayl yaradılmasının qarşısını al",
 	"Preview": "Önizləmə",
-	"Preview Access": "",
 	"Previous 30 days": "Son 30 gün",
 	"Previous 7 days": "Son 7 gün",
 	"Previous message": "Əvvəlki mesaj",
@@ -1732,8 +1217,6 @@
 	"Prompt": "Göstəriş (Prompt)",
 	"Prompt Template": "",
 	"Provider": "",
-	"Provider Name": "",
-	"Provider URL": "",
 	"Public": "İctimai",
 	"Public shared chat links are disabled for this workspace.": "",
 	"Pull \"{{searchValue}}\" from Ollama.com": "Ollama.com-dan \"{{searchValue}}\" modelini çək",
@@ -1756,38 +1239,18 @@
 	"Read": "Oxu",
 	"Read Aloud": "Səsli oxu",
 	"Read more →": "Daha çox oxu →",
-<<<<<<< HEAD
 	"read only": "",
-=======
-	"Read only": "",
->>>>>>> upstream/main
 	"Read Only": "Yalnız oxunabilən",
 	"Read, write, and diff-edit durable notes for the current chat Scratchboard": "",
 	"Reason": "Səbəb",
 	"Reasoning Effort": "Mühakimə səyi",
 	"Reasoning Tags": "Mühakimə etiketləri",
 	"Reasoning text...": "",
-	"Receives matching events across the instance, including system/config events and events associated with any user.": "",
-	"Receives matching events that are not associated with a user.": "",
-	"Receives matching user-associated events only when the actor, user subject, or user data matches these users or current group members. System/config events are not sent.": "",
 	"Recently Used": "",
 	"Reconnected": "",
-<<<<<<< HEAD
 	"Redirecting you to Open WebUI Community": "Open WebUI İcmasına yönləndirilirsiniz",
 	"Reduces the probability of generating nonsense. A higher value (e.g. 100) will give more diverse answers, while a lower value (e.g. 10) will be more conservative.": "Mənasız mətnlərin yaradılma ehtimalını azaldır. Daha yüksək dəyər (məs. 100) daha müxtəlif cavablar verəcək, daha aşağı dəyər (məs. 10) isə daha mühafizəkar olacaq.",
-=======
-	"Record": "Yaz (səs)",
-	"Record voice": "Səsi yaz",
-	"Redirect URI": "",
-	"Redirecting you to Open WebUI Community": "Open WebUI İcmasına yönləndirilirsiniz",
-	"Reduces the probability of generating nonsense. A higher value (e.g. 100) will give more diverse answers, while a lower value (e.g. 10) will be more conservative.": "Mənasız mətnlərin yaradılma ehtimalını azaldır. Daha yüksək dəyər (məs. 100) daha müxtəlif cavablar verəcək, daha aşağı dəyər (məs. 10) isə daha mühafizəkar olacaq.",
-	"Reference Chats": "İstinad çatları",
->>>>>>> upstream/main
 	"Refresh": "Yenilə",
-	"Refresh requested: {{count}} terminal(s)_one": "",
-	"Refresh requested: {{count}} terminal(s)_other": "",
-	"Refresh Terminals": "",
-	"Refreshing...": "",
 	"Refused when it shouldn't have": "İmtina edilməməli olduğu halda imtina etdi",
 	"Regenerate": "Yenidən yarat",
 	"Regenerate Response": "Cavabı yenidən yarat",
@@ -1806,38 +1269,15 @@
 	"Remove from favorites": "Sevimlilərdən çıxar",
 	"Remove image": "Şəkli sil",
 	"Remove Model": "Modeli Sil",
-	"Removing {{count}} stale files..._one": "",
-	"Removing {{count}} stale files..._other": "",
 	"Rename": "Adını dəyiş",
 	"Reorder Models": "Modelləri yenidən sırala",
-<<<<<<< HEAD
-=======
-	"Repeat": "",
-	"Repeats": "",
-	"Reply": "Cavabla",
-	"Reply in Thread": "Mövzu daxilində cavabla",
-	"Reply to thread...": "Mövzuya cavab yaz...",
-	"Replying to {{NAME}}": "{{NAME}} adlı istifadəçiyə cavab verilir",
-	"Request Format": "",
-	"Require users to confirm before using Web Search.": "",
-	"required": "tələb olunur",
->>>>>>> upstream/main
 	"Reranking Batch Size": "",
 	"Reranking Engine": "Yenidən sıralama mühərriki",
 	"Reranking Model": "Yenidən sıralama modeli",
-	"Research Knowledge": "",
 	"Reset": "Sıfırla",
 	"Reset All Models": "Bütün modelləri sıfırla",
-	"Reset all permissions to their initial configuration values": "",
-	"Reset group permissions to match the current default user permissions": "",
 	"Reset Image": "Şəkli sıfırla",
-<<<<<<< HEAD
 	"Reset to default": "",
-=======
-	"Reset knowledge base?": "",
-	"Reset persisted files": "",
-	"Reset to Defaults": "",
->>>>>>> upstream/main
 	"Reset Upload Directory": "Yükləmə kataloqunu sıfırla",
 	"Reset Vector Storage/Knowledge": "Vektor yaddaşını/Biliyi sıfırla",
 	"Reset view": "Görünüşü sıfırla",
@@ -1858,11 +1298,6 @@
 	"Return token usage information in the response when supported": "",
 	"Reusable instruction packs that teach your models a procedure or domain — import a markdown skill or write your own, then enable it where you need it.": "",
 	"Role": "Rol",
-<<<<<<< HEAD
-=======
-	"Roles Claim": "",
-	"RTL": "Sağdan sola (RTL)",
->>>>>>> upstream/main
 	"Run": "İcra et",
 	"Run All": "Hamısını icra et",
 	"Running": "İcra edilir",
@@ -1875,18 +1310,10 @@
 	"Save As Copy": "Kopya kimi saxla",
 	"Saved": "Yadda saxlanıldı",
 	"Saving chat logs directly to your browser's storage is no longer supported. Please take a moment to download and delete your chat logs by clicking the button below. Don't worry, you can easily re-import your chat logs to the backend through": "Çat tarixçəsinin birbaşa brauzer yaddaşına saxlanılması artıq dəstəklənmir. Zəhmət olmasa, aşağıdakı düyməyə klikləyərək çat jurnalını yükləyin və silin. Narahat olmayın, çat jurnalınızı arxa plana (backend) asanlıqla yenidən idxal edə bilərsiniz:",
-<<<<<<< HEAD
 	"Scratchboard": "",
-=======
-	"Schedule": "",
-	"Scheduled time must be in the future": "",
-	"Scopes": "",
-	"Scroll On Branch Change": "Şaxə dəyişdikdə sürüşdür",
->>>>>>> upstream/main
 	"Scroll to Top": "",
 	"Search": "Axtar",
 	"Search a model": "Model axtar",
-	"Search actions": "",
 	"Search all emojis": "Bütün emojilərdə axtar",
 	"Search and manage user memories": "İstifadəçi yaddaşını axtarın və idarə edin",
 	"Search and view user chat history": "İstifadəçi çat tarixçəsini axtarın və baxın",
@@ -1894,7 +1321,6 @@
 	"Search Chats": "Çatları axtar",
 	"Search engines and web content loaders for live results.": "",
 	"Search Files": "Faylları axtar",
-	"Search filters": "",
 	"Search Filters": "Filtrləri axtar",
 	"search for archived chats": "arxivləşdirilmiş çatları axtar",
 	"search for folders": "qovluqları axtar",
@@ -1906,22 +1332,10 @@
 	"Search In Models": "Modellər daxilində axtar",
 	"Search Models": "Modelləri axtar",
 	"Search options": "Axtarış seçimləri",
-<<<<<<< HEAD
-=======
-	"Search or add pattern": "",
-	"Search Prompts": "Axtarış göstərişləri",
->>>>>>> upstream/main
 	"Search Result Count": "Axtarış nəticələrinin sayı",
-	"Search skills": "",
 	"Search Skills": "Axtarış bacarıqları",
 	"Search the web and fetch URLs": "Vebdə axtar və URL-ləri gətir",
-	"Search tools": "",
 	"Search Tools": "Axtarış alətləri",
-<<<<<<< HEAD
-=======
-	"Search users or groups": "",
-	"Search, view, and manage user notes": "İstifadəçi qeydlərini axtarın, baxın və idarə edin",
->>>>>>> upstream/main
 	"SearchApi API Key": "SearchApi API Açarı",
 	"SearchApi Engine": "SearchApi Mühərriki",
 	"Searched {{count}} sites": "{{count}} saytda axtarıldı",
@@ -1936,12 +1350,7 @@
 	"Seed": "Seed (toxum)",
 	"Select": "Seç",
 	"Select {{modelName}} model": "{{modelName}} modelini seç",
-<<<<<<< HEAD
 	"Select a base model": "Əsas model seçin",
-=======
-	"Select a base model (e.g. llama3, gpt-4o)": "Əsas model seçin (məs. llama3, gpt-4o)",
-	"Select a conversation to preview": "Önizləmə üçün bir söhbət seçin",
->>>>>>> upstream/main
 	"Select a engine": "Mühərrik seçin",
 	"Select a function": "Funksiya seçin",
 	"Select a group": "Qrup seçin",
@@ -1971,36 +1380,15 @@
 	"Selected Models": "Seçilmiş Modellər",
 	"semantic": "semantik",
 	"Send": "Göndər",
-<<<<<<< HEAD
-=======
-	"Send a Message": "Mesaj Göndər",
-	"Send events for": "",
-	"Send message": "Mesaj göndər",
-	"Send now": "İndi göndər",
-	"Send product events as JSON to external services. Chat destinations receive readable messages.": "",
-	"Send the PDF as a base64 data URL instead of uploading it first.": "",
-	"Sends `stream_options: { include_usage: true }` in the request.\nSupported providers will return token usage information in the response when set.": "Sorğuda `stream_options: { include_usage: true }` göndərir. Aktiv edildikdə, dəstəklənən təminatçılar cavabda token istifadə məlumatlarını qaytaracaq.",
->>>>>>> upstream/main
 	"September": "Sentyabr",
 	"sequences that end a response — comma separated": "",
 	"SerpApi API Key": "SerpApi API Açarı",
 	"SerpApi Engine": "SerpApi Mühərriki",
 	"Serper API Key": "Serper API Açarı",
-	"SERPHouse API Key": "",
-	"SERPHouse Domain": "",
 	"Serply API Key": "Serply API Açarı",
 	"Serpstack API Key": "Serpstack API Açarı",
 	"Server connection failed": "",
-<<<<<<< HEAD
 	"Session": "Sessiya",
-=======
-	"Server connection verified": "Server bağlantısı təsdiqləndi",
-	"Service Account": "",
-	"Session": "Sessiya",
-	"Session expired. Please sign in again.": "",
-	"Set as default": "Standart olaraq təyin et",
-	"Set as Production": "İstehsal (Production) kimi təyin et",
->>>>>>> upstream/main
 	"Set embedding model": "Yerləşdirmə modelini təyin et",
 	"Set embedding model (e.g. {{model}})": "Yerləşdirmə modelini təyin et (məs. {{model}})",
 	"Set reranking model (e.g. {{model}})": "Yenidən sıralama modelini təyin et (məs. {{model}})",
@@ -2024,28 +1412,13 @@
 	"Share": "Paylaş",
 	"Share Chat": "Çatı Paylaş",
 	"Share to Open WebUI Community": "Open WebUI İcması ilə paylaş",
-<<<<<<< HEAD
-=======
-	"Share your background and interests": "Keçmişiniz və maraqlarınız haqqında məlumat paylaşın",
-	"Shared": "",
->>>>>>> upstream/main
 	"Shared Chats": "Paylaşılan Çatlar",
 	"Shared with you": "Sizinlə paylaşılanlar",
 	"Sharing Permissions": "Paylaşım İcazələri",
 	"Show": "Göstər",
-<<<<<<< HEAD
 	"Show Admin Details in Account Pending Overlay": "Hesab gözləmə qatında admin məlumatlarını göstər",
 	"Show All": "Hamısını Göstər",
 	"Show all ({{COUNT}} characters)": "Hamısını göstər ({{COUNT}} simvol)",
-=======
-	"Show \"What's New\" Modal on Login": "Giriş zamanı \"Yeniliklər\" pəncərəsini göstər",
-	"Show Admin Details in Account Pending Overlay": "Hesab gözləmə qatında admin məlumatlarını göstər",
-	"Show All": "Hamısını Göstər",
-	"Show all ({{COUNT}} characters)": "Hamısını göstər ({{COUNT}} simvol)",
-	"Show Files": "Faylları Göstər",
-	"Show Files on Terminal Select": "",
-	"Show Formatting Toolbar": "Formatlama alətlər panelini göstər",
->>>>>>> upstream/main
 	"Show image preview": "Şəkil önizləməsini göstər",
 	"Show Model": "Modeli Göstər",
 	"Show Shortcuts": "Qısayolları Göstər",
@@ -2087,13 +1460,7 @@
 	"Sougou Search API sID": "Sougou Search API sID",
 	"Sougou Search API SK": "Sougou Search API SK",
 	"Source": "Mənbə",
-<<<<<<< HEAD
 	"Sources used": "",
-=======
-	"Specific users or groups": "",
-	"Speech Playback Speed": "Səsləndirmə sürəti",
-	"Speech recognition error: {{error}}": "Səsin tanınması xətası: {{error}}",
->>>>>>> upstream/main
 	"Speech-to-Text": "Səsdən Mətnə (STT)",
 	"Speech-to-Text Engine": "Səsdən Mətnə mühərriki",
 	"Split documents by markdown headers before applying character/token splitting.": "Simvol/token bölünməsini tətbiq etməzdən əvvəl sənədləri markdown başlıqlarına görə bölün.",
@@ -2117,13 +1484,6 @@
 	"Strip Existing OCR": "Mövcud OCR-ı təmizlə",
 	"Strip existing OCR text from the PDF and re-run OCR. Ignored if Force OCR is enabled. Defaults to False.": "PDF-dən mövcud OCR mətnini təmizləyin və OCR-ı yenidən başladın. 'Məcburi OCR' aktivdirsə, nəzərə alınmır. Standart olaraq 'False' (Xeyr) təyin edilib.",
 	"STT Model": "STT (Səsdən mətnə) Modeli",
-<<<<<<< HEAD
-=======
-	"STT Settings": "STT Ayarları",
-	"Stylized PDF Export": "Stil verilmiş PDF ixracı",
-	"Su_day_of_week": "",
-	"Sub Claim": "",
->>>>>>> upstream/main
 	"Submit question": "Sualı göndər",
 	"Submit suggestion": "Təklifi göndər",
 	"Subtitle": "Altyazı",
@@ -2137,22 +1497,13 @@
 	"Switch to JSON editor": "",
 	"Switch to visual editor": "",
 	"Sync": "Sinxronizasiya",
-	"Sync a local directory with this knowledge base. Only new and modified files will be uploaded. The directory structure will be mirrored.": "",
-	"Sync complete: {{added}} added, {{modified}} modified, {{deleted}} deleted, {{unmodified}} unmodified": "",
 	"Sync Complete!": "Sinxronizasiya tamamlandı!",
 	"Sync Failed": "Sinxronizasiya alınmadı",
 	"Sync Usage Stats": "İstifadə statistikasını sinxronizasiya et",
 	"Syncing stats...": "Statistika sinxronizasiya olunur...",
 	"Syncing...": "Sinxronizasiya olunur...",
 	"Syncs only chats with updates after your last sync timestamp. Disable to re-sync all chats.": "Yalnız son sinxronizasiyadan sonra yenilənən çatları sinxronizasiya edir. Bütün çatları yenidən sinxronizasiya etmək üçün bunu söndürün.",
-<<<<<<< HEAD
-=======
-	"System": "Sistem",
-	"System events only": "",
-	"System Instructions": "Sistem təlimatları",
->>>>>>> upstream/main
 	"System Prompt": "Sistem göstərişi (Prompt)",
-	"Table": "",
 	"Tag": "Etiket",
 	"Tags": "Etiketlər",
 	"Tags Generation": "Etiketlərin yaradılması",
@@ -2172,16 +1523,6 @@
 	"Temperature": "Temperatur",
 	"Temporary Chat": "Müvəqqəti çat",
 	"Terminal": "Terminal",
-<<<<<<< HEAD
-=======
-	"Terminal servers saved": "Terminal serverləri yadda saxlanıldı",
-	"Test": "",
-	"Test Query": "",
-	"Test returned no results.": "",
-	"Test succeeded.": "",
-	"Test the source before creating it.": "",
-	"Test the source before saving it.": "",
->>>>>>> upstream/main
 	"Text Splitter": "Mətn bölücü",
 	"Text-to-Speech": "Mətndən səsə (TTS)",
 	"Text-to-Speech Engine": "Mətndən səsə mühərriki",
@@ -2196,11 +1537,8 @@
 	"The height in pixels to compress images to. Leave empty for no compression.": "Şəkillərin sıxılacağı hündürlük (piksel). Sıxılma olmaması üçün boş saxlayın.",
 	"The LDAP attribute that maps to the mail that users use to sign in.": "İstifadəçilərin daxil olmaq üçün istifadə etdiyi e-poçta uyğun gələn LDAP atributu.",
 	"The LDAP attribute that maps to the username that users use to sign in.": "İstifadəçilərin daxil olmaq üçün istifadə etdiyi istifadəçi adına uyğun gələn LDAP atributu.",
-<<<<<<< HEAD
 	"The leaderboard is currently in beta, and we may adjust the rating calculations as we refine the algorithm.": "Liderlər cədvəli hazırda beta mərhələsindədir və alqoritmi təkmilləşdirdikcə reytinq hesablamalarına düzəlişlər edə bilərik.",
 	"the longest single response it may set": "",
-=======
->>>>>>> upstream/main
 	"The maximum file size in MB. If the file size exceeds this limit, the file will not be uploaded.": "MB ilə maksimum fayl ölçüsü. Fayl bu limiti keçərsə, yüklənilməyəcək.",
 	"The maximum number of files that can be used at once in chat. If the number of files exceeds this limit, the files will not be uploaded.": "Çatda eyni anda istifadə edilə bilən maksimum fayl sayı. Fayl sayı bu limiti keçərsə, yüklənilməyəcək.",
 	"The only required step — refine everything else now or later.": "",
@@ -2226,11 +1564,6 @@
 	"This feature is currently experimental and may not work as expected.": "Bu funksiya hazırda eksperimental mərhələdədir və gözlənildiyi kimi işləməyə bilər.",
 	"This folder is empty": "Bu qovluq boşdur",
 	"This is a default user permission and will remain enabled.": "Bu, standart istifadəçi icazəsidir və aktiv qalacaq.",
-<<<<<<< HEAD
-=======
-	"This is an experimental feature, it may not function as expected and is subject to change at any time.": "Bu, eksperimental funksiyadır, gözlənildiyi kimi işləməyə bilər və istənilən vaxt dəyişdirilə bilər.",
-	"This knowledge base retrieves from a connected source. Open WebUI can query it, but cannot upload, sync, edit, delete, reset, or reindex its source data.": "",
->>>>>>> upstream/main
 	"This model is not publicly available. Please select another model.": "Bu model ictimaiyyət üçün açıq deyil. Lütfən, başqa model seçin.",
 	"This option controls how long the model will stay loaded into memory following the request (default: 5m)": "Bu seçim sorğudan sonra modelin yaddaşda nə qədər qalacağına nəzarət edir (standart: 5dəq)",
 	"This option controls how many tokens are preserved when refreshing the context. For example, if set to 2, the last 2 tokens of the conversation context will be retained. Preserving context can help maintain the continuity of a conversation, but it may reduce the ability to respond to new topics.": "Bu seçim kontekst yenilənərkən neçə tokenin qorunacağına nəzarət edir. Məsələn, 2 təyin edilərsə, söhbət kontekstinin son 2 tokeni saxlanılacaq. Konteksti qorumaq söhbətin davamlılığını saxlamağa kömək edir, lakin yeni mövzulara cavab vermə qabiliyyətini azalda bilər.",
@@ -2242,11 +1575,6 @@
 	"This will delete <strong>{{NAME}}</strong> and <strong>all its contents</strong>.": "Bu, <strong>{{NAME}}</strong> adlı elementi və <strong>onun bütün məzmununu</strong> siləcək.",
 	"This will delete all models including custom models": "Bu, fərdi modellər də daxil olmaqla bütün modelləri siləcək",
 	"This will delete all models including custom models and cannot be undone.": "Bu, fərdi modellər də daxil olmaqla bütün modelləri siləcək və geri qaytarıla bilməz.",
-<<<<<<< HEAD
-=======
-	"This will permanently delete the calendar \"{{name}}\" and all its events. This action cannot be undone.": "",
-	"This will remove all files and directories from this knowledge base. This action cannot be undone.": "",
->>>>>>> upstream/main
 	"Thorough explanation": "Ətraflı izahat",
 	"Thought": "",
 	"Thought for {{DURATION}}": "{{DURATION}} müddətində düşündü",
@@ -2269,23 +1597,12 @@
 	"To learn more about available endpoints, visit our documentation.": "Mövcud son nöqtələr (endpoints) haqqında daha çox öyrənmək üçün sənədlərimizə baxın.",
 	"To select skills here, add them to the \"Skills\" workspace first.": "Bura bacarıqlar seçmək üçün əvvəlcə onları \"Bacarıqlar\" (Skills) iş sahəsinə əlavə edin.",
 	"To select toolkits here, add them to the \"Tools\" workspace first.": "Bura alət dəstləri seçmək üçün əvvəlcə onları \"Alətlər\" (Tools) iş sahəsinə əlavə edin.",
-<<<<<<< HEAD
-=======
-	"Toast Notifications for New Updates": "Yeni yeniləmələr üçün bildirişlər",
->>>>>>> upstream/main
 	"Today": "Bu gün",
 	"Toggle details": "",
-<<<<<<< HEAD
-=======
-	"Toggle Dictation": "Diktəni aç/bağla",
-	"Toggle Mute": "",
->>>>>>> upstream/main
 	"Toggle Sidebar": "Yan paneli aç/bağla",
 	"Toggle whether current connection is active.": "Hazırkı bağlantının aktiv olub-olmadığını dəyişdirin.",
 	"Token": "Token",
 	"Token counts are estimates and may not reflect actual API usage": "Token sayları təxminidir və faktiki API istifadəsini əks etdirməyə bilər",
-	"Token Threshold": "",
-	"Tokenizer Model": "",
 	"tokens": "tokenlər",
 	"Tokens": "Tokenlər",
 	"Too verbose": "Çox təfərrüatlı",
@@ -2330,25 +1647,10 @@
 	"Unlock mysteries": "Sirrləri açın",
 	"Unpin": "Sabitlənmişdən çıxar",
 	"Unravel secrets": "Gizlinləri üzə çıxarın",
-	"Unshare All": "",
-	"Unshare All Shared Chats": "",
 	"Unshare Chat": "Çatı paylaşımı dayandır",
 	"Untagged": "Etiketsiz",
-<<<<<<< HEAD
 	"Untitled folio": "",
 	"Update for the latest features and improvements.": "Ən son funksiyalar və təkmilləşdirmələr üçün yeniləyin.",
-=======
-	"Untitled": "Adsız",
-	"Update": "Yenilə",
-	"Update and Copy Link": "Yenilə və linki kopyala",
-	"Update Email": "",
-	"Update for the latest features and improvements.": "Ən son funksiyalar və təkmilləşdirmələr üçün yeniləyin.",
-	"Update Name": "",
-	"Update password": "Şifrəni yenilə",
-	"Update Picture": "",
-	"Update your status": "Statusunuzu yeniləyin",
-	"Updated": "Yeniləndi",
->>>>>>> upstream/main
 	"Updated at": "Yenilənmə vaxtı",
 	"Updated At": "Yenilənmə Tarixi",
 	"Upgrade to a licensed plan for enhanced capabilities, including custom theming and branding, and dedicated support.": "Xüsusi mövzular, brendləşdirmə və xüsusi dəstək kimi genişləndirilmiş imkanlar üçün lisenziyalı plana keçin.",
@@ -2360,40 +1662,24 @@
 	"Upload profile image": "Profil şəklini yüklə",
 	"Upload Progress": "Yükləmə vəziyyəti",
 	"Uploaded files or images": "Yüklənmiş fayllar və ya şəkillər",
-<<<<<<< HEAD
-=======
-	"Uploading {{current}}/{{total}}: {{file}}": "",
->>>>>>> upstream/main
 	"Uploading...": "Yüklənir...",
 	"URL": "URL",
 	"URL is required": "URL tələb olunur",
 	"URL Mode": "URL Rejimi",
 	"Usage": "İstifadə",
 	"Use /v1/chat/completions endpoint instead of /v1/audio/transcriptions for potentially better accuracy.": "Potensial olaraq daha yaxşı dəqiqlik üçün /v1/audio/transcriptions əvəzinə /v1/chat/completions son nöqtəsindən istifadə edin.",
-	"Use a valid event name or pattern like user.*": "",
-	"Use Base64": "",
 	"Use Chat Completions API": "Chat Completions API-dan istifadə edin",
-	"Use discovered scopes": "",
 	"Use groups to organize your users and assign permissions.": "İstifadəçilərinizi təşkil etmək və icazələr təyin etmək üçün qruplardan istifadə edin.",
 	"Use LLM": "LLM istifadə et",
 	"Use no proxy to fetch page contents.": "Səhifə məzmununu gətirmək üçün proksi istifadə etməyin.",
 	"Use proxy designated by http_proxy and https_proxy environment variables to fetch page contents.": "Səhifə məzmununu gətirmək üçün http_proxy və https_proxy mühit dəyişənləri tərəfindən təyin edilmiş proksidən istifadə edin.",
-	"Use Web Search?": "",
 	"user": "istifadəçi",
 	"User": "İstifadəçi",
-	"User Access": "",
 	"User Activity": "İstifadəçi fəallığı",
 	"User Groups": "İstifadəçi qrupları",
-<<<<<<< HEAD
-=======
-	"User location successfully retrieved.": "İstifadəçi yeri uğurla müəyyən edildi.",
-	"User menu": "İstifadəçi menyusu",
-	"User Preview": "",
->>>>>>> upstream/main
 	"User ratings (thumbs up/down)": "İstifadəçi reytinqləri (bəyənmə/bəyənməmə)",
 	"User Webhooks": "İstifadəçi Webhook-ları",
 	"Username": "İstifadəçi adı",
-	"Username Claim": "",
 	"users": "istifadəçilər",
 	"Users": "İstifadəçilər",
 	"Uses DefaultAzureCredential to authenticate": "Autentifikasiya üçün DefaultAzureCredential istifadə edir",
@@ -2404,14 +1690,7 @@
 	"Valid time units:": "Etibarlı vaxt vahidləri:",
 	"Validate certificate": "Sertifikatı təsdiqlə",
 	"Valves": "Valves (Klapanlar)",
-<<<<<<< HEAD
 	"Verified": "",
-=======
-	"Valves updated": "Valves yeniləndi",
-	"Valves updated successfully": "Valves uğurla yeniləndi",
-	"variable": "dəyişən",
-	"Vector Field": "",
->>>>>>> upstream/main
 	"Verify Connection": "Bağlantını yoxla",
 	"Verify SSL Certificate": "SSL Sertifikatını yoxla",
 	"Version": "Versiya",
@@ -2432,20 +1711,9 @@
 	"Web API": "Veb API",
 	"Web Loader Engine": "Veb yükləyici mühərrik",
 	"Web Search": "Veb axtarış",
-	"Web Search Confirmation": "",
-	"Web Search Confirmation Content": "",
 	"Web Search Engine": "Veb axtarış mühərriki",
 	"Web Search Query Generation": "Veb axtarış sorğusunun yaradılması",
-<<<<<<< HEAD
 	"Webhook URL": "Webhook URL-i",
-=======
-	"Webhook deleted": "",
-	"Webhook Name": "Webhook adı",
-	"Webhook saved": "",
-	"Webhooks": "Webhook-lar",
-	"Webpage URLs": "Veb səhifə URL-ləri",
-	"WebUI Settings": "WebUI ayarları",
->>>>>>> upstream/main
 	"WebUI URL": "WebUI URL-i",
 	"WebUI will make requests to \"{{url}}\"": "WebUI \"{{url}}\" ünvanına sorğular göndərəcək",
 	"WebUI will make requests to \"{{url}}/api/chat\"": "WebUI \"{{url}}/api/chat\" ünvanına sorğular göndərəcək",
@@ -2476,7 +1744,6 @@
 	"Yandex Web Search API Key": "Yandex Veb Axtarış API açarı",
 	"Yandex Web Search config": "Yandex Veb Axtarış konfiqurasiyası",
 	"Yandex Web Search URL": "Yandex Veb Axtarış URL-i",
-	"Yearly": "",
 	"Yesterday": "Dünən",
 	"You": "Siz",
 	"You are a careful editor: terse, concrete, kind…": "",
@@ -2496,7 +1763,6 @@
 	"Your browser does not support the video tag.": "Brauzeriniz video etiketini dəstəkləmir.",
 	"Your entire contribution will go directly to the plugin developer; Open WebUI does not take any percentage. However, the chosen funding platform might have its own fees.": "İanənizin tamamı birbaşa plagin tərtibatçısına gedəcək; Open WebUI heç bir faiz tutmur. Lakin seçilmiş maliyyələşdirmə platformasının öz komissiyaları ola bilər.",
 	"Your message text or inputs": "Mesaj mətniniz və ya girişləriniz",
-	"Your query will be sent to the configured web search provider.": "",
 	"Your usage stats have been successfully synced.": "İstifadə statistikanız uğurla sinxronizasiya edildi.",
 	"Youtube Language": "YouTube dili",
 	"Youtube Proxy URL": "YouTube Proxy URL-i"

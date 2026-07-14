@@ -5,67 +5,21 @@
 	"(e.g. `sh webui.sh --api`)": "(π.χ. `sh webui.sh --api`)",
 	"(latest)": "(τελευταία)",
 	"(leave blank for to use commercial endpoint)": "(αφήστε κενό για να χρησιμοποιήσετε εμπορικό endpoint)",
-<<<<<<< HEAD
 	"{{COUNT}} extracted lines": "",
 	"{{COUNT}} hidden lines": "",
 	"{{COUNT}} members": "",
 	"{{COUNT}} Rows": "",
 	"{{count}} selected_one": "",
 	"{{count}} selected_other": "",
-=======
-	"[Last] dddd [at] h:mm A": "",
-	"[Today at] h:mm A": "",
-	"[Yesterday at] h:mm A": "",
-	"{{ models }}": "{{ models }}",
-	"{{COUNT}} Available Skills": "",
-	"{{COUNT}} Available Tools": "",
-	"{{COUNT}} characters": "",
-	"{{COUNT}} extracted lines": "",
-	"{{COUNT}} files": "",
-	"{{count}} files selected. Only new and modified files will be uploaded. Deleted files will be removed. The folder structure will be mirrored. Continue?_one": "",
-	"{{count}} files selected. Only new and modified files will be uploaded. Deleted files will be removed. The folder structure will be mirrored. Continue?_other": "",
-	"{{count}} filters_one": "",
-	"{{count}} filters_other": "",
-	"{{count}} groups_one": "",
-	"{{count}} groups_other": "",
-	"{{COUNT}} hidden lines": "",
-	"{{COUNT}} members": "",
-	"{{count}} of {{total}} accessible_one": "",
-	"{{count}} of {{total}} accessible_other": "",
-	"{{COUNT}} Replies": "",
-	"{{COUNT}} Rows": "",
-	"{{count}} selected_one": "",
-	"{{count}} selected_other": "",
-	"{{COUNT}} Sources": "",
-	"{{count}} users_one": "",
-	"{{count}} users_other": "",
-	"{{COUNT}} words": "",
->>>>>>> upstream/main
 	"{{COUNT}}d_time_ago": "",
 	"{{COUNT}}h_time_ago": "",
 	"{{COUNT}}m_time_ago": "",
 	"{{COUNT}}w_time_ago": "",
 	"{{COUNT}}y_time_ago": "",
-<<<<<<< HEAD
-=======
-	"{{label}} contains invalid JSON": "",
-	"{{label}} must be a JSON object": "",
-	"{{LOCALIZED_DATE}} at {{LOCALIZED_TIME}}": "",
-	"{{model}} download has been canceled": "",
->>>>>>> upstream/main
 	"{{modelName}} profile image": "",
 	"{{user}}'s Chats": "Συνομιλίες του {{user}}",
 	"{{webUIName}} Backend Required": "{{webUIName}} Απαιτείται Backend",
 	"*Prompt node ID(s) are required for image generation": "*Τα αναγνωριστικά κόμβου Prompt απαιτούνται για τη δημιουργία εικόνων",
-<<<<<<< HEAD
-=======
-	"1 group": "",
-	"1 hour before": "",
-	"1 Source": "",
-	"1 user": "",
-	"10 minutes before": "",
-	"15 minutes before": "",
->>>>>>> upstream/main
 	"1m_time_ago": "",
 	"a line about what this model is for…": "",
 	"A model binds a base mind to a system prompt, tools and knowledge — compose one and summon it in any chat.": "",
@@ -77,11 +31,6 @@
 	"Access Control": "Έλεγχος Πρόσβασης",
 	"Access Grants": "",
 	"Access List": "",
-<<<<<<< HEAD
-=======
-	"Access prohibited": "",
-	"Access updated": "",
->>>>>>> upstream/main
 	"Accessible to all users": "Προσβάσιμο σε όλους τους χρήστες",
 	"Account Activation Pending": "Ενεργοποίηση Λογαριασμού Εκκρεμεί",
 	"Accurate information": "Ακριβείς πληροφορίες",
@@ -92,7 +41,6 @@
 	"Activity": "",
 	"Add": "Προσθήκη",
 	"Add a model ID": "Προσθήκη αναγνωριστικού μοντέλου",
-	"Add a preference, fact, or instruction about you": "",
 	"Add a short description about what this model does": "Προσθήκη σύντομης περιγραφής για το τι κάνει αυτό το μοντέλο",
 	"Add a tag": "Προσθήκη ετικέτας",
 	"Add a tag...": "",
@@ -102,17 +50,7 @@
 	"Add Custom Parameter": "",
 	"Add Custom Prompt": "",
 	"Add Details": "",
-	"Add durable context for future chats": "",
 	"Add Files": "Προσθήκη Αρχείων",
-<<<<<<< HEAD
-=======
-	"Add Image": "",
-	"Add Knowledge Connection": "",
-	"Add location": "",
-	"Add Member": "",
-	"Add Members": "",
-	"Add Memory": "Προσθήκη Μνήμης",
->>>>>>> upstream/main
 	"Add Model": "Προσθήκη Μοντέλου",
 	"Add tag": "",
 	"Add Tag": "Προσθήκη Ετικέτας",
@@ -120,11 +58,6 @@
 	"Add to favorites": "",
 	"Add User": "Προσθήκη Χρήστη",
 	"Add User Group": "Προσθήκη Ομάδας Χρηστών",
-<<<<<<< HEAD
-=======
-	"Add webhook": "",
-	"Add webpage": "",
->>>>>>> upstream/main
 	"Add your Open Terminal URL and API key in Settings → Integrations.": "",
 	"Additional Config": "",
 	"Additional configuration options for marker. This should be a JSON string with key-value pairs. For example, '{\"key\": \"value\"}'. Supported keys include: disable_links, keep_pageheader_in_output, keep_pagefooter_in_output, filter_blank_pages, drop_repeated_text, layout_coverage_threshold, merge_threshold, height_tolerance, gap_threshold, image_threshold, min_line_length, level_count, default_level": "",
@@ -135,40 +68,18 @@
 	"Admin": "Διαχειριστής",
 	"Admin Contact Email": "",
 	"Admin Panel": "Πίνακας Διαχειριστή",
-<<<<<<< HEAD
-=======
-	"Admin Roles": "",
-	"Admin Settings": "Ρυθμίσεις Διαχειριστή",
-	"Admin-managed service account": "",
->>>>>>> upstream/main
 	"Admins have access to all tools at all times; users need tools assigned per model in the workspace.": "Οι διαχειριστές έχουν πρόσβαση σε όλα τα εργαλεία ανά πάσα στιγμή· οι χρήστες χρειάζονται εργαλεία ανά μοντέλο στον χώρο εργασίας.",
 	"Advanced": "",
 	"Advanced parameters for MinerU parsing (enable_ocr, enable_formula, enable_table, language, model_version, page_ranges)": "",
 	"Advanced Params": "Προηγμένες Παράμετροι",
 	"After updating or changing the embedding model, you must reindex the knowledge base for the changes to take effect. You can do this using the \"Reindex\" button below.": "",
 	"All": "Όλα",
-<<<<<<< HEAD
 	"All time": "",
 	"All Users": "",
-=======
-	"All chats have been unarchived.": "",
-	"All day": "",
-	"All events": "",
-	"All models are now hidden": "",
-	"All models are now visible": "",
-	"All models deleted successfully": "Όλα τα μοντέλα διαγράφηκαν με επιτυχία",
-	"All shared chats have been unshared.": "",
-	"All Sources": "",
-	"All time": "",
-	"All Users": "",
-	"All users and system events": "",
-	"Allow Call": "Επιτρέπεται η Κλήση",
->>>>>>> upstream/main
 	"Allow Chat Controls": "Επιτρέπεται ο Έλεγχος Συνομιλίας",
 	"Allow Chat Delete": "Επιτρέπεται η διαγραφή συνομιλίας",
 	"Allow Chat Edit": "Επιτρέπεται η Επεξεργασία Συνομιλίας",
 	"Allow Chat Export": "Επιτρέπεται η Εξαγωγή Συνομιλίας",
-	"Allow Chat Import": "",
 	"Allow Chat Params": "Επιτρέπονται οι Παράμετροι Συνομιλίας",
 	"Allow Chat Share": "Επιτρέπεται ο Διαμοιρασμός Συνομιλίας",
 	"Allow Chat System Prompt": "Επιτρέπεται η Προτροπή Συστήματος Συνομιλίας",
@@ -183,11 +94,9 @@
 	"Allow Sharing With Users": "",
 	"Allow Text to Speech": "Επιτρέπεται η Μετατροπή Κειμένου σε Φωνή",
 	"Allow Web Upload": "",
-	"Allowed Domains": "",
 	"Allowed Endpoints": "Επιτρεπόμενα Endpoints",
 	"Allowed File Extensions": "Επιτρεπόμενες Επεκτάσεις Αρχείων",
 	"Allowed file extensions for upload. Separate multiple extensions with commas. Leave empty for all file types.": "Επιτρεπόμενες επεκτάσεις αρχείων για ανέβασμα. Διαχωρίστε πολλαπλές επεκτάσεις με κόμματα. Αφήστε κενό για όλους τους τύπους αρχείων.",
-	"Allowed Roles": "",
 	"Already have an account?": "Έχετε ήδη λογαριασμό;",
 	"Alternative to the top_p, and aims to ensure a balance of quality and variety. The parameter p represents the minimum probability for a token to be considered, relative to the probability of the most likely token. For example, with p=0.05 and the most likely token having a probability of 0.9, logits with a value less than 0.045 are filtered out.": "",
 	"Amazing": "Καταπληκτικό",
@@ -199,11 +108,6 @@
 	"API Base URL": "Βασικό URL API",
 	"API Base URL for Datalab Marker service. Defaults to: https://www.datalab.to/api/v1/marker": "",
 	"API Key": "Κλειδί API",
-<<<<<<< HEAD
-=======
-	"API Key / Token": "",
-	"API Key created.": "Το κλειδί API δημιουργήθηκε.",
->>>>>>> upstream/main
 	"API Key Endpoint Restrictions": "Περιορισμοί Κλειδιού API",
 	"API Keys": "",
 	"API Mode": "",
@@ -220,31 +124,13 @@
 	"Are you sure you want to delete \"{{NAME}}\"?": "",
 	"Are you sure you want to delete **{{modelName}}**?": "",
 	"Are you sure you want to delete this connection? This action cannot be undone.": "",
-<<<<<<< HEAD
 	"Are you sure you want to delete this?": "",
 	"Arena": "",
-=======
-	"Are you sure you want to delete this directory?": "",
-	"Are you sure you want to delete this memory? This action cannot be undone.": "",
-	"Are you sure you want to delete this message?": "Είστε σίγουροι ότι θέλετε να διαγράψετε αυτό το μήνυμα;",
-	"Are you sure you want to delete this version? Child versions will be relinked to this version's parent.": "",
-	"Are you sure you want to delete this webhook? This action cannot be undone.": "",
-	"Are you sure you want to delete this?": "",
-	"Are you sure you want to reset all permissions to their default values? You will still need to save to apply the changes.": "",
-	"Are you sure you want to unarchive all archived chats?": "Είστε σίγουροι ότι θέλετε να απο-αρχειοθετήσετε όλες τις αρχειοθετημένες συνομιλίες;",
-	"Are you sure you want to unshare all shared chats? This will remove all share links.": "",
->>>>>>> upstream/main
 	"Arena Models": "Μοντέλα Arena",
 	"Artifacts": "Αρχεία",
 	"Ask": "",
 	"Ask a question": "Ρωτήστε μια ερώτηση",
-<<<<<<< HEAD
 	"Ask the User": "",
-=======
-	"Ask a test question": "",
-	"Ask this knowledge source a test question": "",
-	"Assistant": "Βοηθός",
->>>>>>> upstream/main
 	"Async Embedding Processing": "",
 	"Attach File From Knowledge": "",
 	"Attention to detail": "Προσοχή στη λεπτομέρεια",
@@ -253,33 +139,20 @@
 	"Audience": "",
 	"August": "Αύγουστος",
 	"Auth": "Ταυτοποίηση",
-	"Auth Mode": "",
-	"Auth required": "",
 	"Authenticate": "Επαλήθευση",
 	"Authentication": "Ταυτοποίηση",
 	"Auto (Random)": "",
-<<<<<<< HEAD
 	"Auto-inject system tools for Agents (timestamps, memory, notes, etc.)": "",
-=======
-	"Auto Redirect": "",
-	"Auto-Copy Response to Clipboard": "Αυτόματη Αντιγραφή Απάντησης στο Πρόχειρο",
-	"Auto-Create Groups": "",
-	"Auto-Playback Response": "Αυτόματη αναπαραγωγή της απάντησης",
->>>>>>> upstream/main
 	"Autocomplete Generation": "Δημιουργία Αυτόματης Συμπλήρωσης",
 	"Autocomplete Generation Input Max Length": "Μέγιστο Μήκος Εισόδου Δημιουργίας Αυτόματης Συμπλήρωσης",
-	"Autocomplete Generation Prompt": "",
-	"Automatic": "",
 	"Automatic1111": "Automatic1111",
 	"AUTOMATIC1111 Api Auth String": "Σειρά Επαλήθευσης API AUTOMATIC1111",
 	"AUTOMATIC1111 Base URL": "Βασικό URL AUTOMATIC1111",
 	"AUTOMATIC1111 Base URL is required.": "Απαιτείται το Βασικό URL AUTOMATIC1111.",
 	"Available list": "Διαθέσιμη λίστα",
 	"Available models": "",
-	"Available Skills": "",
 	"Available Tools": "Διαθέσιμα Εργαλεία",
 	"available users": "διαθέσιμοι χρήστες",
-	"Available variables": "",
 	"available!": "διαθέσιμο!",
 	"Awful": "Ασχημο",
 	"Azure AI Speech": "Ομιλία Azure AI",
@@ -290,30 +163,16 @@
 	"Backup, export, and import instance data.": "",
 	"Bad Response": "Κακή Απάντηση",
 	"Banners": "Ανακοινώσεις",
-<<<<<<< HEAD
 	"Base model": "",
-=======
-	"Base Model (From)": "Βασικό Μοντέλο (Από)",
-	"Base Model is required.": "",
->>>>>>> upstream/main
 	"Base Model List Cache speeds up access by fetching base models only at startup or on settings save—faster, but may not show recent base model changes.": "",
 	"Bearer": "",
 	"Begin a new folio": "",
 	"Being lazy": "Τρώλακας",
-<<<<<<< HEAD
 	"Beta": "",
 	"Bind the model": "",
 	"Bing": "",
 	"Bing Search V7 Endpoint": "Τέλος Bing Search V7",
 	"Bing Search V7 Subscription Key": "Κλειδί Συνδρομής Bing Search V7",
-=======
-	"Bing": "",
-	"Bing Search V7 Endpoint": "Τέλος Bing Search V7",
-	"Bing Search V7 Subscription Key": "Κλειδί Συνδρομής Bing Search V7",
-	"Bio": "Βιογραφικό",
-	"Birth Date": "Ημερομηνία Γέννησης",
-	"Blocked Groups": "",
->>>>>>> upstream/main
 	"BM25 Weight": "",
 	"Bocha Search API Key": "",
 	"Bold": "",
@@ -341,12 +200,6 @@
 	"Chat": "Συνομιλία",
 	"Chat Completions": "",
 	"Chat Conversation": "Συνομιλία",
-<<<<<<< HEAD
-=======
-	"Chat deleted.": "",
-	"Chat Direction": "Κατεύθυνση Συνομιλίας",
-	"Chat exported successfully": "",
->>>>>>> upstream/main
 	"Chat History": "",
 	"Chat ID": "ID Συνομιλίας",
 	"Chat moved successfully": "Η συνομιλία μετακινήθηκε επιτυχώς",
@@ -406,11 +259,6 @@
 	"Code Interpreter Prompt Template": "Πρότυπο Προτροπής Διερμηνέα Κώδικα",
 	"Collapse": "Σύμπτυξη",
 	"Collection": "Συλλογή",
-<<<<<<< HEAD
-=======
-	"Collection Field": "",
-	"Collections": "",
->>>>>>> upstream/main
 	"Color": "Χρώμα",
 	"ComfyUI": "",
 	"ComfyUI API Key": "API κλειδί του ComfyUI",
@@ -419,25 +267,9 @@
 	"ComfyUI Workflow": "Ροές Εργασίας ComfyUI",
 	"ComfyUI Workflow Nodes": "Κόμβοι Ροής Εργασίας ComfyUI",
 	"Comma separated Node Ids (e.g. 1 or 1,2)": "ID κόμβων διαχωρισμένα με κόμμα (π.χ. 1 ή 1,2)",
-<<<<<<< HEAD
-=======
-	"Comma-separated group names": "",
-	"Comma-separated list of file extensions MinerU will handle (e.g. pdf, docx, pptx, xlsx)": "",
-	"command": "",
-	"Command": "Εντολή",
->>>>>>> upstream/main
 	"Comment": "Σχόλιο",
 	"Community Reviews": "",
-<<<<<<< HEAD
 	"Compose your first model": "",
-=======
-	"Compacting context": "",
-	"Comparing with knowledge base...": "",
-	"Completions": "Ολοκληρώσεις",
-	"Compress Images in Channels": "Συμπίεση εικόνων σε κανάλια",
-	"Computing checksums ({{count}} files)_one": "",
-	"Computing checksums ({{count}} files)_other": "",
->>>>>>> upstream/main
 	"Concurrent Requests": "Ταυτόχρονες Αιτήσεις",
 	"Config": "",
 	"Configure": "Διαμόρφωση",
@@ -450,10 +282,6 @@
 	"Connect to Open Terminal instances. All users will have access to file browsing and terminal tools through these servers.": "",
 	"Connect to your own OpenAPI compatible external tool servers.": "Συνδεθείτε στους δικούς σας διακομιστές εξωτερικών εργαλείων συμβατών με OpenAPI.",
 	"Connected": "",
-<<<<<<< HEAD
-=======
-	"Connected ({{type}})": "",
->>>>>>> upstream/main
 	"Connection failed": "Σύνδεση απέτυχε",
 	"Connection lost. Reconnecting...": "",
 	"Connection Type": "Είδος Σύνδεσης",
@@ -462,16 +290,8 @@
 	"Contact Admin for WebUI Access": "Επικοινωνήστε με τον Διαχειριστή για Πρόσβαση στο WebUI",
 	"Content": "Περιεχόμενο",
 	"Content Extraction Engine": "Μηχανή Εξαγωγής Περιεχομένου",
-	"Content Field": "",
 	"Content lengths (character counts only)": "",
-	"Context": "",
-	"Context compacted": "",
-	"Context Compaction": "",
-	"Context compaction failed": "",
-	"Context Compaction Prompt": "",
-	"Context Compaction Threshold": "",
 	"Context Tokens": "",
-	"Continue": "",
 	"Continue Response": "Συνέχεια Απάντησης",
 	"Continue with {{provider}}": "Συνέχεια με {{provider}}",
 	"Continue with Email": "Συνέχεια με Email",
@@ -502,16 +322,6 @@
 	"Create Image": "",
 	"Create model": "",
 	"Create Model": "Δημιουργία Μοντέλου",
-<<<<<<< HEAD
-=======
-	"Create new key": "Δημιουργία νέου κλειδιού",
-	"Create new secret key": "Δημιουργία νέου μυστικού κλειδιού",
-	"Create note": "",
-	"Create Note": "Δημιουργία Σημείωσης",
-	"Create one read-only Knowledge source per external collection. Test must pass before the source is created.": "",
-	"Create scheduled prompts that run automatically on a recurring basis.": "",
-	"Create your first note by clicking on the plus button below.": "",
->>>>>>> upstream/main
 	"Created at": "Δημιουργήθηκε στις",
 	"Created At": "Δημιουργήθηκε στις",
 	"Created by": "Δημιουργήθηκε από",
@@ -522,12 +332,7 @@
 	"Custom color": "",
 	"Custom Parameter Name": "",
 	"Custom Parameter Value": "",
-<<<<<<< HEAD
 	"Custom presets that pair a base model with a system prompt, tools, knowledge and capabilities — build your own assistants and reuse them anywhere in chat.": "",
-=======
-	"Custom range": "",
-	"Daily": "",
->>>>>>> upstream/main
 	"Daily Messages": "",
 	"Danger Zone": "Περιοχή Κινδύνου",
 	"Database": "Βάση Δεδομένων",
@@ -543,6 +348,7 @@
 	"Default Features": "Προεπιλεγμένες Λειτουργίες",
 	"Default Filters": "Προεπιλεγμένα Φίλτρα",
 	"Default Group": "",
+	"Default mode works with a wider range of models by calling tools once before execution. Native mode leverages the model's built-in tool-calling capabilities, but requires the model to inherently support this feature.": "",
 	"Default Model": "Προεπιλεγμένο Μοντέλο",
 	"Default permissions": "Προεπιλεγμένα δικαιώματα",
 	"Default Prompt Suggestions": "Προεπιλεγμένες Προτεινόμενες Προτροπές",
@@ -550,25 +356,13 @@
 	"Default to ALL": "Προεπιλογή σε ΟΛΑ",
 	"Default to segmented retrieval for focused and relevant content extraction, this is recommended for most cases.": "Η προεπιλογή είναι η τμηματοποιημένη ανάκτηση για στοχευμένη και σχετική εξαγωγή περιεχομένου, κάτι που συνιστάται στις περισσότερες περιπτώσεις.",
 	"Default User Role": "Προεπιλεγμένος Ρόλος Χρήστη",
-	"Default webhook": "",
 	"Defaults": "",
 	"Delete": "Διαγραφή",
 	"Delete {{name}}": "",
 	"Delete a model": "Διαγραφή ενός μοντέλου",
-<<<<<<< HEAD
-=======
-	"Delete All": "",
-	"Delete All Chats": "Διαγραφή Όλων των Συνομιλιών",
-	"Delete all contents inside this directory": "",
->>>>>>> upstream/main
 	"Delete all contents inside this folder": "",
 	"Delete Chat": "Διαγραφή Συνομιλίας",
 	"Delete chat?": "Διαγραφή συνομιλίας;",
-<<<<<<< HEAD
-=======
-	"Delete directory?": "",
-	"Delete Event": "",
->>>>>>> upstream/main
 	"Delete File": "",
 	"Delete folder?": "Διαγραφή φακέλου;",
 	"Delete function?": "Διαγραφή λειτουργίας;",
@@ -589,20 +383,9 @@
 	"Direct Connections": "Άμεσες Συνδέσεις",
 	"Direct Connections allow users to connect to their own OpenAI compatible API endpoints.": "Οι Άμεσες Συνδέσεις επιτρέπουν στους χρήστες να συνδέσουν τα δικά τους API endpoints συμβατά με OpenAI.",
 	"Direct Tool Servers": "",
-<<<<<<< HEAD
-=======
-	"Directory created.": "",
-	"Directory deleted.": "",
-	"Directory moved.": "",
-	"Directory name": "",
-	"Directory renamed.": "",
-	"Directory selection was cancelled": "",
->>>>>>> upstream/main
 	"Disable All": "",
 	"Disable Image Extraction": "",
 	"Disable image extraction from the PDF. If Use LLM is enabled, images will be automatically captioned. Defaults to False.": "",
-	"Disable Image Generation": "",
-	"Disable Web Search": "",
 	"Disabled": "Απενεργοποιημένο",
 	"Discard this folio": "",
 	"Discarded": "",
@@ -611,13 +394,6 @@
 	"Discover wonders": "Ανακάλυψη θαυμάτων",
 	"Discover, download, and explore custom functions": "Ανακαλύψτε, κατεβάστε και εξερευνήστε προσαρμοσμένες λειτουργίες",
 	"Display": "Εμφάνιση",
-<<<<<<< HEAD
-=======
-	"Display Chat Title in Tab": "Εμφάνιση τίτλου συνομιλίας στην καρτέλα",
-	"Display Emoji in Call": "Εμφάνιση Emoji στην Κλήση",
-	"Display Multi-model Responses in Tabs": "Εμφάνιση Απαντήσεων Πολυτροπικών Μοντέλων στις Καρτέλες",
-	"Display the Username Instead of You in the Chat": "Εμφάνιση του ονόματος χρήστη αντί του Εσάς στη Συνομιλία",
->>>>>>> upstream/main
 	"Displays citations in the response": "Εμφανίζει παραπομπές στην απάντηση",
 	"Displays status updates (e.g., web search progress) in the response": "Εμφανίζει ενημερώσεις κατάστασης (π.χ. πρόοδο αναζήτησης στο διαδίκτυο) στην απάντηση",
 	"Dissolve": "",
@@ -630,7 +406,6 @@
 	"Docling Parameters": "",
 	"Docling Server URL required.": "Απαιτείται το URL του διακομιστή Docling.",
 	"Document": "Έγγραφο",
-	"Document ID Field": "",
 	"Document Intelligence": "",
 	"Document Intelligence endpoint required.": "Απαιτείται το endpoint του Document Intelligence.",
 	"Document Intelligence Model": "",
@@ -684,60 +459,41 @@
 	"Edit Default Permissions": "Επεξεργασία Προεπιλεγμένων Δικαιωμάτων",
 	"Edit Folder": "",
 	"Edit Image": "",
-	"Edit Knowledge Connection": "",
 	"Edit Last Message": "",
 	"Edit Model": "",
 	"Edit Terminal Connection": "",
 	"Edit User": "Επεξεργασία Χρήστη",
 	"Edit User Group": "Επεξεργασία Ομάδας Χρηστών",
-	"Edit webhook": "",
 	"Edit workflow.json content": "",
 	"Eject": "",
 	"Eject model": "",
 	"ElevenLabs": "ElevenLabs",
 	"Email": "Email",
-	"Email Claim": "",
 	"Embark on adventures": "Ξεκινήστε περιπέτειες",
 	"Embedding": "Ενσωμάτωση",
 	"Embedding Batch Size": "Μέγεθος Παρτίδας Ενσωμάτωσης",
 	"Embedding Concurrent Requests": "",
 	"Embedding Model": "Μοντέλο Ενσωμάτωσης",
 	"Embedding Model Engine": "Μηχανή Μοντέλου Ενσωμάτωσης",
-	"Emoji": "",
 	"Emojis": "",
-<<<<<<< HEAD
-=======
-	"Empty": "",
-	"Empty message": "",
->>>>>>> upstream/main
 	"Enable All": "",
 	"Enable API Keys": "",
 	"Enable autocomplete generation for chat messages": "Ενεργοποίηση αυτόματης συμπλήρωσης για συνομιλίες",
 	"Enable Code Execution": "Ενεργοποίηση Εκτέλεσης Κώδικα",
 	"Enable Code Interpreter": "Ενεργοποίηση Διερμηνέα Κώδικα",
 	"Enable Community Sharing": "Ενεργοποίηση Κοινοτικής Κοινής Χρήσης",
-	"Enable Group Mapping": "",
-	"Enable Image Generation": "",
 	"Enable Memory Locking (mlock) to prevent model data from being swapped out of RAM. This option locks the model's working set of pages into RAM, ensuring that they will not be swapped out to disk. This can help maintain performance by avoiding page faults and ensuring fast data access.": "Ενεργοποίηση Κλείδωσης Μνήμης (mlock) για την αποτροπή της ανταλλαγής δεδομένων του μοντέλου από τη μνήμη RAM. Αυτή η επιλογή κλειδώνει το σύνολο εργασίας των σελίδων του μοντέλου στη μνήμη RAM, διασφαλίζοντας ότι δεν θα ανταλλαχθούν στο δίσκο. Αυτό μπορεί να βοηθήσει στη διατήρηση της απόδοσης αποφεύγοντας σφάλματα σελίδων και διασφαλίζοντας γρήγορη πρόσβαση στα δεδομένα.",
 	"Enable Memory Mapping (mmap) to load model data. This option allows the system to use disk storage as an extension of RAM by treating disk files as if they were in RAM. This can improve model performance by allowing for faster data access. However, it may not work correctly with all systems and can consume a significant amount of disk space.": "Ενεργοποίηση Χαρτογράφησης Μνήμης (mmap) για φόρτωση δεδομένων μοντέλου. Αυτή η επιλογή επιτρέπει στο σύστημα να χρησιμοποιεί αποθήκευση δίσκου ως επέκταση της μνήμης RAM, αντιμετωπίζοντας αρχεία δίσκου σαν να ήταν στη μνήμη RAM. Αυτό μπορεί να βελτιώσει την απόδοση του μοντέλου επιτρέποντας γρηγορότερη πρόσβαση στα δεδομένα. Ωστόσο, μπορεί να μην λειτουργεί σωστά με όλα τα συστήματα και να καταναλώνει σημαντικό χώρο στο δίσκο.",
 	"Enable Message Rating": "Ενεργοποίηση Αξιολόγησης Μηνυμάτων",
 	"Enable Mirostat sampling for controlling perplexity.": "",
 	"Enable New Sign Ups": "Ενεργοποίηση Νέων Εγγραφών",
-	"Enable OAuth Signup": "",
-	"Enable Role Mapping": "",
-	"Enable Web Search": "",
 	"Enable, disable, or customize the reasoning tags used by the model. \"Enabled\" uses default tags, \"Disabled\" turns off reasoning tags, and \"Custom\" lets you specify your own start and end tags.": "",
 	"Enabled": "Ενεργοποιημένο",
 	"End Tag": "",
-	"Endpoint": "",
 	"Endpoint URL": "",
 	"Enrich Hybrid Search Text": "",
 	"Ensure your CSV file includes 4 columns in this order: Name, Email, Password, Role.": "Βεβαιωθείτε ότι το αρχείο CSV σας περιλαμβάνει 4 στήλες με αυτή τη σειρά: Όνομα, Email, Κωδικός, Ρόλος.",
-<<<<<<< HEAD
 	"Enter a name first": "",
-=======
-	"Enter {{role}} message here": "Εισάγετε το μήνυμα {{role}} εδώ",
->>>>>>> upstream/main
 	"Enter a title for the pending user info overlay. Leave empty for default.": "",
 	"Enter a watermark for the response. Leave empty for none.": "",
 	"Enter additional headers in JSON format": "",
@@ -754,8 +510,6 @@
 	"Enter Chunk Min Size Target": "",
 	"Enter Chunk Overlap": "Εισάγετε την Επικάλυψη Τμημάτων",
 	"Enter Chunk Size": "Εισάγετε το Μέγεθος Τμημάτων",
-	"Enter Client ID": "",
-	"Enter Client Secret": "",
 	"Enter comma-separated \"token:bias_value\" pairs (example: 5432:100, 413:-100)": "",
 	"Enter content for the pending user info overlay. Leave empty for default.": "",
 	"Enter coordinates (e.g. 51.505, -0.09)": "",
@@ -792,15 +546,7 @@
 	"Enter Jupyter Token": "Εισάγετε Jupyter Token",
 	"Enter Jupyter URL": "Εισάγετε Jupyter URL",
 	"Enter Kagi Search API Key": "",
-<<<<<<< HEAD
-=======
-	"Enter Key Behavior": "",
-	"Enter language": "",
->>>>>>> upstream/main
 	"Enter language codes": "Εισάγετε κωδικούς γλώσσας",
-	"Enter Linkup API Key": "",
-	"Enter Microsoft Web IQ API Base URL": "",
-	"Enter Microsoft Web IQ API Key": "",
 	"Enter MinerU API Key": "",
 	"Enter Mistral API Base URL": "",
 	"Enter Mistral API Key": "",
@@ -819,7 +565,6 @@
 	"Enter Playwright WebSocket URL": "Εισάγετε το URL WebSocket του Playwright",
 	"Enter proxy URL (e.g. https://user:password@host:port)": "Εισάγετε URL διακομιστή μεσολάβησης (π.χ. https://user:password@host:port)",
 	"Enter reasoning effort": "",
-	"Enter Redirect URI": "",
 	"Enter Score": "Εισάγετε το Score",
 	"Enter SearchApi API Key": "Εισάγετε το Κλειδί API SearchApi",
 	"Enter SearchApi Engine": "Εισάγετε τη Μηχανή SearchApi",
@@ -829,7 +574,6 @@
 	"Enter SerpApi API Key": "Εισάγετε το Κλειδί API SerpApi",
 	"Enter SerpApi Engine": "Εισάγετε τη Μηχανή SerpApi",
 	"Enter Serper API Key": "Εισάγετε το Κλειδί API Serper",
-	"Enter SERPHouse API Key": "",
 	"Enter Serply API Key": "Εισάγετε το Κλειδί API Serply",
 	"Enter Serpstack API Key": "Εισάγετε το Κλειδί API Serpstack",
 	"Enter server host": "Εισάγετε τον διακομιστή host",
@@ -847,12 +591,6 @@
 	"Enter the URL to import": "Εισάγετε το URL για εισαγωγή",
 	"Enter Tika Server URL": "Εισάγετε το URL διακομιστή Tika",
 	"Enter timeout in seconds": "Εισάγετε το χρονικό όριο σε δευτερόλεπτα",
-<<<<<<< HEAD
-=======
-	"Enter to Send": "Εισάγετε για Αποστολή",
-	"Enter token threshold": "",
-	"Enter Tokenizer Model": "",
->>>>>>> upstream/main
 	"Enter Top K": "Εισάγετε το Top K",
 	"Enter Top K Reranker": "Εισάγετε το Top K Reranker",
 	"Enter URL (e.g. http://127.0.0.1:7860/)": "Εισάγετε το URL (π.χ. http://127.0.0.1:7860/)",
@@ -882,19 +620,8 @@
 	"Error: A model with the ID '{{modelId}}' already exists. Please select a different ID to proceed.": "",
 	"Error: Model ID cannot be empty. Please enter a valid ID to proceed.": "",
 	"Evaluations": "Αξιολογήσεις",
-<<<<<<< HEAD
 	"Every craft begins bare-handed.": "",
-=======
-	"Event": "",
-	"Event created": "",
-	"Event deleted": "",
-	"Event names may change as Open WebUI evolves. Use broad patterns like user.* for integrations that should continue across new related events.": "",
-	"Event title": "",
-	"Event updated": "",
-	"Events": "",
->>>>>>> upstream/main
 	"Exa API Key": "API κλειδί του Exa",
-	"Example": "",
 	"Example: (&(objectClass=inetOrgPerson)(uid=%s))": "Παράδειγμα: (&(objectClass=inetOrgPerson)(uid=%s))",
 	"Example: ALL": "Παράδειγμα: ALL",
 	"Example: mail": "Παράδειγμα: mail",
@@ -916,29 +643,18 @@
 	"Export chat (.json)": "Εξαγωγή συνομιλίας (.json)",
 	"Export Config": "",
 	"Export Models": "",
-<<<<<<< HEAD
-=======
-	"Export Prompts": "",
-	"Export Skills": "",
->>>>>>> upstream/main
 	"Export to CSV": "Εξαγωγή σε CSV",
 	"Export Tools": "",
 	"Export Users": "Εξαγωγή Χρηστών",
 	"External": "Εξωτερική",
-	"External connection not found.": "",
 	"External Document Loader URL required.": "",
-	"External Knowledge Source": "",
-	"External Knowledge Sources": "",
 	"External Task Model": "Εξωτερικό Μοντέλο Εργασιών",
-	"External Tool Servers": "",
-	"External vectors must be generated with the same embedding model configured in Open WebUI.": "",
 	"External Web Loader API Key": "API κλειδί του εξωτερικού διακομιστή φόρτωσης",
 	"External Web Loader URL": "URL του εξωτερικού διακομιστή φόρτωσης",
 	"External Web Search API Key": "API κλειδί του εξωτερικού διακομιστή αναζήτησης",
 	"External Web Search URL": "URL του εξωτερικού διακομιστή αναζήτησης",
 	"Faculties": "",
 	"Failed to archive chat.": "",
-<<<<<<< HEAD
 	"Failed to connect to {{URL}} OpenAPI tool server": "Αποτυχία σύνδεσης στο διακομιστή εργαλείων OpenAPI {{URL}}",
 	"Failed to connect to {{URL}} terminal server": "",
 	"Failed to copy link": "Αποτυχία αντιγραφής συνδέσμου",
@@ -948,39 +664,11 @@
 	"Failed to extract content from the file: {{error}}": "",
 	"Failed to extract content from the file.": "",
 	"Failed to fetch models": "Αποτυχία ανάκτησης μοντέλων",
-=======
-	"Failed to attach file": "",
-	"Failed to clear status": "",
-	"Failed to compare files.": "",
-	"Failed to connect to {{URL}} OpenAPI tool server": "Αποτυχία σύνδεσης στο διακομιστή εργαλείων OpenAPI {{URL}}",
-	"Failed to connect to {{URL}} terminal server": "",
-	"Failed to copy link": "Αποτυχία αντιγραφής συνδέσμου",
-	"Failed to create API Key.": "Αποτυχία δημιουργίας Κλειδιού API.",
-	"Failed to delete calendar": "",
-	"Failed to delete note": "Αποτυχία διαγραφής σημειώσεως",
-	"Failed to delete webhook": "",
-	"Failed to disconnect": "",
-	"Failed to download image": "",
-	"Failed to extract content from the file: {{error}}": "",
-	"Failed to extract content from the file.": "",
-	"Failed to fetch models": "Αποτυχία ανάκτησης μοντέλων",
-	"Failed to generate title": "Αποτυχία δημιουργίας τίτλου",
-	"Failed to import models": "Αποτυχία εισαγωγής μοντέλων",
-	"Failed to load chat": "",
-	"Failed to load chat preview": "Αποτυχία φόρτωσης προεπισκόπησης συνομιλίας",
->>>>>>> upstream/main
 	"Failed to load DOCX file. Please try downloading it instead.": "",
 	"Failed to load Excel/CSV file. Please try downloading it instead.": "",
 	"Failed to load Interface settings": "",
 	"Failed to load PPTX file. Please try downloading it instead.": "",
 	"Failed to move chat": "Αποτυχία μετακίνησης συνομιλίας",
-<<<<<<< HEAD
-=======
-	"Failed to process URL: {{url}}": "",
-	"Failed to read clipboard contents": "Αποτυχία ανάγνωσης περιεχομένων πρόχειρου",
-	"Failed to refresh terminals: {{error}}": "",
-	"Failed to remove member": "",
->>>>>>> upstream/main
 	"Failed to render diagram": "Αποτυχία απεικόνισης διαγράμματος",
 	"Failed to render visualization": "",
 	"Failed to save": "",
@@ -989,16 +677,10 @@
 	"Failed to save models configuration": "Αποτυχία αποθήκευσης ρυθμίσεων μοντέλων",
 	"Failed to save policy: {{error}}": "",
 	"Failed to save terminal servers": "",
-	"Failed to save webhook": "",
 	"Failed to unshare chat.": "",
 	"Failed to update settings": "Αποτυχία ενημέρωσης ρυθμίσεων",
 	"Failed to update status": "",
-<<<<<<< HEAD
 	"Favicons": "",
-=======
-	"Failed to update webhook": "",
-	"Failed to upload file.": "Αποτυχία ανεβάσματος αρχείου.",
->>>>>>> upstream/main
 	"Features": "Λειτουργίες",
 	"Features Permissions": "",
 	"February": "Φεβρουάριος",
@@ -1011,32 +693,14 @@
 	"File": "Αρχείο",
 	"File browser": "",
 	"File Context": "",
-<<<<<<< HEAD
-=======
-	"File deleted successfully.": "",
-	"File Extensions": "",
->>>>>>> upstream/main
 	"File Mode": "Λειτουργία Αρχείου",
-	"File moved.": "",
 	"File name": "",
 	"File not found.": "Αρχείο δεν βρέθηκε.",
-<<<<<<< HEAD
 	"File size should not exceed {{maxSize}} MB.": "Το μέγεθος του αρχείου δεν πρέπει να υπερβαίνει τα {{maxSize}} MB.",
 	"File Upload": "Ανέβασμα Αρχείων",
 	"Filename": "",
 	"Files": "Αρχεία",
 	"Fill name + base model to create": "",
-=======
-	"File removed successfully.": "Το αρχείο αφαιρέθηκε με επιτυχία.",
-	"File renamed.": "",
-	"File size should not exceed {{maxSize}} MB.": "Το μέγεθος του αρχείου δεν πρέπει να υπερβαίνει τα {{maxSize}} MB.",
-	"File Upload": "Ανέβασμα Αρχείων",
-	"File uploaded successfully": "",
-	"Filename": "",
-	"Files": "Αρχεία",
-	"Fill the required fields first.": "",
-	"Fill the source fields and test query first.": "",
->>>>>>> upstream/main
 	"Filter": "Φίλτρο",
 	"Filters": "Φίλτρα",
 	"Filters, valves, and middleware workflows.": "",
@@ -1054,12 +718,8 @@
 	"Folder name cannot be empty.": "Το όνομα του φακέλου δεν μπορεί να είναι κενό.",
 	"Folder options": "",
 	"Folders": "Φάκελοι",
-<<<<<<< HEAD
 	"folio": "",
 	"folios": "",
-=======
-	"Folders Sharing": "",
->>>>>>> upstream/main
 	"Follow up": "Συνέχιση",
 	"Follow Up Generation": "Δημιουργία Συνέχισης",
 	"Follow Up Generation Prompt": "Προτροπή Δημιουργίας Συνέχισης",
@@ -1087,11 +747,6 @@
 	"Function imported successfully": "",
 	"Function Name": "Όνομα Λειτουργίας",
 	"Function Name Filter List": "",
-<<<<<<< HEAD
-=======
-	"Function starter": "",
-	"Function updated successfully": "Η λειτουργία ενημερώθηκε με επιτυχία",
->>>>>>> upstream/main
 	"Functions": "Λειτουργίες",
 	"Functions allow arbitrary code execution.": "Οι λειτουργίες επιτρέπουν την εκτέλεση αυθαίρετου κώδικα.",
 	"Gather a quire": "",
@@ -1119,15 +774,6 @@
 	"Google PSE Engine Id": "Αναγνωριστικό Μηχανής Google PSE",
 	"Gravatar": "",
 	"Grokipedia": "",
-<<<<<<< HEAD
-=======
-	"group": "",
-	"Group": "",
-	"Group Channel": "",
-	"Group Claim": "",
-	"Group created successfully": "Η ομάδα δημιουργήθηκε με επιτυχία",
-	"Group deleted successfully": "Η ομάδα διαγράφηκε με επιτυχία",
->>>>>>> upstream/main
 	"Group Description": "Περιγραφή Ομάδας",
 	"Group Name": "Όνομα Ομάδας",
 	"groups": "",
@@ -1135,11 +781,6 @@
 	"H1": "",
 	"H2": "",
 	"H3": "",
-<<<<<<< HEAD
-=======
-	"Haptic Feedback": "Ανατροφοδότηση Haptic",
-	"Header variables": "",
->>>>>>> upstream/main
 	"Headers": "",
 	"Headers must be a valid JSON object": "",
 	"Hello, {{name}}": "Γειά σου, {{name}}",
@@ -1168,12 +809,6 @@
 	"I acknowledge that I have read and I understand the implications of my action. I am aware of the risks associated with executing arbitrary code and I have verified the trustworthiness of the source.": "Αναγνωρίζω ότι έχω διαβάσει και κατανοώ τις συνέπειες της ενέργειάς μου. Γνωρίζω τους κινδύνους που σχετίζονται με την εκτέλεση αυθαίρετου κώδικα και έχω επαληθεύσει την αξιοπιστία της πηγής.",
 	"ID": "ID",
 	"ID cannot contain \":\" or \"|\" characters": "",
-<<<<<<< HEAD
-=======
-	"ID copied to clipboard": "",
-	"Identity audit": "",
-	"Idle only": "",
->>>>>>> upstream/main
 	"Idle Timeout": "",
 	"Ignite curiosity": "Ξύπνημα της περιέργειας",
 	"Image": "Εικόνα",
@@ -1193,12 +828,6 @@
 	"Import Config": "",
 	"Import From Link": "",
 	"Import Models": "",
-<<<<<<< HEAD
-=======
-	"Import Prompts": "",
-	"Import Skills": "",
-	"Import successful": "Εισαγωγή επιτυχής",
->>>>>>> upstream/main
 	"Import Tools": "",
 	"Important Update": "Σημαντική ενημέρωση",
 	"Imported": "",
@@ -1235,11 +864,6 @@
 	"Jina API Key": "Κλειδί API Jina",
 	"join our Discord for help.": "συμμετέχετε στο Discord μας για βοήθεια.",
 	"JSON": "JSON",
-<<<<<<< HEAD
-=======
-	"JSON Base64": "",
-	"JSON Preview": "Προεπισκόπηση JSON",
->>>>>>> upstream/main
 	"JSON Spec": "Προδιαγραφή JSON",
 	"July": "Ιούλιος",
 	"June": "Ιούνιος",
@@ -1250,26 +874,9 @@
 	"Keep in Sidebar": "Κρατήστε στην πλευρική μπάρα",
 	"Key": "Κλειδί",
 	"Key is required": "Το κλειδί είναι απαραίτητο",
+	"Keyboard shortcuts": "Συντομεύσεις Πληκτρολογίου",
 	"Keyboard Shortcuts": "",
 	"Knowledge": "",
-<<<<<<< HEAD
-=======
-	"Knowledge Access": "Πρόσβαση στο Knowledge",
-	"Knowledge Base": "Βάση Knowledge",
-	"Knowledge base has been reset": "",
-	"Knowledge created successfully.": "Το Knowledge δημιουργήθηκε με επιτυχία.",
-	"Knowledge deleted successfully.": "Το Knowledge διαγράφηκε με επιτυχία.",
-	"Knowledge Description": "Περιγραφή Knowledge",
-	"Knowledge exported successfully": "",
-	"Knowledge Name": "Όνομα Knowledge",
-	"Knowledge Public Sharing": "Κοινή χρήση Knowledge",
-	"Knowledge Sharing": "",
-	"Knowledge source created.": "",
-	"Knowledge source updated.": "",
-	"Knowledge updated successfully": "Το Knowledge ενημερώθηκε με επιτυχία",
-	"Kokoro.js (Browser)": "",
-	"Kokoro.js Dtype": "",
->>>>>>> upstream/main
 	"Label": "Ετικέτα",
 	"Language Locales": "Γλωσσική Τοπικοποίηση",
 	"Last 24 hours": "",
@@ -1298,18 +905,9 @@
 	"Leave model field empty to use the default model.": "",
 	"lexical": "",
 	"License": "Άδεια",
-	"Lifecycle JSON": "",
 	"Lift List": "",
 	"Limit concurrent search queries. 0 = unlimited (default). Set to 1 for sequential execution (recommended for APIs with strict rate limits like Brave free tier).": "",
 	"Limits the number of concurrent embedding requests. Set to 0 for unlimited.": "",
-<<<<<<< HEAD
-=======
-	"Linkup API Key": "",
-	"List": "",
-	"List calendars, search, create, update, and delete calendar events": "",
-	"Listening...": "Ακούγεται...",
-	"Live": "",
->>>>>>> upstream/main
 	"llama.cpp": "",
 	"Llama.cpp": "",
 	"Loaded": "",
@@ -1320,11 +918,6 @@
 	"Local Task Model": "Τοπικό Μοντέλο Εργασιών",
 	"Lost": "Χαμένος",
 	"Low": "",
-<<<<<<< HEAD
-=======
-	"Lower the context compaction token threshold for this model. The global context compaction threshold remains the maximum.": "",
-	"LTR": "LTR",
->>>>>>> upstream/main
 	"Made by Open WebUI Community": "Δημιουργήθηκε από την Κοινότητα OpenWebUI",
 	"Make password visible in the user interface": "",
 	"Make sure to export a workflow.json file as API format from ComfyUI.": "Βεβαιωθείτε ότι εξάγετε ένα αρχείο workflow.json ως μορφή API από το ComfyUI.",
@@ -1336,12 +929,7 @@
 	"Manage OpenAI API Connections": "Διαχείριση Συνδέσεων API OpenAI",
 	"Manage Pipelines": "Διαχείριση Καναλιών",
 	"Manage Tool Servers": "Διαχείριση Διακομιστών Εργαλείων",
-<<<<<<< HEAD
 	"Manage, import, and configure the models available to users.": "",
-=======
-	"Manage your account information.": "Διαχειριστείτε τις πληροφορίες του λογαριασμού σας.",
-	"Mapped Source": "",
->>>>>>> upstream/main
 	"March": "Μάρτιος",
 	"Markdown": "",
 	"Markdown Header Text Splitter": "",
@@ -1362,15 +950,6 @@
 	"Members": "",
 	"Memories": "",
 	"Memory": "Μνήμη",
-<<<<<<< HEAD
-=======
-	"Memory added successfully": "Η μνήμη προστέθηκε με επιτυχία",
-	"Memory cleared successfully": "Η μνήμη καθαρίστηκε με επιτυχία",
-	"Memory deleted successfully": "Η μνήμη διαγράφηκε με επιτυχία",
-	"Memory System Context": "",
-	"Memory updated successfully": "Η μνήμη ενημερώθηκε με επιτυχία",
-	"Merge Accounts by Email": "",
->>>>>>> upstream/main
 	"Merge Responses": "Συγχώνευση Απαντήσεων",
 	"Merged Response": "Συγχωνευμένη απάντηση",
 	"Message": "",
@@ -1380,16 +959,6 @@
 	"Message text...": "",
 	"messages": "",
 	"Messages": "",
-<<<<<<< HEAD
-=======
-	"Messages you send after creating your link won't be shared. Users with the URL will be able to view the shared chat.": "Τα μηνύματα που στέλνετε μετά τη δημιουργία του συνδέσμου σας δεν θα κοινοποιηθούν. Οι χρήστες με το URL θα μπορούν να δουν τη συνομιλία που μοιραστήκατε.",
-	"Metadata Field": "",
-	"Microsoft OneDrive": "",
-	"Microsoft OneDrive (personal)": "",
-	"Microsoft OneDrive (work/school)": "",
-	"Microsoft Web IQ API Base URL": "",
-	"Microsoft Web IQ API Key": "",
->>>>>>> upstream/main
 	"min": "",
 	"MinerU": "",
 	"MinerU API Key required for Cloud API mode.": "",
@@ -1431,42 +1000,18 @@
 	"Models Sharing": "",
 	"Mojeek": "",
 	"Mojeek Search API Key": "Κλειδί API Mojeek Search",
-<<<<<<< HEAD
-=======
-	"Monday – Friday": "",
-	"Month": "",
-	"Monthly": "",
->>>>>>> upstream/main
 	"More": "Περισσότερα",
 	"More Concise": "",
 	"More Options": "",
 	"Move": "Μετακίνηση",
-<<<<<<< HEAD
-=======
-	"Moved {{name}}": "",
-	"Multipart Upload": "",
-	"Mute": "",
-	"Muted": "",
->>>>>>> upstream/main
 	"My Terminal": "",
 	"Name": "Όνομα",
 	"Name and ID are required, please fill them out": "",
 	"Name this model…": "",
 	"Name your model": "",
 	"Native": "",
-<<<<<<< HEAD
-=======
-	"Native mode (default) leverages the model's built-in tool-calling capabilities. Legacy mode works with a wider range of models by calling tools once before execution via prompt injection.": "",
-	"Never": "",
->>>>>>> upstream/main
 	"New": "",
 	"New Chat": "Νέα Συνομιλία",
-<<<<<<< HEAD
-=======
-	"New directory": "",
-	"New Directory": "",
-	"New Event": "",
->>>>>>> upstream/main
 	"New File": "",
 	"New Folder": "Νέος Φάκελος",
 	"New Function": "Νέα Λειτουργία",
@@ -1481,7 +1026,6 @@
 	"Next message": "Επόμενο μήνυμα",
 	"No access grants. Private to you.": "",
 	"No activity data": "",
-	"No additional headers are sent unless configured.": "",
 	"No authentication": "",
 	"No chats found": "",
 	"No chats found for this user.": "",
@@ -1490,13 +1034,7 @@
 	"No data": "",
 	"No data found": "",
 	"No distance available": "Δεν υπάρχει διαθέσιμη απόσταση",
-<<<<<<< HEAD
-=======
-	"No event webhooks configured.": "",
-	"No execution logs available yet": "",
->>>>>>> upstream/main
 	"No expiration can pose security risks.": "",
-	"No external knowledge sources configured.": "",
 	"No feedback found": "",
 	"No file selected": "Δεν έχει επιλεγεί αρχείο",
 	"No files found": "",
@@ -1506,27 +1044,14 @@
 	"No HTML, CSS, or JavaScript content found.": "Δεν βρέθηκε περιεχόμενο HTML, CSS ή JavaScript.",
 	"No inference engine with management support found": "",
 	"No kernel": "",
-<<<<<<< HEAD
-=======
-	"No knowledge bases accessible": "",
-	"No knowledge bases found.": "",
-	"No knowledge found": "Δεν βρέθηκε Knowledge",
->>>>>>> upstream/main
 	"No limit": "",
 	"No model IDs": "Δεν υπάρχουν IDs μοντέλων",
-	"No models accessible": "",
 	"No models available": "",
 	"No models found": "Δεν βρέθηκαν μοντέλα",
 	"No models match your search.": "",
 	"No models selected": "Δεν έχουν επιλεγεί μοντέλα",
 	"No one": "",
 	"No output items": "",
-<<<<<<< HEAD
-=======
-	"No pinned messages": "",
-	"No prompts found": "Δεν βρέθηκαν προτροπές",
-	"No Repeat": "",
->>>>>>> upstream/main
 	"No results": "Δεν βρέθηκαν αποτελέσματα",
 	"No results found": "Δεν βρέθηκαν αποτελέσματα",
 	"No search query generated": "Δεν δημιουργήθηκε ερώτηση αναζήτησης",
@@ -1538,18 +1063,12 @@
 	"No Terminal connection configured.": "",
 	"No terminal connections configured.": "",
 	"No tool server connections configured.": "",
-<<<<<<< HEAD
 	"No tools match your search.": "",
-=======
-	"No tools accessible": "",
-	"No tools found": "Δεν βρέθηκαν εργαλεία",
->>>>>>> upstream/main
 	"No users were found.": "Δεν βρέθηκαν χρήστες.",
 	"No valves": "",
 	"No valves to update": "Δεν υπάρχουν βαλβίδες για ενημέρωση",
 	"Node Ids": "IDs Κόμβων",
 	"None": "Κανένα",
-	"Not configured": "",
 	"Not factually correct": "Δεν είναι γεγονότα",
 	"Not helpful": "Δεν είναι χρήσιμο",
 	"Not Registered": "",
@@ -1559,31 +1078,21 @@
 	"Nothing has been rehearsed yet.": "",
 	"November": "Νοέμβριος",
 	"OAuth": "",
-	"OAuth / OIDC": "",
 	"OAuth 2.1": "",
 	"OAuth 2.1 (Static)": "",
 	"OAuth ID": "OAuth ID",
-	"OAuth Resource Parameter": "",
-	"OAuth Scopes": "",
 	"OAuth Server URL": "",
 	"October": "Οκτώβριος",
 	"Off": "Ανενεργό",
 	"Okay, Let's Go!": "Εντάξει, Πάμε!",
-<<<<<<< HEAD
-=======
-	"Older messages are summarized when estimated context exceeds this token limit.": "",
-	"OLED Dark": "Σκούρο OLED",
->>>>>>> upstream/main
 	"Ollama": "Ollama",
 	"Ollama API": "API Ollama",
 	"Ollama Cloud API Key": "",
 	"Ollama Version": "Έκδοση Ollama",
-	"Omit": "",
 	"On": "Ενεργό",
 	"On by default": "",
 	"On by default for new chats": "",
 	"OneDrive": "",
-	"Only active during Voice Mode.": "",
 	"Only active when \"Paste Large Text as File\" setting is toggled on.": "",
 	"Only active when the chat input is in focus and an LLM is generating a response.": "",
 	"Only active when the chat input is in focus.": "",
@@ -1653,39 +1162,21 @@
 	"Participate in community leaderboards and evaluations! Syncing aggregated usage stats helps drive research and improvements to Open WebUI. Your privacy is paramount: no message content is ever shared.": "",
 	"Password": "Κωδικός",
 	"Passwords do not match.": "Οι κωδικοί δεν ταιριάζουν",
-<<<<<<< HEAD
 	"PDF document (.pdf)": "Έγγραφο PDF (.pdf)",
 	"PDF Extract Images (OCR)": "Εξαγωγή Εικόνων PDF (OCR)",
 	"PDF Loader Mode": "",
 	"Penalties & Mirostat": "",
-=======
-	"Paste Large Text as File": "Επικόλληση Μεγάλου Κειμένου ως Αρχείο",
-	"Path": "",
-	"Path copied": "",
-	"Paused": "",
-	"PDF document (.pdf)": "Έγγραφο PDF (.pdf)",
-	"PDF Extract Images (OCR)": "Εξαγωγή Εικόνων PDF (OCR)",
-	"PDF Loader Mode": "",
-	"pdf, docx, pptx, xlsx": "",
->>>>>>> upstream/main
 	"pending": "εκκρεμεί",
 	"Pending": "Εκκρεμεί",
-	"Pending Accounts": "",
 	"Pending User Overlay Content": "",
 	"Pending User Overlay Title": "",
 	"Permissions": "Δικαιώματα",
-	"Permissions reset to defaults": "",
 	"Perplexity API Key": "Perplexity API κλειδί",
 	"Perplexity Model": "Perplexity Μοντέλο",
 	"Perplexity Search API URL": "",
 	"Perplexity Search Context Usage": "",
 	"Persistent": "",
-<<<<<<< HEAD
 	"Pick an icon or emoji": "",
-=======
-	"Personalization": "Προσωποποίηση",
-	"Picture Claim": "",
->>>>>>> upstream/main
 	"Pin": "Καρφίτσωμα",
 	"Pinned Models": "",
 	"Pioneer insights": "Συμβουλές πρωτοπόρων",
@@ -1708,14 +1199,9 @@
 	"Please enter Client ID and Client Secret": "",
 	"Please register the OAuth client": "",
 	"Please save the connection to persist the OAuth client information and do not change the ID": "",
-<<<<<<< HEAD
-=======
-	"Please select a model.": "",
->>>>>>> upstream/main
 	"Please select a reason": "Παρακαλώ επιλέξτε έναν λόγο",
 	"Please select a valid JSON file": "",
 	"Policy ID": "",
-	"Policy ID is required": "",
 	"Port": "Θύρα",
 	"Ports": "",
 	"Positive attitude": "Θετική στάση",
@@ -1723,7 +1209,6 @@
 	"Prefix ID is used to avoid conflicts with other connections by adding a prefix to the model IDs - leave empty to disable": "Το ID Προθέματος χρησιμοποιείται για να αποφεύγονται συγκρούσεις με άλλες συνδέσεις προσθέτοντας ένα πρόθεμα στα IDs των μοντέλων - αφήστε κενό για απενεργοποίηση",
 	"Prevent File Creation": "",
 	"Preview": "Προεπισκόπηση",
-	"Preview Access": "",
 	"Previous 30 days": "Προηγούμενες 30 ημέρες",
 	"Previous 7 days": "Προηγούμενες 7 ημέρες",
 	"Previous message": "Προηγούμενο μήνυμα",
@@ -1732,8 +1217,6 @@
 	"Prompt": "Προτροπή",
 	"Prompt Template": "",
 	"Provider": "",
-	"Provider Name": "",
-	"Provider URL": "",
 	"Public": "Δημόσιο",
 	"Public shared chat links are disabled for this workspace.": "",
 	"Pull \"{{searchValue}}\" from Ollama.com": "Τραβήξτε \"{{searchValue}}\" από το Ollama.com",
@@ -1756,38 +1239,18 @@
 	"Read": "",
 	"Read Aloud": "Ανάγνωση Φωναχτά",
 	"Read more →": "",
-<<<<<<< HEAD
 	"read only": "",
-=======
-	"Read only": "",
->>>>>>> upstream/main
 	"Read Only": "",
 	"Read, write, and diff-edit durable notes for the current chat Scratchboard": "",
 	"Reason": "",
 	"Reasoning Effort": "",
 	"Reasoning Tags": "",
 	"Reasoning text...": "",
-	"Receives matching events across the instance, including system/config events and events associated with any user.": "",
-	"Receives matching events that are not associated with a user.": "",
-	"Receives matching user-associated events only when the actor, user subject, or user data matches these users or current group members. System/config events are not sent.": "",
 	"Recently Used": "",
 	"Reconnected": "",
-<<<<<<< HEAD
 	"Redirecting you to Open WebUI Community": "Μετακατεύθυνση στην Κοινότητα OpenWebUI",
 	"Reduces the probability of generating nonsense. A higher value (e.g. 100) will give more diverse answers, while a lower value (e.g. 10) will be more conservative.": "",
-=======
-	"Record": "",
-	"Record voice": "Εγγραφή φωνής",
-	"Redirect URI": "",
-	"Redirecting you to Open WebUI Community": "Μετακατεύθυνση στην Κοινότητα OpenWebUI",
-	"Reduces the probability of generating nonsense. A higher value (e.g. 100) will give more diverse answers, while a lower value (e.g. 10) will be more conservative.": "",
-	"Reference Chats": "Αναφορά σε Συνομιλίες",
->>>>>>> upstream/main
 	"Refresh": "",
-	"Refresh requested: {{count}} terminal(s)_one": "",
-	"Refresh requested: {{count}} terminal(s)_other": "",
-	"Refresh Terminals": "",
-	"Refreshing...": "",
 	"Refused when it shouldn't have": "Αρνήθηκε όταν δεν έπρεπε",
 	"Regenerate": "Επαναδημιουργία",
 	"Regenerate Response": "",
@@ -1806,38 +1269,15 @@
 	"Remove from favorites": "",
 	"Remove image": "Αφαίρεση εικόνας",
 	"Remove Model": "Αφαίρεση Μοντέλου",
-	"Removing {{count}} stale files..._one": "",
-	"Removing {{count}} stale files..._other": "",
 	"Rename": "Μετονομασία",
 	"Reorder Models": "Επαναταξινόμηση Μοντέλων",
-<<<<<<< HEAD
-=======
-	"Repeat": "",
-	"Repeats": "",
-	"Reply": "Απάντηση",
-	"Reply in Thread": "Απάντηση στο Νήμα Συζήτησης",
-	"Reply to thread...": "Απάντηση στο νήμα συζήτησης...",
-	"Replying to {{NAME}}": "",
-	"Request Format": "",
-	"Require users to confirm before using Web Search.": "",
-	"required": "απαιτείται",
->>>>>>> upstream/main
 	"Reranking Batch Size": "",
 	"Reranking Engine": "Μηχανή Επαναταξινόμησης",
 	"Reranking Model": "Μοντέλο Επαναταξινόμησης",
-	"Research Knowledge": "",
 	"Reset": "Επαναφορά",
 	"Reset All Models": "Επαναφορά Όλων των Μοντέλων",
-	"Reset all permissions to their initial configuration values": "",
-	"Reset group permissions to match the current default user permissions": "",
 	"Reset Image": "Επαναφορά εικόνας",
-<<<<<<< HEAD
 	"Reset to default": "",
-=======
-	"Reset knowledge base?": "",
-	"Reset persisted files": "",
-	"Reset to Defaults": "",
->>>>>>> upstream/main
 	"Reset Upload Directory": "Επαναφορά Καταλόγου Ανεβάσματος",
 	"Reset Vector Storage/Knowledge": "Επαναφορά Αποθήκευσης Διανυσμάτων/Knowledge",
 	"Reset view": "Επαναφορά προβολής",
@@ -1858,11 +1298,6 @@
 	"Return token usage information in the response when supported": "",
 	"Reusable instruction packs that teach your models a procedure or domain — import a markdown skill or write your own, then enable it where you need it.": "",
 	"Role": "Ρόλος",
-<<<<<<< HEAD
-=======
-	"Roles Claim": "",
-	"RTL": "RTL",
->>>>>>> upstream/main
 	"Run": "Εκτέλεση",
 	"Run All": "",
 	"Running": "Εκτέλεση",
@@ -1875,18 +1310,10 @@
 	"Save As Copy": "Αποθήκευση ως Αντιγραφή",
 	"Saved": "Αποθηκευμένο",
 	"Saving chat logs directly to your browser's storage is no longer supported. Please take a moment to download and delete your chat logs by clicking the button below. Don't worry, you can easily re-import your chat logs to the backend through": "Η αποθήκευση των αρχείων συνομιλίας απευθείας στη μνήμη αποθήκευσης του προγράμματος περιήγησής σας δεν υποστηρίζεται πλέον. Παρακαλώ αφιερώστε λίγο χρόνο να κατεβάσετε και να διαγράψετε τα αρχεία συνομιλίας σας κάνοντας κλικ στο κουμπί παρακάτω. Μην ανησυχείτε, μπορείτε εύκολα να επαναφέρετε τα αρχεία συνομιλιών σας στο backend μέσω",
-<<<<<<< HEAD
 	"Scratchboard": "",
-=======
-	"Schedule": "",
-	"Scheduled time must be in the future": "",
-	"Scopes": "",
-	"Scroll On Branch Change": "",
->>>>>>> upstream/main
 	"Scroll to Top": "",
 	"Search": "Αναζήτηση",
 	"Search a model": "Αναζήτηση μοντέλου",
-	"Search actions": "",
 	"Search all emojis": "Αναζήτησε όλα τα emojis",
 	"Search and manage user memories": "",
 	"Search and view user chat history": "",
@@ -1894,7 +1321,6 @@
 	"Search Chats": "Αναζήτηση Συνομιλιών",
 	"Search engines and web content loaders for live results.": "",
 	"Search Files": "",
-	"Search filters": "",
 	"Search Filters": "Φίλτρα Αναζήτησης",
 	"search for archived chats": "αναζήτηση για αρχειοθετημένες συνομιλίες",
 	"search for folders": "αναζήτηση για φακέλους",
@@ -1906,22 +1332,10 @@
 	"Search In Models": "Αναζήτηση στα Μοντέλα",
 	"Search Models": "Αναζήτηση Μοντέλων",
 	"Search options": "Επιλογές Αναζήτησης",
-<<<<<<< HEAD
-=======
-	"Search or add pattern": "",
-	"Search Prompts": "Αναζήτηση Προτροπών",
->>>>>>> upstream/main
 	"Search Result Count": "Αριθμός Αποτελεσμάτων Αναζήτησης",
-	"Search skills": "",
 	"Search Skills": "",
 	"Search the web and fetch URLs": "",
-	"Search tools": "",
 	"Search Tools": "Αναζήτηση Εργαλείων",
-<<<<<<< HEAD
-=======
-	"Search users or groups": "",
-	"Search, view, and manage user notes": "",
->>>>>>> upstream/main
 	"SearchApi API Key": "Κλειδί API SearchApi",
 	"SearchApi Engine": "Μηχανή SearchApi",
 	"Searched {{count}} sites": "Αναζητήθηκαν {{count}} ιστοσελίδες",
@@ -1936,12 +1350,7 @@
 	"Seed": "Seed",
 	"Select": "Επιλογή",
 	"Select {{modelName}} model": "",
-<<<<<<< HEAD
 	"Select a base model": "Επιλέξτε ένα βασικό μοντέλο",
-=======
-	"Select a base model (e.g. llama3, gpt-4o)": "",
-	"Select a conversation to preview": "",
->>>>>>> upstream/main
 	"Select a engine": "Επιλέξτε μια μηχανή",
 	"Select a function": "Επιλέξτε μια λειτουργία",
 	"Select a group": "Επιλέξτε μια ομάδα",
@@ -1971,36 +1380,15 @@
 	"Selected Models": "",
 	"semantic": "",
 	"Send": "Αποστολή",
-<<<<<<< HEAD
-=======
-	"Send a Message": "Αποστολή Μηνύματος",
-	"Send events for": "",
-	"Send message": "Αποστολή μηνύματος",
-	"Send now": "",
-	"Send product events as JSON to external services. Chat destinations receive readable messages.": "",
-	"Send the PDF as a base64 data URL instead of uploading it first.": "",
-	"Sends `stream_options: { include_usage: true }` in the request.\nSupported providers will return token usage information in the response when set.": "Στέλνει `stream_options: { include_usage: true }` στο αίτημα.\nΟι υποστηριζόμενοι πάροχοι θα επιστρέψουν πληροφορίες χρήσης token στην απάντηση όταν ρυθμιστεί.",
->>>>>>> upstream/main
 	"September": "Σεπτέμβριος",
 	"sequences that end a response — comma separated": "",
 	"SerpApi API Key": "",
 	"SerpApi Engine": "",
 	"Serper API Key": "Κλειδί API Serper",
-	"SERPHouse API Key": "",
-	"SERPHouse Domain": "",
 	"Serply API Key": "Κλειδί API Serply",
 	"Serpstack API Key": "Κλειδί API Serpstack",
 	"Server connection failed": "",
-<<<<<<< HEAD
 	"Session": "",
-=======
-	"Server connection verified": "Η σύνδεση διακομιστή επαληθεύθηκε",
-	"Service Account": "",
-	"Session": "",
-	"Session expired. Please sign in again.": "",
-	"Set as default": "Ορισμός ως προεπιλογή",
-	"Set as Production": "",
->>>>>>> upstream/main
 	"Set embedding model": "Ορισμός μοντέλου ενσωμάτωσης",
 	"Set embedding model (e.g. {{model}})": "Ορισμός μοντέλου ενσωμάτωσης (π.χ. {{model}})",
 	"Set reranking model (e.g. {{model}})": "Ορισμός μοντέλου επαναταξινόμησης (π.χ. {{model}})",
@@ -2024,28 +1412,13 @@
 	"Share": "Κοινή Χρήση",
 	"Share Chat": "Κοινή Χρήση Συνομιλίας",
 	"Share to Open WebUI Community": "Κοινή Χρήση στην Κοινότητα OpenWebUI",
-<<<<<<< HEAD
-=======
-	"Share your background and interests": "Μοιραστείτε μερικά λόγια για εσάς, όπως τα ενδιαφέροντά σας",
-	"Shared": "",
->>>>>>> upstream/main
 	"Shared Chats": "",
 	"Shared with you": "Μοιρασμένα με εσάς",
 	"Sharing Permissions": "Δικαιώματα Κοινής Χρήσης",
 	"Show": "Εμφάνιση",
-<<<<<<< HEAD
 	"Show Admin Details in Account Pending Overlay": "Εμφάνιση Λεπτομερειών Διαχειριστή στο Υπέρθεση Εκκρεμής Λογαριασμού",
 	"Show All": "",
 	"Show all ({{COUNT}} characters)": "",
-=======
-	"Show \"What's New\" Modal on Login": "Εμφάνιση του παράθυρου \"Τι νέο υπάρχει\" κατά την είσοδο",
-	"Show Admin Details in Account Pending Overlay": "Εμφάνιση Λεπτομερειών Διαχειριστή στο Υπέρθεση Εκκρεμής Λογαριασμού",
-	"Show All": "",
-	"Show all ({{COUNT}} characters)": "",
-	"Show Files": "",
-	"Show Files on Terminal Select": "",
-	"Show Formatting Toolbar": "",
->>>>>>> upstream/main
 	"Show image preview": "",
 	"Show Model": "",
 	"Show Shortcuts": "",
@@ -2087,13 +1460,7 @@
 	"Sougou Search API sID": "",
 	"Sougou Search API SK": "",
 	"Source": "Πηγή",
-<<<<<<< HEAD
 	"Sources used": "",
-=======
-	"Specific users or groups": "",
-	"Speech Playback Speed": "Ταχύτητα Αναπαραγωγής Ομιλίας",
-	"Speech recognition error: {{error}}": "Σφάλμα αναγνώρισης ομιλίας: {{error}}",
->>>>>>> upstream/main
 	"Speech-to-Text": "Ομιλία σε Κείμενο",
 	"Speech-to-Text Engine": "Μηχανή Ομιλίας σε Κείμενο",
 	"Split documents by markdown headers before applying character/token splitting.": "",
@@ -2117,13 +1484,6 @@
 	"Strip Existing OCR": "",
 	"Strip existing OCR text from the PDF and re-run OCR. Ignored if Force OCR is enabled. Defaults to False.": "",
 	"STT Model": "Μοντέλο Μετατροπής Ομιλίας σε Κείμενο",
-<<<<<<< HEAD
-=======
-	"STT Settings": "Ρυθμίσεις Μετατροπής Ομιλίας σε Κείμενο",
-	"Stylized PDF Export": "",
-	"Su_day_of_week": "",
-	"Sub Claim": "",
->>>>>>> upstream/main
 	"Submit question": "",
 	"Submit suggestion": "",
 	"Subtitle": "",
@@ -2137,22 +1497,13 @@
 	"Switch to JSON editor": "",
 	"Switch to visual editor": "",
 	"Sync": "",
-	"Sync a local directory with this knowledge base. Only new and modified files will be uploaded. The directory structure will be mirrored.": "",
-	"Sync complete: {{added}} added, {{modified}} modified, {{deleted}} deleted, {{unmodified}} unmodified": "",
 	"Sync Complete!": "",
 	"Sync Failed": "",
 	"Sync Usage Stats": "",
 	"Syncing stats...": "",
 	"Syncing...": "",
 	"Syncs only chats with updates after your last sync timestamp. Disable to re-sync all chats.": "",
-<<<<<<< HEAD
-=======
-	"System": "Σύστημα",
-	"System events only": "",
-	"System Instructions": "Οδηγίες Συστήματος",
->>>>>>> upstream/main
 	"System Prompt": "Προτροπή Συστήματος",
-	"Table": "",
 	"Tag": "Ετικέτα",
 	"Tags": "Ετικέτες",
 	"Tags Generation": "Δημιουργία Ετικετών",
@@ -2172,16 +1523,6 @@
 	"Temperature": "Temperature",
 	"Temporary Chat": "Προσωρινή Συνομιλία",
 	"Terminal": "",
-<<<<<<< HEAD
-=======
-	"Terminal servers saved": "",
-	"Test": "",
-	"Test Query": "",
-	"Test returned no results.": "",
-	"Test succeeded.": "",
-	"Test the source before creating it.": "",
-	"Test the source before saving it.": "",
->>>>>>> upstream/main
 	"Text Splitter": "Διαχωριστής Κειμένου",
 	"Text-to-Speech": "Κείμενο σε Ομιλία",
 	"Text-to-Speech Engine": "Μηχανή Ομιλίας σε Κείμενο",
@@ -2196,11 +1537,8 @@
 	"The height in pixels to compress images to. Leave empty for no compression.": "Το ύψος σε pixel για συμπίεση εικόνων. Αφήστε κενό για να μην υπάρχει συμπίεση.",
 	"The LDAP attribute that maps to the mail that users use to sign in.": "",
 	"The LDAP attribute that maps to the username that users use to sign in.": "Το χαρακτηριστικό LDAP που αντιστοιχεί στο όνομα χρήστη που χρησιμοποιούν οι χρήστες για να συνδεθούν.",
-<<<<<<< HEAD
 	"The leaderboard is currently in beta, and we may adjust the rating calculations as we refine the algorithm.": "Η κατάταξη είναι αυτή τη στιγμή σε δοκιμαστική φάση, και ενδέχεται να προσαρμόσουμε τους υπολογισμούς βαθμολογίας καθώς βελτιώνουμε τον αλγόριθμο.",
 	"the longest single response it may set": "",
-=======
->>>>>>> upstream/main
 	"The maximum file size in MB. If the file size exceeds this limit, the file will not be uploaded.": "Το μέγιστο μέγεθος αρχείου σε MB. Αν το μέγεθος του αρχείου υπερβαίνει αυτό το όριο, το αρχείο δεν θα ανεβεί.",
 	"The maximum number of files that can be used at once in chat. If the number of files exceeds this limit, the files will not be uploaded.": "Ο μέγιστος αριθμός αρχείων που μπορούν να χρησιμοποιηθούν ταυτόχρονα στη συνομιλία. Αν ο αριθμός των αρχείων υπερβαίνει αυτό το όριο, τα αρχεία δεν θα ανεβούν.",
 	"The only required step — refine everything else now or later.": "",
@@ -2226,11 +1564,6 @@
 	"This feature is currently experimental and may not work as expected.": "",
 	"This folder is empty": "",
 	"This is a default user permission and will remain enabled.": "",
-<<<<<<< HEAD
-=======
-	"This is an experimental feature, it may not function as expected and is subject to change at any time.": "Αυτή είναι μια πειραματική λειτουργία, μπορεί να μην λειτουργεί όπως αναμένεται και υπόκειται σε αλλαγές οποιαδήποτε στιγμή.",
-	"This knowledge base retrieves from a connected source. Open WebUI can query it, but cannot upload, sync, edit, delete, reset, or reindex its source data.": "",
->>>>>>> upstream/main
 	"This model is not publicly available. Please select another model.": "Αυτό το μοντέλο δεν είναι δημόσια διαθέσιμο. Επιλέξτε ένα άλλο μοντέλο.",
 	"This option controls how long the model will stay loaded into memory following the request (default: 5m)": "",
 	"This option controls how many tokens are preserved when refreshing the context. For example, if set to 2, the last 2 tokens of the conversation context will be retained. Preserving context can help maintain the continuity of a conversation, but it may reduce the ability to respond to new topics.": "",
@@ -2242,11 +1575,6 @@
 	"This will delete <strong>{{NAME}}</strong> and <strong>all its contents</strong>.": "Αυτό θα διαγράψει το <strong>{{NAME}}</strong> και <strong>όλο το περιεχόμενό του</strong>.",
 	"This will delete all models including custom models": "Αυτό θα διαγράψει όλα τα μοντέλα, συμπεριλαμβανομένων των προσαρμοσμένων μοντέλων",
 	"This will delete all models including custom models and cannot be undone.": "Αυτό θα διαγράψει όλα τα μοντέλα, συμπεριλαμβανομένων των προσαρμοσμένων μοντέλων και δεν μπορεί να αναιρεθεί.",
-<<<<<<< HEAD
-=======
-	"This will permanently delete the calendar \"{{name}}\" and all its events. This action cannot be undone.": "",
-	"This will remove all files and directories from this knowledge base. This action cannot be undone.": "",
->>>>>>> upstream/main
 	"Thorough explanation": "Λεπτομερής εξήγηση",
 	"Thought": "",
 	"Thought for {{DURATION}}": "Σκέφτηκε για {{DURATION}}",
@@ -2269,23 +1597,12 @@
 	"To learn more about available endpoints, visit our documentation.": "Για να μάθετε περισσότερα για τα διαθέσιμα endpoints, δείτε την τεκμηρίωσή μας.",
 	"To select skills here, add them to the \"Skills\" workspace first.": "",
 	"To select toolkits here, add them to the \"Tools\" workspace first.": "Για να επιλέξετε toolkits εδώ, προσθέστε τα πρώτα στον χώρο εργασίας \"Εργαλεία\".",
-<<<<<<< HEAD
-=======
-	"Toast Notifications for New Updates": "Ειδοποιήσεις Toast για νέες ενημερώσεις",
->>>>>>> upstream/main
 	"Today": "Σήμερα",
 	"Toggle details": "",
-<<<<<<< HEAD
-=======
-	"Toggle Dictation": "",
-	"Toggle Mute": "",
->>>>>>> upstream/main
 	"Toggle Sidebar": "",
 	"Toggle whether current connection is active.": "",
 	"Token": "",
 	"Token counts are estimates and may not reflect actual API usage": "",
-	"Token Threshold": "",
-	"Tokenizer Model": "",
 	"tokens": "",
 	"Tokens": "",
 	"Too verbose": "Πολύ λεπτομερές",
@@ -2330,25 +1647,10 @@
 	"Unlock mysteries": "Ξεκλείδωμα μυστηρίων",
 	"Unpin": "Ξεκαρφίτσωμα",
 	"Unravel secrets": "Ξετυλίξτε μυστικά",
-	"Unshare All": "",
-	"Unshare All Shared Chats": "",
 	"Unshare Chat": "",
 	"Untagged": "Χωρίς Ετικέτες",
-<<<<<<< HEAD
 	"Untitled folio": "",
 	"Update for the latest features and improvements.": "Ενημερωθείτε για τις τελευταίες λειτουργίες και βελτιώσεις.",
-=======
-	"Untitled": "",
-	"Update": "Ενημέρωση",
-	"Update and Copy Link": "Ενημέρωση και Αντιγραφή Συνδέσμου",
-	"Update Email": "",
-	"Update for the latest features and improvements.": "Ενημερωθείτε για τις τελευταίες λειτουργίες και βελτιώσεις.",
-	"Update Name": "",
-	"Update password": "Ενημέρωση κωδικού",
-	"Update Picture": "",
-	"Update your status": "",
-	"Updated": "Ενημερώθηκε",
->>>>>>> upstream/main
 	"Updated at": "Ενημερώθηκε στις",
 	"Updated At": "Ενημερώθηκε στις",
 	"Upgrade to a licensed plan for enhanced capabilities, including custom theming and branding, and dedicated support.": "Αναβαθμίστε σε ένα πακέτο με άδεια χρήσης για βελτιωμένες λειτουργίες, συμπεριλαμβανομένων προσαρμοσμένων θεμάτων και branding, και ειδικής υποστήριξης.",
@@ -2360,40 +1662,24 @@
 	"Upload profile image": "",
 	"Upload Progress": "Πρόοδος Ανεβάσματος",
 	"Uploaded files or images": "",
-<<<<<<< HEAD
-=======
-	"Uploading {{current}}/{{total}}: {{file}}": "",
->>>>>>> upstream/main
 	"Uploading...": "",
 	"URL": "URL",
 	"URL is required": "Το URL είναι απαραίτητο",
 	"URL Mode": "Λειτουργία URL",
 	"Usage": "Χρήση Τoken",
 	"Use /v1/chat/completions endpoint instead of /v1/audio/transcriptions for potentially better accuracy.": "",
-	"Use a valid event name or pattern like user.*": "",
-	"Use Base64": "",
 	"Use Chat Completions API": "",
-	"Use discovered scopes": "",
 	"Use groups to organize your users and assign permissions.": "",
 	"Use LLM": "Χρήση LLM",
 	"Use no proxy to fetch page contents.": "Μη χρήση διακομιστή μεσολάβησης για λήψη περιεχομένου σελίδων.",
 	"Use proxy designated by http_proxy and https_proxy environment variables to fetch page contents.": "Χρήση διακομιστή μεσολάβησης προορισμένο από τις http_proxy και https_proxy μεταβλητές περιβάλλοντος για λήψη περιεχομένου σελίδων.",
-	"Use Web Search?": "",
 	"user": "χρήστης",
 	"User": "Χρήστης",
-	"User Access": "",
 	"User Activity": "",
 	"User Groups": "Ομάδες Χρηστών",
-<<<<<<< HEAD
-=======
-	"User location successfully retrieved.": "Η τοποθεσία του χρήστη ανακτήθηκε με επιτυχία.",
-	"User menu": "Μενού Χρήστη",
-	"User Preview": "",
->>>>>>> upstream/main
 	"User ratings (thumbs up/down)": "",
 	"User Webhooks": "Webhooks Χρήστη",
 	"Username": "Όνομα Χρήστη",
-	"Username Claim": "",
 	"users": "",
 	"Users": "Χρήστες",
 	"Uses DefaultAzureCredential to authenticate": "",
@@ -2404,14 +1690,7 @@
 	"Valid time units:": "Έγκυρες μονάδες χρόνου:",
 	"Validate certificate": "Επαλήθευση πιστοποιητικού",
 	"Valves": "Βαλβίδες",
-<<<<<<< HEAD
 	"Verified": "",
-=======
-	"Valves updated": "Οι βαλβίδες ενημερώθηκαν",
-	"Valves updated successfully": "Οι βαλβίδες ενημερώθηκαν με επιτυχία",
-	"variable": "μεταβλητή",
-	"Vector Field": "",
->>>>>>> upstream/main
 	"Verify Connection": "Επαλήθευση Σύνδεσης",
 	"Verify SSL Certificate": "Επαλήθευση Πιστοποιητικού SSL",
 	"Version": "Έκδοση",
@@ -2432,20 +1711,9 @@
 	"Web API": "",
 	"Web Loader Engine": "Μηχανή Φόρτωσης Διαδικτύου",
 	"Web Search": "Αναζήτηση στο Διαδίκτυο",
-	"Web Search Confirmation": "",
-	"Web Search Confirmation Content": "",
 	"Web Search Engine": "Μηχανή Αναζήτησης στο Διαδίκτυο",
 	"Web Search Query Generation": "Δημιουργία Ερωτήματος Αναζήτησης Διαδικτύου",
-<<<<<<< HEAD
 	"Webhook URL": "URL Webhook",
-=======
-	"Webhook deleted": "",
-	"Webhook Name": "",
-	"Webhook saved": "",
-	"Webhooks": "",
-	"Webpage URLs": "",
-	"WebUI Settings": "Ρυθμίσεις WebUI",
->>>>>>> upstream/main
 	"WebUI URL": "",
 	"WebUI will make requests to \"{{url}}\"": "Το WebUI θα κάνει αιτήματα στο \"{{url}}\"",
 	"WebUI will make requests to \"{{url}}/api/chat\"": "Το WebUI θα κάνει αιτήματα στο \"{{url}}/api/chat\"",
@@ -2476,7 +1744,6 @@
 	"Yandex Web Search API Key": "",
 	"Yandex Web Search config": "",
 	"Yandex Web Search URL": "",
-	"Yearly": "",
 	"Yesterday": "Εχθές",
 	"You": "Εσείς",
 	"You are a careful editor: terse, concrete, kind…": "",
@@ -2496,7 +1763,6 @@
 	"Your browser does not support the video tag.": "",
 	"Your entire contribution will go directly to the plugin developer; Open WebUI does not take any percentage. However, the chosen funding platform might have its own fees.": "Η ολόκληρη η συνεισφορά σας θα πάει απευθείας στον προγραμματιστή του plugin· το Open WebUI δεν παίρνει κανένα ποσοστό. Ωστόσο, η επιλεγμένη πλατφόρμα χρηματοδότησης μπορεί να έχει τα δικά της τέλη.",
 	"Your message text or inputs": "",
-	"Your query will be sent to the configured web search provider.": "",
 	"Your usage stats have been successfully synced.": "",
 	"Youtube Language": "Γλώσσα YouTube",
 	"Youtube Proxy URL": "URL Διακομιστή Μεσολάβησης YouTube"

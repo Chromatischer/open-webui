@@ -1,46 +1,19 @@
-<script context="module">
+<script>
+	import { onDestroy } from 'svelte';
 	import { marked } from 'marked';
+	import { replaceTokens, processResponseContent } from '$lib/utils';
+	import { user } from '$lib/stores';
 
 	import markedExtension from '$lib/utils/marked/extension';
 	import markedKatexExtension from '$lib/utils/marked/katex-extension';
 	import { disableSingleTilde } from '$lib/utils/marked/strikethrough-extension';
 	import { mentionExtension } from '$lib/utils/marked/mention-extension';
 	import colonFenceExtension from '$lib/utils/marked/colon-fence-extension';
-<<<<<<< HEAD
 	import markExtension from '$lib/utils/marked/mark-extension';
 
 	import MarkdownTokens from './Markdown/MarkdownTokens.svelte';
-=======
->>>>>>> upstream/main
 	import footnoteExtension from '$lib/utils/marked/footnote-extension';
 	import citationExtension from '$lib/utils/marked/citation-extension';
-
-	const options = {
-		throwOnError: false,
-		breaks: true
-	};
-
-	marked.use(markedKatexExtension(options));
-	marked.use(markedExtension(options));
-	marked.use(citationExtension(options));
-	marked.use(footnoteExtension(options));
-	marked.use(colonFenceExtension(options));
-	marked.use(disableSingleTilde);
-	marked.use({
-		extensions: [
-			mentionExtension({ triggerChar: '@' }),
-			mentionExtension({ triggerChar: '#' }),
-			mentionExtension({ triggerChar: '$' })
-		]
-	});
-</script>
-
-<script>
-	import { onDestroy } from 'svelte';
-	import { replaceTokens, processResponseContent } from '$lib/utils';
-	import { user } from '$lib/stores';
-
-	import MarkdownTokens from './Markdown/MarkdownTokens.svelte';
 
 	export let id = '';
 	export let content;
@@ -69,7 +42,6 @@
 	let lastContent = '';
 	let lastParsedContent = '';
 
-<<<<<<< HEAD
 	const options = {
 		throwOnError: false,
 		breaks: true
@@ -90,8 +62,6 @@
 		]
 	});
 
-=======
->>>>>>> upstream/main
 	const parseTokens = () => {
 		if (content === lastContent) return;
 		lastContent = content;

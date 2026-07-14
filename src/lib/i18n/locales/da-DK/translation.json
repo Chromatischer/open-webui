@@ -5,67 +5,21 @@
 	"(e.g. `sh webui.sh --api`)": "(f.eks. `sh webui.sh --api`)",
 	"(latest)": "(seneste)",
 	"(leave blank for to use commercial endpoint)": "(lad stå tom for at bruge kommercielt endpoint)",
-<<<<<<< HEAD
 	"{{COUNT}} extracted lines": "{{COUNT}} linjer udtrukket",
 	"{{COUNT}} hidden lines": "{{COUNT}} skjulte linjer",
 	"{{COUNT}} members": "",
 	"{{COUNT}} Rows": "",
 	"{{count}} selected_one": "",
 	"{{count}} selected_other": "",
-=======
-	"[Last] dddd [at] h:mm A": "[Sidste] dddd [kl.] h:mm A",
-	"[Today at] h:mm A": "[I dag kl.] h:mm A",
-	"[Yesterday at] h:mm A": "[I går kl.] h:mm A",
-	"{{ models }}": "{{ modeller }}",
-	"{{COUNT}} Available Skills": "",
-	"{{COUNT}} Available Tools": "{{COUNT}} Tilgængelige værktøjer",
-	"{{COUNT}} characters": "{{COUNT}} tegn",
-	"{{COUNT}} extracted lines": "{{COUNT}} linjer udtrukket",
-	"{{COUNT}} files": "",
-	"{{count}} files selected. Only new and modified files will be uploaded. Deleted files will be removed. The folder structure will be mirrored. Continue?_one": "",
-	"{{count}} files selected. Only new and modified files will be uploaded. Deleted files will be removed. The folder structure will be mirrored. Continue?_other": "",
-	"{{count}} filters_one": "",
-	"{{count}} filters_other": "",
-	"{{count}} groups_one": "",
-	"{{count}} groups_other": "",
-	"{{COUNT}} hidden lines": "{{COUNT}} skjulte linjer",
-	"{{COUNT}} members": "",
-	"{{count}} of {{total}} accessible_one": "",
-	"{{count}} of {{total}} accessible_other": "",
-	"{{COUNT}} Replies": "{{COUNT}} svar",
-	"{{COUNT}} Rows": "",
-	"{{count}} selected_one": "",
-	"{{count}} selected_other": "",
-	"{{COUNT}} Sources": "{{COUNT}} kilder",
-	"{{count}} users_one": "",
-	"{{count}} users_other": "",
-	"{{COUNT}} words": "{{COUNT}} ord",
->>>>>>> upstream/main
 	"{{COUNT}}d_time_ago": "",
 	"{{COUNT}}h_time_ago": "",
 	"{{COUNT}}m_time_ago": "",
 	"{{COUNT}}w_time_ago": "",
 	"{{COUNT}}y_time_ago": "",
-<<<<<<< HEAD
-=======
-	"{{label}} contains invalid JSON": "",
-	"{{label}} must be a JSON object": "",
-	"{{LOCALIZED_DATE}} at {{LOCALIZED_TIME}}": "{{LOCALIZED_DATE}} klokken {{LOCALIZED_TIME}}",
-	"{{model}} download has been canceled": "Download af {{model}} er blevet annulleret",
->>>>>>> upstream/main
 	"{{modelName}} profile image": "",
 	"{{user}}'s Chats": "{{user}}s chats",
 	"{{webUIName}} Backend Required": "{{webUIName}} Backend kræves",
 	"*Prompt node ID(s) are required for image generation": "*Prompt node ID(s) er påkrævet for at kunne generere billeder",
-<<<<<<< HEAD
-=======
-	"1 group": "",
-	"1 hour before": "",
-	"1 Source": "1 kilde",
-	"1 user": "",
-	"10 minutes before": "",
-	"15 minutes before": "",
->>>>>>> upstream/main
 	"1m_time_ago": "",
 	"a line about what this model is for…": "",
 	"A model binds a base mind to a system prompt, tools and knowledge — compose one and summon it in any chat.": "",
@@ -77,11 +31,6 @@
 	"Access Control": "Adgangskontrol",
 	"Access Grants": "",
 	"Access List": "",
-<<<<<<< HEAD
-=======
-	"Access prohibited": "",
-	"Access updated": "",
->>>>>>> upstream/main
 	"Accessible to all users": "Tilgængelig for alle brugere",
 	"Account Activation Pending": "Aktivering af profil afventer",
 	"Accurate information": "Profilinformation",
@@ -92,7 +41,6 @@
 	"Activity": "",
 	"Add": "Tilføj",
 	"Add a model ID": "Tilføj et model-ID",
-	"Add a preference, fact, or instruction about you": "",
 	"Add a short description about what this model does": "En kort beskrivelse af hvad denne model gør",
 	"Add a tag": "Tilføj et tag",
 	"Add a tag...": "",
@@ -102,17 +50,7 @@
 	"Add Custom Parameter": "Tilføj brugerdefineret parameter",
 	"Add Custom Prompt": "Tilføj brugerdefineret prompt",
 	"Add Details": "Tilføj detaljer",
-	"Add durable context for future chats": "",
 	"Add Files": "Tilføj filer",
-<<<<<<< HEAD
-=======
-	"Add Image": "",
-	"Add Knowledge Connection": "",
-	"Add location": "",
-	"Add Member": "Tilføj medlem",
-	"Add Members": "Tilføj medlemmer",
-	"Add Memory": "Tilføj hukommelse",
->>>>>>> upstream/main
 	"Add Model": "Tilføj model",
 	"Add tag": "",
 	"Add Tag": "Tilføj tag",
@@ -120,11 +58,6 @@
 	"Add to favorites": "",
 	"Add User": "Tilføj bruger",
 	"Add User Group": "Tilføj Brugergruppe",
-<<<<<<< HEAD
-=======
-	"Add webhook": "",
-	"Add webpage": "",
->>>>>>> upstream/main
 	"Add your Open Terminal URL and API key in Settings → Integrations.": "",
 	"Additional Config": "Yderligere konfiguration",
 	"Additional configuration options for marker. This should be a JSON string with key-value pairs. For example, '{\"key\": \"value\"}'. Supported keys include: disable_links, keep_pageheader_in_output, keep_pagefooter_in_output, filter_blank_pages, drop_repeated_text, layout_coverage_threshold, merge_threshold, height_tolerance, gap_threshold, image_threshold, min_line_length, level_count, default_level": "Yderligere konfigurationsmuligheder for Marker. Dette skal være en JSON streng med key-value pairs. For eksempel, '{\"key\": \"value\"}'. Tilladte keys omfatter: disable_links, keep_pageheader_in_output, keep_pagefooter_in_output, filter_blank_pages, drop_repeated_text, layout_coverage_threshold, merge_threshold, height_tolerance, gap_threshold, image_threshold, min_line_length, level_count, default_level",
@@ -135,40 +68,18 @@
 	"Admin": "Administrator",
 	"Admin Contact Email": "",
 	"Admin Panel": "Administrationspanel",
-<<<<<<< HEAD
-=======
-	"Admin Roles": "",
-	"Admin Settings": "Administrationsindstillinger",
-	"Admin-managed service account": "",
->>>>>>> upstream/main
 	"Admins have access to all tools at all times; users need tools assigned per model in the workspace.": "Administratorer har adgang til alle værktøjer altid; brugere skal tilføjes værktøjer pr. model i hvert workspace.",
 	"Advanced": "",
 	"Advanced parameters for MinerU parsing (enable_ocr, enable_formula, enable_table, language, model_version, page_ranges)": "Avancerede parametre for MinerU parsing (enable_ocr, enable_formula, enable_table, language, model_version, page_ranges)",
 	"Advanced Params": "Avancerede indstillinger",
 	"After updating or changing the embedding model, you must reindex the knowledge base for the changes to take effect. You can do this using the \"Reindex\" button below.": "Efter opdatering eller ændring af embedding modellen skal du genindeksere vidensbanken for at ændringer tager effekt. Du kan gøre dette ved at benytte \"Genindekser\"-knappen nedenfor.",
 	"All": "Alle",
-<<<<<<< HEAD
 	"All time": "",
 	"All Users": "",
-=======
-	"All chats have been unarchived.": "Alle chatte er blevet aktive",
-	"All day": "",
-	"All events": "",
-	"All models are now hidden": "",
-	"All models are now visible": "",
-	"All models deleted successfully": "Alle modeller slettet uden fejl",
-	"All shared chats have been unshared.": "",
-	"All Sources": "",
-	"All time": "",
-	"All Users": "",
-	"All users and system events": "",
-	"Allow Call": "Tillad kald",
->>>>>>> upstream/main
 	"Allow Chat Controls": "Tillad kontrol af chats",
 	"Allow Chat Delete": "Tillad sletning af chats",
 	"Allow Chat Edit": "Tillad redigering af chats",
 	"Allow Chat Export": "Tillad eksport af chats",
-	"Allow Chat Import": "",
 	"Allow Chat Params": "Tillad parametre i chats",
 	"Allow Chat Share": "Tillad deling af chats",
 	"Allow Chat System Prompt": "Tillad system prompt",
@@ -183,11 +94,9 @@
 	"Allow Sharing With Users": "",
 	"Allow Text to Speech": "Tillad tekst til tale",
 	"Allow Web Upload": "",
-	"Allowed Domains": "",
 	"Allowed Endpoints": "Tilladte endpoints",
 	"Allowed File Extensions": "Tilladte filtypenavne",
 	"Allowed file extensions for upload. Separate multiple extensions with commas. Leave empty for all file types.": "Filtypenavne tilladte til upload. Adskil flere filtypenavne med komma. Lad den være tom for alle filtypenavne",
-	"Allowed Roles": "",
 	"Already have an account?": "Har du allerede en profil?",
 	"Alternative to the top_p, and aims to ensure a balance of quality and variety. The parameter p represents the minimum probability for a token to be considered, relative to the probability of the most likely token. For example, with p=0.05 and the most likely token having a probability of 0.9, logits with a value less than 0.045 are filtered out.": "Alternativ til top_p, og sigter mod at sikre en balance mellem kvalitet og variation. Parameteren p repræsenterer minimumsandsynligheden for at et token overvejes, relativt til sandsynligheden for det mest sandsynlige token. For eksempel, med p=0.05 og det mest sandsynlige token med en sandsynlighed på 0.9, filtreres logits med en værdi mindre end 0.045 fra.",
 	"Amazing": "Fantastisk",
@@ -199,11 +108,6 @@
 	"API Base URL": "API base URL",
 	"API Base URL for Datalab Marker service. Defaults to: https://www.datalab.to/api/v1/marker": "API base URL for Datalab Marker service. Standard: https://www.datalab.to/api/v1/marker",
 	"API Key": "API nøgle",
-<<<<<<< HEAD
-=======
-	"API Key / Token": "",
-	"API Key created.": "API nøgle lavet",
->>>>>>> upstream/main
 	"API Key Endpoint Restrictions": "API nøgler endpoint forbehold",
 	"API Keys": "API nøgler",
 	"API Mode": "API tilstand",
@@ -220,31 +124,13 @@
 	"Are you sure you want to delete \"{{NAME}}\"?": "Er du sikker på at du vil slette \"{{NAME}}\"?",
 	"Are you sure you want to delete **{{modelName}}**?": "",
 	"Are you sure you want to delete this connection? This action cannot be undone.": "",
-<<<<<<< HEAD
 	"Are you sure you want to delete this?": "",
 	"Arena": "",
-=======
-	"Are you sure you want to delete this directory?": "",
-	"Are you sure you want to delete this memory? This action cannot be undone.": "",
-	"Are you sure you want to delete this message?": "Er du sikker på du vil slette denne besked?",
-	"Are you sure you want to delete this version? Child versions will be relinked to this version's parent.": "",
-	"Are you sure you want to delete this webhook? This action cannot be undone.": "",
-	"Are you sure you want to delete this?": "",
-	"Are you sure you want to reset all permissions to their default values? You will still need to save to apply the changes.": "",
-	"Are you sure you want to unarchive all archived chats?": "Er du sikker på du vil fjerne alle arkiverede chats?",
-	"Are you sure you want to unshare all shared chats? This will remove all share links.": "",
->>>>>>> upstream/main
 	"Arena Models": "Arena Modeller",
 	"Artifacts": "Artifakter",
 	"Ask": "Spørg",
 	"Ask a question": "Stil et spørgsmål",
-<<<<<<< HEAD
 	"Ask the User": "",
-=======
-	"Ask a test question": "",
-	"Ask this knowledge source a test question": "",
-	"Assistant": "Assistent",
->>>>>>> upstream/main
 	"Async Embedding Processing": "Asynkron embedding processering",
 	"Attach File From Knowledge": "Vedhæft fil fra viden",
 	"Attention to detail": "Detajleorientering",
@@ -253,36 +139,20 @@
 	"Audience": "",
 	"August": "august",
 	"Auth": "Auth",
-	"Auth Mode": "",
-	"Auth required": "",
 	"Authenticate": "Autentificer",
-<<<<<<< HEAD
 	"Authentication": "Autentikation",
 	"Auto (Random)": "",
 	"Auto-inject system tools for Agents (timestamps, memory, notes, etc.)": "",
-=======
-	"Authentication": "Autentifikation",
-	"Auto": "Auto",
-	"Auto (Random)": "",
-	"Auto Redirect": "",
-	"Auto-Copy Response to Clipboard": "Automatisk kopiering af svar til udklipsholder",
-	"Auto-Create Groups": "",
-	"Auto-Playback Response": "Automatisk afspil svar",
->>>>>>> upstream/main
 	"Autocomplete Generation": "Genere automatisk fuldførsel",
 	"Autocomplete Generation Input Max Length": "Maksimal længde for genereret autofuldførsel",
-	"Autocomplete Generation Prompt": "",
-	"Automatic": "",
 	"Automatic1111": "Automatic1111",
 	"AUTOMATIC1111 Api Auth String": "AUTOMATIC1111 Api Auth String",
 	"AUTOMATIC1111 Base URL": "AUTOMATIC1111 base URL",
 	"AUTOMATIC1111 Base URL is required.": "AUTOMATIC1111 base URL er påkrævet.",
 	"Available list": "Tilgængelige lister",
 	"Available models": "",
-	"Available Skills": "",
 	"Available Tools": "Tilgængelige værktøj",
 	"available users": "tilgængelige brugere",
-	"Available variables": "",
 	"available!": "tilgængelig!",
 	"Awful": "Forfærdeligt",
 	"Azure AI Speech": "Azure AI Speech",
@@ -293,30 +163,16 @@
 	"Backup, export, and import instance data.": "",
 	"Bad Response": "Problem i response",
 	"Banners": "Bannere",
-<<<<<<< HEAD
 	"Base model": "",
-=======
-	"Base Model (From)": "Base Model (Fra)",
-	"Base Model is required.": "",
->>>>>>> upstream/main
 	"Base Model List Cache speeds up access by fetching base models only at startup or on settings save—faster, but may not show recent base model changes.": "Base Model List Cache øger hastigheden ved kun at hente base modeller ved opstart eller når indstillinger gemmes, men viser muligvis ikke nylige ændringer i base modeller.",
 	"Bearer": "Bearer",
 	"Begin a new folio": "",
 	"Being lazy": "At være doven",
-<<<<<<< HEAD
 	"Beta": "Beta",
 	"Bind the model": "",
 	"Bing": "",
 	"Bing Search V7 Endpoint": "Bing Search V7 Endpoint",
 	"Bing Search V7 Subscription Key": "Bing Search V7 Subscription Key",
-=======
-	"Bing": "",
-	"Bing Search V7 Endpoint": "Bing Search V7 Endpoint",
-	"Bing Search V7 Subscription Key": "Bing Search V7 Subscription Key",
-	"Bio": "Biografi",
-	"Birth Date": "Fødselsdato",
-	"Blocked Groups": "",
->>>>>>> upstream/main
 	"BM25 Weight": "BM25 vægt",
 	"Bocha Search API Key": "Bocha Search API Key",
 	"Bold": "Fed",
@@ -344,12 +200,6 @@
 	"Chat": "Chat",
 	"Chat Completions": "",
 	"Chat Conversation": "Chat samtale",
-<<<<<<< HEAD
-=======
-	"Chat deleted.": "",
-	"Chat Direction": "Chat retning",
-	"Chat exported successfully": "",
->>>>>>> upstream/main
 	"Chat History": "",
 	"Chat ID": "Chat ID",
 	"Chat moved successfully": "Chat flyttet",
@@ -409,11 +259,6 @@
 	"Code Interpreter Prompt Template": "Kode interpreter prompt template",
 	"Collapse": "Kollapse",
 	"Collection": "Samling",
-<<<<<<< HEAD
-=======
-	"Collection Field": "",
-	"Collections": "",
->>>>>>> upstream/main
 	"Color": "Farve",
 	"ComfyUI": "ComfyUI",
 	"ComfyUI API Key": "ComfyUI API Key",
@@ -422,25 +267,9 @@
 	"ComfyUI Workflow": "ComfyUI Workflow",
 	"ComfyUI Workflow Nodes": "ComfyUI Workflow Nodes",
 	"Comma separated Node Ids (e.g. 1 or 1,2)": "Kommaseparerede node ID'er (f.eks. 1 eller 1,2)",
-<<<<<<< HEAD
-=======
-	"Comma-separated group names": "",
-	"Comma-separated list of file extensions MinerU will handle (e.g. pdf, docx, pptx, xlsx)": "",
-	"command": "",
-	"Command": "Kommando",
->>>>>>> upstream/main
 	"Comment": "Kommentar",
 	"Community Reviews": "",
-<<<<<<< HEAD
 	"Compose your first model": "",
-=======
-	"Compacting context": "",
-	"Comparing with knowledge base...": "",
-	"Completions": "Completions",
-	"Compress Images in Channels": "Komprimér billeder i kanaler",
-	"Computing checksums ({{count}} files)_one": "",
-	"Computing checksums ({{count}} files)_other": "",
->>>>>>> upstream/main
 	"Concurrent Requests": "Concurrent requests",
 	"Config": "",
 	"Configure": "Konfigurer",
@@ -453,10 +282,6 @@
 	"Connect to Open Terminal instances. All users will have access to file browsing and terminal tools through these servers.": "",
 	"Connect to your own OpenAPI compatible external tool servers.": "Opret forbindelse til dine egne OpenAPI kompatible eksterne værktøjsservere.",
 	"Connected": "",
-<<<<<<< HEAD
-=======
-	"Connected ({{type}})": "",
->>>>>>> upstream/main
 	"Connection failed": "Forbindelse mislykkedes",
 	"Connection lost. Reconnecting...": "",
 	"Connection Type": "Forbindelsestype",
@@ -465,16 +290,8 @@
 	"Contact Admin for WebUI Access": "Kontakt din administrator for adgang til WebUI",
 	"Content": "Indhold",
 	"Content Extraction Engine": "Content Extraction Motor",
-	"Content Field": "",
 	"Content lengths (character counts only)": "",
-	"Context": "",
-	"Context compacted": "",
-	"Context Compaction": "",
-	"Context compaction failed": "",
-	"Context Compaction Prompt": "",
-	"Context Compaction Threshold": "",
 	"Context Tokens": "",
-	"Continue": "",
 	"Continue Response": "Fortsæt svar",
 	"Continue with {{provider}}": "Fortsæt med {{provider}}",
 	"Continue with Email": "Fortsæt med Email",
@@ -505,16 +322,6 @@
 	"Create Image": "Opret billede",
 	"Create model": "",
 	"Create Model": "Opret model",
-<<<<<<< HEAD
-=======
-	"Create new key": "Opret en ny nøgle",
-	"Create new secret key": "Opret en ny hemmelig nøgle",
-	"Create note": "",
-	"Create Note": "Opret note",
-	"Create one read-only Knowledge source per external collection. Test must pass before the source is created.": "",
-	"Create scheduled prompts that run automatically on a recurring basis.": "",
-	"Create your first note by clicking on the plus button below.": "Opret din første note ved at klikke på plus knappen nedenfor.",
->>>>>>> upstream/main
 	"Created at": "Oprettet",
 	"Created At": "Oprettet",
 	"Created by": "Oprettet af",
@@ -525,12 +332,7 @@
 	"Custom color": "",
 	"Custom Parameter Name": "Brugerdefineret parameternavn",
 	"Custom Parameter Value": "Brugerdefineret parameterværdi",
-<<<<<<< HEAD
 	"Custom presets that pair a base model with a system prompt, tools, knowledge and capabilities — build your own assistants and reuse them anywhere in chat.": "",
-=======
-	"Custom range": "",
-	"Daily": "",
->>>>>>> upstream/main
 	"Daily Messages": "",
 	"Danger Zone": "Danger Zone",
 	"Database": "Database",
@@ -546,6 +348,7 @@
 	"Default Features": "Standardfunktioner",
 	"Default Filters": "Standardfiltre",
 	"Default Group": "Standardgruppe",
+	"Default mode works with a wider range of models by calling tools once before execution. Native mode leverages the model's built-in tool-calling capabilities, but requires the model to inherently support this feature.": "Standardtilstand fungerer med et bredere udvalg af modeller ved at kalde værktøjer én gang før udførelse. Native tilstand udnytter modellens indbyggede værktøjskald-funktioner, men kræver at modellen i sagens natur understøtter denne funktion.",
 	"Default Model": "Standard model",
 	"Default permissions": "Standard tilladelser",
 	"Default Prompt Suggestions": "Standardforslag til prompt",
@@ -553,25 +356,13 @@
 	"Default to ALL": "Standard til ALLE",
 	"Default to segmented retrieval for focused and relevant content extraction, this is recommended for most cases.": "Standard til segmenteret hentning for fokuseret og relevant indholdsudtrækning, dette anbefales i de fleste tilfælde.",
 	"Default User Role": "Brugers rolle som standard",
-	"Default webhook": "",
 	"Defaults": "",
 	"Delete": "Slet",
 	"Delete {{name}}": "",
 	"Delete a model": "Slet en model",
-<<<<<<< HEAD
-=======
-	"Delete All": "",
-	"Delete All Chats": "Slet alle chats",
-	"Delete all contents inside this directory": "",
->>>>>>> upstream/main
 	"Delete all contents inside this folder": "Slet alt indhold i denne mappe",
 	"Delete Chat": "Slet chat",
 	"Delete chat?": "Slet chat?",
-<<<<<<< HEAD
-=======
-	"Delete directory?": "",
-	"Delete Event": "",
->>>>>>> upstream/main
 	"Delete File": "",
 	"Delete folder?": "Slet mappe?",
 	"Delete function?": "Slet funktion?",
@@ -592,20 +383,9 @@
 	"Direct Connections": "Direkte forbindelser",
 	"Direct Connections allow users to connect to their own OpenAI compatible API endpoints.": "Direkte forbindelser tillader brugere at oprette forbindelse til deres egen OpenAI kompatible API endpoints.",
 	"Direct Tool Servers": "Direkte værktøjsservere",
-<<<<<<< HEAD
-=======
-	"Directory created.": "",
-	"Directory deleted.": "",
-	"Directory moved.": "",
-	"Directory name": "",
-	"Directory renamed.": "",
-	"Directory selection was cancelled": "Valg af mappe annulleret",
->>>>>>> upstream/main
 	"Disable All": "",
 	"Disable Image Extraction": "Deaktiver billedudtrækning",
 	"Disable image extraction from the PDF. If Use LLM is enabled, images will be automatically captioned. Defaults to False.": "Deaktiver billedudtrækning fra PDF'en. Hvis Use LLM er aktiveret, vil billeder automatisk få undertekster. Standard er False.",
-	"Disable Image Generation": "",
-	"Disable Web Search": "",
 	"Disabled": "Deaktiveret",
 	"Discard this folio": "",
 	"Discarded": "",
@@ -614,13 +394,6 @@
 	"Discover wonders": "Opdag underværker",
 	"Discover, download, and explore custom functions": "Find, download og udforsk unikke funktioner",
 	"Display": "Vis",
-<<<<<<< HEAD
-=======
-	"Display Chat Title in Tab": "Vis chattitel i fane",
-	"Display Emoji in Call": "Vis emoji i chat",
-	"Display Multi-model Responses in Tabs": "Vis multimodel svar i faner",
-	"Display the Username Instead of You in the Chat": "Vis brugernavn i stedet for Dig i chatten",
->>>>>>> upstream/main
 	"Displays citations in the response": "Vis citat i svaret",
 	"Displays status updates (e.g., web search progress) in the response": "Vis statusopdateringer (f.eks. websøgningsprocess) i svaret",
 	"Dissolve": "",
@@ -633,7 +406,6 @@
 	"Docling Parameters": "Docling parametre",
 	"Docling Server URL required.": "Docling Server URL påkrævet.",
 	"Document": "Dokument",
-	"Document ID Field": "",
 	"Document Intelligence": "Document Intelligence",
 	"Document Intelligence endpoint required.": "Document Intelligence endpoint påkrævet",
 	"Document Intelligence Model": "Document Intelligence model",
@@ -687,60 +459,41 @@
 	"Edit Default Permissions": "Rediger standard tilladelser",
 	"Edit Folder": "Rediger mappe",
 	"Edit Image": "Rediger billede",
-	"Edit Knowledge Connection": "",
 	"Edit Last Message": "Rediger sidste besked",
 	"Edit Model": "",
 	"Edit Terminal Connection": "",
 	"Edit User": "Rediger bruger",
 	"Edit User Group": "Rediger brugergruppe",
-	"Edit webhook": "",
 	"Edit workflow.json content": "Rediger workflow.json indhold",
 	"Eject": "Skub ud",
 	"Eject model": "",
 	"ElevenLabs": "ElevenLabs",
 	"Email": "Email",
-	"Email Claim": "",
 	"Embark on adventures": "Udforsk eventyr",
 	"Embedding": "Embedding",
 	"Embedding Batch Size": "Embedding Batch størrelse",
 	"Embedding Concurrent Requests": "",
 	"Embedding Model": "Embedding Model",
 	"Embedding Model Engine": "Embedding Model engine",
-	"Emoji": "",
 	"Emojis": "",
-<<<<<<< HEAD
-=======
-	"Empty": "",
-	"Empty message": "",
->>>>>>> upstream/main
 	"Enable All": "",
 	"Enable API Keys": "Aktiver API nøgler",
 	"Enable autocomplete generation for chat messages": "Aktiver autofuldførsel for chatbeskeder",
 	"Enable Code Execution": "Aktiver kodekørsel",
 	"Enable Code Interpreter": "Aktiver kode interpreter",
 	"Enable Community Sharing": "Aktiver deling til Community",
-	"Enable Group Mapping": "",
-	"Enable Image Generation": "",
 	"Enable Memory Locking (mlock) to prevent model data from being swapped out of RAM. This option locks the model's working set of pages into RAM, ensuring that they will not be swapped out to disk. This can help maintain performance by avoiding page faults and ensuring fast data access.": "Aktiver Memory Locking (mlock) for at forhindre modeldata i at blive swappet ud af RAM. Denne indstilling låser modellens arbejdssæt af sider i RAM og sikrer, at de ikke bliver swappet til disk. Dette kan hjælpe med at opretholde ydeevnen ved at undgå page faults og sikre hurtig dataaccess.",
 	"Enable Memory Mapping (mmap) to load model data. This option allows the system to use disk storage as an extension of RAM by treating disk files as if they were in RAM. This can improve model performance by allowing for faster data access. However, it may not work correctly with all systems and can consume a significant amount of disk space.": "Aktiver Memory Mapping (mmap) for at indlæse modeldata. Denne indstilling tillader systemet at bruge disklagring som en udvidelse af RAM ved at behandle diskfiler, som om de var i RAM. Dette kan forbedre modellens ydeevne ved at muliggøre hurtigere dataaccess. Det fungerer dog måske ikke korrekt på alle systemer og kan forbruge betydelig diskplads.",
 	"Enable Message Rating": "Aktiver rating af besked",
 	"Enable Mirostat sampling for controlling perplexity.": "Aktiver Mirostat sampling for at kontrollere perplexity.",
 	"Enable New Sign Ups": "Aktiver nye signups",
-	"Enable OAuth Signup": "",
-	"Enable Role Mapping": "",
-	"Enable Web Search": "",
 	"Enable, disable, or customize the reasoning tags used by the model. \"Enabled\" uses default tags, \"Disabled\" turns off reasoning tags, and \"Custom\" lets you specify your own start and end tags.": "Aktiver, deaktiver eller tilpas brugerdefinerede ræsonneringstags benyttet af modellen. \"Aktiveret\" benytter standardtags, \"Deaktiveret\" slår ræsonneringstags fra og \"Brugerdefineret\" giver dig mulighed for at angive dine egne start- og sluttags",
 	"Enabled": "Aktiveret",
 	"End Tag": "Slut tag",
-	"Endpoint": "",
 	"Endpoint URL": "Endpoint URL",
 	"Enrich Hybrid Search Text": "Berig hybrid søgetekst",
 	"Ensure your CSV file includes 4 columns in this order: Name, Email, Password, Role.": "Sørg for at din CSV-fil indeholder 4 kolonner i denne rækkefølge: Name, Email, Password, Role.",
-<<<<<<< HEAD
 	"Enter a name first": "",
-=======
-	"Enter {{role}} message here": "Indtast {{role}} besked her",
->>>>>>> upstream/main
 	"Enter a title for the pending user info overlay. Leave empty for default.": "Indtast en titel til afventende bruger informations overlay. Lad være tom for standard.",
 	"Enter a watermark for the response. Leave empty for none.": "Indtast et vandmærke til svaret. Lad være tom for ingen.",
 	"Enter additional headers in JSON format": "Indtast yderligere headers i JSON format",
@@ -757,8 +510,6 @@
 	"Enter Chunk Min Size Target": "",
 	"Enter Chunk Overlap": "Indtast overlapning af tekststykker",
 	"Enter Chunk Size": "Indtast størrelse af tekststykker",
-	"Enter Client ID": "",
-	"Enter Client Secret": "",
 	"Enter comma-separated \"token:bias_value\" pairs (example: 5432:100, 413:-100)": "Indtast kommaseparerede \"token:bias_værdi\" par (eksempel: 5432:100, 413:-100)",
 	"Enter content for the pending user info overlay. Leave empty for default.": "Indtast indhold til afventende bruger informations overlay. Lad være tom for standard.",
 	"Enter coordinates (e.g. 51.505, -0.09)": "Indtast koordinater (f.eks. 51.505, -0.09)",
@@ -795,15 +546,7 @@
 	"Enter Jupyter Token": "Indtast Jupyter token",
 	"Enter Jupyter URL": "Indtast Jupyter URL",
 	"Enter Kagi Search API Key": "Indtast Kagi Search API nøgle",
-<<<<<<< HEAD
-=======
-	"Enter Key Behavior": "Indtast taste opførsel",
-	"Enter language": "",
->>>>>>> upstream/main
 	"Enter language codes": "Indtast sprogkoder",
-	"Enter Linkup API Key": "",
-	"Enter Microsoft Web IQ API Base URL": "",
-	"Enter Microsoft Web IQ API Key": "",
 	"Enter MinerU API Key": "",
 	"Enter Mistral API Base URL": "Indtast Mistral API base URL",
 	"Enter Mistral API Key": "Indtast Mistral API nøgle",
@@ -822,7 +565,6 @@
 	"Enter Playwright WebSocket URL": "Indtast Playwright WebSocket URL",
 	"Enter proxy URL (e.g. https://user:password@host:port)": "Indtast proxy URL (f.eks. https://bruger:adgangskode@host:port)",
 	"Enter reasoning effort": "Indtast ræsonneringsindsats",
-	"Enter Redirect URI": "",
 	"Enter Score": "Indtast score",
 	"Enter SearchApi API Key": "Indtast SearchApi API-nøgle",
 	"Enter SearchApi Engine": "Indtast SearchApi-engine",
@@ -832,7 +574,6 @@
 	"Enter SerpApi API Key": "Indtast SerpApi API-nøgle",
 	"Enter SerpApi Engine": "Indtast SerpApi-engine",
 	"Enter Serper API Key": "Indtast Serper API-nøgle",
-	"Enter SERPHouse API Key": "",
 	"Enter Serply API Key": "Indtast Serply API-nøgle",
 	"Enter Serpstack API Key": "Indtast Serpstack API-nøgle",
 	"Enter server host": "Indtast server-host",
@@ -850,12 +591,6 @@
 	"Enter the URL to import": "Indtast URL'en der skal importeres",
 	"Enter Tika Server URL": "Indtast Tika Server URL",
 	"Enter timeout in seconds": "Indtast timeout i sekunder",
-<<<<<<< HEAD
-=======
-	"Enter to Send": "Indtast for at sende",
-	"Enter token threshold": "",
-	"Enter Tokenizer Model": "",
->>>>>>> upstream/main
 	"Enter Top K": "Indtast Top K",
 	"Enter Top K Reranker": "Indtast Top K Reranker",
 	"Enter URL (e.g. http://127.0.0.1:7860/)": "Indtast URL (f.eks. http://127.0.0.1:7860/)",
@@ -885,19 +620,8 @@
 	"Error: A model with the ID '{{modelId}}' already exists. Please select a different ID to proceed.": "Fejl: En model med ID '{{modelId}}' eksisterer allerede. Vælg venligst et andet ID for at fortsætte.",
 	"Error: Model ID cannot be empty. Please enter a valid ID to proceed.": "Fejl: Model ID kan ikke være tomt. Indtast venligst et gyldigt ID for at fortsætte.",
 	"Evaluations": "Evalueringer",
-<<<<<<< HEAD
 	"Every craft begins bare-handed.": "",
-=======
-	"Event": "",
-	"Event created": "",
-	"Event deleted": "",
-	"Event names may change as Open WebUI evolves. Use broad patterns like user.* for integrations that should continue across new related events.": "",
-	"Event title": "",
-	"Event updated": "",
-	"Events": "",
->>>>>>> upstream/main
 	"Exa API Key": "Exa API-nøgle",
-	"Example": "",
 	"Example: (&(objectClass=inetOrgPerson)(uid=%s))": "Eksempel: (&(objectClass=inetOrgPerson)(uid=%s))",
 	"Example: ALL": "Eksempel: ALL",
 	"Example: mail": "Eksempel: mail",
@@ -919,29 +643,18 @@
 	"Export chat (.json)": "Eksportér chat (.json)",
 	"Export Config": "",
 	"Export Models": "Eksportér modeller",
-<<<<<<< HEAD
-=======
-	"Export Prompts": "Eksportér prompter",
-	"Export Skills": "",
->>>>>>> upstream/main
 	"Export to CSV": "Eksportér til CSV",
 	"Export Tools": "Eksportér værktøjer",
 	"Export Users": "Eksportér brugere",
 	"External": "Ekstern",
-	"External connection not found.": "",
 	"External Document Loader URL required.": "External Dokument Loader URL påkrævet.",
-	"External Knowledge Source": "",
-	"External Knowledge Sources": "",
 	"External Task Model": "Ekstern opgavemodel",
-	"External Tool Servers": "",
-	"External vectors must be generated with the same embedding model configured in Open WebUI.": "",
 	"External Web Loader API Key": "Ekstern Web Loader API-nøgle",
 	"External Web Loader URL": "Ekstern Web Loader URL",
 	"External Web Search API Key": "Ekstern Web Search API-nøgle",
 	"External Web Search URL": "Ekstern Web Search URL",
 	"Faculties": "",
 	"Failed to archive chat.": "",
-<<<<<<< HEAD
 	"Failed to connect to {{URL}} OpenAPI tool server": "Kunne ikke forbinde til {{URL}} OpenAPI tool server",
 	"Failed to connect to {{URL}} terminal server": "",
 	"Failed to copy link": "Kunne ikke kopiere link",
@@ -951,39 +664,11 @@
 	"Failed to extract content from the file: {{error}}": "Kunne ikke udtrække indhold fra filen: {{error}}",
 	"Failed to extract content from the file.": "Kunne ikke udtrække indhold fra filen.",
 	"Failed to fetch models": "Kunne ikke hente modeller",
-=======
-	"Failed to attach file": "",
-	"Failed to clear status": "Kunne ikke fjerne status",
-	"Failed to compare files.": "",
-	"Failed to connect to {{URL}} OpenAPI tool server": "Kunne ikke forbinde til {{URL}} OpenAPI tool server",
-	"Failed to connect to {{URL}} terminal server": "",
-	"Failed to copy link": "Kunne ikke kopiere link",
-	"Failed to create API Key.": "Kunne ikke oprette API-nøgle.",
-	"Failed to delete calendar": "",
-	"Failed to delete note": "Kunne ikke slette note",
-	"Failed to delete webhook": "",
-	"Failed to disconnect": "",
-	"Failed to download image": "",
-	"Failed to extract content from the file: {{error}}": "Kunne ikke udtrække indhold fra filen: {{error}}",
-	"Failed to extract content from the file.": "Kunne ikke udtrække indhold fra filen.",
-	"Failed to fetch models": "Kunne ikke hente modeller",
-	"Failed to generate title": "Kunne ikke generere titel",
-	"Failed to import models": "Kunne ikke importere modeller",
-	"Failed to load chat": "",
-	"Failed to load chat preview": "Kunne ikke indlæse chat forhåndsvisning",
->>>>>>> upstream/main
 	"Failed to load DOCX file. Please try downloading it instead.": "",
 	"Failed to load Excel/CSV file. Please try downloading it instead.": "",
 	"Failed to load Interface settings": "",
 	"Failed to load PPTX file. Please try downloading it instead.": "",
 	"Failed to move chat": "Kunne ikke flytte chat",
-<<<<<<< HEAD
-=======
-	"Failed to process URL: {{url}}": "",
-	"Failed to read clipboard contents": "Kunne ikke læse indholdet af udklipsholderen",
-	"Failed to refresh terminals: {{error}}": "",
-	"Failed to remove member": "Kunne ikke fjerne medlem",
->>>>>>> upstream/main
 	"Failed to render diagram": "Kunne ikke rendere diagram",
 	"Failed to render visualization": "Kunne ikke rendere visualisering",
 	"Failed to save": "",
@@ -992,16 +677,10 @@
 	"Failed to save models configuration": "Kunne ikke gemme modeller konfiguration",
 	"Failed to save policy: {{error}}": "",
 	"Failed to save terminal servers": "",
-	"Failed to save webhook": "",
 	"Failed to unshare chat.": "",
 	"Failed to update settings": "Kunne ikke opdatere indstillinger",
 	"Failed to update status": "Kunne ikke opdatere status",
-<<<<<<< HEAD
 	"Favicons": "",
-=======
-	"Failed to update webhook": "",
-	"Failed to upload file.": "Kunne ikke uploade fil.",
->>>>>>> upstream/main
 	"Features": "Features",
 	"Features Permissions": "Features tilladelser",
 	"February": "Februar",
@@ -1014,32 +693,14 @@
 	"File": "Fil",
 	"File browser": "",
 	"File Context": "",
-<<<<<<< HEAD
-=======
-	"File deleted successfully.": "",
-	"File Extensions": "",
->>>>>>> upstream/main
 	"File Mode": "Filtilstand",
-	"File moved.": "",
 	"File name": "",
 	"File not found.": "Filen blev ikke fundet.",
-<<<<<<< HEAD
 	"File size should not exceed {{maxSize}} MB.": "Filstørrelsen må ikke overstige {{maxSize}} MB.",
 	"File Upload": "Fil upload",
 	"Filename": "",
 	"Files": "Filer",
 	"Fill name + base model to create": "",
-=======
-	"File removed successfully.": "Fil fjernet.",
-	"File renamed.": "",
-	"File size should not exceed {{maxSize}} MB.": "Filstørrelsen må ikke overstige {{maxSize}} MB.",
-	"File Upload": "Fil upload",
-	"File uploaded successfully": "Fil uploadet.",
-	"Filename": "",
-	"Files": "Filer",
-	"Fill the required fields first.": "",
-	"Fill the source fields and test query first.": "",
->>>>>>> upstream/main
 	"Filter": "Filter",
 	"Filters": "Filtre",
 	"Filters, valves, and middleware workflows.": "",
@@ -1057,12 +718,8 @@
 	"Folder name cannot be empty.": "Mappenavn kan ikke være tom.",
 	"Folder options": "",
 	"Folders": "Mapper",
-<<<<<<< HEAD
 	"folio": "",
 	"folios": "",
-=======
-	"Folders Sharing": "",
->>>>>>> upstream/main
 	"Follow up": "Opfølgning",
 	"Follow Up Generation": "Opfølgnings generering",
 	"Follow Up Generation Prompt": "Opfølgnings genererings prompt",
@@ -1090,11 +747,6 @@
 	"Function imported successfully": "Funktion importeret",
 	"Function Name": "Funktionsnavn",
 	"Function Name Filter List": "Funktionsnavn filterliste",
-<<<<<<< HEAD
-=======
-	"Function starter": "",
-	"Function updated successfully": "Funktion opdateret.",
->>>>>>> upstream/main
 	"Functions": "Funktioner",
 	"Functions allow arbitrary code execution.": "Funktioner tillader kørsel af vilkårlig kode.",
 	"Gather a quire": "",
@@ -1122,15 +774,6 @@
 	"Google PSE Engine Id": "Google PSE Engine-ID",
 	"Gravatar": "Gravatar",
 	"Grokipedia": "",
-<<<<<<< HEAD
-=======
-	"group": "",
-	"Group": "",
-	"Group Channel": "Gruppekanal",
-	"Group Claim": "",
-	"Group created successfully": "Gruppe oprettet.",
-	"Group deleted successfully": "Gruppe slettet.",
->>>>>>> upstream/main
 	"Group Description": "Gruppe beskrivelse",
 	"Group Name": "Gruppenavn",
 	"groups": "grupper",
@@ -1138,11 +781,6 @@
 	"H1": "H1",
 	"H2": "H2",
 	"H3": "H3",
-<<<<<<< HEAD
-=======
-	"Haptic Feedback": "Haptisk feedback",
-	"Header variables": "",
->>>>>>> upstream/main
 	"Headers": "Headers",
 	"Headers must be a valid JSON object": "Headers skal være et gyldigt JSON objekt",
 	"Hello, {{name}}": "Hej {{name}}",
@@ -1171,12 +809,6 @@
 	"I acknowledge that I have read and I understand the implications of my action. I am aware of the risks associated with executing arbitrary code and I have verified the trustworthiness of the source.": "Jeg anerkender, at jeg har læst og forstået konsekvenserne af min handling. Jeg er opmærksom på de risici, der er forbundet med at udføre vilkårlig kode, og jeg har verificeret kildens troværdighed.",
 	"ID": "ID",
 	"ID cannot contain \":\" or \"|\" characters": "ID må ikke indeholde tegnene \":\" eller \"|\"",
-<<<<<<< HEAD
-=======
-	"ID copied to clipboard": "",
-	"Identity audit": "",
-	"Idle only": "",
->>>>>>> upstream/main
 	"Idle Timeout": "",
 	"Ignite curiosity": "Antænd nysgerrighed",
 	"Image": "Billede",
@@ -1196,12 +828,6 @@
 	"Import Config": "",
 	"Import From Link": "Importer fra et link",
 	"Import Models": "Importer modeller",
-<<<<<<< HEAD
-=======
-	"Import Prompts": "Importer prompter",
-	"Import Skills": "",
-	"Import successful": "Importeret",
->>>>>>> upstream/main
 	"Import Tools": "Importer værktøjer",
 	"Important Update": "Vigtig opdatering",
 	"Imported": "",
@@ -1238,11 +864,6 @@
 	"Jina API Key": "Jina API-nøgle",
 	"join our Discord for help.": "tilslut dig vores Discord for at få hjælp.",
 	"JSON": "JSON",
-<<<<<<< HEAD
-=======
-	"JSON Base64": "",
-	"JSON Preview": "JSON-forhåndsvisning",
->>>>>>> upstream/main
 	"JSON Spec": "JSON spec",
 	"July": "Juli",
 	"June": "Juni",
@@ -1253,26 +874,9 @@
 	"Keep in Sidebar": "Behold i sidebaren",
 	"Key": "Nøgle",
 	"Key is required": "Nøgle er påkrævet",
+	"Keyboard shortcuts": "Tastaturgenveje",
 	"Keyboard Shortcuts": "Tastaturgenveje",
 	"Knowledge": "Viden",
-<<<<<<< HEAD
-=======
-	"Knowledge Access": "Videnadgang",
-	"Knowledge Base": "Vidensbase",
-	"Knowledge base has been reset": "",
-	"Knowledge created successfully.": "Viden oprettet.",
-	"Knowledge deleted successfully.": "Viden slettet.",
-	"Knowledge Description": "Vidensbeskrivelse",
-	"Knowledge exported successfully": "",
-	"Knowledge Name": "Vidensnavn",
-	"Knowledge Public Sharing": "Viden offentlig deling",
-	"Knowledge Sharing": "Vidensdeling",
-	"Knowledge source created.": "",
-	"Knowledge source updated.": "",
-	"Knowledge updated successfully": "Viden opdateret.",
-	"Kokoro.js (Browser)": "Kokoro.js (Browser)",
-	"Kokoro.js Dtype": "Kokoro.js Dtype",
->>>>>>> upstream/main
 	"Label": "Label",
 	"Language Locales": "Lokal sprog",
 	"Last 24 hours": "",
@@ -1301,18 +905,9 @@
 	"Leave model field empty to use the default model.": "Lad modelfeltet stå tomt for at bruge standardmodellen.",
 	"lexical": "leksikalsk",
 	"License": "Licens",
-	"Lifecycle JSON": "",
 	"Lift List": "Løft liste",
 	"Limit concurrent search queries. 0 = unlimited (default). Set to 1 for sequential execution (recommended for APIs with strict rate limits like Brave free tier).": "",
 	"Limits the number of concurrent embedding requests. Set to 0 for unlimited.": "",
-<<<<<<< HEAD
-=======
-	"Linkup API Key": "",
-	"List": "",
-	"List calendars, search, create, update, and delete calendar events": "",
-	"Listening...": "Lytter...",
-	"Live": "",
->>>>>>> upstream/main
 	"llama.cpp": "",
 	"Llama.cpp": "Llama.cpp",
 	"Loaded": "",
@@ -1323,11 +918,6 @@
 	"Local Task Model": "Lokal opgavemodel",
 	"Lost": "Tabt",
 	"Low": "Lav",
-<<<<<<< HEAD
-=======
-	"Lower the context compaction token threshold for this model. The global context compaction threshold remains the maximum.": "",
-	"LTR": "LTR",
->>>>>>> upstream/main
 	"Made by Open WebUI Community": "Lavet af OpenWebUI Community",
 	"Make password visible in the user interface": "Gør adgangskode synlig i brugergrænsefladen",
 	"Make sure to export a workflow.json file as API format from ComfyUI.": "Sørg for at eksportere en workflow.json-fil som API-format fra ComfyUI.",
@@ -1339,12 +929,7 @@
 	"Manage OpenAI API Connections": "Administrer OpenAI API forbindelser",
 	"Manage Pipelines": "Administrer pipelines",
 	"Manage Tool Servers": "Administrer værktøjsservere",
-<<<<<<< HEAD
 	"Manage, import, and configure the models available to users.": "",
-=======
-	"Manage your account information.": "Administrer dine brugerinformationer.",
-	"Mapped Source": "",
->>>>>>> upstream/main
 	"March": "Marts",
 	"Markdown": "Markdown",
 	"Markdown Header Text Splitter": "",
@@ -1365,15 +950,6 @@
 	"Members": "Medlemmer",
 	"Memories": "",
 	"Memory": "Hukommelse",
-<<<<<<< HEAD
-=======
-	"Memory added successfully": "Hukommelse tilføjet.",
-	"Memory cleared successfully": "Hukommelse ryddet.",
-	"Memory deleted successfully": "Hukommelse slettet.",
-	"Memory System Context": "",
-	"Memory updated successfully": "Hukommelse opdateret.",
-	"Merge Accounts by Email": "",
->>>>>>> upstream/main
 	"Merge Responses": "Flet svar",
 	"Merged Response": "Sammensat svar",
 	"Message": "Besked",
@@ -1383,16 +959,6 @@
 	"Message text...": "",
 	"messages": "",
 	"Messages": "",
-<<<<<<< HEAD
-=======
-	"Messages you send after creating your link won't be shared. Users with the URL will be able to view the shared chat.": "Beskeder, du sender efter at have oprettet dit link, deles ikke. Brugere med URL'en vil kunne se den delte chat.",
-	"Metadata Field": "",
-	"Microsoft OneDrive": "Microsoft OneDrive",
-	"Microsoft OneDrive (personal)": "Microsoft OneDrive (personlig)",
-	"Microsoft OneDrive (work/school)": "Microsoft OneDrive (arbejde/skole)",
-	"Microsoft Web IQ API Base URL": "",
-	"Microsoft Web IQ API Key": "",
->>>>>>> upstream/main
 	"min": "",
 	"MinerU": "MinerU",
 	"MinerU API Key required for Cloud API mode.": "MinerU API nøgle påkrævet for Cloud API tilstand.",
@@ -1434,42 +1000,18 @@
 	"Models Sharing": "Modeldeling",
 	"Mojeek": "",
 	"Mojeek Search API Key": "Mojeek Search API nøgle",
-<<<<<<< HEAD
-=======
-	"Monday – Friday": "",
-	"Month": "",
-	"Monthly": "",
->>>>>>> upstream/main
 	"More": "Mere",
 	"More Concise": "Mere kortfattet",
 	"More Options": "Flere muligheder",
 	"Move": "Flyt",
-<<<<<<< HEAD
-=======
-	"Moved {{name}}": "",
-	"Multipart Upload": "",
-	"Mute": "",
-	"Muted": "",
->>>>>>> upstream/main
 	"My Terminal": "",
 	"Name": "Navn",
 	"Name and ID are required, please fill them out": "Navn og ID er påkrævet, venligst udfyld dem",
 	"Name this model…": "",
 	"Name your model": "",
 	"Native": "Indbygget",
-<<<<<<< HEAD
-=======
-	"Native mode (default) leverages the model's built-in tool-calling capabilities. Legacy mode works with a wider range of models by calling tools once before execution via prompt injection.": "",
-	"Never": "",
->>>>>>> upstream/main
 	"New": "",
 	"New Chat": "Ny chat",
-<<<<<<< HEAD
-=======
-	"New directory": "",
-	"New Directory": "",
-	"New Event": "",
->>>>>>> upstream/main
 	"New File": "",
 	"New Folder": "Ny mappe",
 	"New Function": "Ny funktion",
@@ -1484,7 +1026,6 @@
 	"Next message": "Næste besked",
 	"No access grants. Private to you.": "",
 	"No activity data": "",
-	"No additional headers are sent unless configured.": "",
 	"No authentication": "Ingen autentificering",
 	"No chats found": "Ingen chats fundet",
 	"No chats found for this user.": "Ingen besked-tråde fundet for denne bruger.",
@@ -1493,13 +1034,7 @@
 	"No data": "",
 	"No data found": "",
 	"No distance available": "Ingen afstand tilgængelig",
-<<<<<<< HEAD
-=======
-	"No event webhooks configured.": "",
-	"No execution logs available yet": "",
->>>>>>> upstream/main
 	"No expiration can pose security risks.": "Ingen udløbsdato kan udgøre en sikkerhedsrisiko.",
-	"No external knowledge sources configured.": "",
 	"No feedback found": "",
 	"No file selected": "Ingen fil valgt",
 	"No files found": "",
@@ -1509,27 +1044,14 @@
 	"No HTML, CSS, or JavaScript content found.": "Intet HTML-, CSS- eller JavaScript-indhold fundet.",
 	"No inference engine with management support found": "Ingen inference-engine med støtte til administration fundet",
 	"No kernel": "",
-<<<<<<< HEAD
-=======
-	"No knowledge bases accessible": "",
-	"No knowledge bases found.": "",
-	"No knowledge found": "Ingen viden fundet",
->>>>>>> upstream/main
 	"No limit": "",
 	"No model IDs": "Ingen model-ID'er",
-	"No models accessible": "",
 	"No models available": "",
 	"No models found": "Ingen modeller fundet",
 	"No models match your search.": "",
 	"No models selected": "Ingen modeller valgt",
 	"No one": "",
 	"No output items": "",
-<<<<<<< HEAD
-=======
-	"No pinned messages": "Ingen fastgjorte beskeder",
-	"No prompts found": "Ingen prompts fundet",
-	"No Repeat": "",
->>>>>>> upstream/main
 	"No results": "Ingen resultater fundet",
 	"No results found": "Ingen resultater fundet",
 	"No search query generated": "Ingen søgeforespørgsel genereret",
@@ -1541,18 +1063,12 @@
 	"No Terminal connection configured.": "",
 	"No terminal connections configured.": "",
 	"No tool server connections configured.": "",
-<<<<<<< HEAD
 	"No tools match your search.": "",
-=======
-	"No tools accessible": "",
-	"No tools found": "Ingen værktøjer fundet",
->>>>>>> upstream/main
 	"No users were found.": "Ingen brugere blev fundet.",
 	"No valves": "Ingen ventiler",
 	"No valves to update": "Ingen ventiler at opdatere",
 	"Node Ids": "Node Id'er",
 	"None": "Ingen",
-	"Not configured": "",
 	"Not factually correct": "Ikke faktuelt korrekt",
 	"Not helpful": "Ikke hjælpsom",
 	"Not Registered": "Ikke registreret",
@@ -1562,31 +1078,21 @@
 	"Nothing has been rehearsed yet.": "",
 	"November": "November",
 	"OAuth": "OAuth",
-	"OAuth / OIDC": "",
 	"OAuth 2.1": "OAuth 2.1",
 	"OAuth 2.1 (Static)": "",
 	"OAuth ID": "OAuth-ID",
-	"OAuth Resource Parameter": "",
-	"OAuth Scopes": "",
 	"OAuth Server URL": "",
 	"October": "Oktober",
 	"Off": "Fra",
 	"Okay, Let's Go!": "Okay, lad os komme i gang!",
-<<<<<<< HEAD
-=======
-	"Older messages are summarized when estimated context exceeds this token limit.": "",
-	"OLED Dark": "OLED Mørk",
->>>>>>> upstream/main
 	"Ollama": "Ollama",
 	"Ollama API": "Ollama API",
 	"Ollama Cloud API Key": "Ollama Cloud API nøgle",
 	"Ollama Version": "Ollama-version",
-	"Omit": "",
 	"On": "Til",
 	"On by default": "",
 	"On by default for new chats": "",
 	"OneDrive": "OneDrive",
-	"Only active during Voice Mode.": "",
 	"Only active when \"Paste Large Text as File\" setting is toggled on.": "Kun aktiv når \"Indsæt store tekster som fil\" indstillingen er slået til.",
 	"Only active when the chat input is in focus and an LLM is generating a response.": "Kun aktiv når chat-input er fokuseret og en LLM er ved at generere et svar.",
 	"Only active when the chat input is in focus.": "Kun aktiv når chat-input er fokuseret.",
@@ -1656,39 +1162,21 @@
 	"Participate in community leaderboards and evaluations! Syncing aggregated usage stats helps drive research and improvements to Open WebUI. Your privacy is paramount: no message content is ever shared.": "",
 	"Password": "Adgangskode",
 	"Passwords do not match.": "Passwords stemmer ikke overens.",
-<<<<<<< HEAD
 	"PDF document (.pdf)": "PDF-dokument (.pdf)",
 	"PDF Extract Images (OCR)": "Udtræk billeder fra PDF (OCR)",
 	"PDF Loader Mode": "",
 	"Penalties & Mirostat": "",
-=======
-	"Paste Large Text as File": "Indsæt store tekster som fil",
-	"Path": "",
-	"Path copied": "",
-	"Paused": "",
-	"PDF document (.pdf)": "PDF-dokument (.pdf)",
-	"PDF Extract Images (OCR)": "Udtræk billeder fra PDF (OCR)",
-	"PDF Loader Mode": "",
-	"pdf, docx, pptx, xlsx": "",
->>>>>>> upstream/main
 	"pending": "afventer",
 	"Pending": "Afventer",
-	"Pending Accounts": "",
 	"Pending User Overlay Content": "Afventende bruger overlay indhold",
 	"Pending User Overlay Title": "Afventende bruger overlay titel",
 	"Permissions": "Tilladelser",
-	"Permissions reset to defaults": "",
 	"Perplexity API Key": "Perplexity API nøgle",
 	"Perplexity Model": "Perplexity model",
 	"Perplexity Search API URL": "Perplexity Search API URL",
 	"Perplexity Search Context Usage": "Perplexity søgekontekst brug",
 	"Persistent": "",
-<<<<<<< HEAD
 	"Pick an icon or emoji": "",
-=======
-	"Personalization": "Personalisering",
-	"Picture Claim": "",
->>>>>>> upstream/main
 	"Pin": "Fastgør",
 	"Pinned Models": "",
 	"Pioneer insights": "Banebrydende indsigter",
@@ -1711,14 +1199,9 @@
 	"Please enter Client ID and Client Secret": "",
 	"Please register the OAuth client": "Registrer venligst OAuth-klienten",
 	"Please save the connection to persist the OAuth client information and do not change the ID": "Gem venligst forbindelsen for at bevare OAuth-klientoplysningerne og ændr ikke ID'et",
-<<<<<<< HEAD
-=======
-	"Please select a model.": "Vælg en model.",
->>>>>>> upstream/main
 	"Please select a reason": "Vælg en årsag",
 	"Please select a valid JSON file": "Vælg en valid JSON-fil",
 	"Policy ID": "",
-	"Policy ID is required": "",
 	"Port": "Port",
 	"Ports": "",
 	"Positive attitude": "Positiv holdning",
@@ -1726,7 +1209,6 @@
 	"Prefix ID is used to avoid conflicts with other connections by adding a prefix to the model IDs - leave empty to disable": "Prefix ID bruges til at undgå konflikter med andre forbindelser ved at tilføje et prefix til model-ID'erne - lad være tom for at deaktivere",
 	"Prevent File Creation": "Forhindr filoprettelse",
 	"Preview": "Forhåndsvisning",
-	"Preview Access": "",
 	"Previous 30 days": "Seneste 30 dage",
 	"Previous 7 days": "Seneste 7 dage",
 	"Previous message": "Forrige besked",
@@ -1735,8 +1217,6 @@
 	"Prompt": "Prompt",
 	"Prompt Template": "",
 	"Provider": "",
-	"Provider Name": "",
-	"Provider URL": "",
 	"Public": "Offentlig",
 	"Public shared chat links are disabled for this workspace.": "",
 	"Pull \"{{searchValue}}\" from Ollama.com": "Hent \"{{searchValue}}\" fra Ollama.com",
@@ -1759,38 +1239,18 @@
 	"Read": "Læs",
 	"Read Aloud": "Læs højt",
 	"Read more →": "Læs mere →",
-<<<<<<< HEAD
 	"read only": "",
-=======
-	"Read only": "",
->>>>>>> upstream/main
 	"Read Only": "",
 	"Read, write, and diff-edit durable notes for the current chat Scratchboard": "",
 	"Reason": "Årsag",
 	"Reasoning Effort": "Ræsonnements indsats",
 	"Reasoning Tags": "Ræsonneringstags",
 	"Reasoning text...": "",
-	"Receives matching events across the instance, including system/config events and events associated with any user.": "",
-	"Receives matching events that are not associated with a user.": "",
-	"Receives matching user-associated events only when the actor, user subject, or user data matches these users or current group members. System/config events are not sent.": "",
 	"Recently Used": "",
 	"Reconnected": "",
-<<<<<<< HEAD
 	"Redirecting you to Open WebUI Community": "Omdirigerer dig til OpenWebUI Community",
 	"Reduces the probability of generating nonsense. A higher value (e.g. 100) will give more diverse answers, while a lower value (e.g. 10) will be more conservative.": "Reducerer sandsynligheden for at generere vrøvl. En højere værdi (f.eks. 100) vil give mere varierede svar, mens en lavere værdi (f.eks. 10) vil være mere konservativ.",
-=======
-	"Record": "Optag",
-	"Record voice": "Optag stemme",
-	"Redirect URI": "",
-	"Redirecting you to Open WebUI Community": "Omdirigerer dig til OpenWebUI Community",
-	"Reduces the probability of generating nonsense. A higher value (e.g. 100) will give more diverse answers, while a lower value (e.g. 10) will be more conservative.": "Reducerer sandsynligheden for at generere vrøvl. En højere værdi (f.eks. 100) vil give mere varierede svar, mens en lavere værdi (f.eks. 10) vil være mere konservativ.",
-	"Reference Chats": "Reference chats",
->>>>>>> upstream/main
 	"Refresh": "",
-	"Refresh requested: {{count}} terminal(s)_one": "",
-	"Refresh requested: {{count}} terminal(s)_other": "",
-	"Refresh Terminals": "",
-	"Refreshing...": "",
 	"Refused when it shouldn't have": "Afvist, når den ikke burde have været det",
 	"Regenerate": "Regenerer",
 	"Regenerate Response": "Regenerer svar",
@@ -1809,38 +1269,15 @@
 	"Remove from favorites": "",
 	"Remove image": "Fjern billede",
 	"Remove Model": "Fjern model",
-	"Removing {{count}} stale files..._one": "",
-	"Removing {{count}} stale files..._other": "",
 	"Rename": "Omdøb",
 	"Reorder Models": "Omarranger modeller",
-<<<<<<< HEAD
-=======
-	"Repeat": "",
-	"Repeats": "",
-	"Reply": "Svar",
-	"Reply in Thread": "Svar i tråd",
-	"Reply to thread...": "Svar på tråd...",
-	"Replying to {{NAME}}": "Svarer {{NAME}}",
-	"Request Format": "",
-	"Require users to confirm before using Web Search.": "",
-	"required": "påkrævet",
->>>>>>> upstream/main
 	"Reranking Batch Size": "",
 	"Reranking Engine": "Omarrangerings engine",
 	"Reranking Model": "Omarrangeringsmodel",
-	"Research Knowledge": "",
 	"Reset": "Nulstil",
 	"Reset All Models": "Nulstil alle modeller",
-	"Reset all permissions to their initial configuration values": "",
-	"Reset group permissions to match the current default user permissions": "",
 	"Reset Image": "Nulstil billede",
-<<<<<<< HEAD
 	"Reset to default": "",
-=======
-	"Reset knowledge base?": "",
-	"Reset persisted files": "",
-	"Reset to Defaults": "",
->>>>>>> upstream/main
 	"Reset Upload Directory": "Nulstil uploadmappe",
 	"Reset Vector Storage/Knowledge": "Nulstil vektor lager/viden",
 	"Reset view": "Nulstil visning",
@@ -1861,11 +1298,6 @@
 	"Return token usage information in the response when supported": "",
 	"Reusable instruction packs that teach your models a procedure or domain — import a markdown skill or write your own, then enable it where you need it.": "",
 	"Role": "Rolle",
-<<<<<<< HEAD
-=======
-	"Roles Claim": "",
-	"RTL": "RTL",
->>>>>>> upstream/main
 	"Run": "Kør",
 	"Run All": "",
 	"Running": "Kører",
@@ -1878,18 +1310,10 @@
 	"Save As Copy": "Gem som kopi",
 	"Saved": "Gemt",
 	"Saving chat logs directly to your browser's storage is no longer supported. Please take a moment to download and delete your chat logs by clicking the button below. Don't worry, you can easily re-import your chat logs to the backend through": "Lagring af chatlogs direkte i din browsers lager understøttes ikke længere. Download og slet dine chatlogs ved at klikke på knappen nedenfor. Du kan nemt importere dine chatlogs til backend igennem",
-<<<<<<< HEAD
 	"Scratchboard": "",
-=======
-	"Schedule": "",
-	"Scheduled time must be in the future": "",
-	"Scopes": "",
-	"Scroll On Branch Change": "Scroll ved gren ændring",
->>>>>>> upstream/main
 	"Scroll to Top": "",
 	"Search": "Søg",
 	"Search a model": "Søg efter en model",
-	"Search actions": "",
 	"Search all emojis": "Søg i alle emojis",
 	"Search and manage user memories": "",
 	"Search and view user chat history": "",
@@ -1897,7 +1321,6 @@
 	"Search Chats": "Søg i chats",
 	"Search engines and web content loaders for live results.": "",
 	"Search Files": "",
-	"Search filters": "",
 	"Search Filters": "Søg i filtre",
 	"search for archived chats": "søg efter arkiverede chats",
 	"search for folders": "søg efter mapper",
@@ -1909,22 +1332,10 @@
 	"Search In Models": "Søg i modeller",
 	"Search Models": "Søg i modeller",
 	"Search options": "Søgemuligheder",
-<<<<<<< HEAD
-=======
-	"Search or add pattern": "",
-	"Search Prompts": "Søg i prompts",
->>>>>>> upstream/main
 	"Search Result Count": "Antal søgeresultater",
-	"Search skills": "",
 	"Search Skills": "",
 	"Search the web and fetch URLs": "",
-	"Search tools": "",
 	"Search Tools": "Søg i værktøjer",
-<<<<<<< HEAD
-=======
-	"Search users or groups": "",
-	"Search, view, and manage user notes": "",
->>>>>>> upstream/main
 	"SearchApi API Key": "SearchApi API-nøgle",
 	"SearchApi Engine": "SearchApi-engine",
 	"Searched {{count}} sites": "Søgte {{count}} sider",
@@ -1939,12 +1350,7 @@
 	"Seed": "Seed",
 	"Select": "Vælg",
 	"Select {{modelName}} model": "",
-<<<<<<< HEAD
 	"Select a base model": "Vælg en basemodel",
-=======
-	"Select a base model (e.g. llama3, gpt-4o)": "Vælg en basemodel (f.eks. llama3, gpt-4o)",
-	"Select a conversation to preview": "Vælg en samtale til forhåndsvisning",
->>>>>>> upstream/main
 	"Select a engine": "Vælg en engine",
 	"Select a function": "Vælg en funktion",
 	"Select a group": "Vælg en gruppe",
@@ -1974,36 +1380,15 @@
 	"Selected Models": "",
 	"semantic": "semantisk",
 	"Send": "Send",
-<<<<<<< HEAD
-=======
-	"Send a Message": "Send en besked",
-	"Send events for": "",
-	"Send message": "Send besked",
-	"Send now": "",
-	"Send product events as JSON to external services. Chat destinations receive readable messages.": "",
-	"Send the PDF as a base64 data URL instead of uploading it first.": "",
-	"Sends `stream_options: { include_usage: true }` in the request.\nSupported providers will return token usage information in the response when set.": "Sender `stream_options: { include_usage: true }` i forespørgslen.\nUnderstøttede udbydere vil returnere tokenforbrugsinformation i svaret, når det er indstillet.",
->>>>>>> upstream/main
 	"September": "September",
 	"sequences that end a response — comma separated": "",
 	"SerpApi API Key": "SerpApi API nøgle",
 	"SerpApi Engine": "SerpApi engine",
 	"Serper API Key": "Serper API-nøgle",
-	"SERPHouse API Key": "",
-	"SERPHouse Domain": "",
 	"Serply API Key": "Serply API-nøgle",
 	"Serpstack API Key": "Serpstack API-nøgle",
 	"Server connection failed": "",
-<<<<<<< HEAD
 	"Session": "Session",
-=======
-	"Server connection verified": "Serverforbindelse bekræftet",
-	"Service Account": "",
-	"Session": "Session",
-	"Session expired. Please sign in again.": "",
-	"Set as default": "Indstil som standard",
-	"Set as Production": "",
->>>>>>> upstream/main
 	"Set embedding model": "Indstil indlejringsmodel",
 	"Set embedding model (e.g. {{model}})": "Indstil indlejringsmodel (f.eks. {{model}})",
 	"Set reranking model (e.g. {{model}})": "Indstil omarrangeringsmodel (f.eks. {{model}})",
@@ -2027,28 +1412,13 @@
 	"Share": "Del",
 	"Share Chat": "Del chat",
 	"Share to Open WebUI Community": "Del til OpenWebUI Community",
-<<<<<<< HEAD
-=======
-	"Share your background and interests": "Del din baggrund og interesser",
-	"Shared": "",
->>>>>>> upstream/main
 	"Shared Chats": "",
 	"Shared with you": "Delt med dig",
 	"Sharing Permissions": "Delingstilladelser",
 	"Show": "Vis",
-<<<<<<< HEAD
 	"Show Admin Details in Account Pending Overlay": "Vis administratordetaljer i overlay for ventende konto",
 	"Show All": "",
 	"Show all ({{COUNT}} characters)": "",
-=======
-	"Show \"What's New\" Modal on Login": "Vis \"Hvad er nyt\" modal ved login",
-	"Show Admin Details in Account Pending Overlay": "Vis administratordetaljer i overlay for ventende konto",
-	"Show All": "",
-	"Show all ({{COUNT}} characters)": "",
-	"Show Files": "",
-	"Show Files on Terminal Select": "",
-	"Show Formatting Toolbar": "Vis formateringsværktøjslinjen",
->>>>>>> upstream/main
 	"Show image preview": "Vis billedforhåndsvisning",
 	"Show Model": "Vis model",
 	"Show Shortcuts": "Vis genveje",
@@ -2090,13 +1460,7 @@
 	"Sougou Search API sID": "Sougou Search API sID",
 	"Sougou Search API SK": "Sougou Search API SK",
 	"Source": "Kilde",
-<<<<<<< HEAD
 	"Sources used": "",
-=======
-	"Specific users or groups": "",
-	"Speech Playback Speed": "Talehastighed",
-	"Speech recognition error: {{error}}": "Talegenkendelsesfejl: {{error}}",
->>>>>>> upstream/main
 	"Speech-to-Text": "Tale-til-tekst",
 	"Speech-to-Text Engine": "Tale-til-tekst-engine",
 	"Split documents by markdown headers before applying character/token splitting.": "",
@@ -2120,13 +1484,6 @@
 	"Strip Existing OCR": "Fjern eksisterende OCR",
 	"Strip existing OCR text from the PDF and re-run OCR. Ignored if Force OCR is enabled. Defaults to False.": "Fjern eksisterende OCR-tekst fra PDF'en og kør OCR igen. Ignoreres hvis Force OCR er aktiveret. Standard er falsk.",
 	"STT Model": "STT-model",
-<<<<<<< HEAD
-=======
-	"STT Settings": "STT-indstillinger",
-	"Stylized PDF Export": "Stiliseret PDF eksport",
-	"Su_day_of_week": "",
-	"Sub Claim": "",
->>>>>>> upstream/main
 	"Submit question": "",
 	"Submit suggestion": "",
 	"Subtitle": "Undertekst",
@@ -2140,22 +1497,13 @@
 	"Switch to JSON editor": "",
 	"Switch to visual editor": "",
 	"Sync": "",
-	"Sync a local directory with this knowledge base. Only new and modified files will be uploaded. The directory structure will be mirrored.": "",
-	"Sync complete: {{added}} added, {{modified}} modified, {{deleted}} deleted, {{unmodified}} unmodified": "",
 	"Sync Complete!": "",
 	"Sync Failed": "",
 	"Sync Usage Stats": "",
 	"Syncing stats...": "",
 	"Syncing...": "",
 	"Syncs only chats with updates after your last sync timestamp. Disable to re-sync all chats.": "",
-<<<<<<< HEAD
-=======
-	"System": "System",
-	"System events only": "",
-	"System Instructions": "Systeminstruktioner",
->>>>>>> upstream/main
 	"System Prompt": "Systemprompt",
-	"Table": "",
 	"Tag": "Tag",
 	"Tags": "Tags",
 	"Tags Generation": "Tag generering",
@@ -2175,16 +1523,6 @@
 	"Temperature": "Temperatur",
 	"Temporary Chat": "Midlertidig chat",
 	"Terminal": "",
-<<<<<<< HEAD
-=======
-	"Terminal servers saved": "",
-	"Test": "",
-	"Test Query": "",
-	"Test returned no results.": "",
-	"Test succeeded.": "",
-	"Test the source before creating it.": "",
-	"Test the source before saving it.": "",
->>>>>>> upstream/main
 	"Text Splitter": "Tekstopdeler",
 	"Text-to-Speech": "Tekst-til-tale",
 	"Text-to-Speech Engine": "Tekst-til-tale-engine",
@@ -2199,11 +1537,8 @@
 	"The height in pixels to compress images to. Leave empty for no compression.": "Højden i pixels at komprimere billeder til. Lad være tom for ingen komprimering.",
 	"The LDAP attribute that maps to the mail that users use to sign in.": "LDAP-attributten der mapper til den mail brugere bruger til at logge ind.",
 	"The LDAP attribute that maps to the username that users use to sign in.": "LDAP-attributten der mapper til det brugernavn brugere bruger til at logge ind.",
-<<<<<<< HEAD
 	"The leaderboard is currently in beta, and we may adjust the rating calculations as we refine the algorithm.": "Lederbordet er i øjeblikket i beta, og vi kan justere rating-beregningerne, mens vi forfiner algoritmen.",
 	"the longest single response it may set": "",
-=======
->>>>>>> upstream/main
 	"The maximum file size in MB. If the file size exceeds this limit, the file will not be uploaded.": "Den maksimale filstørrelse i MB. Hvis filstørrelsen overstiger denne grænse, uploades filen ikke.",
 	"The maximum number of files that can be used at once in chat. If the number of files exceeds this limit, the files will not be uploaded.": "Det maksimale antal filer, der kan bruges på én gang i chatten. Hvis antallet af filer overstiger denne grænse, uploades filerne ikke.",
 	"The only required step — refine everything else now or later.": "",
@@ -2229,11 +1564,6 @@
 	"This feature is currently experimental and may not work as expected.": "",
 	"This folder is empty": "",
 	"This is a default user permission and will remain enabled.": "Dette er en standardbrugertilladelse og vil forblive aktiveret.",
-<<<<<<< HEAD
-=======
-	"This is an experimental feature, it may not function as expected and is subject to change at any time.": "Dette er en eksperimentel funktion, den fungerer muligvis ikke som forventet og kan ændres når som helst.",
-	"This knowledge base retrieves from a connected source. Open WebUI can query it, but cannot upload, sync, edit, delete, reset, or reindex its source data.": "",
->>>>>>> upstream/main
 	"This model is not publicly available. Please select another model.": "Denne model er ikke offentligt tilgængelig. Vælg venligst en anden model.",
 	"This option controls how long the model will stay loaded into memory following the request (default: 5m)": "Denne indstilling styrer hvor længe modellen forbliver indlæst i hukommelsen efter forespørgslen (standard: 5m)",
 	"This option controls how many tokens are preserved when refreshing the context. For example, if set to 2, the last 2 tokens of the conversation context will be retained. Preserving context can help maintain the continuity of a conversation, but it may reduce the ability to respond to new topics.": "Denne indstilling styrer hvor mange tokens der bevares ved opdatering af konteksten. For eksempel, hvis sat til 2, vil de sidste 2 tokens af samtale-konteksten blive bevaret. At bevare kontekst kan hjælpe med at opretholde kontinuiteten i en samtale, men det kan reducere evnen til at reagere på nye emner.",
@@ -2245,11 +1575,6 @@
 	"This will delete <strong>{{NAME}}</strong> and <strong>all its contents</strong>.": "Dette vil slette <strong>{{NAME}}</strong> og <strong>alt dens indhold</strong>.",
 	"This will delete all models including custom models": "Dette vil slette alle modeller, inklusive brugerdefinerede modeller",
 	"This will delete all models including custom models and cannot be undone.": "Dette vil slette alle modeller, inklusive brugerdefinerede modeller og kan ikke fortrydes.",
-<<<<<<< HEAD
-=======
-	"This will permanently delete the calendar \"{{name}}\" and all its events. This action cannot be undone.": "",
-	"This will remove all files and directories from this knowledge base. This action cannot be undone.": "",
->>>>>>> upstream/main
 	"Thorough explanation": "Grundig forklaring",
 	"Thought": "",
 	"Thought for {{DURATION}}": "Tænkte i {{DURATION}}",
@@ -2272,23 +1597,12 @@
 	"To learn more about available endpoints, visit our documentation.": "For at lære mere om tilgængelige endpoints, besøg vores dokumentation.",
 	"To select skills here, add them to the \"Skills\" workspace first.": "",
 	"To select toolkits here, add them to the \"Tools\" workspace first.": "For at vælge værktøjssæt her skal du først tilføje dem til \"Værktøjer\"-arbejdsområdet.",
-<<<<<<< HEAD
-=======
-	"Toast Notifications for New Updates": "Toast-notifikationer for nye opdateringer",
->>>>>>> upstream/main
 	"Today": "I dag",
 	"Toggle details": "",
-<<<<<<< HEAD
-=======
-	"Toggle Dictation": "",
-	"Toggle Mute": "",
->>>>>>> upstream/main
 	"Toggle Sidebar": "Vis/skjul sidebar",
 	"Toggle whether current connection is active.": "Skift om nuværende forbindelse er aktiv.",
 	"Token": "Token",
 	"Token counts are estimates and may not reflect actual API usage": "",
-	"Token Threshold": "",
-	"Tokenizer Model": "",
 	"tokens": "",
 	"Tokens": "",
 	"Too verbose": "For ordrigt",
@@ -2333,25 +1647,10 @@
 	"Unlock mysteries": "Lås op for mysterier",
 	"Unpin": "Frigør",
 	"Unravel secrets": "Afslør hemmeligheder",
-	"Unshare All": "",
-	"Unshare All Shared Chats": "",
 	"Unshare Chat": "",
 	"Untagged": "Uden mærker",
-<<<<<<< HEAD
 	"Untitled folio": "",
 	"Update for the latest features and improvements.": "Opdater for at få de nyeste funktioner og forbedringer.",
-=======
-	"Untitled": "Unavngivet",
-	"Update": "Opdater",
-	"Update and Copy Link": "Opdater og kopier link",
-	"Update Email": "",
-	"Update for the latest features and improvements.": "Opdater for at få de nyeste funktioner og forbedringer.",
-	"Update Name": "",
-	"Update password": "Opdater adgangskode",
-	"Update Picture": "",
-	"Update your status": "Opdater din status",
-	"Updated": "Opdateret",
->>>>>>> upstream/main
 	"Updated at": "Opdateret kl.",
 	"Updated At": "Opdateret Klokken.",
 	"Upgrade to a licensed plan for enhanced capabilities, including custom theming and branding, and dedicated support.": "Opgrader til en betalingsplan for at få adgang til udvidede funktioner, herunder tilpasning af tema og branding samt dedikeret support.",
@@ -2363,40 +1662,24 @@
 	"Upload profile image": "",
 	"Upload Progress": "Uploadfremdrift",
 	"Uploaded files or images": "",
-<<<<<<< HEAD
-=======
-	"Uploading {{current}}/{{total}}: {{file}}": "",
->>>>>>> upstream/main
 	"Uploading...": "",
 	"URL": "URL",
 	"URL is required": "URL er påkrævet",
 	"URL Mode": "URL-tilstand",
 	"Usage": "Forbrug",
 	"Use /v1/chat/completions endpoint instead of /v1/audio/transcriptions for potentially better accuracy.": "Brug /v1/chat/completions endpointet i stedet for /v1/audio/transcriptions for potentielt øget nøjagtighed.",
-	"Use a valid event name or pattern like user.*": "",
-	"Use Base64": "",
 	"Use Chat Completions API": "Brug Chat Completions API",
-	"Use discovered scopes": "",
 	"Use groups to organize your users and assign permissions.": "",
 	"Use LLM": "Brug LLM",
 	"Use no proxy to fetch page contents.": "Brug ingen proxy til at hente sideindhold.",
 	"Use proxy designated by http_proxy and https_proxy environment variables to fetch page contents.": "Brug proxy angivet af http_proxy og https_proxy miljøvariabler til at hente sideindhold.",
-	"Use Web Search?": "",
 	"user": "bruger",
 	"User": "Bruger",
-	"User Access": "",
 	"User Activity": "",
 	"User Groups": "Brugergrupper",
-<<<<<<< HEAD
-=======
-	"User location successfully retrieved.": "Brugerplacering hentet.",
-	"User menu": "Brugermenu",
-	"User Preview": "",
->>>>>>> upstream/main
 	"User ratings (thumbs up/down)": "",
 	"User Webhooks": "Bruger Webhooks",
 	"Username": "Brugernavn",
-	"Username Claim": "",
 	"users": "brugere",
 	"Users": "Brugere",
 	"Uses DefaultAzureCredential to authenticate": "Bruger DefaultAzureCredential til at autentificere",
@@ -2407,14 +1690,7 @@
 	"Valid time units:": "Gyldige tidsenheder:",
 	"Validate certificate": "Validér certifikat",
 	"Valves": "Ventiler",
-<<<<<<< HEAD
 	"Verified": "",
-=======
-	"Valves updated": "Ventiler opdateret",
-	"Valves updated successfully": "Ventiler opdateret.",
-	"variable": "variabel",
-	"Vector Field": "",
->>>>>>> upstream/main
 	"Verify Connection": "Verificer forbindelse",
 	"Verify SSL Certificate": "Verificer SSL-certifikat",
 	"Version": "Version",
@@ -2435,20 +1711,9 @@
 	"Web API": "Web API",
 	"Web Loader Engine": "Web indlæser motor",
 	"Web Search": "Websøgning",
-	"Web Search Confirmation": "",
-	"Web Search Confirmation Content": "",
 	"Web Search Engine": "Websøgemaskine",
 	"Web Search Query Generation": "Web søgeforespørgsel generering",
-<<<<<<< HEAD
 	"Webhook URL": "Webhook-URL",
-=======
-	"Webhook deleted": "",
-	"Webhook Name": "",
-	"Webhook saved": "",
-	"Webhooks": "",
-	"Webpage URLs": "",
-	"WebUI Settings": "WebUI-indstillinger",
->>>>>>> upstream/main
 	"WebUI URL": "WebUI URL",
 	"WebUI will make requests to \"{{url}}\"": "WebUI vil lave forespørgsler til \"{{url}}\"",
 	"WebUI will make requests to \"{{url}}/api/chat\"": "WebUI vil lave forespørgsler til \"{{url}}/api/chat\"",
@@ -2479,7 +1744,6 @@
 	"Yandex Web Search API Key": "",
 	"Yandex Web Search config": "",
 	"Yandex Web Search URL": "",
-	"Yearly": "",
 	"Yesterday": "I går",
 	"You": "Du",
 	"You are a careful editor: terse, concrete, kind…": "",
@@ -2499,7 +1763,6 @@
 	"Your browser does not support the video tag.": "",
 	"Your entire contribution will go directly to the plugin developer; Open WebUI does not take any percentage. However, the chosen funding platform might have its own fees.": "Hele dit bidrag går direkte til plugin-udvikleren; Open WebUI tager ikke nogen procentdel. Den valgte finansieringsplatform kan dog have sine egne gebyrer.",
 	"Your message text or inputs": "",
-	"Your query will be sent to the configured web search provider.": "",
 	"Your usage stats have been successfully synced.": "",
 	"Youtube Language": "Youtube sprog",
 	"Youtube Proxy URL": "Youtube Proxy URL"

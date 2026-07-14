@@ -2,12 +2,11 @@
 	import { confirmButton } from '$lib/utils/confirmButton';
 	import { inlineError } from '$lib/utils/inlineError';
 	import { createEventDispatcher, onMount, getContext, tick } from 'svelte';
+	import { v4 as uuidv4 } from 'uuid';
 	import { getModels as _getModels } from '$lib/apis';
-	import type { Writable } from 'svelte/store';
-	import type { i18n as i18nType } from 'i18next';
 
 	const dispatch = createEventDispatcher();
-	const i18n = getContext<Writable<i18nType>>('i18n');
+	const i18n = getContext('i18n');
 
 	import { models, settings, user, terminalServers } from '$lib/stores';
 	import { getTerminalServers } from '$lib/apis/terminal';
@@ -24,7 +23,6 @@
 
 	import AddToolServerModal from '$lib/components/AddToolServerModal.svelte';
 	import AddTerminalServerModal from '$lib/components/AddTerminalServerModal.svelte';
-	import ExternalKnowledge from './ExternalKnowledge.svelte';
 
 	import {
 		getToolServerConnections,
@@ -35,31 +33,17 @@
 
 	export let saveSettings: Function;
 
-<<<<<<< HEAD
 	let saveBtn: HTMLButtonElement;
 	let servers = null;
-=======
-	type ToolServerConnection = any;
-	type TerminalConnection = {
-		id?: string;
-		url?: string;
-		name?: string;
-		key?: string;
-		enabled?: boolean;
-		[key: string]: any;
-	};
-
-	let servers: ToolServerConnection[] | null = null;
->>>>>>> upstream/main
 	let showConnectionModal = false;
 
 	// Terminal server admin connections
-	let terminalConnections: TerminalConnection[] = [];
+	let terminalConnections = [];
 	let showAddTerminalModal = false;
 	let editTerminalIdx: number | null = null;
 
-	const addConnectionHandler = async (server: ToolServerConnection) => {
-		servers = [...(servers ?? []), server];
+	const addConnectionHandler = async (server) => {
+		servers = [...servers, server];
 		await updateHandler();
 	};
 
@@ -89,9 +73,7 @@
 
 			// Refresh the terminalServers store so changes are reflected immediately
 			// Preserve user direct terminals, refresh system terminals from backend
-			const existingDirectTerminals = (($terminalServers ?? []) as TerminalConnection[]).filter(
-				(t) => !t.id
-			);
+			const existingDirectTerminals = ($terminalServers ?? []).filter((t) => !t.id);
 			const systemTerminals = await getTerminalServers(localStorage.token);
 			const systemEntries = systemTerminals.map((t) => ({
 				id: t.id,
@@ -99,19 +81,16 @@
 				name: t.name,
 				key: localStorage.token
 			}));
-			terminalServers.set([...existingDirectTerminals, ...systemEntries] as any);
+			terminalServers.set([...existingDirectTerminals, ...systemEntries]);
 		}
 	};
 
-	const addTerminalConnection = (server: TerminalConnection) => {
-		terminalConnections = [
-			...terminalConnections,
-			{ ...server, id: server.id ?? crypto.randomUUID() }
-		];
+	const addTerminalConnection = (server) => {
+		terminalConnections = [...terminalConnections, { ...server, id: server.id ?? uuidv4() }];
 		saveTerminalServers();
 	};
 
-	const updateTerminalConnection = (idx: number, updated: TerminalConnection) => {
+	const updateTerminalConnection = (idx: number, updated) => {
 		terminalConnections = terminalConnections.map((c, i) =>
 			i === idx ? { ...c, ...updated, id: updated.id ?? c.id } : c
 		);
@@ -125,13 +104,13 @@
 
 	onMount(async () => {
 		const res = await getToolServerConnections(localStorage.token);
-		servers = res.TOOL_SERVER_CONNECTIONS as ToolServerConnection[];
+		servers = res.TOOL_SERVER_CONNECTIONS;
 
 		// Load terminal server connections
 		try {
 			const terminalRes = await getTerminalServerConnections(localStorage.token);
 			if (terminalRes?.TERMINAL_SERVER_CONNECTIONS) {
-				terminalConnections = terminalRes.TERMINAL_SERVER_CONNECTIONS as TerminalConnection[];
+				terminalConnections = terminalRes.TERMINAL_SERVER_CONNECTIONS;
 			}
 		} catch {
 			// Not configured yet
@@ -145,7 +124,7 @@
 	bind:show={showAddTerminalModal}
 	edit={editTerminalIdx !== null}
 	connection={editTerminalIdx !== null ? terminalConnections[editTerminalIdx] : null}
-	onSubmit={(c: TerminalConnection) => {
+	onSubmit={(c) => {
 		if (editTerminalIdx !== null) {
 			updateTerminalConnection(editTerminalIdx, c);
 			editTerminalIdx = null;
@@ -171,13 +150,13 @@
 		{#if servers !== null}
 			<div class="">
 				<div class="mb-3">
-					<div class=" mt-0.5 mb-2.5 text-base font-medium">{$i18n.t('Tools')}</div>
+					<div class=" mt-0.5 mb-2.5 text-base font-medium">{$i18n.t('General')}</div>
 
 					<hr class=" border-gray-100/30 dark:border-gray-850/30 my-2" />
 
 					<div class="mb-2.5 flex flex-col w-full justify-between">
 						<div class="flex justify-between items-center mb-0.5">
-							<div class="font-medium">{$i18n.t('External Tool Servers')}</div>
+							<div class="font-medium">{$i18n.t('Manage Tool Servers')}</div>
 
 							<Tooltip content={$i18n.t(`Add Connection`)}>
 								<button
@@ -193,21 +172,21 @@
 						</div>
 
 						<div class="flex flex-col gap-1">
-							{#each servers ?? [] as server, idx}
+							{#each servers as server, idx}
 								<Connection
 									bind:connection={server}
 									onSubmit={() => {
 										updateHandler();
 									}}
 									onDelete={() => {
-										servers = (servers ?? []).filter((_, i) => i !== idx);
+										servers = servers.filter((_, i) => i !== idx);
 										updateHandler();
 									}}
 								/>
 							{/each}
 						</div>
 
-						{#if (servers ?? []).length === 0}
+						{#if servers.length === 0}
 							<div class="text-xs text-gray-400 dark:text-gray-500">
 								{$i18n.t('No tool server connections configured.')}
 							</div>
@@ -220,9 +199,17 @@
 						</div>
 					</div>
 
-					<div class="mt-4 mb-2.5 flex flex-col w-full">
+					<hr class=" border-gray-100/30 dark:border-gray-850/30 my-4" />
+
+					<div class="mb-2.5 flex flex-col w-full">
 						<div class="flex justify-between items-center mb-1">
-							<div class="font-medium">{$i18n.t('Open Terminal')}</div>
+							<div class="flex items-center gap-2">
+								<div class="font-medium">{$i18n.t('Open Terminal')}</div>
+								<span
+									class="text-[0.65rem] font-medium uppercase px-1.5 py-0.5 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400"
+									>{$i18n.t('Experimental')}</span
+								>
+							</div>
 
 							<Tooltip content={$i18n.t('Add Connection')}>
 								<button
@@ -315,12 +302,6 @@
 							</div>
 						</div>
 					</div>
-
-					<div class="mt-8 mb-2.5 text-base font-medium">{$i18n.t('Knowledge')}</div>
-
-					<hr class=" border-gray-100/30 dark:border-gray-850/30 my-2" />
-
-					<ExternalKnowledge />
 				</div>
 			</div>
 		{:else}

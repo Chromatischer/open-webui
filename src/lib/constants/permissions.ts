@@ -6,9 +6,7 @@ export const DEFAULT_PERMISSIONS = {
 		models_import: false,
 		models_export: false,
 		tools_import: false,
-		tools_export: false,
-		skills_import: false,
-		skills_export: false
+		tools_export: false
 	},
 	sharing: {
 		models: false,
@@ -17,15 +15,7 @@ export const DEFAULT_PERMISSIONS = {
 		public_tools: false,
 		skills: false,
 		public_skills: false,
-<<<<<<< HEAD
 		public_chats: false
-=======
-		notes: false,
-		public_notes: false,
-		folders: false,
-		public_chats: false,
-		public_calendars: false
->>>>>>> upstream/main
 	},
 	access_grants: {
 		allow_users: true
@@ -45,7 +35,6 @@ export const DEFAULT_PERMISSIONS = {
 		edit: true,
 		share: true,
 		export: true,
-		import: true,
 		stt: true,
 		tts: true,
 		call: true,
@@ -60,14 +49,7 @@ export const DEFAULT_PERMISSIONS = {
 		web_search: true,
 		image_generation: true,
 		code_interpreter: true,
-<<<<<<< HEAD
 		memories: true
-=======
-		memories: true,
-		automations: false,
-		calendar: true,
-		webhooks: false
->>>>>>> upstream/main
 	},
 	settings: {
 		interface: true

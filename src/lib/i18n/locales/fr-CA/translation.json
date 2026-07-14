@@ -5,73 +5,22 @@
 	"(e.g. `sh webui.sh --api`)": "(par exemple `sh webui.sh --api`)",
 	"(latest)": "(dernière version)",
 	"(leave blank for to use commercial endpoint)": "laisser vide pour l'utilisation d'un point d'extension commercial",
-<<<<<<< HEAD
 	"{{COUNT}} extracted lines": "",
 	"{{COUNT}} hidden lines": "Nombres de lignes cachées {{COUNT}}",
 	"{{COUNT}} members": "",
-=======
-	"[Last] dddd [at] h:mm A": "",
-	"[Today at] h:mm A": "",
-	"[Yesterday at] h:mm A": "",
-	"{{ models }}": "{{ models }}",
-	"{{COUNT}} Available Skills": "",
-	"{{COUNT}} Available Tools": "Nombre d'outils disponibles {{COUNT}}",
-	"{{COUNT}} characters": "",
-	"{{COUNT}} extracted lines": "",
-	"{{COUNT}} files": "",
-	"{{count}} files selected. Only new and modified files will be uploaded. Deleted files will be removed. The folder structure will be mirrored. Continue?_one": "",
-	"{{count}} files selected. Only new and modified files will be uploaded. Deleted files will be removed. The folder structure will be mirrored. Continue?_many": "",
-	"{{count}} files selected. Only new and modified files will be uploaded. Deleted files will be removed. The folder structure will be mirrored. Continue?_other": "",
-	"{{count}} filters_one": "",
-	"{{count}} filters_many": "",
-	"{{count}} filters_other": "",
-	"{{count}} groups_one": "",
-	"{{count}} groups_many": "",
-	"{{count}} groups_other": "",
-	"{{COUNT}} hidden lines": "Nombres de lignes cachées {{COUNT}}",
-	"{{COUNT}} members": "",
-	"{{count}} of {{total}} accessible_one": "",
-	"{{count}} of {{total}} accessible_many": "",
-	"{{count}} of {{total}} accessible_other": "",
-	"{{COUNT}} Replies": "{{COUNT}} réponses",
->>>>>>> upstream/main
 	"{{COUNT}} Rows": "",
 	"{{count}} selected_one": "",
 	"{{count}} selected_many": "",
 	"{{count}} selected_other": "",
-<<<<<<< HEAD
-=======
-	"{{COUNT}} Sources": "",
-	"{{count}} users_one": "",
-	"{{count}} users_many": "",
-	"{{count}} users_other": "",
-	"{{COUNT}} words": "",
->>>>>>> upstream/main
 	"{{COUNT}}d_time_ago": "",
 	"{{COUNT}}h_time_ago": "",
 	"{{COUNT}}m_time_ago": "",
 	"{{COUNT}}w_time_ago": "",
 	"{{COUNT}}y_time_ago": "",
-<<<<<<< HEAD
-=======
-	"{{label}} contains invalid JSON": "",
-	"{{label}} must be a JSON object": "",
-	"{{LOCALIZED_DATE}} at {{LOCALIZED_TIME}}": "",
-	"{{model}} download has been canceled": "",
->>>>>>> upstream/main
 	"{{modelName}} profile image": "",
 	"{{user}}'s Chats": "Conversations de {{user}}",
 	"{{webUIName}} Backend Required": "Backend {{webUIName}} requis",
 	"*Prompt node ID(s) are required for image generation": "*Les ID de noeud du prompt sont nécessaires pour la génération d'images",
-<<<<<<< HEAD
-=======
-	"1 group": "",
-	"1 hour before": "",
-	"1 Source": "",
-	"1 user": "",
-	"10 minutes before": "",
-	"15 minutes before": "",
->>>>>>> upstream/main
 	"1m_time_ago": "",
 	"a line about what this model is for…": "",
 	"A model binds a base mind to a system prompt, tools and knowledge — compose one and summon it in any chat.": "",
@@ -83,11 +32,6 @@
 	"Access Control": "Contrôle d'accès",
 	"Access Grants": "",
 	"Access List": "",
-<<<<<<< HEAD
-=======
-	"Access prohibited": "",
-	"Access updated": "",
->>>>>>> upstream/main
 	"Accessible to all users": "Accessible à tous les utilisateurs",
 	"Account Activation Pending": "Activation du compte en attente",
 	"Accurate information": "Information exacte",
@@ -98,7 +42,6 @@
 	"Activity": "",
 	"Add": "Ajouter",
 	"Add a model ID": "Ajouter un identifiant de modèle",
-	"Add a preference, fact, or instruction about you": "",
 	"Add a short description about what this model does": "Ajoutez une brève description de ce que fait ce modèle.",
 	"Add a tag": "Ajouter un tag",
 	"Add a tag...": "",
@@ -108,17 +51,7 @@
 	"Add Custom Parameter": "Ajoutez votre réglage personnalisé",
 	"Add Custom Prompt": "",
 	"Add Details": "",
-	"Add durable context for future chats": "",
 	"Add Files": "Ajouter des fichiers",
-<<<<<<< HEAD
-=======
-	"Add Image": "",
-	"Add Knowledge Connection": "",
-	"Add location": "",
-	"Add Member": "",
-	"Add Members": "",
-	"Add Memory": "Ajouter un souvenir",
->>>>>>> upstream/main
 	"Add Model": "Ajouter un modèle",
 	"Add tag": "",
 	"Add Tag": "Ajouter un tag",
@@ -126,11 +59,6 @@
 	"Add to favorites": "",
 	"Add User": "Ajouter un utilisateur",
 	"Add User Group": "Ajouter un groupe d'utilisateurs",
-<<<<<<< HEAD
-=======
-	"Add webhook": "",
-	"Add webpage": "",
->>>>>>> upstream/main
 	"Add your Open Terminal URL and API key in Settings → Integrations.": "",
 	"Additional Config": "",
 	"Additional configuration options for marker. This should be a JSON string with key-value pairs. For example, '{\"key\": \"value\"}'. Supported keys include: disable_links, keep_pageheader_in_output, keep_pagefooter_in_output, filter_blank_pages, drop_repeated_text, layout_coverage_threshold, merge_threshold, height_tolerance, gap_threshold, image_threshold, min_line_length, level_count, default_level": "",
@@ -141,40 +69,18 @@
 	"Admin": "Administrateur",
 	"Admin Contact Email": "",
 	"Admin Panel": "Panneau d'administration",
-<<<<<<< HEAD
-=======
-	"Admin Roles": "",
-	"Admin Settings": "Réglages d'administration",
-	"Admin-managed service account": "",
->>>>>>> upstream/main
 	"Admins have access to all tools at all times; users need tools assigned per model in the workspace.": "Les administrateurs ont accès à tous les outils en permanence ; les utilisateurs doivent se voir attribuer des outils pour chaque modèle dans l'espace de travail.",
 	"Advanced": "",
 	"Advanced parameters for MinerU parsing (enable_ocr, enable_formula, enable_table, language, model_version, page_ranges)": "",
 	"Advanced Params": "Réglages avancés",
 	"After updating or changing the embedding model, you must reindex the knowledge base for the changes to take effect. You can do this using the \"Reindex\" button below.": "",
 	"All": "Tout",
-<<<<<<< HEAD
 	"All time": "",
 	"All Users": "",
-=======
-	"All chats have been unarchived.": "",
-	"All day": "",
-	"All events": "",
-	"All models are now hidden": "",
-	"All models are now visible": "",
-	"All models deleted successfully": "Tous les modèles ont été supprimés avec succès",
-	"All shared chats have been unshared.": "",
-	"All Sources": "",
-	"All time": "",
-	"All Users": "",
-	"All users and system events": "",
-	"Allow Call": "Autoriser les appels",
->>>>>>> upstream/main
 	"Allow Chat Controls": "Autoriser les contrôles de la conversation",
 	"Allow Chat Delete": "Autoriser la suppression de la conversation",
 	"Allow Chat Edit": "Autoriser la modification de la conversation",
 	"Allow Chat Export": "Autoriser l'exportation de la conversation",
-	"Allow Chat Import": "",
 	"Allow Chat Params": "",
 	"Allow Chat Share": "Autoriser le partage de la conversation",
 	"Allow Chat System Prompt": "Autoriser le prompt système de la conversation",
@@ -189,11 +95,9 @@
 	"Allow Sharing With Users": "",
 	"Allow Text to Speech": "Autoriser la synthèse vocale",
 	"Allow Web Upload": "",
-	"Allowed Domains": "",
 	"Allowed Endpoints": "Points de terminaison autorisés",
 	"Allowed File Extensions": "Extensions de fichier autorisées",
 	"Allowed file extensions for upload. Separate multiple extensions with commas. Leave empty for all file types.": "Autoriser les extensions de fichier pour le téléversement. Séparez plusieurs extensions par des virgules. Laissez vide pour tous les types de fichiers.",
-	"Allowed Roles": "",
 	"Already have an account?": "Avez-vous déjà un compte ?",
 	"Alternative to the top_p, and aims to ensure a balance of quality and variety. The parameter p represents the minimum probability for a token to be considered, relative to the probability of the most likely token. For example, with p=0.05 and the most likely token having a probability of 0.9, logits with a value less than 0.045 are filtered out.": "Alternative à top_p, et vise à assurer un équilibre entre qualité et variété. Le paramètre p représente la probabilité minimale pour qu'un token soit considéré, par rapport à la probabilité du token le plus probable. Par exemple, avec p=0.05 et le token le plus probable ayant une probabilité de 0.9, les logits d'une valeur inférieure à 0.045 sont filtrés.",
 	"Amazing": "Incroyable",
@@ -205,11 +109,6 @@
 	"API Base URL": "URL de base de l'API",
 	"API Base URL for Datalab Marker service. Defaults to: https://www.datalab.to/api/v1/marker": "",
 	"API Key": "Clé d'API",
-<<<<<<< HEAD
-=======
-	"API Key / Token": "",
-	"API Key created.": "Clé d'API générée.",
->>>>>>> upstream/main
 	"API Key Endpoint Restrictions": "Restrictions des points de terminaison de la clé API",
 	"API Keys": "",
 	"API Mode": "",
@@ -226,31 +125,13 @@
 	"Are you sure you want to delete \"{{NAME}}\"?": "",
 	"Are you sure you want to delete **{{modelName}}**?": "",
 	"Are you sure you want to delete this connection? This action cannot be undone.": "",
-<<<<<<< HEAD
 	"Are you sure you want to delete this?": "",
 	"Arena": "",
-=======
-	"Are you sure you want to delete this directory?": "",
-	"Are you sure you want to delete this memory? This action cannot be undone.": "",
-	"Are you sure you want to delete this message?": "Êtes-vous sûr de vouloir supprimer ce message ?",
-	"Are you sure you want to delete this version? Child versions will be relinked to this version's parent.": "",
-	"Are you sure you want to delete this webhook? This action cannot be undone.": "",
-	"Are you sure you want to delete this?": "",
-	"Are you sure you want to reset all permissions to their default values? You will still need to save to apply the changes.": "",
-	"Are you sure you want to unarchive all archived chats?": "Êtes-vous sûr de vouloir désarchiver toutes les conversations archivées?",
-	"Are you sure you want to unshare all shared chats? This will remove all share links.": "",
->>>>>>> upstream/main
 	"Arena Models": "Modèles d'arène",
 	"Artifacts": "Artéfacts",
 	"Ask": "Demander",
 	"Ask a question": "Posez votre question",
-<<<<<<< HEAD
 	"Ask the User": "",
-=======
-	"Ask a test question": "",
-	"Ask this knowledge source a test question": "",
-	"Assistant": "Assistant",
->>>>>>> upstream/main
 	"Async Embedding Processing": "",
 	"Attach File From Knowledge": "",
 	"Attention to detail": "Attention aux détails",
@@ -259,33 +140,20 @@
 	"Audience": "",
 	"August": "Août",
 	"Auth": "Auth",
-	"Auth Mode": "",
-	"Auth required": "",
 	"Authenticate": "Authentifier",
 	"Authentication": "Authentification",
 	"Auto (Random)": "",
-<<<<<<< HEAD
 	"Auto-inject system tools for Agents (timestamps, memory, notes, etc.)": "",
-=======
-	"Auto Redirect": "",
-	"Auto-Copy Response to Clipboard": "Copie automatique de la réponse vers le presse-papiers",
-	"Auto-Create Groups": "",
-	"Auto-Playback Response": "Lire automatiquement la réponse",
->>>>>>> upstream/main
 	"Autocomplete Generation": "Génération des suggestions",
 	"Autocomplete Generation Input Max Length": "Longueur maximale pour la génération des suggestions",
-	"Autocomplete Generation Prompt": "",
-	"Automatic": "",
 	"Automatic1111": "Automatic1111",
 	"AUTOMATIC1111 Api Auth String": "AUTOMATIC1111 Chaîne d'authentification de l'API",
 	"AUTOMATIC1111 Base URL": "URL de base AUTOMATIC1111",
 	"AUTOMATIC1111 Base URL is required.": "L'URL de base {AUTOMATIC1111} est requise.",
 	"Available list": "Liste disponible",
 	"Available models": "",
-	"Available Skills": "",
 	"Available Tools": "Outils disponibles",
 	"available users": "utilisateurs disponibles",
-	"Available variables": "",
 	"available!": "disponible !",
 	"Awful": "Horrible",
 	"Azure AI Speech": "Azure AI Speech",
@@ -296,30 +164,16 @@
 	"Backup, export, and import instance data.": "",
 	"Bad Response": "Mauvaise réponse",
 	"Banners": "Bannières",
-<<<<<<< HEAD
 	"Base model": "",
-=======
-	"Base Model (From)": "Modèle de base (à partir de)",
-	"Base Model is required.": "",
->>>>>>> upstream/main
 	"Base Model List Cache speeds up access by fetching base models only at startup or on settings save—faster, but may not show recent base model changes.": "La mise en cache de la liste des modèles de base accélère l'accès en ne récupérant les modèles de base qu'au démarrage ou lors de la sauvegarde des réglages - plus rapide, mais peut ne pas afficher les modifications récentes des modèles de base.",
 	"Bearer": "",
 	"Begin a new folio": "",
 	"Being lazy": "Être fainéant",
-<<<<<<< HEAD
 	"Beta": "Bêta",
 	"Bind the model": "",
 	"Bing": "",
 	"Bing Search V7 Endpoint": "Point de terminaison Bing Search V7",
 	"Bing Search V7 Subscription Key": "Clé d'abonnement Bing Search V7",
-=======
-	"Bing": "",
-	"Bing Search V7 Endpoint": "Point de terminaison Bing Search V7",
-	"Bing Search V7 Subscription Key": "Clé d'abonnement Bing Search V7",
-	"Bio": "",
-	"Birth Date": "",
-	"Blocked Groups": "",
->>>>>>> upstream/main
 	"BM25 Weight": "",
 	"Bocha Search API Key": "Clé API Bocha Search",
 	"Bold": "",
@@ -347,12 +201,6 @@
 	"Chat": "Conversation",
 	"Chat Completions": "",
 	"Chat Conversation": "",
-<<<<<<< HEAD
-=======
-	"Chat deleted.": "",
-	"Chat Direction": "Direction de la conversation",
-	"Chat exported successfully": "",
->>>>>>> upstream/main
 	"Chat History": "",
 	"Chat ID": "",
 	"Chat moved successfully": "",
@@ -412,11 +260,6 @@
 	"Code Interpreter Prompt Template": "Modèle d'invite pour l'interpréteur de code",
 	"Collapse": "Réduire",
 	"Collection": "Collection",
-<<<<<<< HEAD
-=======
-	"Collection Field": "",
-	"Collections": "",
->>>>>>> upstream/main
 	"Color": "Couleur",
 	"ComfyUI": "ComfyUI",
 	"ComfyUI API Key": "Clé API ComfyUI",
@@ -425,26 +268,9 @@
 	"ComfyUI Workflow": "Flux de travaux de ComfyUI",
 	"ComfyUI Workflow Nodes": "Noeud du flux de travaux de ComfyUI",
 	"Comma separated Node Ids (e.g. 1 or 1,2)": "",
-<<<<<<< HEAD
-=======
-	"Comma-separated group names": "",
-	"Comma-separated list of file extensions MinerU will handle (e.g. pdf, docx, pptx, xlsx)": "",
-	"command": "",
-	"Command": "Commande",
->>>>>>> upstream/main
 	"Comment": "Commentaire",
 	"Community Reviews": "",
-<<<<<<< HEAD
 	"Compose your first model": "",
-=======
-	"Compacting context": "",
-	"Comparing with knowledge base...": "",
-	"Completions": "Complétions",
-	"Compress Images in Channels": "",
-	"Computing checksums ({{count}} files)_one": "",
-	"Computing checksums ({{count}} files)_many": "",
-	"Computing checksums ({{count}} files)_other": "",
->>>>>>> upstream/main
 	"Concurrent Requests": "Demandes concurrentes",
 	"Config": "",
 	"Configure": "Configurer",
@@ -457,10 +283,6 @@
 	"Connect to Open Terminal instances. All users will have access to file browsing and terminal tools through these servers.": "",
 	"Connect to your own OpenAPI compatible external tool servers.": "Connectez-vous à vos serveurs d'outils externes.",
 	"Connected": "",
-<<<<<<< HEAD
-=======
-	"Connected ({{type}})": "",
->>>>>>> upstream/main
 	"Connection failed": "Échec de la connexion",
 	"Connection lost. Reconnecting...": "",
 	"Connection Type": "Type de connexion",
@@ -469,16 +291,8 @@
 	"Contact Admin for WebUI Access": "Contacter l'administrateur pour obtenir l'accès à WebUI",
 	"Content": "Contenu",
 	"Content Extraction Engine": "Moteur d'extraction de contenu",
-	"Content Field": "",
 	"Content lengths (character counts only)": "",
-	"Context": "",
-	"Context compacted": "",
-	"Context Compaction": "",
-	"Context compaction failed": "",
-	"Context Compaction Prompt": "",
-	"Context Compaction Threshold": "",
 	"Context Tokens": "",
-	"Continue": "",
 	"Continue Response": "Continuer la réponse",
 	"Continue with {{provider}}": "Continuer avec {{provider}}",
 	"Continue with Email": "Continuer avec le courriel",
@@ -509,16 +323,6 @@
 	"Create Image": "",
 	"Create model": "",
 	"Create Model": "",
-<<<<<<< HEAD
-=======
-	"Create new key": "Créer une nouvelle clé",
-	"Create new secret key": "Créer une nouvelle clé secrète",
-	"Create note": "",
-	"Create Note": "Créer une note",
-	"Create one read-only Knowledge source per external collection. Test must pass before the source is created.": "",
-	"Create scheduled prompts that run automatically on a recurring basis.": "",
-	"Create your first note by clicking on the plus button below.": "Créer votre première note en cliquant sur le boutton ci-dessous",
->>>>>>> upstream/main
 	"Created at": "Créé le",
 	"Created At": "Créé le",
 	"Created by": "Créé par",
@@ -529,12 +333,7 @@
 	"Custom color": "",
 	"Custom Parameter Name": "Nom du réglage personnalisé",
 	"Custom Parameter Value": "Valeur du réglage personnalisé",
-<<<<<<< HEAD
 	"Custom presets that pair a base model with a system prompt, tools, knowledge and capabilities — build your own assistants and reuse them anywhere in chat.": "",
-=======
-	"Custom range": "",
-	"Daily": "",
->>>>>>> upstream/main
 	"Daily Messages": "",
 	"Danger Zone": "Zone de danger",
 	"Database": "Base de données",
@@ -550,6 +349,7 @@
 	"Default Features": "",
 	"Default Filters": "",
 	"Default Group": "",
+	"Default mode works with a wider range of models by calling tools once before execution. Native mode leverages the model's built-in tool-calling capabilities, but requires the model to inherently support this feature.": "Le mode par défaut fonctionne avec une plus large gamme de modèles en appelant les outils une fois avant l'exécution. Le mode natif exploite les capacités d'appel d'outils intégrées du modèle, mais nécessite que le modèle prenne en charge cette fonctionnalité.",
 	"Default Model": "Modèle standard",
 	"Default permissions": "Autorisations par défaut",
 	"Default Prompt Suggestions": "Suggestions de prompts par défaut",
@@ -557,25 +357,13 @@
 	"Default to ALL": "Par défaut à TOUS",
 	"Default to segmented retrieval for focused and relevant content extraction, this is recommended for most cases.": "La recherche segmentée par défaut permet d'extraire un contenu ciblé et pertinent, ce qui est recommandé dans la plupart des cas.",
 	"Default User Role": "Rôle utilisateur par défaut",
-	"Default webhook": "",
 	"Defaults": "",
 	"Delete": "Supprimer",
 	"Delete {{name}}": "",
 	"Delete a model": "Supprimer un modèle",
-<<<<<<< HEAD
-=======
-	"Delete All": "",
-	"Delete All Chats": "Supprimer toutes les conversations",
-	"Delete all contents inside this directory": "",
->>>>>>> upstream/main
 	"Delete all contents inside this folder": "",
 	"Delete Chat": "Supprimer la Conversation",
 	"Delete chat?": "Supprimer la conversation ?",
-<<<<<<< HEAD
-=======
-	"Delete directory?": "",
-	"Delete Event": "",
->>>>>>> upstream/main
 	"Delete File": "",
 	"Delete folder?": "Supprimer le dossier ?",
 	"Delete function?": "Supprimer la fonction ?",
@@ -596,20 +384,9 @@
 	"Direct Connections": "Direct connexions",
 	"Direct Connections allow users to connect to their own OpenAI compatible API endpoints.": "Les connexions directes permettent aux utilisateurs de se connecter à leurs propres points d'extension API compatibles OpenAI.",
 	"Direct Tool Servers": "Serveur d'outils directs",
-<<<<<<< HEAD
-=======
-	"Directory created.": "",
-	"Directory deleted.": "",
-	"Directory moved.": "",
-	"Directory name": "",
-	"Directory renamed.": "",
-	"Directory selection was cancelled": "",
->>>>>>> upstream/main
 	"Disable All": "",
 	"Disable Image Extraction": "Empecher l'extraction d'image",
 	"Disable image extraction from the PDF. If Use LLM is enabled, images will be automatically captioned. Defaults to False.": "Désactive l'extraction d'images du PDF. Si l'option Utiliser le LLM est activée, les images seront automatiquement légendées. La valeur par défaut est False.",
-	"Disable Image Generation": "",
-	"Disable Web Search": "",
 	"Disabled": "Désactivé",
 	"Discard this folio": "",
 	"Discarded": "",
@@ -618,13 +395,6 @@
 	"Discover wonders": "Découvrir des merveilles",
 	"Discover, download, and explore custom functions": "Découvrez, téléchargez et explorez des fonctions personnalisées",
 	"Display": "Afficher",
-<<<<<<< HEAD
-=======
-	"Display Chat Title in Tab": "",
-	"Display Emoji in Call": "Afficher les emojis pendant l'appel",
-	"Display Multi-model Responses in Tabs": "",
-	"Display the Username Instead of You in the Chat": "Afficher le nom d'utilisateur à la place de \"Vous\" dans la conversation",
->>>>>>> upstream/main
 	"Displays citations in the response": "Affiche les citations dans la réponse",
 	"Displays status updates (e.g., web search progress) in the response": "",
 	"Dissolve": "",
@@ -637,7 +407,6 @@
 	"Docling Parameters": "",
 	"Docling Server URL required.": "URL du serveur Docling requise.",
 	"Document": "Document",
-	"Document ID Field": "",
 	"Document Intelligence": "Intelligence documentaire",
 	"Document Intelligence endpoint required.": "",
 	"Document Intelligence Model": "",
@@ -691,60 +460,41 @@
 	"Edit Default Permissions": "Modifier les autorisations par défaut",
 	"Edit Folder": "",
 	"Edit Image": "",
-	"Edit Knowledge Connection": "",
 	"Edit Last Message": "",
 	"Edit Model": "",
 	"Edit Terminal Connection": "",
 	"Edit User": "Modifier l'utilisateur",
 	"Edit User Group": "Modifier le groupe d'utilisateurs",
-	"Edit webhook": "",
 	"Edit workflow.json content": "",
 	"Eject": "Ejecte",
 	"Eject model": "",
 	"ElevenLabs": "ElevenLabs",
 	"Email": "Courriel",
-	"Email Claim": "",
 	"Embark on adventures": "Embarquez pour des aventures",
 	"Embedding": "Embedding",
 	"Embedding Batch Size": "Taille du lot d'embedding",
 	"Embedding Concurrent Requests": "",
 	"Embedding Model": "Modèle d'embedding",
 	"Embedding Model Engine": "Moteur de modèle d'embedding",
-	"Emoji": "",
 	"Emojis": "",
-<<<<<<< HEAD
-=======
-	"Empty": "",
-	"Empty message": "",
->>>>>>> upstream/main
 	"Enable All": "",
 	"Enable API Keys": "",
 	"Enable autocomplete generation for chat messages": "Activer la génération des suggestions pour les messages",
 	"Enable Code Execution": "Autoriser l'execution de code",
 	"Enable Code Interpreter": "Autoriser l'interprétation de code",
 	"Enable Community Sharing": "Activer le partage communautaire",
-	"Enable Group Mapping": "",
-	"Enable Image Generation": "",
 	"Enable Memory Locking (mlock) to prevent model data from being swapped out of RAM. This option locks the model's working set of pages into RAM, ensuring that they will not be swapped out to disk. This can help maintain performance by avoiding page faults and ensuring fast data access.": "Activer le verrouillage de la mémoire (mlock) pour empêcher les données du modèle d'être échangées de la RAM. Cette option verrouille l'ensemble de pages de travail du modèle en RAM, garantissant qu'elles ne seront pas échangées vers le disque. Cela peut aider à maintenir les performances en évitant les défauts de page et en assurant un accès rapide aux données.",
 	"Enable Memory Mapping (mmap) to load model data. This option allows the system to use disk storage as an extension of RAM by treating disk files as if they were in RAM. This can improve model performance by allowing for faster data access. However, it may not work correctly with all systems and can consume a significant amount of disk space.": "Activer le mappage de la mémoire (mmap) pour charger les données du modèle. Cette option permet au système d'utiliser le stockage disque comme une extension de la RAM en traitant les fichiers disque comme s'ils étaient en RAM. Cela peut améliorer les performances du modèle en permettant un accès plus rapide aux données. Cependant, cela peut ne pas fonctionner correctement avec tous les systèmes et peut consommer une quantité significative d'espace disque.",
 	"Enable Message Rating": "Activer l'évaluation des messages",
 	"Enable Mirostat sampling for controlling perplexity.": "Activer l'échantillonnage Mirostat pour contrôler Perplexité.",
 	"Enable New Sign Ups": "Activer les nouvelles inscriptions",
-	"Enable OAuth Signup": "",
-	"Enable Role Mapping": "",
-	"Enable Web Search": "",
 	"Enable, disable, or customize the reasoning tags used by the model. \"Enabled\" uses default tags, \"Disabled\" turns off reasoning tags, and \"Custom\" lets you specify your own start and end tags.": "",
 	"Enabled": "Activé",
 	"End Tag": "",
-	"Endpoint": "",
 	"Endpoint URL": "URL du point de terminaison",
 	"Enrich Hybrid Search Text": "",
 	"Ensure your CSV file includes 4 columns in this order: Name, Email, Password, Role.": "Vérifiez que votre fichier CSV comprenne les 4 colonnes dans cet ordre : Name, Email, Password, Role.",
-<<<<<<< HEAD
 	"Enter a name first": "",
-=======
-	"Enter {{role}} message here": "Entrez le message {{role}} ici",
->>>>>>> upstream/main
 	"Enter a title for the pending user info overlay. Leave empty for default.": "Entrez un titre pour l'interface utilisateur en attente. Laissez vide pour le défaut.",
 	"Enter a watermark for the response. Leave empty for none.": "Entrez un filigrane pour la réponse. Laissez vide pour aucun.",
 	"Enter additional headers in JSON format": "",
@@ -761,8 +511,6 @@
 	"Enter Chunk Min Size Target": "",
 	"Enter Chunk Overlap": "Entrez le chevauchement des chunks",
 	"Enter Chunk Size": "Entrez la taille des chunks",
-	"Enter Client ID": "",
-	"Enter Client Secret": "",
 	"Enter comma-separated \"token:bias_value\" pairs (example: 5432:100, 413:-100)": "Entrez des paires \"token:valeur_biais\" séparées par des virgules (exemple : 5432:100, 413:-100)",
 	"Enter content for the pending user info overlay. Leave empty for default.": "Entrez le contenu pour l'interface utilisateur en attente. Laissez vide pour le défaut.",
 	"Enter coordinates (e.g. 51.505, -0.09)": "",
@@ -799,15 +547,7 @@
 	"Enter Jupyter Token": "Entrez le Token Jupyter",
 	"Enter Jupyter URL": "Entrez l'url de Jupyter",
 	"Enter Kagi Search API Key": "Entrez la clé API Kagi Search",
-<<<<<<< HEAD
-=======
-	"Enter Key Behavior": "Entrez la clé Behavior",
-	"Enter language": "",
->>>>>>> upstream/main
 	"Enter language codes": "Entrez les codes de langue",
-	"Enter Linkup API Key": "",
-	"Enter Microsoft Web IQ API Base URL": "",
-	"Enter Microsoft Web IQ API Key": "",
 	"Enter MinerU API Key": "",
 	"Enter Mistral API Base URL": "",
 	"Enter Mistral API Key": "Entrez la clé APU de Mistral",
@@ -826,7 +566,6 @@
 	"Enter Playwright WebSocket URL": "Entrez l'irl du websocket Playwright",
 	"Enter proxy URL (e.g. https://user:password@host:port)": "Entrez l'URL du proxy (par ex. https://use:password@host:port)",
 	"Enter reasoning effort": "Entrez l'effort de raisonnement",
-	"Enter Redirect URI": "",
 	"Enter Score": "Entrez votre score",
 	"Enter SearchApi API Key": "Entrez la clé API SearchApi",
 	"Enter SearchApi Engine": "Entrez le moteur de recherche SearchApi",
@@ -836,7 +575,6 @@
 	"Enter SerpApi API Key": "Entrez la clé API SerPAI",
 	"Enter SerpApi Engine": "Entrez le moteur SerApi",
 	"Enter Serper API Key": "Entrez la clé API Serper",
-	"Enter SERPHouse API Key": "",
 	"Enter Serply API Key": "Entrez la clé API Serply",
 	"Enter Serpstack API Key": "Entrez la clé API Serpstack",
 	"Enter server host": "Entrez l'hôte du serveur",
@@ -854,12 +592,6 @@
 	"Enter the URL to import": "Entrer l'url à importer",
 	"Enter Tika Server URL": "Entrez l'URL du serveur Tika",
 	"Enter timeout in seconds": "Entrez le délai d'expiration en secondes",
-<<<<<<< HEAD
-=======
-	"Enter to Send": "Taper entrer pour envoyer",
-	"Enter token threshold": "",
-	"Enter Tokenizer Model": "",
->>>>>>> upstream/main
 	"Enter Top K": "Entrez la valeur Top K",
 	"Enter Top K Reranker": "Entrez la valeur Top K pour le Reranker",
 	"Enter URL (e.g. http://127.0.0.1:7860/)": "Entrez l'URL (par ex. {http://127.0.0.1:7860/})",
@@ -889,19 +621,8 @@
 	"Error: A model with the ID '{{modelId}}' already exists. Please select a different ID to proceed.": "",
 	"Error: Model ID cannot be empty. Please enter a valid ID to proceed.": "",
 	"Evaluations": "Évaluations",
-<<<<<<< HEAD
 	"Every craft begins bare-handed.": "",
-=======
-	"Event": "",
-	"Event created": "",
-	"Event deleted": "",
-	"Event names may change as Open WebUI evolves. Use broad patterns like user.* for integrations that should continue across new related events.": "",
-	"Event title": "",
-	"Event updated": "",
-	"Events": "",
->>>>>>> upstream/main
 	"Exa API Key": "Clé d'Exa API",
-	"Example": "",
 	"Example: (&(objectClass=inetOrgPerson)(uid=%s))": "Exemple: (&(objectClass=inetOrgPerson)(uid=%s))",
 	"Example: ALL": "Exemple: TOUS",
 	"Example: mail": "Exemple: mail",
@@ -923,29 +644,18 @@
 	"Export chat (.json)": "Exporter la conversation (.json)",
 	"Export Config": "",
 	"Export Models": "",
-<<<<<<< HEAD
-=======
-	"Export Prompts": "",
-	"Export Skills": "",
->>>>>>> upstream/main
 	"Export to CSV": "Exporter en CSV",
 	"Export Tools": "",
 	"Export Users": "",
 	"External": "Externe",
-	"External connection not found.": "",
 	"External Document Loader URL required.": "URL du chargeur de document externe requis",
-	"External Knowledge Source": "",
-	"External Knowledge Sources": "",
 	"External Task Model": "Model de tâche externe",
-	"External Tool Servers": "",
-	"External vectors must be generated with the same embedding model configured in Open WebUI.": "",
 	"External Web Loader API Key": "Clé API du chargeur Web externe",
 	"External Web Loader URL": "URL du chargeur Web externe",
 	"External Web Search API Key": "Clé API de la recherche Web externe",
 	"External Web Search URL": "URL de la recherche Web externe",
 	"Faculties": "",
 	"Failed to archive chat.": "",
-<<<<<<< HEAD
 	"Failed to connect to {{URL}} OpenAPI tool server": "Échec de la connexion au serveur d'outils OpenAPI {{URL}}",
 	"Failed to connect to {{URL}} terminal server": "",
 	"Failed to copy link": "Échec de la copie du lien",
@@ -955,39 +665,11 @@
 	"Failed to extract content from the file: {{error}}": "",
 	"Failed to extract content from the file.": "",
 	"Failed to fetch models": "Échec de la récupération des modèles",
-=======
-	"Failed to attach file": "",
-	"Failed to clear status": "",
-	"Failed to compare files.": "",
-	"Failed to connect to {{URL}} OpenAPI tool server": "Échec de la connexion au serveur d'outils OpenAPI {{URL}}",
-	"Failed to connect to {{URL}} terminal server": "",
-	"Failed to copy link": "Échec de la copie du lien",
-	"Failed to create API Key.": "Échec de la création de la clé API.",
-	"Failed to delete calendar": "",
-	"Failed to delete note": "Échec de la délétion de la note",
-	"Failed to delete webhook": "",
-	"Failed to disconnect": "",
-	"Failed to download image": "",
-	"Failed to extract content from the file: {{error}}": "",
-	"Failed to extract content from the file.": "",
-	"Failed to fetch models": "Échec de la récupération des modèles",
-	"Failed to generate title": "",
-	"Failed to import models": "",
-	"Failed to load chat": "",
-	"Failed to load chat preview": "",
->>>>>>> upstream/main
 	"Failed to load DOCX file. Please try downloading it instead.": "",
 	"Failed to load Excel/CSV file. Please try downloading it instead.": "",
 	"Failed to load Interface settings": "",
 	"Failed to load PPTX file. Please try downloading it instead.": "",
 	"Failed to move chat": "",
-<<<<<<< HEAD
-=======
-	"Failed to process URL: {{url}}": "",
-	"Failed to read clipboard contents": "Échec de la lecture du contenu du presse-papiers",
-	"Failed to refresh terminals: {{error}}": "",
-	"Failed to remove member": "",
->>>>>>> upstream/main
 	"Failed to render diagram": "",
 	"Failed to render visualization": "",
 	"Failed to save": "",
@@ -996,16 +678,10 @@
 	"Failed to save models configuration": "Échec de la sauvegarde de la configuration des modèles",
 	"Failed to save policy: {{error}}": "",
 	"Failed to save terminal servers": "",
-	"Failed to save webhook": "",
 	"Failed to unshare chat.": "",
 	"Failed to update settings": "Échec de la mise à jour des réglages",
 	"Failed to update status": "",
-<<<<<<< HEAD
 	"Favicons": "",
-=======
-	"Failed to update webhook": "",
-	"Failed to upload file.": "Échec du téléversement du fichier.",
->>>>>>> upstream/main
 	"Features": "Fonctionnalités",
 	"Features Permissions": "Autorisations des fonctionnalités",
 	"February": "Février",
@@ -1018,32 +694,14 @@
 	"File": "Fichier",
 	"File browser": "",
 	"File Context": "",
-<<<<<<< HEAD
-=======
-	"File deleted successfully.": "",
-	"File Extensions": "",
->>>>>>> upstream/main
 	"File Mode": "Mode fichier",
-	"File moved.": "",
 	"File name": "",
 	"File not found.": "Fichier introuvable.",
-<<<<<<< HEAD
 	"File size should not exceed {{maxSize}} MB.": "La taille du fichier ne doit pas dépasser {{maxSize}} Mo.",
 	"File Upload": "Téléversement du fichier",
 	"Filename": "",
 	"Files": "Fichiers",
 	"Fill name + base model to create": "",
-=======
-	"File removed successfully.": "Fichier supprimé avec succès.",
-	"File renamed.": "",
-	"File size should not exceed {{maxSize}} MB.": "La taille du fichier ne doit pas dépasser {{maxSize}} Mo.",
-	"File Upload": "Téléversement du fichier",
-	"File uploaded successfully": "Fichier téléversé avec succès",
-	"Filename": "",
-	"Files": "Fichiers",
-	"Fill the required fields first.": "",
-	"Fill the source fields and test query first.": "",
->>>>>>> upstream/main
 	"Filter": "Filtre",
 	"Filters": "Filtres",
 	"Filters, valves, and middleware workflows.": "",
@@ -1061,12 +719,8 @@
 	"Folder name cannot be empty.": "Le nom du dossier ne peut pas être vide.",
 	"Folder options": "",
 	"Folders": "",
-<<<<<<< HEAD
 	"folio": "",
 	"folios": "",
-=======
-	"Folders Sharing": "",
->>>>>>> upstream/main
 	"Follow up": "Suivi",
 	"Follow Up Generation": "Suivi de la génération",
 	"Follow Up Generation Prompt": "Suivi de la génération du protompt",
@@ -1094,11 +748,6 @@
 	"Function imported successfully": "Import de la fonction réalisé",
 	"Function Name": "Nom de la fonction",
 	"Function Name Filter List": "",
-<<<<<<< HEAD
-=======
-	"Function starter": "",
-	"Function updated successfully": "La fonction a été mise à jour avec succès",
->>>>>>> upstream/main
 	"Functions": "Fonctions",
 	"Functions allow arbitrary code execution.": "Les fonctions permettent l'exécution de code arbitraire.",
 	"Gather a quire": "",
@@ -1126,15 +775,6 @@
 	"Google PSE Engine Id": "ID du moteur de recherche PSE de Google",
 	"Gravatar": "",
 	"Grokipedia": "",
-<<<<<<< HEAD
-=======
-	"group": "",
-	"Group": "",
-	"Group Channel": "",
-	"Group Claim": "",
-	"Group created successfully": "Groupe créé avec succès",
-	"Group deleted successfully": "Groupe supprimé avec succès",
->>>>>>> upstream/main
 	"Group Description": "Description du groupe",
 	"Group Name": "Nom du groupe",
 	"groups": "",
@@ -1142,11 +782,6 @@
 	"H1": "",
 	"H2": "",
 	"H3": "",
-<<<<<<< HEAD
-=======
-	"Haptic Feedback": "Retour haptique",
-	"Header variables": "",
->>>>>>> upstream/main
 	"Headers": "",
 	"Headers must be a valid JSON object": "",
 	"Hello, {{name}}": "Bonjour, {{name}}.",
@@ -1175,12 +810,6 @@
 	"I acknowledge that I have read and I understand the implications of my action. I am aware of the risks associated with executing arbitrary code and I have verified the trustworthiness of the source.": "Je reconnais avoir lu et compris les implications de mes actions. Je suis conscient des risques associés à l'exécution d'un code arbitraire et j'ai vérifié la fiabilité de la source.",
 	"ID": "ID",
 	"ID cannot contain \":\" or \"|\" characters": "",
-<<<<<<< HEAD
-=======
-	"ID copied to clipboard": "",
-	"Identity audit": "",
-	"Idle only": "",
->>>>>>> upstream/main
 	"Idle Timeout": "",
 	"Ignite curiosity": "Éveiller la curiosité",
 	"Image": "Image",
@@ -1200,12 +829,6 @@
 	"Import Config": "",
 	"Import From Link": "Importer depuis le lien",
 	"Import Models": "",
-<<<<<<< HEAD
-=======
-	"Import Prompts": "",
-	"Import Skills": "",
-	"Import successful": "",
->>>>>>> upstream/main
 	"Import Tools": "",
 	"Important Update": "Mise à jour importante",
 	"Imported": "",
@@ -1242,11 +865,6 @@
 	"Jina API Key": "Clé API Jina",
 	"join our Discord for help.": "Rejoignez notre Discord pour obtenir de l'aide.",
 	"JSON": "JSON",
-<<<<<<< HEAD
-=======
-	"JSON Base64": "",
-	"JSON Preview": "Aperçu JSON",
->>>>>>> upstream/main
 	"JSON Spec": "",
 	"July": "Juillet",
 	"June": "Juin",
@@ -1257,26 +875,9 @@
 	"Keep in Sidebar": "Epingler dans la barre latérale",
 	"Key": "Clé",
 	"Key is required": "",
+	"Keyboard shortcuts": "Raccourcis clavier",
 	"Keyboard Shortcuts": "",
 	"Knowledge": "Connaissances",
-<<<<<<< HEAD
-=======
-	"Knowledge Access": "Accès aux connaissances",
-	"Knowledge Base": "",
-	"Knowledge base has been reset": "",
-	"Knowledge created successfully.": "Connaissance créée avec succès.",
-	"Knowledge deleted successfully.": "Connaissance supprimée avec succès.",
-	"Knowledge Description": "",
-	"Knowledge exported successfully": "",
-	"Knowledge Name": "",
-	"Knowledge Public Sharing": "Partage public des Connaissances",
-	"Knowledge Sharing": "",
-	"Knowledge source created.": "",
-	"Knowledge source updated.": "",
-	"Knowledge updated successfully": "Connaissance mise à jour avec succès",
-	"Kokoro.js (Browser)": "Kokoro.js (Navigateur)",
-	"Kokoro.js Dtype": "Kokoro.js Dtype",
->>>>>>> upstream/main
 	"Label": "Étiquette",
 	"Language Locales": "Réglages régionaux de langue",
 	"Last 24 hours": "",
@@ -1305,18 +906,9 @@
 	"Leave model field empty to use the default model.": "Laisser le champ du modèle vide pour utiliser le modèle par défaut.",
 	"lexical": "",
 	"License": "Licence",
-	"Lifecycle JSON": "",
 	"Lift List": "",
 	"Limit concurrent search queries. 0 = unlimited (default). Set to 1 for sequential execution (recommended for APIs with strict rate limits like Brave free tier).": "",
 	"Limits the number of concurrent embedding requests. Set to 0 for unlimited.": "",
-<<<<<<< HEAD
-=======
-	"Linkup API Key": "",
-	"List": "",
-	"List calendars, search, create, update, and delete calendar events": "",
-	"Listening...": "Écoute en cours...",
-	"Live": "",
->>>>>>> upstream/main
 	"llama.cpp": "",
 	"Llama.cpp": "Llama.cpp",
 	"Loaded": "",
@@ -1327,11 +919,6 @@
 	"Local Task Model": "Model de tâche local",
 	"Lost": "Perdu",
 	"Low": "",
-<<<<<<< HEAD
-=======
-	"Lower the context compaction token threshold for this model. The global context compaction threshold remains the maximum.": "",
-	"LTR": "LTR",
->>>>>>> upstream/main
 	"Made by Open WebUI Community": "Réalisé par la communauté OpenWebUI",
 	"Make password visible in the user interface": "Rendre visible les mots de passe dans l'interface",
 	"Make sure to export a workflow.json file as API format from ComfyUI.": "Veillez à exporter un fichier workflow.json au format API depuis ComfyUI.",
@@ -1343,12 +930,7 @@
 	"Manage OpenAI API Connections": "Gérer les connexions API OpenAI",
 	"Manage Pipelines": "Gérer les pipelines",
 	"Manage Tool Servers": "Gérer les serveurs d'outils",
-<<<<<<< HEAD
 	"Manage, import, and configure the models available to users.": "",
-=======
-	"Manage your account information.": "",
-	"Mapped Source": "",
->>>>>>> upstream/main
 	"March": "Mars",
 	"Markdown": "Markdown",
 	"Markdown Header Text Splitter": "",
@@ -1369,15 +951,6 @@
 	"Members": "",
 	"Memories": "",
 	"Memory": "Mémoire",
-<<<<<<< HEAD
-=======
-	"Memory added successfully": "Souvenir ajoutée avec succès",
-	"Memory cleared successfully": "La mémoire a été effacée avec succès",
-	"Memory deleted successfully": "Le souvenir a été supprimé avec succès",
-	"Memory System Context": "",
-	"Memory updated successfully": "Le souvenir a été mis à jour avec succès",
-	"Merge Accounts by Email": "",
->>>>>>> upstream/main
 	"Merge Responses": "Fusionner les réponses",
 	"Merged Response": "Réponse fusionnée",
 	"Message": "",
@@ -1387,16 +960,6 @@
 	"Message text...": "",
 	"messages": "",
 	"Messages": "",
-<<<<<<< HEAD
-=======
-	"Messages you send after creating your link won't be shared. Users with the URL will be able to view the shared chat.": "Les messages que vous envoyez après avoir créé votre lien ne seront pas partagés. Les utilisateurs disposant de l'URL pourront voir la conversation partagée.",
-	"Metadata Field": "",
-	"Microsoft OneDrive": "Microsoft OneDrive",
-	"Microsoft OneDrive (personal)": "Microsoft OneDrive (personnel)",
-	"Microsoft OneDrive (work/school)": "Microsoft OneDrive (travail/école)",
-	"Microsoft Web IQ API Base URL": "",
-	"Microsoft Web IQ API Key": "",
->>>>>>> upstream/main
 	"min": "",
 	"MinerU": "",
 	"MinerU API Key required for Cloud API mode.": "",
@@ -1438,42 +1001,18 @@
 	"Models Sharing": "",
 	"Mojeek": "",
 	"Mojeek Search API Key": "Clé API Mojeek",
-<<<<<<< HEAD
-=======
-	"Monday – Friday": "",
-	"Month": "",
-	"Monthly": "",
->>>>>>> upstream/main
 	"More": "Plus",
 	"More Concise": "",
 	"More Options": "",
 	"Move": "",
-<<<<<<< HEAD
-=======
-	"Moved {{name}}": "",
-	"Multipart Upload": "",
-	"Mute": "",
-	"Muted": "",
->>>>>>> upstream/main
 	"My Terminal": "",
 	"Name": "Nom d'utilisateur",
 	"Name and ID are required, please fill them out": "",
 	"Name this model…": "",
 	"Name your model": "",
 	"Native": "Natif",
-<<<<<<< HEAD
-=======
-	"Native mode (default) leverages the model's built-in tool-calling capabilities. Legacy mode works with a wider range of models by calling tools once before execution via prompt injection.": "",
-	"Never": "",
->>>>>>> upstream/main
 	"New": "",
 	"New Chat": "Nouvelle conversation",
-<<<<<<< HEAD
-=======
-	"New directory": "",
-	"New Directory": "",
-	"New Event": "",
->>>>>>> upstream/main
 	"New File": "",
 	"New Folder": "Nouveau dossier",
 	"New Function": "Nouvelle fonction",
@@ -1488,7 +1027,6 @@
 	"Next message": "Message suivant",
 	"No access grants. Private to you.": "",
 	"No activity data": "",
-	"No additional headers are sent unless configured.": "",
 	"No authentication": "",
 	"No chats found": "",
 	"No chats found for this user.": "Pas de conversation trouvée pour cet utilisateur.",
@@ -1497,13 +1035,7 @@
 	"No data": "",
 	"No data found": "",
 	"No distance available": "Aucune distance disponible",
-<<<<<<< HEAD
-=======
-	"No event webhooks configured.": "",
-	"No execution logs available yet": "",
->>>>>>> upstream/main
 	"No expiration can pose security risks.": "",
-	"No external knowledge sources configured.": "",
 	"No feedback found": "",
 	"No file selected": "Aucun fichier sélectionné",
 	"No files found": "",
@@ -1513,27 +1045,14 @@
 	"No HTML, CSS, or JavaScript content found.": "Aucun contenu HTML, CSS ou JavaScript trouvé.",
 	"No inference engine with management support found": "Aucun moteur d'inférence avec support trouvé",
 	"No kernel": "",
-<<<<<<< HEAD
-=======
-	"No knowledge bases accessible": "",
-	"No knowledge bases found.": "",
-	"No knowledge found": "Aucune connaissance trouvée",
->>>>>>> upstream/main
 	"No limit": "",
 	"No model IDs": "Aucun ID de modèle",
-	"No models accessible": "",
 	"No models available": "",
 	"No models found": "Aucun modèle trouvé",
 	"No models match your search.": "",
 	"No models selected": "Aucun modèle sélectionné",
 	"No one": "",
 	"No output items": "",
-<<<<<<< HEAD
-=======
-	"No pinned messages": "",
-	"No prompts found": "",
-	"No Repeat": "",
->>>>>>> upstream/main
 	"No results": "Aucun résultat trouvé",
 	"No results found": "Aucun résultat trouvé",
 	"No search query generated": "Aucune requête de recherche générée",
@@ -1545,18 +1064,12 @@
 	"No Terminal connection configured.": "",
 	"No terminal connections configured.": "",
 	"No tool server connections configured.": "",
-<<<<<<< HEAD
 	"No tools match your search.": "",
-=======
-	"No tools accessible": "",
-	"No tools found": "",
->>>>>>> upstream/main
 	"No users were found.": "Aucun utilisateur trouvé.",
 	"No valves": "",
 	"No valves to update": "Aucune vanne à mettre à jour",
 	"Node Ids": "",
 	"None": "Aucun",
-	"Not configured": "",
 	"Not factually correct": "Non factuellement correct",
 	"Not helpful": "Pas utile",
 	"Not Registered": "",
@@ -1566,31 +1079,21 @@
 	"Nothing has been rehearsed yet.": "",
 	"November": "Novembre",
 	"OAuth": "",
-	"OAuth / OIDC": "",
 	"OAuth 2.1": "",
 	"OAuth 2.1 (Static)": "",
 	"OAuth ID": "ID OAuth",
-	"OAuth Resource Parameter": "",
-	"OAuth Scopes": "",
 	"OAuth Server URL": "",
 	"October": "Octobre",
 	"Off": "Désactivé",
 	"Okay, Let's Go!": "D'accord, allons-y !",
-<<<<<<< HEAD
-=======
-	"Older messages are summarized when estimated context exceeds this token limit.": "",
-	"OLED Dark": "Noir OLED",
->>>>>>> upstream/main
 	"Ollama": "Ollama",
 	"Ollama API": "API Ollama",
 	"Ollama Cloud API Key": "",
 	"Ollama Version": "Version d'Ollama",
-	"Omit": "",
 	"On": "Activé",
 	"On by default": "",
 	"On by default for new chats": "",
 	"OneDrive": "OneDrive",
-	"Only active during Voice Mode.": "",
 	"Only active when \"Paste Large Text as File\" setting is toggled on.": "",
 	"Only active when the chat input is in focus and an LLM is generating a response.": "",
 	"Only active when the chat input is in focus.": "",
@@ -1660,39 +1163,21 @@
 	"Participate in community leaderboards and evaluations! Syncing aggregated usage stats helps drive research and improvements to Open WebUI. Your privacy is paramount: no message content is ever shared.": "",
 	"Password": "Mot de passe",
 	"Passwords do not match.": "",
-<<<<<<< HEAD
 	"PDF document (.pdf)": "Document au format PDF (.pdf)",
 	"PDF Extract Images (OCR)": "Extraction d'images PDF (OCR)",
 	"PDF Loader Mode": "",
 	"Penalties & Mirostat": "",
-=======
-	"Paste Large Text as File": "Coller un texte volumineux comme fichier",
-	"Path": "",
-	"Path copied": "",
-	"Paused": "",
-	"PDF document (.pdf)": "Document au format PDF (.pdf)",
-	"PDF Extract Images (OCR)": "Extraction d'images PDF (OCR)",
-	"PDF Loader Mode": "",
-	"pdf, docx, pptx, xlsx": "",
->>>>>>> upstream/main
 	"pending": "en attente",
 	"Pending": "en attente",
-	"Pending Accounts": "",
 	"Pending User Overlay Content": "Contenu de l'overlay utilisateur en attente",
 	"Pending User Overlay Title": "Titre de l'overlay utilisateur en attente",
 	"Permissions": "Permissions",
-	"Permissions reset to defaults": "",
 	"Perplexity API Key": "Clé d'API de Perplexity",
 	"Perplexity Model": "Modèle de Perplexity",
 	"Perplexity Search API URL": "",
 	"Perplexity Search Context Usage": "Utilisation du contexte de recherche de Perplexity",
 	"Persistent": "",
-<<<<<<< HEAD
 	"Pick an icon or emoji": "",
-=======
-	"Personalization": "Personnalisation",
-	"Picture Claim": "",
->>>>>>> upstream/main
 	"Pin": "Épingler",
 	"Pinned Models": "",
 	"Pioneer insights": "Explorer de nouvelles perspectives",
@@ -1715,14 +1200,9 @@
 	"Please enter Client ID and Client Secret": "",
 	"Please register the OAuth client": "",
 	"Please save the connection to persist the OAuth client information and do not change the ID": "",
-<<<<<<< HEAD
-=======
-	"Please select a model.": "Veuillez sélectionner un modèle.",
->>>>>>> upstream/main
 	"Please select a reason": "Veuillez sélectionner une raison",
 	"Please select a valid JSON file": "",
 	"Policy ID": "",
-	"Policy ID is required": "",
 	"Port": "Port",
 	"Ports": "",
 	"Positive attitude": "Attitude positive",
@@ -1730,7 +1210,6 @@
 	"Prefix ID is used to avoid conflicts with other connections by adding a prefix to the model IDs - leave empty to disable": "Le préfixe ID est utilisé pour éviter les conflits avec d'autres connexions en ajoutant un préfixe aux ID de modèle - laissez vide pour désactiver",
 	"Prevent File Creation": "",
 	"Preview": "Aperçu",
-	"Preview Access": "",
 	"Previous 30 days": "30 derniers jours",
 	"Previous 7 days": "7 derniers jours",
 	"Previous message": "Message précédent",
@@ -1739,8 +1218,6 @@
 	"Prompt": "Prompt",
 	"Prompt Template": "",
 	"Provider": "",
-	"Provider Name": "",
-	"Provider URL": "",
 	"Public": "Public",
 	"Public shared chat links are disabled for this workspace.": "",
 	"Pull \"{{searchValue}}\" from Ollama.com": "Récupérer « {{searchValue}} » depuis Ollama.com",
@@ -1763,39 +1240,18 @@
 	"Read": "Lire",
 	"Read Aloud": "Lire à haute voix",
 	"Read more →": "",
-<<<<<<< HEAD
 	"read only": "",
-=======
-	"Read only": "",
->>>>>>> upstream/main
 	"Read Only": "",
 	"Read, write, and diff-edit durable notes for the current chat Scratchboard": "",
 	"Reason": "Raisonne",
 	"Reasoning Effort": "Effort de raisonnement",
 	"Reasoning Tags": "",
 	"Reasoning text...": "",
-	"Receives matching events across the instance, including system/config events and events associated with any user.": "",
-	"Receives matching events that are not associated with a user.": "",
-	"Receives matching user-associated events only when the actor, user subject, or user data matches these users or current group members. System/config events are not sent.": "",
 	"Recently Used": "",
 	"Reconnected": "",
-<<<<<<< HEAD
 	"Redirecting you to Open WebUI Community": "Redirection vers la communauté OpenWebUI",
 	"Reduces the probability of generating nonsense. A higher value (e.g. 100) will give more diverse answers, while a lower value (e.g. 10) will be more conservative.": "Réduit la probabilité de générer du contenu incohérent. Une valeur plus élevée (ex. : 100) produira des réponses plus variées, tandis qu'une valeur plus faible (ex. : 10) sera plus conservatrice.",
-=======
-	"Record": "Enregistrement",
-	"Record voice": "Enregistrer la voix",
-	"Redirect URI": "",
-	"Redirecting you to Open WebUI Community": "Redirection vers la communauté OpenWebUI",
-	"Reduces the probability of generating nonsense. A higher value (e.g. 100) will give more diverse answers, while a lower value (e.g. 10) will be more conservative.": "Réduit la probabilité de générer du contenu incohérent. Une valeur plus élevée (ex. : 100) produira des réponses plus variées, tandis qu'une valeur plus faible (ex. : 10) sera plus conservatrice.",
-	"Reference Chats": "",
->>>>>>> upstream/main
 	"Refresh": "",
-	"Refresh requested: {{count}} terminal(s)_one": "",
-	"Refresh requested: {{count}} terminal(s)_many": "",
-	"Refresh requested: {{count}} terminal(s)_other": "",
-	"Refresh Terminals": "",
-	"Refreshing...": "",
 	"Refused when it shouldn't have": "Refusé alors qu'il n'aurait pas dû l'être",
 	"Regenerate": "Regénérer",
 	"Regenerate Response": "",
@@ -1814,39 +1270,15 @@
 	"Remove from favorites": "",
 	"Remove image": "Retirer l'image",
 	"Remove Model": "Retirer le modèle",
-	"Removing {{count}} stale files..._one": "",
-	"Removing {{count}} stale files..._many": "",
-	"Removing {{count}} stale files..._other": "",
 	"Rename": "Renommer",
 	"Reorder Models": "Réorganiser les modèles",
-<<<<<<< HEAD
-=======
-	"Repeat": "",
-	"Repeats": "",
-	"Reply": "",
-	"Reply in Thread": "Répondre dans le fil de discussion",
-	"Reply to thread...": "",
-	"Replying to {{NAME}}": "",
-	"Request Format": "",
-	"Require users to confirm before using Web Search.": "",
-	"required": "",
->>>>>>> upstream/main
 	"Reranking Batch Size": "",
 	"Reranking Engine": "Moteur de ré-ranking",
 	"Reranking Model": "Modèle de ré-ranking",
-	"Research Knowledge": "",
 	"Reset": "Réinitialiser",
 	"Reset All Models": "Réinitialiser tous les modèles",
-	"Reset all permissions to their initial configuration values": "",
-	"Reset group permissions to match the current default user permissions": "",
 	"Reset Image": "Réinitialiser l’image",
-<<<<<<< HEAD
 	"Reset to default": "",
-=======
-	"Reset knowledge base?": "",
-	"Reset persisted files": "",
-	"Reset to Defaults": "",
->>>>>>> upstream/main
 	"Reset Upload Directory": "Réinitialiser le répertoire de téléchargement",
 	"Reset Vector Storage/Knowledge": "Réinitialiser le stockage vectoriel/connaissances",
 	"Reset view": "Réinitialiser la vue",
@@ -1868,11 +1300,6 @@
 	"Return token usage information in the response when supported": "",
 	"Reusable instruction packs that teach your models a procedure or domain — import a markdown skill or write your own, then enable it where you need it.": "",
 	"Role": "Rôle",
-<<<<<<< HEAD
-=======
-	"Roles Claim": "",
-	"RTL": "RTL",
->>>>>>> upstream/main
 	"Run": "Exécuter",
 	"Run All": "",
 	"Running": "Exécution",
@@ -1885,18 +1312,10 @@
 	"Save As Copy": "Enregistrer comme copie",
 	"Saved": "Enregistré",
 	"Saving chat logs directly to your browser's storage is no longer supported. Please take a moment to download and delete your chat logs by clicking the button below. Don't worry, you can easily re-import your chat logs to the backend through": "La sauvegarde des journaux de conversation directement dans le stockage de votre navigateur n'est plus prise en charge. Veuillez prendre un instant pour télécharger et supprimer vos journaux de conversation en cliquant sur le bouton ci-dessous. Ne vous inquiétez pas, vous pouvez facilement réimporter vos journaux de conversation dans le backend via",
-<<<<<<< HEAD
 	"Scratchboard": "",
-=======
-	"Schedule": "",
-	"Scheduled time must be in the future": "",
-	"Scopes": "",
-	"Scroll On Branch Change": "Défilement lors du changement de branche",
->>>>>>> upstream/main
 	"Scroll to Top": "",
 	"Search": "Recherche",
 	"Search a model": "Rechercher un modèle",
-	"Search actions": "",
 	"Search all emojis": "",
 	"Search and manage user memories": "",
 	"Search and view user chat history": "",
@@ -1904,7 +1323,6 @@
 	"Search Chats": "Rechercher des conversations",
 	"Search engines and web content loaders for live results.": "",
 	"Search Files": "",
-	"Search filters": "",
 	"Search Filters": "Filtres de recherche",
 	"search for archived chats": "",
 	"search for folders": "",
@@ -1916,22 +1334,10 @@
 	"Search In Models": "",
 	"Search Models": "Rechercher des modèles",
 	"Search options": "Options de recherche",
-<<<<<<< HEAD
-=======
-	"Search or add pattern": "",
-	"Search Prompts": "Rechercher des prompts",
->>>>>>> upstream/main
 	"Search Result Count": "Nombre de résultats de recherche",
-	"Search skills": "",
 	"Search Skills": "",
 	"Search the web and fetch URLs": "",
-	"Search tools": "",
 	"Search Tools": "Rechercher des outils",
-<<<<<<< HEAD
-=======
-	"Search users or groups": "",
-	"Search, view, and manage user notes": "",
->>>>>>> upstream/main
 	"SearchApi API Key": "Clé API SearchApi",
 	"SearchApi Engine": "Moteur de recherche SearchApi",
 	"Searched {{count}} sites": "{{count}} sites recherchés",
@@ -1946,12 +1352,7 @@
 	"Seed": "Seed",
 	"Select": "",
 	"Select {{modelName}} model": "",
-<<<<<<< HEAD
 	"Select a base model": "Sélectionnez un modèle de base",
-=======
-	"Select a base model (e.g. llama3, gpt-4o)": "",
-	"Select a conversation to preview": "",
->>>>>>> upstream/main
 	"Select a engine": "Sélectionnez un moteur",
 	"Select a function": "Sélectionnez une fonction",
 	"Select a group": "Sélectionner un groupe",
@@ -1981,36 +1382,15 @@
 	"Selected Models": "",
 	"semantic": "",
 	"Send": "Envoyer",
-<<<<<<< HEAD
-=======
-	"Send a Message": "Envoyer un message",
-	"Send events for": "",
-	"Send message": "Envoyer un message",
-	"Send now": "",
-	"Send product events as JSON to external services. Chat destinations receive readable messages.": "",
-	"Send the PDF as a base64 data URL instead of uploading it first.": "",
-	"Sends `stream_options: { include_usage: true }` in the request.\nSupported providers will return token usage information in the response when set.": "Envoie `stream_options: { include_usage: true }` dans la requête.\nLes fournisseurs pris en charge renverront des informations sur l'utilisation des tokens dans la réponse lorsque cette option est activée.",
->>>>>>> upstream/main
 	"September": "Septembre",
 	"sequences that end a response — comma separated": "",
 	"SerpApi API Key": "Clé d'API SerpAPI",
 	"SerpApi Engine": "Moteur SerpAPI",
 	"Serper API Key": "Clé API Serper",
-	"SERPHouse API Key": "",
-	"SERPHouse Domain": "",
 	"Serply API Key": "Clé API Serply",
 	"Serpstack API Key": "Clé API Serpstack",
 	"Server connection failed": "",
-<<<<<<< HEAD
 	"Session": "",
-=======
-	"Server connection verified": "Connexion au serveur vérifiée",
-	"Service Account": "",
-	"Session": "",
-	"Session expired. Please sign in again.": "",
-	"Set as default": "Définir comme valeur par défaut",
-	"Set as Production": "",
->>>>>>> upstream/main
 	"Set embedding model": "Définir le modèle d'embedding",
 	"Set embedding model (e.g. {{model}})": "Définir le modèle d'embedding (par ex. {{model}})",
 	"Set reranking model (e.g. {{model}})": "Définir le modèle de ré-ranking (par ex. {{model}})",
@@ -2034,28 +1414,13 @@
 	"Share": "Partager",
 	"Share Chat": "Partage de conversation",
 	"Share to Open WebUI Community": "Partager avec la communauté OpenWebUI",
-<<<<<<< HEAD
-=======
-	"Share your background and interests": "",
-	"Shared": "",
->>>>>>> upstream/main
 	"Shared Chats": "",
 	"Shared with you": "",
 	"Sharing Permissions": "Autorisation de partage",
 	"Show": "Afficher",
-<<<<<<< HEAD
 	"Show Admin Details in Account Pending Overlay": "Afficher les coordonnées de l'administrateur aux comptes en attente",
 	"Show All": "",
 	"Show all ({{COUNT}} characters)": "",
-=======
-	"Show \"What's New\" Modal on Login": "Afficher la fenêtre modale \"Quoi de neuf\" lors de la connexion",
-	"Show Admin Details in Account Pending Overlay": "Afficher les coordonnées de l'administrateur aux comptes en attente",
-	"Show All": "",
-	"Show all ({{COUNT}} characters)": "",
-	"Show Files": "",
-	"Show Files on Terminal Select": "",
-	"Show Formatting Toolbar": "",
->>>>>>> upstream/main
 	"Show image preview": "Afficher l'aperçu de l'image",
 	"Show Model": "Afficher le model",
 	"Show Shortcuts": "",
@@ -2097,13 +1462,7 @@
 	"Sougou Search API sID": "Identifiant API Sougou Search (sID)",
 	"Sougou Search API SK": "Clé secrète API Sougou Search (SK)",
 	"Source": "Source",
-<<<<<<< HEAD
 	"Sources used": "",
-=======
-	"Specific users or groups": "",
-	"Speech Playback Speed": "Vitesse de lecture de la parole",
-	"Speech recognition error: {{error}}": "Erreur de reconnaissance vocale : {{error}}",
->>>>>>> upstream/main
 	"Speech-to-Text": "Reconnaissance vocale",
 	"Speech-to-Text Engine": "Moteur de reconnaissance vocale",
 	"Split documents by markdown headers before applying character/token splitting.": "",
@@ -2127,13 +1486,6 @@
 	"Strip Existing OCR": "Supprimer l'OCR existant",
 	"Strip existing OCR text from the PDF and re-run OCR. Ignored if Force OCR is enabled. Defaults to False.": "Supprimer le texte OCR existant du PDF et réexécuter l'OCR. Ignoré si la fonction Force OCR est activée. Par défaut à False.",
 	"STT Model": "Modèle de Speech-to-Text",
-<<<<<<< HEAD
-=======
-	"STT Settings": "Réglages de Speech-to-Text",
-	"Stylized PDF Export": "Export de PDF stylisés",
-	"Su_day_of_week": "",
-	"Sub Claim": "",
->>>>>>> upstream/main
 	"Submit question": "",
 	"Submit suggestion": "",
 	"Subtitle": "",
@@ -2147,22 +1499,13 @@
 	"Switch to JSON editor": "",
 	"Switch to visual editor": "",
 	"Sync": "",
-	"Sync a local directory with this knowledge base. Only new and modified files will be uploaded. The directory structure will be mirrored.": "",
-	"Sync complete: {{added}} added, {{modified}} modified, {{deleted}} deleted, {{unmodified}} unmodified": "",
 	"Sync Complete!": "",
 	"Sync Failed": "",
 	"Sync Usage Stats": "",
 	"Syncing stats...": "",
 	"Syncing...": "",
 	"Syncs only chats with updates after your last sync timestamp. Disable to re-sync all chats.": "",
-<<<<<<< HEAD
-=======
-	"System": "Système",
-	"System events only": "",
-	"System Instructions": "Instructions système",
->>>>>>> upstream/main
 	"System Prompt": "Prompt système",
-	"Table": "",
 	"Tag": "",
 	"Tags": "Étiquettes",
 	"Tags Generation": "Génération de tags",
@@ -2182,16 +1525,6 @@
 	"Temperature": "Température",
 	"Temporary Chat": "conversation temporaire",
 	"Terminal": "",
-<<<<<<< HEAD
-=======
-	"Terminal servers saved": "",
-	"Test": "",
-	"Test Query": "",
-	"Test returned no results.": "",
-	"Test succeeded.": "",
-	"Test the source before creating it.": "",
-	"Test the source before saving it.": "",
->>>>>>> upstream/main
 	"Text Splitter": "Text Splitter",
 	"Text-to-Speech": "Text-to-Speech",
 	"Text-to-Speech Engine": "Moteur de Text-to-Speech",
@@ -2206,11 +1539,8 @@
 	"The height in pixels to compress images to. Leave empty for no compression.": "Hauteur en pixels à laquelle les images doivent être compressées. Laisser vide pour ne pas compresser.",
 	"The LDAP attribute that maps to the mail that users use to sign in.": "L'attribut LDAP qui correspond au courriel que les utilisateurs utilisent pour se connecter.",
 	"The LDAP attribute that maps to the username that users use to sign in.": "L'attribut LDAP qui correspond au nom d'utilisateur que les utilisateurs utilisent pour se connecter.",
-<<<<<<< HEAD
 	"The leaderboard is currently in beta, and we may adjust the rating calculations as we refine the algorithm.": "Le classement est actuellement en version bêta et nous pouvons ajuster les calculs de notation à mesure que nous peaufinons l'algorithme.",
 	"the longest single response it may set": "",
-=======
->>>>>>> upstream/main
 	"The maximum file size in MB. If the file size exceeds this limit, the file will not be uploaded.": "La taille maximale du fichier en Mo. Si la taille du fichier dépasse cette limite, le fichier ne sera pas téléchargé.",
 	"The maximum number of files that can be used at once in chat. If the number of files exceeds this limit, the files will not be uploaded.": "Le nombre maximal de fichiers pouvant être utilisés en même temps dans la conversation. Si le nombre de fichiers dépasse cette limite, les fichiers ne seront pas téléchargés.",
 	"The only required step — refine everything else now or later.": "",
@@ -2236,11 +1566,6 @@
 	"This feature is currently experimental and may not work as expected.": "",
 	"This folder is empty": "",
 	"This is a default user permission and will remain enabled.": "",
-<<<<<<< HEAD
-=======
-	"This is an experimental feature, it may not function as expected and is subject to change at any time.": "Il s'agit d'une fonctionnalité expérimentale, elle peut ne pas fonctionner comme prévu et est sujette à modification à tout moment.",
-	"This knowledge base retrieves from a connected source. Open WebUI can query it, but cannot upload, sync, edit, delete, reset, or reindex its source data.": "",
->>>>>>> upstream/main
 	"This model is not publicly available. Please select another model.": "Ce modèle n'est pas disponible au public. Veuillez sélectionner un autre modèle.",
 	"This option controls how long the model will stay loaded into memory following the request (default: 5m)": "Cette option détermine la durée pendant laquelle le modèle restera chargé en mémoire après la demande (par défaut : 5m).",
 	"This option controls how many tokens are preserved when refreshing the context. For example, if set to 2, the last 2 tokens of the conversation context will be retained. Preserving context can help maintain the continuity of a conversation, but it may reduce the ability to respond to new topics.": "Cette option détermine combien de Token sont conservés lors du rafraîchissement du contexte. Par exemple, avec une valeur de 2, les 2 derniers Token seront conservés. Cela aide à maintenir la continuité de la conversation, mais peut limiter la capacité à traiter de nouveaux sujets.",
@@ -2252,11 +1577,6 @@
 	"This will delete <strong>{{NAME}}</strong> and <strong>all its contents</strong>.": "Cela supprimera <strong>{{NAME}}</strong> et <strong>tout son contenu</strong>.",
 	"This will delete all models including custom models": "Cela supprimera tous les modèles, y compris les modèles personnalisés",
 	"This will delete all models including custom models and cannot be undone.": "Cela supprimera tous les modèles, y compris les modèles personnalisés, et ne peut pas être annulé.",
-<<<<<<< HEAD
-=======
-	"This will permanently delete the calendar \"{{name}}\" and all its events. This action cannot be undone.": "",
-	"This will remove all files and directories from this knowledge base. This action cannot be undone.": "",
->>>>>>> upstream/main
 	"Thorough explanation": "Explication approfondie",
 	"Thought": "",
 	"Thought for {{DURATION}}": "Réflexion de {{DURATION}}",
@@ -2279,23 +1599,12 @@
 	"To learn more about available endpoints, visit our documentation.": "Pour en savoir plus sur les points de terminaison disponibles, consultez notre documentation.",
 	"To select skills here, add them to the \"Skills\" workspace first.": "",
 	"To select toolkits here, add them to the \"Tools\" workspace first.": "Pour sélectionner des outils ici, ajoutez-les d'abord à l'espace de travail « Outils ». ",
-<<<<<<< HEAD
-=======
-	"Toast Notifications for New Updates": "Notifications toast pour les nouvelles mises à jour",
->>>>>>> upstream/main
 	"Today": "Aujourd'hui",
 	"Toggle details": "",
-<<<<<<< HEAD
-=======
-	"Toggle Dictation": "",
-	"Toggle Mute": "",
->>>>>>> upstream/main
 	"Toggle Sidebar": "",
 	"Toggle whether current connection is active.": "Afficher/masquer si la connection courante est active",
 	"Token": "Token",
 	"Token counts are estimates and may not reflect actual API usage": "",
-	"Token Threshold": "",
-	"Tokenizer Model": "",
 	"tokens": "",
 	"Tokens": "",
 	"Too verbose": "Trop détaillé",
@@ -2340,25 +1649,10 @@
 	"Unlock mysteries": "Déverrouiller les mystères",
 	"Unpin": "Désépingler",
 	"Unravel secrets": "Dévoiler les secrets",
-	"Unshare All": "",
-	"Unshare All Shared Chats": "",
 	"Unshare Chat": "",
 	"Untagged": "Pas de tag",
-<<<<<<< HEAD
 	"Untitled folio": "",
 	"Update for the latest features and improvements.": "Mettez à jour pour bénéficier des dernières fonctionnalités et améliorations.",
-=======
-	"Untitled": "Sans titre",
-	"Update": "Mise à jour",
-	"Update and Copy Link": "Mettre à jour et copier le lien",
-	"Update Email": "",
-	"Update for the latest features and improvements.": "Mettez à jour pour bénéficier des dernières fonctionnalités et améliorations.",
-	"Update Name": "",
-	"Update password": "Mettre à jour le mot de passe",
-	"Update Picture": "",
-	"Update your status": "",
-	"Updated": "Mis à jour",
->>>>>>> upstream/main
 	"Updated at": "Mise à jour le",
 	"Updated At": "Mise à jour le",
 	"Upgrade to a licensed plan for enhanced capabilities, including custom theming and branding, and dedicated support.": "Effectuez la mise à niveau vers le plan payant pour bénéficier de fonctionnalités améliorées, notamment les thèmes et le branding personnalisé, ainsi qu'un support dédié.",
@@ -2370,40 +1664,24 @@
 	"Upload profile image": "",
 	"Upload Progress": "Progression de l'envoi",
 	"Uploaded files or images": "",
-<<<<<<< HEAD
-=======
-	"Uploading {{current}}/{{total}}: {{file}}": "",
->>>>>>> upstream/main
 	"Uploading...": "",
 	"URL": "URL",
 	"URL is required": "",
 	"URL Mode": "Mode d'URL",
 	"Usage": "Utilisation",
 	"Use /v1/chat/completions endpoint instead of /v1/audio/transcriptions for potentially better accuracy.": "",
-	"Use a valid event name or pattern like user.*": "",
-	"Use Base64": "",
 	"Use Chat Completions API": "",
-	"Use discovered scopes": "",
 	"Use groups to organize your users and assign permissions.": "",
 	"Use LLM": "Utiliser le LLM",
 	"Use no proxy to fetch page contents.": "Ne pas utiliser de proxy pour récupérer le contenu des pages.",
 	"Use proxy designated by http_proxy and https_proxy environment variables to fetch page contents.": "Utiliser le proxy défini par les variables d'environnement http_proxy et https_proxy pour récupérer le contenu des pages.",
-	"Use Web Search?": "",
 	"user": "utilisateur",
 	"User": "Utilisateur",
-	"User Access": "",
 	"User Activity": "",
 	"User Groups": "",
-<<<<<<< HEAD
-=======
-	"User location successfully retrieved.": "L'emplacement de l'utilisateur a été récupéré avec succès.",
-	"User menu": "Menu utilisateur",
-	"User Preview": "",
->>>>>>> upstream/main
 	"User ratings (thumbs up/down)": "",
 	"User Webhooks": "Webhooks utilisateur",
 	"Username": "Nom d'utilisateur",
-	"Username Claim": "",
 	"users": "",
 	"Users": "Utilisateurs",
 	"Uses DefaultAzureCredential to authenticate": "",
@@ -2414,14 +1692,7 @@
 	"Valid time units:": "Unités de temps valides\u00a0:",
 	"Validate certificate": "",
 	"Valves": "Vannes",
-<<<<<<< HEAD
 	"Verified": "",
-=======
-	"Valves updated": "Vannes mises à jour",
-	"Valves updated successfully": "Les vannes ont été mises à jour avec succès",
-	"variable": "variable",
-	"Vector Field": "",
->>>>>>> upstream/main
 	"Verify Connection": "Vérifier la connexion",
 	"Verify SSL Certificate": "Vérifier le certificat SSL",
 	"Version": "Version:",
@@ -2442,20 +1713,9 @@
 	"Web API": "API Web",
 	"Web Loader Engine": "Moteur de chargement Web",
 	"Web Search": "Recherche Web",
-	"Web Search Confirmation": "",
-	"Web Search Confirmation Content": "",
 	"Web Search Engine": "Moteur de recherche Web",
 	"Web Search Query Generation": "Génération de requête de recherche Web",
-<<<<<<< HEAD
 	"Webhook URL": "URL du webhook",
-=======
-	"Webhook deleted": "",
-	"Webhook Name": "",
-	"Webhook saved": "",
-	"Webhooks": "",
-	"Webpage URLs": "",
-	"WebUI Settings": "Réglages de WebUI",
->>>>>>> upstream/main
 	"WebUI URL": "URL de WebUI",
 	"WebUI will make requests to \"{{url}}\"": "WebUI effectuera des requêtes vers \"{{url}}\"",
 	"WebUI will make requests to \"{{url}}/api/chat\"": "WebUI fera des requêtes à \"{{url}}/api/chat\"",
@@ -2486,7 +1746,6 @@
 	"Yandex Web Search API Key": "",
 	"Yandex Web Search config": "",
 	"Yandex Web Search URL": "",
-	"Yearly": "",
 	"Yesterday": "Hier",
 	"You": "Vous",
 	"You are a careful editor: terse, concrete, kind…": "",
@@ -2506,7 +1765,6 @@
 	"Your browser does not support the video tag.": "",
 	"Your entire contribution will go directly to the plugin developer; Open WebUI does not take any percentage. However, the chosen funding platform might have its own fees.": "L'intégralité de votre contribution ira directement au développeur du plugin ; Open WebUI ne prend aucun pourcentage. Cependant, la plateforme de financement choisie peut avoir ses propres frais.",
 	"Your message text or inputs": "",
-	"Your query will be sent to the configured web search provider.": "",
 	"Your usage stats have been successfully synced.": "",
 	"Youtube Language": "Langue de Youtube",
 	"Youtube Proxy URL": "URL du proxy YouTube"
