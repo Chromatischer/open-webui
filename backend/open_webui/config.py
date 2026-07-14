@@ -1265,16 +1265,6 @@ YANDEX_WEB_SEARCH_CONFIG = os.getenv('YANDEX_WEB_SEARCH_CONFIG', '')
 
 YOUCOM_API_KEY = os.getenv('YOUCOM_API_KEY', os.getenv('YDC_API_KEY', ''))
 
-LINKUP_API_KEY = os.getenv('LINKUP_API_KEY', '')
-
-linkup_search_params = os.getenv('LINKUP_SEARCH_PARAMS', '')
-try:
-    linkup_search_params = json.loads(linkup_search_params)
-except json.JSONDecodeError:
-    linkup_search_params = {}
-
-LINKUP_SEARCH_PARAMS = linkup_search_params
-
 ####################################
 # Images
 ####################################
@@ -2903,8 +2893,6 @@ DEFAULT_CONFIG = {
     'web.search.yandex_web_search_api_key': YANDEX_WEB_SEARCH_API_KEY,
     'web.search.yandex_web_search_config': YANDEX_WEB_SEARCH_CONFIG,
     'web.search.youcom_api_key': YOUCOM_API_KEY,
-    'web.search.linkup_api_key': LINKUP_API_KEY,
-    'web.search.linkup_search_params': LINKUP_SEARCH_PARAMS,
     'image_generation.enable': ENABLE_IMAGE_GENERATION,
     'image_generation.engine': IMAGE_GENERATION_ENGINE,
     'image_generation.model': IMAGE_GENERATION_MODEL,

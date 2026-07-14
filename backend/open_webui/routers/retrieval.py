@@ -113,7 +113,6 @@ from open_webui.retrieval.web.utils import get_web_loader
 from open_webui.retrieval.web.yacy import search_yacy
 from open_webui.retrieval.web.yandex import search_yandex
 from open_webui.retrieval.web.ydc import search_youcom
-from open_webui.retrieval.web.linkup import search_linkup
 from open_webui.storage.provider import Storage
 from open_webui.utils.access_control import has_permission
 from open_webui.utils.access_control.files import has_access_to_file
@@ -310,8 +309,6 @@ RETRIEVAL_CONFIG_KEYS = {
     'JINA_API_BASE_URL': 'web.search.jina_api_base_url',
     'JINA_API_KEY': 'web.search.jina_api_key',
     'KAGI_SEARCH_API_KEY': 'web.search.kagi_search_api_key',
-    'LINKUP_API_KEY': 'web.search.linkup_api_key',
-    'LINKUP_SEARCH_PARAMS': 'web.search.linkup_search_params',
     'MINERU_API_KEY': 'rag.mineru_api_key',
     'MINERU_API_MODE': 'rag.mineru_api_mode',
     'MINERU_API_TIMEOUT': 'rag.mineru_api_timeout',
@@ -749,8 +746,6 @@ async def get_rag_config(request: Request, user=Depends(get_admin_user)):
             'YANDEX_WEB_SEARCH_API_KEY': config.YANDEX_WEB_SEARCH_API_KEY,
             'YANDEX_WEB_SEARCH_CONFIG': config.YANDEX_WEB_SEARCH_CONFIG,
             'YOUCOM_API_KEY': config.YOUCOM_API_KEY,
-            'LINKUP_API_KEY': config.LINKUP_API_KEY,
-            'LINKUP_SEARCH_PARAMS': config.LINKUP_SEARCH_PARAMS,
         },
     }
 
@@ -825,8 +820,6 @@ class WebConfig(BaseModel):
     YANDEX_WEB_SEARCH_API_KEY: str | None = None
     YANDEX_WEB_SEARCH_CONFIG: str | None = None
     YOUCOM_API_KEY: str | None = None
-    LINKUP_API_KEY: str | None = None
-    LINKUP_SEARCH_PARAMS: dict | None = None
 
 
 class ConfigForm(BaseModel):
@@ -1281,8 +1274,6 @@ async def update_rag_config(request: Request, form_data: ConfigForm, user=Depend
         config.YANDEX_WEB_SEARCH_API_KEY = form_data.web.YANDEX_WEB_SEARCH_API_KEY
         config.YANDEX_WEB_SEARCH_CONFIG = form_data.web.YANDEX_WEB_SEARCH_CONFIG
         config.YOUCOM_API_KEY = form_data.web.YOUCOM_API_KEY
-        config.LINKUP_API_KEY = form_data.web.LINKUP_API_KEY
-        config.LINKUP_SEARCH_PARAMS = form_data.web.LINKUP_SEARCH_PARAMS
 
     await config.save()
 
@@ -1424,8 +1415,6 @@ async def update_rag_config(request: Request, form_data: ConfigForm, user=Depend
             'YANDEX_WEB_SEARCH_API_KEY': config.YANDEX_WEB_SEARCH_API_KEY,
             'YANDEX_WEB_SEARCH_CONFIG': config.YANDEX_WEB_SEARCH_CONFIG,
             'YOUCOM_API_KEY': config.YOUCOM_API_KEY,
-            'LINKUP_API_KEY': config.LINKUP_API_KEY,
-            'LINKUP_SEARCH_PARAMS': config.LINKUP_SEARCH_PARAMS,
         },
     }
 
@@ -2453,18 +2442,6 @@ async def search_web(request: Request, engine: str, query: str, user=None) -> li
             config.WEB_SEARCH_RESULT_COUNT,
             config.WEB_SEARCH_DOMAIN_FILTER_LIST,
         )
-    elif engine == 'linkup':
-        if config.LINKUP_API_KEY:
-            return await asyncio.to_thread(
-                search_linkup,
-                api_key=config.LINKUP_API_KEY,
-                query=query,
-                count=config.WEB_SEARCH_RESULT_COUNT,
-                filter_list=config.WEB_SEARCH_DOMAIN_FILTER_LIST,
-                params=config.LINKUP_SEARCH_PARAMS,
-            )
-        else:
-            raise Exception('No LINKUP_API_KEY found in environment variables')
     else:
         raise Exception('No search engine API key found in environment variables')
 
