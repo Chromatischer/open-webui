@@ -2393,8 +2393,6 @@ if JWT_EXPIRES_IN == '-1':
 
 ENABLE_OAUTH_SIGNUP = os.getenv('ENABLE_OAUTH_SIGNUP', 'False').lower() == 'true'
 
-OAUTH_AUTO_REDIRECT = os.getenv('OAUTH_AUTO_REDIRECT', 'False').lower() == 'true'
-
 OAUTH_REFRESH_TOKEN_INCLUDE_SCOPE = os.getenv('OAUTH_REFRESH_TOKEN_INCLUDE_SCOPE', 'False').lower() == 'true'
 
 
@@ -3047,7 +3045,6 @@ DEFAULT_CONFIG = {
     'auth.api_key.allowed_endpoints': API_KEYS_ALLOWED_ENDPOINTS,
     'auth.jwt_expiry': JWT_EXPIRES_IN,
     'oauth.enable_signup': ENABLE_OAUTH_SIGNUP,
-    'oauth.auto_redirect': OAUTH_AUTO_REDIRECT,
     'oauth.refresh_token.include_scope': OAUTH_REFRESH_TOKEN_INCLUDE_SCOPE,
     'oauth.merge_accounts_by_email': OAUTH_MERGE_ACCOUNTS_BY_EMAIL,
     'oauth.google.client_id': GOOGLE_CLIENT_ID,

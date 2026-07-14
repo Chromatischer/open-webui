@@ -1834,7 +1834,6 @@ async def get_app_config(request: Request):
     license_metadata = getattr(app.state, 'LICENSE_METADATA', None)
     user_count = await Users.get_num_users() if license_metadata else None
     config = await Config.get_many(
-        'oauth.auto_redirect',
         'ldap.enable',
         'ui.enable_signup',
         'ui.enable_login_form',
@@ -1888,7 +1887,6 @@ async def get_app_config(request: Request):
         'default_locale': str(DEFAULT_LOCALE),
         'oauth': {
             'providers': {name: config.get('name', name) for name, config in OAUTH_PROVIDERS.items()},
-            'auto_redirect': config.get('oauth.auto_redirect'),
         },
         'features': {
             # --- Public: required by login/signup page pre-auth ---

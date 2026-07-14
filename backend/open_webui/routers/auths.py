@@ -1242,7 +1242,6 @@ class OAuthConfigForm(BaseModel):
     # General OAuth
     ENABLE_OAUTH_SIGNUP: bool | None = None
     OAUTH_MERGE_ACCOUNTS_BY_EMAIL: bool | None = None
-    OAUTH_AUTO_REDIRECT: bool | None = None
     OAUTH_ALLOWED_DOMAINS: str | None = None
     OAUTH_BLOCKED_GROUPS: str | None = None
 
@@ -1297,7 +1296,6 @@ OAUTH_COMMA_LIST_FIELDS = {
 OAUTH_CONFIG_KEYS = {
     'ENABLE_OAUTH_SIGNUP': 'oauth.enable_signup',
     'OAUTH_MERGE_ACCOUNTS_BY_EMAIL': 'oauth.merge_accounts_by_email',
-    'OAUTH_AUTO_REDIRECT': 'oauth.auto_redirect',
     'OAUTH_ALLOWED_DOMAINS': 'oauth.allowed_domains',
     'OAUTH_BLOCKED_GROUPS': 'oauth.blocked_groups',
     'ENABLE_OAUTH_ROLE_MANAGEMENT': 'oauth.enable_role_mapping',
