@@ -236,6 +236,43 @@ class EventDefinitions(BaseModel):
     MESSAGE_UNPINNED: EventDefinition = EventDefinition(
         name='message.unpinned', description='A message was unpinned.', message='Message unpinned'
     )
+    CHANNEL_CREATED: EventDefinition = EventDefinition(
+        name='channel.created', description='A channel was created.', message='Channel created'
+    )
+    CHANNEL_UPDATED: EventDefinition = EventDefinition(
+        name='channel.updated', description='A channel was updated.', message='Channel updated'
+    )
+    CHANNEL_DELETED: EventDefinition = EventDefinition(
+        name='channel.deleted', description='A channel was deleted.', message='Channel deleted'
+    )
+    CHANNEL_MEMBER_ADDED: EventDefinition = EventDefinition(
+        name='channel.member_added', description='A member was added to a channel.', message='Channel member added'
+    )
+    CHANNEL_MEMBER_REMOVED: EventDefinition = EventDefinition(
+        name='channel.member_removed',
+        description='A member was removed from a channel.',
+        message='Channel member removed',
+    )
+    CHANNEL_MEMBER_ACTIVE_UPDATED: EventDefinition = EventDefinition(
+        name='channel.member_active_updated',
+        description='A channel member active state was updated.',
+        message='Channel member active updated',
+    )
+    CHANNEL_WEBHOOK_CREATED: EventDefinition = EventDefinition(
+        name='channel.webhook.created',
+        description='A channel incoming webhook was created.',
+        message='Channel Webhook created',
+    )
+    CHANNEL_WEBHOOK_UPDATED: EventDefinition = EventDefinition(
+        name='channel.webhook.updated',
+        description='A channel incoming webhook was updated.',
+        message='Channel Webhook updated',
+    )
+    CHANNEL_WEBHOOK_DELETED: EventDefinition = EventDefinition(
+        name='channel.webhook.deleted',
+        description='A channel incoming webhook was deleted.',
+        message='Channel Webhook deleted',
+    )
     FILE_UPLOADED: EventDefinition = EventDefinition(
         name='file.uploaded', description='A file was uploaded.', message='File uploaded'
     )
@@ -266,6 +303,24 @@ class EventDefinitions(BaseModel):
     FOLDER_DELETED: EventDefinition = EventDefinition(
         name='folder.deleted', description='A folder was deleted.', message='Folder deleted'
     )
+    NOTE_CREATED: EventDefinition = EventDefinition(
+        name='note.created', description='A note was created.', message='Note created'
+    )
+    NOTE_UPDATED: EventDefinition = EventDefinition(
+        name='note.updated', description='A note was updated.', message='Note updated'
+    )
+    NOTE_ACCESS_UPDATED: EventDefinition = EventDefinition(
+        name='note.access_updated', description='Note access was updated.', message='Note access updated'
+    )
+    NOTE_PINNED: EventDefinition = EventDefinition(
+        name='note.pinned', description='A note was pinned.', message='Note pinned'
+    )
+    NOTE_UNPINNED: EventDefinition = EventDefinition(
+        name='note.unpinned', description='A note was unpinned.', message='Note unpinned'
+    )
+    NOTE_DELETED: EventDefinition = EventDefinition(
+        name='note.deleted', description='A note was deleted.', message='Note deleted'
+    )
     MEMORY_CREATED: EventDefinition = EventDefinition(
         name='memory.created', description='A memory was created.', message='Memory created'
     )
@@ -277,6 +332,68 @@ class EventDefinitions(BaseModel):
     )
     MEMORY_RESET: EventDefinition = EventDefinition(
         name='memory.reset', description='A memory was reset.', message='Memory reset'
+    )
+    KNOWLEDGE_CREATED: EventDefinition = EventDefinition(
+        name='knowledge.created', description='A knowledge was created.', message='Knowledge created'
+    )
+    KNOWLEDGE_UPDATED: EventDefinition = EventDefinition(
+        name='knowledge.updated', description='A knowledge was updated.', message='Knowledge updated'
+    )
+    KNOWLEDGE_DELETED: EventDefinition = EventDefinition(
+        name='knowledge.deleted', description='A knowledge was deleted.', message='Knowledge deleted'
+    )
+    KNOWLEDGE_RESET: EventDefinition = EventDefinition(
+        name='knowledge.reset', description='A knowledge was reset.', message='Knowledge reset'
+    )
+    KNOWLEDGE_REINDEXED: EventDefinition = EventDefinition(
+        name='knowledge.reindexed', description='A knowledge was reindexed.', message='Knowledge reindexed'
+    )
+    KNOWLEDGE_ACCESS_UPDATED: EventDefinition = EventDefinition(
+        name='knowledge.access_updated', description='Knowledge access was updated.', message='Knowledge access updated'
+    )
+    KNOWLEDGE_FILE_ADDED: EventDefinition = EventDefinition(
+        name='knowledge.file.added', description='A file was added to a knowledge base.', message='Knowledge File added'
+    )
+    KNOWLEDGE_FILE_UPDATED: EventDefinition = EventDefinition(
+        name='knowledge.file.updated', description='A knowledge file was updated.', message='Knowledge File updated'
+    )
+    KNOWLEDGE_FILE_REMOVED: EventDefinition = EventDefinition(
+        name='knowledge.file.removed',
+        description='A file was removed from a knowledge base.',
+        message='Knowledge File removed',
+    )
+    KNOWLEDGE_FILE_MOVED: EventDefinition = EventDefinition(
+        name='knowledge.file.moved', description='A knowledge file was moved.', message='Knowledge File moved'
+    )
+    KNOWLEDGE_DIRECTORY_CREATED: EventDefinition = EventDefinition(
+        name='knowledge.directory.created',
+        description='A knowledge directory was created.',
+        message='Knowledge Directory created',
+    )
+    KNOWLEDGE_DIRECTORY_UPDATED: EventDefinition = EventDefinition(
+        name='knowledge.directory.updated',
+        description='A knowledge directory was updated.',
+        message='Knowledge Directory updated',
+    )
+    KNOWLEDGE_DIRECTORY_DELETED: EventDefinition = EventDefinition(
+        name='knowledge.directory.deleted',
+        description='A knowledge directory was deleted.',
+        message='Knowledge Directory deleted',
+    )
+    KNOWLEDGE_EXTERNAL_CONNECTION_CREATED: EventDefinition = EventDefinition(
+        name='knowledge.external_connection.created',
+        description='A knowledge external connection was created.',
+        message='Knowledge External Connection created',
+    )
+    KNOWLEDGE_EXTERNAL_CONNECTION_UPDATED: EventDefinition = EventDefinition(
+        name='knowledge.external_connection.updated',
+        description='A knowledge external connection was updated.',
+        message='Knowledge External Connection updated',
+    )
+    KNOWLEDGE_EXTERNAL_CONNECTION_DELETED: EventDefinition = EventDefinition(
+        name='knowledge.external_connection.deleted',
+        description='A knowledge external connection was deleted.',
+        message='Knowledge External Connection deleted',
     )
     RETRIEVAL_CONTENT_PROCESSED: EventDefinition = EventDefinition(
         name='retrieval.content.processed',
@@ -373,6 +490,27 @@ class EventDefinitions(BaseModel):
     TOOL_VALVES_UPDATED: EventDefinition = EventDefinition(
         name='tool.valves_updated', description='Tool valves were updated.', message='Tool valves updated'
     )
+    PROMPT_CREATED: EventDefinition = EventDefinition(
+        name='prompt.created', description='A prompt was created.', message='Prompt created'
+    )
+    PROMPT_UPDATED: EventDefinition = EventDefinition(
+        name='prompt.updated', description='A prompt was updated.', message='Prompt updated'
+    )
+    PROMPT_DELETED: EventDefinition = EventDefinition(
+        name='prompt.deleted', description='A prompt was deleted.', message='Prompt deleted'
+    )
+    PROMPT_ENABLED: EventDefinition = EventDefinition(
+        name='prompt.enabled', description='A prompt was enabled.', message='Prompt enabled'
+    )
+    PROMPT_DISABLED: EventDefinition = EventDefinition(
+        name='prompt.disabled', description='A prompt was disabled.', message='Prompt disabled'
+    )
+    PROMPT_VERSION_UPDATED: EventDefinition = EventDefinition(
+        name='prompt.version_updated', description='A prompt version was updated.', message='Prompt version updated'
+    )
+    PROMPT_ACCESS_UPDATED: EventDefinition = EventDefinition(
+        name='prompt.access_updated', description='Prompt access was updated.', message='Prompt access updated'
+    )
     PIPELINE_UPLOADED: EventDefinition = EventDefinition(
         name='pipeline.uploaded', description='A pipeline was uploaded.', message='Pipeline uploaded'
     )
@@ -384,6 +522,58 @@ class EventDefinitions(BaseModel):
     )
     PIPELINE_VALVES_UPDATED: EventDefinition = EventDefinition(
         name='pipeline.valves_updated', description='Pipeline valves were updated.', message='Pipeline valves updated'
+    )
+    CALENDAR_CREATED: EventDefinition = EventDefinition(
+        name='calendar.created', description='A calendar was created.', message='Calendar created'
+    )
+    CALENDAR_UPDATED: EventDefinition = EventDefinition(
+        name='calendar.updated', description='A calendar was updated.', message='Calendar updated'
+    )
+    CALENDAR_DELETED: EventDefinition = EventDefinition(
+        name='calendar.deleted', description='A calendar was deleted.', message='Calendar deleted'
+    )
+    CALENDAR_DEFAULT_UPDATED: EventDefinition = EventDefinition(
+        name='calendar.default_updated',
+        description='The default calendar was updated.',
+        message='Calendar default updated',
+    )
+    CALENDAR_EVENT_CREATED: EventDefinition = EventDefinition(
+        name='calendar.event.created', description='A calendar event was created.', message='Calendar Event created'
+    )
+    CALENDAR_EVENT_UPDATED: EventDefinition = EventDefinition(
+        name='calendar.event.updated', description='A calendar event was updated.', message='Calendar Event updated'
+    )
+    CALENDAR_EVENT_DELETED: EventDefinition = EventDefinition(
+        name='calendar.event.deleted', description='A calendar event was deleted.', message='Calendar Event deleted'
+    )
+    CALENDAR_EVENT_RSVP_UPDATED: EventDefinition = EventDefinition(
+        name='calendar.event.rsvp_updated',
+        description='A calendar event RSVP was updated.',
+        message='Calendar Event rsvp updated',
+    )
+    AUTOMATION_CREATED: EventDefinition = EventDefinition(
+        name='automation.created', description='An automation was created.', message='Automation created'
+    )
+    AUTOMATION_UPDATED: EventDefinition = EventDefinition(
+        name='automation.updated', description='An automation was updated.', message='Automation updated'
+    )
+    AUTOMATION_ENABLED: EventDefinition = EventDefinition(
+        name='automation.enabled', description='An automation was enabled.', message='Automation enabled'
+    )
+    AUTOMATION_DISABLED: EventDefinition = EventDefinition(
+        name='automation.disabled', description='An automation was disabled.', message='Automation disabled'
+    )
+    AUTOMATION_DELETED: EventDefinition = EventDefinition(
+        name='automation.deleted', description='An automation was deleted.', message='Automation deleted'
+    )
+    AUTOMATION_RUN_STARTED: EventDefinition = EventDefinition(
+        name='automation.run_started', description='An automation run started.', message='Automation run started'
+    )
+    AUTOMATION_RUN_COMPLETED: EventDefinition = EventDefinition(
+        name='automation.run_completed', description='An automation run completed.', message='Automation run completed'
+    )
+    AUTOMATION_RUN_FAILED: EventDefinition = EventDefinition(
+        name='automation.run_failed', description='An automation run failed.', message='Automation run failed'
     )
     FEEDBACK_CREATED: EventDefinition = EventDefinition(
         name='feedback.created', description='A feedback was created.', message='Feedback created'
@@ -808,4 +998,152 @@ def schedule_webhook_dispatch(app: Any, event: Event) -> None:
 
 class WebhookEventSink:
     async def handle_event(self, app: Any, event: Event, request: Any | None = None) -> None:
+        schedule_webhook_dispatch(app, event)
 
+
+async def dispatch_event_functions(app: Any, event: Event, request: Any | None = None) -> None:
+    from open_webui.models.functions import Functions
+    from open_webui.utils.plugin import get_function_module_from_cache
+
+    context = request or SimpleNamespace(app=app)
+    event_payload = event.model_dump()
+
+    try:
+        event_functions = await Functions.get_functions_by_type('event', active_only=True)
+    except Exception:
+        log.exception('Event functions could not be loaded for %s', event.event)
+        return
+
+    for function in event_functions:
+        try:
+            function_module, _, _ = await get_function_module_from_cache(context, function.id, function=function)
+            handler = getattr(function_module, 'event', None)
+            if not handler:
+                continue
+
+            if hasattr(function_module, 'valves') and hasattr(function_module, 'Valves'):
+                valves = await Functions.get_function_valves_by_id(function.id)
+                function_module.valves = function_module.Valves(**(valves if valves else {}))
+
+            sig = inspect.signature(handler)
+            accepts_kwargs = any(param.kind == inspect.Parameter.VAR_KEYWORD for param in sig.parameters.values())
+            extra_params = {
+                'event': event_payload,
+                '__id__': function.id,
+                '__event__': event,
+                '__event_id__': event.id,
+                '__event_name__': event.event,
+                '__app__': app,
+                '__request__': request,
+            }
+            params = {key: value for key, value in extra_params.items() if accepts_kwargs or key in sig.parameters}
+
+            if inspect.iscoroutinefunction(handler):
+                await handler(**params)
+            else:
+                handler(**params)
+        except Exception:
+            log.exception('Event function failed for %s', function.id)
+
+
+def schedule_event_function_dispatch(app: Any, event: Event, request: Any | None = None) -> None:
+    try:
+        asyncio.create_task(dispatch_event_functions(app, event, request))
+    except RuntimeError:
+        log.exception('Event functions could not be scheduled for %s', event.event)
+
+
+class EventFunctionSink:
+    async def handle_event(self, app: Any, event: Event, request: Any | None = None) -> None:
+        schedule_event_function_dispatch(app, event, request)
+
+
+EVENT_SINKS = [EventFunctionSink(), WebhookEventSink()]
+
+
+async def publish_event(
+    request_or_app: Any,
+    event: EventDefinition | str,
+    *,
+    actor: Any | None = None,
+    subject_id: Any | None = None,
+    subject_type: str | None = None,
+    source: str = 'api',
+    data: dict | None = None,
+    message: str | None = None,
+) -> None:
+    app = getattr(request_or_app, 'app', request_or_app)
+    request = request_or_app if hasattr(request_or_app, 'app') else None
+    event_payload = build_event(
+        request_or_app,
+        event,
+        actor=actor,
+        subject_id=subject_id,
+        subject_type=subject_type,
+        source=source,
+        data=data,
+        message=message,
+    )
+
+    for sink in EVENT_SINKS:
+        try:
+            await sink.handle_event(app, event_payload, request=request)
+        except Exception:
+            log.exception('Event sink failed for %s', event_payload.event)
+
+
+async def publish_model_provider_request_failed(
+    request_or_app: Any,
+    *,
+    actor: Any | None,
+    provider: str,
+    base_url: str,
+    status: int,
+    requested_model: str | None = None,
+    api_key: str | None = None,
+    upstream_error: Any = None,
+) -> None:
+    error = upstream_error.get('error') if isinstance(upstream_error, dict) else upstream_error
+    error_code = None
+    if isinstance(error, dict):
+        error_code = error.get('code') or error.get('type') or error.get('error_code')
+        error = error.get('message') or error.get('detail') or error
+
+    error_text = str(error or '')
+    marker = f'{error_code or ""} {error_text}'.lower()
+    error_type = (
+        'model_not_found'
+        if status == 404
+        and any(value in marker for value in ('model_not_found', 'model not found', 'does not exist', 'no such model'))
+        else 'authentication_failed'
+        if status in (401, 403)
+        else 'rate_limited'
+        if status == 429
+        else 'server_failed'
+        if status >= 500
+        else 'upstream_error'
+    )
+
+    data = {
+        'error_type': error_type,
+        'status': status,
+        'provider': provider,
+        'base_url': base_url,
+    }
+    if requested_model:
+        data['requested_model'] = requested_model
+    if api_key:
+        data['api_key_suffix'] = f'...{api_key[-4:]}'
+    if error_code:
+        data['upstream_error_code'] = error_code
+    if error:
+        data['upstream_message'] = error
+
+    await publish_event(
+        request_or_app,
+        EVENTS.MODEL_PROVIDER_REQUEST_FAILED,
+        actor=actor,
+        subject_id=requested_model,
+        subject_type='model',
+        data=data,
+    )
