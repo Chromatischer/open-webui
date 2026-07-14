@@ -14,4 +14,3 @@ class VectorType(StrEnum):
     S3VECTOR = 's3vector'
     WEAVIATE = 'weaviate'
     OPENGAUSS = 'opengauss'
-    VALKEY = 'valkey'
