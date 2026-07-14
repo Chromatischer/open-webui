@@ -27,7 +27,6 @@
 		banners,
 		user,
 		socket,
-		audioQueue,
 		showControls,
 		currentChatPage,
 		temporaryChatEnabled,
@@ -67,7 +66,6 @@
 		isYoutubeUrl,
 		displayFileHandler
 	} from '$lib/utils';
-	import { AudioQueue } from '$lib/utils/audio';
 
 	import {
 		archiveChatById,
@@ -696,23 +694,11 @@
 		savedModelIds();
 	}
 
-	const stopAudio = () => {
-		try {
-			speechSynthesis.cancel();
-			$audioQueue?.stop();
-		} catch {}
-	};
-
 	onMount(() => {
 		loading = true;
 		console.log('mounted');
 		window.addEventListener('message', onMessageHandler);
 		$socket?.on('events', chatEventHandler);
-
-		$audioQueue?.destroy();
-
-		const audioQueueInstance = new AudioQueue(document.getElementById('audioElement'));
-		audioQueue.set(audioQueueInstance);
 
 		// Restore direct terminal enabled states based on persisted selectedTerminalId
 		if ($settings?.terminalServers?.length) {
@@ -743,7 +729,6 @@
 				}
 			}
 
-			stopAudio();
 		});
 
 		const showControlsSubscribe = showControls.subscribe(async (value) => {
@@ -814,8 +799,6 @@
 				selectedFolderSubscribe();
 				window.removeEventListener('message', onMessageHandler);
 				$socket?.off('events', chatEventHandler);
-				audioQueueInstance?.destroy();
-				audioQueue.set(null);
 			} catch (e) {
 				console.error(e);
 			}
@@ -2428,40 +2411,6 @@
 		}
 
 		// Parse skill mentions (<$skillId|label>) from user messages
-		const skillMentionRegex = /<\$([^|>]+)\|?[^>]*>/g;
-		const skillIds = [];
-		for (const message of messages) {
-			const content =
-				typeof message.content === 'string' ? message.content : (message.content?.[0]?.text ?? '');
-			for (const match of content.matchAll(skillMentionRegex)) {
-				if (!skillIds.includes(match[1])) {
-					skillIds.push(match[1]);
-				}
-			}
-		}
-
-		// Strip skill mentions from message content
-		if (skillIds.length > 0) {
-			messages = messages.map((message) => {
-				if (typeof message.content === 'string') {
-					return {
-						...message,
-						content: message.content.replace(/<\$[^>]+>/g, '').trim()
-					};
-				} else if (Array.isArray(message.content)) {
-					return {
-						...message,
-						content: message.content.map((part) =>
-							part.type === 'text'
-								? { ...part, text: part.text.replace(/<\$[^>]+>/g, '').trim() }
-								: part
-						)
-					};
-				}
-				return message;
-			});
-		}
-
 		// Use the user-selected terminal from the dropdown
 		const activeTerminalId = $selectedTerminalId ?? null;
 
@@ -2484,7 +2433,6 @@
 
 				filter_ids: selectedFilterIds.length > 0 ? selectedFilterIds : undefined,
 				tool_ids: toolIds.length > 0 ? toolIds : undefined,
-				skill_ids: skillIds.length > 0 ? skillIds : undefined,
 				terminal_id: terminalEnabled ? (activeTerminalId ?? undefined) : undefined,
 				tool_servers: [
 					...($toolServers ?? []).filter(
@@ -2984,7 +2932,6 @@
 	</title>
 </svelte:head>
 
-<audio id="audioElement" style="display: none;"></audio>
 
 <DeleteConfirmDialog
 	bind:show={showDeleteConfirm}

@@ -6,18 +6,15 @@
 	import { WEBUI_BASE_URL, DEFAULT_CAPABILITIES } from '$lib/constants';
 
 	import { getTools } from '$lib/apis/tools';
-	import { getSkills } from '$lib/apis/skills';
 	import { getFunctions } from '$lib/apis/functions';
 	import { getModelsDefaults } from '$lib/apis/configs';
 	import { getBaseModelTags, getModelTags } from '$lib/apis/models';
-	import { getVoices } from '$lib/apis/audio';
 
 	import AdvancedParams from '$lib/components/chat/Settings/Advanced/AdvancedParams.svelte';
 	import ModelSelector from '$lib/components/chat/ModelSelector/Selector.svelte';
 	import Tags from '$lib/components/common/Tags.svelte';
 	import Knowledge from '$lib/components/workspace/Models/Knowledge.svelte';
 	import ToolsSelector from '$lib/components/workspace/Models/ToolsSelector.svelte';
-	import SkillsSelector from '$lib/components/workspace/Models/SkillsSelector.svelte';
 	import FiltersSelector from '$lib/components/workspace/Models/FiltersSelector.svelte';
 	import ActionsSelector from '$lib/components/workspace/Models/ActionsSelector.svelte';
 	import Capabilities from '$lib/components/workspace/Models/Capabilities.svelte';
@@ -30,7 +27,6 @@
 	import BuiltinTools from './BuiltinTools.svelte';
 	import PromptSuggestions from './PromptSuggestions.svelte';
 	import TerminalSelector from './TerminalSelector.svelte';
-	import TTSVoiceInput from './TTSVoiceInput.svelte';
 	import AccessControlModal from '../common/AccessControlModal.svelte';
 	import LockClosed from '$lib/components/icons/LockClosed.svelte';
 
@@ -96,8 +92,6 @@
 
 	let knowledge = [];
 	let toolIds = [];
-	let skillIds = [];
-	let skillsList = [];
 
 	let filterIds = [];
 	let defaultFilterIds = [];
@@ -109,9 +103,7 @@
 	let actionIds = [];
 	let accessGrants = [];
 	let terminalId = '';
-	let tts = { voice: '' };
 	export let suggestionTags: { name: string }[] = [];
-	let voices: { id: string; name?: string }[] = [];
 
 	const getBaseModelItems = (models: any[] = []) => {
 		const currentModelId = (model as any)?.id;
@@ -141,11 +133,6 @@
 			localStorage.token
 		).catch(() => []);
 		suggestionTags = res.map((tag) => ({ name: tag }));
-	};
-
-	const loadVoices = async () => {
-		const res = await getVoices(localStorage.token).catch(() => null);
-		voices = res?.voices ?? [];
 	};
 
 	const submitHandler = async () => {
@@ -209,14 +196,6 @@
 			}
 		}
 
-		if (skillIds.length > 0) {
-			info.meta.skillIds = skillIds;
-		} else {
-			if (info.meta.skillIds) {
-				delete info.meta.skillIds;
-			}
-		}
-
 		if (filterIds.length > 0) {
 			info.meta.filterIds = filterIds;
 		} else {
@@ -265,18 +244,6 @@
 			}
 		}
 
-		if (tts.voice !== '') {
-			if (!info.meta.tts) info.meta.tts = {};
-			info.meta.tts.voice = tts.voice;
-		} else {
-			if (info.meta.tts?.voice) {
-				delete info.meta.tts.voice;
-				if (Object.keys(info.meta.tts).length === 0) {
-					delete info.meta.tts;
-				}
-			}
-		}
-
 		info.params.system = system.trim() === '' ? null : system;
 		info.params.stop = params.stop
 			? (typeof params.stop === 'string' ? params.stop.split(',') : params.stop).filter((s) =>
@@ -299,15 +266,11 @@
 		if (!$tools) {
 			await tools.set(await getTools(localStorage.token));
 		}
-		skillsList = (await getSkills(localStorage.token).catch(() => null)) ?? [];
 		if (!$functions) {
 			await functions.set(await getFunctions(localStorage.token));
 		}
 		if (suggestionTags.length === 0) {
 			await loadSuggestionTags();
-		}
-		if (voices.length === 0) {
-			await loadVoices();
 		}
 
 		// Fetch admin-configured default model metadata so the editor
@@ -379,7 +342,6 @@
 			});
 
 			toolIds = model?.meta?.toolIds ?? [];
-			skillIds = model?.meta?.skillIds ?? [];
 			filterIds = model?.meta?.filterIds ?? [];
 			defaultFilterIds = model?.meta?.defaultFilterIds ?? [];
 			actionIds = model?.meta?.actionIds ?? [];
@@ -389,7 +351,6 @@
 			defaultFeatureIds = model?.meta?.defaultFeatureIds ?? defaultFeatureIds;
 			builtinTools = model?.meta?.builtinTools ?? builtinTools;
 			terminalId = model?.meta?.terminalId ?? '';
-			tts = { voice: model?.meta?.tts?.voice ?? '' };
 
 			accessGrants = model?.access_grants ?? [];
 
@@ -816,10 +777,6 @@
 						<ToolsSelector bind:selectedToolIds={toolIds} tools={$tools ?? []} />
 					</div>
 
-					<div class="my-4">
-						<SkillsSelector bind:selectedSkillIds={skillIds} skills={skillsList} />
-					</div>
-
 					{#if ($functions ?? []).filter((func) => func.type === 'filter').length > 0 || ($functions ?? []).filter((func) => func.type === 'action').length > 0}
 						<hr class=" border-gray-100/30 dark:border-gray-850/30 my-4" />
 
@@ -890,19 +847,6 @@
 							<TerminalSelector bind:terminalId />
 						</div>
 					{/if}
-
-					<div class="my-4">
-						<div class="flex w-full justify-between mb-1">
-							<div class="self-center text-xs font-medium text-gray-500">
-								{$i18n.t('TTS Voice')}
-							</div>
-						</div>
-						<TTSVoiceInput
-							bind:value={tts.voice}
-							{voices}
-							placeholder={$i18n.t('e.g. alloy, echo, shimmer')}
-						/>
-					</div>
 
 					<hr class=" border-gray-100/30 dark:border-gray-850/30 my-4" />
 

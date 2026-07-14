@@ -14,7 +14,6 @@
 	import AdvancedParams from '$lib/components/chat/Settings/Advanced/AdvancedParams.svelte';
 	import Tags from '$lib/components/common/Tags.svelte';
 	import ToolsSelector from '$lib/components/workspace/Models/ToolsSelector.svelte';
-	import SkillsSelector from '$lib/components/workspace/Models/SkillsSelector.svelte';
 	import FiltersSelector from '$lib/components/workspace/Models/FiltersSelector.svelte';
 	import ActionsSelector from '$lib/components/workspace/Models/ActionsSelector.svelte';
 	import Capabilities from '$lib/components/workspace/Models/Capabilities.svelte';
@@ -56,7 +55,7 @@
 	const steps = [
 		{ id: 'basics', title: 'Basics', desc: 'Name & base model', optional: false },
 		{ id: 'instructions', title: 'Instructions', desc: 'System prompt', optional: true },
-		{ id: 'tools', title: 'Tools & Skills', desc: 'What it can call', optional: true },
+		{ id: 'tools', title: 'Tools', desc: 'What it can call', optional: true },
 		{ id: 'capabilities', title: 'Capabilities', desc: 'Vision, features', optional: true },
 		{ id: 'access', title: 'Starters & Access', desc: 'Who can use it', optional: true },
 		{ id: 'advanced', title: 'Advanced', desc: 'Parameters & JSON', optional: true }
@@ -114,7 +113,6 @@
 	};
 
 	let toolIds = [];
-	let skillIds = [];
 
 	let filterIds = [];
 	let defaultFilterIds = [];
@@ -163,12 +161,6 @@
 			info.meta.toolIds = toolIds;
 		} else if (info.meta.toolIds) {
 			delete info.meta.toolIds;
-		}
-
-		if (skillIds.length > 0) {
-			info.meta.skillIds = skillIds;
-		} else if (info.meta.skillIds) {
-			delete info.meta.skillIds;
 		}
 
 		if (filterIds.length > 0) {
@@ -322,7 +314,6 @@
 				: null;
 
 			toolIds = model?.meta?.toolIds ?? [];
-			skillIds = model?.meta?.skillIds ?? [];
 			filterIds = model?.meta?.filterIds ?? [];
 			defaultFilterIds = model?.meta?.defaultFilterIds ?? [];
 			actionIds = model?.meta?.actionIds ?? [];
@@ -554,16 +545,14 @@
 									/>
 								</div>
 							{:else if step === 2}
-								<div class="wz-pane-title">{$i18n.t('Tools & Skills')}</div>
+								<div class="wz-pane-title">{$i18n.t('Tools')}</div>
 								<div class="wz-pane-sub">
-									{$i18n.t('Optional — let the model call tools and skills.')}
+									{$i18n.t('Optional — let the model call tools.')}
 								</div>
 
 								<div class="wz-field">
 									<ToolsSelector bind:selectedToolIds={toolIds} tools={$tools ?? []} />
 								</div>
-								<div class="wz-field"><SkillsSelector bind:selectedSkillIds={skillIds} /></div>
-
 								{#if ($functions ?? []).filter((func) => func.type === 'filter').length > 0}
 									<div class="wz-field">
 										<FiltersSelector
