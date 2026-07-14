@@ -1111,7 +1111,6 @@ async def chat_completion(
 
         metadata = {
             'user_id': user.id,
-            'user_agent': request.headers.get('user-agent', '') or '',
             'chat_id': form_data.pop('chat_id', None) or '',
             'user_message': user_message,
             'user_message_id': user_message.get('id') if user_message else None,
