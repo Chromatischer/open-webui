@@ -25,7 +25,6 @@
 				...(($config?.features?.enable_admin_analytics ?? true)
 					? [{ title: $i18n.t('Analytics'), href: '/admin/analytics' }]
 					: []),
-				{ title: $i18n.t('Evaluations'), href: '/admin/evaluations' },
 				{ title: $i18n.t('Functions'), href: '/admin/functions' }
 			]
 		},

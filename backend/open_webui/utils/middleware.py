@@ -2072,9 +2072,6 @@ def sanitize_tool_pairs(messages: list[dict]) -> list[dict]:
     return sanitized
 
 
-SKILL_MENTION_RE = re.compile(r'<\$([^|>]+)(?:\|[^>]*)?>')
-
-
 def _get_text_parts(message: dict) -> list[str]:
     """Return all text segments from a message's content."""
     content = message.get('content')
@@ -2083,30 +2080,6 @@ def _get_text_parts(message: dict) -> list[str]:
     if isinstance(content, list):
         return [p.get('text', '') for p in content if isinstance(p, dict) and p.get('type') == 'text']
     return []
-
-
-def extract_skill_ids_from_messages(messages: list[dict]) -> set[str]:
-    """Extract skill IDs from <$skillId|label> mention tags in messages."""
-    ids: set[str] = set()
-    for message in messages:
-        for text in _get_text_parts(message):
-            ids.update(m.group(1) for m in SKILL_MENTION_RE.finditer(text))
-    return ids
-
-
-def strip_skill_mentions(messages: list[dict]) -> None:
-    """Replace <$skillId|label> mention tags with the label in message content in-place."""
-    strip_re = re.compile(r'<\$[^|>]+(?:\|([^>]*))?>')
-    for message in messages:
-        content = message.get('content')
-        if isinstance(content, str) and strip_re.search(content):
-            message['content'] = strip_re.sub(r'\1', content).strip()
-        elif isinstance(content, list):
-            for part in content:
-                if isinstance(part, dict) and part.get('type') == 'text':
-                    text = part.get('text', '')
-                    if strip_re.search(text):
-                        part['text'] = strip_re.sub(r'\1', text).strip()
 
 
 async def connect_mcp_server(
@@ -2506,67 +2479,7 @@ async def process_chat_payload(request, form_data, user, metadata, model):
     # Otherwise, save any tools that filter inlets added for merging later.
     inlet_filter_tools = None if payload_tools is not None else form_data.get('tools', None)
 
-    # Mentioned skills get full content; selected/default skills can be loaded through view_skill.
-    mentioned_skill_ids = extract_skill_ids_from_messages(form_data.get('messages', []))
-    skill_ids = (
-        set(form_data.pop('skill_ids', None) or [])
-        | set(model.get('info', {}).get('meta', {}).get('skillIds', []))
-        | mentioned_skill_ids
-    )
-    available_skills = []
-    view_skill_ids = []
-    use_builtin_tools = (
-        bool(metadata.get('session_id'))
-        and metadata.get('params', {}).get('function_calling') != 'legacy'
-        and (model.get('info', {}).get('meta', {}).get('capabilities') or {}).get('builtin_tools', True)
-    )
-
-    if skill_ids:
-        from open_webui.models.skills import Skills as SkillsModel
-
-        accessible_skill_ids = {s.id for s in await SkillsModel.get_skills_by_user_id(user.id, 'read')}
-        for sid in skill_ids:
-            if sid in accessible_skill_ids:
-                s = await SkillsModel.get_skill_by_id(sid)
-                if s and s.is_active:
-                    available_skills.append(s)
-
-        skill_manifest = ''
-        for skill in available_skills:
-            if skill.id in mentioned_skill_ids or not use_builtin_tools:
-                form_data['messages'] = add_or_update_system_message(
-                    f'<skill name="{skill.name}">\n{skill.content}\n</skill>',
-                    form_data['messages'],
-                    append=True,
-                )
-            else:
-                view_skill_ids.append(skill.id)
-                skill_manifest += (
-                    f'<skill>\n<id>{skill.id}</id>\n<name>{skill.name}</name>\n'
-                    f'<description>{skill.description or ""}</description>\n</skill>\n'
-                )
-
-        if skill_manifest:
-            form_data['messages'] = add_or_update_system_message(
-                f'<available_skills>\n{skill_manifest}</available_skills>',
-                form_data['messages'],
-                append=True,
-            )
-
-    # Strip <$skillId|label> mention tags so the model doesn't see raw markup.
-    strip_skill_mentions(form_data.get('messages', []))
-
     prompt = get_last_user_message(form_data['messages'])
-
-    # Guard against empty user message after skill mention stripping.
-    # When a user selects a skill ($skill-name) without typing additional text,
-    # the stripped result is an empty string which causes 400 errors on providers
-    # that reject empty content blocks (e.g. AWS Bedrock ConverseStream).
-    if not prompt or not prompt.strip():
-        fallback = ', '.join(s.name for s in available_skills)
-        if fallback:
-            set_last_user_message_content(fallback, form_data['messages'])
-            prompt = fallback
     # TODO: re-enable URL extraction from prompt
     # urls = []
     # if prompt and len(prompt or "") < 500 and (not files or len(files) == 0):
@@ -2746,7 +2659,6 @@ async def process_chat_payload(request, form_data, user, metadata, model):
                 {
                     **extra_params,
                     '__event_emitter__': event_emitter,
-                    '__skill_ids__': view_skill_ids,
                 },
                 features,
                 model,

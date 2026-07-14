@@ -490,21 +490,6 @@ class EventDefinitions(BaseModel):
     TOOL_VALVES_UPDATED: EventDefinition = EventDefinition(
         name='tool.valves_updated', description='Tool valves were updated.', message='Tool valves updated'
     )
-    SKILL_CREATED: EventDefinition = EventDefinition(
-        name='skill.created', description='A skill was created.', message='Skill created'
-    )
-    SKILL_UPDATED: EventDefinition = EventDefinition(
-        name='skill.updated', description='A skill was updated.', message='Skill updated'
-    )
-    SKILL_DELETED: EventDefinition = EventDefinition(
-        name='skill.deleted', description='A skill was deleted.', message='Skill deleted'
-    )
-    SKILL_ENABLED: EventDefinition = EventDefinition(
-        name='skill.enabled', description='A skill was enabled.', message='Skill enabled'
-    )
-    SKILL_DISABLED: EventDefinition = EventDefinition(
-        name='skill.disabled', description='A skill was disabled.', message='Skill disabled'
-    )
     PROMPT_CREATED: EventDefinition = EventDefinition(
         name='prompt.created', description='A prompt was created.', message='Prompt created'
     )
@@ -607,14 +592,6 @@ class EventDefinitions(BaseModel):
     )
     IMAGE_EDITED: EventDefinition = EventDefinition(
         name='image.edited', description='An image was edited.', message='Image edited'
-    )
-    AUDIO_SPEECH_REQUESTED: EventDefinition = EventDefinition(
-        name='audio.speech_requested', description='Speech generation was requested.', message='Speech requested'
-    )
-    AUDIO_TRANSCRIPTION_REQUESTED: EventDefinition = EventDefinition(
-        name='audio.transcription_requested',
-        description='Audio transcription was requested.',
-        message='Transcription requested',
     )
     TERMINAL_SESSION_OPENED: EventDefinition = EventDefinition(
         name='terminal.session.opened', description='A terminal session was opened.', message='Terminal Session opened'
