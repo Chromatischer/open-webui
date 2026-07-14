@@ -345,7 +345,6 @@ RETRIEVAL_CONFIG_KEYS = {
     'RAG_EMBEDDING_CONCURRENT_REQUESTS': 'rag.embedding_concurrent_requests',
     'RAG_EMBEDDING_ENGINE': 'rag.embedding_engine',
     'RAG_EMBEDDING_MODEL': 'rag.embedding_model',
-    'RAG_TOKENIZER_MODEL': 'rag.tokenizer_model',
     'RAG_EXTERNAL_RERANKER_API_KEY': 'rag.external_reranker_api_key',
     'RAG_EXTERNAL_RERANKER_TIMEOUT': 'rag.external_reranker_timeout',
     'RAG_EXTERNAL_RERANKER_URL': 'rag.external_reranker_url',
@@ -670,7 +669,6 @@ async def get_rag_config(request: Request, user=Depends(get_admin_user)):
         'RAG_EXTERNAL_RERANKER_TIMEOUT': config.RAG_EXTERNAL_RERANKER_TIMEOUT,
         # Chunking settings
         'TEXT_SPLITTER': config.TEXT_SPLITTER,
-        'RAG_TOKENIZER_MODEL': config.RAG_TOKENIZER_MODEL,
         'ENABLE_MARKDOWN_HEADER_TEXT_SPLITTER': config.ENABLE_MARKDOWN_HEADER_TEXT_SPLITTER,
         'CHUNK_SIZE': config.CHUNK_SIZE,
         'CHUNK_MIN_SIZE_TARGET': config.CHUNK_MIN_SIZE_TARGET,
@@ -905,7 +903,6 @@ class ConfigForm(BaseModel):
 
     # Chunking settings
     TEXT_SPLITTER: str | None = None
-    RAG_TOKENIZER_MODEL: str | None = None
     ENABLE_MARKDOWN_HEADER_TEXT_SPLITTER: bool | None = None
     CHUNK_SIZE: int | None = None
     CHUNK_MIN_SIZE_TARGET: int | None = None
@@ -1190,12 +1187,6 @@ async def update_rag_config(request: Request, form_data: ConfigForm, user=Depend
         form_data.CHUNK_MIN_SIZE_TARGET if form_data.CHUNK_MIN_SIZE_TARGET is not None else config.CHUNK_MIN_SIZE_TARGET
     )
     config.CHUNK_OVERLAP = form_data.CHUNK_OVERLAP if form_data.CHUNK_OVERLAP is not None else config.CHUNK_OVERLAP
-    config.RAG_TOKENIZER_MODEL = (
-        form_data.RAG_TOKENIZER_MODEL.strip()
-        if form_data.RAG_TOKENIZER_MODEL is not None
-        else config.RAG_TOKENIZER_MODEL
-    )
-
     # File upload settings
     # Empty string means "clear to None" (unlimited/no compression),
     # None means "don't change", int means "set to this value"
@@ -1367,7 +1358,6 @@ async def update_rag_config(request: Request, form_data: ConfigForm, user=Depend
         'RAG_EXTERNAL_RERANKER_TIMEOUT': config.RAG_EXTERNAL_RERANKER_TIMEOUT,
         # Chunking settings
         'TEXT_SPLITTER': config.TEXT_SPLITTER,
-        'RAG_TOKENIZER_MODEL': config.RAG_TOKENIZER_MODEL,
         'CHUNK_SIZE': config.CHUNK_SIZE,
         'CHUNK_MIN_SIZE_TARGET': config.CHUNK_MIN_SIZE_TARGET,
         'ENABLE_MARKDOWN_HEADER_TEXT_SPLITTER': config.ENABLE_MARKDOWN_HEADER_TEXT_SPLITTER,
@@ -1554,21 +1544,7 @@ def merge_docs_to_target_size(
     return result
 
 
-def get_transformers_tokenizer(request: Request, config: RetrievalConfig):
-    if config.RAG_TOKENIZER_MODEL:
-        from transformers import AutoTokenizer
-
-        tokenizer_model = config.RAG_TOKENIZER_MODEL
-        if not os.path.exists(tokenizer_model) and '/' not in tokenizer_model:
-            tokenizer_model = f'sentence-transformers/{tokenizer_model}'
-
-        return AutoTokenizer.from_pretrained(
-            tokenizer_model,
-            cache_dir=os.getenv('SENTENCE_TRANSFORMERS_HOME') or os.getenv('HF_HUB_CACHE'),
-            trust_remote_code=RAG_EMBEDDING_MODEL_TRUST_REMOTE_CODE,
-            local_files_only=not RAG_EMBEDDING_MODEL_AUTO_UPDATE,
-        )
-
+def get_transformers_tokenizer(request: Request):
     tokenizer = getattr(getattr(request.app.state, 'ef', None), 'tokenizer', None)
     if tokenizer is not None:
         return tokenizer
@@ -1585,7 +1561,7 @@ def get_splitter_length_function(
         return lambda text: len(encoding.encode(text, disallowed_special=()))
 
     if config.TEXT_SPLITTER == 'token_transformers':
-        tokenizer = get_transformers_tokenizer(request, config)
+        tokenizer = get_transformers_tokenizer(request)
         return lambda text: len(tokenizer.encode(text))
 
     return len
