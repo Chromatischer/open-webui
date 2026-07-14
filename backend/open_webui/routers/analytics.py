@@ -1,13 +1,11 @@
 import logging
 from collections import defaultdict
-from datetime import datetime, timedelta
 from typing import Optional
 
 from fastapi import APIRouter, Depends, Query
 from open_webui.internal.db import get_async_session
 from open_webui.models.chat_messages import ChatMessageModel, ChatMessages
 from open_webui.models.chats import Chats
-from open_webui.models.feedbacks import Feedbacks
 from open_webui.models.groups import Groups
 from open_webui.models.users import Users
 from open_webui.utils.auth import get_admin_user
@@ -324,36 +322,22 @@ async def get_model_chats(
 ####################
 
 
-class HistoryEntry(BaseModel):
-    date: str
-    won: int = 0
-    lost: int = 0
-
-
 class TagEntry(BaseModel):
     tag: str
     count: int
 
 
 class ModelOverviewResponse(BaseModel):
-    history: list[HistoryEntry]
     tags: list[TagEntry]
 
 
 @router.get('/models/{model_id:path}/overview', response_model=ModelOverviewResponse)
 async def get_model_overview(
     model_id: str,
-    days: int = Query(30, description='Number of days of history (0 for all)'),
     user=Depends(get_admin_user),
     db: AsyncSession = Depends(get_async_session),
 ):
-    """Get model overview with feedback history and chat tags."""
-
-    # Calculate start date for history
-    now = datetime.now()
-    start_dt = None
-    if days > 0:
-        start_dt = now - timedelta(days=days)
+    """Get the most common chat tags for a model."""
 
     # Get chat IDs that used this model
     chat_ids = await ChatMessages.get_chat_ids_by_model_id(
@@ -364,44 +348,6 @@ async def get_model_overview(
         limit=10000,  # Get all chats
         db=db,
     )
-
-    history_rows = await Feedbacks.get_model_feedback_counts_by_day(
-        model_id=model_id,
-        start_date=int(start_dt.timestamp()) if start_dt else None,
-        db=db,
-    )
-    history_counts = {
-        entry.date: {
-            'won': entry.won,
-            'lost': entry.lost,
-        }
-        for entry in history_rows
-    }
-
-    # Fill in missing days
-    history = []
-    if history_counts or days > 0:
-        end_dt = now
-        if days > 0:
-            current = start_dt
-        elif history_counts:
-            # Find earliest date
-            min_date = min(history_counts.keys())
-            current = datetime.strptime(min_date, '%Y-%m-%d')
-        else:
-            current = now
-
-        while current <= end_dt:
-            date_str = current.strftime('%Y-%m-%d')
-            counts = history_counts.get(date_str, {'won': 0, 'lost': 0})
-            history.append(
-                HistoryEntry(
-                    date=date_str,
-                    won=counts['won'],
-                    lost=counts['lost'],
-                )
-            )
-            current += timedelta(days=1)
 
     # Get chat tags
     tag_counts: dict[str, int] = defaultdict(int)
@@ -418,4 +364,4 @@ async def get_model_overview(
     # Sort by count and take top 10
     tags = [TagEntry(tag=tag, count=count) for tag, count in sorted(tag_counts.items(), key=lambda x: -x[1])[:10]]
 
-    return ModelOverviewResponse(history=history, tags=tags)
+    return ModelOverviewResponse(tags=tags)

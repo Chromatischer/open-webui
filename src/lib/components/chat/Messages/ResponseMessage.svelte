@@ -278,8 +278,6 @@
 
 	let messageIndexEdit = false;
 
-	let showRateComment = false;
-
 	const copyToClipboard = async (text) => {
 		text = removeAllDetails(text);
 
@@ -393,129 +391,6 @@
 		editedContent = '';
 		editedOutput = null;
 		await tick();
-	};
-
-	let feedbackLoading = false;
-
-	const feedbackHandler = async (rating: number | null = null, details: object | null = null) => {
-		// Feedback persistence was removed with the evaluation subsystem.
-		return;
-		/* legacy body retained temporarily for merge-safe removal
-		feedbackLoading = true;
-		console.log('Feedback', rating, details);
-
-		const updatedMessage = {
-			...message,
-			annotation: {
-				...(message?.annotation ?? {}),
-				...(rating !== null ? { rating: rating } : {}),
-				...(details ? details : {})
-			}
-		};
-
-		const chat = await getChatById(localStorage.token, chatId).catch((error) => {
-			toast.error(`${error}`);
-		});
-		if (!chat) {
-			return;
-		}
-
-		const messages = createMessagesList(history, message.id);
-
-		let feedbackItem = {
-			type: 'rating',
-			data: {
-				...(updatedMessage?.annotation ? updatedMessage.annotation : {}),
-				model_id: message?.selectedModelId ?? message.model,
-				...(history.messages[message.parentId].childrenIds.length > 1
-					? {
-							sibling_model_ids: history.messages[message.parentId].childrenIds
-								.filter((id) => id !== message.id)
-								.map((id) => history.messages[id]?.selectedModelId ?? history.messages[id].model)
-						}
-					: {})
-			},
-			meta: {
-				arena: message ? message.arena : false,
-				model_id: message.model,
-				message_id: message.id,
-				message_index: messages.length,
-				chat_id: chatId
-			},
-			snapshot: {
-				chat: chat
-			}
-		};
-
-		const baseModels = [
-			feedbackItem.data.model_id,
-			...(feedbackItem.data.sibling_model_ids ?? [])
-		].reduce((acc, modelId) => {
-			const model = $models.find((m) => m.id === modelId);
-			if (model) {
-				acc[model.id] = model?.info?.base_model_id ?? null;
-			} else {
-				// Log or handle cases where corresponding model is not found
-				console.warn(`Model with ID ${modelId} not found`);
-			}
-			return acc;
-		}, {});
-		feedbackItem.meta.base_models = baseModels;
-
-		let feedback = null;
-		if (message?.feedbackId) {
-			feedback = await updateFeedbackById(
-				localStorage.token,
-				message.feedbackId,
-				feedbackItem
-			).catch((error) => {
-				toast.error(`${error}`);
-			});
-		} else {
-			feedback = await createNewFeedback(localStorage.token, feedbackItem).catch((error) => {
-				toast.error(`${error}`);
-			});
-
-			if (feedback) {
-				updatedMessage.feedbackId = feedback.id;
-			}
-		}
-
-		console.log(updatedMessage);
-		saveMessage(message.id, updatedMessage);
-
-		await tick();
-
-		if (!details) {
-			showRateComment = true;
-
-			if (!updatedMessage.annotation?.tags && (message?.content ?? '') !== '') {
-				// attempt to generate tags
-				const tags = await generateTags(localStorage.token, message.model, messages, chatId).catch(
-					(error) => {
-						console.error(error);
-						return [];
-					}
-				);
-				console.log(tags);
-
-				if (tags) {
-					updatedMessage.annotation.tags = tags;
-					feedbackItem.data.tags = tags;
-
-					saveMessage(message.id, updatedMessage);
-					await updateFeedbackById(
-						localStorage.token,
-						updatedMessage.feedbackId,
-						feedbackItem
-					).catch((error) => {
-						toast.error(`${error}`);
-					});
-				}
-			}
-		}
-
-		feedbackLoading = false; */
 	};
 
 	const deleteMessageHandler = async () => {
@@ -1195,8 +1070,7 @@
 												type="button"
 												class="hidden regenerate-response-button"
 												on:click={() => {
-													showRateComment = false;
-													regenerateResponse(message);
+											regenerateResponse(message);
 
 													(model?.actions ?? []).forEach((action) => {
 														dispatch('action', {
@@ -1214,8 +1088,7 @@
 
 											<RegenerateMenu
 												onRegenerate={(prompt = null) => {
-													showRateComment = false;
-													regenerateResponse(message, prompt);
+											regenerateResponse(message, prompt);
 
 													(model?.actions ?? []).forEach((action) => {
 														dispatch('action', {
@@ -1264,8 +1137,7 @@
 														? 'visible'
 														: 'invisible group-hover:visible'} p-1.5 hover:bg-black/5 dark:hover:bg-white/5 rounded-lg dark:hover:text-white hover:text-black transition regenerate-response-button"
 													on:click={() => {
-														showRateComment = false;
-														regenerateResponse(message);
+												regenerateResponse(message);
 
 														(model?.actions ?? []).forEach((action) => {
 															dispatch('action', {
