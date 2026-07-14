@@ -29,7 +29,6 @@
 		'bocha',
 		'serpstack',
 		'serper',
-		'serphouse',
 		'serply',
 		'searchapi',
 		'serpapi',
@@ -39,15 +38,13 @@
 		'bing',
 		'exa',
 		'perplexity',
-		'microsoft_web_iq',
 		'sougou',
 		'firecrawl',
 		'external',
 		'yandex',
-		'youcom',
-		'linkup'
+		'youcom'
 	];
-	let webLoaderEngines = ['playwright', 'firecrawl', 'tavily', 'microsoft_web_iq', 'external'];
+	let webLoaderEngines = ['playwright', 'firecrawl', 'tavily', 'external'];
 
 	let webConfig = null;
 
@@ -84,15 +81,8 @@
 			webConfig.PLAYWRIGHT_TIMEOUT = webConfig.PLAYWRIGHT_TIMEOUT.toString();
 		}
 
-		// Convert Linkup params JSON string to object before sending
-		const linkupParams =
-			typeof webConfig.LINKUP_SEARCH_PARAMS === 'string' &&
-			webConfig.LINKUP_SEARCH_PARAMS.trim() !== ''
-				? JSON.parse(webConfig.LINKUP_SEARCH_PARAMS)
-				: (webConfig.LINKUP_SEARCH_PARAMS ?? {});
-
 		const res = await updateRAGConfig(localStorage.token, {
-			web: { ...webConfig, LINKUP_SEARCH_PARAMS: linkupParams }
+			web: webConfig
 		});
 
 		// Convert arrays back to strings for display
@@ -144,12 +134,6 @@
 					webConfig.PLAYWRIGHT_TIMEOUT = parsed;
 				}
 			}
-
-			// Convert Linkup params object to JSON string for textarea display
-			webConfig.LINKUP_SEARCH_PARAMS =
-				typeof webConfig.LINKUP_SEARCH_PARAMS === 'object'
-					? JSON.stringify(webConfig.LINKUP_SEARCH_PARAMS ?? {}, null, 2)
-					: (webConfig.LINKUP_SEARCH_PARAMS ?? '');
 		}
 	});
 </script>
@@ -175,30 +159,6 @@
 						</div>
 					</div>
 
-					<div class="mb-2.5 flex w-full justify-between">
-						<div class="self-center text-xs font-medium">
-							{$i18n.t('Web Search Confirmation')}
-						</div>
-						<div class="flex items-center relative">
-							<Tooltip content={$i18n.t('Require users to confirm before using Web Search.')}>
-								<Switch bind:state={webConfig.ENABLE_WEB_SEARCH_CONFIRMATION} />
-							</Tooltip>
-						</div>
-					</div>
-
-					{#if webConfig.ENABLE_WEB_SEARCH_CONFIRMATION}
-						<div class="mb-2.5">
-							<div class="self-center text-xs font-medium mb-2">
-								{$i18n.t('Web Search Confirmation Content')}
-							</div>
-							<Textarea
-								placeholder={$i18n.t(
-									'Your query will be sent to the configured web search provider.'
-								)}
-								bind:value={webConfig.WEB_SEARCH_CONFIRMATION_CONTENT}
-							/>
-						</div>
-					{/if}
 
 					<div class="  mb-2.5 flex w-full justify-between">
 						<div class=" self-center text-xs font-medium">
@@ -215,8 +175,6 @@
 								{#each webSearchEngines as engine}
 									{#if engine === 'duckduckgo' || engine === 'ddgs'}
 										<option value={engine}>DDGS</option>
-									{:else if engine === 'serphouse'}
-										<option value={engine}>SERPHouse</option>
 									{:else}
 										<option value={engine}>{engine}</option>
 									{/if}
@@ -507,36 +465,6 @@
 									/>
 								</div>
 							</div>
-						{:else if webConfig.WEB_SEARCH_ENGINE === 'serphouse'}
-							<div class="mb-2.5 flex w-full flex-col">
-								<div>
-									<div class=" self-center text-xs font-medium mb-1">
-										{$i18n.t('SERPHouse API Key')}
-									</div>
-
-									<SensitiveInput
-										placeholder={$i18n.t('Enter SERPHouse API Key')}
-										bind:value={webConfig.SERPHOUSE_API_KEY}
-									/>
-								</div>
-								<div class="mt-1.5">
-									<div class=" self-center text-xs font-medium mb-1">
-										{$i18n.t('SERPHouse Domain')}
-									</div>
-
-									<div class="flex w-full">
-										<div class="flex-1">
-											<input
-												class="w-full rounded-lg py-2 px-4 text-sm bg-gray-50 dark:text-gray-300 dark:bg-gray-850 outline-hidden"
-												type="text"
-												placeholder="google.com"
-												bind:value={webConfig.SERPHOUSE_DOMAIN}
-												autocomplete="off"
-											/>
-										</div>
-									</div>
-								</div>
-							</div>
 						{:else if webConfig.WEB_SEARCH_ENGINE === 'serply'}
 							<div class="mb-2.5 flex w-full flex-col">
 								<div>
@@ -748,51 +676,6 @@
 									</select>
 								</div>
 							</div>
-						{:else if webConfig.WEB_SEARCH_ENGINE === 'microsoft_web_iq'}
-							<div class="mb-2.5 flex w-full flex-col">
-								<div>
-									<div class=" self-center text-xs font-medium mb-1">
-										{$i18n.t('Microsoft Web IQ API Base URL')}
-									</div>
-
-									<div class="flex w-full">
-										<div class="flex-1">
-											<input
-												class="w-full rounded-lg py-2 px-4 text-sm bg-gray-50 dark:text-gray-300 dark:bg-gray-850 outline-hidden"
-												type="text"
-												placeholder={$i18n.t('Enter Microsoft Web IQ API Base URL')}
-												bind:value={webConfig.MICROSOFT_WEB_IQ_API_BASE_URL}
-												autocomplete="off"
-											/>
-										</div>
-									</div>
-								</div>
-
-								<div class="mt-2">
-									<div class=" self-center text-xs font-medium mb-1">
-										{$i18n.t('Microsoft Web IQ API Key')}
-									</div>
-
-									<SensitiveInput
-										placeholder={$i18n.t('Enter Microsoft Web IQ API Key')}
-										bind:value={webConfig.MICROSOFT_WEB_IQ_API_KEY}
-									/>
-								</div>
-
-								<div class="mt-2">
-									<div class=" self-center text-xs font-medium mb-1">
-										{$i18n.t('Language')}
-									</div>
-
-									<input
-										class="w-full rounded-lg py-2 px-4 text-sm bg-gray-50 dark:text-gray-300 dark:bg-gray-850 outline-hidden"
-										type="text"
-										placeholder={$i18n.t('Enter language')}
-										bind:value={webConfig.MICROSOFT_WEB_IQ_LANGUAGE}
-										autocomplete="off"
-									/>
-								</div>
-							</div>
 						{:else if webConfig.WEB_SEARCH_ENGINE === 'sougou'}
 							<div class="mb-2.5 flex w-full flex-col">
 								<div>
@@ -957,30 +840,6 @@
 									<SensitiveInput
 										placeholder={$i18n.t('Enter You.com API Key')}
 										bind:value={webConfig.YOUCOM_API_KEY}
-									/>
-								</div>
-							</div>
-						{:else if webConfig.WEB_SEARCH_ENGINE === 'linkup'}
-							<div class="mb-2.5 flex w-full flex-col">
-								<div>
-									<div class=" self-center text-xs font-medium mb-1">
-										{$i18n.t('Linkup API Key')}
-									</div>
-
-									<SensitiveInput
-										placeholder={$i18n.t('Enter Linkup API Key')}
-										bind:value={webConfig.LINKUP_API_KEY}
-									/>
-								</div>
-
-								<div class="mt-2">
-									<div class=" self-center text-xs font-medium mb-1">
-										{$i18n.t('Parameters')}
-									</div>
-
-									<Textarea
-										bind:value={webConfig.LINKUP_SEARCH_PARAMS}
-										placeholder={`{\n  "depth": "standard",\n  "outputType": "sourcedAnswer"\n}`}
 									/>
 								</div>
 							</div>
@@ -1286,53 +1145,6 @@
 									<SensitiveInput
 										placeholder={$i18n.t('Enter Tavily API Key')}
 										bind:value={webConfig.TAVILY_API_KEY}
-									/>
-								</div>
-							{/if}
-						</div>
-					{:else if webConfig.WEB_LOADER_ENGINE === 'microsoft_web_iq'}
-						<div class="mb-2.5 flex w-full flex-col">
-							{#if webConfig.WEB_SEARCH_ENGINE !== 'microsoft_web_iq'}
-								<div>
-									<div class=" self-center text-xs font-medium mb-1">
-										{$i18n.t('Microsoft Web IQ API Base URL')}
-									</div>
-
-									<div class="flex w-full">
-										<div class="flex-1">
-											<input
-												class="w-full rounded-lg py-2 px-4 text-sm bg-gray-50 dark:text-gray-300 dark:bg-gray-850 outline-hidden"
-												type="text"
-												placeholder={$i18n.t('Enter Microsoft Web IQ API Base URL')}
-												bind:value={webConfig.MICROSOFT_WEB_IQ_API_BASE_URL}
-												autocomplete="off"
-											/>
-										</div>
-									</div>
-								</div>
-
-								<div class="mt-2">
-									<div class=" self-center text-xs font-medium mb-1">
-										{$i18n.t('Microsoft Web IQ API Key')}
-									</div>
-
-									<SensitiveInput
-										placeholder={$i18n.t('Enter Microsoft Web IQ API Key')}
-										bind:value={webConfig.MICROSOFT_WEB_IQ_API_KEY}
-									/>
-								</div>
-
-								<div class="mt-2">
-									<div class=" self-center text-xs font-medium mb-1">
-										{$i18n.t('Language')}
-									</div>
-
-									<input
-										class="w-full rounded-lg py-2 px-4 text-sm bg-gray-50 dark:text-gray-300 dark:bg-gray-850 outline-hidden"
-										type="text"
-										placeholder={$i18n.t('Enter language')}
-										bind:value={webConfig.MICROSOFT_WEB_IQ_LANGUAGE}
-										autocomplete="off"
 									/>
 								</div>
 							{/if}

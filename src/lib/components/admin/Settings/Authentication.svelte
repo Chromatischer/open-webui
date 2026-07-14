@@ -639,13 +639,6 @@
 							<Switch bind:state={oauthConfig.OAUTH_MERGE_ACCOUNTS_BY_EMAIL} />
 						</div>
 
-						<div class="flex w-full justify-between pr-2">
-							<div class="self-center text-xs font-medium">
-								{$i18n.t('Auto Redirect')}
-							</div>
-							<Switch bind:state={oauthConfig.OAUTH_AUTO_REDIRECT} />
-						</div>
-
 						<div class="w-full">
 							<div class="self-center text-xs font-medium min-w-fit mb-1">
 								{$i18n.t('Allowed Domains')}
