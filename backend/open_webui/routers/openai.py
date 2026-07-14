@@ -10,7 +10,6 @@ from urllib.parse import quote, urlparse
 
 import aiohttp
 from aiocache import cached
-from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 from fastapi import APIRouter, Depends, HTTPException, Request, status
 from fastapi.responses import (
     FileResponse,
@@ -202,9 +201,6 @@ async def get_headers_and_cookies(
         if oauth_token:
             token = f'{oauth_token.get("access_token", "")}'
 
-    elif auth_type in ('azure_ad', 'microsoft_entra_id'):
-        token = get_microsoft_entra_id_access_token()
-
     if token:
         headers['Authorization'] = f'Bearer {token}'
 
@@ -213,21 +209,6 @@ async def get_headers_and_cookies(
         headers.update(custom_headers)
 
     return headers, cookies
-
-
-def get_microsoft_entra_id_access_token():
-    """
-    Get Microsoft Entra ID access token using DefaultAzureCredential for Azure OpenAI.
-    Returns the token string or None if authentication fails.
-    """
-    try:
-        token_provider = get_bearer_token_provider(
-            DefaultAzureCredential(), 'https://cognitiveservices.azure.com/.default'
-        )
-        return token_provider()
-    except Exception as e:
-        log.error(f'Error getting Microsoft Entra ID access token: {e}')
-        return None
 
 
 ##########################################
@@ -734,23 +715,11 @@ async def verify_connection(
             headers, cookies = await get_headers_and_cookies(request, url, key, api_config, user=user)
 
             if api_config.get('azure') or api_config.get('provider') == 'azure':
-                # Only set api-key header if not using Azure Entra ID authentication
-                auth_type = api_config.get('auth_type', 'bearer')
-                if auth_type not in ('azure_ad', 'microsoft_entra_id'):
-                    headers['api-key'] = key
+                headers['api-key'] = key
 
-                # Azure v1 format: base URL already ends with /openai/v1,
-                # use standard /models endpoint without api-version.
-                is_azure_v1 = bool(re.search(r'/openai/v1(?:/|$)', url))
-
-                if is_azure_v1:
-                    verify_url = f'{url.rstrip("/")}/models'
-                else:
-                    api_version = api_config.get('api_version', '') or '2023-03-15-preview'
-                    verify_url = f'{url}/openai/models?api-version={api_version}'
-
+                api_version = api_config.get('api_version', '') or '2023-03-15-preview'
                 async with session.get(
-                    url=verify_url,
+                    url=f'{url}/openai/models?api-version={api_version}',
                     headers=headers,
                     cookies=cookies,
                     ssl=AIOHTTP_CLIENT_SESSION_SSL,
@@ -1205,31 +1174,16 @@ async def generate_chat_completion(
     is_responses = api_config.get('api_type') == 'responses'
 
     if api_config.get('azure') or api_config.get('provider') == 'azure':
-        # Only set api-key header if not using Azure Entra ID authentication
-        auth_type = api_config.get('auth_type', 'bearer')
-        if auth_type not in ('azure_ad', 'microsoft_entra_id'):
-            headers['api-key'] = key
+        headers['api-key'] = key
+        api_version = api_config.get('api_version', '2023-03-15-preview')
+        request_url, payload = convert_to_azure_payload(url, payload, api_version)
+        headers['api-version'] = api_version
 
-        # Azure v1 format: base URL already ends with /openai/v1,
-        # model stays in the payload, no deployment URL rewriting.
-        is_azure_v1 = bool(re.search(r'/openai/v1(?:/|$)', url))
-
-        if is_azure_v1:
-            if is_responses:
-                payload = convert_to_responses_payload(payload)
-                request_url = f'{url.rstrip("/")}/responses'
-            else:
-                request_url = f'{url.rstrip("/")}/chat/completions'
+        if is_responses:
+            payload = convert_to_responses_payload(payload)
+            request_url = f'{request_url}/responses?api-version={api_version}'
         else:
-            api_version = api_config.get('api_version', '2023-03-15-preview')
-            request_url, payload = convert_to_azure_payload(url, payload, api_version)
-            headers['api-version'] = api_version
-
-            if is_responses:
-                payload = convert_to_responses_payload(payload)
-                request_url = f'{request_url}/responses?api-version={api_version}'
-            else:
-                request_url = f'{request_url}/chat/completions?api-version={api_version}'
+            request_url = f'{request_url}/chat/completions?api-version={api_version}'
     else:
         if is_responses:
             payload = convert_to_responses_payload(payload)
@@ -1386,21 +1340,11 @@ async def embeddings(request: Request, form_data: dict, user):
 
     if api_config.get('azure') or api_config.get('provider') == 'azure':
         # Only set api-key header if not using Azure Entra ID authentication
-        auth_type = api_config.get('auth_type', 'bearer')
-        if auth_type not in ('azure_ad', 'microsoft_entra_id'):
-            headers['api-key'] = key
-
-        # Azure v1 format: base URL already ends with /openai/v1,
-        # model stays in the payload, no deployment URL rewriting.
-        is_azure_v1 = bool(re.search(r'/openai/v1(?:/|$)', url))
-
-        if is_azure_v1:
-            embeddings_url = f'{url.rstrip("/")}/embeddings'
-        else:
-            api_version = api_config.get('api_version', '2023-03-15-preview')
-            model = _sanitize_model_for_url(form_data.get('model', ''))
-            embeddings_url = f'{url}/openai/deployments/{model}/embeddings?api-version={api_version}'
-            headers['api-version'] = api_version
+        headers['api-key'] = key
+        api_version = api_config.get('api_version', '2023-03-15-preview')
+        model = _sanitize_model_for_url(form_data.get('model', ''))
+        embeddings_url = f'{url}/openai/deployments/{model}/embeddings?api-version={api_version}'
+        headers['api-version'] = api_version
     else:
         embeddings_url = f'{url}/embeddings'
     requested_model = form_data.get('model')
@@ -1515,19 +1459,11 @@ async def responses(
         headers, cookies = await get_headers_and_cookies(request, url, key, api_config, user=user)
 
         if api_config.get('azure') or api_config.get('provider') == 'azure':
-            auth_type = api_config.get('auth_type', 'bearer')
-            if auth_type not in ('azure_ad', 'microsoft_entra_id'):
-                headers['api-key'] = key
-
-            is_azure_v1 = bool(re.search(r'/openai/v1(?:/|$)', url))
-
-            if is_azure_v1:
-                request_url = f'{url.rstrip("/")}/responses'
-            else:
-                api_version = api_config.get('api_version', '2023-03-15-preview')
-                headers['api-version'] = api_version
-                model = _sanitize_model_for_url(payload.get('model', ''))
-                request_url = f'{url}/openai/deployments/{model}/responses?api-version={api_version}'
+            headers['api-key'] = key
+            api_version = api_config.get('api_version', '2023-03-15-preview')
+            headers['api-version'] = api_version
+            model = _sanitize_model_for_url(payload.get('model', ''))
+            request_url = f'{url}/openai/deployments/{model}/responses?api-version={api_version}'
         else:
             request_url = f'{url}/responses'
 
@@ -1630,25 +1566,15 @@ async def proxy(path: str, request: Request, user=Depends(get_verified_user)):
         headers, cookies = await get_headers_and_cookies(request, url, key, api_config, user=user)
 
         if api_config.get('azure') or api_config.get('provider') == 'azure':
-            # Only set api-key header if not using Azure Entra ID authentication
-            auth_type = api_config.get('auth_type', 'bearer')
-            if auth_type not in ('azure_ad', 'microsoft_entra_id'):
-                headers['api-key'] = key
+            headers['api-key'] = key
+            api_version = api_config.get('api_version', '2023-03-15-preview')
+            headers['api-version'] = api_version
 
-            is_azure_v1 = bool(re.search(r'/openai/v1(?:/|$)', url))
+            payload = json.loads(body)
+            url, payload = convert_to_azure_payload(url, payload, api_version)
+            body = json.dumps(payload).encode()
 
-            if is_azure_v1:
-                qs = request.url.query
-                request_url = f'{url.rstrip("/")}/{path}' + (f'?{qs}' if qs else '')
-            else:
-                api_version = api_config.get('api_version', '2023-03-15-preview')
-                headers['api-version'] = api_version
-
-                payload = json.loads(body)
-                url, payload = convert_to_azure_payload(url, payload, api_version)
-                body = json.dumps(payload).encode()
-
-                request_url = f'{url}/{path}?api-version={api_version}'
+            request_url = f'{url}/{path}?api-version={api_version}'
         else:
             request_url = f'{url}/{path}'
 
