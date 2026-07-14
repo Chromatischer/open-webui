@@ -288,14 +288,11 @@ export const getModelChats = async (
 	return res;
 };
 
-export const getModelOverview = async (token: string = '', modelId: string, days: number = 30) => {
+export const getModelOverview = async (token: string = '', modelId: string) => {
 	let error = null;
 
-	const searchParams = new URLSearchParams();
-	searchParams.append('days', days.toString());
-
 	const res = await fetch(
-		`${WEBUI_API_BASE_URL}/analytics/models/${encodeURIComponent(modelId)}/overview?${searchParams.toString()}`,
+		`${WEBUI_API_BASE_URL}/analytics/models/${encodeURIComponent(modelId)}/overview`,
 		{
 			method: 'GET',
 			headers: {
