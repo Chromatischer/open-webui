@@ -21,7 +21,6 @@
 
 	// Overview tab state
 	let tags: Array<{ tag: string; count: number }> = [];
-	let loadingOverview = false;
 
 	// Chats tab state
 	let chatList: Array<{
@@ -50,7 +49,6 @@
 
 	const loadOverview = async () => {
 		if (!model?.id) return;
-		loadingOverview = true;
 		try {
 			const result = await getModelOverview(localStorage.token, model.id);
 			tags = result?.tags ?? [];
@@ -58,7 +56,6 @@
 			console.error('Failed to load overview:', err);
 			tags = [];
 		}
-		loadingOverview = false;
 	};
 
 	const loadChats = async () => {

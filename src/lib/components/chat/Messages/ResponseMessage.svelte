@@ -12,8 +12,6 @@
 
 	const dispatch = createEventDispatcher();
 
-	import { getChatById } from '$lib/apis/chats';
-	import { generateTags } from '$lib/apis';
 
 	import {
 		config,
@@ -27,7 +25,6 @@
 		copyToClipboard as _copyToClipboard,
 		approximateToHumanReadable,
 		sanitizeResponseContent,
-		createMessagesList,
 		formatDate,
 		removeDetails,
 		removeAllDetails
@@ -110,7 +107,6 @@
 			load_duration?: number;
 			usage?: unknown;
 		};
-		annotation?: { type: string; rating: number };
 	}
 
 	export let chatId = '';
@@ -127,7 +123,7 @@
 			if (message.content !== source.content || message.done !== source.done) {
 				message = structuredClone(source);
 			} else if (!equal(message, source)) {
-				// Slow path: full comparison for infrequent changes (sources, annotations, status, etc.)
+				// Slow path: full comparison for infrequent changes (sources, status, etc.)
 				message = structuredClone(source);
 			}
 		}
@@ -949,83 +945,6 @@
 								{/if}
 
 								{#if !readOnly}
-									{#if false}
-										<Tooltip content={$i18n.t('Good Response')} placement="bottom">
-											<button
-												aria-label={$i18n.t('Good Response')}
-												class="{isLastMessage || ($settings?.highContrastMode ?? false)
-													? 'visible'
-													: 'invisible group-hover:visible'} p-1.5 hover:bg-black/5 dark:hover:bg-white/5 rounded-lg {(
-													message?.annotation?.rating ?? ''
-												).toString() === '1'
-													? 'bg-gray-100 dark:bg-gray-800'
-													: ''} dark:hover:text-white hover:text-black transition disabled:cursor-progress disabled:hover:bg-transparent"
-												disabled={feedbackLoading}
-												on:click={async () => {
-													await feedbackHandler(1);
-													window.setTimeout(() => {
-														document
-															.getElementById(`message-feedback-${message.id}`)
-															?.scrollIntoView();
-													}, 0);
-												}}
-											>
-												<svg
-													aria-hidden="true"
-													stroke="currentColor"
-													fill="none"
-													stroke-width="2.3"
-													viewBox="0 0 24 24"
-													stroke-linecap="round"
-													stroke-linejoin="round"
-													class="w-4 h-4"
-													xmlns="http://www.w3.org/2000/svg"
-												>
-													<path
-														d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"
-													/>
-												</svg>
-											</button>
-										</Tooltip>
-
-										<Tooltip content={$i18n.t('Bad Response')} placement="bottom">
-											<button
-												aria-label={$i18n.t('Bad Response')}
-												class="{isLastMessage || ($settings?.highContrastMode ?? false)
-													? 'visible'
-													: 'invisible group-hover:visible'} p-1.5 hover:bg-black/5 dark:hover:bg-white/5 rounded-lg {(
-													message?.annotation?.rating ?? ''
-												).toString() === '-1'
-													? 'bg-gray-100 dark:bg-gray-800'
-													: ''} dark:hover:text-white hover:text-black transition disabled:cursor-progress disabled:hover:bg-transparent"
-												disabled={feedbackLoading}
-												on:click={async () => {
-													await feedbackHandler(-1);
-													window.setTimeout(() => {
-														document
-															.getElementById(`message-feedback-${message.id}`)
-															?.scrollIntoView();
-													}, 0);
-												}}
-											>
-												<svg
-													aria-hidden="true"
-													stroke="currentColor"
-													fill="none"
-													stroke-width="2.3"
-													viewBox="0 0 24 24"
-													stroke-linecap="round"
-													stroke-linejoin="round"
-													class="w-4 h-4"
-													xmlns="http://www.w3.org/2000/svg"
-												>
-													<path
-														d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3zm7-13h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"
-													/>
-												</svg>
-											</button>
-										</Tooltip>
-									{/if}
 
 									{#if isLastMessage && ($user?.role === 'admin' || ($user?.permissions?.chat?.continue_response ?? true))}
 										<Tooltip content={$i18n.t('Continue Response')} placement="bottom">
