@@ -12,7 +12,6 @@
 
 	const dispatch = createEventDispatcher();
 
-	import { createNewFeedback, getFeedbackById, updateFeedbackById } from '$lib/apis/evaluations';
 	import { getChatById } from '$lib/apis/chats';
 	import { generateTags } from '$lib/apis';
 
@@ -40,7 +39,6 @@
 	import Skeleton from './Skeleton.svelte';
 	import Image from '$lib/components/common/Image.svelte';
 	import Tooltip from '$lib/components/common/Tooltip.svelte';
-	import RateComment from './RateComment.svelte';
 	import Spinner from '$lib/components/common/Spinner.svelte';
 	import WebSearchResults from './ResponseMessage/WebSearchResults.svelte';
 	import Sparkles from '$lib/components/icons/Sparkles.svelte';
@@ -400,6 +398,9 @@
 	let feedbackLoading = false;
 
 	const feedbackHandler = async (rating: number | null = null, details: object | null = null) => {
+		// Feedback persistence was removed with the evaluation subsystem.
+		return;
+		/* legacy body retained temporarily for merge-safe removal
 		feedbackLoading = true;
 		console.log('Feedback', rating, details);
 
@@ -514,7 +515,7 @@
 			}
 		}
 
-		feedbackLoading = false;
+		feedbackLoading = false; */
 	};
 
 	const deleteMessageHandler = async () => {
@@ -1073,7 +1074,7 @@
 								{/if}
 
 								{#if !readOnly}
-									{#if !$temporaryChatEnabled && ($config?.features.enable_message_rating ?? true) && ($user?.role === 'admin' || ($user?.permissions?.chat?.rate_response ?? true))}
+									{#if false}
 										<Tooltip content={$i18n.t('Good Response')} placement="bottom">
 											<button
 												aria-label={$i18n.t('Good Response')}
@@ -1371,18 +1372,6 @@
 							{/if}
 						{/if}
 					</div>
-
-					{#if message.done && showRateComment}
-						<RateComment
-							bind:message
-							bind:show={showRateComment}
-							on:save={async (e) => {
-								await feedbackHandler(null, {
-									...e.detail
-								});
-							}}
-						/>
-					{/if}
 
 					{#if (isLastMessage || ($settings?.keepFollowUpPrompts ?? false)) && message.done && !readOnly && (message?.followUps ?? []).length > 0}
 						<div class="mt-2.5" in:fade={{ duration: 100 }}>
