@@ -289,8 +289,6 @@ RETRIEVAL_CONFIG_KEYS = {
     'ENABLE_RAG_HYBRID_SEARCH_ENRICHED_TEXTS': 'rag.enable_hybrid_search_enriched_texts',
     'ENABLE_WEB_LOADER_SSL_VERIFICATION': 'web.loader.ssl_verification',
     'ENABLE_WEB_SEARCH': 'web.search.enable',
-    'ENABLE_WEB_SEARCH_CONFIRMATION': 'web.search.confirmation.enable',
-    'WEB_SEARCH_CONFIRMATION_CONTENT': 'web.search.confirmation.content',
     'EXA_API_KEY': 'web.search.exa_api_key',
     'EXTERNAL_DOCUMENT_LOADER_API_KEY': 'rag.external_document_loader_api_key',
     'EXTERNAL_DOCUMENT_LOADER_HEADERS': 'rag.external_document_loader_headers',
@@ -683,8 +681,6 @@ async def get_rag_config(request: Request, user=Depends(get_admin_user)):
         # Web search settings
         'web': {
             'ENABLE_WEB_SEARCH': config.ENABLE_WEB_SEARCH,
-            'ENABLE_WEB_SEARCH_CONFIRMATION': config.ENABLE_WEB_SEARCH_CONFIRMATION,
-            'WEB_SEARCH_CONFIRMATION_CONTENT': config.WEB_SEARCH_CONFIRMATION_CONTENT,
             'WEB_SEARCH_ENGINE': config.WEB_SEARCH_ENGINE,
             'WEB_SEARCH_TRUST_ENV': config.WEB_SEARCH_TRUST_ENV,
             'WEB_SEARCH_RESULT_COUNT': config.WEB_SEARCH_RESULT_COUNT,
@@ -761,8 +757,6 @@ async def get_rag_config(request: Request, user=Depends(get_admin_user)):
 
 class WebConfig(BaseModel):
     ENABLE_WEB_SEARCH: bool | None = None
-    ENABLE_WEB_SEARCH_CONFIRMATION: bool | None = None
-    WEB_SEARCH_CONFIRMATION_CONTENT: str | None = None
     WEB_SEARCH_ENGINE: str | None = None
     WEB_SEARCH_TRUST_ENV: bool | None = None
     WEB_SEARCH_RESULT_COUNT: int | None = None
@@ -1215,8 +1209,6 @@ async def update_rag_config(request: Request, form_data: ConfigForm, user=Depend
     if form_data.web is not None:
         # Web search settings
         config.ENABLE_WEB_SEARCH = form_data.web.ENABLE_WEB_SEARCH
-        config.ENABLE_WEB_SEARCH_CONFIRMATION = form_data.web.ENABLE_WEB_SEARCH_CONFIRMATION
-        config.WEB_SEARCH_CONFIRMATION_CONTENT = form_data.web.WEB_SEARCH_CONFIRMATION_CONTENT
         config.WEB_SEARCH_ENGINE = form_data.web.WEB_SEARCH_ENGINE
         config.WEB_SEARCH_TRUST_ENV = form_data.web.WEB_SEARCH_TRUST_ENV
         config.WEB_SEARCH_RESULT_COUNT = form_data.web.WEB_SEARCH_RESULT_COUNT
@@ -1365,8 +1357,6 @@ async def update_rag_config(request: Request, form_data: ConfigForm, user=Depend
         # Web search settings
         'web': {
             'ENABLE_WEB_SEARCH': config.ENABLE_WEB_SEARCH,
-            'ENABLE_WEB_SEARCH_CONFIRMATION': config.ENABLE_WEB_SEARCH_CONFIRMATION,
-            'WEB_SEARCH_CONFIRMATION_CONTENT': config.WEB_SEARCH_CONFIRMATION_CONTENT,
             'WEB_SEARCH_ENGINE': config.WEB_SEARCH_ENGINE,
             'WEB_SEARCH_TRUST_ENV': config.WEB_SEARCH_TRUST_ENV,
             'WEB_SEARCH_RESULT_COUNT': config.WEB_SEARCH_RESULT_COUNT,

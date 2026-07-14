@@ -1108,13 +1108,6 @@ YOUTUBE_LOADER_PROXY_URL = os.getenv('YOUTUBE_LOADER_PROXY_URL', '')
 
 ENABLE_WEB_SEARCH = os.getenv('ENABLE_WEB_SEARCH', 'False').lower() == 'true'
 
-ENABLE_WEB_SEARCH_CONFIRMATION = os.getenv('ENABLE_WEB_SEARCH_CONFIRMATION', 'False').lower() == 'true'
-
-WEB_SEARCH_CONFIRMATION_CONTENT = os.getenv(
-    'WEB_SEARCH_CONFIRMATION_CONTENT',
-    'Your query will be sent to the configured web search provider.',
-)
-
 WEB_SEARCH_ENGINE = os.getenv('WEB_SEARCH_ENGINE', '')
 
 BYPASS_WEB_SEARCH_EMBEDDING_AND_RETRIEVAL = (
@@ -2842,8 +2835,6 @@ DEFAULT_CONFIG = {
     'rag.youtube_loader_language': YOUTUBE_LOADER_LANGUAGE,
     'rag.youtube_loader_proxy_url': YOUTUBE_LOADER_PROXY_URL,
     'web.search.enable': ENABLE_WEB_SEARCH,
-    'web.search.confirmation.enable': ENABLE_WEB_SEARCH_CONFIRMATION,
-    'web.search.confirmation.content': WEB_SEARCH_CONFIRMATION_CONTENT,
     'web.search.engine': WEB_SEARCH_ENGINE,
     'web.search.bypass_embedding_and_retrieval': BYPASS_WEB_SEARCH_EMBEDDING_AND_RETRIEVAL,
     'web.search.bypass_web_loader': BYPASS_WEB_SEARCH_WEB_LOADER,
