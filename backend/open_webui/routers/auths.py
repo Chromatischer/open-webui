@@ -99,8 +99,6 @@ ADMIN_CONFIG_KEYS = {
     'ENABLE_MESSAGE_RATING': 'ui.enable_message_rating',
     'ENABLE_FOLDERS': 'folders.enable',
     'FOLDER_MAX_FILE_COUNT': 'folders.max_file_count',
-    'AUTOMATION_MAX_COUNT': 'automations.max_count',
-    'AUTOMATION_MIN_INTERVAL': 'automations.min_interval',
     'ENABLE_MEMORIES': 'memories.enable',
     'ENABLE_MEMORY_SYSTEM_CONTEXT': 'memories.system_context.enable',
     'ENABLE_USER_WEBHOOKS': 'ui.enable_user_webhooks',
@@ -1133,14 +1131,8 @@ class AdminConfig(BaseModel):
     ENABLE_MESSAGE_RATING: bool
     ENABLE_FOLDERS: bool
     FOLDER_MAX_FILE_COUNT: int | str | None = None
-    AUTOMATION_MAX_COUNT: int | str | None = None
-    AUTOMATION_MIN_INTERVAL: int | str | None = None
-    ENABLE_AUTOMATIONS: bool
-    ENABLE_CHANNELS: bool
-    ENABLE_CALENDAR: bool
     ENABLE_MEMORIES: bool
     ENABLE_MEMORY_SYSTEM_CONTEXT: bool
-    ENABLE_NOTES: bool
     ENABLE_USER_WEBHOOKS: bool
     ENABLE_USER_STATUS: bool
     PENDING_USER_OVERLAY_TITLE: str | None = None
@@ -1152,10 +1144,6 @@ class AdminConfig(BaseModel):
 async def update_admin_config(request: Request, form_data: AdminConfig, user=Depends(get_admin_user)):
     updates = config_updates(form_data.model_dump(), ADMIN_CONFIG_KEYS)
     updates['folders.max_file_count'] = int(form_data.FOLDER_MAX_FILE_COUNT) if form_data.FOLDER_MAX_FILE_COUNT else ''
-    updates['automations.max_count'] = int(form_data.AUTOMATION_MAX_COUNT) if form_data.AUTOMATION_MAX_COUNT else ''
-    updates['automations.min_interval'] = (
-        int(form_data.AUTOMATION_MIN_INTERVAL) if form_data.AUTOMATION_MIN_INTERVAL else ''
-    )
 
     if form_data.DEFAULT_USER_ROLE not in ['pending', 'user', 'admin']:
         updates.pop('ui.default_user_role', None)
