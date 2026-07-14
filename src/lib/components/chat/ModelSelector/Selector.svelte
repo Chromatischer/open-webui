@@ -42,10 +42,12 @@
 	const dispatch = createEventDispatcher();
 
 	export let id = '';
-	export let value = '';
+	export let value: string | null = '';
 	export let placeholder = $i18n.t('Select a model');
 	export let searchEnabled = true;
 	export let searchPlaceholder = $i18n.t('Search a model');
+	export let selectionOnly = false;
+	export let includeHidden = false;
 
 	export let items: {
 		label: string;
@@ -248,7 +250,7 @@
 							return item.model?.direct;
 						}
 					})
-	).filter((item) => !(item.model?.info?.meta?.hidden ?? false));
+	).filter((item) => includeHidden || !(item.model?.info?.meta?.hidden ?? false));
 
 	$: if (
 		selectedTag !== undefined ||
@@ -423,7 +425,7 @@
 	onMount(async () => {
 		if (items) {
 			tags = items
-				.filter((item) => !(item.model?.info?.meta?.hidden ?? false))
+				.filter((item) => includeHidden || !(item.model?.info?.meta?.hidden ?? false))
 				.flatMap((item) => item.model?.tags ?? [])
 				.map((tag) => tag.name.toLowerCase());
 			// Remove duplicates and sort
@@ -431,7 +433,7 @@
 		}
 	});
 
-	$: if (show) {
+	$: if (show && !selectionOnly) {
 		setOllamaVersion();
 	}
 
@@ -586,10 +588,62 @@
 				transition:flyAndScale={{ y: dropdownPosition.openUp ? 8 : -8, start: 0.96, duration: 200 }}
 			>
 				<slot>
+<<<<<<< HEAD
 					<div class="flex flex-col">
 						<!-- Body: category rail (left) + model list (right) -->
 						<div class="flex items-stretch h-72">
 							{#if hasCategories}
+=======
+					{#if searchEnabled}
+						<div class="flex items-center gap-2.5 px-4.5 pt-3.5 mb-1.5">
+							<Search className="size-4" strokeWidth="2.5" />
+
+							<input
+								id="model-search-input"
+								bind:value={searchValue}
+								class="w-full text-sm bg-transparent outline-hidden"
+								placeholder={searchPlaceholder}
+								autocomplete="off"
+								aria-label={$i18n.t('Search In Models')}
+								on:keydown={(e) => {
+									if (e.code === 'Enter' && filteredItems.length > 0) {
+										value = filteredItems[selectedModelIdx].value;
+										show = false;
+										return; // dont need to scroll on selection
+									} else if (e.code === 'ArrowDown') {
+										e.stopPropagation();
+										selectedModelIdx = Math.min(selectedModelIdx + 1, filteredItems.length - 1);
+									} else if (e.code === 'ArrowUp') {
+										e.stopPropagation();
+										selectedModelIdx = Math.max(selectedModelIdx - 1, 0);
+									} else {
+										// if the user types something, reset to the top selection.
+										selectedModelIdx = 0;
+									}
+
+									const item = document.querySelector(`[data-arrow-selected="true"]`);
+									item?.scrollIntoView({
+										block: 'center',
+										inline: 'nearest',
+										behavior: 'instant'
+									});
+								}}
+							/>
+						</div>
+					{/if}
+
+					<div class="px-2">
+						{#if tags && items.filter((item) => includeHidden || !(item.model?.info?.meta?.hidden ?? false)).length > 0}
+							<div
+								class=" flex w-full bg-white dark:bg-gray-850 overflow-x-auto scrollbar-none font-[450] mb-0.5"
+								on:wheel={(e) => {
+									if (e.deltaY !== 0) {
+										e.preventDefault();
+										e.currentTarget.scrollLeft += e.deltaY;
+									}
+								}}
+							>
+>>>>>>> upstream/main
 								<div
 									class="shrink-0 w-[9.5rem] h-full overflow-y-auto scrollbar-none border-r border-[var(--border)] flex flex-col gap-0.5 p-1.5"
 								>
@@ -687,6 +741,7 @@
 									listScrollTop = listContainer.scrollTop;
 								}}
 							>
+<<<<<<< HEAD
 								{#if filteredItems.length === 0}
 									{#if items.length === 0 && $user?.role === 'admin'}
 										<div class="flex flex-col items-start justify-center py-6 px-4 text-start">
@@ -730,6 +785,23 @@
 													onClick={() => {
 														value = item.value;
 														selectedModelIdx = index;
+=======
+								<div style="height: {visibleStart * ITEM_HEIGHT}px;" />
+								{#each filteredItems.slice(visibleStart, visibleEnd) as item, i (item.value)}
+									{@const index = visibleStart + i}
+									<ModelItem
+										{selectedModelIdx}
+										{item}
+										{index}
+										{value}
+										{pinModelHandler}
+										{unloadModelHandler}
+										{deleteModelHandler}
+										{selectionOnly}
+										onClick={() => {
+											value = item.value;
+											selectedModelIdx = index;
+>>>>>>> upstream/main
 
 														show = false;
 													}}
@@ -740,9 +812,27 @@
 									{/key}
 								{/if}
 
+<<<<<<< HEAD
 								{#if !(searchValue.trim() in $MODEL_DOWNLOAD_POOL) && searchValue && ollamaVersion && $user?.role === 'admin'}
 									<Tooltip
 										content={$i18n.t(`Pull "{{searchValue}}" from Ollama.com`, {
+=======
+						{#if !selectionOnly && !(searchValue.trim() in $MODEL_DOWNLOAD_POOL) && searchValue && ollamaVersion && $user?.role === 'admin'}
+							<Tooltip
+								content={$i18n.t(`Pull "{{searchValue}}" from Ollama.com`, {
+									searchValue: searchValue
+								})}
+								placement="top-start"
+							>
+								<button
+									class="flex w-full font-medium line-clamp-1 select-none items-center rounded-button py-2 pl-3 pr-1.5 text-sm text-gray-700 dark:text-gray-100 outline-hidden transition-all duration-75 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-xl cursor-pointer data-highlighted:bg-muted"
+									on:click={() => {
+										pullModelHandler();
+									}}
+								>
+									<div class=" truncate">
+										{$i18n.t(`Pull "{{searchValue}}" from Ollama.com`, {
+>>>>>>> upstream/main
 											searchValue: searchValue
 										})}
 										placement="top-start"
@@ -762,6 +852,7 @@
 									</Tooltip>
 								{/if}
 
+<<<<<<< HEAD
 								{#each Object.keys($MODEL_DOWNLOAD_POOL) as model}
 									<div
 										class="flex w-full justify-between font-medium select-none py-2 pl-3 pr-1.5 text-sm text-[var(--text)] outline-hidden transition-all duration-75 rounded-xl"
@@ -769,6 +860,21 @@
 										<div class="flex">
 											<div class="mr-2.5 translate-y-0.5">
 												<Spinner />
+=======
+						{#each selectionOnly ? [] : Object.keys($MODEL_DOWNLOAD_POOL) as model}
+							<div
+								class="flex w-full justify-between font-medium select-none rounded-button py-2 pl-3 pr-1.5 text-sm text-gray-700 dark:text-gray-100 outline-hidden transition-all duration-75 rounded-xl cursor-pointer data-highlighted:bg-muted"
+							>
+								<div class="flex">
+									<div class="mr-2.5 translate-y-0.5">
+										<Spinner />
+									</div>
+
+									<div class="flex flex-col self-start">
+										<div class="flex gap-1">
+											<div class="line-clamp-1">
+												Downloading "{model}"
+>>>>>>> upstream/main
 											</div>
 
 											<div class="flex flex-col self-start">

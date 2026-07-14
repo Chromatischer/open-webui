@@ -5,9 +5,48 @@
 	"(e.g. `sh webui.sh --api`)": "(مثال: تشغيل الأمر: `sh webui.sh --api`)",
 	"(latest)": "(أحدث)",
 	"(leave blank for to use commercial endpoint)": "",
+<<<<<<< HEAD
 	"{{COUNT}} extracted lines": "",
 	"{{COUNT}} hidden lines": "{{COUNT}} سطر/أسطر مخفية",
 	"{{COUNT}} members": "",
+=======
+	"[Last] dddd [at] h:mm A": "",
+	"[Today at] h:mm A": "",
+	"[Yesterday at] h:mm A": "",
+	"{{ models }}": "النماذج: {{ models }}",
+	"{{COUNT}} Available Skills": "",
+	"{{COUNT}} Available Tools": "",
+	"{{COUNT}} characters": "",
+	"{{COUNT}} extracted lines": "",
+	"{{COUNT}} files": "",
+	"{{count}} files selected. Only new and modified files will be uploaded. Deleted files will be removed. The folder structure will be mirrored. Continue?_zero": "",
+	"{{count}} files selected. Only new and modified files will be uploaded. Deleted files will be removed. The folder structure will be mirrored. Continue?_one": "",
+	"{{count}} files selected. Only new and modified files will be uploaded. Deleted files will be removed. The folder structure will be mirrored. Continue?_two": "",
+	"{{count}} files selected. Only new and modified files will be uploaded. Deleted files will be removed. The folder structure will be mirrored. Continue?_few": "",
+	"{{count}} files selected. Only new and modified files will be uploaded. Deleted files will be removed. The folder structure will be mirrored. Continue?_many": "",
+	"{{count}} files selected. Only new and modified files will be uploaded. Deleted files will be removed. The folder structure will be mirrored. Continue?_other": "",
+	"{{count}} filters_zero": "",
+	"{{count}} filters_one": "",
+	"{{count}} filters_two": "",
+	"{{count}} filters_few": "",
+	"{{count}} filters_many": "",
+	"{{count}} filters_other": "",
+	"{{count}} groups_zero": "",
+	"{{count}} groups_one": "",
+	"{{count}} groups_two": "",
+	"{{count}} groups_few": "",
+	"{{count}} groups_many": "",
+	"{{count}} groups_other": "",
+	"{{COUNT}} hidden lines": "{{COUNT}} سطر/أسطر مخفية",
+	"{{COUNT}} members": "",
+	"{{count}} of {{total}} accessible_zero": "",
+	"{{count}} of {{total}} accessible_one": "",
+	"{{count}} of {{total}} accessible_two": "",
+	"{{count}} of {{total}} accessible_few": "",
+	"{{count}} of {{total}} accessible_many": "",
+	"{{count}} of {{total}} accessible_other": "",
+	"{{COUNT}} Replies": "{{COUNT}} رد/ردود",
+>>>>>>> upstream/main
 	"{{COUNT}} Rows": "",
 	"{{count}} selected_zero": "",
 	"{{count}} selected_one": "",
@@ -15,15 +54,42 @@
 	"{{count}} selected_few": "",
 	"{{count}} selected_many": "",
 	"{{count}} selected_other": "",
+<<<<<<< HEAD
+=======
+	"{{COUNT}} Sources": "",
+	"{{count}} users_zero": "",
+	"{{count}} users_one": "",
+	"{{count}} users_two": "",
+	"{{count}} users_few": "",
+	"{{count}} users_many": "",
+	"{{count}} users_other": "",
+	"{{COUNT}} words": "",
+>>>>>>> upstream/main
 	"{{COUNT}}d_time_ago": "",
 	"{{COUNT}}h_time_ago": "",
 	"{{COUNT}}m_time_ago": "",
 	"{{COUNT}}w_time_ago": "",
 	"{{COUNT}}y_time_ago": "",
+<<<<<<< HEAD
+=======
+	"{{label}} contains invalid JSON": "",
+	"{{label}} must be a JSON object": "",
+	"{{LOCALIZED_DATE}} at {{LOCALIZED_TIME}}": "",
+	"{{model}} download has been canceled": "",
+>>>>>>> upstream/main
 	"{{modelName}} profile image": "",
 	"{{user}}'s Chats": "محادثات المستخدم {{user}}",
 	"{{webUIName}} Backend Required": "يتطلب الخلفية الخاصة بـ {{webUIName}}",
 	"*Prompt node ID(s) are required for image generation": "*معرّف/معرّفات عقدة الموجه مطلوبة لتوليد الصور",
+<<<<<<< HEAD
+=======
+	"1 group": "",
+	"1 hour before": "",
+	"1 Source": "",
+	"1 user": "",
+	"10 minutes before": "",
+	"15 minutes before": "",
+>>>>>>> upstream/main
 	"1m_time_ago": "",
 	"a line about what this model is for…": "",
 	"A model binds a base mind to a system prompt, tools and knowledge — compose one and summon it in any chat.": "",
@@ -35,6 +101,11 @@
 	"Access Control": "التحكم في الوصول",
 	"Access Grants": "",
 	"Access List": "",
+<<<<<<< HEAD
+=======
+	"Access prohibited": "",
+	"Access updated": "",
+>>>>>>> upstream/main
 	"Accessible to all users": "متاح لجميع المستخدمين",
 	"Account Activation Pending": "انتظار تفعيل الحساب",
 	"Accurate information": "معلومات دقيقة",
@@ -45,6 +116,7 @@
 	"Activity": "",
 	"Add": "إضافة",
 	"Add a model ID": "إضافة معرّف نموذج",
+	"Add a preference, fact, or instruction about you": "",
 	"Add a short description about what this model does": "أضف وصفًا قصيرًا لما يفعله هذا النموذج",
 	"Add a tag": "أضف وسم",
 	"Add a tag...": "",
@@ -54,7 +126,17 @@
 	"Add Custom Parameter": "",
 	"Add Custom Prompt": "",
 	"Add Details": "",
+	"Add durable context for future chats": "",
 	"Add Files": "إضافة ملفات",
+<<<<<<< HEAD
+=======
+	"Add Image": "",
+	"Add Knowledge Connection": "",
+	"Add location": "",
+	"Add Member": "",
+	"Add Members": "",
+	"Add Memory": "إضافة ذاكرة",
+>>>>>>> upstream/main
 	"Add Model": "إضافة نموذج",
 	"Add tag": "",
 	"Add Tag": "إضافة وسم",
@@ -62,6 +144,11 @@
 	"Add to favorites": "",
 	"Add User": "إضافة مستخدم",
 	"Add User Group": "إضافة مجموعة مستخدمين",
+<<<<<<< HEAD
+=======
+	"Add webhook": "",
+	"Add webpage": "",
+>>>>>>> upstream/main
 	"Add your Open Terminal URL and API key in Settings → Integrations.": "",
 	"Additional Config": "",
 	"Additional configuration options for marker. This should be a JSON string with key-value pairs. For example, '{\"key\": \"value\"}'. Supported keys include: disable_links, keep_pageheader_in_output, keep_pagefooter_in_output, filter_blank_pages, drop_repeated_text, layout_coverage_threshold, merge_threshold, height_tolerance, gap_threshold, image_threshold, min_line_length, level_count, default_level": "",
@@ -72,18 +159,40 @@
 	"Admin": "المسؤول",
 	"Admin Contact Email": "",
 	"Admin Panel": "لوحة المسؤول",
+<<<<<<< HEAD
+=======
+	"Admin Roles": "",
+	"Admin Settings": "إعدادات المسؤول",
+	"Admin-managed service account": "",
+>>>>>>> upstream/main
 	"Admins have access to all tools at all times; users need tools assigned per model in the workspace.": "للمسؤولين الوصول إلى جميع الأدوات في جميع الأوقات؛ بينما يحتاج المستخدمون إلى تعيين أدوات لكل نموذج في مساحة العمل.",
 	"Advanced": "",
 	"Advanced parameters for MinerU parsing (enable_ocr, enable_formula, enable_table, language, model_version, page_ranges)": "",
 	"Advanced Params": "المعلمات المتقدمة",
 	"After updating or changing the embedding model, you must reindex the knowledge base for the changes to take effect. You can do this using the \"Reindex\" button below.": "",
 	"All": "الكل",
+<<<<<<< HEAD
 	"All time": "",
 	"All Users": "",
+=======
+	"All chats have been unarchived.": "",
+	"All day": "",
+	"All events": "",
+	"All models are now hidden": "",
+	"All models are now visible": "",
+	"All models deleted successfully": "تم حذف جميع النماذج بنجاح",
+	"All shared chats have been unshared.": "",
+	"All Sources": "",
+	"All time": "",
+	"All Users": "",
+	"All users and system events": "",
+	"Allow Call": "",
+>>>>>>> upstream/main
 	"Allow Chat Controls": "السماح بوسائل التحكم في المحادثة",
 	"Allow Chat Delete": "السماح بحذف المحادثة",
 	"Allow Chat Edit": "السماح بتعديل المحادثة",
 	"Allow Chat Export": "",
+	"Allow Chat Import": "",
 	"Allow Chat Params": "",
 	"Allow Chat Share": "",
 	"Allow Chat System Prompt": "",
@@ -98,9 +207,11 @@
 	"Allow Sharing With Users": "",
 	"Allow Text to Speech": "",
 	"Allow Web Upload": "",
+	"Allowed Domains": "",
 	"Allowed Endpoints": "النقاط النهائية المسموح بها",
 	"Allowed File Extensions": "",
 	"Allowed file extensions for upload. Separate multiple extensions with commas. Leave empty for all file types.": "",
+	"Allowed Roles": "",
 	"Already have an account?": "هل لديك حساب بالفعل؟",
 	"Alternative to the top_p, and aims to ensure a balance of quality and variety. The parameter p represents the minimum probability for a token to be considered, relative to the probability of the most likely token. For example, with p=0.05 and the most likely token having a probability of 0.9, logits with a value less than 0.045 are filtered out.": "بديل للـ top_p، ويهدف إلى ضمان توازن بين الجودة والتنوع. تمثل المعلمة p الحد الأدنى لاحتمالية اعتبار الرمز مقارنة باحتمالية الرمز الأكثر احتمالاً. على سبيل المثال، مع p=0.05 والرمز الأكثر احتمالاً لديه احتمال 0.9، يتم ترشيح القيم الأقل من 0.045.",
 	"Amazing": "رائع",
@@ -112,6 +223,11 @@
 	"API Base URL": "الرابط الأساسي لواجهة API",
 	"API Base URL for Datalab Marker service. Defaults to: https://www.datalab.to/api/v1/marker": "",
 	"API Key": "مفتاح واجهة برمجة التطبيقات (API)",
+<<<<<<< HEAD
+=======
+	"API Key / Token": "",
+	"API Key created.": "تم إنشاء مفتاح واجهة API.",
+>>>>>>> upstream/main
 	"API Key Endpoint Restrictions": "قيود نقاط نهاية مفتاح API",
 	"API Keys": "",
 	"API Mode": "",
@@ -128,13 +244,31 @@
 	"Are you sure you want to delete \"{{NAME}}\"?": "",
 	"Are you sure you want to delete **{{modelName}}**?": "",
 	"Are you sure you want to delete this connection? This action cannot be undone.": "",
+<<<<<<< HEAD
 	"Are you sure you want to delete this?": "",
 	"Arena": "",
+=======
+	"Are you sure you want to delete this directory?": "",
+	"Are you sure you want to delete this memory? This action cannot be undone.": "",
+	"Are you sure you want to delete this message?": "هل أنت متأكد من رغبتك في حذف هذه الرسالة؟",
+	"Are you sure you want to delete this version? Child versions will be relinked to this version's parent.": "",
+	"Are you sure you want to delete this webhook? This action cannot be undone.": "",
+	"Are you sure you want to delete this?": "",
+	"Are you sure you want to reset all permissions to their default values? You will still need to save to apply the changes.": "",
+	"Are you sure you want to unarchive all archived chats?": "هل أنت متأكد من رغبتك في إلغاء أرشفة جميع المحادثات المؤرشفة؟",
+	"Are you sure you want to unshare all shared chats? This will remove all share links.": "",
+>>>>>>> upstream/main
 	"Arena Models": "نماذج الساحة",
 	"Artifacts": "القطع الأثرية",
 	"Ask": "اسأل",
 	"Ask a question": "اطرح سؤالاً",
+<<<<<<< HEAD
 	"Ask the User": "",
+=======
+	"Ask a test question": "",
+	"Ask this knowledge source a test question": "",
+	"Assistant": "المساعد",
+>>>>>>> upstream/main
 	"Async Embedding Processing": "",
 	"Attach File From Knowledge": "",
 	"Attention to detail": "الاهتمام بالتفاصيل",
@@ -143,20 +277,33 @@
 	"Audience": "",
 	"August": "أغسطس",
 	"Auth": "",
+	"Auth Mode": "",
+	"Auth required": "",
 	"Authenticate": "توثيق",
 	"Authentication": "المصادقة",
 	"Auto (Random)": "",
+<<<<<<< HEAD
 	"Auto-inject system tools for Agents (timestamps, memory, notes, etc.)": "",
+=======
+	"Auto Redirect": "",
+	"Auto-Copy Response to Clipboard": "نسخ الرد تلقائيًا إلى الحافظة",
+	"Auto-Create Groups": "",
+	"Auto-Playback Response": "تشغيل الرد تلقائيًا",
+>>>>>>> upstream/main
 	"Autocomplete Generation": "توليد الإكمال التلقائي",
 	"Autocomplete Generation Input Max Length": "الحد الأقصى لطول مدخل توليد الإكمال التلقائي",
+	"Autocomplete Generation Prompt": "",
+	"Automatic": "",
 	"Automatic1111": "Automatic1111 (أوتوماتيك 1111)",
 	"AUTOMATIC1111 Api Auth String": "سلسلة توثيق API لـ AUTOMATIC1111",
 	"AUTOMATIC1111 Base URL": "الرابط الأساسي لـ AUTOMATIC1111",
 	"AUTOMATIC1111 Base URL is required.": "الرابط الأساسي لـ AUTOMATIC1111 مطلوب.",
 	"Available list": "القائمة المتاحة",
 	"Available models": "",
+	"Available Skills": "",
 	"Available Tools": "",
 	"available users": "المستخدمون المتاحون",
+	"Available variables": "",
 	"available!": "متاح!",
 	"Awful": "فظيع",
 	"Azure AI Speech": "نطق Azure AI (مايكروسوفت)",
@@ -167,16 +314,30 @@
 	"Backup, export, and import instance data.": "",
 	"Bad Response": "رد سيئ",
 	"Banners": "لافتات",
+<<<<<<< HEAD
 	"Base model": "",
+=======
+	"Base Model (From)": "النموذج الأساسي (من)",
+	"Base Model is required.": "",
+>>>>>>> upstream/main
 	"Base Model List Cache speeds up access by fetching base models only at startup or on settings save—faster, but may not show recent base model changes.": "",
 	"Bearer": "",
 	"Begin a new folio": "",
 	"Being lazy": "كونك كسولاً",
+<<<<<<< HEAD
 	"Beta": "بيتا",
 	"Bind the model": "",
 	"Bing": "",
 	"Bing Search V7 Endpoint": "نقطة نهاية Bing Search V7",
 	"Bing Search V7 Subscription Key": "مفتاح اشتراك Bing Search V7",
+=======
+	"Bing": "",
+	"Bing Search V7 Endpoint": "نقطة نهاية Bing Search V7",
+	"Bing Search V7 Subscription Key": "مفتاح اشتراك Bing Search V7",
+	"Bio": "",
+	"Birth Date": "",
+	"Blocked Groups": "",
+>>>>>>> upstream/main
 	"BM25 Weight": "",
 	"Bocha Search API Key": "مفتاح API لـ Bocha Search",
 	"Bold": "",
@@ -204,6 +365,12 @@
 	"Chat": "محادثة",
 	"Chat Completions": "",
 	"Chat Conversation": "",
+<<<<<<< HEAD
+=======
+	"Chat deleted.": "",
+	"Chat Direction": "اتجاه المحادثة",
+	"Chat exported successfully": "",
+>>>>>>> upstream/main
 	"Chat History": "",
 	"Chat ID": "",
 	"Chat moved successfully": "",
@@ -263,6 +430,11 @@
 	"Code Interpreter Prompt Template": "قالب موجه مفسر الشيفرة",
 	"Collapse": "طي",
 	"Collection": "المجموعة",
+<<<<<<< HEAD
+=======
+	"Collection Field": "",
+	"Collections": "",
+>>>>>>> upstream/main
 	"Color": "اللون",
 	"ComfyUI": "ComfyUI",
 	"ComfyUI API Key": "مفتاح API لـ ComfyUI",
@@ -271,9 +443,29 @@
 	"ComfyUI Workflow": "سير عمل ComfyUI",
 	"ComfyUI Workflow Nodes": "عقد سير عمل ComfyUI",
 	"Comma separated Node Ids (e.g. 1 or 1,2)": "",
+<<<<<<< HEAD
+=======
+	"Comma-separated group names": "",
+	"Comma-separated list of file extensions MinerU will handle (e.g. pdf, docx, pptx, xlsx)": "",
+	"command": "",
+	"Command": "الأمر",
+>>>>>>> upstream/main
 	"Comment": "",
 	"Community Reviews": "",
+<<<<<<< HEAD
 	"Compose your first model": "",
+=======
+	"Compacting context": "",
+	"Comparing with knowledge base...": "",
+	"Completions": "الإكمالات",
+	"Compress Images in Channels": "",
+	"Computing checksums ({{count}} files)_zero": "",
+	"Computing checksums ({{count}} files)_one": "",
+	"Computing checksums ({{count}} files)_two": "",
+	"Computing checksums ({{count}} files)_few": "",
+	"Computing checksums ({{count}} files)_many": "",
+	"Computing checksums ({{count}} files)_other": "",
+>>>>>>> upstream/main
 	"Concurrent Requests": "الطلبات المتزامنة",
 	"Config": "",
 	"Configure": "تكوين",
@@ -286,6 +478,10 @@
 	"Connect to Open Terminal instances. All users will have access to file browsing and terminal tools through these servers.": "",
 	"Connect to your own OpenAPI compatible external tool servers.": "",
 	"Connected": "",
+<<<<<<< HEAD
+=======
+	"Connected ({{type}})": "",
+>>>>>>> upstream/main
 	"Connection failed": "",
 	"Connection lost. Reconnecting...": "",
 	"Connection Type": "",
@@ -294,8 +490,16 @@
 	"Contact Admin for WebUI Access": "اتصل بالمسؤول للوصول إلى واجهة الويب",
 	"Content": "المحتوى",
 	"Content Extraction Engine": "محرك استخراج المحتوى",
+	"Content Field": "",
 	"Content lengths (character counts only)": "",
+	"Context": "",
+	"Context compacted": "",
+	"Context Compaction": "",
+	"Context compaction failed": "",
+	"Context Compaction Prompt": "",
+	"Context Compaction Threshold": "",
 	"Context Tokens": "",
+	"Continue": "",
 	"Continue Response": "متابعة الرد",
 	"Continue with {{provider}}": "متابعة مع {{provider}}",
 	"Continue with Email": "متابعة باستخدام البريد الإلكتروني",
@@ -326,6 +530,16 @@
 	"Create Image": "",
 	"Create model": "",
 	"Create Model": "",
+<<<<<<< HEAD
+=======
+	"Create new key": "إنشاء مفتاح جديد",
+	"Create new secret key": "إنشاء مفتاح سري جديد",
+	"Create note": "",
+	"Create Note": "",
+	"Create one read-only Knowledge source per external collection. Test must pass before the source is created.": "",
+	"Create scheduled prompts that run automatically on a recurring basis.": "",
+	"Create your first note by clicking on the plus button below.": "",
+>>>>>>> upstream/main
 	"Created at": "تم الإنشاء في",
 	"Created At": "تاريخ الإنشاء",
 	"Created by": "تم الإنشاء بواسطة",
@@ -336,7 +550,12 @@
 	"Custom color": "",
 	"Custom Parameter Name": "",
 	"Custom Parameter Value": "",
+<<<<<<< HEAD
 	"Custom presets that pair a base model with a system prompt, tools, knowledge and capabilities — build your own assistants and reuse them anywhere in chat.": "",
+=======
+	"Custom range": "",
+	"Daily": "",
+>>>>>>> upstream/main
 	"Daily Messages": "",
 	"Danger Zone": "منطقة الخطر",
 	"Database": "قاعدة البيانات",
@@ -352,7 +571,6 @@
 	"Default Features": "",
 	"Default Filters": "",
 	"Default Group": "",
-	"Default mode works with a wider range of models by calling tools once before execution. Native mode leverages the model's built-in tool-calling capabilities, but requires the model to inherently support this feature.": "الوضع الافتراضي يعمل مع مجموعة أوسع من النماذج من خلال استدعاء الأدوات مرة واحدة قبل التنفيذ. أما الوضع الأصلي فيستخدم قدرات استدعاء الأدوات المدمجة في النموذج، لكنه يتطلب دعمًا داخليًا لهذه الميزة.",
 	"Default Model": "النموذج الافتراضي",
 	"Default permissions": "الأذونات الافتراضية",
 	"Default Prompt Suggestions": "الإفتراضي Prompt الاقتراحات",
@@ -360,13 +578,25 @@
 	"Default to ALL": "الافتراضي هو الكل",
 	"Default to segmented retrieval for focused and relevant content extraction, this is recommended for most cases.": "",
 	"Default User Role": "الإفتراضي صلاحيات المستخدم",
+	"Default webhook": "",
 	"Defaults": "",
 	"Delete": "حذف",
 	"Delete {{name}}": "",
 	"Delete a model": "حذف الموديل",
+<<<<<<< HEAD
+=======
+	"Delete All": "",
+	"Delete All Chats": "حذف جميع الدردشات",
+	"Delete all contents inside this directory": "",
+>>>>>>> upstream/main
 	"Delete all contents inside this folder": "",
 	"Delete Chat": "حذف المحادثه.",
 	"Delete chat?": "هل تريد حذف المحادثة؟",
+<<<<<<< HEAD
+=======
+	"Delete directory?": "",
+	"Delete Event": "",
+>>>>>>> upstream/main
 	"Delete File": "",
 	"Delete folder?": "هل تريد حذف المجلد؟",
 	"Delete function?": "هل تريد حذف الوظيفة؟",
@@ -387,9 +617,20 @@
 	"Direct Connections": "الاتصالات المباشرة",
 	"Direct Connections allow users to connect to their own OpenAI compatible API endpoints.": "تتيح الاتصالات المباشرة للمستخدمين الاتصال بنقاط نهاية API متوافقة مع OpenAI الخاصة بهم.",
 	"Direct Tool Servers": "",
+<<<<<<< HEAD
+=======
+	"Directory created.": "",
+	"Directory deleted.": "",
+	"Directory moved.": "",
+	"Directory name": "",
+	"Directory renamed.": "",
+	"Directory selection was cancelled": "",
+>>>>>>> upstream/main
 	"Disable All": "",
 	"Disable Image Extraction": "",
 	"Disable image extraction from the PDF. If Use LLM is enabled, images will be automatically captioned. Defaults to False.": "",
+	"Disable Image Generation": "",
+	"Disable Web Search": "",
 	"Disabled": "معطّل",
 	"Discard this folio": "",
 	"Discarded": "",
@@ -398,6 +639,13 @@
 	"Discover wonders": "اكتشف العجائب",
 	"Discover, download, and explore custom functions": "اكتشف، حمّل، واستعرض الوظائف المخصصة",
 	"Display": "العرض",
+<<<<<<< HEAD
+=======
+	"Display Chat Title in Tab": "",
+	"Display Emoji in Call": "عرض الرموز التعبيرية أثناء المكالمة",
+	"Display Multi-model Responses in Tabs": "",
+	"Display the Username Instead of You in the Chat": "اعرض اسم المستخدم بدلاً منك في الدردشة",
+>>>>>>> upstream/main
 	"Displays citations in the response": "عرض المراجع في الرد",
 	"Displays status updates (e.g., web search progress) in the response": "",
 	"Dissolve": "",
@@ -410,6 +658,7 @@
 	"Docling Parameters": "",
 	"Docling Server URL required.": "",
 	"Document": "المستند",
+	"Document ID Field": "",
 	"Document Intelligence": "تحليل المستندات الذكي",
 	"Document Intelligence endpoint required.": "",
 	"Document Intelligence Model": "",
@@ -463,41 +712,60 @@
 	"Edit Default Permissions": "تعديل الأذونات الافتراضية",
 	"Edit Folder": "",
 	"Edit Image": "",
+	"Edit Knowledge Connection": "",
 	"Edit Last Message": "",
 	"Edit Model": "",
 	"Edit Terminal Connection": "",
 	"Edit User": "تعديل المستخدم",
 	"Edit User Group": "تعديل مجموعة المستخدمين",
+	"Edit webhook": "",
 	"Edit workflow.json content": "",
 	"Eject": "",
 	"Eject model": "",
 	"ElevenLabs": "ElevenLabs",
 	"Email": "البريد",
+	"Email Claim": "",
 	"Embark on adventures": "انطلق في مغامرات",
 	"Embedding": "تضمين",
 	"Embedding Batch Size": "حجم دفعة التضمين",
 	"Embedding Concurrent Requests": "",
 	"Embedding Model": "نموذج التضمين",
 	"Embedding Model Engine": "تضمين محرك النموذج",
+	"Emoji": "",
 	"Emojis": "",
+<<<<<<< HEAD
+=======
+	"Empty": "",
+	"Empty message": "",
+>>>>>>> upstream/main
 	"Enable All": "",
 	"Enable API Keys": "",
 	"Enable autocomplete generation for chat messages": "تفعيل توليد الإكمال التلقائي لرسائل الدردشة",
 	"Enable Code Execution": "تفعيل تنفيذ الكود",
 	"Enable Code Interpreter": "تفعيل مفسر الكود",
 	"Enable Community Sharing": "تمكين مشاركة المجتمع",
+	"Enable Group Mapping": "",
+	"Enable Image Generation": "",
 	"Enable Memory Locking (mlock) to prevent model data from being swapped out of RAM. This option locks the model's working set of pages into RAM, ensuring that they will not be swapped out to disk. This can help maintain performance by avoiding page faults and ensuring fast data access.": "تفعيل قفل الذاكرة (mlock) لمنع إخراج بيانات النموذج من الذاكرة. يساعد هذا الخيار في الحفاظ على الأداء من خلال منع حدوث أخطاء في الوصول وضمان سرعة الوصول إلى البيانات.",
 	"Enable Memory Mapping (mmap) to load model data. This option allows the system to use disk storage as an extension of RAM by treating disk files as if they were in RAM. This can improve model performance by allowing for faster data access. However, it may not work correctly with all systems and can consume a significant amount of disk space.": "تفعيل تعيين الذاكرة (mmap) لتحميل بيانات النموذج. يسمح هذا الخيار للنظام باستخدام التخزين كامتداد للذاكرة RAM عن طريق معاملة ملفات القرص كما لو كانت في RAM. قد يحسن أداء النموذج، لكن قد لا يعمل بشكل صحيح مع جميع الأنظمة وقد يستهلك مساحة كبيرة من القرص.",
 	"Enable Message Rating": "تفعيل تقييم الرسائل",
 	"Enable Mirostat sampling for controlling perplexity.": "تفعيل أخذ عينات Mirostat للتحكم في درجة التعقيد.",
 	"Enable New Sign Ups": "تفعيل عمليات التسجيل الجديدة",
+	"Enable OAuth Signup": "",
+	"Enable Role Mapping": "",
+	"Enable Web Search": "",
 	"Enable, disable, or customize the reasoning tags used by the model. \"Enabled\" uses default tags, \"Disabled\" turns off reasoning tags, and \"Custom\" lets you specify your own start and end tags.": "",
 	"Enabled": "مفعل",
 	"End Tag": "",
+	"Endpoint": "",
 	"Endpoint URL": "",
 	"Enrich Hybrid Search Text": "",
 	"Ensure your CSV file includes 4 columns in this order: Name, Email, Password, Role.": "تأكد من أن ملف CSV الخاص بك يتضمن 4 أعمدة بهذا الترتيب: Name, Email, Password, Role.",
+<<<<<<< HEAD
 	"Enter a name first": "",
+=======
+	"Enter {{role}} message here": "أدخل رسالة {{role}} هنا",
+>>>>>>> upstream/main
 	"Enter a title for the pending user info overlay. Leave empty for default.": "",
 	"Enter a watermark for the response. Leave empty for none.": "",
 	"Enter additional headers in JSON format": "",
@@ -514,6 +782,8 @@
 	"Enter Chunk Min Size Target": "",
 	"Enter Chunk Overlap": "أدخل الChunk Overlap",
 	"Enter Chunk Size": "أدخل Chunk الحجم",
+	"Enter Client ID": "",
+	"Enter Client Secret": "",
 	"Enter comma-separated \"token:bias_value\" pairs (example: 5432:100, 413:-100)": "أدخل أزواج \"الرمز:قيمة التحيز\" مفصولة بفواصل (مثال: 5432:100، 413:-100)",
 	"Enter content for the pending user info overlay. Leave empty for default.": "",
 	"Enter coordinates (e.g. 51.505, -0.09)": "",
@@ -550,7 +820,15 @@
 	"Enter Jupyter Token": "أدخل رمز Jupyter",
 	"Enter Jupyter URL": "أدخل عنوان Jupyter",
 	"Enter Kagi Search API Key": "أدخل مفتاح API لـ Kagi Search",
+<<<<<<< HEAD
+=======
+	"Enter Key Behavior": "أدخل سلوك المفتاح",
+	"Enter language": "",
+>>>>>>> upstream/main
 	"Enter language codes": "أدخل كود اللغة",
+	"Enter Linkup API Key": "",
+	"Enter Microsoft Web IQ API Base URL": "",
+	"Enter Microsoft Web IQ API Key": "",
 	"Enter MinerU API Key": "",
 	"Enter Mistral API Base URL": "",
 	"Enter Mistral API Key": "",
@@ -569,6 +847,7 @@
 	"Enter Playwright WebSocket URL": "",
 	"Enter proxy URL (e.g. https://user:password@host:port)": "أدخل عنوان البروكسي (مثال: https://user:password@host:port)",
 	"Enter reasoning effort": "أدخل مستوى الجهد في الاستدلال",
+	"Enter Redirect URI": "",
 	"Enter Score": "أدخل النتيجة",
 	"Enter SearchApi API Key": "أدخل مفتاح API لـ SearchApi",
 	"Enter SearchApi Engine": "أدخل محرك SearchApi",
@@ -578,6 +857,7 @@
 	"Enter SerpApi API Key": "أدخل مفتاح API لـ SerpApi",
 	"Enter SerpApi Engine": "أدخل محرك SerpApi",
 	"Enter Serper API Key": "أدخل مفتاح واجهة برمجة تطبيقات Serper",
+	"Enter SERPHouse API Key": "",
 	"Enter Serply API Key": "أدخل مفتاح API لـ Serply",
 	"Enter Serpstack API Key": "أدخل مفتاح واجهة برمجة تطبيقات Serpstack",
 	"Enter server host": "أدخل مضيف الخادم",
@@ -595,6 +875,12 @@
 	"Enter the URL to import": "",
 	"Enter Tika Server URL": "أدخل رابط خادم Tika",
 	"Enter timeout in seconds": "أدخل المهلة بالثواني",
+<<<<<<< HEAD
+=======
+	"Enter to Send": "اضغط Enter للإرسال",
+	"Enter token threshold": "",
+	"Enter Tokenizer Model": "",
+>>>>>>> upstream/main
 	"Enter Top K": "أدخل Top K",
 	"Enter Top K Reranker": "",
 	"Enter URL (e.g. http://127.0.0.1:7860/)": "الرابط (e.g. http://127.0.0.1:7860/)",
@@ -624,8 +910,19 @@
 	"Error: A model with the ID '{{modelId}}' already exists. Please select a different ID to proceed.": "",
 	"Error: Model ID cannot be empty. Please enter a valid ID to proceed.": "",
 	"Evaluations": "التقييمات",
+<<<<<<< HEAD
 	"Every craft begins bare-handed.": "",
+=======
+	"Event": "",
+	"Event created": "",
+	"Event deleted": "",
+	"Event names may change as Open WebUI evolves. Use broad patterns like user.* for integrations that should continue across new related events.": "",
+	"Event title": "",
+	"Event updated": "",
+	"Events": "",
+>>>>>>> upstream/main
 	"Exa API Key": "مفتاح API لـ Exa",
+	"Example": "",
 	"Example: (&(objectClass=inetOrgPerson)(uid=%s))": "مثال: (&(objectClass=inetOrgPerson)(uid=%s))",
 	"Example: ALL": "مثال: ALL",
 	"Example: mail": "مثال: mail",
@@ -647,18 +944,29 @@
 	"Export chat (.json)": "تصدير المحادثة (.json)",
 	"Export Config": "",
 	"Export Models": "",
+<<<<<<< HEAD
+=======
+	"Export Prompts": "",
+	"Export Skills": "",
+>>>>>>> upstream/main
 	"Export to CSV": "تصدير إلى CSV",
 	"Export Tools": "",
 	"Export Users": "",
 	"External": "",
+	"External connection not found.": "",
 	"External Document Loader URL required.": "",
+	"External Knowledge Source": "",
+	"External Knowledge Sources": "",
 	"External Task Model": "",
+	"External Tool Servers": "",
+	"External vectors must be generated with the same embedding model configured in Open WebUI.": "",
 	"External Web Loader API Key": "",
 	"External Web Loader URL": "",
 	"External Web Search API Key": "",
 	"External Web Search URL": "",
 	"Faculties": "",
 	"Failed to archive chat.": "",
+<<<<<<< HEAD
 	"Failed to connect to {{URL}} OpenAPI tool server": "",
 	"Failed to connect to {{URL}} terminal server": "",
 	"Failed to copy link": "",
@@ -668,11 +976,39 @@
 	"Failed to extract content from the file: {{error}}": "",
 	"Failed to extract content from the file.": "",
 	"Failed to fetch models": "فشل في جلب النماذج",
+=======
+	"Failed to attach file": "",
+	"Failed to clear status": "",
+	"Failed to compare files.": "",
+	"Failed to connect to {{URL}} OpenAPI tool server": "",
+	"Failed to connect to {{URL}} terminal server": "",
+	"Failed to copy link": "",
+	"Failed to create API Key.": "فشل في إنشاء مفتاح API.",
+	"Failed to delete calendar": "",
+	"Failed to delete note": "",
+	"Failed to delete webhook": "",
+	"Failed to disconnect": "",
+	"Failed to download image": "",
+	"Failed to extract content from the file: {{error}}": "",
+	"Failed to extract content from the file.": "",
+	"Failed to fetch models": "فشل في جلب النماذج",
+	"Failed to generate title": "",
+	"Failed to import models": "",
+	"Failed to load chat": "",
+	"Failed to load chat preview": "",
+>>>>>>> upstream/main
 	"Failed to load DOCX file. Please try downloading it instead.": "",
 	"Failed to load Excel/CSV file. Please try downloading it instead.": "",
 	"Failed to load Interface settings": "",
 	"Failed to load PPTX file. Please try downloading it instead.": "",
 	"Failed to move chat": "",
+<<<<<<< HEAD
+=======
+	"Failed to process URL: {{url}}": "",
+	"Failed to read clipboard contents": "فشل في قراءة محتويات الحافظة",
+	"Failed to refresh terminals: {{error}}": "",
+	"Failed to remove member": "",
+>>>>>>> upstream/main
 	"Failed to render diagram": "",
 	"Failed to render visualization": "",
 	"Failed to save": "",
@@ -681,10 +1017,16 @@
 	"Failed to save models configuration": "فشل في حفظ إعدادات النماذج",
 	"Failed to save policy: {{error}}": "",
 	"Failed to save terminal servers": "",
+	"Failed to save webhook": "",
 	"Failed to unshare chat.": "",
 	"Failed to update settings": "فشل في تحديث الإعدادات",
 	"Failed to update status": "",
+<<<<<<< HEAD
 	"Favicons": "",
+=======
+	"Failed to update webhook": "",
+	"Failed to upload file.": "فشل في رفع الملف.",
+>>>>>>> upstream/main
 	"Features": "الميزات",
 	"Features Permissions": "أذونات الميزات",
 	"February": "فبراير",
@@ -697,14 +1039,32 @@
 	"File": "ملف",
 	"File browser": "",
 	"File Context": "",
+<<<<<<< HEAD
+=======
+	"File deleted successfully.": "",
+	"File Extensions": "",
+>>>>>>> upstream/main
 	"File Mode": "وضع الملف",
+	"File moved.": "",
 	"File name": "",
 	"File not found.": "لم يتم العثور على الملف.",
+<<<<<<< HEAD
 	"File size should not exceed {{maxSize}} MB.": "يجب ألا يتجاوز حجم الملف {{maxSize}} ميغابايت.",
 	"File Upload": "",
 	"Filename": "",
 	"Files": "الملفات",
 	"Fill name + base model to create": "",
+=======
+	"File removed successfully.": "تم حذف الملف بنجاح.",
+	"File renamed.": "",
+	"File size should not exceed {{maxSize}} MB.": "يجب ألا يتجاوز حجم الملف {{maxSize}} ميغابايت.",
+	"File Upload": "",
+	"File uploaded successfully": "تم رفع الملف بنجاح",
+	"Filename": "",
+	"Files": "الملفات",
+	"Fill the required fields first.": "",
+	"Fill the source fields and test query first.": "",
+>>>>>>> upstream/main
 	"Filter": "",
 	"Filters": "الفلاتر",
 	"Filters, valves, and middleware workflows.": "",
@@ -722,8 +1082,12 @@
 	"Folder name cannot be empty.": "لا يمكن أن يكون اسم المجلد فارغًا.",
 	"Folder options": "",
 	"Folders": "",
+<<<<<<< HEAD
 	"folio": "",
 	"folios": "",
+=======
+	"Folders Sharing": "",
+>>>>>>> upstream/main
 	"Follow up": "",
 	"Follow Up Generation": "",
 	"Follow Up Generation Prompt": "",
@@ -751,6 +1115,11 @@
 	"Function imported successfully": "",
 	"Function Name": "اسم الوظيفة",
 	"Function Name Filter List": "",
+<<<<<<< HEAD
+=======
+	"Function starter": "",
+	"Function updated successfully": "تم تحديث الوظيفة بنجاح",
+>>>>>>> upstream/main
 	"Functions": "الوظائف",
 	"Functions allow arbitrary code execution.": "الوظائف تتيح تنفيذ كود برمجي مخصص.",
 	"Gather a quire": "",
@@ -778,6 +1147,15 @@
 	"Google PSE Engine Id": "معرف محرك PSE من Google",
 	"Gravatar": "",
 	"Grokipedia": "",
+<<<<<<< HEAD
+=======
+	"group": "",
+	"Group": "",
+	"Group Channel": "",
+	"Group Claim": "",
+	"Group created successfully": "تم إنشاء المجموعة بنجاح",
+	"Group deleted successfully": "تم حذف المجموعة بنجاح",
+>>>>>>> upstream/main
 	"Group Description": "وصف المجموعة",
 	"Group Name": "اسم المجموعة",
 	"groups": "",
@@ -785,6 +1163,11 @@
 	"H1": "",
 	"H2": "",
 	"H3": "",
+<<<<<<< HEAD
+=======
+	"Haptic Feedback": "الاهتزاز اللمسي",
+	"Header variables": "",
+>>>>>>> upstream/main
 	"Headers": "",
 	"Headers must be a valid JSON object": "",
 	"Hello, {{name}}": " {{name}} مرحبا",
@@ -813,6 +1196,12 @@
 	"I acknowledge that I have read and I understand the implications of my action. I am aware of the risks associated with executing arbitrary code and I have verified the trustworthiness of the source.": "أقر بأنني قرأت وفهمت تبعات هذا الإجراء. أنا على دراية بالمخاطر المرتبطة بتنفيذ كود عشوائي وقد تحققت من موثوقية المصدر.",
 	"ID": "المعرّف",
 	"ID cannot contain \":\" or \"|\" characters": "",
+<<<<<<< HEAD
+=======
+	"ID copied to clipboard": "",
+	"Identity audit": "",
+	"Idle only": "",
+>>>>>>> upstream/main
 	"Idle Timeout": "",
 	"Ignite curiosity": "أشعل الفضول",
 	"Image": "صورة",
@@ -832,6 +1221,12 @@
 	"Import Config": "",
 	"Import From Link": "",
 	"Import Models": "",
+<<<<<<< HEAD
+=======
+	"Import Prompts": "",
+	"Import Skills": "",
+	"Import successful": "",
+>>>>>>> upstream/main
 	"Import Tools": "",
 	"Important Update": "تحديث مهم",
 	"Imported": "",
@@ -868,6 +1263,11 @@
 	"Jina API Key": "مفتاح API لـ Jina",
 	"join our Discord for help.": "انضم إلى Discord للحصول على المساعدة.",
 	"JSON": "JSON",
+<<<<<<< HEAD
+=======
+	"JSON Base64": "",
+	"JSON Preview": "معاينة JSON",
+>>>>>>> upstream/main
 	"JSON Spec": "",
 	"July": "يوليو",
 	"June": "يونيو",
@@ -878,9 +1278,26 @@
 	"Keep in Sidebar": "",
 	"Key": "المفتاح",
 	"Key is required": "",
-	"Keyboard shortcuts": "اختصارات لوحة المفاتيح",
 	"Keyboard Shortcuts": "",
 	"Knowledge": "المعرفة",
+<<<<<<< HEAD
+=======
+	"Knowledge Access": "الوصول إلى المعرفة",
+	"Knowledge Base": "",
+	"Knowledge base has been reset": "",
+	"Knowledge created successfully.": "تم إنشاء المعرفة بنجاح.",
+	"Knowledge deleted successfully.": "تم حذف المعرفة بنجاح.",
+	"Knowledge Description": "",
+	"Knowledge exported successfully": "",
+	"Knowledge Name": "",
+	"Knowledge Public Sharing": "",
+	"Knowledge Sharing": "",
+	"Knowledge source created.": "",
+	"Knowledge source updated.": "",
+	"Knowledge updated successfully": "تم تحديث المعرفة بنجاح",
+	"Kokoro.js (Browser)": "Kokoro.js (المتصفح)",
+	"Kokoro.js Dtype": "نوع بيانات Kokoro.js",
+>>>>>>> upstream/main
 	"Label": "التسمية",
 	"Language Locales": "",
 	"Last 24 hours": "",
@@ -909,9 +1326,18 @@
 	"Leave model field empty to use the default model.": "اترك حقل النموذج فارغًا لاستخدام النموذج الافتراضي.",
 	"lexical": "",
 	"License": "الترخيص",
+	"Lifecycle JSON": "",
 	"Lift List": "",
 	"Limit concurrent search queries. 0 = unlimited (default). Set to 1 for sequential execution (recommended for APIs with strict rate limits like Brave free tier).": "",
 	"Limits the number of concurrent embedding requests. Set to 0 for unlimited.": "",
+<<<<<<< HEAD
+=======
+	"Linkup API Key": "",
+	"List": "",
+	"List calendars, search, create, update, and delete calendar events": "",
+	"Listening...": "جارٍ الاستماع...",
+	"Live": "",
+>>>>>>> upstream/main
 	"llama.cpp": "",
 	"Llama.cpp": "Llama.cpp",
 	"Loaded": "",
@@ -922,6 +1348,11 @@
 	"Local Task Model": "",
 	"Lost": "ضائع",
 	"Low": "",
+<<<<<<< HEAD
+=======
+	"Lower the context compaction token threshold for this model. The global context compaction threshold remains the maximum.": "",
+	"LTR": "من جهة اليسار إلى اليمين",
+>>>>>>> upstream/main
 	"Made by Open WebUI Community": "OpenWebUI تم إنشاؤه بواسطة مجتمع ",
 	"Make password visible in the user interface": "",
 	"Make sure to export a workflow.json file as API format from ComfyUI.": "تأكد من تصدير ملف workflow.json بصيغة API من ComfyUI.",
@@ -933,7 +1364,12 @@
 	"Manage OpenAI API Connections": "إدارة اتصالات OpenAI API",
 	"Manage Pipelines": "إدارة خطوط الأنابيب",
 	"Manage Tool Servers": "",
+<<<<<<< HEAD
 	"Manage, import, and configure the models available to users.": "",
+=======
+	"Manage your account information.": "",
+	"Mapped Source": "",
+>>>>>>> upstream/main
 	"March": "مارس",
 	"Markdown": "",
 	"Markdown Header Text Splitter": "",
@@ -954,6 +1390,15 @@
 	"Members": "",
 	"Memories": "",
 	"Memory": "الذاكرة",
+<<<<<<< HEAD
+=======
+	"Memory added successfully": "تم إضافة الذاكرة بنجاح",
+	"Memory cleared successfully": "تم مسح الذاكرة بنجاح",
+	"Memory deleted successfully": "تم حذف الذاكرة بنجاح",
+	"Memory System Context": "",
+	"Memory updated successfully": "تم تحديث الذاكرة بنجاح",
+	"Merge Accounts by Email": "",
+>>>>>>> upstream/main
 	"Merge Responses": "دمج الردود",
 	"Merged Response": "نتيجة الردود المدمجة",
 	"Message": "",
@@ -963,6 +1408,16 @@
 	"Message text...": "",
 	"messages": "",
 	"Messages": "",
+<<<<<<< HEAD
+=======
+	"Messages you send after creating your link won't be shared. Users with the URL will be able to view the shared chat.": "لن تتم مشاركة الرسائل التي ترسلها بعد إنشاء الرابط الخاص بك. سيتمكن المستخدمون الذين لديهم عنوان URL من عرض الدردشة المشتركة",
+	"Metadata Field": "",
+	"Microsoft OneDrive": "",
+	"Microsoft OneDrive (personal)": "",
+	"Microsoft OneDrive (work/school)": "",
+	"Microsoft Web IQ API Base URL": "",
+	"Microsoft Web IQ API Key": "",
+>>>>>>> upstream/main
 	"min": "",
 	"MinerU": "",
 	"MinerU API Key required for Cloud API mode.": "",
@@ -1004,18 +1459,42 @@
 	"Models Sharing": "",
 	"Mojeek": "",
 	"Mojeek Search API Key": "مفتاح API لـ Mojeek Search",
+<<<<<<< HEAD
+=======
+	"Monday – Friday": "",
+	"Month": "",
+	"Monthly": "",
+>>>>>>> upstream/main
 	"More": "المزيد",
 	"More Concise": "",
 	"More Options": "",
 	"Move": "",
+<<<<<<< HEAD
+=======
+	"Moved {{name}}": "",
+	"Multipart Upload": "",
+	"Mute": "",
+	"Muted": "",
+>>>>>>> upstream/main
 	"My Terminal": "",
 	"Name": "الأسم",
 	"Name and ID are required, please fill them out": "",
 	"Name this model…": "",
 	"Name your model": "",
 	"Native": "أصلي",
+<<<<<<< HEAD
+=======
+	"Native mode (default) leverages the model's built-in tool-calling capabilities. Legacy mode works with a wider range of models by calling tools once before execution via prompt injection.": "",
+	"Never": "",
+>>>>>>> upstream/main
 	"New": "",
 	"New Chat": "دردشة جديدة",
+<<<<<<< HEAD
+=======
+	"New directory": "",
+	"New Directory": "",
+	"New Event": "",
+>>>>>>> upstream/main
 	"New File": "",
 	"New Folder": "مجلد جديد",
 	"New Function": "",
@@ -1030,6 +1509,7 @@
 	"Next message": "",
 	"No access grants. Private to you.": "",
 	"No activity data": "",
+	"No additional headers are sent unless configured.": "",
 	"No authentication": "",
 	"No chats found": "",
 	"No chats found for this user.": "",
@@ -1038,7 +1518,13 @@
 	"No data": "",
 	"No data found": "",
 	"No distance available": "لا توجد مسافة متاحة",
+<<<<<<< HEAD
+=======
+	"No event webhooks configured.": "",
+	"No execution logs available yet": "",
+>>>>>>> upstream/main
 	"No expiration can pose security risks.": "",
+	"No external knowledge sources configured.": "",
 	"No feedback found": "",
 	"No file selected": "لم يتم تحديد ملف",
 	"No files found": "",
@@ -1048,14 +1534,27 @@
 	"No HTML, CSS, or JavaScript content found.": "لم يتم العثور على محتوى HTML أو CSS أو JavaScript.",
 	"No inference engine with management support found": "لم يتم العثور على محرك استدلال يدعم الإدارة",
 	"No kernel": "",
+<<<<<<< HEAD
+=======
+	"No knowledge bases accessible": "",
+	"No knowledge bases found.": "",
+	"No knowledge found": "لم يتم العثور على معرفة",
+>>>>>>> upstream/main
 	"No limit": "",
 	"No model IDs": "لا توجد معرّفات نماذج",
+	"No models accessible": "",
 	"No models available": "",
 	"No models found": "لم يتم العثور على نماذج",
 	"No models match your search.": "",
 	"No models selected": "لم يتم اختيار نماذج",
 	"No one": "",
 	"No output items": "",
+<<<<<<< HEAD
+=======
+	"No pinned messages": "",
+	"No prompts found": "",
+	"No Repeat": "",
+>>>>>>> upstream/main
 	"No results": "لا توجد نتائج",
 	"No results found": "لا توجد نتايج",
 	"No search query generated": "لم يتم إنشاء استعلام بحث",
@@ -1067,12 +1566,18 @@
 	"No Terminal connection configured.": "",
 	"No terminal connections configured.": "",
 	"No tool server connections configured.": "",
+<<<<<<< HEAD
 	"No tools match your search.": "",
+=======
+	"No tools accessible": "",
+	"No tools found": "",
+>>>>>>> upstream/main
 	"No users were found.": "لم يتم العثور على مستخدمين.",
 	"No valves": "",
 	"No valves to update": "لا توجد صمامات للتحديث",
 	"Node Ids": "",
 	"None": "اي",
+	"Not configured": "",
 	"Not factually correct": "ليس صحيحا من حيث الواقع",
 	"Not helpful": "غير مفيد",
 	"Not Registered": "",
@@ -1082,21 +1587,31 @@
 	"Nothing has been rehearsed yet.": "",
 	"November": "نوفمبر",
 	"OAuth": "",
+	"OAuth / OIDC": "",
 	"OAuth 2.1": "",
 	"OAuth 2.1 (Static)": "",
 	"OAuth ID": "معرّف OAuth",
+	"OAuth Resource Parameter": "",
+	"OAuth Scopes": "",
 	"OAuth Server URL": "",
 	"October": "اكتوبر",
 	"Off": "أغلاق",
 	"Okay, Let's Go!": "حسنا دعنا نذهب!",
+<<<<<<< HEAD
+=======
+	"Older messages are summarized when estimated context exceeds this token limit.": "",
+	"OLED Dark": "OLED داكن",
+>>>>>>> upstream/main
 	"Ollama": "Ollama",
 	"Ollama API": "أولاما API",
 	"Ollama Cloud API Key": "",
 	"Ollama Version": "Ollama الاصدار",
+	"Omit": "",
 	"On": "تشغيل",
 	"On by default": "",
 	"On by default for new chats": "",
 	"OneDrive": "OneDrive",
+	"Only active during Voice Mode.": "",
 	"Only active when \"Paste Large Text as File\" setting is toggled on.": "",
 	"Only active when the chat input is in focus and an LLM is generating a response.": "",
 	"Only active when the chat input is in focus.": "",
@@ -1166,21 +1681,39 @@
 	"Participate in community leaderboards and evaluations! Syncing aggregated usage stats helps drive research and improvements to Open WebUI. Your privacy is paramount: no message content is ever shared.": "",
 	"Password": "الباسورد",
 	"Passwords do not match.": "",
+<<<<<<< HEAD
 	"PDF document (.pdf)": "PDF ملف (.pdf)",
 	"PDF Extract Images (OCR)": "PDF أستخرج الصور (OCR)",
 	"PDF Loader Mode": "",
 	"Penalties & Mirostat": "",
+=======
+	"Paste Large Text as File": "الصق نصًا كبيرًا كملف",
+	"Path": "",
+	"Path copied": "",
+	"Paused": "",
+	"PDF document (.pdf)": "PDF ملف (.pdf)",
+	"PDF Extract Images (OCR)": "PDF أستخرج الصور (OCR)",
+	"PDF Loader Mode": "",
+	"pdf, docx, pptx, xlsx": "",
+>>>>>>> upstream/main
 	"pending": "قيد الانتظار",
 	"Pending": "",
+	"Pending Accounts": "",
 	"Pending User Overlay Content": "",
 	"Pending User Overlay Title": "",
 	"Permissions": "الأذونات",
+	"Permissions reset to defaults": "",
 	"Perplexity API Key": "مفتاح API لـ Perplexity",
 	"Perplexity Model": "",
 	"Perplexity Search API URL": "",
 	"Perplexity Search Context Usage": "",
 	"Persistent": "",
+<<<<<<< HEAD
 	"Pick an icon or emoji": "",
+=======
+	"Personalization": "التخصيص",
+	"Picture Claim": "",
+>>>>>>> upstream/main
 	"Pin": "تثبيت",
 	"Pinned Models": "",
 	"Pioneer insights": "رؤى رائدة",
@@ -1203,9 +1736,14 @@
 	"Please enter Client ID and Client Secret": "",
 	"Please register the OAuth client": "",
 	"Please save the connection to persist the OAuth client information and do not change the ID": "",
+<<<<<<< HEAD
+=======
+	"Please select a model.": "الرجاء اختيار نموذج.",
+>>>>>>> upstream/main
 	"Please select a reason": "الرجاء اختيار سبب",
 	"Please select a valid JSON file": "",
 	"Policy ID": "",
+	"Policy ID is required": "",
 	"Port": "المنفذ",
 	"Ports": "",
 	"Positive attitude": "موقف ايجابي",
@@ -1213,6 +1751,7 @@
 	"Prefix ID is used to avoid conflicts with other connections by adding a prefix to the model IDs - leave empty to disable": "يُستخدم معرف البادئة لتفادي التعارض مع الاتصالات الأخرى من خلال إضافة بادئة إلى معرفات النماذج – اتركه فارغًا لتعطيله",
 	"Prevent File Creation": "",
 	"Preview": "",
+	"Preview Access": "",
 	"Previous 30 days": "أخر 30 يوم",
 	"Previous 7 days": "أخر 7 أيام",
 	"Previous message": "",
@@ -1221,6 +1760,8 @@
 	"Prompt": "التوجيه",
 	"Prompt Template": "",
 	"Provider": "",
+	"Provider Name": "",
+	"Provider URL": "",
 	"Public": "",
 	"Public shared chat links are disabled for this workspace.": "",
 	"Pull \"{{searchValue}}\" from Ollama.com": "Ollama.com \"{{searchValue}}\" أسحب من ",
@@ -1243,18 +1784,42 @@
 	"Read": "قراءة",
 	"Read Aloud": "أقراء لي",
 	"Read more →": "",
+<<<<<<< HEAD
 	"read only": "",
+=======
+	"Read only": "",
+>>>>>>> upstream/main
 	"Read Only": "",
 	"Read, write, and diff-edit durable notes for the current chat Scratchboard": "",
 	"Reason": "",
 	"Reasoning Effort": "جهد الاستدلال",
 	"Reasoning Tags": "",
 	"Reasoning text...": "",
+	"Receives matching events across the instance, including system/config events and events associated with any user.": "",
+	"Receives matching events that are not associated with a user.": "",
+	"Receives matching user-associated events only when the actor, user subject, or user data matches these users or current group members. System/config events are not sent.": "",
 	"Recently Used": "",
 	"Reconnected": "",
+<<<<<<< HEAD
 	"Redirecting you to Open WebUI Community": "OpenWebUI إعادة توجيهك إلى مجتمع ",
 	"Reduces the probability of generating nonsense. A higher value (e.g. 100) will give more diverse answers, while a lower value (e.g. 10) will be more conservative.": "يقلل من احتمال توليد إجابات غير منطقية. القيم الأعلى (مثل 100) تعطي إجابات أكثر تنوعًا، بينما القيم الأدنى (مثل 10) تكون أكثر تحفظًا.",
+=======
+	"Record": "",
+	"Record voice": "سجل صوت",
+	"Redirect URI": "",
+	"Redirecting you to Open WebUI Community": "OpenWebUI إعادة توجيهك إلى مجتمع ",
+	"Reduces the probability of generating nonsense. A higher value (e.g. 100) will give more diverse answers, while a lower value (e.g. 10) will be more conservative.": "يقلل من احتمال توليد إجابات غير منطقية. القيم الأعلى (مثل 100) تعطي إجابات أكثر تنوعًا، بينما القيم الأدنى (مثل 10) تكون أكثر تحفظًا.",
+	"Reference Chats": "",
+>>>>>>> upstream/main
 	"Refresh": "",
+	"Refresh requested: {{count}} terminal(s)_zero": "",
+	"Refresh requested: {{count}} terminal(s)_one": "",
+	"Refresh requested: {{count}} terminal(s)_two": "",
+	"Refresh requested: {{count}} terminal(s)_few": "",
+	"Refresh requested: {{count}} terminal(s)_many": "",
+	"Refresh requested: {{count}} terminal(s)_other": "",
+	"Refresh Terminals": "",
+	"Refreshing...": "",
 	"Refused when it shouldn't have": "رفض عندما لا ينبغي أن يكون",
 	"Regenerate": "تجديد",
 	"Regenerate Response": "",
@@ -1273,15 +1838,42 @@
 	"Remove from favorites": "",
 	"Remove image": "",
 	"Remove Model": "حذف الموديل",
+	"Removing {{count}} stale files..._zero": "",
+	"Removing {{count}} stale files..._one": "",
+	"Removing {{count}} stale files..._two": "",
+	"Removing {{count}} stale files..._few": "",
+	"Removing {{count}} stale files..._many": "",
+	"Removing {{count}} stale files..._other": "",
 	"Rename": "إعادة تسمية",
 	"Reorder Models": "إعادة ترتيب النماذج",
+<<<<<<< HEAD
+=======
+	"Repeat": "",
+	"Repeats": "",
+	"Reply": "",
+	"Reply in Thread": "الرد داخل سلسلة الرسائل",
+	"Reply to thread...": "",
+	"Replying to {{NAME}}": "",
+	"Request Format": "",
+	"Require users to confirm before using Web Search.": "",
+	"required": "",
+>>>>>>> upstream/main
 	"Reranking Batch Size": "",
 	"Reranking Engine": "",
 	"Reranking Model": "إعادة تقييم النموذج",
+	"Research Knowledge": "",
 	"Reset": "إعادة تعيين",
 	"Reset All Models": "إعادة تعيين جميع النماذج",
+	"Reset all permissions to their initial configuration values": "",
+	"Reset group permissions to match the current default user permissions": "",
 	"Reset Image": "إعادة تعيين الصورة",
+<<<<<<< HEAD
 	"Reset to default": "",
+=======
+	"Reset knowledge base?": "",
+	"Reset persisted files": "",
+	"Reset to Defaults": "",
+>>>>>>> upstream/main
 	"Reset Upload Directory": "إعادة تعيين مجلد التحميل",
 	"Reset Vector Storage/Knowledge": "إعادة تعيين تخزين المتجهات/المعرفة",
 	"Reset view": "إعادة تعيين العرض",
@@ -1306,6 +1898,11 @@
 	"Return token usage information in the response when supported": "",
 	"Reusable instruction packs that teach your models a procedure or domain — import a markdown skill or write your own, then enable it where you need it.": "",
 	"Role": "منصب",
+<<<<<<< HEAD
+=======
+	"Roles Claim": "",
+	"RTL": "من اليمين إلى اليسار",
+>>>>>>> upstream/main
 	"Run": "تنفيذ",
 	"Run All": "",
 	"Running": "جارٍ التنفيذ",
@@ -1318,10 +1915,18 @@
 	"Save As Copy": "حفظ كنسخة",
 	"Saved": "تم الحفظ",
 	"Saving chat logs directly to your browser's storage is no longer supported. Please take a moment to download and delete your chat logs by clicking the button below. Don't worry, you can easily re-import your chat logs to the backend through": "لم يعد حفظ سجلات الدردشة مباشرة في مساحة تخزين متصفحك مدعومًا. يرجى تخصيص بعض الوقت لتنزيل وحذف سجلات الدردشة الخاصة بك عن طريق النقر على الزر أدناه. لا تقلق، يمكنك بسهولة إعادة استيراد سجلات الدردشة الخاصة بك إلى الواجهة الخلفية من خلاله",
+<<<<<<< HEAD
 	"Scratchboard": "",
+=======
+	"Schedule": "",
+	"Scheduled time must be in the future": "",
+	"Scopes": "",
+	"Scroll On Branch Change": "",
+>>>>>>> upstream/main
 	"Scroll to Top": "",
 	"Search": "البحث",
 	"Search a model": "البحث عن موديل",
+	"Search actions": "",
 	"Search all emojis": "",
 	"Search and manage user memories": "",
 	"Search and view user chat history": "",
@@ -1329,6 +1934,7 @@
 	"Search Chats": "البحث في الدردشات",
 	"Search engines and web content loaders for live results.": "",
 	"Search Files": "",
+	"Search filters": "",
 	"Search Filters": "مرشحات البحث",
 	"search for archived chats": "",
 	"search for folders": "",
@@ -1340,10 +1946,22 @@
 	"Search In Models": "",
 	"Search Models": "نماذج البحث",
 	"Search options": "خيارات البحث",
+<<<<<<< HEAD
+=======
+	"Search or add pattern": "",
+	"Search Prompts": "أبحث حث",
+>>>>>>> upstream/main
 	"Search Result Count": "عدد نتائج البحث",
+	"Search skills": "",
 	"Search Skills": "",
 	"Search the web and fetch URLs": "",
+	"Search tools": "",
 	"Search Tools": "أدوات البحث",
+<<<<<<< HEAD
+=======
+	"Search users or groups": "",
+	"Search, view, and manage user notes": "",
+>>>>>>> upstream/main
 	"SearchApi API Key": "مفتاح API لـ SearchApi",
 	"SearchApi Engine": "محرك SearchApi",
 	"Searched {{count}} sites": "تم البحث في {{count}} مواقع",
@@ -1358,7 +1976,12 @@
 	"Seed": "Seed",
 	"Select": "",
 	"Select {{modelName}} model": "",
+<<<<<<< HEAD
 	"Select a base model": "حدد نموذجا أساسيا",
+=======
+	"Select a base model (e.g. llama3, gpt-4o)": "",
+	"Select a conversation to preview": "",
+>>>>>>> upstream/main
 	"Select a engine": "اختر محركًا",
 	"Select a function": "اختر وظيفة",
 	"Select a group": "اختر مجموعة",
@@ -1388,15 +2011,36 @@
 	"Selected Models": "",
 	"semantic": "",
 	"Send": "تم",
+<<<<<<< HEAD
+=======
+	"Send a Message": "يُرجى إدخال طلبك هنا",
+	"Send events for": "",
+	"Send message": "يُرجى إدخال طلبك هنا.",
+	"Send now": "",
+	"Send product events as JSON to external services. Chat destinations receive readable messages.": "",
+	"Send the PDF as a base64 data URL instead of uploading it first.": "",
+	"Sends `stream_options: { include_usage: true }` in the request.\nSupported providers will return token usage information in the response when set.": "يرسل `stream_options: { include_usage: true }` في الطلب.\nالمزودون المدعومون سيُرجعون معلومات استخدام الرموز في الاستجابة عند التفعيل.",
+>>>>>>> upstream/main
 	"September": "سبتمبر",
 	"sequences that end a response — comma separated": "",
 	"SerpApi API Key": "مفتاح API لـ SerpApi",
 	"SerpApi Engine": "محرك SerpApi",
 	"Serper API Key": "مفتاح واجهة برمجة تطبيقات سيربر",
+	"SERPHouse API Key": "",
+	"SERPHouse Domain": "",
 	"Serply API Key": "مفتاح API لـ Serply",
 	"Serpstack API Key": "مفتاح واجهة برمجة تطبيقات Serpstack",
 	"Server connection failed": "",
+<<<<<<< HEAD
 	"Session": "",
+=======
+	"Server connection verified": "تم التحقق من اتصال الخادم",
+	"Service Account": "",
+	"Session": "",
+	"Session expired. Please sign in again.": "",
+	"Set as default": "الافتراضي",
+	"Set as Production": "",
+>>>>>>> upstream/main
 	"Set embedding model": "تعيين نموذج التضمين",
 	"Set embedding model (e.g. {{model}})": "ضبط نموذج المتجهات (على سبيل المثال: {{model}})",
 	"Set reranking model (e.g. {{model}})": "ضبط نموذج إعادة الترتيب (على سبيل المثال: {{model}})",
@@ -1420,13 +2064,28 @@
 	"Share": "كشاركة",
 	"Share Chat": "مشاركة الدردشة",
 	"Share to Open WebUI Community": "OpenWebUI شارك في مجتمع",
+<<<<<<< HEAD
+=======
+	"Share your background and interests": "",
+	"Shared": "",
+>>>>>>> upstream/main
 	"Shared Chats": "",
 	"Shared with you": "",
 	"Sharing Permissions": "",
 	"Show": "عرض",
+<<<<<<< HEAD
 	"Show Admin Details in Account Pending Overlay": "عرض تفاصيل المشرف في نافذة \"الحساب قيد الانتظار\"",
 	"Show All": "",
 	"Show all ({{COUNT}} characters)": "",
+=======
+	"Show \"What's New\" Modal on Login": "عرض نافذة \"ما الجديد\" عند تسجيل الدخول",
+	"Show Admin Details in Account Pending Overlay": "عرض تفاصيل المشرف في نافذة \"الحساب قيد الانتظار\"",
+	"Show All": "",
+	"Show all ({{COUNT}} characters)": "",
+	"Show Files": "",
+	"Show Files on Terminal Select": "",
+	"Show Formatting Toolbar": "",
+>>>>>>> upstream/main
 	"Show image preview": "",
 	"Show Model": "",
 	"Show Shortcuts": "",
@@ -1468,7 +2127,13 @@
 	"Sougou Search API sID": "",
 	"Sougou Search API SK": "",
 	"Source": "المصدر",
+<<<<<<< HEAD
 	"Sources used": "",
+=======
+	"Specific users or groups": "",
+	"Speech Playback Speed": "سرعة تشغيل الصوت",
+	"Speech recognition error: {{error}}": "{{error}} خطأ في التعرف على الكلام",
+>>>>>>> upstream/main
 	"Speech-to-Text": "",
 	"Speech-to-Text Engine": "محرك تحويل الكلام إلى نص",
 	"Split documents by markdown headers before applying character/token splitting.": "",
@@ -1492,6 +2157,13 @@
 	"Strip Existing OCR": "",
 	"Strip existing OCR text from the PDF and re-run OCR. Ignored if Force OCR is enabled. Defaults to False.": "",
 	"STT Model": "نموذج تحويل الصوت إلى نص (STT)",
+<<<<<<< HEAD
+=======
+	"STT Settings": "STT اعدادات",
+	"Stylized PDF Export": "",
+	"Su_day_of_week": "",
+	"Sub Claim": "",
+>>>>>>> upstream/main
 	"Submit question": "",
 	"Submit suggestion": "",
 	"Subtitle": "",
@@ -1505,13 +2177,22 @@
 	"Switch to JSON editor": "",
 	"Switch to visual editor": "",
 	"Sync": "",
+	"Sync a local directory with this knowledge base. Only new and modified files will be uploaded. The directory structure will be mirrored.": "",
+	"Sync complete: {{added}} added, {{modified}} modified, {{deleted}} deleted, {{unmodified}} unmodified": "",
 	"Sync Complete!": "",
 	"Sync Failed": "",
 	"Sync Usage Stats": "",
 	"Syncing stats...": "",
 	"Syncing...": "",
 	"Syncs only chats with updates after your last sync timestamp. Disable to re-sync all chats.": "",
+<<<<<<< HEAD
+=======
+	"System": "النظام",
+	"System events only": "",
+	"System Instructions": "تعليمات النظام",
+>>>>>>> upstream/main
 	"System Prompt": "محادثة النظام",
+	"Table": "",
 	"Tag": "",
 	"Tags": "",
 	"Tags Generation": "إنشاء الوسوم",
@@ -1531,6 +2212,16 @@
 	"Temperature": "درجة حرارة",
 	"Temporary Chat": "محادثة مؤقتة",
 	"Terminal": "",
+<<<<<<< HEAD
+=======
+	"Terminal servers saved": "",
+	"Test": "",
+	"Test Query": "",
+	"Test returned no results.": "",
+	"Test succeeded.": "",
+	"Test the source before creating it.": "",
+	"Test the source before saving it.": "",
+>>>>>>> upstream/main
 	"Text Splitter": "تقسيم النص",
 	"Text-to-Speech": "",
 	"Text-to-Speech Engine": "محرك تحويل النص إلى كلام",
@@ -1545,8 +2236,11 @@
 	"The height in pixels to compress images to. Leave empty for no compression.": "",
 	"The LDAP attribute that maps to the mail that users use to sign in.": "السمة LDAP التي تتوافق مع البريد الإلكتروني الذي يستخدمه المستخدمون لتسجيل الدخول.",
 	"The LDAP attribute that maps to the username that users use to sign in.": "السمة LDAP التي تتوافق مع اسم المستخدم الذي يستخدمه المستخدمون لتسجيل الدخول.",
+<<<<<<< HEAD
 	"The leaderboard is currently in beta, and we may adjust the rating calculations as we refine the algorithm.": "لوحة المتصدرين حالياً في وضع تجريبي، وقد نقوم بتعديل حسابات التصنيف أثناء تحسين الخوارزمية.",
 	"the longest single response it may set": "",
+=======
+>>>>>>> upstream/main
 	"The maximum file size in MB. If the file size exceeds this limit, the file will not be uploaded.": "الحد الأقصى لحجم الملف بالميغابايت. إذا تجاوز الملف هذا الحد، فلن يتم رفعه.",
 	"The maximum number of files that can be used at once in chat. If the number of files exceeds this limit, the files will not be uploaded.": "الحد الأقصى لعدد الملفات التي يمكن استخدامها في المحادثة دفعة واحدة. إذا تجاوز العدد هذا الحد، فلن يتم رفع الملفات.",
 	"The only required step — refine everything else now or later.": "",
@@ -1572,6 +2266,11 @@
 	"This feature is currently experimental and may not work as expected.": "",
 	"This folder is empty": "",
 	"This is a default user permission and will remain enabled.": "",
+<<<<<<< HEAD
+=======
+	"This is an experimental feature, it may not function as expected and is subject to change at any time.": "هذه ميزة تجريبية، وقد لا تعمل كما هو متوقع وقد تتغير في أي وقت.",
+	"This knowledge base retrieves from a connected source. Open WebUI can query it, but cannot upload, sync, edit, delete, reset, or reindex its source data.": "",
+>>>>>>> upstream/main
 	"This model is not publicly available. Please select another model.": "",
 	"This option controls how long the model will stay loaded into memory following the request (default: 5m)": "",
 	"This option controls how many tokens are preserved when refreshing the context. For example, if set to 2, the last 2 tokens of the conversation context will be retained. Preserving context can help maintain the continuity of a conversation, but it may reduce the ability to respond to new topics.": "هذا الخيار يحدد عدد الرموز التي يتم الاحتفاظ بها عند تحديث السياق. مثلاً، إذا تم ضبطه على 2، سيتم الاحتفاظ بآخر رمزين من السياق. الحفاظ على السياق يساعد في استمرارية المحادثة، لكنه قد يحد من التفاعل مع مواضيع جديدة.",
@@ -1583,6 +2282,11 @@
 	"This will delete <strong>{{NAME}}</strong> and <strong>all its contents</strong>.": "هذا سيحذف <strong>{{NAME}}</strong> و<strong>كل محتوياته</strong>.",
 	"This will delete all models including custom models": "هذا سيحذف جميع النماذج بما في ذلك النماذج المخصصة",
 	"This will delete all models including custom models and cannot be undone.": "هذا سيحذف جميع النماذج بما في ذلك المخصصة ولا يمكن التراجع عن هذا الإجراء.",
+<<<<<<< HEAD
+=======
+	"This will permanently delete the calendar \"{{name}}\" and all its events. This action cannot be undone.": "",
+	"This will remove all files and directories from this knowledge base. This action cannot be undone.": "",
+>>>>>>> upstream/main
 	"Thorough explanation": "شرح شامل",
 	"Thought": "",
 	"Thought for {{DURATION}}": "فكّر لمدة {{DURATION}}",
@@ -1605,12 +2309,23 @@
 	"To learn more about available endpoints, visit our documentation.": "لمعرفة المزيد حول نقاط النهاية المتاحة، قم بزيارة الوثائق الخاصة بنا.",
 	"To select skills here, add them to the \"Skills\" workspace first.": "",
 	"To select toolkits here, add them to the \"Tools\" workspace first.": "لاختيار الأدوات هنا، أضفها أولاً إلى مساحة العمل \"الأدوات\".",
+<<<<<<< HEAD
+=======
+	"Toast Notifications for New Updates": "إشعارات منبثقة للتحديثات الجديدة",
+>>>>>>> upstream/main
 	"Today": "اليوم",
 	"Toggle details": "",
+<<<<<<< HEAD
+=======
+	"Toggle Dictation": "",
+	"Toggle Mute": "",
+>>>>>>> upstream/main
 	"Toggle Sidebar": "",
 	"Toggle whether current connection is active.": "",
 	"Token": "رمز",
 	"Token counts are estimates and may not reflect actual API usage": "",
+	"Token Threshold": "",
+	"Tokenizer Model": "",
 	"tokens": "",
 	"Tokens": "",
 	"Too verbose": "مفرط في التفاصيل",
@@ -1655,10 +2370,25 @@
 	"Unlock mysteries": "اكشف الأسرار",
 	"Unpin": "إزالة التثبيت",
 	"Unravel secrets": "فكّ الأسرار",
+	"Unshare All": "",
+	"Unshare All Shared Chats": "",
 	"Unshare Chat": "",
 	"Untagged": "بدون وسوم",
+<<<<<<< HEAD
 	"Untitled folio": "",
 	"Update for the latest features and improvements.": "حدّث للحصول على أحدث الميزات والتحسينات.",
+=======
+	"Untitled": "",
+	"Update": "تحديث",
+	"Update and Copy Link": "تحديث ونسخ الرابط",
+	"Update Email": "",
+	"Update for the latest features and improvements.": "حدّث للحصول على أحدث الميزات والتحسينات.",
+	"Update Name": "",
+	"Update password": "تحديث كلمة المرور",
+	"Update Picture": "",
+	"Update your status": "",
+	"Updated": "تم التحديث",
+>>>>>>> upstream/main
 	"Updated at": "تم التحديث في",
 	"Updated At": "تم التحديث في",
 	"Upgrade to a licensed plan for enhanced capabilities, including custom theming and branding, and dedicated support.": "قم بالترقية إلى خطة مرخصة للحصول على ميزات إضافية، مثل التخصيص والدعم المخصص.",
@@ -1670,24 +2400,40 @@
 	"Upload profile image": "",
 	"Upload Progress": "جاري التحميل",
 	"Uploaded files or images": "",
+<<<<<<< HEAD
+=======
+	"Uploading {{current}}/{{total}}: {{file}}": "",
+>>>>>>> upstream/main
 	"Uploading...": "",
 	"URL": "الرابط",
 	"URL is required": "",
 	"URL Mode": "رابط الموديل",
 	"Usage": "",
 	"Use /v1/chat/completions endpoint instead of /v1/audio/transcriptions for potentially better accuracy.": "",
+	"Use a valid event name or pattern like user.*": "",
+	"Use Base64": "",
 	"Use Chat Completions API": "",
+	"Use discovered scopes": "",
 	"Use groups to organize your users and assign permissions.": "",
 	"Use LLM": "",
 	"Use no proxy to fetch page contents.": "",
 	"Use proxy designated by http_proxy and https_proxy environment variables to fetch page contents.": "",
+	"Use Web Search?": "",
 	"user": "مستخدم",
 	"User": "مستخدم",
+	"User Access": "",
 	"User Activity": "",
 	"User Groups": "",
+<<<<<<< HEAD
+=======
+	"User location successfully retrieved.": "تم استرجاع موقع المستخدم بنجاح.",
+	"User menu": "",
+	"User Preview": "",
+>>>>>>> upstream/main
 	"User ratings (thumbs up/down)": "",
 	"User Webhooks": "",
 	"Username": "اسم المستخدم",
+	"Username Claim": "",
 	"users": "",
 	"Users": "المستخدمين",
 	"Uses DefaultAzureCredential to authenticate": "",
@@ -1698,7 +2444,14 @@
 	"Valid time units:": "وحدات زمنية صالحة:",
 	"Validate certificate": "",
 	"Valves": "الصمامات",
+<<<<<<< HEAD
 	"Verified": "",
+=======
+	"Valves updated": "تم تحديث الصمامات",
+	"Valves updated successfully": "تم تحديث الصمامات بنجاح",
+	"variable": "المتغير",
+	"Vector Field": "",
+>>>>>>> upstream/main
 	"Verify Connection": "",
 	"Verify SSL Certificate": "",
 	"Version": "إصدار",
@@ -1719,9 +2472,20 @@
 	"Web API": "واجهة برمجة التطبيقات (API)",
 	"Web Loader Engine": "",
 	"Web Search": "بحث الويب",
+	"Web Search Confirmation": "",
+	"Web Search Confirmation Content": "",
 	"Web Search Engine": "محرك بحث الويب",
 	"Web Search Query Generation": "توليد استعلام بحث الويب",
+<<<<<<< HEAD
 	"Webhook URL": "Webhook الرابط",
+=======
+	"Webhook deleted": "",
+	"Webhook Name": "",
+	"Webhook saved": "",
+	"Webhooks": "",
+	"Webpage URLs": "",
+	"WebUI Settings": "WebUI اعدادات",
+>>>>>>> upstream/main
 	"WebUI URL": "رابط WebUI",
 	"WebUI will make requests to \"{{url}}\"": "",
 	"WebUI will make requests to \"{{url}}/api/chat\"": "ستقوم WebUI بإرسال الطلبات إلى \"{{url}}/api/chat\"",
@@ -1752,6 +2516,7 @@
 	"Yandex Web Search API Key": "",
 	"Yandex Web Search config": "",
 	"Yandex Web Search URL": "",
+	"Yearly": "",
 	"Yesterday": "أمس",
 	"You": "انت",
 	"You are a careful editor: terse, concrete, kind…": "",
@@ -1771,6 +2536,7 @@
 	"Your browser does not support the video tag.": "",
 	"Your entire contribution will go directly to the plugin developer; Open WebUI does not take any percentage. However, the chosen funding platform might have its own fees.": "سيتم توجيه كامل مساهمتك مباشرة إلى مطور المكون الإضافي؛ لا تأخذ Open WebUI أي نسبة. ومع ذلك، قد تفرض منصة التمويل المختارة رسومًا خاصة بها.",
 	"Your message text or inputs": "",
+	"Your query will be sent to the configured web search provider.": "",
 	"Your usage stats have been successfully synced.": "",
 	"Youtube Language": "لغة YouTube",
 	"Youtube Proxy URL": "رابط بروكسي YouTube"

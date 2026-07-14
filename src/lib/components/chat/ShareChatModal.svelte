@@ -59,7 +59,11 @@
 				}
 			} else {
 				chat = null;
+<<<<<<< HEAD
 				console.log(chat);
+=======
+				accessGrants = [];
+>>>>>>> upstream/main
 			}
 		})();
 	}
@@ -100,6 +104,22 @@
 					{/if}
 				</div>
 
+<<<<<<< HEAD
+=======
+				{#if chat.share_id}
+					<div class="mt-3">
+						<AccessControl
+							bind:accessGrants
+							accessRoles={['read']}
+							sharePublic={$user?.permissions?.sharing?.public_chats || $user?.role === 'admin'}
+							shareUsers={($user?.permissions?.access_grants?.allow_users ?? true) ||
+								$user?.role === 'admin'}
+							onChange={saveAccessGrants}
+						/>
+					</div>
+				{/if}
+
+>>>>>>> upstream/main
 				<div class="flex justify-end gap-1 mt-3">
 					{#if $config?.features.enable_community_sharing}
 						<button

@@ -5,21 +5,67 @@
 	"(e.g. `sh webui.sh --api`)": "(مثال کے طور پر: `sh webui.sh --api`)",
 	"(latest)": "(تازہ ترین)",
 	"(leave blank for to use commercial endpoint)": "",
+<<<<<<< HEAD
 	"{{COUNT}} extracted lines": "",
 	"{{COUNT}} hidden lines": "",
 	"{{COUNT}} members": "",
 	"{{COUNT}} Rows": "",
 	"{{count}} selected_one": "",
 	"{{count}} selected_other": "",
+=======
+	"[Last] dddd [at] h:mm A": "",
+	"[Today at] h:mm A": "",
+	"[Yesterday at] h:mm A": "",
+	"{{ models }}": "{{ ماڈلز }}",
+	"{{COUNT}} Available Skills": "",
+	"{{COUNT}} Available Tools": "",
+	"{{COUNT}} characters": "",
+	"{{COUNT}} extracted lines": "",
+	"{{COUNT}} files": "",
+	"{{count}} files selected. Only new and modified files will be uploaded. Deleted files will be removed. The folder structure will be mirrored. Continue?_one": "",
+	"{{count}} files selected. Only new and modified files will be uploaded. Deleted files will be removed. The folder structure will be mirrored. Continue?_other": "",
+	"{{count}} filters_one": "",
+	"{{count}} filters_other": "",
+	"{{count}} groups_one": "",
+	"{{count}} groups_other": "",
+	"{{COUNT}} hidden lines": "",
+	"{{COUNT}} members": "",
+	"{{count}} of {{total}} accessible_one": "",
+	"{{count}} of {{total}} accessible_other": "",
+	"{{COUNT}} Replies": "",
+	"{{COUNT}} Rows": "",
+	"{{count}} selected_one": "",
+	"{{count}} selected_other": "",
+	"{{COUNT}} Sources": "",
+	"{{count}} users_one": "",
+	"{{count}} users_other": "",
+	"{{COUNT}} words": "",
+>>>>>>> upstream/main
 	"{{COUNT}}d_time_ago": "",
 	"{{COUNT}}h_time_ago": "",
 	"{{COUNT}}m_time_ago": "",
 	"{{COUNT}}w_time_ago": "",
 	"{{COUNT}}y_time_ago": "",
+<<<<<<< HEAD
+=======
+	"{{label}} contains invalid JSON": "",
+	"{{label}} must be a JSON object": "",
+	"{{LOCALIZED_DATE}} at {{LOCALIZED_TIME}}": "",
+	"{{model}} download has been canceled": "",
+>>>>>>> upstream/main
 	"{{modelName}} profile image": "",
 	"{{user}}'s Chats": "{{ صارف }} کی بات چیت",
 	"{{webUIName}} Backend Required": "{{webUIName}} بیک اینڈ درکار ہے",
 	"*Prompt node ID(s) are required for image generation": "تصویر کی تخلیق کے لیے *پرومپٹ نوڈ آئی ڈی(ز) کی ضرورت ہے",
+<<<<<<< HEAD
+=======
+	"1 group": "",
+	"1 hour before": "",
+	"1 Source": "",
+	"1 user": "",
+	"10 minutes before": "",
+	"15 minutes before": "",
+>>>>>>> upstream/main
 	"1m_time_ago": "",
 	"a line about what this model is for…": "",
 	"A model binds a base mind to a system prompt, tools and knowledge — compose one and summon it in any chat.": "",
@@ -31,6 +77,11 @@
 	"Access Control": "",
 	"Access Grants": "",
 	"Access List": "",
+<<<<<<< HEAD
+=======
+	"Access prohibited": "",
+	"Access updated": "",
+>>>>>>> upstream/main
 	"Accessible to all users": "",
 	"Account Activation Pending": "اکاؤنٹ فعال ہونے کا انتظار ہے",
 	"Accurate information": "درست معلومات",
@@ -41,6 +92,7 @@
 	"Activity": "",
 	"Add": "شامل",
 	"Add a model ID": "",
+	"Add a preference, fact, or instruction about you": "",
 	"Add a short description about what this model does": "اس ماڈل کے کام کے بارے میں ایک مختصر وضاحت شامل کریں",
 	"Add a tag": "ٹیگ شامل کریں",
 	"Add a tag...": "",
@@ -50,7 +102,17 @@
 	"Add Custom Parameter": "",
 	"Add Custom Prompt": "",
 	"Add Details": "",
+	"Add durable context for future chats": "",
 	"Add Files": "فائلیں شامل کریں",
+<<<<<<< HEAD
+=======
+	"Add Image": "",
+	"Add Knowledge Connection": "",
+	"Add location": "",
+	"Add Member": "",
+	"Add Members": "",
+	"Add Memory": "میموری شامل کریں",
+>>>>>>> upstream/main
 	"Add Model": "ماڈل شامل کریں",
 	"Add tag": "",
 	"Add Tag": "ٹیگ شامل کریں",
@@ -58,6 +120,11 @@
 	"Add to favorites": "",
 	"Add User": "صارف شامل کریں",
 	"Add User Group": "",
+<<<<<<< HEAD
+=======
+	"Add webhook": "",
+	"Add webpage": "",
+>>>>>>> upstream/main
 	"Add your Open Terminal URL and API key in Settings → Integrations.": "",
 	"Additional Config": "",
 	"Additional configuration options for marker. This should be a JSON string with key-value pairs. For example, '{\"key\": \"value\"}'. Supported keys include: disable_links, keep_pageheader_in_output, keep_pagefooter_in_output, filter_blank_pages, drop_repeated_text, layout_coverage_threshold, merge_threshold, height_tolerance, gap_threshold, image_threshold, min_line_length, level_count, default_level": "",
@@ -68,18 +135,40 @@
 	"Admin": "ایڈمن",
 	"Admin Contact Email": "",
 	"Admin Panel": "ایڈمن پینل",
+<<<<<<< HEAD
+=======
+	"Admin Roles": "",
+	"Admin Settings": "ایڈمن ترتیبات",
+	"Admin-managed service account": "",
+>>>>>>> upstream/main
 	"Admins have access to all tools at all times; users need tools assigned per model in the workspace.": "ایڈمنز کو ہر وقت تمام ٹولز تک رسائی حاصل ہوتی ہے؛ صارفین کو ورک سپیس میں ماڈل کے حساب سے ٹولز تفویض کرنے کی ضرورت ہوتی ہے",
 	"Advanced": "",
 	"Advanced parameters for MinerU parsing (enable_ocr, enable_formula, enable_table, language, model_version, page_ranges)": "",
 	"Advanced Params": "ترقی یافتہ پیرامیٹرز",
 	"After updating or changing the embedding model, you must reindex the knowledge base for the changes to take effect. You can do this using the \"Reindex\" button below.": "",
 	"All": "",
+<<<<<<< HEAD
 	"All time": "",
 	"All Users": "",
+=======
+	"All chats have been unarchived.": "",
+	"All day": "",
+	"All events": "",
+	"All models are now hidden": "",
+	"All models are now visible": "",
+	"All models deleted successfully": "",
+	"All shared chats have been unshared.": "",
+	"All Sources": "",
+	"All time": "",
+	"All Users": "",
+	"All users and system events": "",
+	"Allow Call": "",
+>>>>>>> upstream/main
 	"Allow Chat Controls": "",
 	"Allow Chat Delete": "",
 	"Allow Chat Edit": "",
 	"Allow Chat Export": "",
+	"Allow Chat Import": "",
 	"Allow Chat Params": "",
 	"Allow Chat Share": "",
 	"Allow Chat System Prompt": "",
@@ -94,9 +183,11 @@
 	"Allow Sharing With Users": "",
 	"Allow Text to Speech": "",
 	"Allow Web Upload": "",
+	"Allowed Domains": "",
 	"Allowed Endpoints": "",
 	"Allowed File Extensions": "",
 	"Allowed file extensions for upload. Separate multiple extensions with commas. Leave empty for all file types.": "",
+	"Allowed Roles": "",
 	"Already have an account?": "کیا پہلے سے اکاؤنٹ موجود ہے؟",
 	"Alternative to the top_p, and aims to ensure a balance of quality and variety. The parameter p represents the minimum probability for a token to be considered, relative to the probability of the most likely token. For example, with p=0.05 and the most likely token having a probability of 0.9, logits with a value less than 0.045 are filtered out.": "",
 	"Amazing": "",
@@ -108,6 +199,11 @@
 	"API Base URL": "API بنیادی URL",
 	"API Base URL for Datalab Marker service. Defaults to: https://www.datalab.to/api/v1/marker": "",
 	"API Key": "اے پی آئی کلید",
+<<<<<<< HEAD
+=======
+	"API Key / Token": "",
+	"API Key created.": "اے پی آئی کلید بنائی گئی",
+>>>>>>> upstream/main
 	"API Key Endpoint Restrictions": "",
 	"API Keys": "",
 	"API Mode": "",
@@ -124,13 +220,31 @@
 	"Are you sure you want to delete \"{{NAME}}\"?": "",
 	"Are you sure you want to delete **{{modelName}}**?": "",
 	"Are you sure you want to delete this connection? This action cannot be undone.": "",
+<<<<<<< HEAD
 	"Are you sure you want to delete this?": "",
 	"Arena": "",
+=======
+	"Are you sure you want to delete this directory?": "",
+	"Are you sure you want to delete this memory? This action cannot be undone.": "",
+	"Are you sure you want to delete this message?": "",
+	"Are you sure you want to delete this version? Child versions will be relinked to this version's parent.": "",
+	"Are you sure you want to delete this webhook? This action cannot be undone.": "",
+	"Are you sure you want to delete this?": "",
+	"Are you sure you want to reset all permissions to their default values? You will still need to save to apply the changes.": "",
+	"Are you sure you want to unarchive all archived chats?": "",
+	"Are you sure you want to unshare all shared chats? This will remove all share links.": "",
+>>>>>>> upstream/main
 	"Arena Models": "ارینا ماڈلز",
 	"Artifacts": "نوادرات",
 	"Ask": "",
 	"Ask a question": "سوال پوچھیں",
+<<<<<<< HEAD
 	"Ask the User": "",
+=======
+	"Ask a test question": "",
+	"Ask this knowledge source a test question": "",
+	"Assistant": "اسسٹنٹ",
+>>>>>>> upstream/main
 	"Async Embedding Processing": "",
 	"Attach File From Knowledge": "",
 	"Attention to detail": "تفصیل پر توجہ",
@@ -139,20 +253,33 @@
 	"Audience": "",
 	"August": "اگست",
 	"Auth": "",
+	"Auth Mode": "",
+	"Auth required": "",
 	"Authenticate": "",
 	"Authentication": "",
 	"Auto (Random)": "",
+<<<<<<< HEAD
 	"Auto-inject system tools for Agents (timestamps, memory, notes, etc.)": "",
+=======
+	"Auto Redirect": "",
+	"Auto-Copy Response to Clipboard": "جواب خودکار طور پر کلپ بورڈ پر کاپی ہو گیا",
+	"Auto-Create Groups": "",
+	"Auto-Playback Response": "آٹو پلے بیک جواب",
+>>>>>>> upstream/main
 	"Autocomplete Generation": "",
 	"Autocomplete Generation Input Max Length": "",
+	"Autocomplete Generation Prompt": "",
+	"Automatic": "",
 	"Automatic1111": "آٹو میٹک1111",
 	"AUTOMATIC1111 Api Auth String": "AUTOMATIC1111 ایپلی کیشن کا تصدیقی سلسلہ",
 	"AUTOMATIC1111 Base URL": "AUTOMATIC1111 بنیادی URL",
 	"AUTOMATIC1111 Base URL is required.": "AUTOMATIC1111 بنیادی URL درکار ہے",
 	"Available list": "دستیاب فہرست",
 	"Available models": "",
+	"Available Skills": "",
 	"Available Tools": "",
 	"available users": "دستیاب صارفین",
+	"Available variables": "",
 	"available!": "دستیاب!",
 	"Awful": "",
 	"Azure AI Speech": "ایژور اے آئی اسپیچ",
@@ -163,16 +290,30 @@
 	"Backup, export, and import instance data.": "",
 	"Bad Response": "غلط جواب",
 	"Banners": "بینرز",
+<<<<<<< HEAD
 	"Base model": "",
+=======
+	"Base Model (From)": "بیس ماڈل (سے)",
+	"Base Model is required.": "",
+>>>>>>> upstream/main
 	"Base Model List Cache speeds up access by fetching base models only at startup or on settings save—faster, but may not show recent base model changes.": "",
 	"Bearer": "",
 	"Begin a new folio": "",
 	"Being lazy": "سستی کر رہا ہے",
+<<<<<<< HEAD
 	"Beta": "",
 	"Bind the model": "",
 	"Bing": "",
 	"Bing Search V7 Endpoint": "",
 	"Bing Search V7 Subscription Key": "",
+=======
+	"Bing": "",
+	"Bing Search V7 Endpoint": "",
+	"Bing Search V7 Subscription Key": "",
+	"Bio": "",
+	"Birth Date": "",
+	"Blocked Groups": "",
+>>>>>>> upstream/main
 	"BM25 Weight": "",
 	"Bocha Search API Key": "",
 	"Bold": "",
@@ -200,6 +341,12 @@
 	"Chat": "چیٹ",
 	"Chat Completions": "",
 	"Chat Conversation": "",
+<<<<<<< HEAD
+=======
+	"Chat deleted.": "",
+	"Chat Direction": "چیٹ کی سمت",
+	"Chat exported successfully": "",
+>>>>>>> upstream/main
 	"Chat History": "",
 	"Chat ID": "",
 	"Chat moved successfully": "",
@@ -259,6 +406,11 @@
 	"Code Interpreter Prompt Template": "",
 	"Collapse": "",
 	"Collection": "کلیکشن",
+<<<<<<< HEAD
+=======
+	"Collection Field": "",
+	"Collections": "",
+>>>>>>> upstream/main
 	"Color": "",
 	"ComfyUI": "کومفی یو آئی",
 	"ComfyUI API Key": "",
@@ -267,9 +419,25 @@
 	"ComfyUI Workflow": "کومفی یو آئی ورک فلو",
 	"ComfyUI Workflow Nodes": "کومفی یو آئی ورک فلو نوڈز",
 	"Comma separated Node Ids (e.g. 1 or 1,2)": "",
+<<<<<<< HEAD
+=======
+	"Comma-separated group names": "",
+	"Comma-separated list of file extensions MinerU will handle (e.g. pdf, docx, pptx, xlsx)": "",
+	"command": "",
+	"Command": "کمانڈ",
+>>>>>>> upstream/main
 	"Comment": "",
 	"Community Reviews": "",
+<<<<<<< HEAD
 	"Compose your first model": "",
+=======
+	"Compacting context": "",
+	"Comparing with knowledge base...": "",
+	"Completions": "تکمیل",
+	"Compress Images in Channels": "",
+	"Computing checksums ({{count}} files)_one": "",
+	"Computing checksums ({{count}} files)_other": "",
+>>>>>>> upstream/main
 	"Concurrent Requests": "ہم وقت درخواستیں",
 	"Config": "",
 	"Configure": "",
@@ -282,6 +450,10 @@
 	"Connect to Open Terminal instances. All users will have access to file browsing and terminal tools through these servers.": "",
 	"Connect to your own OpenAPI compatible external tool servers.": "",
 	"Connected": "",
+<<<<<<< HEAD
+=======
+	"Connected ({{type}})": "",
+>>>>>>> upstream/main
 	"Connection failed": "",
 	"Connection lost. Reconnecting...": "",
 	"Connection Type": "",
@@ -290,8 +462,16 @@
 	"Contact Admin for WebUI Access": "ویب یو آئی رسائی کے لیے ایڈمن سے رابطہ کریں",
 	"Content": "مواد",
 	"Content Extraction Engine": "",
+	"Content Field": "",
 	"Content lengths (character counts only)": "",
+	"Context": "",
+	"Context compacted": "",
+	"Context Compaction": "",
+	"Context compaction failed": "",
+	"Context Compaction Prompt": "",
+	"Context Compaction Threshold": "",
 	"Context Tokens": "",
+	"Continue": "",
 	"Continue Response": "ردعمل جاری رکھیں",
 	"Continue with {{provider}}": "{{provider}} کے ساتھ جاری رکھیں",
 	"Continue with Email": "",
@@ -322,6 +502,16 @@
 	"Create Image": "",
 	"Create model": "",
 	"Create Model": "",
+<<<<<<< HEAD
+=======
+	"Create new key": "نیا کلید بنائیں",
+	"Create new secret key": "نیا خفیہ کلید بنائیں",
+	"Create note": "",
+	"Create Note": "",
+	"Create one read-only Knowledge source per external collection. Test must pass before the source is created.": "",
+	"Create scheduled prompts that run automatically on a recurring basis.": "",
+	"Create your first note by clicking on the plus button below.": "",
+>>>>>>> upstream/main
 	"Created at": "پر بنایا گیا",
 	"Created At": "بنایا گیا:",
 	"Created by": "تخلیق کردہ",
@@ -332,7 +522,12 @@
 	"Custom color": "",
 	"Custom Parameter Name": "",
 	"Custom Parameter Value": "",
+<<<<<<< HEAD
 	"Custom presets that pair a base model with a system prompt, tools, knowledge and capabilities — build your own assistants and reuse them anywhere in chat.": "",
+=======
+	"Custom range": "",
+	"Daily": "",
+>>>>>>> upstream/main
 	"Daily Messages": "",
 	"Danger Zone": "",
 	"Database": "ڈیٹا بیس",
@@ -348,7 +543,6 @@
 	"Default Features": "",
 	"Default Filters": "",
 	"Default Group": "",
-	"Default mode works with a wider range of models by calling tools once before execution. Native mode leverages the model's built-in tool-calling capabilities, but requires the model to inherently support this feature.": "",
 	"Default Model": "ڈیفالٹ ماڈل",
 	"Default permissions": "",
 	"Default Prompt Suggestions": "ڈیفالٹ پرامپٹ تجاویز",
@@ -356,13 +550,25 @@
 	"Default to ALL": "",
 	"Default to segmented retrieval for focused and relevant content extraction, this is recommended for most cases.": "",
 	"Default User Role": "ڈیفالٹ صارف کا کردار",
+	"Default webhook": "",
 	"Defaults": "",
 	"Delete": "حذف کریں",
 	"Delete {{name}}": "",
 	"Delete a model": "ایک ماڈل حذف کریں",
+<<<<<<< HEAD
+=======
+	"Delete All": "",
+	"Delete All Chats": "تمام چیٹس حذف کریں",
+	"Delete all contents inside this directory": "",
+>>>>>>> upstream/main
 	"Delete all contents inside this folder": "",
 	"Delete Chat": "چیٹ حذف کریں",
 	"Delete chat?": "چیٹ حذف کریں؟",
+<<<<<<< HEAD
+=======
+	"Delete directory?": "",
+	"Delete Event": "",
+>>>>>>> upstream/main
 	"Delete File": "",
 	"Delete folder?": "کیا فولڈر حذف کریں؟",
 	"Delete function?": "حذف کریں؟",
@@ -383,9 +589,20 @@
 	"Direct Connections": "",
 	"Direct Connections allow users to connect to their own OpenAI compatible API endpoints.": "",
 	"Direct Tool Servers": "",
+<<<<<<< HEAD
+=======
+	"Directory created.": "",
+	"Directory deleted.": "",
+	"Directory moved.": "",
+	"Directory name": "",
+	"Directory renamed.": "",
+	"Directory selection was cancelled": "",
+>>>>>>> upstream/main
 	"Disable All": "",
 	"Disable Image Extraction": "",
 	"Disable image extraction from the PDF. If Use LLM is enabled, images will be automatically captioned. Defaults to False.": "",
+	"Disable Image Generation": "",
+	"Disable Web Search": "",
 	"Disabled": "غیر فعال",
 	"Discard this folio": "",
 	"Discarded": "",
@@ -394,6 +611,13 @@
 	"Discover wonders": "",
 	"Discover, download, and explore custom functions": "دریافت کریں، ڈاؤن لوڈ کریں، اور کسٹم فنکشنز کو دریافت کریں",
 	"Display": "",
+<<<<<<< HEAD
+=======
+	"Display Chat Title in Tab": "",
+	"Display Emoji in Call": "کال میں ایموجی دکھائیں",
+	"Display Multi-model Responses in Tabs": "",
+	"Display the Username Instead of You in the Chat": "چیٹ میں \"آپ\" کے بجائے صارف نام دکھائیں",
+>>>>>>> upstream/main
 	"Displays citations in the response": "",
 	"Displays status updates (e.g., web search progress) in the response": "",
 	"Dissolve": "",
@@ -406,6 +630,7 @@
 	"Docling Parameters": "",
 	"Docling Server URL required.": "",
 	"Document": "دستاویز",
+	"Document ID Field": "",
 	"Document Intelligence": "",
 	"Document Intelligence endpoint required.": "",
 	"Document Intelligence Model": "",
@@ -459,41 +684,60 @@
 	"Edit Default Permissions": "",
 	"Edit Folder": "",
 	"Edit Image": "",
+	"Edit Knowledge Connection": "",
 	"Edit Last Message": "",
 	"Edit Model": "",
 	"Edit Terminal Connection": "",
 	"Edit User": "صارف میں ترمیم کریں",
 	"Edit User Group": "",
+	"Edit webhook": "",
 	"Edit workflow.json content": "",
 	"Eject": "",
 	"Eject model": "",
 	"ElevenLabs": "الیون لیبز",
 	"Email": "ای میل",
+	"Email Claim": "",
 	"Embark on adventures": "",
 	"Embedding": "",
 	"Embedding Batch Size": "بیچ سائز شامل کرنا",
 	"Embedding Concurrent Requests": "",
 	"Embedding Model": "ایمبیڈنگ ماڈل",
 	"Embedding Model Engine": "ایمبیڈنگ ماڈل انجن",
+	"Emoji": "",
 	"Emojis": "",
+<<<<<<< HEAD
+=======
+	"Empty": "",
+	"Empty message": "",
+>>>>>>> upstream/main
 	"Enable All": "",
 	"Enable API Keys": "",
 	"Enable autocomplete generation for chat messages": "",
 	"Enable Code Execution": "",
 	"Enable Code Interpreter": "",
 	"Enable Community Sharing": "کمیونٹی شیئرنگ فعال کریں",
+	"Enable Group Mapping": "",
+	"Enable Image Generation": "",
 	"Enable Memory Locking (mlock) to prevent model data from being swapped out of RAM. This option locks the model's working set of pages into RAM, ensuring that they will not be swapped out to disk. This can help maintain performance by avoiding page faults and ensuring fast data access.": "",
 	"Enable Memory Mapping (mmap) to load model data. This option allows the system to use disk storage as an extension of RAM by treating disk files as if they were in RAM. This can improve model performance by allowing for faster data access. However, it may not work correctly with all systems and can consume a significant amount of disk space.": "",
 	"Enable Message Rating": "پیغام کی درجہ بندی فعال کریں",
 	"Enable Mirostat sampling for controlling perplexity.": "",
 	"Enable New Sign Ups": "نئے سائن اپس کو فعال کریں",
+	"Enable OAuth Signup": "",
+	"Enable Role Mapping": "",
+	"Enable Web Search": "",
 	"Enable, disable, or customize the reasoning tags used by the model. \"Enabled\" uses default tags, \"Disabled\" turns off reasoning tags, and \"Custom\" lets you specify your own start and end tags.": "",
 	"Enabled": "فعال کردیا گیا ہے",
 	"End Tag": "",
+	"Endpoint": "",
 	"Endpoint URL": "",
 	"Enrich Hybrid Search Text": "",
 	"Ensure your CSV file includes 4 columns in this order: Name, Email, Password, Role.": "یقینی بنائیں کہ آپ کی CSV فائل میں 4 کالم اس ترتیب میں شامل ہوں: نام، ای میل، پاس ورڈ، کردار",
+<<<<<<< HEAD
 	"Enter a name first": "",
+=======
+	"Enter {{role}} message here": "یہاں {{کردار}} پیغام درج کریں",
+>>>>>>> upstream/main
 	"Enter a title for the pending user info overlay. Leave empty for default.": "",
 	"Enter a watermark for the response. Leave empty for none.": "",
 	"Enter additional headers in JSON format": "",
@@ -510,6 +754,8 @@
 	"Enter Chunk Min Size Target": "",
 	"Enter Chunk Overlap": "چنک اوورلیپ درج کریں",
 	"Enter Chunk Size": "چنک سائز درج کریں",
+	"Enter Client ID": "",
+	"Enter Client Secret": "",
 	"Enter comma-separated \"token:bias_value\" pairs (example: 5432:100, 413:-100)": "",
 	"Enter content for the pending user info overlay. Leave empty for default.": "",
 	"Enter coordinates (e.g. 51.505, -0.09)": "",
@@ -546,7 +792,15 @@
 	"Enter Jupyter Token": "",
 	"Enter Jupyter URL": "",
 	"Enter Kagi Search API Key": "",
+<<<<<<< HEAD
+=======
+	"Enter Key Behavior": "",
+	"Enter language": "",
+>>>>>>> upstream/main
 	"Enter language codes": "زبان کے کوڈ درج کریں",
+	"Enter Linkup API Key": "",
+	"Enter Microsoft Web IQ API Base URL": "",
+	"Enter Microsoft Web IQ API Key": "",
 	"Enter MinerU API Key": "",
 	"Enter Mistral API Base URL": "",
 	"Enter Mistral API Key": "",
@@ -565,6 +819,7 @@
 	"Enter Playwright WebSocket URL": "",
 	"Enter proxy URL (e.g. https://user:password@host:port)": "",
 	"Enter reasoning effort": "",
+	"Enter Redirect URI": "",
 	"Enter Score": "درجہ درج کریں",
 	"Enter SearchApi API Key": "تلاش API کلید داخل کریں",
 	"Enter SearchApi Engine": "تلاش انجن درج کریں",
@@ -574,6 +829,7 @@
 	"Enter SerpApi API Key": "",
 	"Enter SerpApi Engine": "",
 	"Enter Serper API Key": "سرپر API کلید داخل کریں",
+	"Enter SERPHouse API Key": "",
 	"Enter Serply API Key": "سیرپلی API کلید درج کریں",
 	"Enter Serpstack API Key": "سرپ اسٹیک API کلید درج کریں",
 	"Enter server host": "",
@@ -591,6 +847,12 @@
 	"Enter the URL to import": "",
 	"Enter Tika Server URL": "ٹیکا سرور یو آر ایل درج کریں",
 	"Enter timeout in seconds": "",
+<<<<<<< HEAD
+=======
+	"Enter to Send": "",
+	"Enter token threshold": "",
+	"Enter Tokenizer Model": "",
+>>>>>>> upstream/main
 	"Enter Top K": "اوپر کے K درج کریں",
 	"Enter Top K Reranker": "",
 	"Enter URL (e.g. http://127.0.0.1:7860/)": "یو آر ایل درج کریں (جیسے کہ http://127.0.0.1:7860/)",
@@ -620,8 +882,19 @@
 	"Error: A model with the ID '{{modelId}}' already exists. Please select a different ID to proceed.": "",
 	"Error: Model ID cannot be empty. Please enter a valid ID to proceed.": "",
 	"Evaluations": "تشخیصات",
+<<<<<<< HEAD
 	"Every craft begins bare-handed.": "",
+=======
+	"Event": "",
+	"Event created": "",
+	"Event deleted": "",
+	"Event names may change as Open WebUI evolves. Use broad patterns like user.* for integrations that should continue across new related events.": "",
+	"Event title": "",
+	"Event updated": "",
+	"Events": "",
+>>>>>>> upstream/main
 	"Exa API Key": "",
+	"Example": "",
 	"Example: (&(objectClass=inetOrgPerson)(uid=%s))": "",
 	"Example: ALL": "",
 	"Example: mail": "",
@@ -643,18 +916,29 @@
 	"Export chat (.json)": "چیٹ برآمد کریں (.json)",
 	"Export Config": "",
 	"Export Models": "",
+<<<<<<< HEAD
+=======
+	"Export Prompts": "",
+	"Export Skills": "",
+>>>>>>> upstream/main
 	"Export to CSV": "",
 	"Export Tools": "",
 	"Export Users": "",
 	"External": "",
+	"External connection not found.": "",
 	"External Document Loader URL required.": "",
+	"External Knowledge Source": "",
+	"External Knowledge Sources": "",
 	"External Task Model": "",
+	"External Tool Servers": "",
+	"External vectors must be generated with the same embedding model configured in Open WebUI.": "",
 	"External Web Loader API Key": "",
 	"External Web Loader URL": "",
 	"External Web Search API Key": "",
 	"External Web Search URL": "",
 	"Faculties": "",
 	"Failed to archive chat.": "",
+<<<<<<< HEAD
 	"Failed to connect to {{URL}} OpenAPI tool server": "",
 	"Failed to connect to {{URL}} terminal server": "",
 	"Failed to copy link": "",
@@ -664,11 +948,39 @@
 	"Failed to extract content from the file: {{error}}": "",
 	"Failed to extract content from the file.": "",
 	"Failed to fetch models": "",
+=======
+	"Failed to attach file": "",
+	"Failed to clear status": "",
+	"Failed to compare files.": "",
+	"Failed to connect to {{URL}} OpenAPI tool server": "",
+	"Failed to connect to {{URL}} terminal server": "",
+	"Failed to copy link": "",
+	"Failed to create API Key.": "API کلید بنانے میں ناکام",
+	"Failed to delete calendar": "",
+	"Failed to delete note": "",
+	"Failed to delete webhook": "",
+	"Failed to disconnect": "",
+	"Failed to download image": "",
+	"Failed to extract content from the file: {{error}}": "",
+	"Failed to extract content from the file.": "",
+	"Failed to fetch models": "",
+	"Failed to generate title": "",
+	"Failed to import models": "",
+	"Failed to load chat": "",
+	"Failed to load chat preview": "",
+>>>>>>> upstream/main
 	"Failed to load DOCX file. Please try downloading it instead.": "",
 	"Failed to load Excel/CSV file. Please try downloading it instead.": "",
 	"Failed to load Interface settings": "",
 	"Failed to load PPTX file. Please try downloading it instead.": "",
 	"Failed to move chat": "",
+<<<<<<< HEAD
+=======
+	"Failed to process URL: {{url}}": "",
+	"Failed to read clipboard contents": "کلپ بورڈ مواد کو پڑھنے میں ناکام",
+	"Failed to refresh terminals: {{error}}": "",
+	"Failed to remove member": "",
+>>>>>>> upstream/main
 	"Failed to render diagram": "",
 	"Failed to render visualization": "",
 	"Failed to save": "",
@@ -677,10 +989,16 @@
 	"Failed to save models configuration": "",
 	"Failed to save policy: {{error}}": "",
 	"Failed to save terminal servers": "",
+	"Failed to save webhook": "",
 	"Failed to unshare chat.": "",
 	"Failed to update settings": "ترتیبات کی تازہ کاری ناکام رہی",
 	"Failed to update status": "",
+<<<<<<< HEAD
 	"Favicons": "",
+=======
+	"Failed to update webhook": "",
+	"Failed to upload file.": "فائل اپلوڈ کرنے میں ناکامی ہوئی",
+>>>>>>> upstream/main
 	"Features": "",
 	"Features Permissions": "",
 	"February": "فروری",
@@ -693,14 +1011,32 @@
 	"File": "فائل",
 	"File browser": "",
 	"File Context": "",
+<<<<<<< HEAD
+=======
+	"File deleted successfully.": "",
+	"File Extensions": "",
+>>>>>>> upstream/main
 	"File Mode": "فائل موڈ",
+	"File moved.": "",
 	"File name": "",
 	"File not found.": "فائل نہیں ملی",
+<<<<<<< HEAD
 	"File size should not exceed {{maxSize}} MB.": "فائل کا سائز {{maxSize}} ایم بی سے زیادہ نہیں ہونا چاہیے",
 	"File Upload": "",
 	"Filename": "",
 	"Files": "فائلز",
 	"Fill name + base model to create": "",
+=======
+	"File removed successfully.": "فائل کامیابی سے ہٹا دی گئی",
+	"File renamed.": "",
+	"File size should not exceed {{maxSize}} MB.": "فائل کا سائز {{maxSize}} ایم بی سے زیادہ نہیں ہونا چاہیے",
+	"File Upload": "",
+	"File uploaded successfully": "",
+	"Filename": "",
+	"Files": "فائلز",
+	"Fill the required fields first.": "",
+	"Fill the source fields and test query first.": "",
+>>>>>>> upstream/main
 	"Filter": "",
 	"Filters": "فلٹرز",
 	"Filters, valves, and middleware workflows.": "",
@@ -718,8 +1054,12 @@
 	"Folder name cannot be empty.": "پوشے کا نام خالی نہیں ہو سکتا",
 	"Folder options": "",
 	"Folders": "",
+<<<<<<< HEAD
 	"folio": "",
 	"folios": "",
+=======
+	"Folders Sharing": "",
+>>>>>>> upstream/main
 	"Follow up": "",
 	"Follow Up Generation": "",
 	"Follow Up Generation Prompt": "",
@@ -747,6 +1087,11 @@
 	"Function imported successfully": "",
 	"Function Name": "",
 	"Function Name Filter List": "",
+<<<<<<< HEAD
+=======
+	"Function starter": "",
+	"Function updated successfully": "فنکشن کو کامیابی سے اپ ڈیٹ کر دیا گیا",
+>>>>>>> upstream/main
 	"Functions": "افعال",
 	"Functions allow arbitrary code execution.": "افعال صوابدیدی کوڈ کے اجرا کی اجازت دیتے ہیں",
 	"Gather a quire": "",
@@ -774,6 +1119,15 @@
 	"Google PSE Engine Id": "گوگل پی ایس ای انجن آئی ڈی",
 	"Gravatar": "",
 	"Grokipedia": "",
+<<<<<<< HEAD
+=======
+	"group": "",
+	"Group": "",
+	"Group Channel": "",
+	"Group Claim": "",
+	"Group created successfully": "",
+	"Group deleted successfully": "",
+>>>>>>> upstream/main
 	"Group Description": "",
 	"Group Name": "",
 	"groups": "",
@@ -781,6 +1135,11 @@
 	"H1": "",
 	"H2": "",
 	"H3": "",
+<<<<<<< HEAD
+=======
+	"Haptic Feedback": "ہاپٹک فیڈ بیک",
+	"Header variables": "",
+>>>>>>> upstream/main
 	"Headers": "",
 	"Headers must be a valid JSON object": "",
 	"Hello, {{name}}": "ہیلو، {{name}}",
@@ -809,6 +1168,12 @@
 	"I acknowledge that I have read and I understand the implications of my action. I am aware of the risks associated with executing arbitrary code and I have verified the trustworthiness of the source.": "میں اقرار کرتا ہوں کہ میں نے پڑھ لیا ہے اور میں اپنی کارروائی کے مضمرات سمجھتا ہوں میں اس بات سے واقف ہوں کہ بلاوجہ کوڈ چلانے کے ساتھ منسلک خطرات ہوتے ہیں اور میں نے ماخذ کی اعتمادیت کی تصدیق کی ہے",
 	"ID": "شناخت",
 	"ID cannot contain \":\" or \"|\" characters": "",
+<<<<<<< HEAD
+=======
+	"ID copied to clipboard": "",
+	"Identity audit": "",
+	"Idle only": "",
+>>>>>>> upstream/main
 	"Idle Timeout": "",
 	"Ignite curiosity": "",
 	"Image": "",
@@ -828,6 +1193,12 @@
 	"Import Config": "",
 	"Import From Link": "",
 	"Import Models": "",
+<<<<<<< HEAD
+=======
+	"Import Prompts": "",
+	"Import Skills": "",
+	"Import successful": "",
+>>>>>>> upstream/main
 	"Import Tools": "",
 	"Important Update": "اہم اپ ڈیٹ",
 	"Imported": "",
@@ -864,6 +1235,11 @@
 	"Jina API Key": "",
 	"join our Discord for help.": "مدد کے لئے ہمارے ڈسکارڈ میں شامل ہوں",
 	"JSON": "JSON",
+<<<<<<< HEAD
+=======
+	"JSON Base64": "",
+	"JSON Preview": "JSON پیش منظر",
+>>>>>>> upstream/main
 	"JSON Spec": "",
 	"July": "جولائی",
 	"June": "جون",
@@ -874,9 +1250,26 @@
 	"Keep in Sidebar": "",
 	"Key": "",
 	"Key is required": "",
-	"Keyboard shortcuts": "کی بورڈ شارٹ کٹس",
 	"Keyboard Shortcuts": "",
 	"Knowledge": "علم",
+<<<<<<< HEAD
+=======
+	"Knowledge Access": "",
+	"Knowledge Base": "",
+	"Knowledge base has been reset": "",
+	"Knowledge created successfully.": "علم کامیابی سے تخلیق کیا گیا",
+	"Knowledge deleted successfully.": "معلومات کامیابی سے حذف ہو گئیں",
+	"Knowledge Description": "",
+	"Knowledge exported successfully": "",
+	"Knowledge Name": "",
+	"Knowledge Public Sharing": "",
+	"Knowledge Sharing": "",
+	"Knowledge source created.": "",
+	"Knowledge source updated.": "",
+	"Knowledge updated successfully": "علم کامیابی سے تازہ کر دیا گیا ہے",
+	"Kokoro.js (Browser)": "",
+	"Kokoro.js Dtype": "",
+>>>>>>> upstream/main
 	"Label": "",
 	"Language Locales": "",
 	"Last 24 hours": "",
@@ -905,9 +1298,18 @@
 	"Leave model field empty to use the default model.": "",
 	"lexical": "",
 	"License": "",
+	"Lifecycle JSON": "",
 	"Lift List": "",
 	"Limit concurrent search queries. 0 = unlimited (default). Set to 1 for sequential execution (recommended for APIs with strict rate limits like Brave free tier).": "",
 	"Limits the number of concurrent embedding requests. Set to 0 for unlimited.": "",
+<<<<<<< HEAD
+=======
+	"Linkup API Key": "",
+	"List": "",
+	"List calendars, search, create, update, and delete calendar events": "",
+	"Listening...": "سن رہے ہیں...",
+	"Live": "",
+>>>>>>> upstream/main
 	"llama.cpp": "",
 	"Llama.cpp": "",
 	"Loaded": "",
@@ -918,6 +1320,11 @@
 	"Local Task Model": "",
 	"Lost": "گم شدہ",
 	"Low": "",
+<<<<<<< HEAD
+=======
+	"Lower the context compaction token threshold for this model. The global context compaction threshold remains the maximum.": "",
+	"LTR": "بائیں سے دائیں",
+>>>>>>> upstream/main
 	"Made by Open WebUI Community": "اوپن ویب یو آئی کمیونٹی کی جانب سے تیار کردہ",
 	"Make password visible in the user interface": "",
 	"Make sure to export a workflow.json file as API format from ComfyUI.": "یقینی بنائیں کہ ComfyUI سے workflow.json فائل کو API فارمیٹ میں ایکسپورٹ کریں",
@@ -929,7 +1336,12 @@
 	"Manage OpenAI API Connections": "",
 	"Manage Pipelines": "پائپ لائنز کا نظم کریں",
 	"Manage Tool Servers": "",
+<<<<<<< HEAD
 	"Manage, import, and configure the models available to users.": "",
+=======
+	"Manage your account information.": "",
+	"Mapped Source": "",
+>>>>>>> upstream/main
 	"March": "مارچ",
 	"Markdown": "",
 	"Markdown Header Text Splitter": "",
@@ -950,6 +1362,15 @@
 	"Members": "",
 	"Memories": "",
 	"Memory": "میموری",
+<<<<<<< HEAD
+=======
+	"Memory added successfully": "میموری کامیابی سے شامل کر دی گئی",
+	"Memory cleared successfully": "یادداشت کامیابی سے صاف ہوگئی",
+	"Memory deleted successfully": "میموری کامیابی سے حذف ہوگئی",
+	"Memory System Context": "",
+	"Memory updated successfully": "حافظہ کامیابی سے اپ ڈیٹ کر دیا گیا",
+	"Merge Accounts by Email": "",
+>>>>>>> upstream/main
 	"Merge Responses": "جوابات کو یکجا کریں",
 	"Merged Response": "مرکب جواب",
 	"Message": "",
@@ -959,6 +1380,16 @@
 	"Message text...": "",
 	"messages": "",
 	"Messages": "",
+<<<<<<< HEAD
+=======
+	"Messages you send after creating your link won't be shared. Users with the URL will be able to view the shared chat.": "آپ کے لنک بنانے کے بعد بھیجے گئے پیغامات شیئر نہیں کیے جائیں گے یو آر ایل والے صارفین شیئر کیا گیا چیٹ دیکھ سکیں گے",
+	"Metadata Field": "",
+	"Microsoft OneDrive": "",
+	"Microsoft OneDrive (personal)": "",
+	"Microsoft OneDrive (work/school)": "",
+	"Microsoft Web IQ API Base URL": "",
+	"Microsoft Web IQ API Key": "",
+>>>>>>> upstream/main
 	"min": "",
 	"MinerU": "",
 	"MinerU API Key required for Cloud API mode.": "",
@@ -1000,18 +1431,42 @@
 	"Models Sharing": "",
 	"Mojeek": "",
 	"Mojeek Search API Key": "",
+<<<<<<< HEAD
+=======
+	"Monday – Friday": "",
+	"Month": "",
+	"Monthly": "",
+>>>>>>> upstream/main
 	"More": "مزید",
 	"More Concise": "",
 	"More Options": "",
 	"Move": "",
+<<<<<<< HEAD
+=======
+	"Moved {{name}}": "",
+	"Multipart Upload": "",
+	"Mute": "",
+	"Muted": "",
+>>>>>>> upstream/main
 	"My Terminal": "",
 	"Name": "نام",
 	"Name and ID are required, please fill them out": "",
 	"Name this model…": "",
 	"Name your model": "",
 	"Native": "",
+<<<<<<< HEAD
+=======
+	"Native mode (default) leverages the model's built-in tool-calling capabilities. Legacy mode works with a wider range of models by calling tools once before execution via prompt injection.": "",
+	"Never": "",
+>>>>>>> upstream/main
 	"New": "",
 	"New Chat": "نئی بات چیت",
+<<<<<<< HEAD
+=======
+	"New directory": "",
+	"New Directory": "",
+	"New Event": "",
+>>>>>>> upstream/main
 	"New File": "",
 	"New Folder": "",
 	"New Function": "",
@@ -1026,6 +1481,7 @@
 	"Next message": "",
 	"No access grants. Private to you.": "",
 	"No activity data": "",
+	"No additional headers are sent unless configured.": "",
 	"No authentication": "",
 	"No chats found": "",
 	"No chats found for this user.": "",
@@ -1034,7 +1490,13 @@
 	"No data": "",
 	"No data found": "",
 	"No distance available": "فاصلہ دستیاب نہیں ہے",
+<<<<<<< HEAD
+=======
+	"No event webhooks configured.": "",
+	"No execution logs available yet": "",
+>>>>>>> upstream/main
 	"No expiration can pose security risks.": "",
+	"No external knowledge sources configured.": "",
 	"No feedback found": "",
 	"No file selected": "کوئی فائل منتخب نہیں کی گئی",
 	"No files found": "",
@@ -1044,14 +1506,27 @@
 	"No HTML, CSS, or JavaScript content found.": "کوئی HTML، CSS، یا جاوا اسکرپٹ مواد نہیں ملا",
 	"No inference engine with management support found": "",
 	"No kernel": "",
+<<<<<<< HEAD
+=======
+	"No knowledge bases accessible": "",
+	"No knowledge bases found.": "",
+	"No knowledge found": "کوئی معلومات نہیں ملی",
+>>>>>>> upstream/main
 	"No limit": "",
 	"No model IDs": "",
+	"No models accessible": "",
 	"No models available": "",
 	"No models found": "کوئی ماڈل نہیں ملا",
 	"No models match your search.": "",
 	"No models selected": "",
 	"No one": "",
 	"No output items": "",
+<<<<<<< HEAD
+=======
+	"No pinned messages": "",
+	"No prompts found": "",
+	"No Repeat": "",
+>>>>>>> upstream/main
 	"No results": "کوئی نتائج نہیں ملے",
 	"No results found": "کوئی نتائج نہیں ملے",
 	"No search query generated": "کوئی تلاش کی درخواست نہیں بنائی گئی",
@@ -1063,12 +1538,18 @@
 	"No Terminal connection configured.": "",
 	"No terminal connections configured.": "",
 	"No tool server connections configured.": "",
+<<<<<<< HEAD
 	"No tools match your search.": "",
+=======
+	"No tools accessible": "",
+	"No tools found": "",
+>>>>>>> upstream/main
 	"No users were found.": "",
 	"No valves": "",
 	"No valves to update": "تازہ کاری کے لئے کوئی والو نہیں",
 	"Node Ids": "",
 	"None": "کوئی نہیں",
+	"Not configured": "",
 	"Not factually correct": "حقیقت کے مطابق نہیں ہے",
 	"Not helpful": "مددگار نہیں ہے",
 	"Not Registered": "",
@@ -1078,21 +1559,31 @@
 	"Nothing has been rehearsed yet.": "",
 	"November": "نومبر",
 	"OAuth": "",
+	"OAuth / OIDC": "",
 	"OAuth 2.1": "",
 	"OAuth 2.1 (Static)": "",
 	"OAuth ID": "OAuth آئی ڈی",
+	"OAuth Resource Parameter": "",
+	"OAuth Scopes": "",
 	"OAuth Server URL": "",
 	"October": "اکتوبر",
 	"Off": "بند",
 	"Okay, Let's Go!": "ٹھیک ہے، چلیں!",
+<<<<<<< HEAD
+=======
+	"Older messages are summarized when estimated context exceeds this token limit.": "",
+	"OLED Dark": "او ایل ای ڈی ڈارک",
+>>>>>>> upstream/main
 	"Ollama": "اولامہ",
 	"Ollama API": "اولامہ API",
 	"Ollama Cloud API Key": "",
 	"Ollama Version": "اولاما ورژن",
+	"Omit": "",
 	"On": "چالو",
 	"On by default": "",
 	"On by default for new chats": "",
 	"OneDrive": "",
+	"Only active during Voice Mode.": "",
 	"Only active when \"Paste Large Text as File\" setting is toggled on.": "",
 	"Only active when the chat input is in focus and an LLM is generating a response.": "",
 	"Only active when the chat input is in focus.": "",
@@ -1162,21 +1653,39 @@
 	"Participate in community leaderboards and evaluations! Syncing aggregated usage stats helps drive research and improvements to Open WebUI. Your privacy is paramount: no message content is ever shared.": "",
 	"Password": "پاس ورڈ",
 	"Passwords do not match.": "",
+<<<<<<< HEAD
 	"PDF document (.pdf)": "پی ڈی ایف دستاویز (.pdf)",
 	"PDF Extract Images (OCR)": "پی ڈی ایف سے تصاویر نکالیں (او سی آر)",
 	"PDF Loader Mode": "",
 	"Penalties & Mirostat": "",
+=======
+	"Paste Large Text as File": "",
+	"Path": "",
+	"Path copied": "",
+	"Paused": "",
+	"PDF document (.pdf)": "پی ڈی ایف دستاویز (.pdf)",
+	"PDF Extract Images (OCR)": "پی ڈی ایف سے تصاویر نکالیں (او سی آر)",
+	"PDF Loader Mode": "",
+	"pdf, docx, pptx, xlsx": "",
+>>>>>>> upstream/main
 	"pending": "زیر التواء",
 	"Pending": "",
+	"Pending Accounts": "",
 	"Pending User Overlay Content": "",
 	"Pending User Overlay Title": "",
 	"Permissions": "",
+	"Permissions reset to defaults": "",
 	"Perplexity API Key": "",
 	"Perplexity Model": "",
 	"Perplexity Search API URL": "",
 	"Perplexity Search Context Usage": "",
 	"Persistent": "",
+<<<<<<< HEAD
 	"Pick an icon or emoji": "",
+=======
+	"Personalization": "شخصی ترتیبات",
+	"Picture Claim": "",
+>>>>>>> upstream/main
 	"Pin": "پن",
 	"Pinned Models": "",
 	"Pioneer insights": "",
@@ -1199,9 +1708,14 @@
 	"Please enter Client ID and Client Secret": "",
 	"Please register the OAuth client": "",
 	"Please save the connection to persist the OAuth client information and do not change the ID": "",
+<<<<<<< HEAD
+=======
+	"Please select a model.": "",
+>>>>>>> upstream/main
 	"Please select a reason": "براہ کرم ایک وجہ منتخب کریں",
 	"Please select a valid JSON file": "",
 	"Policy ID": "",
+	"Policy ID is required": "",
 	"Port": "",
 	"Ports": "",
 	"Positive attitude": "مثبت رویہ",
@@ -1209,6 +1723,7 @@
 	"Prefix ID is used to avoid conflicts with other connections by adding a prefix to the model IDs - leave empty to disable": "",
 	"Prevent File Creation": "",
 	"Preview": "",
+	"Preview Access": "",
 	"Previous 30 days": "پچھلے 30 دن",
 	"Previous 7 days": "پچھلے 7 دن",
 	"Previous message": "",
@@ -1217,6 +1732,8 @@
 	"Prompt": "",
 	"Prompt Template": "",
 	"Provider": "",
+	"Provider Name": "",
+	"Provider URL": "",
 	"Public": "",
 	"Public shared chat links are disabled for this workspace.": "",
 	"Pull \"{{searchValue}}\" from Ollama.com": "Ollama.com سے \"{{searchValue}}\" کو کھینچیں",
@@ -1239,18 +1756,38 @@
 	"Read": "",
 	"Read Aloud": "بُلند آواز میں پڑھیں",
 	"Read more →": "",
+<<<<<<< HEAD
 	"read only": "",
+=======
+	"Read only": "",
+>>>>>>> upstream/main
 	"Read Only": "",
 	"Read, write, and diff-edit durable notes for the current chat Scratchboard": "",
 	"Reason": "",
 	"Reasoning Effort": "",
 	"Reasoning Tags": "",
 	"Reasoning text...": "",
+	"Receives matching events across the instance, including system/config events and events associated with any user.": "",
+	"Receives matching events that are not associated with a user.": "",
+	"Receives matching user-associated events only when the actor, user subject, or user data matches these users or current group members. System/config events are not sent.": "",
 	"Recently Used": "",
 	"Reconnected": "",
+<<<<<<< HEAD
 	"Redirecting you to Open WebUI Community": "آپ کو اوپن ویب یو آئی کمیونٹی کی طرف ری ڈائریکٹ کیا جا رہا ہے",
 	"Reduces the probability of generating nonsense. A higher value (e.g. 100) will give more diverse answers, while a lower value (e.g. 10) will be more conservative.": "",
+=======
+	"Record": "",
+	"Record voice": "صوت ریکارڈ کریں",
+	"Redirect URI": "",
+	"Redirecting you to Open WebUI Community": "آپ کو اوپن ویب یو آئی کمیونٹی کی طرف ری ڈائریکٹ کیا جا رہا ہے",
+	"Reduces the probability of generating nonsense. A higher value (e.g. 100) will give more diverse answers, while a lower value (e.g. 10) will be more conservative.": "",
+	"Reference Chats": "",
+>>>>>>> upstream/main
 	"Refresh": "",
+	"Refresh requested: {{count}} terminal(s)_one": "",
+	"Refresh requested: {{count}} terminal(s)_other": "",
+	"Refresh Terminals": "",
+	"Refreshing...": "",
 	"Refused when it shouldn't have": "جب انکار نہیں ہونا چاہیے تھا، انکار کر دیا",
 	"Regenerate": "دوبارہ تخلیق کریں",
 	"Regenerate Response": "",
@@ -1269,15 +1806,38 @@
 	"Remove from favorites": "",
 	"Remove image": "",
 	"Remove Model": "ماڈل ہٹائیں",
+	"Removing {{count}} stale files..._one": "",
+	"Removing {{count}} stale files..._other": "",
 	"Rename": "تبدیل نام کریں",
 	"Reorder Models": "",
+<<<<<<< HEAD
+=======
+	"Repeat": "",
+	"Repeats": "",
+	"Reply": "",
+	"Reply in Thread": "",
+	"Reply to thread...": "",
+	"Replying to {{NAME}}": "",
+	"Request Format": "",
+	"Require users to confirm before using Web Search.": "",
+	"required": "",
+>>>>>>> upstream/main
 	"Reranking Batch Size": "",
 	"Reranking Engine": "",
 	"Reranking Model": "دوبارہ درجہ بندی کا ماڈل",
+	"Research Knowledge": "",
 	"Reset": "ری سیٹ",
 	"Reset All Models": "",
+	"Reset all permissions to their initial configuration values": "",
+	"Reset group permissions to match the current default user permissions": "",
 	"Reset Image": "تصویر ری سیٹ کریں",
+<<<<<<< HEAD
 	"Reset to default": "",
+=======
+	"Reset knowledge base?": "",
+	"Reset persisted files": "",
+	"Reset to Defaults": "",
+>>>>>>> upstream/main
 	"Reset Upload Directory": "اپلوڈ ڈائریکٹری کو ری سیٹ کریں",
 	"Reset Vector Storage/Knowledge": "ویكٹر اسٹوریج/علم کو ری سیٹ کریں",
 	"Reset view": "",
@@ -1298,6 +1858,11 @@
 	"Return token usage information in the response when supported": "",
 	"Reusable instruction packs that teach your models a procedure or domain — import a markdown skill or write your own, then enable it where you need it.": "",
 	"Role": "کردار",
+<<<<<<< HEAD
+=======
+	"Roles Claim": "",
+	"RTL": "آر ٹی ایل",
+>>>>>>> upstream/main
 	"Run": "چلائیں",
 	"Run All": "",
 	"Running": "چل رہا ہے",
@@ -1310,10 +1875,18 @@
 	"Save As Copy": "کاپی کے طور پر محفوظ کریں",
 	"Saved": "محفوظ شدہ",
 	"Saving chat logs directly to your browser's storage is no longer supported. Please take a moment to download and delete your chat logs by clicking the button below. Don't worry, you can easily re-import your chat logs to the backend through": "براہ کرم اپنے براؤزر کے اسٹوریج میں چیٹ لاگز کو محفوظ کرنا اب تعاون یافتہ نہیں ہے براہ کرم نیچے دیئے گئے بٹن پر کلک کرکے اپنے چیٹ لاگز کو ڈاؤن لوڈ اور حذف کریں فکر نہ کریں، آپ اپنے چیٹ لاگز کو بیک اینڈ میں دوبارہ آسانی سے درآمد کر سکتے ہیں",
+<<<<<<< HEAD
 	"Scratchboard": "",
+=======
+	"Schedule": "",
+	"Scheduled time must be in the future": "",
+	"Scopes": "",
+	"Scroll On Branch Change": "",
+>>>>>>> upstream/main
 	"Scroll to Top": "",
 	"Search": "تلاش کریں",
 	"Search a model": "ماڈل تلاش کریں",
+	"Search actions": "",
 	"Search all emojis": "",
 	"Search and manage user memories": "",
 	"Search and view user chat history": "",
@@ -1321,6 +1894,7 @@
 	"Search Chats": "چیٹس تلاش کریں",
 	"Search engines and web content loaders for live results.": "",
 	"Search Files": "",
+	"Search filters": "",
 	"Search Filters": "",
 	"search for archived chats": "",
 	"search for folders": "",
@@ -1332,10 +1906,22 @@
 	"Search In Models": "",
 	"Search Models": "ماڈلز تلاش کریں",
 	"Search options": "",
+<<<<<<< HEAD
+=======
+	"Search or add pattern": "",
+	"Search Prompts": "تلاش کے اشارے",
+>>>>>>> upstream/main
 	"Search Result Count": "تلاش کا نتیجہ شمار ",
+	"Search skills": "",
 	"Search Skills": "",
 	"Search the web and fetch URLs": "",
+	"Search tools": "",
 	"Search Tools": "تلاش کے اوزار",
+<<<<<<< HEAD
+=======
+	"Search users or groups": "",
+	"Search, view, and manage user notes": "",
+>>>>>>> upstream/main
 	"SearchApi API Key": "سرچ اے پی آئی کی API کلید",
 	"SearchApi Engine": "تلاش انجن API",
 	"Searched {{count}} sites": "",
@@ -1350,7 +1936,12 @@
 	"Seed": "بیج",
 	"Select": "",
 	"Select {{modelName}} model": "",
+<<<<<<< HEAD
 	"Select a base model": "ایک بنیادی ماڈل منتخب کریں",
+=======
+	"Select a base model (e.g. llama3, gpt-4o)": "",
+	"Select a conversation to preview": "",
+>>>>>>> upstream/main
 	"Select a engine": "ایک انجن منتخب کریں",
 	"Select a function": "ایک فنکشن منتخب کریں",
 	"Select a group": "",
@@ -1380,15 +1971,36 @@
 	"Selected Models": "",
 	"semantic": "",
 	"Send": "بھیجیں",
+<<<<<<< HEAD
+=======
+	"Send a Message": "پیغام بھیجیں",
+	"Send events for": "",
+	"Send message": "پیغام بھیجیں",
+	"Send now": "",
+	"Send product events as JSON to external services. Chat destinations receive readable messages.": "",
+	"Send the PDF as a base64 data URL instead of uploading it first.": "",
+	"Sends `stream_options: { include_usage: true }` in the request.\nSupported providers will return token usage information in the response when set.": "درخواست میں `stream_options: { include_usage: true }` بھیجتا ہے\nمعاون فراہم کنندگان، جب سیٹ کیا جاتا ہے تو، جواب میں ٹوکن کے استعمال کی معلومات واپس کر دیں گے",
+>>>>>>> upstream/main
 	"September": "ستمبر",
 	"sequences that end a response — comma separated": "",
 	"SerpApi API Key": "",
 	"SerpApi Engine": "",
 	"Serper API Key": "سرپر API کلید",
+	"SERPHouse API Key": "",
+	"SERPHouse Domain": "",
 	"Serply API Key": "سرپلی API کی کلید",
 	"Serpstack API Key": "سرپ اسٹیک اے پی آئی کلید",
 	"Server connection failed": "",
+<<<<<<< HEAD
 	"Session": "",
+=======
+	"Server connection verified": "سرور کنکشن تصدیق شدہ ہے",
+	"Service Account": "",
+	"Session": "",
+	"Session expired. Please sign in again.": "",
+	"Set as default": "بطور ڈیفالٹ سیٹ کریں",
+	"Set as Production": "",
+>>>>>>> upstream/main
 	"Set embedding model": "",
 	"Set embedding model (e.g. {{model}})": "نقش ماڈل مرتب کریں (مثال کے طور پر {{model}})",
 	"Set reranking model (e.g. {{model}})": "ری رینکنگ ماڈل سیٹ کریں (مثال کے طور پر {{model}})",
@@ -1412,13 +2024,28 @@
 	"Share": "اشتراک کریں",
 	"Share Chat": "چیٹ شیئر کریں",
 	"Share to Open WebUI Community": "اوپن ویب یوآئی کمیونٹی کے ساتھ شیئر کریں\n",
+<<<<<<< HEAD
+=======
+	"Share your background and interests": "",
+	"Shared": "",
+>>>>>>> upstream/main
 	"Shared Chats": "",
 	"Shared with you": "",
 	"Sharing Permissions": "",
 	"Show": "دکھائیں",
+<<<<<<< HEAD
 	"Show Admin Details in Account Pending Overlay": "اکاؤنٹ پینڈنگ اوورلے میں ایڈمن کی تفصیلات دکھائیں",
 	"Show All": "",
 	"Show all ({{COUNT}} characters)": "",
+=======
+	"Show \"What's New\" Modal on Login": "",
+	"Show Admin Details in Account Pending Overlay": "اکاؤنٹ پینڈنگ اوورلے میں ایڈمن کی تفصیلات دکھائیں",
+	"Show All": "",
+	"Show all ({{COUNT}} characters)": "",
+	"Show Files": "",
+	"Show Files on Terminal Select": "",
+	"Show Formatting Toolbar": "",
+>>>>>>> upstream/main
 	"Show image preview": "",
 	"Show Model": "",
 	"Show Shortcuts": "",
@@ -1460,7 +2087,13 @@
 	"Sougou Search API sID": "",
 	"Sougou Search API SK": "",
 	"Source": "ماخذ",
+<<<<<<< HEAD
 	"Sources used": "",
+=======
+	"Specific users or groups": "",
+	"Speech Playback Speed": "تقریر پلے بیک کی رفتار",
+	"Speech recognition error: {{error}}": "تقریر کی پہچان کی خرابی: {{error}}",
+>>>>>>> upstream/main
 	"Speech-to-Text": "",
 	"Speech-to-Text Engine": "تقریر-سے-متن انجن",
 	"Split documents by markdown headers before applying character/token splitting.": "",
@@ -1484,6 +2117,13 @@
 	"Strip Existing OCR": "",
 	"Strip existing OCR text from the PDF and re-run OCR. Ignored if Force OCR is enabled. Defaults to False.": "",
 	"STT Model": "ایس ٹی ٹی ماڈل",
+<<<<<<< HEAD
+=======
+	"STT Settings": "ایس ٹی ٹی ترتیبات",
+	"Stylized PDF Export": "",
+	"Su_day_of_week": "",
+	"Sub Claim": "",
+>>>>>>> upstream/main
 	"Submit question": "",
 	"Submit suggestion": "",
 	"Subtitle": "",
@@ -1497,13 +2137,22 @@
 	"Switch to JSON editor": "",
 	"Switch to visual editor": "",
 	"Sync": "",
+	"Sync a local directory with this knowledge base. Only new and modified files will be uploaded. The directory structure will be mirrored.": "",
+	"Sync complete: {{added}} added, {{modified}} modified, {{deleted}} deleted, {{unmodified}} unmodified": "",
 	"Sync Complete!": "",
 	"Sync Failed": "",
 	"Sync Usage Stats": "",
 	"Syncing stats...": "",
 	"Syncing...": "",
 	"Syncs only chats with updates after your last sync timestamp. Disable to re-sync all chats.": "",
+<<<<<<< HEAD
+=======
+	"System": "سسٹم",
+	"System events only": "",
+	"System Instructions": "نظام کی ہدایات",
+>>>>>>> upstream/main
 	"System Prompt": "سسٹم پرومپٹ",
+	"Table": "",
 	"Tag": "",
 	"Tags": "",
 	"Tags Generation": "",
@@ -1523,6 +2172,16 @@
 	"Temperature": "درجہ حرارت",
 	"Temporary Chat": "عارضی چیٹ",
 	"Terminal": "",
+<<<<<<< HEAD
+=======
+	"Terminal servers saved": "",
+	"Test": "",
+	"Test Query": "",
+	"Test returned no results.": "",
+	"Test succeeded.": "",
+	"Test the source before creating it.": "",
+	"Test the source before saving it.": "",
+>>>>>>> upstream/main
 	"Text Splitter": "متن تقسیم کنندہ",
 	"Text-to-Speech": "",
 	"Text-to-Speech Engine": "ٹیکسٹ ٹو اسپیچ انجن",
@@ -1537,8 +2196,11 @@
 	"The height in pixels to compress images to. Leave empty for no compression.": "",
 	"The LDAP attribute that maps to the mail that users use to sign in.": "",
 	"The LDAP attribute that maps to the username that users use to sign in.": "",
+<<<<<<< HEAD
 	"The leaderboard is currently in beta, and we may adjust the rating calculations as we refine the algorithm.": "لیڈر بورڈ اس وقت بیٹا مرحلے میں ہے، اور جیسے جیسے ہم الگورتھم کو بہتر بنائیں گے ہم ریٹنگ کیلکولیشن کو ایڈجسٹ کرسکتے ہیں",
 	"the longest single response it may set": "",
+=======
+>>>>>>> upstream/main
 	"The maximum file size in MB. If the file size exceeds this limit, the file will not be uploaded.": "زیادہ سے زیادہ فائل سائز ایم بی میں اگر فائل سائز اس حد سے تجاوز کر جاتا ہے، تو فائل اپ لوڈ نہیں ہوگی",
 	"The maximum number of files that can be used at once in chat. If the number of files exceeds this limit, the files will not be uploaded.": "چیٹ میں ایک وقت میں استعمال ہونے والی فائلوں کی زیادہ سے زیادہ تعداد اگر فائلوں کی تعداد اس حد سے تجاوز کر جائے تو فائلیں اپلوڈ نہیں کی جائیں گی",
 	"The only required step — refine everything else now or later.": "",
@@ -1564,6 +2226,11 @@
 	"This feature is currently experimental and may not work as expected.": "",
 	"This folder is empty": "",
 	"This is a default user permission and will remain enabled.": "",
+<<<<<<< HEAD
+=======
+	"This is an experimental feature, it may not function as expected and is subject to change at any time.": "یہ ایک تجرباتی خصوصیت ہے، یہ متوقع طور پر کام نہ کر سکتی ہو اور کسی بھی وقت تبدیل کی جا سکتی ہے",
+	"This knowledge base retrieves from a connected source. Open WebUI can query it, but cannot upload, sync, edit, delete, reset, or reindex its source data.": "",
+>>>>>>> upstream/main
 	"This model is not publicly available. Please select another model.": "",
 	"This option controls how long the model will stay loaded into memory following the request (default: 5m)": "",
 	"This option controls how many tokens are preserved when refreshing the context. For example, if set to 2, the last 2 tokens of the conversation context will be retained. Preserving context can help maintain the continuity of a conversation, but it may reduce the ability to respond to new topics.": "",
@@ -1575,6 +2242,11 @@
 	"This will delete <strong>{{NAME}}</strong> and <strong>all its contents</strong>.": "یہ <strong>{{NAME}}</strong> اور <strong>اس کے تمام مواد</strong> کو حذف کر دے گا",
 	"This will delete all models including custom models": "",
 	"This will delete all models including custom models and cannot be undone.": "",
+<<<<<<< HEAD
+=======
+	"This will permanently delete the calendar \"{{name}}\" and all its events. This action cannot be undone.": "",
+	"This will remove all files and directories from this knowledge base. This action cannot be undone.": "",
+>>>>>>> upstream/main
 	"Thorough explanation": "مکمل وضاحت",
 	"Thought": "",
 	"Thought for {{DURATION}}": "",
@@ -1597,12 +2269,23 @@
 	"To learn more about available endpoints, visit our documentation.": "",
 	"To select skills here, add them to the \"Skills\" workspace first.": "",
 	"To select toolkits here, add them to the \"Tools\" workspace first.": "یہاں ٹول کٹس منتخب کرنے کے لیے، پہلے انہیں \"ٹولز\" ورک اسپیس میں شامل کریں",
+<<<<<<< HEAD
+=======
+	"Toast Notifications for New Updates": "نئے اپڈیٹس کے لئے ٹوسٹ نوٹیفیکیشنز",
+>>>>>>> upstream/main
 	"Today": "آج",
 	"Toggle details": "",
+<<<<<<< HEAD
+=======
+	"Toggle Dictation": "",
+	"Toggle Mute": "",
+>>>>>>> upstream/main
 	"Toggle Sidebar": "",
 	"Toggle whether current connection is active.": "",
 	"Token": "ٹوکَن",
 	"Token counts are estimates and may not reflect actual API usage": "",
+	"Token Threshold": "",
+	"Tokenizer Model": "",
 	"tokens": "",
 	"Tokens": "",
 	"Too verbose": "بہت زیادہ طویل",
@@ -1647,10 +2330,25 @@
 	"Unlock mysteries": "",
 	"Unpin": "ان پن کریں",
 	"Unravel secrets": "",
+	"Unshare All": "",
+	"Unshare All Shared Chats": "",
 	"Unshare Chat": "",
 	"Untagged": "غیر مہر شدہ",
+<<<<<<< HEAD
 	"Untitled folio": "",
 	"Update for the latest features and improvements.": "تازہ ترین خصوصیات اور بہتریوں کے لیے اپ ڈیٹ کریں",
+=======
+	"Untitled": "",
+	"Update": "اپ ڈیٹ کریں",
+	"Update and Copy Link": "اپڈیٹ اور لنک کاپی کریں",
+	"Update Email": "",
+	"Update for the latest features and improvements.": "تازہ ترین خصوصیات اور بہتریوں کے لیے اپ ڈیٹ کریں",
+	"Update Name": "",
+	"Update password": "پاس ورڈ اپ ڈیٹ کریں",
+	"Update Picture": "",
+	"Update your status": "",
+	"Updated": "اپ ڈیٹ کیا گیا",
+>>>>>>> upstream/main
 	"Updated at": "پر تازہ کاری کی گئی ",
 	"Updated At": "تازہ کاری کی گئی تاریخ پر",
 	"Upgrade to a licensed plan for enhanced capabilities, including custom theming and branding, and dedicated support.": "",
@@ -1662,24 +2360,40 @@
 	"Upload profile image": "",
 	"Upload Progress": "اپ لوڈ کی پیش رفت",
 	"Uploaded files or images": "",
+<<<<<<< HEAD
+=======
+	"Uploading {{current}}/{{total}}: {{file}}": "",
+>>>>>>> upstream/main
 	"Uploading...": "",
 	"URL": "",
 	"URL is required": "",
 	"URL Mode": "یو آر ایل موڈ",
 	"Usage": "",
 	"Use /v1/chat/completions endpoint instead of /v1/audio/transcriptions for potentially better accuracy.": "",
+	"Use a valid event name or pattern like user.*": "",
+	"Use Base64": "",
 	"Use Chat Completions API": "",
+	"Use discovered scopes": "",
 	"Use groups to organize your users and assign permissions.": "",
 	"Use LLM": "",
 	"Use no proxy to fetch page contents.": "",
 	"Use proxy designated by http_proxy and https_proxy environment variables to fetch page contents.": "",
+	"Use Web Search?": "",
 	"user": "صارف",
 	"User": "صارف",
+	"User Access": "",
 	"User Activity": "",
 	"User Groups": "",
+<<<<<<< HEAD
+=======
+	"User location successfully retrieved.": "صارف کا مقام کامیابی سے حاصل کیا گیا",
+	"User menu": "",
+	"User Preview": "",
+>>>>>>> upstream/main
 	"User ratings (thumbs up/down)": "",
 	"User Webhooks": "",
 	"Username": "",
+	"Username Claim": "",
 	"users": "",
 	"Users": "صارفین",
 	"Uses DefaultAzureCredential to authenticate": "",
@@ -1690,7 +2404,14 @@
 	"Valid time units:": "درست وقت کی اکائیاں:",
 	"Validate certificate": "",
 	"Valves": "والو",
+<<<<<<< HEAD
 	"Verified": "",
+=======
+	"Valves updated": "والوز کو اپ ڈیٹ کر دیا گیا",
+	"Valves updated successfully": "والو کامیابی کے ساتھ اپ ڈیٹ ہو گئے",
+	"variable": "متغیر",
+	"Vector Field": "",
+>>>>>>> upstream/main
 	"Verify Connection": "",
 	"Verify SSL Certificate": "",
 	"Version": "ورژن",
@@ -1711,9 +2432,20 @@
 	"Web API": "ویب اے پی آئی",
 	"Web Loader Engine": "",
 	"Web Search": "ویب تلاش کریں",
+	"Web Search Confirmation": "",
+	"Web Search Confirmation Content": "",
 	"Web Search Engine": "ویب تلاش انجن",
 	"Web Search Query Generation": "",
+<<<<<<< HEAD
 	"Webhook URL": "ویب ہُک یو آر ایل",
+=======
+	"Webhook deleted": "",
+	"Webhook Name": "",
+	"Webhook saved": "",
+	"Webhooks": "",
+	"Webpage URLs": "",
+	"WebUI Settings": "ویب UI ترتیبات",
+>>>>>>> upstream/main
 	"WebUI URL": "",
 	"WebUI will make requests to \"{{url}}\"": "",
 	"WebUI will make requests to \"{{url}}/api/chat\"": "",
@@ -1744,6 +2476,7 @@
 	"Yandex Web Search API Key": "",
 	"Yandex Web Search config": "",
 	"Yandex Web Search URL": "",
+	"Yearly": "",
 	"Yesterday": "کل",
 	"You": "آپ",
 	"You are a careful editor: terse, concrete, kind…": "",
@@ -1763,6 +2496,7 @@
 	"Your browser does not support the video tag.": "",
 	"Your entire contribution will go directly to the plugin developer; Open WebUI does not take any percentage. However, the chosen funding platform might have its own fees.": "آپ کی پوری شراکت براہ راست پلگ ان ڈیولپر کو جائے گی؛ اوپن ویب یو آئی کوئی فیصد نہیں لیتی تاہم، منتخب کردہ فنڈنگ پلیٹ فارم کی اپنی فیس ہو سکتی ہیں",
 	"Your message text or inputs": "",
+	"Your query will be sent to the configured web search provider.": "",
 	"Your usage stats have been successfully synced.": "",
 	"Youtube Language": "",
 	"Youtube Proxy URL": ""

@@ -217,6 +217,7 @@ type Settings = {
 	iframeSandboxAllowForms?: boolean;
 	iframeSandboxAllowSameOrigin?: boolean;
 	scrollOnBranchChange?: boolean;
+	showFilesOnTerminalSelect?: boolean;
 	directConnections?: null;
 	chatBubble?: boolean;
 	copyFormatted?: boolean;
@@ -236,8 +237,11 @@ type Settings = {
 	wideFolio?: boolean;
 	dropCaps?: boolean;
 	renderMarkdownInPreviews?: boolean;
+	renderMarkdownInUserMessages?: boolean;
+	renderMarkdownInAssistantMessages?: boolean;
 	recentEmojis?: string[];
 	pinnedMenuItems?: string[];
+	pinnedNotesOrder?: string[];
 
 	system?: string;
 	seed?: number;
@@ -294,6 +298,8 @@ type Config = {
 		enable_signup: boolean;
 		enable_login_form: boolean;
 		enable_web_search?: boolean;
+		enable_web_search_confirmation?: boolean;
+		web_search_confirmation_content?: string;
 		enable_google_drive_integration: boolean;
 		enable_onedrive_integration: boolean;
 		enable_image_generation: boolean;
@@ -305,12 +311,14 @@ type Config = {
 		enable_autocomplete_generation: boolean;
 		enable_direct_connections: boolean;
 		enable_version_update_check: boolean;
+		enable_pyodide_file_persistence?: boolean;
 		folder_max_file_count?: number;
 	};
 	oauth: {
 		providers: {
 			[key: string]: string;
 		};
+		auto_redirect?: boolean;
 	};
 	ui?: {
 		pending_user_overlay_title?: string;

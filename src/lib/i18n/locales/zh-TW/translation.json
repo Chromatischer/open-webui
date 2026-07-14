@@ -5,20 +5,60 @@
 	"(e.g. `sh webui.sh --api`)": "（例如：`sh webui.sh --api`）",
 	"(latest)": "（最新版）",
 	"(leave blank for to use commercial endpoint)": "（留空以使用商業端點）",
+<<<<<<< HEAD
 	"{{COUNT}} extracted lines": "已擷取 {{COUNT}} 行",
 	"{{COUNT}} hidden lines": "已隱藏 {{COUNT}} 行",
 	"{{COUNT}} members": "{{COUNT}} 位成員",
 	"{{COUNT}} Rows": "{{COUNT}} 行",
 	"{{count}} selected_other": "已選取 {{count}} 項",
+=======
+	"[Last] dddd [at] h:mm A": "[上次] dddd [於] h:mm A",
+	"[Today at] h:mm A": "[今天] h:mm A",
+	"[Yesterday at] h:mm A": "[昨天] h:mm A",
+	"{{ models }}": "{{ models }}",
+	"{{COUNT}} Available Skills": "",
+	"{{COUNT}} Available Tools": "{{COUNT}} 個可用工具",
+	"{{COUNT}} characters": "{{COUNT}} 個字元",
+	"{{COUNT}} extracted lines": "已擷取 {{COUNT}} 行",
+	"{{COUNT}} files": "{{COUNT}} 個檔案",
+	"{{count}} files selected. Only new and modified files will be uploaded. Deleted files will be removed. The folder structure will be mirrored. Continue?_other": "已選取 {{count}} 個檔案。僅會上傳新增與已修改的檔案，已刪除的檔案將被移除，並鏡像資料夾結構。是否繼續？",
+	"{{count}} filters_other": "",
+	"{{count}} groups_other": "",
+	"{{COUNT}} hidden lines": "已隱藏 {{COUNT}} 行",
+	"{{COUNT}} members": "{{COUNT}} 位成員",
+	"{{count}} of {{total}} accessible_other": "可存取 {{count}}/{{total}}",
+	"{{COUNT}} Replies": "{{COUNT}} 回覆",
+	"{{COUNT}} Rows": "{{COUNT}} 行",
+	"{{count}} selected_other": "已選取 {{count}} 項",
+	"{{COUNT}} Sources": "{{COUNT}} 個來源",
+	"{{count}} users_other": "",
+	"{{COUNT}} words": "{{COUNT}} 個詞",
+>>>>>>> upstream/main
 	"{{COUNT}}d_time_ago": "{{COUNT}} 天前",
 	"{{COUNT}}h_time_ago": "{{COUNT}} 小時前",
 	"{{COUNT}}m_time_ago": "{{COUNT}} 分鐘前",
 	"{{COUNT}}w_time_ago": "{{COUNT}} 週前",
 	"{{COUNT}}y_time_ago": "{{COUNT}} 年前",
+<<<<<<< HEAD
+=======
+	"{{label}} contains invalid JSON": "",
+	"{{label}} must be a JSON object": "",
+	"{{LOCALIZED_DATE}} at {{LOCALIZED_TIME}}": "{{LOCALIZED_DATE}} {{LOCALIZED_TIME}}",
+	"{{model}} download has been canceled": "已取消模型 {{model}} 的下載",
+>>>>>>> upstream/main
 	"{{modelName}} profile image": "模型「{{modelName}}」的頭像",
 	"{{user}}'s Chats": "{{user}} 的對話",
 	"{{webUIName}} Backend Required": "需要提供 {{webUIName}} 後端",
 	"*Prompt node ID(s) are required for image generation": "* 產生圖片需要提示詞節點 ID",
+<<<<<<< HEAD
+=======
+	"1 group": "",
+	"1 hour before": "提前 1 小時",
+	"1 Source": "1 個來源",
+	"1 user": "",
+	"10 minutes before": "提前 10 分鐘",
+	"15 minutes before": "提前 15 分鐘",
+>>>>>>> upstream/main
 	"1m_time_ago": "剛剛",
 	"a line about what this model is for…": "",
 	"A model binds a base mind to a system prompt, tools and knowledge — compose one and summon it in any chat.": "",
@@ -30,6 +70,11 @@
 	"Access Control": "存取控制",
 	"Access Grants": "存取授權",
 	"Access List": "存取清單",
+<<<<<<< HEAD
+=======
+	"Access prohibited": "",
+	"Access updated": "存取權限已更新",
+>>>>>>> upstream/main
 	"Accessible to all users": "所有使用者皆可存取",
 	"Account Activation Pending": "帳號待啟用",
 	"Accurate information": "準確資訊",
@@ -40,6 +85,7 @@
 	"Activity": "活動",
 	"Add": "新增",
 	"Add a model ID": "新增模型 ID",
+	"Add a preference, fact, or instruction about you": "",
 	"Add a short description about what this model does": "新增這個模型的簡短描述",
 	"Add a tag": "新增標籤",
 	"Add a tag...": "新增標籤…",
@@ -49,7 +95,17 @@
 	"Add Custom Parameter": "新增自訂參數",
 	"Add Custom Prompt": "新增自訂提示詞",
 	"Add Details": "豐富細節",
+	"Add durable context for future chats": "",
 	"Add Files": "新增檔案",
+<<<<<<< HEAD
+=======
+	"Add Image": "新增圖片",
+	"Add Knowledge Connection": "",
+	"Add location": "新增地點",
+	"Add Member": "新增成員",
+	"Add Members": "新增成員",
+	"Add Memory": "新增記憶",
+>>>>>>> upstream/main
 	"Add Model": "新增模型",
 	"Add tag": "新增標籤",
 	"Add Tag": "新增標籤",
@@ -57,6 +113,11 @@
 	"Add to favorites": "新增至收藏",
 	"Add User": "新增使用者",
 	"Add User Group": "新增使用者群組",
+<<<<<<< HEAD
+=======
+	"Add webhook": "",
+	"Add webpage": "新增網頁",
+>>>>>>> upstream/main
 	"Add your Open Terminal URL and API key in Settings → Integrations.": "請至「設定 → 整合」中設定 Open Terminal 的網址與 API 金鑰。",
 	"Additional Config": "額外設定",
 	"Additional configuration options for marker. This should be a JSON string with key-value pairs. For example, '{\"key\": \"value\"}'. Supported keys include: disable_links, keep_pageheader_in_output, keep_pagefooter_in_output, filter_blank_pages, drop_repeated_text, layout_coverage_threshold, merge_threshold, height_tolerance, gap_threshold, image_threshold, min_line_length, level_count, default_level": "Datalab Marker 的額外設定選項，可以填寫一個包含鍵值對的 JSON 字串。例如：{\"key\": \"value\"}。支援的鍵包括：disable_links、keep_pageheader_in_output、keep_pagefooter_in_output、filter_blank_pages、drop_repeated_text、layout_coverage_threshold、merge_threshold、height_tolerance、gap_threshold、image_threshold、min_line_length、level_count 和 default_level。",
@@ -67,18 +128,40 @@
 	"Admin": "管理員",
 	"Admin Contact Email": "管理員聯絡信箱",
 	"Admin Panel": "管理員控制台",
+<<<<<<< HEAD
+=======
+	"Admin Roles": "",
+	"Admin Settings": "管理員設定",
+	"Admin-managed service account": "",
+>>>>>>> upstream/main
 	"Admins have access to all tools at all times; users need tools assigned per model in the workspace.": "管理員可以隨時使用所有工具；使用者則需在工作區中為每個模型分配工具。",
 	"Advanced": "進階",
 	"Advanced parameters for MinerU parsing (enable_ocr, enable_formula, enable_table, language, model_version, page_ranges)": "用於 MinerU 解析的進階參數（enable_ocr、enable_formula、enable_table、language、model_version、page_ranges）",
 	"Advanced Params": "進階參數",
 	"After updating or changing the embedding model, you must reindex the knowledge base for the changes to take effect. You can do this using the \"Reindex\" button below.": "更新或更改嵌入模型後，必須重新建立知識庫索引，才能套用變更。您可以點選下方的「重新索引」按鈕來完成。",
 	"All": "全部",
+<<<<<<< HEAD
 	"All time": "全部時間",
 	"All Users": "所有使用者",
+=======
+	"All chats have been unarchived.": "已成功將所有對話解除封存。",
+	"All day": "全天",
+	"All events": "",
+	"All models are now hidden": "已隱藏全部模型",
+	"All models are now visible": "已顯示全部模型",
+	"All models deleted successfully": "成功刪除所有模型",
+	"All shared chats have been unshared.": "",
+	"All Sources": "",
+	"All time": "全部時間",
+	"All Users": "所有使用者",
+	"All users and system events": "",
+	"Allow Call": "允許通話",
+>>>>>>> upstream/main
 	"Allow Chat Controls": "允許控制對話",
 	"Allow Chat Delete": "允許刪除對話",
 	"Allow Chat Edit": "允許編輯對話",
 	"Allow Chat Export": "允許匯出對話",
+	"Allow Chat Import": "",
 	"Allow Chat Params": "允許設定模型進階參數",
 	"Allow Chat Share": "允許分享對話",
 	"Allow Chat System Prompt": "允許設定對話系統提示詞",
@@ -93,9 +176,11 @@
 	"Allow Sharing With Users": "允許與其他使用者分享",
 	"Allow Text to Speech": "允許文字轉語音",
 	"Allow Web Upload": "允許從網路上傳內容",
+	"Allowed Domains": "",
 	"Allowed Endpoints": "允許的端點",
 	"Allowed File Extensions": "允許的檔案副檔名",
 	"Allowed file extensions for upload. Separate multiple extensions with commas. Leave empty for all file types.": "允許上傳的檔案副檔名。多個副檔名請用逗號分隔，留空則允許所有檔案類型。",
+	"Allowed Roles": "",
 	"Already have an account?": "已經有帳號了嗎？",
 	"Alternative to the top_p, and aims to ensure a balance of quality and variety. The parameter p represents the minimum probability for a token to be considered, relative to the probability of the most likely token. For example, with p=0.05 and the most likely token having a probability of 0.9, logits with a value less than 0.045 are filtered out.": "top_p 的替代方案，用於確保品質與多樣性之間的平衡。參數 p 代表一個 Token 被考慮的最低機率，相對於最有可能 Token 的機率。例如，當 p=0.05 且最有可能 Token 的機率為 0.9 時，機率小於 0.045 的 logits 將被過濾掉。",
 	"Amazing": "很棒",
@@ -107,6 +192,11 @@
 	"API Base URL": "API 基礎 URL",
 	"API Base URL for Datalab Marker service. Defaults to: https://www.datalab.to/api/v1/marker": "Datalab Marker API 服務的請求 URL。預設為：https://www.datalab.to/api/v1/marker",
 	"API Key": "API 金鑰",
+<<<<<<< HEAD
+=======
+	"API Key / Token": "",
+	"API Key created.": "API 金鑰已建立。",
+>>>>>>> upstream/main
 	"API Key Endpoint Restrictions": "API 金鑰端點限制",
 	"API Keys": "API 金鑰",
 	"API Mode": "API 模式",
@@ -123,13 +213,31 @@
 	"Are you sure you want to delete \"{{NAME}}\"?": "您確定要刪除「{{NAME}}」嗎？",
 	"Are you sure you want to delete **{{modelName}}**?": "您確定要刪除 **{{modelName}}** 嗎？",
 	"Are you sure you want to delete this connection? This action cannot be undone.": "確定要刪除此連線嗎？此操作無法復原。",
+<<<<<<< HEAD
 	"Are you sure you want to delete this?": "確定要刪除嗎？",
 	"Arena": "",
+=======
+	"Are you sure you want to delete this directory?": "確定要刪除此目錄嗎？",
+	"Are you sure you want to delete this memory? This action cannot be undone.": "確定要刪除這筆記憶嗎？此操作無法復原。",
+	"Are you sure you want to delete this message?": "您確定要刪除此訊息嗎？",
+	"Are you sure you want to delete this version? Child versions will be relinked to this version's parent.": "您確定要刪除此版本嗎？子版本將重新連結至上一層版本。",
+	"Are you sure you want to delete this webhook? This action cannot be undone.": "",
+	"Are you sure you want to delete this?": "確定要刪除嗎？",
+	"Are you sure you want to reset all permissions to their default values? You will still need to save to apply the changes.": "",
+	"Are you sure you want to unarchive all archived chats?": "您確定要解除封存所有封存的對話記錄嗎？",
+	"Are you sure you want to unshare all shared chats? This will remove all share links.": "",
+>>>>>>> upstream/main
 	"Arena Models": "競技場模型",
 	"Artifacts": "產物",
 	"Ask": "提問",
 	"Ask a question": "提出問題",
+<<<<<<< HEAD
 	"Ask the User": "",
+=======
+	"Ask a test question": "",
+	"Ask this knowledge source a test question": "",
+	"Assistant": "助理",
+>>>>>>> upstream/main
 	"Async Embedding Processing": "非同步嵌入處理",
 	"Attach File From Knowledge": "從知識庫附加檔案",
 	"Attention to detail": "注重細節",
@@ -138,20 +246,33 @@
 	"Audience": "",
 	"August": "8 月",
 	"Auth": "驗證",
+	"Auth Mode": "",
+	"Auth required": "",
 	"Authenticate": "驗證",
 	"Authentication": "驗證",
 	"Auto (Random)": "隨機",
+<<<<<<< HEAD
 	"Auto-inject system tools for Agents (timestamps, memory, notes, etc.)": "",
+=======
+	"Auto Redirect": "",
+	"Auto-Copy Response to Clipboard": "自動將回應複製到剪貼簿",
+	"Auto-Create Groups": "",
+	"Auto-Playback Response": "自動播放回應",
+>>>>>>> upstream/main
 	"Autocomplete Generation": "自動完成產生",
 	"Autocomplete Generation Input Max Length": "自動完成輸入最大長度",
+	"Autocomplete Generation Prompt": "",
+	"Automatic": "",
 	"Automatic1111": "Automatic1111",
 	"AUTOMATIC1111 Api Auth String": "AUTOMATIC1111 API 驗證字串",
 	"AUTOMATIC1111 Base URL": "AUTOMATIC1111 基礎 URL",
 	"AUTOMATIC1111 Base URL is required.": "需要提供 AUTOMATIC1111 基礎 URL。",
 	"Available list": "可用清單",
 	"Available models": "可用模型",
+	"Available Skills": "",
 	"Available Tools": "可用工具",
 	"available users": "可用名額",
+	"Available variables": "",
 	"available!": "可用！",
 	"Awful": "糟糕",
 	"Azure AI Speech": "Azure AI 語音",
@@ -162,16 +283,30 @@
 	"Backup, export, and import instance data.": "",
 	"Bad Response": "回應不佳",
 	"Banners": "橫幅",
+<<<<<<< HEAD
 	"Base model": "",
+=======
+	"Base Model (From)": "基礎模型（來自）",
+	"Base Model is required.": "",
+>>>>>>> upstream/main
 	"Base Model List Cache speeds up access by fetching base models only at startup or on settings save—faster, but may not show recent base model changes.": "基礎模型清單快取只會在啟動或儲存設定時才取得基礎模型，以加快存取速度，但可能不會顯示最近的基礎模型變更。",
 	"Bearer": "Bearer",
 	"Begin a new folio": "",
 	"Being lazy": "懶惰模式",
+<<<<<<< HEAD
 	"Beta": "測試",
 	"Bind the model": "",
 	"Bing": "Bing",
 	"Bing Search V7 Endpoint": "Bing 搜尋 V7 端點",
 	"Bing Search V7 Subscription Key": "Bing 搜尋 V7 訂閱金鑰",
+=======
+	"Bing": "Bing",
+	"Bing Search V7 Endpoint": "Bing 搜尋 V7 端點",
+	"Bing Search V7 Subscription Key": "Bing 搜尋 V7 訂閱金鑰",
+	"Bio": "個人簡介",
+	"Birth Date": "生日",
+	"Blocked Groups": "",
+>>>>>>> upstream/main
 	"BM25 Weight": "BM25 混合搜尋權重",
 	"Bocha Search API Key": "Bocha 搜尋 API 金鑰",
 	"Bold": "粗體",
@@ -186,6 +321,18 @@
 	"Bypass Embedding and Retrieval": "繞過嵌入與檢索",
 	"Bypass Web Loader": "繞過網頁載入器",
 	"Cache Base Model List": "快取基礎模型清單",
+<<<<<<< HEAD
+=======
+	"Calendar": "日程",
+	"Calendar created": "日程已建立",
+	"Calendar deleted": "日程已刪除",
+	"Calendar name": "日程名稱",
+	"Calendars": "日程",
+	"Calendars Public Sharing": "日程公開分享",
+	"Call": "通話",
+	"Call feature is not supported when using Web STT engine": "使用網頁語音辨識 (Web STT) 引擎時不支援通話功能",
+	"Camera": "相機",
+>>>>>>> upstream/main
 	"Cancel": "取消",
 	"Cancel download of {{model}}": "取消模型「{{model}}」的下載",
 	"Capabilities": "功能",
@@ -199,13 +346,19 @@
 	"Chat": "對話",
 	"Chat Completions": "對話續寫",
 	"Chat Conversation": "對話內容",
+<<<<<<< HEAD
+=======
+	"Chat deleted.": "對話已刪除。",
+	"Chat Direction": "對話方向",
+	"Chat exported successfully": "對話已成功匯出",
+>>>>>>> upstream/main
 	"Chat History": "對話歷史",
 	"Chat ID": "對話 ID",
 	"Chat moved successfully": "對話已移動",
 	"Chat Permissions": "對話權限",
 	"chats": "對話",
 	"Chats": "對話",
-	"Chats Public Sharing": "",
+	"Chats Public Sharing": "對話公開分享",
 	"Check Again": "再次檢查",
 	"Check for updates": "檢查更新",
 	"Checking for updates...": "正在檢查更新...",
@@ -258,6 +411,11 @@
 	"Code Interpreter Prompt Template": "程式碼直譯器提示詞範本",
 	"Collapse": "摺疊",
 	"Collection": "文件集",
+<<<<<<< HEAD
+=======
+	"Collection Field": "",
+	"Collections": "文件集",
+>>>>>>> upstream/main
 	"Color": "顏色",
 	"ComfyUI": "ComfyUI",
 	"ComfyUI API Key": "ComfyUI API 金鑰",
@@ -266,9 +424,24 @@
 	"ComfyUI Workflow": "ComfyUI 工作流程",
 	"ComfyUI Workflow Nodes": "ComfyUI 工作流程節點",
 	"Comma separated Node Ids (e.g. 1 or 1,2)": "使用英文逗號分隔的節點 ID（例如 1 或 1,2）",
+<<<<<<< HEAD
+=======
+	"Comma-separated group names": "",
+	"Comma-separated list of file extensions MinerU will handle (e.g. pdf, docx, pptx, xlsx)": "",
+	"command": "命令",
+	"Command": "命令",
+>>>>>>> upstream/main
 	"Comment": "註解",
 	"Community Reviews": "社群評價",
+<<<<<<< HEAD
 	"Compose your first model": "",
+=======
+	"Compacting context": "",
+	"Comparing with knowledge base...": "正在與知識庫比對...",
+	"Completions": "自動完成",
+	"Compress Images in Channels": "壓縮頻道中的圖片",
+	"Computing checksums ({{count}} files)_other": "正在計算檢查碼（共 {{count}} 個檔案）",
+>>>>>>> upstream/main
 	"Concurrent Requests": "平行請求",
 	"Config": "設定",
 	"Configure": "設定",
@@ -281,6 +454,10 @@
 	"Connect to Open Terminal instances. All users will have access to file browsing and terminal tools through these servers.": "連接到 Open Terminal 實例後，所有使用者將可瀏覽伺服器上的檔案，並使用終端工具。",
 	"Connect to your own OpenAPI compatible external tool servers.": "連線至您自有或其他與 OpenAPI 相容的外部工具伺服器。",
 	"Connected": "",
+<<<<<<< HEAD
+=======
+	"Connected ({{type}})": "已連線（{{type}}）",
+>>>>>>> upstream/main
 	"Connection failed": "連線失敗",
 	"Connection lost. Reconnecting...": "連線中斷，正在重新連線...",
 	"Connection Type": "連線類型",
@@ -289,8 +466,16 @@
 	"Contact Admin for WebUI Access": "請聯絡管理員以取得 WebUI 存取權限",
 	"Content": "內容",
 	"Content Extraction Engine": "內容擷取引擎",
+	"Content Field": "",
 	"Content lengths (character counts only)": "內容長度（僅統計字元）",
-	"Context Tokens": "",
+	"Context": "",
+	"Context compacted": "",
+	"Context Compaction": "",
+	"Context compaction failed": "",
+	"Context Compaction Prompt": "",
+	"Context Compaction Threshold": "",
+	"Context Tokens": "上下文 Token",
+	"Continue": "",
 	"Continue Response": "繼續回應",
 	"Continue with {{provider}}": "使用 {{provider}} 繼續",
 	"Continue with Email": "使用 Email 繼續",
@@ -321,6 +506,16 @@
 	"Create Image": "產生圖片",
 	"Create model": "",
 	"Create Model": "建立模型",
+<<<<<<< HEAD
+=======
+	"Create new key": "建立新的金鑰",
+	"Create new secret key": "建立新的金鑰",
+	"Create note": "建立筆記",
+	"Create Note": "建立筆記",
+	"Create one read-only Knowledge source per external collection. Test must pass before the source is created.": "",
+	"Create scheduled prompts that run automatically on a recurring basis.": "建立可按固定週期自動執行的提示詞。",
+	"Create your first note by clicking on the plus button below.": "點選下方加號按鈕建立您的第一則筆記。",
+>>>>>>> upstream/main
 	"Created at": "建立於",
 	"Created At": "建立於",
 	"Created by": "建立者",
@@ -328,15 +523,31 @@
 	"CSV Import": "CSV 匯入",
 	"Current Model": "目前模型",
 	"Custom": "自訂",
+<<<<<<< HEAD
 	"Custom color": "",
 	"Custom Parameter Name": "自訂參數名稱",
 	"Custom Parameter Value": "自訂參數值",
 	"Custom presets that pair a base model with a system prompt, tools, knowledge and capabilities — build your own assistants and reuse them anywhere in chat.": "",
+=======
+	"Custom color": "自訂顏色",
+	"Custom description enabled": "自訂描述已啟用",
+	"Custom Gender": "自訂性別",
+	"Custom Parameter Name": "自訂參數名稱",
+	"Custom Parameter Value": "自訂參數值",
+	"Custom range": "",
+	"Daily": "每日",
+>>>>>>> upstream/main
 	"Daily Messages": "每日訊息數",
 	"Danger Zone": "危險區域",
 	"Database": "資料庫",
 	"Datalab Marker API": "Datalab Marker API",
+<<<<<<< HEAD
 	"Date Modified": "",
+=======
+	"Date Modified": "修改日期",
+	"Day": "天",
+	"DD/MM/YYYY": "DD/MM/YYYY",
+>>>>>>> upstream/main
 	"DDGS Backend": "DDGS 後端",
 	"December": "12 月",
 	"Deepgram": "Deepgram",
@@ -347,7 +558,6 @@
 	"Default Features": "預設功能",
 	"Default Filters": "預設篩選器",
 	"Default Group": "預設群組",
-	"Default mode works with a wider range of models by calling tools once before execution. Native mode leverages the model's built-in tool-calling capabilities, but requires the model to inherently support this feature.": "預設模式透過在執行前呼叫工具一次，來與更廣泛的模型相容。原生模式則利用模型內建的工具呼叫能力，但需要模型本身就支援此功能。",
 	"Default Model": "預設模型",
 	"Default permissions": "預設權限",
 	"Default Prompt Suggestions": "預設提示詞建議",
@@ -355,13 +565,28 @@
 	"Default to ALL": "預設到所有",
 	"Default to segmented retrieval for focused and relevant content extraction, this is recommended for most cases.": "預設使用分段檢索以提取聚焦且相關的內容，建議用於大多數情況。",
 	"Default User Role": "預設使用者角色",
+	"Default webhook": "",
 	"Defaults": "預設值",
 	"Delete": "刪除",
 	"Delete {{name}}": "刪除 {{name}}",
 	"Delete a model": "刪除模型",
+<<<<<<< HEAD
 	"Delete all contents inside this folder": "刪除此資料夾內的所有內容",
 	"Delete Chat": "刪除對話紀錄",
 	"Delete chat?": "刪除對話紀錄？",
+=======
+	"Delete All": "全部刪除",
+	"Delete All Chats": "刪除所有對話紀錄",
+	"Delete all contents inside this directory": "刪除此目錄內的所有內容",
+	"Delete all contents inside this folder": "刪除此資料夾內的所有內容",
+	"Delete automation?": "要刪除此自動化嗎？",
+	"Delete calendar": "刪除日程",
+	"Delete Calendar": "刪除日程",
+	"Delete Chat": "刪除對話紀錄",
+	"Delete chat?": "刪除對話紀錄？",
+	"Delete directory?": "刪除目錄？",
+	"Delete Event": "刪除活動",
+>>>>>>> upstream/main
 	"Delete File": "刪除檔案",
 	"Delete folder?": "刪除資料夾？",
 	"Delete function?": "刪除函式？",
@@ -382,9 +607,20 @@
 	"Direct Connections": "直接連線",
 	"Direct Connections allow users to connect to their own OpenAI compatible API endpoints.": "直接連線允許使用者連線至自有或其他與 OpenAI API 相容的端點。",
 	"Direct Tool Servers": "直連工具伺服器",
+<<<<<<< HEAD
+=======
+	"Directory created.": "目錄已建立。",
+	"Directory deleted.": "目錄已刪除。",
+	"Directory moved.": "目錄已移動。",
+	"Directory name": "目錄名稱",
+	"Directory renamed.": "目錄已重新命名。",
+	"Directory selection was cancelled": "已取消選擇目錄",
+>>>>>>> upstream/main
 	"Disable All": "全部停用",
 	"Disable Image Extraction": "停用圖片擷取",
 	"Disable image extraction from the PDF. If Use LLM is enabled, images will be automatically captioned. Defaults to False.": "停用從 PDF 擷取圖片。若啟用「使用 LLM」，圖片將自動新增說明。預設為 False。",
+	"Disable Image Generation": "",
+	"Disable Web Search": "",
 	"Disabled": "已停用",
 	"Discard this folio": "",
 	"Discarded": "",
@@ -393,6 +629,13 @@
 	"Discover wonders": "發掘奇蹟",
 	"Discover, download, and explore custom functions": "發掘、下載及探索自訂函式",
 	"Display": "顯示",
+<<<<<<< HEAD
+=======
+	"Display Chat Title in Tab": "在瀏覽器分頁標籤上顯示對話標題",
+	"Display Emoji in Call": "在通話中顯示表情符號",
+	"Display Multi-model Responses in Tabs": "以標籤頁的形式展示多個模型的回應",
+	"Display the Username Instead of You in the Chat": "在對話中顯示使用者名稱，而非「您」",
+>>>>>>> upstream/main
 	"Displays citations in the response": "在回應中顯示引用",
 	"Displays status updates (e.g., web search progress) in the response": "在回應中顯示進度狀態（例如：網路搜尋進度）",
 	"Dissolve": "",
@@ -405,6 +648,7 @@
 	"Docling Parameters": "Docling 參數",
 	"Docling Server URL required.": "需要提供 Docling 伺服器 URL。",
 	"Document": "檔案",
+	"Document ID Field": "",
 	"Document Intelligence": "Document Intelligence",
 	"Document Intelligence endpoint required.": "需要提供 Document Intelligence 端點。",
 	"Document Intelligence Model": "Document Intelligence 模型",
@@ -458,41 +702,60 @@
 	"Edit Default Permissions": "編輯預設權限",
 	"Edit Folder": "編輯分組",
 	"Edit Image": "編輯圖片",
+	"Edit Knowledge Connection": "",
 	"Edit Last Message": "編輯最後一則訊息",
 	"Edit Model": "",
 	"Edit Terminal Connection": "編輯終端連線",
 	"Edit User": "編輯使用者",
 	"Edit User Group": "編輯使用者群組",
+	"Edit webhook": "",
 	"Edit workflow.json content": "編輯 workflow.json 內容",
 	"Eject": "解除載入",
 	"Eject model": "卸載模型",
 	"ElevenLabs": "ElevenLabs",
 	"Email": "Email",
+	"Email Claim": "",
 	"Embark on adventures": "展開探險之旅",
 	"Embedding": "嵌入",
 	"Embedding Batch Size": "嵌入批次大小",
 	"Embedding Concurrent Requests": "嵌入並發請求數",
 	"Embedding Model": "嵌入模型",
 	"Embedding Model Engine": "嵌入模型引擎",
+	"Emoji": "表情符號",
 	"Emojis": "表情符號",
+<<<<<<< HEAD
+=======
+	"Empty": "",
+	"Empty message": "(空消息)",
+>>>>>>> upstream/main
 	"Enable All": "全部啟用",
 	"Enable API Keys": "啟用 API 金鑰",
 	"Enable autocomplete generation for chat messages": "啟用對話訊息的自動完成",
 	"Enable Code Execution": "啟用程式碼執行",
 	"Enable Code Interpreter": "啟用程式碼直譯器",
 	"Enable Community Sharing": "啟用社群分享",
+	"Enable Group Mapping": "",
+	"Enable Image Generation": "",
 	"Enable Memory Locking (mlock) to prevent model data from being swapped out of RAM. This option locks the model's working set of pages into RAM, ensuring that they will not be swapped out to disk. This can help maintain performance by avoiding page faults and ensuring fast data access.": "啟用記憶體鎖定（mlock）以防止模型資料被換出 RAM。此選項會將模型的工作頁面集鎖定在 RAM 中，確保它們不會被換出到磁碟。這可以透過避免頁面錯誤和確保快速資料存取來維持效能。",
 	"Enable Memory Mapping (mmap) to load model data. This option allows the system to use disk storage as an extension of RAM by treating disk files as if they were in RAM. This can improve model performance by allowing for faster data access. However, it may not work correctly with all systems and can consume a significant amount of disk space.": "啟用記憶體映射（mmap）以載入模型資料。此選項允許系統使用磁碟儲存作為 RAM 的延伸，透過將磁碟檔案視為在 RAM 中來處理。這可以透過允許更快的資料存取來改善模型效能。然而，它可能無法在所有系統上正常運作，並且可能會消耗大量磁碟空間。",
 	"Enable Message Rating": "啟用訊息評分",
 	"Enable Mirostat sampling for controlling perplexity.": "啟用 Mirostat 取樣以控制 perplexity。",
 	"Enable New Sign Ups": "允許新使用者註冊",
+	"Enable OAuth Signup": "",
+	"Enable Role Mapping": "",
+	"Enable Web Search": "",
 	"Enable, disable, or customize the reasoning tags used by the model. \"Enabled\" uses default tags, \"Disabled\" turns off reasoning tags, and \"Custom\" lets you specify your own start and end tags.": "啟用、停用或自訂模型的推理標籤。「啟用」將使用預設的推理標籤，「停用」則不使用推理標籤，「自訂」允許您指定模型推理過程的起始與結束標籤。",
 	"Enabled": "已啟用",
 	"End Tag": "結束標籤",
+	"Endpoint": "",
 	"Endpoint URL": "端點 URL",
 	"Enrich Hybrid Search Text": "增強混合搜尋文字",
 	"Ensure your CSV file includes 4 columns in this order: Name, Email, Password, Role.": "請確認您的 CSV 檔案包含以下 4 個欄位，並按照此順序排列：姓名、電子郵件、密碼、角色。",
+<<<<<<< HEAD
 	"Enter a name first": "",
+=======
+	"Enter {{role}} message here": "在此輸入 {{role}} 訊息",
+>>>>>>> upstream/main
 	"Enter a title for the pending user info overlay. Leave empty for default.": "為待處理的使用者訊息覆蓋層輸入標題。留空以使用預設值。",
 	"Enter a watermark for the response. Leave empty for none.": "請輸入回應浮水印內容，留空表示不使用浮水印。",
 	"Enter additional headers in JSON format": "請輸入額外的 HTTP 標頭，以 JSON 格式表示",
@@ -509,6 +772,8 @@
 	"Enter Chunk Min Size Target": "輸入最小塊目標大小",
 	"Enter Chunk Overlap": "輸入區塊重疊",
 	"Enter Chunk Size": "輸入區塊大小",
+	"Enter Client ID": "",
+	"Enter Client Secret": "",
 	"Enter comma-separated \"token:bias_value\" pairs (example: 5432:100, 413:-100)": "輸入逗號分隔的 \"token:bias_value\" 配對 (範例：5432:100, 413:-100)",
 	"Enter content for the pending user info overlay. Leave empty for default.": "為待處理的使用者訊息覆蓋層輸入內容。留空以使用預設值。",
 	"Enter coordinates (e.g. 51.505, -0.09)": "輸入座標經緯度（例如：51.505, -0.09）",
@@ -545,7 +810,15 @@
 	"Enter Jupyter Token": "輸入 Jupyter Token",
 	"Enter Jupyter URL": "輸入 Jupyter URL",
 	"Enter Kagi Search API Key": "輸入 Kagi 搜尋 API 金鑰",
+<<<<<<< HEAD
+=======
+	"Enter Key Behavior": "Enter 鍵行為",
+	"Enter language": "",
+>>>>>>> upstream/main
 	"Enter language codes": "輸入語言代碼",
+	"Enter Linkup API Key": "輸入 Linkup API 金鑰",
+	"Enter Microsoft Web IQ API Base URL": "",
+	"Enter Microsoft Web IQ API Key": "",
 	"Enter MinerU API Key": "輸入 MinerU API 金鑰",
 	"Enter Mistral API Base URL": "輸入 Mistral API 基礎 URL",
 	"Enter Mistral API Key": "輸入 Mistral API 金鑰",
@@ -564,6 +837,7 @@
 	"Enter Playwright WebSocket URL": "輸入 Playwright WebSocket URL",
 	"Enter proxy URL (e.g. https://user:password@host:port)": "輸入代理程式 URL（例如：https://user:password@host:port）",
 	"Enter reasoning effort": "輸入推理程度",
+	"Enter Redirect URI": "",
 	"Enter Score": "輸入分數",
 	"Enter SearchApi API Key": "輸入 SearchApi API 金鑰",
 	"Enter SearchApi Engine": "輸入 SearchApi 引擎",
@@ -573,6 +847,7 @@
 	"Enter SerpApi API Key": "輸入 SerpApi API 金鑰",
 	"Enter SerpApi Engine": "輸入 SerpApi 引擎",
 	"Enter Serper API Key": "輸入 Serper API 金鑰",
+	"Enter SERPHouse API Key": "",
 	"Enter Serply API Key": "輸入 Serply API 金鑰",
 	"Enter Serpstack API Key": "輸入 Serpstack API 金鑰",
 	"Enter server host": "輸入伺服器主機",
@@ -590,6 +865,12 @@
 	"Enter the URL to import": "輸入欲匯入的 URL",
 	"Enter Tika Server URL": "輸入 Tika 伺服器 URL",
 	"Enter timeout in seconds": "請以秒為單位輸入超時時間",
+<<<<<<< HEAD
+=======
+	"Enter to Send": "使用 Enter 傳送",
+	"Enter token threshold": "",
+	"Enter Tokenizer Model": "",
+>>>>>>> upstream/main
 	"Enter Top K": "輸入 Top K 值",
 	"Enter Top K Reranker": "輸入 Top K Reranker",
 	"Enter URL (e.g. http://127.0.0.1:7860/)": "輸入 URL（例如：http://127.0.0.1:7860/）",
@@ -619,8 +900,19 @@
 	"Error: A model with the ID '{{modelId}}' already exists. Please select a different ID to proceed.": "錯誤：ID 為「{{modelId}}」的模型已存在。請選擇不同的模型 ID。",
 	"Error: Model ID cannot be empty. Please enter a valid ID to proceed.": "錯誤：模型 ID 不能為空。請輸入有效的模型 ID。",
 	"Evaluations": "評估",
+<<<<<<< HEAD
 	"Every craft begins bare-handed.": "",
+=======
+	"Event": "",
+	"Event created": "活動已建立",
+	"Event deleted": "活動已刪除",
+	"Event names may change as Open WebUI evolves. Use broad patterns like user.* for integrations that should continue across new related events.": "",
+	"Event title": "活動標題",
+	"Event updated": "活動已更新",
+	"Events": "",
+>>>>>>> upstream/main
 	"Exa API Key": "Exa API 金鑰",
+	"Example": "",
 	"Example: (&(objectClass=inetOrgPerson)(uid=%s))": "範例：(&(objectClass=inetOrgPerson)(uid=%s))",
 	"Example: ALL": "範例：ALL",
 	"Example: mail": "範例：mail",
@@ -642,18 +934,29 @@
 	"Export chat (.json)": "匯出對話紀錄（.json）",
 	"Export Config": "匯出設定檔",
 	"Export Models": "匯出模型",
+<<<<<<< HEAD
+=======
+	"Export Prompts": "匯出提示詞",
+	"Export Skills": "",
+>>>>>>> upstream/main
 	"Export to CSV": "匯出為 CSV",
 	"Export Tools": "匯出工具",
 	"Export Users": "匯出所有使用者資訊",
 	"External": "外部",
+	"External connection not found.": "",
 	"External Document Loader URL required.": "需要提供外部文件載入器 URL。",
+	"External Knowledge Source": "",
+	"External Knowledge Sources": "",
 	"External Task Model": "外部任務模型",
+	"External Tool Servers": "",
+	"External vectors must be generated with the same embedding model configured in Open WebUI.": "",
 	"External Web Loader API Key": "外部網頁載入器 API 金鑰",
 	"External Web Loader URL": "外部網頁載入器 URL",
 	"External Web Search API Key": "外部網路搜尋 API 金鑰",
 	"External Web Search URL": "外部網路搜尋 URL",
 	"Faculties": "",
 	"Failed to archive chat.": "封存對話失敗。",
+<<<<<<< HEAD
 	"Failed to connect to {{URL}} OpenAPI tool server": "無法連線至 {{URL}} OpenAPI 工具伺服器",
 	"Failed to connect to {{URL}} terminal server": "無法連線至終端伺服器：{{URL}}",
 	"Failed to copy link": "複製連結失敗",
@@ -663,11 +966,39 @@
 	"Failed to extract content from the file: {{error}}": "檔案內容擷取失敗：{{error}}",
 	"Failed to extract content from the file.": "檔案內容擷取失敗",
 	"Failed to fetch models": "取得模型失敗",
+=======
+	"Failed to attach file": "檔案上傳失敗",
+	"Failed to clear status": "清除狀態失敗",
+	"Failed to compare files.": "檔案比對失敗。",
+	"Failed to connect to {{URL}} OpenAPI tool server": "無法連線至 {{URL}} OpenAPI 工具伺服器",
+	"Failed to connect to {{URL}} terminal server": "無法連線至終端伺服器：{{URL}}",
+	"Failed to copy link": "複製連結失敗",
+	"Failed to create API Key.": "建立 API 金鑰失敗。",
+	"Failed to delete calendar": "刪除日程失敗",
+	"Failed to delete note": "刪除筆記失敗",
+	"Failed to delete webhook": "",
+	"Failed to disconnect": "中斷連線失敗",
+	"Failed to download image": "圖片下載失敗",
+	"Failed to extract content from the file: {{error}}": "檔案內容擷取失敗：{{error}}",
+	"Failed to extract content from the file.": "檔案內容擷取失敗",
+	"Failed to fetch models": "取得模型失敗",
+	"Failed to generate title": "產生標題失敗",
+	"Failed to import models": "匯入模型失敗",
+	"Failed to load chat": "",
+	"Failed to load chat preview": "對話預覽載入失敗",
+>>>>>>> upstream/main
 	"Failed to load DOCX file. Please try downloading it instead.": "無法載入 DOCX 檔案，請改為下載後再開啟。",
 	"Failed to load Excel/CSV file. Please try downloading it instead.": "無法載入 Excel/CSV 檔案。請嘗試直接下載檔案。",
 	"Failed to load Interface settings": "「介面設定」資料載入失敗",
 	"Failed to load PPTX file. Please try downloading it instead.": "無法載入 PPTX 檔案，請改為下載後再開啟。",
 	"Failed to move chat": "移動對話失敗",
+<<<<<<< HEAD
+=======
+	"Failed to process URL: {{url}}": "處理連結失敗：{{url}}",
+	"Failed to read clipboard contents": "讀取剪貼簿內容失敗",
+	"Failed to refresh terminals: {{error}}": "",
+	"Failed to remove member": "移除成員失敗",
+>>>>>>> upstream/main
 	"Failed to render diagram": "繪製圖表失敗",
 	"Failed to render visualization": "繪製圖表失敗",
 	"Failed to save": "",
@@ -676,10 +1007,16 @@
 	"Failed to save models configuration": "儲存模型設定失敗",
 	"Failed to save policy: {{error}}": "儲存策略失敗：{{error}}",
 	"Failed to save terminal servers": "終端伺服器儲存失敗",
+	"Failed to save webhook": "",
 	"Failed to unshare chat.": "取消分享對話失敗。",
 	"Failed to update settings": "更新設定失敗",
 	"Failed to update status": "更新狀態失敗",
+<<<<<<< HEAD
 	"Favicons": "",
+=======
+	"Failed to update webhook": "",
+	"Failed to upload file.": "上傳檔案失敗。",
+>>>>>>> upstream/main
 	"Features": "功能",
 	"Features Permissions": "功能權限",
 	"February": "2 月",
@@ -692,14 +1029,32 @@
 	"File": "檔案",
 	"File browser": "檔案瀏覽器",
 	"File Context": "檔案上下文",
+<<<<<<< HEAD
+=======
+	"File deleted successfully.": "檔案已成功刪除。",
+	"File Extensions": "",
+>>>>>>> upstream/main
 	"File Mode": "檔案模式",
+	"File moved.": "檔案已移動。",
 	"File name": "檔案名稱",
 	"File not found.": "未找到檔案。",
+<<<<<<< HEAD
 	"File size should not exceed {{maxSize}} MB.": "檔案大小不應超過 {{maxSize}} MB。",
 	"File Upload": "檔案上傳",
 	"Filename": "檔案名稱",
 	"Files": "檔案",
 	"Fill name + base model to create": "",
+=======
+	"File removed successfully.": "成功移除檔案。",
+	"File renamed.": "檔案已重新命名。",
+	"File size should not exceed {{maxSize}} MB.": "檔案大小不應超過 {{maxSize}} MB。",
+	"File Upload": "檔案上傳",
+	"File uploaded successfully": "成功上傳檔案",
+	"Filename": "檔案名稱",
+	"Files": "檔案",
+	"Fill the required fields first.": "",
+	"Fill the source fields and test query first.": "",
+>>>>>>> upstream/main
 	"Filter": "篩選",
 	"Filters": "篩選器",
 	"Filters, valves, and middleware workflows.": "",
@@ -717,8 +1072,12 @@
 	"Folder name cannot be empty.": "分組名稱不能為空。",
 	"Folder options": "資料夾選項",
 	"Folders": "分組",
+<<<<<<< HEAD
 	"folio": "",
 	"folios": "",
+=======
+	"Folders Sharing": "",
+>>>>>>> upstream/main
 	"Follow up": "跟進",
 	"Follow Up Generation": "跟進內容產生",
 	"Follow Up Generation Prompt": "跟進內容產生提示詞",
@@ -746,6 +1105,11 @@
 	"Function imported successfully": "成功匯入函式",
 	"Function Name": "函式名稱",
 	"Function Name Filter List": "函式名稱篩選列表",
+<<<<<<< HEAD
+=======
+	"Function starter": "",
+	"Function updated successfully": "成功更新函式",
+>>>>>>> upstream/main
 	"Functions": "函式",
 	"Functions allow arbitrary code execution.": "函式允許執行任意程式碼。",
 	"Gather a quire": "",
@@ -773,6 +1137,15 @@
 	"Google PSE Engine Id": "Google PSE 引擎 ID",
 	"Gravatar": "Gravatar 大頭貼",
 	"Grokipedia": "Grokipedia",
+<<<<<<< HEAD
+=======
+	"group": "",
+	"Group": "",
+	"Group Channel": "群組頻道",
+	"Group Claim": "",
+	"Group created successfully": "成功建立群組",
+	"Group deleted successfully": "成功刪除群組",
+>>>>>>> upstream/main
 	"Group Description": "群組描述",
 	"Group Name": "群組名稱",
 	"groups": "群組",
@@ -780,6 +1153,11 @@
 	"H1": "一級標題",
 	"H2": "二級標題",
 	"H3": "三級標題",
+<<<<<<< HEAD
+=======
+	"Haptic Feedback": "觸覺回饋",
+	"Header variables": "",
+>>>>>>> upstream/main
 	"Headers": "HTTP 標頭",
 	"Headers must be a valid JSON object": "HTTP 標頭必須是有效的 JSON 格式",
 	"Hello, {{name}}": "您好，{{name}}",
@@ -808,6 +1186,12 @@
 	"I acknowledge that I have read and I understand the implications of my action. I am aware of the risks associated with executing arbitrary code and I have verified the trustworthiness of the source.": "我確認已閱讀並理解我的操作所帶來的影響。我了解執行任意程式碼的相關風險，並已驗證來源的可信度。",
 	"ID": "ID",
 	"ID cannot contain \":\" or \"|\" characters": "ID 不能包含 \":\" 或 \"|\" 字元",
+<<<<<<< HEAD
+=======
+	"ID copied to clipboard": "ID 已複製到剪貼簿",
+	"Identity audit": "",
+	"Idle only": "",
+>>>>>>> upstream/main
 	"Idle Timeout": "閒置逾時時間",
 	"Ignite curiosity": "點燃好奇心",
 	"Image": "圖片",
@@ -827,6 +1211,12 @@
 	"Import Config": "匯入設定檔",
 	"Import From Link": "從連結匯入",
 	"Import Models": "匯入模型",
+<<<<<<< HEAD
+=======
+	"Import Prompts": "匯入提示詞",
+	"Import Skills": "",
+	"Import successful": "匯入成功",
+>>>>>>> upstream/main
 	"Import Tools": "匯入工具",
 	"Important Update": "重要更新",
 	"Imported": "",
@@ -863,6 +1253,11 @@
 	"Jina API Key": "Jina API 金鑰",
 	"join our Discord for help.": "加入我們的 Discord 以取得協助。",
 	"JSON": "JSON",
+<<<<<<< HEAD
+=======
+	"JSON Base64": "",
+	"JSON Preview": "JSON 預覽",
+>>>>>>> upstream/main
 	"JSON Spec": "以 JSON 格式定義的介面規範",
 	"July": "7 月",
 	"June": "6 月",
@@ -873,9 +1268,26 @@
 	"Keep in Sidebar": "保留在側邊欄",
 	"Key": "金鑰",
 	"Key is required": "金鑰為必填項目",
-	"Keyboard shortcuts": "鍵盤快捷鍵",
 	"Keyboard Shortcuts": "鍵盤快捷鍵",
 	"Knowledge": "知識庫",
+<<<<<<< HEAD
+=======
+	"Knowledge Access": "知識庫存取",
+	"Knowledge Base": "知識庫",
+	"Knowledge base has been reset": "知識庫已重設",
+	"Knowledge created successfully.": "成功建立知識庫。",
+	"Knowledge deleted successfully.": "成功刪除知識庫。",
+	"Knowledge Description": "知識庫描述",
+	"Knowledge exported successfully": "知識庫匯出成功",
+	"Knowledge Name": "知識庫名稱",
+	"Knowledge Public Sharing": "知識庫公開分享",
+	"Knowledge Sharing": "分享知識庫",
+	"Knowledge source created.": "",
+	"Knowledge source updated.": "",
+	"Knowledge updated successfully": "成功更新知識庫",
+	"Kokoro.js (Browser)": "Kokoro.js (瀏覽器)",
+	"Kokoro.js Dtype": "Kokoro.js Dtype",
+>>>>>>> upstream/main
 	"Label": "標籤",
 	"Language Locales": "語言區域設定",
 	"Last 24 hours": "最近 24 小時",
@@ -904,12 +1316,25 @@
 	"Leave model field empty to use the default model.": "留空模型欄位以使用預設模型。",
 	"lexical": "關鍵詞",
 	"License": "授權",
+	"Lifecycle JSON": "",
 	"Lift List": "上移清單",
 	"Limit concurrent search queries. 0 = unlimited (default). Set to 1 for sequential execution (recommended for APIs with strict rate limits like Brave free tier).": "平行搜尋數量限制。預設為 0（無限制），設定為 1 則以順序執行（建議用於具有嚴格速率限制的服務，如 Brave 免費方案）。",
 	"Limits the number of concurrent embedding requests. Set to 0 for unlimited.": "限制同時進行的嵌入請求數量，設為 0 表示不限制。",
+<<<<<<< HEAD
 	"llama.cpp": "",
 	"Llama.cpp": "Llama.cpp",
 	"Loaded": "",
+=======
+	"Linkup API Key": "Linkup API 金鑰",
+	"List": "列表",
+	"List calendars, search, create, update, and delete calendar events": "列出日程，並可搜尋、新增、更新與刪除日程活動",
+	"Listening...": "正在聆聽...",
+	"Live": "即時",
+	"llama.cpp": "llama.cpp",
+	"Llama.cpp": "Llama.cpp",
+	"LLMs can make mistakes. Verify important information.": "大型語言模型可能會犯錯。請自行驗證重要資訊。",
+	"Loaded": "已載入",
+>>>>>>> upstream/main
 	"Loader": "載入工具",
 	"Loading...": "正在載入...",
 	"local": "本機",
@@ -917,6 +1342,11 @@
 	"Local Task Model": "本機任務模型",
 	"Lost": "落敗",
 	"Low": "低",
+<<<<<<< HEAD
+=======
+	"Lower the context compaction token threshold for this model. The global context compaction threshold remains the maximum.": "",
+	"LTR": "從左到右",
+>>>>>>> upstream/main
 	"Made by Open WebUI Community": "由 Open WebUI 社群製作",
 	"Make password visible in the user interface": "在使用者介面中顯示密碼",
 	"Make sure to export a workflow.json file as API format from ComfyUI.": "請確保從 ComfyUI 匯出 workflow.json 檔案為 API 格式。",
@@ -928,13 +1358,22 @@
 	"Manage OpenAI API Connections": "管理 OpenAI API 連線",
 	"Manage Pipelines": "管理管線",
 	"Manage Tool Servers": "管理工具伺服器",
+<<<<<<< HEAD
 	"Manage, import, and configure the models available to users.": "",
+=======
+	"Manage your account information.": "管理您的帳號資訊。",
+	"Mapped Source": "",
+>>>>>>> upstream/main
 	"March": "3 月",
 	"Markdown": "Markdown",
 	"Markdown Header Text Splitter": "Markdown 標題文字分割器",
 	"Max Speakers": "最大發言者數量",
+<<<<<<< HEAD
 	"Max Tokens": "",
 	"Max tokens to retrieve (1024-32768, default 8192)": "",
+=======
+	"Max tokens to retrieve (1024-32768, default 8192)": "最大擷取 Token 數（1024-32768，預設 8192）",
+>>>>>>> upstream/main
 	"Max Upload Count": "最大上傳數量",
 	"Max Upload Size": "最大上傳大小",
 	"Maximum characters to return from fetched URLs. Leave empty for no limit.": "從 URL 擷取內容時可回傳的最大字元數。留空表示無限制。",
@@ -949,15 +1388,34 @@
 	"Members": "成員",
 	"Memories": "記憶",
 	"Memory": "記憶",
+<<<<<<< HEAD
+=======
+	"Memory added successfully": "成功新增記憶",
+	"Memory cleared successfully": "成功清除記憶",
+	"Memory deleted successfully": "成功刪除記憶",
+	"Memory System Context": "",
+	"Memory updated successfully": "成功更新記憶",
+	"Merge Accounts by Email": "",
+>>>>>>> upstream/main
 	"Merge Responses": "合併回應",
 	"Merged Response": "整合回應結果",
 	"Message": "訊息",
 	"Message counts and response timestamps": "訊息數量和回應時間戳記",
 	"Message counts are based on assistant responses.": "訊息筆數僅統計模型的回覆（不含使用者傳送的訊息）。",
 	"Message rating should be enabled to use this feature": "需要啟用訊息評分才能使用此功能",
-	"Message text...": "",
+	"Message text...": "訊息文字...",
 	"messages": "則訊息",
 	"Messages": "訊息",
+<<<<<<< HEAD
+=======
+	"Messages you send after creating your link won't be shared. Users with the URL will be able to view the shared chat.": "建立連結後傳送的訊息不會被分享。擁有網址的使用者可檢視分享的對話內容。",
+	"Metadata Field": "",
+	"Microsoft OneDrive": "Microsoft OneDrive",
+	"Microsoft OneDrive (personal)": "Microsoft OneDrive（個人版）",
+	"Microsoft OneDrive (work/school)": "Microsoft OneDrive（公司版／學校版）",
+	"Microsoft Web IQ API Base URL": "",
+	"Microsoft Web IQ API Key": "",
+>>>>>>> upstream/main
 	"min": "分鐘",
 	"MinerU": "MinerU",
 	"MinerU API Key required for Cloud API mode.": "使用 MinerU 雲端服務模式需要 API 金鑰。",
@@ -999,10 +1457,17 @@
 	"Models Sharing": "分享模型",
 	"Mojeek": "Mojeek",
 	"Mojeek Search API Key": "Mojeek 搜尋 API 金鑰",
+<<<<<<< HEAD
+=======
+	"Monday – Friday": "",
+	"Month": "月",
+	"Monthly": "每月",
+>>>>>>> upstream/main
 	"More": "更多",
 	"More Concise": "精煉表達",
 	"More Options": "更多選項",
 	"Move": "移動",
+<<<<<<< HEAD
 	"My Terminal": "我的終端",
 	"Name": "名稱",
 	"Name and ID are required, please fill them out": "名稱和 ID 為必填項目，請填寫",
@@ -1011,6 +1476,30 @@
 	"Native": "原生",
 	"New": "最新",
 	"New Chat": "新增對話",
+=======
+	"Moved {{name}}": "已移動 {{name}}",
+	"Multipart Upload": "",
+	"Mute": "靜音",
+	"Muted": "已靜音",
+	"My Terminal": "我的終端",
+	"Name": "名稱",
+	"Name and ID are required, please fill them out": "名稱和 ID 為必填項目，請填寫",
+	"Name is required": "名稱為必填項目",
+	"Name your knowledge base": "命名您的知識庫",
+	"Name, prompt, and model are required": "名稱、提示詞與模型為必填項目",
+	"Native": "原生",
+	"Native mode (default) leverages the model's built-in tool-calling capabilities. Legacy mode works with a wider range of models by calling tools once before execution via prompt injection.": "",
+	"Never": "尚未",
+	"New": "最新",
+	"New Automation": "新增自動化",
+	"New Button": "新按鈕",
+	"New calendar": "新增日程",
+	"New Calendar": "新增日程",
+	"New Chat": "新增對話",
+	"New directory": "新增目錄",
+	"New Directory": "新增目錄",
+	"New Event": "新增活動",
+>>>>>>> upstream/main
 	"New File": "新增檔案",
 	"New Folder": "新增資料夾",
 	"New Function": "新增函式",
@@ -1025,6 +1514,7 @@
 	"Next message": "下一條訊息",
 	"No access grants. Private to you.": "未分享給他人，僅你可存取。",
 	"No activity data": "沒有活動資料",
+	"No additional headers are sent unless configured.": "",
 	"No authentication": "無身份驗證",
 	"No chats found": "未找到對話記錄",
 	"No chats found for this user.": "未找到此使用者的對話記錄。",
@@ -1033,7 +1523,13 @@
 	"No data": "暫無資料",
 	"No data found": "找不到資料",
 	"No distance available": "無可用距離",
+<<<<<<< HEAD
+=======
+	"No event webhooks configured.": "",
+	"No execution logs available yet": "目前尚無可用的執行記錄",
+>>>>>>> upstream/main
 	"No expiration can pose security risks.": "未設定 JWT 到期時間可能造成安全風險。",
+	"No external knowledge sources configured.": "",
 	"No feedback found": "未找到回饋",
 	"No file selected": "未選取檔案",
 	"No files found": "找不到檔案",
@@ -1043,14 +1539,28 @@
 	"No HTML, CSS, or JavaScript content found.": "未找到 HTML、CSS 或 JavaScript 內容。",
 	"No inference engine with management support found": "未找到支援管理功能的推理引擎",
 	"No kernel": "無核心",
+<<<<<<< HEAD
+=======
+	"No knowledge bases accessible": "無可存取的知識庫",
+	"No knowledge bases found.": "未找到知識庫",
+	"No knowledge found": "未找到知識",
+>>>>>>> upstream/main
 	"No limit": "無限制",
 	"No model IDs": "沒有模型 ID",
+	"No models accessible": "無可存取的模型",
 	"No models available": "暫無可用模型",
 	"No models found": "未找到模型",
 	"No models match your search.": "",
 	"No models selected": "未選取模型",
 	"No one": "沒有人",
+<<<<<<< HEAD
 	"No output items": "",
+=======
+	"No output items": "無輸出項目",
+	"No pinned messages": "沒有置頂訊息",
+	"No prompts found": "未找到提示詞",
+	"No Repeat": "",
+>>>>>>> upstream/main
 	"No results": "沒有結果",
 	"No results found": "未找到任何結果",
 	"No search query generated": "未產生搜尋查詢",
@@ -1062,12 +1572,18 @@
 	"No Terminal connection configured.": "尚未設定終端連線。",
 	"No terminal connections configured.": "尚未設定任何終端連線。",
 	"No tool server connections configured.": "尚未設定任何工具伺服器。",
+<<<<<<< HEAD
 	"No tools match your search.": "",
+=======
+	"No tools accessible": "無可存取的工具",
+	"No tools found": "未找到工具",
+>>>>>>> upstream/main
 	"No users were found.": "未找到任何使用者",
 	"No valves": "沒有設定項目",
 	"No valves to update": "沒有可更新的設定項目",
 	"Node Ids": "節點 ID",
 	"None": "無",
+	"Not configured": "",
 	"Not factually correct": "與事實不符",
 	"Not helpful": "沒有幫助",
 	"Not Registered": "未註冊",
@@ -1077,21 +1593,36 @@
 	"Nothing has been rehearsed yet.": "",
 	"November": "11 月",
 	"OAuth": "OAuth",
+	"OAuth / OIDC": "",
 	"OAuth 2.1": "OAuth 2.1",
 	"OAuth 2.1 (Static)": "OAuth 2.1（靜態）",
 	"OAuth ID": "OAuth ID",
+<<<<<<< HEAD
 	"OAuth Server URL": "",
 	"October": "10 月",
 	"Off": "關閉",
 	"Okay, Let's Go!": "好的，我們開始吧！",
+=======
+	"OAuth Resource Parameter": "",
+	"OAuth Scopes": "",
+	"OAuth Server URL": "OAuth 伺服器 URL",
+	"OAuth session disconnected": "OAuth 工作階段已中斷",
+	"October": "10 月",
+	"Off": "關閉",
+	"Okay, Let's Go!": "好的，我們開始吧！",
+	"Older messages are summarized when estimated context exceeds this token limit.": "",
+	"OLED Dark": "OLED 深色",
+>>>>>>> upstream/main
 	"Ollama": "Ollama",
 	"Ollama API": "Ollama API",
 	"Ollama Cloud API Key": "Ollama Cloud API 金鑰",
 	"Ollama Version": "Ollama 版本",
+	"Omit": "",
 	"On": "開啟",
 	"On by default": "",
 	"On by default for new chats": "",
 	"OneDrive": "OneDrive",
+	"Only active during Voice Mode.": "",
 	"Only active when \"Paste Large Text as File\" setting is toggled on.": "僅在啟用「將大型文字作為檔案貼上」設定時有效。",
 	"Only active when the chat input is in focus and an LLM is generating a response.": "僅在對話輸入框聚焦且大型語言模型正在產生回應時有效。",
 	"Only active when the chat input is in focus.": "僅在聚焦對話框時有效。",
@@ -1161,21 +1692,39 @@
 	"Participate in community leaderboards and evaluations! Syncing aggregated usage stats helps drive research and improvements to Open WebUI. Your privacy is paramount: no message content is ever shared.": "參與社群排行榜和評估！同步聚合的使用統計資料有助於推動 Open WebUI 的研究和改進。您的隱私至關重要：絕不會分享訊息內容。",
 	"Password": "密碼",
 	"Passwords do not match.": "兩次輸入的密碼不一致。",
+<<<<<<< HEAD
 	"PDF document (.pdf)": "PDF 檔案 (.pdf)",
 	"PDF Extract Images (OCR)": "PDF 影像擷取（OCR 光學文字辨識）",
 	"PDF Loader Mode": "PDF 加載模式",
 	"Penalties & Mirostat": "",
+=======
+	"Paste Large Text as File": "將大型文字以檔案貼上",
+	"Path": "",
+	"Path copied": "路徑已複製",
+	"Paused": "已暫停",
+	"PDF document (.pdf)": "PDF 檔案 (.pdf)",
+	"PDF Extract Images (OCR)": "PDF 影像擷取（OCR 光學文字辨識）",
+	"PDF Loader Mode": "PDF 加載模式",
+	"pdf, docx, pptx, xlsx": "",
+>>>>>>> upstream/main
 	"pending": "待處理",
 	"Pending": "待處理",
+	"Pending Accounts": "",
 	"Pending User Overlay Content": "待處理的使用者訊息覆蓋層內容",
 	"Pending User Overlay Title": "待處理的使用者訊息覆蓋層標題",
 	"Permissions": "權限",
+	"Permissions reset to defaults": "",
 	"Perplexity API Key": "Perplexity API 金鑰",
 	"Perplexity Model": "Perplexity 模型",
 	"Perplexity Search API URL": "Perplexity 搜尋 API URL",
 	"Perplexity Search Context Usage": "Perplexity 搜尋上下文使用量",
 	"Persistent": "持久性",
+<<<<<<< HEAD
 	"Pick an icon or emoji": "",
+=======
+	"Personalization": "個人化",
+	"Picture Claim": "",
+>>>>>>> upstream/main
 	"Pin": "釘選",
 	"Pinned Models": "固定於側邊欄的模型",
 	"Pioneer insights": "先驅見解",
@@ -1198,9 +1747,14 @@
 	"Please enter Client ID and Client Secret": "請輸入用戶端 ID 與用戶端密鑰",
 	"Please register the OAuth client": "請註冊 OAuth 用戶端",
 	"Please save the connection to persist the OAuth client information and do not change the ID": "請儲存連線以保存 OAuth 用戶端資訊，且勿更改 ID",
+<<<<<<< HEAD
+=======
+	"Please select a model.": "請選擇一個模型。",
+>>>>>>> upstream/main
 	"Please select a reason": "請選擇原因",
 	"Please select a valid JSON file": "請選擇有效的 JSON 檔案",
 	"Policy ID": "策略 ID",
+	"Policy ID is required": "",
 	"Port": "連接埠",
 	"Ports": "連接埠",
 	"Positive attitude": "積極的態度",
@@ -1208,14 +1762,32 @@
 	"Prefix ID is used to avoid conflicts with other connections by adding a prefix to the model IDs - leave empty to disable": "前置 ID 用於透過為模型 ID 新增字首以避免與其他連線衝突 - 留空以停用",
 	"Prevent File Creation": "阻止檔案建立",
 	"Preview": "預覽",
+	"Preview Access": "預覽存取權限",
 	"Previous 30 days": "過去 30 天",
 	"Previous 7 days": "過去 7 天",
 	"Previous message": "過去訊息",
 	"Private": "私有",
 	"Profile": "個人檔案",
 	"Prompt": "提示詞",
+<<<<<<< HEAD
 	"Prompt Template": "",
 	"Provider": "",
+=======
+	"Prompt Autocompletion": "提示詞自動完成",
+	"Prompt Content": "提示詞內容",
+	"Prompt created successfully": "成功建立提示詞",
+	"Prompt Name": "提示詞名稱",
+	"Prompt Suggestions": "推薦提示詞",
+	"Prompt Template": "提示詞範本",
+	"Prompt updated successfully": "成功更新提示詞",
+	"Prompts": "提示詞",
+	"Prompts Access": "提示詞存取",
+	"Prompts Public Sharing": "提示詞公開分享",
+	"Prompts Sharing": "分享提示詞",
+	"Provider": "供應商",
+	"Provider Name": "",
+	"Provider URL": "",
+>>>>>>> upstream/main
 	"Public": "公開",
 	"Public shared chat links are disabled for this workspace.": "",
 	"Pull \"{{searchValue}}\" from Ollama.com": "從 Ollama.com 下載「{{searchValue}}」",
@@ -1238,18 +1810,37 @@
 	"Read": "讀取",
 	"Read Aloud": "大聲朗讀",
 	"Read more →": "閱讀更多 →",
+<<<<<<< HEAD
 	"read only": "",
+=======
+	"Read only": "",
+>>>>>>> upstream/main
 	"Read Only": "只讀",
 	"Read, write, and diff-edit durable notes for the current chat Scratchboard": "",
 	"Reason": "原因",
 	"Reasoning Effort": "推理程度",
 	"Reasoning Tags": "推理標籤",
-	"Reasoning text...": "",
+	"Reasoning text...": "推理文字...",
+	"Receives matching events across the instance, including system/config events and events associated with any user.": "",
+	"Receives matching events that are not associated with a user.": "",
+	"Receives matching user-associated events only when the actor, user subject, or user data matches these users or current group members. System/config events are not sent.": "",
 	"Recently Used": "最近使用",
 	"Reconnected": "已重新連線",
+<<<<<<< HEAD
 	"Redirecting you to Open WebUI Community": "正在將您重導向至 Open WebUI 社群",
 	"Reduces the probability of generating nonsense. A higher value (e.g. 100) will give more diverse answers, while a lower value (e.g. 10) will be more conservative.": "降低產生無意義內容的機率。較高的值（例如：100）會產生更多樣化的答案，而較低的值（例如：10）會更保守。",
+=======
+	"Record": "錄製",
+	"Record voice": "錄音",
+	"Redirect URI": "",
+	"Redirecting you to Open WebUI Community": "正在將您重導向至 Open WebUI 社群",
+	"Reduces the probability of generating nonsense. A higher value (e.g. 100) will give more diverse answers, while a lower value (e.g. 10) will be more conservative.": "降低產生無意義內容的機率。較高的值（例如：100）會產生更多樣化的答案，而較低的值（例如：10）會更保守。",
+	"Reference Chats": "引用其他對話",
+>>>>>>> upstream/main
 	"Refresh": "重新整理",
+	"Refresh requested: {{count}} terminal(s)_other": "",
+	"Refresh Terminals": "",
+	"Refreshing...": "",
 	"Refused when it shouldn't have": "不應拒絕時拒絕了",
 	"Regenerate": "重新產生回應",
 	"Regenerate Response": "重新產生回應",
@@ -1268,15 +1859,42 @@
 	"Remove from favorites": "從收藏中移除",
 	"Remove image": "移除圖片",
 	"Remove Model": "移除模型",
+	"Removing {{count}} stale files..._other": "正在移除 {{count}} 個過期檔案...",
 	"Rename": "重新命名",
+<<<<<<< HEAD
 	"Reorder Models": "重新排序模型",
+=======
+	"Renamed to {{name}}": "已重新命名為 {{name}}",
+	"Render Markdown in Assistant Messages": "在助理訊息中轉譯 Markdown",
+	"Render Markdown in Previews": "在檔案與引用預覽中轉譯 Markdown",
+	"Render Markdown in User Messages": "在使用者訊息中轉譯 Markdown",
+	"Reorder Models": "重新排序模型",
+	"Repeat": "",
+	"Repeats": "重複",
+	"Reply": "回覆",
+	"Reply in Thread": "在討論串中回覆",
+	"Reply to thread...": "回覆討論串...",
+	"Replying to {{NAME}}": "回覆 {{NAME}}",
+	"Request Format": "",
+	"Require users to confirm before using Web Search.": "",
+	"required": "必填",
+>>>>>>> upstream/main
 	"Reranking Batch Size": "重排序批次大小",
 	"Reranking Engine": "重新排序引擎",
 	"Reranking Model": "重新排序模型",
+	"Research Knowledge": "",
 	"Reset": "重設",
 	"Reset All Models": "重設所有模型",
+	"Reset all permissions to their initial configuration values": "",
+	"Reset group permissions to match the current default user permissions": "",
 	"Reset Image": "重設圖片",
+<<<<<<< HEAD
 	"Reset to default": "",
+=======
+	"Reset knowledge base?": "確定要重設知識庫嗎？",
+	"Reset persisted files": "",
+	"Reset to Defaults": "",
+>>>>>>> upstream/main
 	"Reset Upload Directory": "重設上傳目錄",
 	"Reset Vector Storage/Knowledge": "重設向量儲存或知識",
 	"Reset view": "重設檢視",
@@ -1296,6 +1914,11 @@
 	"Return token usage information in the response when supported": "",
 	"Reusable instruction packs that teach your models a procedure or domain — import a markdown skill or write your own, then enable it where you need it.": "",
 	"Role": "角色",
+<<<<<<< HEAD
+=======
+	"Roles Claim": "",
+	"RTL": "從右到左",
+>>>>>>> upstream/main
 	"Run": "執行",
 	"Run All": "全部執行",
 	"Running": "正在執行",
@@ -1308,10 +1931,19 @@
 	"Save As Copy": "另存為副本",
 	"Saved": "已儲存",
 	"Saving chat logs directly to your browser's storage is no longer supported. Please take a moment to download and delete your chat logs by clicking the button below. Don't worry, you can easily re-import your chat logs to the backend through": "不再支援直接將對話紀錄儲存到您的瀏覽器儲存空間。請點選下方按鈕來下載並刪除您的對話紀錄。別擔心，您可以透過以下方式輕鬆地將對話紀錄重新匯入後端",
+<<<<<<< HEAD
 	"Scratchboard": "",
 	"Scroll to Top": "",
+=======
+	"Schedule": "排程",
+	"Scheduled time must be in the future": "排程時間必須晚於目前時間",
+	"Scopes": "",
+	"Scroll On Branch Change": "切換分支時自動捲動",
+	"Scroll to Top": "回到頂部",
+>>>>>>> upstream/main
 	"Search": "搜尋",
 	"Search a model": "搜尋模型",
+	"Search actions": "",
 	"Search all emojis": "搜尋 Emoji 表情符號",
 	"Search and manage user memories": "搜尋和管理用戶記憶",
 	"Search and view user chat history": "搜尋和查看用戶對話歷史",
@@ -1319,6 +1951,7 @@
 	"Search Chats": "搜尋對話",
 	"Search engines and web content loaders for live results.": "",
 	"Search Files": "搜尋檔案",
+	"Search filters": "",
 	"Search Filters": "搜尋篩選器",
 	"search for archived chats": "搜尋已封存的聊天",
 	"search for folders": "搜尋分組",
@@ -1330,10 +1963,22 @@
 	"Search In Models": "在模型中搜尋",
 	"Search Models": "搜尋模型",
 	"Search options": "搜尋選項",
+<<<<<<< HEAD
+=======
+	"Search or add pattern": "",
+	"Search Prompts": "搜尋提示詞",
+>>>>>>> upstream/main
 	"Search Result Count": "搜尋結果數量",
+	"Search skills": "",
 	"Search Skills": "搜尋技能",
 	"Search the web and fetch URLs": "搜尋網路並獲取 URL",
+	"Search tools": "",
 	"Search Tools": "搜尋工具",
+<<<<<<< HEAD
+=======
+	"Search users or groups": "",
+	"Search, view, and manage user notes": "搜尋、查看和管理用戶筆記",
+>>>>>>> upstream/main
 	"SearchApi API Key": "SearchApi API 金鑰",
 	"SearchApi Engine": "SearchApi 引擎",
 	"Searched {{count}} sites": "搜尋到 {{count}} 個網站",
@@ -1348,7 +1993,12 @@
 	"Seed": "種子值",
 	"Select": "選擇",
 	"Select {{modelName}} model": "選擇模型「{{modelName}}」",
+<<<<<<< HEAD
 	"Select a base model": "選擇基礎模型",
+=======
+	"Select a base model (e.g. llama3, gpt-4o)": "選擇基礎模型（例如：llama3, gpt-4o）",
+	"Select a conversation to preview": "選擇對話進行預覽",
+>>>>>>> upstream/main
 	"Select a engine": "選擇引擎",
 	"Select a function": "選擇函式",
 	"Select a group": "選擇群組",
@@ -1378,15 +2028,36 @@
 	"Selected Models": "已選模型",
 	"semantic": "語義",
 	"Send": "傳送",
+<<<<<<< HEAD
+=======
+	"Send a Message": "傳送訊息",
+	"Send events for": "",
+	"Send message": "傳送訊息",
+	"Send now": "立即傳送",
+	"Send product events as JSON to external services. Chat destinations receive readable messages.": "",
+	"Send the PDF as a base64 data URL instead of uploading it first.": "",
+	"Sends `stream_options: { include_usage: true }` in the request.\nSupported providers will return token usage information in the response when set.": "在請求中傳送 `stream_options: { include_usage: true }`。\n設定後，支援的提供者將在回應中回傳權杖使用資訊。",
+>>>>>>> upstream/main
 	"September": "9 月",
 	"sequences that end a response — comma separated": "",
 	"SerpApi API Key": "SerpApi API 金鑰",
 	"SerpApi Engine": "SerpApi 引擎",
 	"Serper API Key": "Serper API 金鑰",
+	"SERPHouse API Key": "",
+	"SERPHouse Domain": "",
 	"Serply API Key": "Serply API 金鑰",
 	"Serpstack API Key": "Serpstack API 金鑰",
 	"Server connection failed": "伺服器連線失敗",
+<<<<<<< HEAD
 	"Session": "Session",
+=======
+	"Server connection verified": "伺服器連線已驗證",
+	"Service Account": "",
+	"Session": "Session",
+	"Session expired. Please sign in again.": "",
+	"Set as default": "設為預設",
+	"Set as Production": "設為目前使用版本",
+>>>>>>> upstream/main
 	"Set embedding model": "設定嵌入模型",
 	"Set embedding model (e.g. {{model}})": "設定嵌入模型（例如：{{model}}）",
 	"Set reranking model (e.g. {{model}})": "設定重新排序模型（例如：{{model}}）",
@@ -1410,13 +2081,28 @@
 	"Share": "分享",
 	"Share Chat": "分享對話",
 	"Share to Open WebUI Community": "分享到 Open WebUI 社群",
+<<<<<<< HEAD
+=======
+	"Share your background and interests": "分享您的背景與興趣",
+	"Shared": "",
+>>>>>>> upstream/main
 	"Shared Chats": "已分享的對話",
 	"Shared with you": "分享給您",
 	"Sharing Permissions": "分享權限設定",
 	"Show": "顯示",
+<<<<<<< HEAD
 	"Show Admin Details in Account Pending Overlay": "在帳號待審覆蓋層中顯示管理員詳細資訊",
 	"Show All": "顯示全部",
 	"Show all ({{COUNT}} characters)": "顯示全部（共 {{COUNT}} 個字元）",
+=======
+	"Show \"What's New\" Modal on Login": "登入時顯示「新功能」對話框",
+	"Show Admin Details in Account Pending Overlay": "在帳號待審覆蓋層中顯示管理員詳細資訊",
+	"Show All": "顯示全部",
+	"Show all ({{COUNT}} characters)": "顯示全部（共 {{COUNT}} 個字元）",
+	"Show Files": "顯示檔案",
+	"Show Files on Terminal Select": "",
+	"Show Formatting Toolbar": "顯示文字格式工具列",
+>>>>>>> upstream/main
 	"Show image preview": "顯示圖片預覽",
 	"Show Model": "顯示模型",
 	"Show Shortcuts": "顯示快捷鍵",
@@ -1458,7 +2144,13 @@
 	"Sougou Search API sID": "搜狗搜尋 API sID",
 	"Sougou Search API SK": "搜狗搜尋 API SK",
 	"Source": "來源",
+<<<<<<< HEAD
 	"Sources used": "",
+=======
+	"Specific users or groups": "",
+	"Speech Playback Speed": "語音播放速度",
+	"Speech recognition error: {{error}}": "語音辨識錯誤：{{error}}",
+>>>>>>> upstream/main
 	"Speech-to-Text": "語音轉文字 (STT) ",
 	"Speech-to-Text Engine": "語音轉文字 (STT) 引擎",
 	"Split documents by markdown headers before applying character/token splitting.": "在字元或 Token 分割之前，優先按 Markdown 的標題分割文件。",
@@ -1482,6 +2174,13 @@
 	"Strip Existing OCR": "移除現有 OCR 文字",
 	"Strip existing OCR text from the PDF and re-run OCR. Ignored if Force OCR is enabled. Defaults to False.": "移除 PDF 中現有的 OCR 文字並重新執行 OCR。若啟用「強制執行 OCR」則忽略此選項。預設為 False。",
 	"STT Model": "語音轉文字 (STT) 模型",
+<<<<<<< HEAD
+=======
+	"STT Settings": "語音轉文字 (STT) 設定",
+	"Stylized PDF Export": "風格化 PDF 匯出",
+	"Su_day_of_week": "週日",
+	"Sub Claim": "",
+>>>>>>> upstream/main
 	"Submit question": "提交問題",
 	"Submit suggestion": "提交建議",
 	"Subtitle": "副標題",
@@ -1492,16 +2191,25 @@
 	"Support": "支援",
 	"Support this plugin:": "支援這個外掛：",
 	"Supported MIME Types": "支援的 MIME 類型",
-	"Switch to JSON editor": "",
-	"Switch to visual editor": "",
+	"Switch to JSON editor": "切換至 JSON 編輯器",
+	"Switch to visual editor": "切換至視覺化編輯器",
 	"Sync": "同步",
+	"Sync a local directory with this knowledge base. Only new and modified files will be uploaded. The directory structure will be mirrored.": "將本機目錄與此知識庫同步。僅會上傳新增與已修改的檔案，並鏡像目錄結構。",
+	"Sync complete: {{added}} added, {{modified}} modified, {{deleted}} deleted, {{unmodified}} unmodified": "同步完成：新增 {{added}} 個、修改 {{modified}} 個、刪除 {{deleted}} 個、未變更 {{unmodified}} 個",
 	"Sync Complete!": "同步完成！",
 	"Sync Failed": "同步失敗",
 	"Sync Usage Stats": "同步使用統計資料",
 	"Syncing stats...": "同步統計資料...",
 	"Syncing...": "同步中...",
 	"Syncs only chats with updates after your last sync timestamp. Disable to re-sync all chats.": "僅同步自上次同步時間點後有更新的對話；關閉後將重新同步全部對話。",
+<<<<<<< HEAD
+=======
+	"System": "系統",
+	"System events only": "",
+	"System Instructions": "系統指令",
+>>>>>>> upstream/main
 	"System Prompt": "系統提示詞",
+	"Table": "",
 	"Tag": "標籤",
 	"Tags": "標籤",
 	"Tags Generation": "標籤生成",
@@ -1521,6 +2229,16 @@
 	"Temperature": "溫度",
 	"Temporary Chat": "臨時對話",
 	"Terminal": "終端",
+<<<<<<< HEAD
+=======
+	"Terminal servers saved": "終端伺服器已儲存",
+	"Test": "",
+	"Test Query": "",
+	"Test returned no results.": "",
+	"Test succeeded.": "",
+	"Test the source before creating it.": "",
+	"Test the source before saving it.": "",
+>>>>>>> upstream/main
 	"Text Splitter": "文字分割器",
 	"Text-to-Speech": "文字轉語音",
 	"Text-to-Speech Engine": "文字轉語音引擎",
@@ -1535,8 +2253,11 @@
 	"The height in pixels to compress images to. Leave empty for no compression.": "圖片壓縮高度（像素）。留空則不壓縮。",
 	"The LDAP attribute that maps to the mail that users use to sign in.": "對應至使用者用於登入之電子郵件的 LDAP 屬性。",
 	"The LDAP attribute that maps to the username that users use to sign in.": "對應至使用者用於登入之使用者名稱的 LDAP 屬性。",
+<<<<<<< HEAD
 	"The leaderboard is currently in beta, and we may adjust the rating calculations as we refine the algorithm.": "排行榜目前處於測試階段，我們可能會在改進演算法時調整評分計算方式。",
 	"the longest single response it may set": "",
+=======
+>>>>>>> upstream/main
 	"The maximum file size in MB. If the file size exceeds this limit, the file will not be uploaded.": "檔案大小上限（MB）。如果檔案大小超過此限制，檔案將不會被上傳。",
 	"The maximum number of files that can be used at once in chat. If the number of files exceeds this limit, the files will not be uploaded.": "對話中一次可使用的最大檔案數量。如果檔案數量超過此限制，檔案將不會被上傳。",
 	"The only required step — refine everything else now or later.": "",
@@ -1562,6 +2283,11 @@
 	"This feature is currently experimental and may not work as expected.": "此功能目前為實驗性質，可能無法完全如預期運作。",
 	"This folder is empty": "此資料夾為空",
 	"This is a default user permission and will remain enabled.": "此權限已在預設使用者設定中啟用，並將持續生效。",
+<<<<<<< HEAD
+=======
+	"This is an experimental feature, it may not function as expected and is subject to change at any time.": "這是一個實驗性功能，它可能無法如預期運作，並且可能會隨時變更。",
+	"This knowledge base retrieves from a connected source. Open WebUI can query it, but cannot upload, sync, edit, delete, reset, or reindex its source data.": "",
+>>>>>>> upstream/main
 	"This model is not publicly available. Please select another model.": "此模型未開放公眾使用，請選擇其他模型。",
 	"This option controls how long the model will stay loaded into memory following the request (default: 5m)": "此選項控制模型請求後在記憶體中保持載入狀態的時長（預設：5 分鐘）",
 	"This option controls how many tokens are preserved when refreshing the context. For example, if set to 2, the last 2 tokens of the conversation context will be retained. Preserving context can help maintain the continuity of a conversation, but it may reduce the ability to respond to new topics.": "此選項控制在重新整理上下文時保留多少 Token。例如，如果設定為 2，則會保留對話上下文的最後 2 個 Token。保留上下文有助於保持對話的連貫性，但也可能降低對新主題的回應能力。",
@@ -1573,6 +2299,11 @@
 	"This will delete <strong>{{NAME}}</strong> and <strong>all its contents</strong>.": "這將會刪除 <strong>{{NAME}}</strong> 和<strong>其所有內容</strong>。",
 	"This will delete all models including custom models": "這將刪除所有模型，包括自訂模型",
 	"This will delete all models including custom models and cannot be undone.": "這將刪除所有模型，包括自訂模型，且無法復原。",
+<<<<<<< HEAD
+=======
+	"This will permanently delete the calendar \"{{name}}\" and all its events. This action cannot be undone.": "這將永久刪除日程「{{name}}」及其中所有活動。此操作無法復原。",
+	"This will remove all files and directories from this knowledge base. This action cannot be undone.": "這將移除此知識庫中的所有檔案與目錄。此操作無法復原。",
+>>>>>>> upstream/main
 	"Thorough explanation": "詳細解釋",
 	"Thought": "思考過程",
 	"Thought for {{DURATION}}": "思考時間 {{DURATION}}",
@@ -1595,12 +2326,23 @@
 	"To learn more about available endpoints, visit our documentation.": "若要進一步了解可用的端點，請參閱我們的說明文件。",
 	"To select skills here, add them to the \"Skills\" workspace first.": "若要在此選擇技能，請先將其加入「技能」工作區。",
 	"To select toolkits here, add them to the \"Tools\" workspace first.": "若要在此選擇工具包，請先將它們新增到「工具」工作區。",
+<<<<<<< HEAD
+=======
+	"Toast Notifications for New Updates": "快顯通知新的更新",
+>>>>>>> upstream/main
 	"Today": "今天",
 	"Toggle details": "展開/收合詳細資訊",
+<<<<<<< HEAD
+=======
+	"Toggle Dictation": "切換聽寫模式",
+	"Toggle Mute": "",
+>>>>>>> upstream/main
 	"Toggle Sidebar": "切換側邊欄",
 	"Toggle whether current connection is active.": "切換目前連線的啟用狀態",
 	"Token": "Token",
 	"Token counts are estimates and may not reflect actual API usage": "Token 數為估算值，可能與實際 API 用量不一致",
+	"Token Threshold": "",
+	"Tokenizer Model": "",
 	"tokens": "tokens",
 	"Tokens": "Token 數",
 	"Too verbose": "太過冗長",
@@ -1643,12 +2385,31 @@
 	"Unknown": "未知",
 	"Unloads {{FROM_NOW}}": "於 {{FROM_NOW}} 後解除載入",
 	"Unlock mysteries": "解鎖謎題",
+<<<<<<< HEAD
+=======
+	"Unmute": "取消靜音",
+>>>>>>> upstream/main
 	"Unpin": "取消釘選",
 	"Unravel secrets": "揭開秘密",
+	"Unshare All": "",
+	"Unshare All Shared Chats": "",
 	"Unshare Chat": "取消分享對話",
 	"Untagged": "無標籤",
+<<<<<<< HEAD
 	"Untitled folio": "",
 	"Update for the latest features and improvements.": "更新以獲得最新功能和改進。",
+=======
+	"Untitled": "未命名",
+	"Update": "更新",
+	"Update and Copy Link": "更新並複製連結",
+	"Update Email": "",
+	"Update for the latest features and improvements.": "更新以獲得最新功能和改進。",
+	"Update Name": "",
+	"Update password": "更新密碼",
+	"Update Picture": "",
+	"Update your status": "更新您的狀態",
+	"Updated": "已更新",
+>>>>>>> upstream/main
 	"Updated at": "更新於",
 	"Updated At": "更新於",
 	"Upgrade to a licensed plan for enhanced capabilities, including custom theming and branding, and dedicated support.": "升級至授權方案以獲得更強大功能，包括客製化主題與品牌，和專屬支援。",
@@ -1660,24 +2421,40 @@
 	"Upload profile image": "上傳頭像",
 	"Upload Progress": "上傳進度",
 	"Uploaded files or images": "上傳的檔案或圖片",
+<<<<<<< HEAD
+=======
+	"Uploading {{current}}/{{total}}: {{file}}": "正在上傳 {{current}}/{{total}}：{{file}}",
+>>>>>>> upstream/main
 	"Uploading...": "上傳中…",
 	"URL": "URL",
 	"URL is required": "URL 為必填項目",
 	"URL Mode": "URL 模式",
 	"Usage": "使用量",
 	"Use /v1/chat/completions endpoint instead of /v1/audio/transcriptions for potentially better accuracy.": "使用 /v1/chat/completions 端點而非 /v1/audio/transcriptions 以獲得更好的準確性。",
+	"Use a valid event name or pattern like user.*": "",
+	"Use Base64": "",
 	"Use Chat Completions API": "使用 Chat Completions API",
+	"Use discovered scopes": "",
 	"Use groups to organize your users and assign permissions.": "使用權限群組來管理使用者並分配權限。",
 	"Use LLM": "使用 LLM",
 	"Use no proxy to fetch page contents.": "不使用代理擷取頁面內容。",
 	"Use proxy designated by http_proxy and https_proxy environment variables to fetch page contents.": "使用 http_proxy 和 https_proxy 環境變數指定的代理擷取頁面內容。",
+	"Use Web Search?": "",
 	"user": "使用者",
 	"User": "使用者",
+	"User Access": "",
 	"User Activity": "使用者動態",
 	"User Groups": "使用者群組",
+<<<<<<< HEAD
+=======
+	"User location successfully retrieved.": "成功取得使用者位置。",
+	"User menu": "使用者選單",
+	"User Preview": "使用者預覽",
+>>>>>>> upstream/main
 	"User ratings (thumbs up/down)": "使用者評分（讚/踩）",
 	"User Webhooks": "使用者 Webhooks",
 	"Username": "使用者名稱",
+	"Username Claim": "",
 	"users": "使用者",
 	"Users": "使用者",
 	"Uses DefaultAzureCredential to authenticate": "使用 DefaultAzureCredential 進行身份驗證",
@@ -1688,7 +2465,14 @@
 	"Valid time units:": "有效的時間單位：",
 	"Validate certificate": "驗證憑證有效性",
 	"Valves": "設定項目",
+<<<<<<< HEAD
 	"Verified": "",
+=======
+	"Valves updated": "設定項目已更新",
+	"Valves updated successfully": "設定項目成功更新",
+	"variable": "變數",
+	"Vector Field": "",
+>>>>>>> upstream/main
 	"Verify Connection": "驗證連線",
 	"Verify SSL Certificate": "驗證 SSL 憑證",
 	"Version": "版本",
@@ -1700,7 +2484,14 @@
 	"Visible": "可見",
 	"Visible to all users": "對所有使用者可見",
 	"Vision": "視覺",
+<<<<<<< HEAD
 	"Visual": "",
+=======
+	"Visual": "視覺化",
+	"Voice": "語音",
+	"Voice Input": "語音輸入",
+	"Voice mode": "語音模式",
+>>>>>>> upstream/main
 	"Voice Mode Prompt": "語音模式提示詞",
 	"Warning": "警告",
 	"Warning:": "警告：",
@@ -1709,9 +2500,20 @@
 	"Web API": "網頁 API",
 	"Web Loader Engine": "網頁載入引擎",
 	"Web Search": "網頁搜尋",
+	"Web Search Confirmation": "",
+	"Web Search Confirmation Content": "",
 	"Web Search Engine": "網頁搜尋引擎",
 	"Web Search Query Generation": "網頁搜尋查詢生成",
+<<<<<<< HEAD
 	"Webhook URL": "Webhook URL",
+=======
+	"Webhook deleted": "",
+	"Webhook Name": "Webhook 名稱",
+	"Webhook saved": "",
+	"Webhooks": "Webhook",
+	"Webpage URLs": "網頁連結",
+	"WebUI Settings": "WebUI 設定",
+>>>>>>> upstream/main
 	"WebUI URL": "WebUI URL",
 	"WebUI will make requests to \"{{url}}\"": "WebUI 將向 \"{{url}}\" 傳送請求",
 	"WebUI will make requests to \"{{url}}/api/chat\"": "WebUI 將向 \"{{url}}/api/chat\" 傳送請求",
@@ -1742,6 +2544,7 @@
 	"Yandex Web Search API Key": "Yandex 網頁搜尋 API 金鑰",
 	"Yandex Web Search config": "Yandex 網頁搜尋設定",
 	"Yandex Web Search URL": "Yandex 網頁搜尋網址",
+	"Yearly": "",
 	"Yesterday": "昨天",
 	"You": "您",
 	"You are a careful editor: terse, concrete, kind…": "",
@@ -1761,6 +2564,7 @@
 	"Your browser does not support the video tag.": "您的瀏覽器不支援影片播放。",
 	"Your entire contribution will go directly to the plugin developer; Open WebUI does not take any percentage. However, the chosen funding platform might have its own fees.": "您的所有貢獻將會直接交給外掛開發者；Open WebUI 不會收取任何抽成。然而，所選擇的贊助平臺可能有其自身的費用。",
 	"Your message text or inputs": "您的訊息文字或輸入",
+	"Your query will be sent to the configured web search provider.": "",
 	"Your usage stats have been successfully synced.": "已成功同步您的使用統計資料。",
 	"Youtube Language": "YouTube 語言",
 	"Youtube Proxy URL": "YouTube 代理伺服器 URL"

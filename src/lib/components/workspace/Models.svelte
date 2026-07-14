@@ -157,7 +157,7 @@
 	const shareModelHandler = async (model) => {
 		const url = 'https://openwebui.com';
 
-		const tab = await window.open(`${url}/models/create`, '_blank');
+		const tab = await window.open(`${url}/post?type=model`, '_blank');
 
 		const messageHandler = (event) => {
 			if (event.origin !== url) return;
@@ -231,50 +231,102 @@
 		await updateUserSettings(localStorage.token, { ui: $settings });
 	};
 
+	const fetchAllWorkspaceModels = async () => {
+		// Fetch all workspace models across every page
+		const allModels = [];
+		let currentPage = 1;
+		let fetchedTotal = 0;
+
+		while (true) {
+			const res = await getWorkspaceModels(
+				localStorage.token,
+				query,
+				viewOption,
+				selectedTag,
+				null,
+				null,
+				currentPage
+			);
+			if (!res || !res.items || res.items.length === 0) break;
+			allModels.push(...res.items);
+			fetchedTotal = res.total;
+			if (allModels.length >= fetchedTotal) break;
+			currentPage++;
+		}
+
+		return allModels;
+	};
+
 	const enableAllHandler = async () => {
-		const modelsToEnable = (models ?? []).filter((m) => !(m.is_active ?? true));
-		// Optimistic UI update
-		modelsToEnable.forEach((m) => (m.is_active = true));
+		const allModels = await fetchAllWorkspaceModels();
+		const modelsToEnable = allModels.filter((m) => !(m.is_active ?? true));
+		if (modelsToEnable.length === 0) return;
+		// Optimistic UI update for current page
+		(models ?? []).forEach((m) => (m.is_active = true));
 		models = models;
 		// Sync with server
 		await Promise.all(modelsToEnable.map((model) => toggleModelById(localStorage.token, model.id)));
+		await getModelList();
 	};
 
 	const disableAllHandler = async () => {
-		const modelsToDisable = (models ?? []).filter((m) => m.is_active ?? true);
-		// Optimistic UI update
-		modelsToDisable.forEach((m) => (m.is_active = false));
+		const allModels = await fetchAllWorkspaceModels();
+		const modelsToDisable = allModels.filter((m) => m.is_active ?? true);
+		if (modelsToDisable.length === 0) return;
+		// Optimistic UI update for current page
+		(models ?? []).forEach((m) => (m.is_active = false));
 		models = models;
 		// Sync with server
 		await Promise.all(
 			modelsToDisable.map((model) => toggleModelById(localStorage.token, model.id))
 		);
+		await getModelList();
 	};
 
 	const showAllHandler = async () => {
-		const modelsToShow = (models ?? []).filter((m) => m?.meta?.hidden === true);
-		// Optimistic UI update
-		modelsToShow.forEach((m) => {
+		const allModels = await fetchAllWorkspaceModels();
+		const modelsToShow = allModels.filter((m) => m?.meta?.hidden === true);
+		if (modelsToShow.length === 0) return;
+		// Optimistic UI update for current page
+		(models ?? []).forEach((m) => {
 			m.meta = { ...m.meta, hidden: false };
 		});
 		models = models;
 		// Sync with server
 		await Promise.all(
-			modelsToShow.map((model) => updateModelById(localStorage.token, model.id, model))
+			modelsToShow.map((model) => {
+				model.meta = { ...model.meta, hidden: false };
+				return updateModelById(localStorage.token, model.id, model);
+			})
 		);
+<<<<<<< HEAD
+=======
+		await getModelList();
+		toast.success($i18n.t('All models are now visible'));
+>>>>>>> upstream/main
 	};
 
 	const hideAllHandler = async () => {
-		const modelsToHide = (models ?? []).filter((m) => !(m?.meta?.hidden ?? false));
-		// Optimistic UI update
-		modelsToHide.forEach((m) => {
+		const allModels = await fetchAllWorkspaceModels();
+		const modelsToHide = allModels.filter((m) => !(m?.meta?.hidden ?? false));
+		if (modelsToHide.length === 0) return;
+		// Optimistic UI update for current page
+		(models ?? []).forEach((m) => {
 			m.meta = { ...m.meta, hidden: true };
 		});
 		models = models;
 		// Sync with server
 		await Promise.all(
-			modelsToHide.map((model) => updateModelById(localStorage.token, model.id, model))
+			modelsToHide.map((model) => {
+				model.meta = { ...model.meta, hidden: true };
+				return updateModelById(localStorage.token, model.id, model);
+			})
 		);
+<<<<<<< HEAD
+=======
+		await getModelList();
+		toast.success($i18n.t('All models are now hidden'));
+>>>>>>> upstream/main
 	};
 
 	onMount(async () => {
@@ -305,12 +357,12 @@
 
 		window.addEventListener('keydown', onKeyDown);
 		window.addEventListener('keyup', onKeyUp);
-		window.addEventListener('blur-sm', onBlur);
+		window.addEventListener('blur', onBlur);
 
 		return () => {
 			window.removeEventListener('keydown', onKeyDown);
 			window.removeEventListener('keyup', onKeyUp);
-			window.removeEventListener('blur-sm', onBlur);
+			window.removeEventListener('blur', onBlur);
 		};
 	});
 </script>
@@ -411,11 +463,67 @@
 					on:input={() => {
 						clearTimeout(searchDebounceTimer);
 						searchDebounceTimer = setTimeout(() => {
+							page = 1;
 							getModelList();
 						}, 300);
 					}}
 				/>
 				{#if query}
+<<<<<<< HEAD
+=======
+					<div class="self-center pl-1.5 translate-y-[0.5px] rounded-l-xl bg-transparent">
+						<button
+							class="p-0.5 rounded-full hover:bg-gray-100 dark:hover:bg-gray-900 transition"
+							aria-label={$i18n.t('Clear search')}
+							on:click={() => {
+								query = '';
+								page = 1;
+								getModelList();
+							}}
+						>
+							<XMark className="size-3" strokeWidth="2" />
+						</button>
+					</div>
+				{/if}
+			</div>
+		</div>
+
+		<div
+			class="px-3 flex w-full bg-transparent overflow-x-auto scrollbar-none"
+			on:wheel={(e) => {
+				if (e.deltaY !== 0) {
+					e.preventDefault();
+					e.currentTarget.scrollLeft += e.deltaY;
+				}
+			}}
+		>
+			<div
+				class="flex gap-0.5 w-fit text-center text-sm rounded-full bg-transparent px-0.5 whitespace-nowrap"
+				bind:this={tagsContainerElement}
+			>
+				<ViewSelector
+					bind:value={viewOption}
+					onChange={async (value) => {
+						localStorage.workspaceViewOption = value;
+						await tick();
+					}}
+				/>
+
+				{#if (tags ?? []).length > 0}
+					<TagSelector
+						bind:value={selectedTag}
+						items={tags.map((tag) => {
+							return { value: tag, label: tag };
+						})}
+					/>
+				{/if}
+			</div>
+
+			<div class="flex-1"></div>
+
+			<Dropdown>
+				<Tooltip content={$i18n.t('Actions')}>
+>>>>>>> upstream/main
 					<button
 						class="btn-clear p-0.5"
 						aria-label={$i18n.t('Clear search')}

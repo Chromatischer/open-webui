@@ -5,21 +5,67 @@
 	"(e.g. `sh webui.sh --api`)": "(масалан, `sh webui.sh --api`)",
 	"(latest)": "(охирги)",
 	"(leave blank for to use commercial endpoint)": "(тижорий сўнгги нуқтадан фойдаланиш учун бўш қолдиринг)",
+<<<<<<< HEAD
 	"{{COUNT}} extracted lines": "",
 	"{{COUNT}} hidden lines": "{{COUNT}} та яширин чизиқ",
 	"{{COUNT}} members": "",
 	"{{COUNT}} Rows": "",
 	"{{count}} selected_one": "",
 	"{{count}} selected_other": "",
+=======
+	"[Last] dddd [at] h:mm A": "",
+	"[Today at] h:mm A": "",
+	"[Yesterday at] h:mm A": "",
+	"{{ models }}": "{{ models }}",
+	"{{COUNT}} Available Skills": "",
+	"{{COUNT}} Available Tools": "{{COUNT}} та мавжуд воситалар",
+	"{{COUNT}} characters": "",
+	"{{COUNT}} extracted lines": "",
+	"{{COUNT}} files": "",
+	"{{count}} files selected. Only new and modified files will be uploaded. Deleted files will be removed. The folder structure will be mirrored. Continue?_one": "",
+	"{{count}} files selected. Only new and modified files will be uploaded. Deleted files will be removed. The folder structure will be mirrored. Continue?_other": "",
+	"{{count}} filters_one": "",
+	"{{count}} filters_other": "",
+	"{{count}} groups_one": "",
+	"{{count}} groups_other": "",
+	"{{COUNT}} hidden lines": "{{COUNT}} та яширин чизиқ",
+	"{{COUNT}} members": "",
+	"{{count}} of {{total}} accessible_one": "",
+	"{{count}} of {{total}} accessible_other": "",
+	"{{COUNT}} Replies": "{{COUNT}} та жавоб",
+	"{{COUNT}} Rows": "",
+	"{{count}} selected_one": "",
+	"{{count}} selected_other": "",
+	"{{COUNT}} Sources": "",
+	"{{count}} users_one": "",
+	"{{count}} users_other": "",
+	"{{COUNT}} words": "",
+>>>>>>> upstream/main
 	"{{COUNT}}d_time_ago": "",
 	"{{COUNT}}h_time_ago": "",
 	"{{COUNT}}m_time_ago": "",
 	"{{COUNT}}w_time_ago": "",
 	"{{COUNT}}y_time_ago": "",
+<<<<<<< HEAD
+=======
+	"{{label}} contains invalid JSON": "",
+	"{{label}} must be a JSON object": "",
+	"{{LOCALIZED_DATE}} at {{LOCALIZED_TIME}}": "",
+	"{{model}} download has been canceled": "",
+>>>>>>> upstream/main
 	"{{modelName}} profile image": "",
 	"{{user}}'s Chats": "{{user}} нинг чатлари",
 	"{{webUIName}} Backend Required": "{{webUIName}} Баcкенд талаб қилинади",
 	"*Prompt node ID(s) are required for image generation": "*Расм яратиш учун тезкор тугун идентификаторлари талаб қилинади",
+<<<<<<< HEAD
+=======
+	"1 group": "",
+	"1 hour before": "",
+	"1 Source": "",
+	"1 user": "",
+	"10 minutes before": "",
+	"15 minutes before": "",
+>>>>>>> upstream/main
 	"1m_time_ago": "",
 	"a line about what this model is for…": "",
 	"A model binds a base mind to a system prompt, tools and knowledge — compose one and summon it in any chat.": "",
@@ -31,6 +77,11 @@
 	"Access Control": "Кириш назорати",
 	"Access Grants": "",
 	"Access List": "",
+<<<<<<< HEAD
+=======
+	"Access prohibited": "",
+	"Access updated": "",
+>>>>>>> upstream/main
 	"Accessible to all users": "Барча фойдаланувчилар учун очиқ",
 	"Account Activation Pending": "Ҳисобни фаоллаштириш кутилмоқда",
 	"Accurate information": "Аниқ маълумот",
@@ -41,6 +92,7 @@
 	"Activity": "",
 	"Add": "Қўшиш",
 	"Add a model ID": "Модел идентификаторини қўшинг",
+	"Add a preference, fact, or instruction about you": "",
 	"Add a short description about what this model does": "Ушбу модел нима қилиши ҳақида қисқача тавсиф қўшинг",
 	"Add a tag": "Тег қўшинг",
 	"Add a tag...": "",
@@ -50,7 +102,17 @@
 	"Add Custom Parameter": "Махсус параметр қўшинг",
 	"Add Custom Prompt": "",
 	"Add Details": "",
+	"Add durable context for future chats": "",
 	"Add Files": "Файлларни қўшиш",
+<<<<<<< HEAD
+=======
+	"Add Image": "",
+	"Add Knowledge Connection": "",
+	"Add location": "",
+	"Add Member": "",
+	"Add Members": "",
+	"Add Memory": "Хотира қўшиш",
+>>>>>>> upstream/main
 	"Add Model": "Модел қўшиш",
 	"Add tag": "",
 	"Add Tag": "Тег қўшиш",
@@ -58,6 +120,11 @@
 	"Add to favorites": "",
 	"Add User": "Фойдаланувчи қўшиш",
 	"Add User Group": "Фойдаланувчилар гуруҳини қўшиш",
+<<<<<<< HEAD
+=======
+	"Add webhook": "",
+	"Add webpage": "",
+>>>>>>> upstream/main
 	"Add your Open Terminal URL and API key in Settings → Integrations.": "",
 	"Additional Config": "",
 	"Additional configuration options for marker. This should be a JSON string with key-value pairs. For example, '{\"key\": \"value\"}'. Supported keys include: disable_links, keep_pageheader_in_output, keep_pagefooter_in_output, filter_blank_pages, drop_repeated_text, layout_coverage_threshold, merge_threshold, height_tolerance, gap_threshold, image_threshold, min_line_length, level_count, default_level": "",
@@ -68,18 +135,40 @@
 	"Admin": "Админ",
 	"Admin Contact Email": "",
 	"Admin Panel": "Администратор панели",
+<<<<<<< HEAD
+=======
+	"Admin Roles": "",
+	"Admin Settings": "Администратор созламалари",
+	"Admin-managed service account": "",
+>>>>>>> upstream/main
 	"Admins have access to all tools at all times; users need tools assigned per model in the workspace.": "Администраторлар ҳар доим барча воситалардан фойдаланишлари мумкин; фойдаланувчиларга иш жойида ҳар бир модел учун тайинланган воситалар керак бўлади.",
 	"Advanced": "",
 	"Advanced parameters for MinerU parsing (enable_ocr, enable_formula, enable_table, language, model_version, page_ranges)": "",
 	"Advanced Params": "Кенгайтирилган параметрлар",
 	"After updating or changing the embedding model, you must reindex the knowledge base for the changes to take effect. You can do this using the \"Reindex\" button below.": "",
 	"All": "Ҳаммаси",
+<<<<<<< HEAD
 	"All time": "",
 	"All Users": "",
+=======
+	"All chats have been unarchived.": "",
+	"All day": "",
+	"All events": "",
+	"All models are now hidden": "",
+	"All models are now visible": "",
+	"All models deleted successfully": "Барча моделлар муваффақиятли ўчирилди",
+	"All shared chats have been unshared.": "",
+	"All Sources": "",
+	"All time": "",
+	"All Users": "",
+	"All users and system events": "",
+	"Allow Call": "Қўнғироққа рухсат бериш",
+>>>>>>> upstream/main
 	"Allow Chat Controls": "Чат бошқарувига рухсат беринг",
 	"Allow Chat Delete": "Чатни ўчиришга рухсат беринг",
 	"Allow Chat Edit": "Чатни таҳрирлашга рухсат беринг",
 	"Allow Chat Export": "Чат экспортига рухсат беринг",
+	"Allow Chat Import": "",
 	"Allow Chat Params": "",
 	"Allow Chat Share": "Чат алмашишга рухсат беринг",
 	"Allow Chat System Prompt": "",
@@ -94,9 +183,11 @@
 	"Allow Sharing With Users": "",
 	"Allow Text to Speech": "Матнни нутққа айлантиришга рухсат беринг",
 	"Allow Web Upload": "",
+	"Allowed Domains": "",
 	"Allowed Endpoints": "Рухсат этилган охирги нуқталар",
 	"Allowed File Extensions": "Рухсат этилган файл кенгайтмалари",
 	"Allowed file extensions for upload. Separate multiple extensions with commas. Leave empty for all file types.": "Юклаш учун рухсат берилган файл кенгайтмалари. Бир нечта кенгайтмаларни вергул билан ажратинг. Барча файл турлари учун бўш қолдиринг.",
+	"Allowed Roles": "",
 	"Already have an account?": "Ҳисобингиз борми?",
 	"Alternative to the top_p, and aims to ensure a balance of quality and variety. The parameter p represents the minimum probability for a token to be considered, relative to the probability of the most likely token. For example, with p=0.05 and the most likely token having a probability of 0.9, logits with a value less than 0.045 are filtered out.": "Топ_п га муқобил ва сифат ва хилма-хиллик мувозанатини таъминлашга қаратилган. п параметри токеннинг кўриб чиқилишининг минимал эҳтимолини ифодалайди, бу токеннинг эҳтимолий эҳтимолига нисбатан. Мисол учун, п=0,05 ва энг эҳтимолли токен 0,9 эҳтимолга эга бўлса, қиймати 0,045 дан кам бўлган логитлар филтрланади.",
 	"Amazing": "Ажойиб",
@@ -108,6 +199,11 @@
 	"API Base URL": "Дастурий Илова Интерфейси(API) bazaviy URL manzili",
 	"API Base URL for Datalab Marker service. Defaults to: https://www.datalab.to/api/v1/marker": "",
 	"API Key": "Дастурий Илова Интерфейси(API) калити",
+<<<<<<< HEAD
+=======
+	"API Key / Token": "",
+	"API Key created.": "Дастурий Илова Интерфейси(API) калити яратилди.",
+>>>>>>> upstream/main
 	"API Key Endpoint Restrictions": "Дастурий Илова Интерфейси(API) калитининг чекловлари",
 	"API Keys": "",
 	"API Mode": "",
@@ -124,13 +220,31 @@
 	"Are you sure you want to delete \"{{NAME}}\"?": "",
 	"Are you sure you want to delete **{{modelName}}**?": "",
 	"Are you sure you want to delete this connection? This action cannot be undone.": "",
+<<<<<<< HEAD
 	"Are you sure you want to delete this?": "",
 	"Arena": "",
+=======
+	"Are you sure you want to delete this directory?": "",
+	"Are you sure you want to delete this memory? This action cannot be undone.": "",
+	"Are you sure you want to delete this message?": "Ҳақиқатан ҳам бу хабарни ўчириб ташламоқчимисиз?",
+	"Are you sure you want to delete this version? Child versions will be relinked to this version's parent.": "",
+	"Are you sure you want to delete this webhook? This action cannot be undone.": "",
+	"Are you sure you want to delete this?": "",
+	"Are you sure you want to reset all permissions to their default values? You will still need to save to apply the changes.": "",
+	"Are you sure you want to unarchive all archived chats?": "Ҳақиқатан ҳам барча архивланган чатларни архивдан чиқармоқчимисиз?",
+	"Are you sure you want to unshare all shared chats? This will remove all share links.": "",
+>>>>>>> upstream/main
 	"Arena Models": "Арена моделлари",
 	"Artifacts": "Артефактлар",
 	"Ask": "Сўранг",
 	"Ask a question": "Савол беринг",
+<<<<<<< HEAD
 	"Ask the User": "",
+=======
+	"Ask a test question": "",
+	"Ask this knowledge source a test question": "",
+	"Assistant": "Ёрдамчи",
+>>>>>>> upstream/main
 	"Async Embedding Processing": "",
 	"Attach File From Knowledge": "",
 	"Attention to detail": "Тафсилотларга эътибор",
@@ -139,20 +253,33 @@
 	"Audience": "",
 	"August": "август",
 	"Auth": "Автор",
+	"Auth Mode": "",
+	"Auth required": "",
 	"Authenticate": "Аутентификация қилиш",
 	"Authentication": "Аутентификация",
 	"Auto (Random)": "",
+<<<<<<< HEAD
 	"Auto-inject system tools for Agents (timestamps, memory, notes, etc.)": "",
+=======
+	"Auto Redirect": "",
+	"Auto-Copy Response to Clipboard": "Жавобни вақтинчалик хотирага автоматик нусхалаш",
+	"Auto-Create Groups": "",
+	"Auto-Playback Response": "Автоматик ижро жавоби",
+>>>>>>> upstream/main
 	"Autocomplete Generation": "Автотўлдиришни яратиш",
 	"Autocomplete Generation Input Max Length": "Автоматик тўлдириш ишлаб чиқариш киритиш максимал узунлиги",
+	"Autocomplete Generation Prompt": "",
+	"Automatic": "",
 	"Automatic1111": "Автоматик1111",
 	"AUTOMATIC1111 Api Auth String": "AUTOMATIC1111 Api Auth String",
 	"AUTOMATIC1111 Base URL": "AUTOMATIC1111 базавий манзил",
 	"AUTOMATIC1111 Base URL is required.": "AUTOMATIC1111 базавий манзил талаб қилинади.",
 	"Available list": "Мавжуд рўйхат",
 	"Available models": "",
+	"Available Skills": "",
 	"Available Tools": "Мавжуд асбоблар",
 	"available users": "мавжуд фойдаланувчилар",
+	"Available variables": "",
 	"available!": "мавжуд!",
 	"Awful": "Даҳшатли",
 	"Azure AI Speech": "Azure AI нутқи",
@@ -163,16 +290,30 @@
 	"Backup, export, and import instance data.": "",
 	"Bad Response": "Ёмон жавоб",
 	"Banners": "Баннерлар",
+<<<<<<< HEAD
 	"Base model": "",
+=======
+	"Base Model (From)": "Асосий модел (дан бошлаб)",
+	"Base Model is required.": "",
+>>>>>>> upstream/main
 	"Base Model List Cache speeds up access by fetching base models only at startup or on settings save—faster, but may not show recent base model changes.": "",
 	"Bearer": "",
 	"Begin a new folio": "",
 	"Being lazy": "Дангаса бўлиш",
+<<<<<<< HEAD
 	"Beta": "Бета",
 	"Bind the model": "",
 	"Bing": "",
 	"Bing Search V7 Endpoint": "Bing Search V7 Endpoint",
 	"Bing Search V7 Subscription Key": "Bing Search V7 Subscription Key",
+=======
+	"Bing": "",
+	"Bing Search V7 Endpoint": "Bing Search V7 Endpoint",
+	"Bing Search V7 Subscription Key": "Bing Search V7 Subscription Key",
+	"Bio": "",
+	"Birth Date": "",
+	"Blocked Groups": "",
+>>>>>>> upstream/main
 	"BM25 Weight": "",
 	"Bocha Search API Key": "Bocha Search API Key",
 	"Bold": "",
@@ -200,6 +341,12 @@
 	"Chat": "Чат",
 	"Chat Completions": "",
 	"Chat Conversation": "",
+<<<<<<< HEAD
+=======
+	"Chat deleted.": "",
+	"Chat Direction": "Чат йўналиши",
+	"Chat exported successfully": "",
+>>>>>>> upstream/main
 	"Chat History": "",
 	"Chat ID": "",
 	"Chat moved successfully": "",
@@ -259,6 +406,11 @@
 	"Code Interpreter Prompt Template": "Код таржимони сўрови шаблони",
 	"Collapse": "Йиқилиш",
 	"Collection": "Тўплам",
+<<<<<<< HEAD
+=======
+	"Collection Field": "",
+	"Collections": "",
+>>>>>>> upstream/main
 	"Color": "Ранг",
 	"ComfyUI": "ComfyUI",
 	"ComfyUI API Key": "ComfyUI API Key",
@@ -267,9 +419,25 @@
 	"ComfyUI Workflow": "ComfyUI иш жараёни",
 	"ComfyUI Workflow Nodes": "ComfyUI иш оқими тугунлари",
 	"Comma separated Node Ids (e.g. 1 or 1,2)": "",
+<<<<<<< HEAD
+=======
+	"Comma-separated group names": "",
+	"Comma-separated list of file extensions MinerU will handle (e.g. pdf, docx, pptx, xlsx)": "",
+	"command": "",
+	"Command": "Буйруқ",
+>>>>>>> upstream/main
 	"Comment": "",
 	"Community Reviews": "",
+<<<<<<< HEAD
 	"Compose your first model": "",
+=======
+	"Compacting context": "",
+	"Comparing with knowledge base...": "",
+	"Completions": "Тугаллашлар",
+	"Compress Images in Channels": "",
+	"Computing checksums ({{count}} files)_one": "",
+	"Computing checksums ({{count}} files)_other": "",
+>>>>>>> upstream/main
 	"Concurrent Requests": "Бир вақтнинг ўзида сўровлар",
 	"Config": "",
 	"Configure": "Созланг",
@@ -282,6 +450,10 @@
 	"Connect to Open Terminal instances. All users will have access to file browsing and terminal tools through these servers.": "",
 	"Connect to your own OpenAPI compatible external tool servers.": "Ўзингизнинг OpenAIга мос келадиган ташқи асбоблар серверларига уланинг.",
 	"Connected": "",
+<<<<<<< HEAD
+=======
+	"Connected ({{type}})": "",
+>>>>>>> upstream/main
 	"Connection failed": "Уланиш амалга ошмади",
 	"Connection lost. Reconnecting...": "",
 	"Connection Type": "Уланиш тури",
@@ -290,8 +462,16 @@
 	"Contact Admin for WebUI Access": "WebUIга кириш учун администратор билан боғланинг",
 	"Content": "Таркиб",
 	"Content Extraction Engine": "Контентни ажратиб олиш механизми",
+	"Content Field": "",
 	"Content lengths (character counts only)": "",
+	"Context": "",
+	"Context compacted": "",
+	"Context Compaction": "",
+	"Context compaction failed": "",
+	"Context Compaction Prompt": "",
+	"Context Compaction Threshold": "",
 	"Context Tokens": "",
+	"Continue": "",
 	"Continue Response": "Жавоб беришни давом эттириш",
 	"Continue with {{provider}}": "{{provider}} билан давом этинг",
 	"Continue with Email": "Электрон почта орқали давом этинг",
@@ -322,6 +502,16 @@
 	"Create Image": "",
 	"Create model": "",
 	"Create Model": "",
+<<<<<<< HEAD
+=======
+	"Create new key": "Янги калит яратинг",
+	"Create new secret key": "Янги махфий калит яратинг",
+	"Create note": "",
+	"Create Note": "Эслатма яратиш",
+	"Create one read-only Knowledge source per external collection. Test must pass before the source is created.": "",
+	"Create scheduled prompts that run automatically on a recurring basis.": "",
+	"Create your first note by clicking on the plus button below.": "Қуйидаги ортиқча тугмасини босиш орқали биринчи қайдингизни яратинг.",
+>>>>>>> upstream/main
 	"Created at": "Яратилган",
 	"Created At": "Яратилган",
 	"Created by": "томонидан яратилган",
@@ -332,7 +522,12 @@
 	"Custom color": "",
 	"Custom Parameter Name": "Махсус параметр номи",
 	"Custom Parameter Value": "Махсус параметр қиймати",
+<<<<<<< HEAD
 	"Custom presets that pair a base model with a system prompt, tools, knowledge and capabilities — build your own assistants and reuse them anywhere in chat.": "",
+=======
+	"Custom range": "",
+	"Daily": "",
+>>>>>>> upstream/main
 	"Daily Messages": "",
 	"Danger Zone": "Хавфли зона",
 	"Database": "Маълумотлар базаси",
@@ -348,7 +543,6 @@
 	"Default Features": "",
 	"Default Filters": "",
 	"Default Group": "",
-	"Default mode works with a wider range of models by calling tools once before execution. Native mode leverages the model's built-in tool-calling capabilities, but requires the model to inherently support this feature.": "",
 	"Default Model": "Стандарт модел",
 	"Default permissions": "Бирламчи рухсатлар",
 	"Default Prompt Suggestions": "Стандарт таклифлар",
@@ -356,13 +550,25 @@
 	"Default to ALL": "Барчаси учун бирламчи",
 	"Default to segmented retrieval for focused and relevant content extraction, this is recommended for most cases.": "Фокусланган ва тегишли контентни ажратиб олиш учун бирламчи сегментланган қидириш, бу кўп ҳолларда тавсия этилади.",
 	"Default User Role": "Стандарт фойдаланувчи роли",
+	"Default webhook": "",
 	"Defaults": "",
 	"Delete": "Ўчириш",
 	"Delete {{name}}": "",
 	"Delete a model": "Моделни ўчириш",
+<<<<<<< HEAD
+=======
+	"Delete All": "",
+	"Delete All Chats": "Барча суҳбатларни ўчириш",
+	"Delete all contents inside this directory": "",
+>>>>>>> upstream/main
 	"Delete all contents inside this folder": "",
 	"Delete Chat": "Чатни ўчириш",
 	"Delete chat?": "Чат ўчирилсинми?",
+<<<<<<< HEAD
+=======
+	"Delete directory?": "",
+	"Delete Event": "",
+>>>>>>> upstream/main
 	"Delete File": "",
 	"Delete folder?": "Жилд ўчирилсинми?",
 	"Delete function?": "Функция ўчирилсинми?",
@@ -383,9 +589,20 @@
 	"Direct Connections": "Тўғридан-тўғри уланишлар",
 	"Direct Connections allow users to connect to their own OpenAI compatible API endpoints.": "Тўғридан-тўғри уланишлар фойдаланувчиларга ўзларининг OpenAIга мос келувчи API сўнгги нуқталарига уланиш имконини беради.",
 	"Direct Tool Servers": "Тўғридан-тўғри асбоблар серверлари",
+<<<<<<< HEAD
+=======
+	"Directory created.": "",
+	"Directory deleted.": "",
+	"Directory moved.": "",
+	"Directory name": "",
+	"Directory renamed.": "",
+	"Directory selection was cancelled": "",
+>>>>>>> upstream/main
 	"Disable All": "",
 	"Disable Image Extraction": "Расм чиқаришни ўчириб қўйинг",
 	"Disable image extraction from the PDF. If Use LLM is enabled, images will be automatically captioned. Defaults to False.": "PDFдан тасвирни ажратиб олишни ўчириб қўйинг. Агар LLM дан фойдаланиш ёқилган бўлса, тасвирларга автоматик сарлавҳа қўйилади. Бирламчи параметрлар False.",
+	"Disable Image Generation": "",
+	"Disable Web Search": "",
 	"Disabled": "Ўчирилган",
 	"Discard this folio": "",
 	"Discarded": "",
@@ -394,6 +611,13 @@
 	"Discover wonders": "Мўъжизаларни кашф этинг",
 	"Discover, download, and explore custom functions": "Махсус функцияларни кашф этинг, юклаб олинг ва ўрганинг",
 	"Display": "Дисплей",
+<<<<<<< HEAD
+=======
+	"Display Chat Title in Tab": "",
+	"Display Emoji in Call": "Чақирувда кулгичларни кўрсатиш",
+	"Display Multi-model Responses in Tabs": "",
+	"Display the Username Instead of You in the Chat": "Чатда Сиз ўрнига фойдаланувчи номини кўрсатинг",
+>>>>>>> upstream/main
 	"Displays citations in the response": "Жавобда иқтибосларни кўрсатади",
 	"Displays status updates (e.g., web search progress) in the response": "",
 	"Dissolve": "",
@@ -406,6 +630,7 @@
 	"Docling Parameters": "",
 	"Docling Server URL required.": "Доcлинг Сервер URL манзили талаб қилинади.",
 	"Document": "Ҳужжат",
+	"Document ID Field": "",
 	"Document Intelligence": "Ҳужжат разведкаси",
 	"Document Intelligence endpoint required.": "",
 	"Document Intelligence Model": "",
@@ -459,41 +684,60 @@
 	"Edit Default Permissions": "Стандарт рухсатларни таҳрирлаш",
 	"Edit Folder": "",
 	"Edit Image": "",
+	"Edit Knowledge Connection": "",
 	"Edit Last Message": "",
 	"Edit Model": "",
 	"Edit Terminal Connection": "",
 	"Edit User": "Фойдаланувчини таҳрирлаш",
 	"Edit User Group": "Фойдаланувчилар гуруҳини таҳрирлаш",
+	"Edit webhook": "",
 	"Edit workflow.json content": "",
 	"Eject": "Чиқариш",
 	"Eject model": "",
 	"ElevenLabs": "ЭлевенЛабс",
 	"Email": "Электрон почта",
+	"Email Claim": "",
 	"Embark on adventures": "Саргузаштларга киришинг",
 	"Embedding": "Ўрнатиш",
 	"Embedding Batch Size": "Ўрнатиш тўплами ҳажми",
 	"Embedding Concurrent Requests": "",
 	"Embedding Model": "Ўрнатиш модели",
 	"Embedding Model Engine": "Двигател моделини ўрнатиш",
+	"Emoji": "",
 	"Emojis": "",
+<<<<<<< HEAD
+=======
+	"Empty": "",
+	"Empty message": "",
+>>>>>>> upstream/main
 	"Enable All": "",
 	"Enable API Keys": "",
 	"Enable autocomplete generation for chat messages": "Чат хабарлари учун автоматик тўлдиришни яратишни ёқинг",
 	"Enable Code Execution": "Код бажарилишини ёқинг",
 	"Enable Code Interpreter": "Код таржимонини ёқинг",
 	"Enable Community Sharing": "Ҳамжамият билан алмашишни ёқинг",
+	"Enable Group Mapping": "",
+	"Enable Image Generation": "",
 	"Enable Memory Locking (mlock) to prevent model data from being swapped out of RAM. This option locks the model's working set of pages into RAM, ensuring that they will not be swapped out to disk. This can help maintain performance by avoiding page faults and ensuring fast data access.": "Модел маълумотларини РАМдан алмаштиришнинг олдини олиш учун Хотирани қулфлашни (mlock) ёқинг. Ушбу параметр моделнинг ишлайдиган саҳифалар тўпламини РАМга блоклайди ва улар дискка алмаштирилмаслигини таъминлайди. Бу саҳифа хатоларидан қочиш ва маълумотларга тезкор киришни таъминлаш орқали ишлашни сақлашга ёрдам беради.",
 	"Enable Memory Mapping (mmap) to load model data. This option allows the system to use disk storage as an extension of RAM by treating disk files as if they were in RAM. This can improve model performance by allowing for faster data access. However, it may not work correctly with all systems and can consume a significant amount of disk space.": "Модел маълумотларини юклаш учун Хотира харитасини (mmap) ёқинг. Ушбу параметр тизимга диск файлларини оператив хотирада бўлганидек даволаш орқали РАМ кенгайтмаси сифатида диск хотирасидан фойдаланиш имконини беради. Бу маълумотларга тезроқ кириш имконини бериш орқали модел иш фаолиятини яхшилаши мумкин. Бироқ, у барча тизимлар билан тўғри ишламаслиги ва катта ҳажмдаги диск майдонини истеъмол қилиши мумкин.",
 	"Enable Message Rating": "Хабар рейтингини ёқиш",
 	"Enable Mirostat sampling for controlling perplexity.": "Ажабланишни назорат қилиш учун Миростат намунасини ёқинг.",
 	"Enable New Sign Ups": "Янги рўйхатдан ўтишни ёқинг",
+	"Enable OAuth Signup": "",
+	"Enable Role Mapping": "",
+	"Enable Web Search": "",
 	"Enable, disable, or customize the reasoning tags used by the model. \"Enabled\" uses default tags, \"Disabled\" turns off reasoning tags, and \"Custom\" lets you specify your own start and end tags.": "",
 	"Enabled": "Ёқилган",
 	"End Tag": "",
+	"Endpoint": "",
 	"Endpoint URL": "Охирги нуқта URL",
 	"Enrich Hybrid Search Text": "",
 	"Ensure your CSV file includes 4 columns in this order: Name, Email, Password, Role.": "CSV файлингиз қуйидаги тартибда 4 та устундан иборатлигига ишонч ҳосил қилинг: Исм, Электрон почта, Парол, Рол.",
+<<<<<<< HEAD
 	"Enter a name first": "",
+=======
+	"Enter {{role}} message here": "Бу ерга {{role}} хабарини киритинг",
+>>>>>>> upstream/main
 	"Enter a title for the pending user info overlay. Leave empty for default.": "Кутилаётган фойдаланувчи маълумотлари учун сарлавҳа киритинг. Сукут бўйича бўш қолдиринг.",
 	"Enter a watermark for the response. Leave empty for none.": "Жавоб учун мойбўёқли белгини киритинг. Ҳеч ким учун бўш қолдиринг.",
 	"Enter additional headers in JSON format": "",
@@ -510,6 +754,8 @@
 	"Enter Chunk Min Size Target": "",
 	"Enter Chunk Overlap": "Chunk Overlap киритинг",
 	"Enter Chunk Size": "Chunk ҳажмини киритинг",
+	"Enter Client ID": "",
+	"Enter Client Secret": "",
 	"Enter comma-separated \"token:bias_value\" pairs (example: 5432:100, 413:-100)": "Вергул билан ажратилган \"token:bias_value\" жуфтларини киритинг (мисол: 5432:100, 413:-100)",
 	"Enter content for the pending user info overlay. Leave empty for default.": "Кутилаётган фойдаланувчи маълумотлари қопламаси учун таркибни киритинг. Сукут бўйича бўш қолдиринг.",
 	"Enter coordinates (e.g. 51.505, -0.09)": "",
@@ -546,7 +792,15 @@
 	"Enter Jupyter Token": "Jupiter токенини киритинг",
 	"Enter Jupyter URL": "Jupiter УРЛ манзилини киритинг",
 	"Enter Kagi Search API Key": "Kagi Search АПИ калитини киритинг",
+<<<<<<< HEAD
+=======
+	"Enter Key Behavior": "Асосий хатти-ҳаракатни киритинг",
+	"Enter language": "",
+>>>>>>> upstream/main
 	"Enter language codes": "Тил кодларини киритинг",
+	"Enter Linkup API Key": "",
+	"Enter Microsoft Web IQ API Base URL": "",
+	"Enter Microsoft Web IQ API Key": "",
 	"Enter MinerU API Key": "",
 	"Enter Mistral API Base URL": "",
 	"Enter Mistral API Key": "Mistral АПИ калитини киритинг",
@@ -565,6 +819,7 @@
 	"Enter Playwright WebSocket URL": "Perplexity WebSocket УРЛ манзилини киритинг",
 	"Enter proxy URL (e.g. https://user:password@host:port)": "Прокси-сервернинг УРЛ манзилини киритинг (масалан, ҳттпс://усер:пассwорд@ҳост:порт)",
 	"Enter reasoning effort": "Фикрлаш ҳаракатини киритинг",
+	"Enter Redirect URI": "",
 	"Enter Score": "Бални киритинг",
 	"Enter SearchApi API Key": "SearchApi АПИ калитини киритинг",
 	"Enter SearchApi Engine": "SearchApi тизимига киринг",
@@ -574,6 +829,7 @@
 	"Enter SerpApi API Key": "SerpApi АПИ калитини киритинг",
 	"Enter SerpApi Engine": "SerpApi двигателига киринг",
 	"Enter Serper API Key": "Serper АПИ калитини киритинг",
+	"Enter SERPHouse API Key": "",
 	"Enter Serply API Key": "Serply АПИ калитини киритинг",
 	"Enter Serpstack API Key": "Serpstack АПИ калитини киритинг",
 	"Enter server host": "Сервер хостига киринг",
@@ -591,6 +847,12 @@
 	"Enter the URL to import": "Импорт қилиш учун УРЛ манзилини киритинг",
 	"Enter Tika Server URL": "Тика Сервер УРЛ манзилини киритинг",
 	"Enter timeout in seconds": "Вақт тугашини сонияларда киритинг",
+<<<<<<< HEAD
+=======
+	"Enter to Send": "Юбориш учун киринг",
+	"Enter token threshold": "",
+	"Enter Tokenizer Model": "",
+>>>>>>> upstream/main
 	"Enter Top K": "Топ К.га киринг",
 	"Enter Top K Reranker": "Топ К Реранкер-га киринг",
 	"Enter URL (e.g. http://127.0.0.1:7860/)": "УРЛ манзилини киритинг (масалан, ҳттп://127.0.0.1:7860/)",
@@ -620,8 +882,19 @@
 	"Error: A model with the ID '{{modelId}}' already exists. Please select a different ID to proceed.": "",
 	"Error: Model ID cannot be empty. Please enter a valid ID to proceed.": "",
 	"Evaluations": "Баҳолар",
+<<<<<<< HEAD
 	"Every craft begins bare-handed.": "",
+=======
+	"Event": "",
+	"Event created": "",
+	"Event deleted": "",
+	"Event names may change as Open WebUI evolves. Use broad patterns like user.* for integrations that should continue across new related events.": "",
+	"Event title": "",
+	"Event updated": "",
+	"Events": "",
+>>>>>>> upstream/main
 	"Exa API Key": "Exa АПИ калити",
+	"Example": "",
 	"Example: (&(objectClass=inetOrgPerson)(uid=%s))": "Мисол: (&(обжеcтCласс=инетОргПерсон)(уид=%с))",
 	"Example: ALL": "Мисол: АЛЛ",
 	"Example: mail": "Мисол: почта",
@@ -643,18 +916,29 @@
 	"Export chat (.json)": "Чатни экспорт қилиш (.жсон)",
 	"Export Config": "",
 	"Export Models": "",
+<<<<<<< HEAD
+=======
+	"Export Prompts": "",
+	"Export Skills": "",
+>>>>>>> upstream/main
 	"Export to CSV": "CSV га экспорт қилиш",
 	"Export Tools": "",
 	"Export Users": "",
 	"External": "Ташқи",
+	"External connection not found.": "",
 	"External Document Loader URL required.": "Ташқи ҳужжат юкловчи УРЛ манзили талаб қилинади.",
+	"External Knowledge Source": "",
+	"External Knowledge Sources": "",
 	"External Task Model": "Ташқи вазифа модели",
+	"External Tool Servers": "",
+	"External vectors must be generated with the same embedding model configured in Open WebUI.": "",
 	"External Web Loader API Key": "Ташқи Wеб Лоадер АПИ калити",
 	"External Web Loader URL": "Ташқи веб юкловчи УРЛ манзили",
 	"External Web Search API Key": "Ташқи веб-қидирув АПИ калити",
 	"External Web Search URL": "Ташқи веб-қидирув УРЛ манзили",
 	"Faculties": "",
 	"Failed to archive chat.": "",
+<<<<<<< HEAD
 	"Failed to connect to {{URL}} OpenAPI tool server": "{{УРЛ}} ОпенАПИ асбоб серверига уланиб бўлмади",
 	"Failed to connect to {{URL}} terminal server": "",
 	"Failed to copy link": "Ҳаволани нусхалаб бўлмади",
@@ -664,11 +948,39 @@
 	"Failed to extract content from the file: {{error}}": "",
 	"Failed to extract content from the file.": "",
 	"Failed to fetch models": "Моделларни олиб бўлмади",
+=======
+	"Failed to attach file": "",
+	"Failed to clear status": "",
+	"Failed to compare files.": "",
+	"Failed to connect to {{URL}} OpenAPI tool server": "{{УРЛ}} ОпенАПИ асбоб серверига уланиб бўлмади",
+	"Failed to connect to {{URL}} terminal server": "",
+	"Failed to copy link": "Ҳаволани нусхалаб бўлмади",
+	"Failed to create API Key.": "АПИ калитини яратиб бўлмади.",
+	"Failed to delete calendar": "",
+	"Failed to delete note": "Қайдни ўчириб бўлмади",
+	"Failed to delete webhook": "",
+	"Failed to disconnect": "",
+	"Failed to download image": "",
+	"Failed to extract content from the file: {{error}}": "",
+	"Failed to extract content from the file.": "",
+	"Failed to fetch models": "Моделларни олиб бўлмади",
+	"Failed to generate title": "",
+	"Failed to import models": "",
+	"Failed to load chat": "",
+	"Failed to load chat preview": "",
+>>>>>>> upstream/main
 	"Failed to load DOCX file. Please try downloading it instead.": "",
 	"Failed to load Excel/CSV file. Please try downloading it instead.": "",
 	"Failed to load Interface settings": "",
 	"Failed to load PPTX file. Please try downloading it instead.": "",
 	"Failed to move chat": "",
+<<<<<<< HEAD
+=======
+	"Failed to process URL: {{url}}": "",
+	"Failed to read clipboard contents": "Буфер таркибини ўқиб бўлмади",
+	"Failed to refresh terminals: {{error}}": "",
+	"Failed to remove member": "",
+>>>>>>> upstream/main
 	"Failed to render diagram": "",
 	"Failed to render visualization": "",
 	"Failed to save": "",
@@ -677,10 +989,16 @@
 	"Failed to save models configuration": "Моделлар конфигурацияси сақланмади",
 	"Failed to save policy: {{error}}": "",
 	"Failed to save terminal servers": "",
+	"Failed to save webhook": "",
 	"Failed to unshare chat.": "",
 	"Failed to update settings": "Созламаларни янгилаб бўлмади",
 	"Failed to update status": "",
+<<<<<<< HEAD
 	"Favicons": "",
+=======
+	"Failed to update webhook": "",
+	"Failed to upload file.": "Файл юкланмади.",
+>>>>>>> upstream/main
 	"Features": "Хусусиятлари",
 	"Features Permissions": "Хусусиятлар Рухсатлар",
 	"February": "Феврал",
@@ -693,14 +1011,32 @@
 	"File": "Файл",
 	"File browser": "",
 	"File Context": "",
+<<<<<<< HEAD
+=======
+	"File deleted successfully.": "",
+	"File Extensions": "",
+>>>>>>> upstream/main
 	"File Mode": "Файл режими",
+	"File moved.": "",
 	"File name": "",
 	"File not found.": "Файл топилмади.",
+<<<<<<< HEAD
 	"File size should not exceed {{maxSize}} MB.": "Файл ҳажми {{махСизе}} МБ дан ошмаслиги керак.",
 	"File Upload": "Файл юклаш",
 	"Filename": "",
 	"Files": "Файллар",
 	"Fill name + base model to create": "",
+=======
+	"File removed successfully.": "Файл муваффақиятли олиб ташланди.",
+	"File renamed.": "",
+	"File size should not exceed {{maxSize}} MB.": "Файл ҳажми {{махСизе}} МБ дан ошмаслиги керак.",
+	"File Upload": "Файл юклаш",
+	"File uploaded successfully": "Файл муваффақиятли юкланди",
+	"Filename": "",
+	"Files": "Файллар",
+	"Fill the required fields first.": "",
+	"Fill the source fields and test query first.": "",
+>>>>>>> upstream/main
 	"Filter": "",
 	"Filters": "Филтрлар",
 	"Filters, valves, and middleware workflows.": "",
@@ -718,8 +1054,12 @@
 	"Folder name cannot be empty.": "Жилд номи бўш бўлиши мумкин эмас.",
 	"Folder options": "",
 	"Folders": "",
+<<<<<<< HEAD
 	"folio": "",
 	"folios": "",
+=======
+	"Folders Sharing": "",
+>>>>>>> upstream/main
 	"Follow up": "",
 	"Follow Up Generation": "",
 	"Follow Up Generation Prompt": "",
@@ -747,6 +1087,11 @@
 	"Function imported successfully": "Функция муваффақиятли импорт қилинди",
 	"Function Name": "Функция номи",
 	"Function Name Filter List": "",
+<<<<<<< HEAD
+=======
+	"Function starter": "",
+	"Function updated successfully": "Функция муваффақиятли янгиланди",
+>>>>>>> upstream/main
 	"Functions": "Функсиялар",
 	"Functions allow arbitrary code execution.": "Функциялар ўзбошимчалик билан кодни бажаришга имкон беради.",
 	"Gather a quire": "",
@@ -774,6 +1119,15 @@
 	"Google PSE Engine Id": "Гоогле ПСЕ Энгине идентификатори",
 	"Gravatar": "",
 	"Grokipedia": "",
+<<<<<<< HEAD
+=======
+	"group": "",
+	"Group": "",
+	"Group Channel": "",
+	"Group Claim": "",
+	"Group created successfully": "Гуруҳ муваффақиятли яратилди",
+	"Group deleted successfully": "Гуруҳ муваффақиятли ўчирилди",
+>>>>>>> upstream/main
 	"Group Description": "Гуруҳ тавсифи",
 	"Group Name": "Гуруҳ номи",
 	"groups": "",
@@ -781,6 +1135,11 @@
 	"H1": "",
 	"H2": "",
 	"H3": "",
+<<<<<<< HEAD
+=======
+	"Haptic Feedback": "Ҳаптик фикр-мулоҳазалар",
+	"Header variables": "",
+>>>>>>> upstream/main
 	"Headers": "",
 	"Headers must be a valid JSON object": "",
 	"Hello, {{name}}": "Салом, {{name}}",
@@ -809,6 +1168,12 @@
 	"I acknowledge that I have read and I understand the implications of my action. I am aware of the risks associated with executing arbitrary code and I have verified the trustworthiness of the source.": "Мен ўқиганимни тан оламан ва ўз ҳаракатларимнинг оқибатларини тушунаман. Мен ўзбошимчалик билан кодни бажариш билан боғлиқ хавфлардан хабардорман ва манбанинг ишончлилигини тасдиқладим.",
 	"ID": "ИД",
 	"ID cannot contain \":\" or \"|\" characters": "",
+<<<<<<< HEAD
+=======
+	"ID copied to clipboard": "",
+	"Identity audit": "",
+	"Idle only": "",
+>>>>>>> upstream/main
 	"Idle Timeout": "",
 	"Ignite curiosity": "Қизиқувчанликни ёқинг",
 	"Image": "Расм",
@@ -828,6 +1193,12 @@
 	"Import Config": "",
 	"Import From Link": "Ҳаволадан импорт қилиш",
 	"Import Models": "",
+<<<<<<< HEAD
+=======
+	"Import Prompts": "",
+	"Import Skills": "",
+	"Import successful": "",
+>>>>>>> upstream/main
 	"Import Tools": "",
 	"Important Update": "Мухим янгиланиш",
 	"Imported": "",
@@ -864,6 +1235,11 @@
 	"Jina API Key": "Жина АПИ калити",
 	"join our Discord for help.": "ёрдам учун Дисcордимизга қўшилинг.",
 	"JSON": "ЖСОН",
+<<<<<<< HEAD
+=======
+	"JSON Base64": "",
+	"JSON Preview": "ЖСОН кўриб чиқиш",
+>>>>>>> upstream/main
 	"JSON Spec": "",
 	"July": "июл",
 	"June": "июн",
@@ -874,9 +1250,26 @@
 	"Keep in Sidebar": "",
 	"Key": "Калит",
 	"Key is required": "",
-	"Keyboard shortcuts": "Клавиатура ёрлиқлари",
 	"Keyboard Shortcuts": "",
 	"Knowledge": "Билим",
+<<<<<<< HEAD
+=======
+	"Knowledge Access": "Билимга кириш",
+	"Knowledge Base": "",
+	"Knowledge base has been reset": "",
+	"Knowledge created successfully.": "Билим муваффақиятли яратилди.",
+	"Knowledge deleted successfully.": "Маълумотлар муваффақиятли ўчирилди.",
+	"Knowledge Description": "",
+	"Knowledge exported successfully": "",
+	"Knowledge Name": "",
+	"Knowledge Public Sharing": "Билимларни оммавий алмашиш",
+	"Knowledge Sharing": "",
+	"Knowledge source created.": "",
+	"Knowledge source updated.": "",
+	"Knowledge updated successfully": "Билим муваффақиятли янгиланди",
+	"Kokoro.js (Browser)": "Кокоро.жс (браузер)",
+	"Kokoro.js Dtype": "Кокоро.жс Д тури",
+>>>>>>> upstream/main
 	"Label": "Ёрлиқ",
 	"Language Locales": "Маҳаллий тиллар",
 	"Last 24 hours": "",
@@ -905,9 +1298,18 @@
 	"Leave model field empty to use the default model.": "Стандарт моделдан фойдаланиш учун модел майдонини бўш қолдиринг.",
 	"lexical": "",
 	"License": "Литсензия",
+	"Lifecycle JSON": "",
 	"Lift List": "",
 	"Limit concurrent search queries. 0 = unlimited (default). Set to 1 for sequential execution (recommended for APIs with strict rate limits like Brave free tier).": "",
 	"Limits the number of concurrent embedding requests. Set to 0 for unlimited.": "",
+<<<<<<< HEAD
+=======
+	"Linkup API Key": "",
+	"List": "",
+	"List calendars, search, create, update, and delete calendar events": "",
+	"Listening...": "Тингланмоқда...",
+	"Live": "",
+>>>>>>> upstream/main
 	"llama.cpp": "",
 	"Llama.cpp": "Ллама.cпп",
 	"Loaded": "",
@@ -918,6 +1320,11 @@
 	"Local Task Model": "Маҳаллий вазифа модели",
 	"Lost": "Йўқотилган",
 	"Low": "",
+<<<<<<< HEAD
+=======
+	"Lower the context compaction token threshold for this model. The global context compaction threshold remains the maximum.": "",
+	"LTR": "ЛТР",
+>>>>>>> upstream/main
 	"Made by Open WebUI Community": "Опен WебУИ ҳамжамияти томонидан яратилган",
 	"Make password visible in the user interface": "",
 	"Make sure to export a workflow.json file as API format from ComfyUI.": "Wоркфлоw.жсон файлини CомфюИъдан АПИ формати сифатида экспорт қилганингизга ишонч ҳосил қилинг.",
@@ -929,7 +1336,12 @@
 	"Manage OpenAI API Connections": "OpenAI АПИ уланишларини бошқаринг",
 	"Manage Pipelines": "Қувурларни бошқариш",
 	"Manage Tool Servers": "Асбоб серверларини бошқариш",
+<<<<<<< HEAD
 	"Manage, import, and configure the models available to users.": "",
+=======
+	"Manage your account information.": "",
+	"Mapped Source": "",
+>>>>>>> upstream/main
 	"March": "Март",
 	"Markdown": "Маркдоwн",
 	"Markdown Header Text Splitter": "",
@@ -950,6 +1362,15 @@
 	"Members": "",
 	"Memories": "",
 	"Memory": "Хотира",
+<<<<<<< HEAD
+=======
+	"Memory added successfully": "Хотира муваффақиятли қўшилди",
+	"Memory cleared successfully": "Хотира муваффақиятли тозаланди",
+	"Memory deleted successfully": "Хотира муваффақиятли ўчирилди",
+	"Memory System Context": "",
+	"Memory updated successfully": "Хотира муваффақиятли янгиланди",
+	"Merge Accounts by Email": "",
+>>>>>>> upstream/main
 	"Merge Responses": "Жавобларни бирлаштириш",
 	"Merged Response": "Бирлаштирилган жавоб",
 	"Message": "",
@@ -959,6 +1380,16 @@
 	"Message text...": "",
 	"messages": "",
 	"Messages": "",
+<<<<<<< HEAD
+=======
+	"Messages you send after creating your link won't be shared. Users with the URL will be able to view the shared chat.": "Ҳаволани яратганингиздан кейин юборган хабарларингиз улашилмайди. УРЛ манзили бўлган фойдаланувчилар умумий чатни кўришлари мумкин бўлади.",
+	"Metadata Field": "",
+	"Microsoft OneDrive": "Microsoft ОнеДриве",
+	"Microsoft OneDrive (personal)": "Microsoft ОнеДриве (шахсий)",
+	"Microsoft OneDrive (work/school)": "Microsoft ОнеДриве (иш/мактаб)",
+	"Microsoft Web IQ API Base URL": "",
+	"Microsoft Web IQ API Key": "",
+>>>>>>> upstream/main
 	"min": "",
 	"MinerU": "",
 	"MinerU API Key required for Cloud API mode.": "",
@@ -1000,18 +1431,42 @@
 	"Models Sharing": "",
 	"Mojeek": "",
 	"Mojeek Search API Key": "Можеэк қидирув АПИ калити",
+<<<<<<< HEAD
+=======
+	"Monday – Friday": "",
+	"Month": "",
+	"Monthly": "",
+>>>>>>> upstream/main
 	"More": "Кўпроқ",
 	"More Concise": "",
 	"More Options": "",
 	"Move": "",
+<<<<<<< HEAD
+=======
+	"Moved {{name}}": "",
+	"Multipart Upload": "",
+	"Mute": "",
+	"Muted": "",
+>>>>>>> upstream/main
 	"My Terminal": "",
 	"Name": "Исм",
 	"Name and ID are required, please fill them out": "",
 	"Name this model…": "",
 	"Name your model": "",
 	"Native": "Маҳаллий",
+<<<<<<< HEAD
+=======
+	"Native mode (default) leverages the model's built-in tool-calling capabilities. Legacy mode works with a wider range of models by calling tools once before execution via prompt injection.": "",
+	"Never": "",
+>>>>>>> upstream/main
 	"New": "",
 	"New Chat": "Янги чат",
+<<<<<<< HEAD
+=======
+	"New directory": "",
+	"New Directory": "",
+	"New Event": "",
+>>>>>>> upstream/main
 	"New File": "",
 	"New Folder": "Янги жилд",
 	"New Function": "Янги функсия",
@@ -1026,6 +1481,7 @@
 	"Next message": "",
 	"No access grants. Private to you.": "",
 	"No activity data": "",
+	"No additional headers are sent unless configured.": "",
 	"No authentication": "",
 	"No chats found": "",
 	"No chats found for this user.": "Бу фойдаланувчи учун ҳеч қандай чат топилмади.",
@@ -1034,7 +1490,13 @@
 	"No data": "",
 	"No data found": "",
 	"No distance available": "Масофа мавжуд эмас",
+<<<<<<< HEAD
+=======
+	"No event webhooks configured.": "",
+	"No execution logs available yet": "",
+>>>>>>> upstream/main
 	"No expiration can pose security risks.": "",
+	"No external knowledge sources configured.": "",
 	"No feedback found": "",
 	"No file selected": "Ҳеч қандай файл танланмаган",
 	"No files found": "",
@@ -1044,14 +1506,27 @@
 	"No HTML, CSS, or JavaScript content found.": "HTML, CСС ёки ЖаваСcрипт контенти топилмади.",
 	"No inference engine with management support found": "Бошқарув ёрдами билан хулоса чиқариш механизми топилмади",
 	"No kernel": "",
+<<<<<<< HEAD
+=======
+	"No knowledge bases accessible": "",
+	"No knowledge bases found.": "",
+	"No knowledge found": "Ҳеч қандай билим топилмади",
+>>>>>>> upstream/main
 	"No limit": "",
 	"No model IDs": "Модел идентификаторлари йўқ",
+	"No models accessible": "",
 	"No models available": "",
 	"No models found": "Ҳеч қандай модел топилмади",
 	"No models match your search.": "",
 	"No models selected": "Ҳеч қандай модел танланмаган",
 	"No one": "",
 	"No output items": "",
+<<<<<<< HEAD
+=======
+	"No pinned messages": "",
+	"No prompts found": "",
+	"No Repeat": "",
+>>>>>>> upstream/main
 	"No results": "Ҳеч қандай натижа топилмади",
 	"No results found": "Ҳеч қандай натижа топилмади",
 	"No search query generated": "Ҳеч қандай қидирув сўрови яратилмади",
@@ -1063,12 +1538,18 @@
 	"No Terminal connection configured.": "",
 	"No terminal connections configured.": "",
 	"No tool server connections configured.": "",
+<<<<<<< HEAD
 	"No tools match your search.": "",
+=======
+	"No tools accessible": "",
+	"No tools found": "",
+>>>>>>> upstream/main
 	"No users were found.": "Ҳеч қандай фойдаланувчи топилмади.",
 	"No valves": "",
 	"No valves to update": "Янгилаш учун клапанлар йўқ",
 	"Node Ids": "",
 	"None": "Йўқ",
+	"Not configured": "",
 	"Not factually correct": "Аслида тўғри эмас",
 	"Not helpful": "Фойдали эмас",
 	"Not Registered": "",
@@ -1078,21 +1559,31 @@
 	"Nothing has been rehearsed yet.": "",
 	"November": "ноябр",
 	"OAuth": "",
+	"OAuth / OIDC": "",
 	"OAuth 2.1": "",
 	"OAuth 2.1 (Static)": "",
 	"OAuth ID": "ОАутҳ ИД",
+	"OAuth Resource Parameter": "",
+	"OAuth Scopes": "",
 	"OAuth Server URL": "",
 	"October": "октябр",
 	"Off": "Ўчирилган",
 	"Okay, Let's Go!": "Майли, кетайлик!",
+<<<<<<< HEAD
+=======
+	"Older messages are summarized when estimated context exceeds this token limit.": "",
+	"OLED Dark": "ОЛЕД қоронғи",
+>>>>>>> upstream/main
 	"Ollama": "Ollama",
 	"Ollama API": "Ollama АПИ",
 	"Ollama Cloud API Key": "",
 	"Ollama Version": "Ollama версияси",
+	"Omit": "",
 	"On": "Ёниқ",
 	"On by default": "",
 	"On by default for new chats": "",
 	"OneDrive": "ОнеДриве",
+	"Only active during Voice Mode.": "",
 	"Only active when \"Paste Large Text as File\" setting is toggled on.": "",
 	"Only active when the chat input is in focus and an LLM is generating a response.": "",
 	"Only active when the chat input is in focus.": "",
@@ -1162,21 +1653,39 @@
 	"Participate in community leaderboards and evaluations! Syncing aggregated usage stats helps drive research and improvements to Open WebUI. Your privacy is paramount: no message content is ever shared.": "",
 	"Password": "Парол",
 	"Passwords do not match.": "",
+<<<<<<< HEAD
 	"PDF document (.pdf)": "ПДФ ҳужжат (.pdf)",
 	"PDF Extract Images (OCR)": "ПДФ экстракти расмлари (OCR)",
 	"PDF Loader Mode": "",
 	"Penalties & Mirostat": "",
+=======
+	"Paste Large Text as File": "Катта матнни файл сифатида жойлаштиринг",
+	"Path": "",
+	"Path copied": "",
+	"Paused": "",
+	"PDF document (.pdf)": "ПДФ ҳужжат (.pdf)",
+	"PDF Extract Images (OCR)": "ПДФ экстракти расмлари (OCR)",
+	"PDF Loader Mode": "",
+	"pdf, docx, pptx, xlsx": "",
+>>>>>>> upstream/main
 	"pending": "кутилмоқда",
 	"Pending": "",
+	"Pending Accounts": "",
 	"Pending User Overlay Content": "Кутилаётган фойдаланувчи Оверлай контенти",
 	"Pending User Overlay Title": "Кутилаётган фойдаланувчи сарлавҳаси",
 	"Permissions": "Рухсатлар",
+	"Permissions reset to defaults": "",
 	"Perplexity API Key": "Қийинчилик АПИ калити",
 	"Perplexity Model": "",
 	"Perplexity Search API URL": "",
 	"Perplexity Search Context Usage": "",
 	"Persistent": "",
+<<<<<<< HEAD
 	"Pick an icon or emoji": "",
+=======
+	"Personalization": "Шахсийлаштириш",
+	"Picture Claim": "",
+>>>>>>> upstream/main
 	"Pin": "Пин",
 	"Pinned Models": "",
 	"Pioneer insights": "Пионер тушунчалари",
@@ -1199,9 +1708,14 @@
 	"Please enter Client ID and Client Secret": "",
 	"Please register the OAuth client": "",
 	"Please save the connection to persist the OAuth client information and do not change the ID": "",
+<<<<<<< HEAD
+=======
+	"Please select a model.": "Илтимос, моделни танланг.",
+>>>>>>> upstream/main
 	"Please select a reason": "Сабабини танланг",
 	"Please select a valid JSON file": "",
 	"Policy ID": "",
+	"Policy ID is required": "",
 	"Port": "Порт",
 	"Ports": "",
 	"Positive attitude": "Ижобий муносабат",
@@ -1209,6 +1723,7 @@
 	"Prefix ID is used to avoid conflicts with other connections by adding a prefix to the model IDs - leave empty to disable": "Префикс идентификатори модел идентификаторларига префикс қўшиш орқали бошқа уланишлар билан зиддиятларни олдини олиш учун ишлатилади - ўчириш учун бўш қолдиринг.",
 	"Prevent File Creation": "",
 	"Preview": "Кўриб чиқиш",
+	"Preview Access": "",
 	"Previous 30 days": "Олдинги 30 кун",
 	"Previous 7 days": "Олдинги 7 кун",
 	"Previous message": "",
@@ -1217,6 +1732,8 @@
 	"Prompt": "Тезкор",
 	"Prompt Template": "",
 	"Provider": "",
+	"Provider Name": "",
+	"Provider URL": "",
 	"Public": "Оммавий",
 	"Public shared chat links are disabled for this workspace.": "",
 	"Pull \"{{searchValue}}\" from Ollama.com": "Ollama.cом сайтидан “{{сеарчВалуе}}”ни тортинг",
@@ -1239,18 +1756,38 @@
 	"Read": "Ўқинг",
 	"Read Aloud": "Овоз чиқариб ўқинг",
 	"Read more →": "",
+<<<<<<< HEAD
 	"read only": "",
+=======
+	"Read only": "",
+>>>>>>> upstream/main
 	"Read Only": "",
 	"Read, write, and diff-edit durable notes for the current chat Scratchboard": "",
 	"Reason": "",
 	"Reasoning Effort": "Мулоҳаза юритиш ҳаракатлари",
 	"Reasoning Tags": "",
 	"Reasoning text...": "",
+	"Receives matching events across the instance, including system/config events and events associated with any user.": "",
+	"Receives matching events that are not associated with a user.": "",
+	"Receives matching user-associated events only when the actor, user subject, or user data matches these users or current group members. System/config events are not sent.": "",
 	"Recently Used": "",
 	"Reconnected": "",
+<<<<<<< HEAD
 	"Redirecting you to Open WebUI Community": "Сизни Опен WебУИ ҳамжамиятига йўналтирмоқда",
 	"Reduces the probability of generating nonsense. A higher value (e.g. 100) will give more diverse answers, while a lower value (e.g. 10) will be more conservative.": "Бемаъни нарсаларни яратиш эҳтимолини камайтиради. Юқори қиймат (масалан, 100) турли хил жавоблар беради, пастроқ қиймат (масалан, 10) эса консерватив бўлади.",
+=======
+	"Record": "Ёзиб олиш",
+	"Record voice": "Овозни ёзиб олинг",
+	"Redirect URI": "",
+	"Redirecting you to Open WebUI Community": "Сизни Опен WебУИ ҳамжамиятига йўналтирмоқда",
+	"Reduces the probability of generating nonsense. A higher value (e.g. 100) will give more diverse answers, while a lower value (e.g. 10) will be more conservative.": "Бемаъни нарсаларни яратиш эҳтимолини камайтиради. Юқори қиймат (масалан, 100) турли хил жавоблар беради, пастроқ қиймат (масалан, 10) эса консерватив бўлади.",
+	"Reference Chats": "",
+>>>>>>> upstream/main
 	"Refresh": "",
+	"Refresh requested: {{count}} terminal(s)_one": "",
+	"Refresh requested: {{count}} terminal(s)_other": "",
+	"Refresh Terminals": "",
+	"Refreshing...": "",
 	"Refused when it shouldn't have": "Бўлмаслиги керак бўлганда рад этилди",
 	"Regenerate": "Қайта тиклаш",
 	"Regenerate Response": "",
@@ -1269,15 +1806,38 @@
 	"Remove from favorites": "",
 	"Remove image": "",
 	"Remove Model": "Моделни олиб ташлаш",
+	"Removing {{count}} stale files..._one": "",
+	"Removing {{count}} stale files..._other": "",
 	"Rename": "Номини ўзгартириш",
 	"Reorder Models": "Моделларни қайта тартиблаш",
+<<<<<<< HEAD
+=======
+	"Repeat": "",
+	"Repeats": "",
+	"Reply": "",
+	"Reply in Thread": "Мавзуда жавоб беринг",
+	"Reply to thread...": "",
+	"Replying to {{NAME}}": "",
+	"Request Format": "",
+	"Require users to confirm before using Web Search.": "",
+	"required": "",
+>>>>>>> upstream/main
 	"Reranking Batch Size": "",
 	"Reranking Engine": "Двигателни қайта тартиблаш",
 	"Reranking Model": "Қайта тартиблаш модели",
+	"Research Knowledge": "",
 	"Reset": "Қайта тиклаш",
 	"Reset All Models": "Барча моделларни қайта ўрнатиш",
+	"Reset all permissions to their initial configuration values": "",
+	"Reset group permissions to match the current default user permissions": "",
 	"Reset Image": "Расмни қайта тиклаш",
+<<<<<<< HEAD
 	"Reset to default": "",
+=======
+	"Reset knowledge base?": "",
+	"Reset persisted files": "",
+	"Reset to Defaults": "",
+>>>>>>> upstream/main
 	"Reset Upload Directory": "Юклаш каталогини тиклаш",
 	"Reset Vector Storage/Knowledge": "Вектор хотираси/билимини қайта ўрнатиш",
 	"Reset view": "Кўринишни тиклаш",
@@ -1298,6 +1858,11 @@
 	"Return token usage information in the response when supported": "",
 	"Reusable instruction packs that teach your models a procedure or domain — import a markdown skill or write your own, then enable it where you need it.": "",
 	"Role": "Рол",
+<<<<<<< HEAD
+=======
+	"Roles Claim": "",
+	"RTL": "RTL",
+>>>>>>> upstream/main
 	"Run": "Ишга тушириш",
 	"Run All": "",
 	"Running": "Ишлаётган",
@@ -1310,10 +1875,18 @@
 	"Save As Copy": "Нусха сифатида сақлаш",
 	"Saved": "Сақланган",
 	"Saving chat logs directly to your browser's storage is no longer supported. Please take a moment to download and delete your chat logs by clicking the button below. Don't worry, you can easily re-import your chat logs to the backend through": "Чат журналларини бевосита браузерингиз хотирасига сақлаш энди қўллаб-қувватланмайди. Қуйидаги тугмани босиш орқали суҳбат журналларингизни юклаб олинг ва ўчиринг. Хавотир олманг, сиз чат журналларини баcкенд орқали осонгина қайта импорт қилишингиз мумкин",
+<<<<<<< HEAD
 	"Scratchboard": "",
+=======
+	"Schedule": "",
+	"Scheduled time must be in the future": "",
+	"Scopes": "",
+	"Scroll On Branch Change": "Филиални ўзгартириш бўйича айлантиринг",
+>>>>>>> upstream/main
 	"Scroll to Top": "",
 	"Search": "Қидирув",
 	"Search a model": "Моделни қидиринг",
+	"Search actions": "",
 	"Search all emojis": "",
 	"Search and manage user memories": "",
 	"Search and view user chat history": "",
@@ -1321,6 +1894,7 @@
 	"Search Chats": "Чатларни қидириш",
 	"Search engines and web content loaders for live results.": "",
 	"Search Files": "",
+	"Search filters": "",
 	"Search Filters": "Қидирув филтрлари",
 	"search for archived chats": "",
 	"search for folders": "",
@@ -1332,10 +1906,22 @@
 	"Search In Models": "",
 	"Search Models": "Моделларни қидириш",
 	"Search options": "Қидирув вариантлари",
+<<<<<<< HEAD
+=======
+	"Search or add pattern": "",
+	"Search Prompts": "Қидирув кўрсатмалари",
+>>>>>>> upstream/main
 	"Search Result Count": "Қидирув натижалари сони",
+	"Search skills": "",
 	"Search Skills": "",
 	"Search the web and fetch URLs": "",
+	"Search tools": "",
 	"Search Tools": "Қидирув воситалари",
+<<<<<<< HEAD
+=======
+	"Search users or groups": "",
+	"Search, view, and manage user notes": "",
+>>>>>>> upstream/main
 	"SearchApi API Key": "SearchApi АПИ калити",
 	"SearchApi Engine": "SearchApi механизми",
 	"Searched {{count}} sites": "{{count}} та сайт қидирилди",
@@ -1350,7 +1936,12 @@
 	"Seed": "Дастлабки маълумот",
 	"Select": "",
 	"Select {{modelName}} model": "",
+<<<<<<< HEAD
 	"Select a base model": "Асосий моделни танланг",
+=======
+	"Select a base model (e.g. llama3, gpt-4o)": "",
+	"Select a conversation to preview": "",
+>>>>>>> upstream/main
 	"Select a engine": "Двигателни танланг",
 	"Select a function": "Функцияни танланг",
 	"Select a group": "Гуруҳни танланг",
@@ -1380,15 +1971,36 @@
 	"Selected Models": "",
 	"semantic": "",
 	"Send": "Юбориш",
+<<<<<<< HEAD
+=======
+	"Send a Message": "Хабар юбориш",
+	"Send events for": "",
+	"Send message": "Хабар юбориш",
+	"Send now": "",
+	"Send product events as JSON to external services. Chat destinations receive readable messages.": "",
+	"Send the PDF as a base64 data URL instead of uploading it first.": "",
+	"Sends `stream_options: { include_usage: true }` in the request.\nSupported providers will return token usage information in the response when set.": "Сўровда ъстреам_оптионс: { инcлуде_усаге: труе }ъ юборади.\nҚўллаб-қувватланадиган провайдерлар ўрнатилганда жавобда токен фойдаланиш маълумотларини қайтаради.",
+>>>>>>> upstream/main
 	"September": "сентябр",
 	"sequences that end a response — comma separated": "",
 	"SerpApi API Key": "SerpApi АПИ калити",
 	"SerpApi Engine": "SerpApi двигатели",
 	"Serper API Key": "Serper АПИ калити",
+	"SERPHouse API Key": "",
+	"SERPHouse Domain": "",
 	"Serply API Key": "Serply АПИ калити",
 	"Serpstack API Key": "Serpstack АПИ калити",
 	"Server connection failed": "",
+<<<<<<< HEAD
 	"Session": "",
+=======
+	"Server connection verified": "Сервер уланиши тасдиқланди",
+	"Service Account": "",
+	"Session": "",
+	"Session expired. Please sign in again.": "",
+	"Set as default": "Стандарт сифатида ўрнатинг",
+	"Set as Production": "",
+>>>>>>> upstream/main
 	"Set embedding model": "Ўрнатиш моделини ўрнатинг",
 	"Set embedding model (e.g. {{model}})": "Ўрнатиш моделини ўрнатиш (масалан, {{модел}})",
 	"Set reranking model (e.g. {{model}})": "Қайта тартиблаш моделини ўрнатиш (масалан, {{модел}})",
@@ -1412,13 +2024,28 @@
 	"Share": "Улашиш",
 	"Share Chat": "Чатни улашиш",
 	"Share to Open WebUI Community": "Опен WебУИ ҳамжамиятига улашинг",
+<<<<<<< HEAD
+=======
+	"Share your background and interests": "",
+	"Shared": "",
+>>>>>>> upstream/main
 	"Shared Chats": "",
 	"Shared with you": "",
 	"Sharing Permissions": "Рухсатларни алмашиш",
 	"Show": "Кўрсатиш",
+<<<<<<< HEAD
 	"Show Admin Details in Account Pending Overlay": "Ҳисоб кутилаётган қатламда администратор маълумотларини кўрсатиш",
 	"Show All": "",
 	"Show all ({{COUNT}} characters)": "",
+=======
+	"Show \"What's New\" Modal on Login": "Киришда \"Янги нарсалар\" модалини кўрсатинг",
+	"Show Admin Details in Account Pending Overlay": "Ҳисоб кутилаётган қатламда администратор маълумотларини кўрсатиш",
+	"Show All": "",
+	"Show all ({{COUNT}} characters)": "",
+	"Show Files": "",
+	"Show Files on Terminal Select": "",
+	"Show Formatting Toolbar": "",
+>>>>>>> upstream/main
 	"Show image preview": "",
 	"Show Model": "Моделни кўрсатиш",
 	"Show Shortcuts": "",
@@ -1460,7 +2087,13 @@
 	"Sougou Search API sID": "Sougou Сеарч АПИ сИД",
 	"Sougou Search API SK": "Sougou Сеарч АПИ СК",
 	"Source": "Манба",
+<<<<<<< HEAD
 	"Sources used": "",
+=======
+	"Specific users or groups": "",
+	"Speech Playback Speed": "Нутқни ижро этиш тезлиги",
+	"Speech recognition error: {{error}}": "Нутқни аниқлашда хатолик: {{error}}",
+>>>>>>> upstream/main
 	"Speech-to-Text": "",
 	"Speech-to-Text Engine": "Нутқдан матнга восита",
 	"Split documents by markdown headers before applying character/token splitting.": "",
@@ -1484,6 +2117,13 @@
 	"Strip Existing OCR": "Мавжуд OCRни олиб ташлаш",
 	"Strip existing OCR text from the PDF and re-run OCR. Ignored if Force OCR is enabled. Defaults to False.": "PDFдан мавжуд OCR матнини олиб ташланг ва OCRни қайта ишлатинг. Agar Force OCR ёқилган бўлса, эътиборга олинмайди. Стандарт қиймат: False.",
 	"STT Model": "СТТ модели",
+<<<<<<< HEAD
+=======
+	"STT Settings": "СТТ созламалари",
+	"Stylized PDF Export": "Услубий PDF экспорти",
+	"Su_day_of_week": "",
+	"Sub Claim": "",
+>>>>>>> upstream/main
 	"Submit question": "",
 	"Submit suggestion": "",
 	"Subtitle": "",
@@ -1497,13 +2137,22 @@
 	"Switch to JSON editor": "",
 	"Switch to visual editor": "",
 	"Sync": "",
+	"Sync a local directory with this knowledge base. Only new and modified files will be uploaded. The directory structure will be mirrored.": "",
+	"Sync complete: {{added}} added, {{modified}} modified, {{deleted}} deleted, {{unmodified}} unmodified": "",
 	"Sync Complete!": "",
 	"Sync Failed": "",
 	"Sync Usage Stats": "",
 	"Syncing stats...": "",
 	"Syncing...": "",
 	"Syncs only chats with updates after your last sync timestamp. Disable to re-sync all chats.": "",
+<<<<<<< HEAD
+=======
+	"System": "Тизим",
+	"System events only": "",
+	"System Instructions": "Тизим кўрсатмалари",
+>>>>>>> upstream/main
 	"System Prompt": "Тизим сўрови",
+	"Table": "",
 	"Tag": "",
 	"Tags": "Теглар",
 	"Tags Generation": "Теглар яратиш",
@@ -1523,6 +2172,16 @@
 	"Temperature": "Ҳарорат",
 	"Temporary Chat": "Вақтинчалик суҳбат",
 	"Terminal": "",
+<<<<<<< HEAD
+=======
+	"Terminal servers saved": "",
+	"Test": "",
+	"Test Query": "",
+	"Test returned no results.": "",
+	"Test succeeded.": "",
+	"Test the source before creating it.": "",
+	"Test the source before saving it.": "",
+>>>>>>> upstream/main
 	"Text Splitter": "Матн ажратувчи",
 	"Text-to-Speech": "",
 	"Text-to-Speech Engine": "Матнни нутққа айлантириш механизми",
@@ -1537,8 +2196,11 @@
 	"The height in pixels to compress images to. Leave empty for no compression.": "",
 	"The LDAP attribute that maps to the mail that users use to sign in.": "LDAP атрибути фойдаланувчиларнинг тизимга киришда фойдаланадиган почта манзилига мос келади.",
 	"The LDAP attribute that maps to the username that users use to sign in.": "Фойдаланувчилар тизимга кириш учун фойдаланадиган фойдаланувчи номига мос келадиган LDAP атрибути.",
+<<<<<<< HEAD
 	"The leaderboard is currently in beta, and we may adjust the rating calculations as we refine the algorithm.": "Пешқадамлар жадвали ҳозирда бета-версияда ва биз алгоритмни такомиллаштириш жараёнида рейтинг ҳисоб-китобларини созлашимиз мумкин.",
 	"the longest single response it may set": "",
+=======
+>>>>>>> upstream/main
 	"The maximum file size in MB. If the file size exceeds this limit, the file will not be uploaded.": "Файлнинг максимал ҳажми МБ. Агар файл ҳажми ушбу чегарадан ошса, файл юкланмайди.",
 	"The maximum number of files that can be used at once in chat. If the number of files exceeds this limit, the files will not be uploaded.": "Чатда бир вақтнинг ўзида ишлатилиши мумкин бўлган максимал файллар сони. Агар файллар сони ушбу чегарадан ошса, файллар юкланмайди.",
 	"The only required step — refine everything else now or later.": "",
@@ -1564,6 +2226,11 @@
 	"This feature is currently experimental and may not work as expected.": "",
 	"This folder is empty": "",
 	"This is a default user permission and will remain enabled.": "",
+<<<<<<< HEAD
+=======
+	"This is an experimental feature, it may not function as expected and is subject to change at any time.": "Бу экспериментал хусусият бўлиб, у кутилганидек ишламаслиги ва исталган вақтда ўзгариши мумкин.",
+	"This knowledge base retrieves from a connected source. Open WebUI can query it, but cannot upload, sync, edit, delete, reset, or reindex its source data.": "",
+>>>>>>> upstream/main
 	"This model is not publicly available. Please select another model.": "Ушбу модел ҳамма учун очиқ эмас. Илтимос, бошқа моделни танланг.",
 	"This option controls how long the model will stay loaded into memory following the request (default: 5m)": "",
 	"This option controls how many tokens are preserved when refreshing the context. For example, if set to 2, the last 2 tokens of the conversation context will be retained. Preserving context can help maintain the continuity of a conversation, but it may reduce the ability to respond to new topics.": "Ушбу параметр контекстни янгилашда қанча токенлар сақланишини назорат қилади. Масалан, агар 2 га ўрнатилган бўлса, суҳбат контекстининг охирги 2 та белгиси сақланиб қолади. Контекстни сақлаш суҳбатнинг узлуксизлигини сақлашга ёрдам беради, лекин бу янги мавзуларга жавоб бериш қобилиятини камайтириши мумкин.",
@@ -1575,6 +2242,11 @@
 	"This will delete <strong>{{NAME}}</strong> and <strong>all its contents</strong>.": "Бу <стронг>{{NAME}}</стронг> ва <стронг>барча мазмунини</стронг> ўчириб ташлайди.",
 	"This will delete all models including custom models": "Бу барча моделларни, шу жумладан махсус моделларни ўчириб ташлайди",
 	"This will delete all models including custom models and cannot be undone.": "Бу барча моделларни, жумладан, махсус моделларни ҳам ўчириб ташлайди ва уларни ортга қайтариб бўлмайди.",
+<<<<<<< HEAD
+=======
+	"This will permanently delete the calendar \"{{name}}\" and all its events. This action cannot be undone.": "",
+	"This will remove all files and directories from this knowledge base. This action cannot be undone.": "",
+>>>>>>> upstream/main
 	"Thorough explanation": "Тўлиқ тушунтириш",
 	"Thought": "",
 	"Thought for {{DURATION}}": "{{DURATION}} учун фикр",
@@ -1597,12 +2269,23 @@
 	"To learn more about available endpoints, visit our documentation.": "Мавжуд сўнгги нуқталар ҳақида кўпроқ билиш учун ҳужжатларимизга ташриф буюринг.",
 	"To select skills here, add them to the \"Skills\" workspace first.": "",
 	"To select toolkits here, add them to the \"Tools\" workspace first.": "Бу ерда асбоблар тўпламини танлаш учун аввал уларни “Асбоблар” иш майдонига қўшинг.",
+<<<<<<< HEAD
+=======
+	"Toast Notifications for New Updates": "Янги янгиланишлар ҳақида билдиришномалар",
+>>>>>>> upstream/main
 	"Today": "Бугун",
 	"Toggle details": "",
+<<<<<<< HEAD
+=======
+	"Toggle Dictation": "",
+	"Toggle Mute": "",
+>>>>>>> upstream/main
 	"Toggle Sidebar": "",
 	"Toggle whether current connection is active.": "",
 	"Token": "Токен",
 	"Token counts are estimates and may not reflect actual API usage": "",
+	"Token Threshold": "",
+	"Tokenizer Model": "",
 	"tokens": "",
 	"Tokens": "",
 	"Too verbose": "Жуда батафсил",
@@ -1647,10 +2330,25 @@
 	"Unlock mysteries": "Сирларни очинг",
 	"Unpin": "Ечиш",
 	"Unravel secrets": "Сирларни очинг",
+	"Unshare All": "",
+	"Unshare All Shared Chats": "",
 	"Unshare Chat": "",
 	"Untagged": "Белгиланмаган",
+<<<<<<< HEAD
 	"Untitled folio": "",
 	"Update for the latest features and improvements.": "Энг янги хусусиятлар ва яхшиланишлар учун янгиланг.",
+=======
+	"Untitled": "Сарлавҳасиз",
+	"Update": "Янгилаш",
+	"Update and Copy Link": "Ҳаволани янгилаш ва нусхалаш",
+	"Update Email": "",
+	"Update for the latest features and improvements.": "Энг янги хусусиятлар ва яхшиланишлар учун янгиланг.",
+	"Update Name": "",
+	"Update password": "Паролни янгиланг",
+	"Update Picture": "",
+	"Update your status": "",
+	"Updated": "Янгиланган",
+>>>>>>> upstream/main
 	"Updated at": "Янгиланган",
 	"Updated At": "Янгиланган",
 	"Upgrade to a licensed plan for enhanced capabilities, including custom theming and branding, and dedicated support.": "Кенгайтирилган имкониятлар, жумладан, махсус мавзулаштириш ва брендлаш ҳамда махсус ёрдам учун литсензияланган режага янгиланг.",
@@ -1662,24 +2360,40 @@
 	"Upload profile image": "",
 	"Upload Progress": "Юклаш жараёни",
 	"Uploaded files or images": "",
+<<<<<<< HEAD
+=======
+	"Uploading {{current}}/{{total}}: {{file}}": "",
+>>>>>>> upstream/main
 	"Uploading...": "",
 	"URL": "УРЛ",
 	"URL is required": "",
 	"URL Mode": "УРЛ режими",
 	"Usage": "Фойдаланиш",
 	"Use /v1/chat/completions endpoint instead of /v1/audio/transcriptions for potentially better accuracy.": "",
+	"Use a valid event name or pattern like user.*": "",
+	"Use Base64": "",
 	"Use Chat Completions API": "",
+	"Use discovered scopes": "",
 	"Use groups to organize your users and assign permissions.": "",
 	"Use LLM": "ЛЛМ дан фойдаланинг",
 	"Use no proxy to fetch page contents.": "Саҳифа мазмунини олиш учун прокси-сервердан фойдаланманг.",
 	"Use proxy designated by http_proxy and https_proxy environment variables to fetch page contents.": "Саҳифа мазмунини олиш учун http_proxy ва https_proxy муҳит ўзгарувчилари томонидан белгиланган прокси-сервердан фойдаланинг.",
+	"Use Web Search?": "",
 	"user": "фойдаланувчи",
 	"User": "Фойдаланувчи",
+	"User Access": "",
 	"User Activity": "",
 	"User Groups": "",
+<<<<<<< HEAD
+=======
+	"User location successfully retrieved.": "Фойдаланувчи жойлашуви муваффақиятли олинди.",
+	"User menu": "",
+	"User Preview": "",
+>>>>>>> upstream/main
 	"User ratings (thumbs up/down)": "",
 	"User Webhooks": "Фойдаланувчи веб-ҳуклари",
 	"Username": "Фойдаланувчи номи",
+	"Username Claim": "",
 	"users": "",
 	"Users": "Фойдаланувчилар",
 	"Uses DefaultAzureCredential to authenticate": "",
@@ -1690,7 +2404,14 @@
 	"Valid time units:": "Яроқли вақт бирликлари:",
 	"Validate certificate": "",
 	"Valves": "Ёқиш/Ўчириш параметрлари",
+<<<<<<< HEAD
 	"Verified": "",
+=======
+	"Valves updated": "Ёқиш/Ўчириш параметрлари янгиланди",
+	"Valves updated successfully": "Ёқиш/Ўчириш параметрлари муваффақиятли янгиланди",
+	"variable": "ўзгарувчи ",
+	"Vector Field": "",
+>>>>>>> upstream/main
 	"Verify Connection": "Уланишни текширинг",
 	"Verify SSL Certificate": "SSL сертификатини текширинг",
 	"Version": "Версия",
@@ -1711,9 +2432,20 @@
 	"Web API": "Web API",
 	"Web Loader Engine": "Web Loader Engine",
 	"Web Search": "Веб-қидирув",
+	"Web Search Confirmation": "",
+	"Web Search Confirmation Content": "",
 	"Web Search Engine": "Веб қидирув тизими",
 	"Web Search Query Generation": "Веб-қидирув сўровларини яратиш",
+<<<<<<< HEAD
 	"Webhook URL": "Webhook УРЛ манзили",
+=======
+	"Webhook deleted": "",
+	"Webhook Name": "",
+	"Webhook saved": "",
+	"Webhooks": "",
+	"Webpage URLs": "",
+	"WebUI Settings": "WebUI созламалари",
+>>>>>>> upstream/main
 	"WebUI URL": "WebUI УРЛ",
 	"WebUI will make requests to \"{{url}}\"": "WebUI “{{url}}” манзилига сўров юборади",
 	"WebUI will make requests to \"{{url}}/api/chat\"": "WebUI “{{url}}/api/chat” манзилига сўров юборади",
@@ -1744,6 +2476,7 @@
 	"Yandex Web Search API Key": "",
 	"Yandex Web Search config": "",
 	"Yandex Web Search URL": "",
+	"Yearly": "",
 	"Yesterday": "Кеча",
 	"You": "Сиз",
 	"You are a careful editor: terse, concrete, kind…": "",
@@ -1763,6 +2496,7 @@
 	"Your browser does not support the video tag.": "",
 	"Your entire contribution will go directly to the plugin developer; Open WebUI does not take any percentage. However, the chosen funding platform might have its own fees.": "Сизнинг барча ҳиссангиз тўғридан-тўғри плагин ишлаб чиқарувчисига ўтади; Open WebUI ҳеч қандай фоизни олмайди. Бироқ, танланган молиялаштириш платформаси ўз тўловларига эга бўлиши мумкин.",
 	"Your message text or inputs": "",
+	"Your query will be sent to the configured web search provider.": "",
 	"Your usage stats have been successfully synced.": "",
 	"Youtube Language": "Youtube тили",
 	"Youtube Proxy URL": "Youtube прокси УРЛ"

@@ -5,21 +5,67 @@
 	"(e.g. `sh webui.sh --api`)": "(bv. `sh webui.sh --api`)",
 	"(latest)": "(nieuwste)",
 	"(leave blank for to use commercial endpoint)": "(laat leeg om een commercieel endpoint te gebruiken)",
+<<<<<<< HEAD
 	"{{COUNT}} extracted lines": "{{COUNT}} geextraheerde regels",
 	"{{COUNT}} hidden lines": "{{COUNT}} verborgen regels",
 	"{{COUNT}} members": "{{COUNT}} leden",
 	"{{COUNT}} Rows": "{{COUNT}} rijen",
 	"{{count}} selected_one": "{{count}} geselecteerd",
 	"{{count}} selected_other": "{{count}} geselecteerd",
+=======
+	"[Last] dddd [at] h:mm A": "[Vorige] dddd [om] h:mm A",
+	"[Today at] h:mm A": "[Vandaag om] h:mm A",
+	"[Yesterday at] h:mm A": "[Gisteren om] h:mm A",
+	"{{ models }}": "{{ models }}",
+	"{{COUNT}} Available Skills": "",
+	"{{COUNT}} Available Tools": "{{COUNT}} beschikbare tools",
+	"{{COUNT}} characters": "{{COUNT}} karakters",
+	"{{COUNT}} extracted lines": "{{COUNT}} geextraheerde regels",
+	"{{COUNT}} files": "{{COUNT}} bestanden",
+	"{{count}} files selected. Only new and modified files will be uploaded. Deleted files will be removed. The folder structure will be mirrored. Continue?_one": "",
+	"{{count}} files selected. Only new and modified files will be uploaded. Deleted files will be removed. The folder structure will be mirrored. Continue?_other": "",
+	"{{count}} filters_one": "",
+	"{{count}} filters_other": "",
+	"{{count}} groups_one": "",
+	"{{count}} groups_other": "",
+	"{{COUNT}} hidden lines": "{{COUNT}} verborgen regels",
+	"{{COUNT}} members": "{{COUNT}} leden",
+	"{{count}} of {{total}} accessible_one": "",
+	"{{count}} of {{total}} accessible_other": "",
+	"{{COUNT}} Replies": "{{COUNT}} antwoorden",
+	"{{COUNT}} Rows": "{{COUNT}} rijen",
+	"{{count}} selected_one": "{{count}} geselecteerd",
+	"{{count}} selected_other": "{{count}} geselecteerd",
+	"{{COUNT}} Sources": "{{COUNT}} bronnen",
+	"{{count}} users_one": "",
+	"{{count}} users_other": "",
+	"{{COUNT}} words": "{{COUNT}} woorden",
+>>>>>>> upstream/main
 	"{{COUNT}}d_time_ago": "{{COUNT}}d geleden",
 	"{{COUNT}}h_time_ago": "{{COUNT}}u geleden",
 	"{{COUNT}}m_time_ago": "{{COUNT}}m geleden",
 	"{{COUNT}}w_time_ago": "{{COUNT}}w geleden",
 	"{{COUNT}}y_time_ago": "{{COUNT}}j geleden",
+<<<<<<< HEAD
+=======
+	"{{label}} contains invalid JSON": "",
+	"{{label}} must be a JSON object": "",
+	"{{LOCALIZED_DATE}} at {{LOCALIZED_TIME}}": "{{LOCALIZED_DATE}} om {{LOCALIZED_TIME}}",
+	"{{model}} download has been canceled": "Download van {{model}} is geannuleerd",
+>>>>>>> upstream/main
 	"{{modelName}} profile image": "Profielafbeelding van {{modelName}}",
 	"{{user}}'s Chats": "Chats van {{user}}",
 	"{{webUIName}} Backend Required": "{{webUIName}} Backend verplicht",
 	"*Prompt node ID(s) are required for image generation": "*Prompt node ID(s) zijn vereist voor het genereren van afbeeldingen",
+<<<<<<< HEAD
+=======
+	"1 group": "",
+	"1 hour before": "1 uur voor",
+	"1 Source": "1 bron",
+	"1 user": "",
+	"10 minutes before": "10 minuten voor",
+	"15 minutes before": "15 minuten voor",
+>>>>>>> upstream/main
 	"1m_time_ago": "1m geleden",
 	"a line about what this model is for…": "",
 	"A model binds a base mind to a system prompt, tools and knowledge — compose one and summon it in any chat.": "",
@@ -31,6 +77,11 @@
 	"Access Control": "Toegangsbeheer",
 	"Access Grants": "Toegangsrechten",
 	"Access List": "Toegangslijst",
+<<<<<<< HEAD
+=======
+	"Access prohibited": "",
+	"Access updated": "Toegang bijgewerkt",
+>>>>>>> upstream/main
 	"Accessible to all users": "Toegankelijk voor alle gebruikers",
 	"Account Activation Pending": "Accountactivatie in afwachting",
 	"Accurate information": "Nauwkeurige informatie",
@@ -41,6 +92,7 @@
 	"Activity": "Activiteit",
 	"Add": "Toevoegen",
 	"Add a model ID": "Voeg een model-ID toe",
+	"Add a preference, fact, or instruction about you": "",
 	"Add a short description about what this model does": "Voeg een korte beschrijving toe over wat dit model doet",
 	"Add a tag": "Voeg een tag toe",
 	"Add a tag...": "Voeg een tag toe...",
@@ -50,7 +102,17 @@
 	"Add Custom Parameter": "Aangepaste parameter toevoegen",
 	"Add Custom Prompt": "Aangepaste prompt toevoegen",
 	"Add Details": "Details toevoegen",
+	"Add durable context for future chats": "",
 	"Add Files": "Voeg bestanden toe",
+<<<<<<< HEAD
+=======
+	"Add Image": "Afbeelding toevoegen",
+	"Add Knowledge Connection": "",
+	"Add location": "Voeg locatie toe",
+	"Add Member": "Lid toevoegen",
+	"Add Members": "Leden toevoegen",
+	"Add Memory": "Voeg geheugen toe",
+>>>>>>> upstream/main
 	"Add Model": "Voeg model toe",
 	"Add tag": "Tag toevoegen",
 	"Add Tag": "Voeg tag toe",
@@ -58,6 +120,11 @@
 	"Add to favorites": "Aan favorieten toevoegen",
 	"Add User": "Voeg gebruiker toe",
 	"Add User Group": "Voeg gebruikersgroep toe",
+<<<<<<< HEAD
+=======
+	"Add webhook": "",
+	"Add webpage": "Webpagina toevoegen",
+>>>>>>> upstream/main
 	"Add your Open Terminal URL and API key in Settings → Integrations.": "Voeg je Open Terminal-URL en API-sleutel toe in Instellingen -> Integraties.",
 	"Additional Config": "Extra configuratie",
 	"Additional configuration options for marker. This should be a JSON string with key-value pairs. For example, '{\"key\": \"value\"}'. Supported keys include: disable_links, keep_pageheader_in_output, keep_pagefooter_in_output, filter_blank_pages, drop_repeated_text, layout_coverage_threshold, merge_threshold, height_tolerance, gap_threshold, image_threshold, min_line_length, level_count, default_level": "Aanvullende configuratieopties voor marker. Dit moet een JSON-string met key-value paren zijn. Bijvoorbeeld: '{\"key\": \"value\"}'. Ondersteunde sleutels zijn: disable_links, keep_pageheader_in_output, keep_pagefooter_in_output, filter_blank_pages, drop_repeated_text, layout_coverage_threshold, merge_threshold, height_tolerance, gap_threshold, image_threshold, min_line_length, level_count, default_level",
@@ -68,18 +135,40 @@
 	"Admin": "Beheerder",
 	"Admin Contact Email": "E-mailadres van beheerder",
 	"Admin Panel": "Beheerderspaneel",
+<<<<<<< HEAD
+=======
+	"Admin Roles": "",
+	"Admin Settings": "Beheerdersinstellingen",
+	"Admin-managed service account": "",
+>>>>>>> upstream/main
 	"Admins have access to all tools at all times; users need tools assigned per model in the workspace.": "Beheerders hebben altijd toegang tot alle gereedschappen; gebruikers moeten gereedschap toegewezen krijgen per model in de werkruimte.",
 	"Advanced": "Geavanceerd",
 	"Advanced parameters for MinerU parsing (enable_ocr, enable_formula, enable_table, language, model_version, page_ranges)": "Geavanceerde parameters voor MinerU-parsing (enable_ocr, enable_formula, enable_table, language, model_version, page_ranges)",
 	"Advanced Params": "Geavanceerde params",
 	"After updating or changing the embedding model, you must reindex the knowledge base for the changes to take effect. You can do this using the \"Reindex\" button below.": "Na het bijwerken of wijzigen van het embeddingmodel moet je de kennisbank opnieuw indexeren voordat de wijzigingen van kracht worden. Je kunt dit doen met de knop \"Reindex\" hieronder.",
 	"All": "Alle",
+<<<<<<< HEAD
 	"All time": "Altijd",
 	"All Users": "Alle gebruikers",
+=======
+	"All chats have been unarchived.": "Alle chats zijn gedearchiveerd.",
+	"All day": "De hele dag",
+	"All events": "",
+	"All models are now hidden": "Alle modellen zijn nu verborgen",
+	"All models are now visible": "Alle modellen zijn nu zichtbaar",
+	"All models deleted successfully": "Alle modellen zijn succesvol verwijderd",
+	"All shared chats have been unshared.": "",
+	"All Sources": "",
+	"All time": "Altijd",
+	"All Users": "Alle gebruikers",
+	"All users and system events": "",
+	"Allow Call": "Bellen toestaan",
+>>>>>>> upstream/main
 	"Allow Chat Controls": "Chatbesturing toestaan",
 	"Allow Chat Delete": "Chatverwijdering toestaan",
 	"Allow Chat Edit": "Chatwijziging toestaan",
 	"Allow Chat Export": "Chat exporteren toestaan",
+	"Allow Chat Import": "",
 	"Allow Chat Params": "Chatparameters toestaan",
 	"Allow Chat Share": "Chat delen toestaan",
 	"Allow Chat System Prompt": "Systeemprompt voor chat toestaan",
@@ -94,9 +183,11 @@
 	"Allow Sharing With Users": "Delen met gebruikers toestaan",
 	"Allow Text to Speech": "Tekst-naar-spraak toestaan",
 	"Allow Web Upload": "Webupload toestaan",
+	"Allowed Domains": "",
 	"Allowed Endpoints": "Endpoints toestaan",
 	"Allowed File Extensions": "Toegestane bestandsextensies",
 	"Allowed file extensions for upload. Separate multiple extensions with commas. Leave empty for all file types.": "Toegestane bestandsextensies voor uploaden. Scheid meerdere extensies met komma's. Laat leeg voor alle bestandstypen.",
+	"Allowed Roles": "",
 	"Already have an account?": "Heb je al een account?",
 	"Alternative to the top_p, and aims to ensure a balance of quality and variety. The parameter p represents the minimum probability for a token to be considered, relative to the probability of the most likely token. For example, with p=0.05 and the most likely token having a probability of 0.9, logits with a value less than 0.045 are filtered out.": "Alternatief voor top_p, en streeft naar een evenwicht tussen kwaliteit en variatie. De parameter p vertegenwoordigt de minimumwaarschijnlijkheid dat een token in aanmerking wordt genomen, in verhouding tot de waarschijnlijkheid van het meest waarschijnlijke token. Bijvoorbeeld, met p=0.05 en het meest waarschijnlijke token met een waarschijnlijkheid van 0.9, worden logits met een waarde kleiner dan 0.045 uitgefilterd.",
 	"Amazing": "Geweldig",
@@ -108,6 +199,11 @@
 	"API Base URL": "API Base URL",
 	"API Base URL for Datalab Marker service. Defaults to: https://www.datalab.to/api/v1/marker": "API base URL voor de Datalab Marker-service. Standaard: https://www.datalab.to/api/v1/marker",
 	"API Key": "API-sleutel",
+<<<<<<< HEAD
+=======
+	"API Key / Token": "",
+	"API Key created.": "API-sleutel aangemaakt.",
+>>>>>>> upstream/main
 	"API Key Endpoint Restrictions": "API-sleutel endpoint-beperkingen",
 	"API Keys": "API-sleutels",
 	"API Mode": "API-modus",
@@ -124,13 +220,31 @@
 	"Are you sure you want to delete \"{{NAME}}\"?": "Weet je zeker dat je \"{{NAME}}\" wilt verwijderen?",
 	"Are you sure you want to delete **{{modelName}}**?": "Weet je zeker dat je **{{modelName}}** wilt verwijderen?",
 	"Are you sure you want to delete this connection? This action cannot be undone.": "Weet je zeker dat je deze verbinding wilt verwijderen? Deze actie kan niet ongedaan worden gemaakt.",
+<<<<<<< HEAD
 	"Are you sure you want to delete this?": "Weet je zeker dat je dit wilt verwijderen?",
 	"Arena": "",
+=======
+	"Are you sure you want to delete this directory?": "",
+	"Are you sure you want to delete this memory? This action cannot be undone.": "Weet je zeker dat je dit geheugen wilt verwijderen? Deze actie kan niet ongedaan worden gemaakt.",
+	"Are you sure you want to delete this message?": "Weet je zeker dat je dit bericht wil verwijderen?",
+	"Are you sure you want to delete this version? Child versions will be relinked to this version's parent.": "Weet je zeker dat je deze versie wilt verwijderen? Onderliggende versies worden opnieuw gekoppeld aan de bovenliggende versie.",
+	"Are you sure you want to delete this webhook? This action cannot be undone.": "",
+	"Are you sure you want to delete this?": "Weet je zeker dat je dit wilt verwijderen?",
+	"Are you sure you want to reset all permissions to their default values? You will still need to save to apply the changes.": "",
+	"Are you sure you want to unarchive all archived chats?": "Weet je zeker dat je alle gearchiveerde chats wil onarchiveren?",
+	"Are you sure you want to unshare all shared chats? This will remove all share links.": "",
+>>>>>>> upstream/main
 	"Arena Models": "Arenamodellen",
 	"Artifacts": "Artefacten",
 	"Ask": "Vraag",
 	"Ask a question": "Stel een vraag",
+<<<<<<< HEAD
 	"Ask the User": "",
+=======
+	"Ask a test question": "",
+	"Ask this knowledge source a test question": "",
+	"Assistant": "Assistent",
+>>>>>>> upstream/main
 	"Async Embedding Processing": "Asynchrone embeddingverwerking",
 	"Attach File From Knowledge": "Bestand uit kennis toevoegen",
 	"Attention to detail": "Aandacht voor detail",
@@ -139,20 +253,33 @@
 	"Audience": "",
 	"August": "augustus",
 	"Auth": "Authenticatie",
+	"Auth Mode": "",
+	"Auth required": "",
 	"Authenticate": "Authenticeer",
 	"Authentication": "Authenticatie",
 	"Auto (Random)": "Auto (Willekeurig)",
+<<<<<<< HEAD
 	"Auto-inject system tools for Agents (timestamps, memory, notes, etc.)": "",
+=======
+	"Auto Redirect": "",
+	"Auto-Copy Response to Clipboard": "Antwoord automatisch kopiëren naar klembord",
+	"Auto-Create Groups": "",
+	"Auto-Playback Response": "Automatisch afspelen van antwoord",
+>>>>>>> upstream/main
 	"Autocomplete Generation": "Automatische aanvullingsgeneratie",
 	"Autocomplete Generation Input Max Length": "Maximale invoerlengte voor automatische aanvullingsgeneratie",
+	"Autocomplete Generation Prompt": "",
+	"Automatic": "",
 	"Automatic1111": "Automatic1111",
 	"AUTOMATIC1111 Api Auth String": "Automatic1111 Api Auth String",
 	"AUTOMATIC1111 Base URL": "AUTOMATIC1111 Basis-URL",
 	"AUTOMATIC1111 Base URL is required.": "AUTOMATIC1111 Basis-URL is verplicht",
 	"Available list": "Beschikbare lijst",
 	"Available models": "Beschikbare modellen",
+	"Available Skills": "",
 	"Available Tools": "Beschikbare tools",
 	"available users": "beschikbare gebruikers",
+	"Available variables": "",
 	"available!": "beschikbaar!",
 	"Awful": "Verschrikkelijk",
 	"Azure AI Speech": "Azure AI-spraak",
@@ -163,16 +290,30 @@
 	"Backup, export, and import instance data.": "",
 	"Bad Response": "Ongeldig antwoord",
 	"Banners": "Banners",
+<<<<<<< HEAD
 	"Base model": "",
+=======
+	"Base Model (From)": "Basismodel (Vanaf)",
+	"Base Model is required.": "",
+>>>>>>> upstream/main
 	"Base Model List Cache speeds up access by fetching base models only at startup or on settings save—faster, but may not show recent base model changes.": "Cache voor basismodellen versnelt de toegang door basismodellen alleen op te halen bij het opstarten of bij het opslaan van instellingen. Dit is sneller, maar toont mogelijk geen recente wijzigingen in basismodellen.",
 	"Bearer": "Bearer",
 	"Begin a new folio": "",
 	"Being lazy": "Lui zijn",
+<<<<<<< HEAD
 	"Beta": "Beta",
 	"Bind the model": "",
 	"Bing": "Bing",
 	"Bing Search V7 Endpoint": "Bing Search V7 Endpoint",
 	"Bing Search V7 Subscription Key": "Bing Search V7 Subscription Key",
+=======
+	"Bing": "Bing",
+	"Bing Search V7 Endpoint": "Bing Search V7 Endpoint",
+	"Bing Search V7 Subscription Key": "Bing Search V7 Subscription Key",
+	"Bio": "Bio",
+	"Birth Date": "Geboortedatum",
+	"Blocked Groups": "",
+>>>>>>> upstream/main
 	"BM25 Weight": "BM25-gewicht",
 	"Bocha Search API Key": "Bocha Search API-sleutel",
 	"Bold": "Vet",
@@ -200,6 +341,12 @@
 	"Chat": "Chat",
 	"Chat Completions": "Chataanvullingen",
 	"Chat Conversation": "Chatgesprek",
+<<<<<<< HEAD
+=======
+	"Chat deleted.": "",
+	"Chat Direction": "Chatrichting",
+	"Chat exported successfully": "Chat succesvol geexporteerd",
+>>>>>>> upstream/main
 	"Chat History": "Chatgeschiedenis",
 	"Chat ID": "Chat-ID",
 	"Chat moved successfully": "Chat succesvol verplaatst",
@@ -259,6 +406,11 @@
 	"Code Interpreter Prompt Template": "Code-interpretatie promptsjabloon",
 	"Collapse": "Inklappen",
 	"Collection": "Verzameling",
+<<<<<<< HEAD
+=======
+	"Collection Field": "",
+	"Collections": "Verzamelingen",
+>>>>>>> upstream/main
 	"Color": "Kleur",
 	"ComfyUI": "ComfyUI",
 	"ComfyUI API Key": "ComfyUI API-sleutel",
@@ -267,9 +419,25 @@
 	"ComfyUI Workflow": "ComfyUI workflow",
 	"ComfyUI Workflow Nodes": "ComfyUI workflowknopen",
 	"Comma separated Node Ids (e.g. 1 or 1,2)": "Door komma's gescheiden node-ID's (bijv. 1 of 1,2)",
+<<<<<<< HEAD
+=======
+	"Comma-separated group names": "",
+	"Comma-separated list of file extensions MinerU will handle (e.g. pdf, docx, pptx, xlsx)": "",
+	"command": "commando",
+	"Command": "Commando",
+>>>>>>> upstream/main
 	"Comment": "Reactie",
 	"Community Reviews": "Communitybeoordelingen",
+<<<<<<< HEAD
 	"Compose your first model": "",
+=======
+	"Compacting context": "",
+	"Comparing with knowledge base...": "",
+	"Completions": "Voltooiingen",
+	"Compress Images in Channels": "Afbeeldingen in kanalen comprimeren",
+	"Computing checksums ({{count}} files)_one": "",
+	"Computing checksums ({{count}} files)_other": "",
+>>>>>>> upstream/main
 	"Concurrent Requests": "Gelijktijdige verzoeken",
 	"Config": "Configuratie",
 	"Configure": "Configureer",
@@ -282,6 +450,10 @@
 	"Connect to Open Terminal instances. All users will have access to file browsing and terminal tools through these servers.": "Verbind met Open Terminal-instanties. Alle gebruikers krijgen via deze servers toegang tot bestandsverkenning en terminaltools.",
 	"Connect to your own OpenAPI compatible external tool servers.": "Verbind met je eigen OpenAPI-compatibele externe gereedschapservers",
 	"Connected": "",
+<<<<<<< HEAD
+=======
+	"Connected ({{type}})": "Verbonden ({{type}})",
+>>>>>>> upstream/main
 	"Connection failed": "Connectie mislukt",
 	"Connection lost. Reconnecting...": "Verbinding verbroken. Opnieuw verbinden...",
 	"Connection Type": "Connectietype",
@@ -290,8 +462,16 @@
 	"Contact Admin for WebUI Access": "Neem contact op met de beheerder voor WebUI-toegang",
 	"Content": "Inhoud",
 	"Content Extraction Engine": "Inhoudsextractie engine",
+	"Content Field": "",
 	"Content lengths (character counts only)": "Inhoudslengtes (alleen tekentellingen)",
+	"Context": "",
+	"Context compacted": "",
+	"Context Compaction": "",
+	"Context compaction failed": "",
+	"Context Compaction Prompt": "",
+	"Context Compaction Threshold": "",
 	"Context Tokens": "",
+	"Continue": "",
 	"Continue Response": "Doorgaan met antwoord",
 	"Continue with {{provider}}": "Ga verder met {{provider}}",
 	"Continue with Email": "Ga door met E-mail",
@@ -322,6 +502,16 @@
 	"Create Image": "Afbeelding maken",
 	"Create model": "",
 	"Create Model": "Model maken",
+<<<<<<< HEAD
+=======
+	"Create new key": "Maak nieuwe sleutel",
+	"Create new secret key": "Maak nieuwe geheime sleutel",
+	"Create note": "Notitie maken",
+	"Create Note": "Maak notitie",
+	"Create one read-only Knowledge source per external collection. Test must pass before the source is created.": "",
+	"Create scheduled prompts that run automatically on a recurring basis.": "Maak geplande prompts die automatisch op terugkerende basis worden uitgevoerd.",
+	"Create your first note by clicking on the plus button below.": "Maak je eerste notitie door op de plusknop hieronder te klikken.",
+>>>>>>> upstream/main
 	"Created at": "Gemaakt op",
 	"Created At": "Gemaakt op",
 	"Created by": "Gemaakt door",
@@ -332,7 +522,12 @@
 	"Custom color": "",
 	"Custom Parameter Name": "Naam van aangepaste parameter",
 	"Custom Parameter Value": "Waarde van aangepaste parameter",
+<<<<<<< HEAD
 	"Custom presets that pair a base model with a system prompt, tools, knowledge and capabilities — build your own assistants and reuse them anywhere in chat.": "",
+=======
+	"Custom range": "",
+	"Daily": "Dagelijks",
+>>>>>>> upstream/main
 	"Daily Messages": "Dagelijkse berichten",
 	"Danger Zone": "Gevarenzone",
 	"Database": "Database",
@@ -348,7 +543,6 @@
 	"Default Features": "Standaardfuncties",
 	"Default Filters": "Standaardfilters",
 	"Default Group": "Standaardgroep",
-	"Default mode works with a wider range of models by calling tools once before execution. Native mode leverages the model's built-in tool-calling capabilities, but requires the model to inherently support this feature.": "De standaardmodus werkt met een breder scala aan modellen door gereedschappen één keer aan te roepen voordat ze worden uitgevoerd. De native modus maakt gebruik van de ingebouwde mogelijkheden van het model om gereedschappen aan te roepen, maar vereist dat het model deze functie inherent ondersteunt.",
 	"Default Model": "Standaardmodel",
 	"Default permissions": "Standaardrechten",
 	"Default Prompt Suggestions": "Standaard Prompt Suggesties",
@@ -356,13 +550,25 @@
 	"Default to ALL": "Standaard op ALL",
 	"Default to segmented retrieval for focused and relevant content extraction, this is recommended for most cases.": "Standaard gesegmenteerd ophalen voor gerichte en relevante inhoudsextractie, dit wordt aanbevolen voor de meeste gevallen.",
 	"Default User Role": "Standaard gebruikersrol",
+	"Default webhook": "",
 	"Defaults": "Standaardwaarden",
 	"Delete": "Verwijderen",
 	"Delete {{name}}": "{{name}} verwijderen",
 	"Delete a model": "Verwijder een model",
+<<<<<<< HEAD
+=======
+	"Delete All": "Alles verwijderen",
+	"Delete All Chats": "Verwijder alle chats",
+	"Delete all contents inside this directory": "",
+>>>>>>> upstream/main
 	"Delete all contents inside this folder": "Alle inhoud in deze map verwijderen",
 	"Delete Chat": "Verwijder chat",
 	"Delete chat?": "Verwijder chat?",
+<<<<<<< HEAD
+=======
+	"Delete directory?": "",
+	"Delete Event": "Verwijder gebeurtenis?",
+>>>>>>> upstream/main
 	"Delete File": "Bestand verwijderen",
 	"Delete folder?": "Verwijder map?",
 	"Delete function?": "Verwijder functie?",
@@ -383,9 +589,20 @@
 	"Direct Connections": "Directe verbindingen",
 	"Direct Connections allow users to connect to their own OpenAI compatible API endpoints.": "Directe verbindingen stellen gebruikers in staat om met hun eigen OpenAI compatibele API-endpoints te verbinden.",
 	"Direct Tool Servers": "Directe toolservers",
+<<<<<<< HEAD
+=======
+	"Directory created.": "",
+	"Directory deleted.": "",
+	"Directory moved.": "",
+	"Directory name": "",
+	"Directory renamed.": "",
+	"Directory selection was cancelled": "Mapselectie is geannuleerd",
+>>>>>>> upstream/main
 	"Disable All": "Alles uitschakelen",
 	"Disable Image Extraction": "Afbeeldingsextractie uitschakelen",
 	"Disable image extraction from the PDF. If Use LLM is enabled, images will be automatically captioned. Defaults to False.": "Schakel afbeeldingsextractie uit de PDF uit. Als Use LLM is ingeschakeld, krijgen afbeeldingen automatisch beschrijvingen. Standaard is False.",
+	"Disable Image Generation": "",
+	"Disable Web Search": "",
 	"Disabled": "Uitgeschakeld",
 	"Discard this folio": "",
 	"Discarded": "",
@@ -394,6 +611,13 @@
 	"Discover wonders": "Ontdek wonderen",
 	"Discover, download, and explore custom functions": "Ontdek, download en verken aangepaste functies",
 	"Display": "Toon",
+<<<<<<< HEAD
+=======
+	"Display Chat Title in Tab": "Chattitel weergeven in tabblad",
+	"Display Emoji in Call": "Emoji tonen tijdens gesprek",
+	"Display Multi-model Responses in Tabs": "Multimodelantwoorden in tabbladen weergeven",
+	"Display the Username Instead of You in the Chat": "Toon de gebruikersnaam in plaats van Jij in de Chat",
+>>>>>>> upstream/main
 	"Displays citations in the response": "Toon citaten in het antwoord",
 	"Displays status updates (e.g., web search progress) in the response": "Toont statusupdates (bijv. voortgang van webzoekopdrachten) in het antwoord",
 	"Dissolve": "",
@@ -406,6 +630,7 @@
 	"Docling Parameters": "Docling-parameters",
 	"Docling Server URL required.": "Docling server-URL benodigd",
 	"Document": "Document",
+	"Document ID Field": "",
 	"Document Intelligence": "Document Intelligence",
 	"Document Intelligence endpoint required.": "Document Intelligence-endpoint is vereist.",
 	"Document Intelligence Model": "Document Intelligence-model",
@@ -459,41 +684,60 @@
 	"Edit Default Permissions": "Bewerk standaardrechten",
 	"Edit Folder": "Map bewerken",
 	"Edit Image": "Afbeelding bewerken",
+	"Edit Knowledge Connection": "",
 	"Edit Last Message": "Laatste bericht bewerken",
 	"Edit Model": "",
 	"Edit Terminal Connection": "Terminalverbinding bewerken",
 	"Edit User": "Wijzig gebruiker",
 	"Edit User Group": "Bewerk gebruikergroep",
+	"Edit webhook": "",
 	"Edit workflow.json content": "workflow.json-inhoud bewerken",
 	"Eject": "Uitwerpen",
 	"Eject model": "Model uitwerpen",
 	"ElevenLabs": "ElevenLabs",
 	"Email": "E-mail",
+	"Email Claim": "",
 	"Embark on adventures": "Ga op avonturen",
 	"Embedding": "Embedding",
 	"Embedding Batch Size": "Embedding batchgrootte",
 	"Embedding Concurrent Requests": "Gelijktijdige embeddingverzoeken",
 	"Embedding Model": "Embedding Model",
 	"Embedding Model Engine": "Embedding Model Engine",
+	"Emoji": "",
 	"Emojis": "Emojis",
+<<<<<<< HEAD
+=======
+	"Empty": "",
+	"Empty message": "Leeg bericht",
+>>>>>>> upstream/main
 	"Enable All": "Alles inschakelen",
 	"Enable API Keys": "API-sleutels inschakelen",
 	"Enable autocomplete generation for chat messages": "Automatische aanvullingsgeneratie voor chatberichten inschakelen",
 	"Enable Code Execution": "Code-uitvoer inschakelen",
 	"Enable Code Interpreter": "Code-interpretatie inschakelen",
 	"Enable Community Sharing": "Delen via de community inschakelen",
+	"Enable Group Mapping": "",
+	"Enable Image Generation": "",
 	"Enable Memory Locking (mlock) to prevent model data from being swapped out of RAM. This option locks the model's working set of pages into RAM, ensuring that they will not be swapped out to disk. This can help maintain performance by avoiding page faults and ensuring fast data access.": "Schakel Memory Locking (mlock) in om te voorkomen dat modelgegevens uit het RAM worden verwisseld. Deze optie vergrendelt de werkset pagina's van het model in het RAM, zodat ze niet naar de schijf worden uitgewisseld. Dit kan helpen om de prestaties op peil te houden door paginafouten te voorkomen en snelle gegevenstoegang te garanderen.",
 	"Enable Memory Mapping (mmap) to load model data. This option allows the system to use disk storage as an extension of RAM by treating disk files as if they were in RAM. This can improve model performance by allowing for faster data access. However, it may not work correctly with all systems and can consume a significant amount of disk space.": "Schakel Memory Mapping (mmap) in om modelgegevens te laden. Deze optie laat het systeem schijfopslag gebruiken als een uitbreiding van RAM door schijfbestanden te behandelen alsof ze in RAM zitten. Dit kan de prestaties van het model verbeteren door snellere gegevenstoegang mogelijk te maken. Het is echter mogelijk dat deze optie niet op alle systemen correct werkt en een aanzienlijke hoeveelheid schijfruimte in beslag kan nemen.",
 	"Enable Message Rating": "Schakel berichtbeoordeling in",
 	"Enable Mirostat sampling for controlling perplexity.": "Mirostat-sampling in om perplexiteit te controleren inschakelen.",
 	"Enable New Sign Ups": "Schakel nieuwe registraties in",
+	"Enable OAuth Signup": "",
+	"Enable Role Mapping": "",
+	"Enable Web Search": "",
 	"Enable, disable, or customize the reasoning tags used by the model. \"Enabled\" uses default tags, \"Disabled\" turns off reasoning tags, and \"Custom\" lets you specify your own start and end tags.": "Schakel de redeneringstags die door het model worden gebruikt in, uit of pas ze aan. \"Ingeschakeld\" gebruikt standaardtags, \"Uitgeschakeld\" zet redeneringstags uit en \"Aangepast\" laat je je eigen begin- en eindtags instellen.",
 	"Enabled": "Ingeschakeld",
 	"End Tag": "Eindtag",
+	"Endpoint": "",
 	"Endpoint URL": "Endpoint-URL",
 	"Enrich Hybrid Search Text": "Hybride zoektekst verrijken",
 	"Ensure your CSV file includes 4 columns in this order: Name, Email, Password, Role.": "Zorg ervoor dat je CSV-bestand de volgende vier kolommen in deze volgorde bevat: Naam, E-mail, Wachtwoord, Rol.",
+<<<<<<< HEAD
 	"Enter a name first": "",
+=======
+	"Enter {{role}} message here": "Voeg {{role}} bericht hier toe",
+>>>>>>> upstream/main
 	"Enter a title for the pending user info overlay. Leave empty for default.": "Voer een titel in voor de overlay met wachtende gebruikersinfo. Laat leeg voor standaard.",
 	"Enter a watermark for the response. Leave empty for none.": "Voer een watermerk in voor het antwoord. Laat leeg voor geen.",
 	"Enter additional headers in JSON format": "Voer extra headers in JSON-indeling in",
@@ -510,6 +754,8 @@
 	"Enter Chunk Min Size Target": "Voer doel voor minimale chunkgrootte in",
 	"Enter Chunk Overlap": "Voeg Chunk Overlap toe",
 	"Enter Chunk Size": "Voeg Chunk Size toe",
+	"Enter Client ID": "",
+	"Enter Client Secret": "",
 	"Enter comma-separated \"token:bias_value\" pairs (example: 5432:100, 413:-100)": "Voer kommagescheiden \"token:bias_waarde\" paren in (bijv. 5432:100, 413:-100)",
 	"Enter content for the pending user info overlay. Leave empty for default.": "Voer inhoud in voor de overlay met wachtende gebruikersinfo. Laat leeg voor standaard.",
 	"Enter coordinates (e.g. 51.505, -0.09)": "Voer coordinaten in (bijv. 51.505, -0.09)",
@@ -546,7 +792,15 @@
 	"Enter Jupyter Token": "Voer Jupyter-token in",
 	"Enter Jupyter URL": "Voer Jupyter-URL in",
 	"Enter Kagi Search API Key": "Voer Kagi Search API-sleutel in",
+<<<<<<< HEAD
+=======
+	"Enter Key Behavior": "Voer sleutelgedrag in",
+	"Enter language": "",
+>>>>>>> upstream/main
 	"Enter language codes": "Voeg taalcodes toe",
+	"Enter Linkup API Key": "",
+	"Enter Microsoft Web IQ API Base URL": "",
+	"Enter Microsoft Web IQ API Key": "",
 	"Enter MinerU API Key": "Voer MinerU API-sleutel in",
 	"Enter Mistral API Base URL": "Voer Mistral API-basis-URL in",
 	"Enter Mistral API Key": "Voer Mistral API-sleutel in",
@@ -565,6 +819,7 @@
 	"Enter Playwright WebSocket URL": "Voer Playwright WebSocket-URL in",
 	"Enter proxy URL (e.g. https://user:password@host:port)": "Voer proxy-URL in (bijv. https://gebruiker:wachtwoord@host:port)",
 	"Enter reasoning effort": "Voer redeneerinspanning in",
+	"Enter Redirect URI": "",
 	"Enter Score": "Voeg score toe",
 	"Enter SearchApi API Key": "Voer SearchApi API-sleutel in",
 	"Enter SearchApi Engine": "Voer SearchApi-Engine in",
@@ -574,6 +829,7 @@
 	"Enter SerpApi API Key": "Voer SerpApi API-sleutel in",
 	"Enter SerpApi Engine": "Voer SerpApi-engine in",
 	"Enter Serper API Key": "Voer de Serper API-sleutel in",
+	"Enter SERPHouse API Key": "",
 	"Enter Serply API Key": "Voer Serply API-sleutel in",
 	"Enter Serpstack API Key": "Voer de Serpstack API-sleutel in",
 	"Enter server host": "Voer serverhost in",
@@ -591,6 +847,12 @@
 	"Enter the URL to import": "Voer de URL in om te importeren",
 	"Enter Tika Server URL": "Voer Tika Server URL in",
 	"Enter timeout in seconds": "Voer time-out in seconden in",
+<<<<<<< HEAD
+=======
+	"Enter to Send": "Enter om te sturen",
+	"Enter token threshold": "",
+	"Enter Tokenizer Model": "",
+>>>>>>> upstream/main
 	"Enter Top K": "Voeg Top K toe",
 	"Enter Top K Reranker": "Voer Top K-reranker in",
 	"Enter URL (e.g. http://127.0.0.1:7860/)": "Voer URL in (Bijv. http://127.0.0.1:7860/)",
@@ -620,8 +882,19 @@
 	"Error: A model with the ID '{{modelId}}' already exists. Please select a different ID to proceed.": "Fout: Een model met de ID '{{modelId}}' bestaat al. Selecteer een andere ID om door te gaan.",
 	"Error: Model ID cannot be empty. Please enter a valid ID to proceed.": "Fout: Model-ID mag niet leeg zijn. Voer een geldige ID in om door te gaan.",
 	"Evaluations": "Beoordelingen",
+<<<<<<< HEAD
 	"Every craft begins bare-handed.": "",
+=======
+	"Event": "",
+	"Event created": "Gebeurtenis aangemaakt",
+	"Event deleted": "Gebeurtenis verwijderd",
+	"Event names may change as Open WebUI evolves. Use broad patterns like user.* for integrations that should continue across new related events.": "",
+	"Event title": "Gebeurtenis titel",
+	"Event updated": "Gebeurtenis bijgewerkt",
+	"Events": "",
+>>>>>>> upstream/main
 	"Exa API Key": "Exa API-sleutel",
+	"Example": "",
 	"Example: (&(objectClass=inetOrgPerson)(uid=%s))": "Voorbeeld: (&(objectClass=inetOrgPerson)(uid=%s))",
 	"Example: ALL": "Voorbeeld: ALL",
 	"Example: mail": "Voorbeeld: mail",
@@ -643,18 +916,29 @@
 	"Export chat (.json)": "Exporteer chat (.json)",
 	"Export Config": "Configuratie exporteren",
 	"Export Models": "Modellen exporteren",
+<<<<<<< HEAD
+=======
+	"Export Prompts": "Prompts exporteren",
+	"Export Skills": "",
+>>>>>>> upstream/main
 	"Export to CSV": "Exporteer naar CSV",
 	"Export Tools": "Tools exporteren",
 	"Export Users": "Gebruikers exporteren",
 	"External": "Extern",
+	"External connection not found.": "",
 	"External Document Loader URL required.": "Externe documentloader-URL is vereist.",
+	"External Knowledge Source": "",
+	"External Knowledge Sources": "",
 	"External Task Model": "Extern taakmodel",
+	"External Tool Servers": "",
+	"External vectors must be generated with the same embedding model configured in Open WebUI.": "",
 	"External Web Loader API Key": "Externe webloader-API-sleutel",
 	"External Web Loader URL": "Externe webloader-URL",
 	"External Web Search API Key": "Externe webzoek-API-sleutel",
 	"External Web Search URL": "Externe webzoek-URL",
 	"Faculties": "",
 	"Failed to archive chat.": "Chat archiveren mislukt.",
+<<<<<<< HEAD
 	"Failed to connect to {{URL}} OpenAPI tool server": "Kan geen verbinding maken met {{URL}} OpenAPI gereedschapserver",
 	"Failed to connect to {{URL}} terminal server": "Kan geen verbinding maken met {{URL}} terminalserver",
 	"Failed to copy link": "Link kopiëren mislukt",
@@ -664,11 +948,39 @@
 	"Failed to extract content from the file: {{error}}": "Inhoud uit bestand extraheren mislukt: {{error}}",
 	"Failed to extract content from the file.": "Inhoud uit bestand extraheren mislukt.",
 	"Failed to fetch models": "Kan modellen niet ophalen",
+=======
+	"Failed to attach file": "Bestand toevoegen mislukt",
+	"Failed to clear status": "Status wissen mislukt",
+	"Failed to compare files.": "",
+	"Failed to connect to {{URL}} OpenAPI tool server": "Kan geen verbinding maken met {{URL}} OpenAPI gereedschapserver",
+	"Failed to connect to {{URL}} terminal server": "Kan geen verbinding maken met {{URL}} terminalserver",
+	"Failed to copy link": "Link kopiëren mislukt",
+	"Failed to create API Key.": "Kan API Key niet aanmaken.",
+	"Failed to delete calendar": "Kalender verwijderen mislukt",
+	"Failed to delete note": "Notitie verwijderen mislukt",
+	"Failed to delete webhook": "",
+	"Failed to disconnect": "",
+	"Failed to download image": "Afbeelding downloaden mislukt",
+	"Failed to extract content from the file: {{error}}": "Inhoud uit bestand extraheren mislukt: {{error}}",
+	"Failed to extract content from the file.": "Inhoud uit bestand extraheren mislukt.",
+	"Failed to fetch models": "Kan modellen niet ophalen",
+	"Failed to generate title": "Titel genereren mislukt",
+	"Failed to import models": "Modellen importeren mislukt",
+	"Failed to load chat": "",
+	"Failed to load chat preview": "Voorvertoning van chat laden mislukt",
+>>>>>>> upstream/main
 	"Failed to load DOCX file. Please try downloading it instead.": "DOCX-bestand laden mislukt. Probeer het in plaats daarvan te downloaden.",
 	"Failed to load Excel/CSV file. Please try downloading it instead.": "Excel/CSV-bestand laden mislukt. Probeer het in plaats daarvan te downloaden.",
 	"Failed to load Interface settings": "Interface-instellingen laden mislukt",
 	"Failed to load PPTX file. Please try downloading it instead.": "PPTX-bestand laden mislukt. Probeer het in plaats daarvan te downloaden.",
 	"Failed to move chat": "Chat verplaatsen mislukt",
+<<<<<<< HEAD
+=======
+	"Failed to process URL: {{url}}": "URL verwerken mislukt: {{url}}",
+	"Failed to read clipboard contents": "Kan klembord inhoud niet lezen",
+	"Failed to refresh terminals: {{error}}": "",
+	"Failed to remove member": "Lid verwijderen mislukt",
+>>>>>>> upstream/main
 	"Failed to render diagram": "Diagram renderen mislukt",
 	"Failed to render visualization": "Visualisatie renderen mislukt",
 	"Failed to save": "",
@@ -677,10 +989,16 @@
 	"Failed to save models configuration": "Het is niet gelukt om de modelconfiguratie op te slaan",
 	"Failed to save policy: {{error}}": "Beleid opslaan mislukt: {{error}}",
 	"Failed to save terminal servers": "Terminalservers opslaan mislukt",
+	"Failed to save webhook": "",
 	"Failed to unshare chat.": "Delen van chat opheffen mislukt.",
 	"Failed to update settings": "Instellingen konden niet worden bijgewerkt.",
 	"Failed to update status": "Status bijwerken mislukt",
+<<<<<<< HEAD
 	"Favicons": "",
+=======
+	"Failed to update webhook": "",
+	"Failed to upload file.": "Bestand kon niet worden geüpload.",
+>>>>>>> upstream/main
 	"Features": "Functies",
 	"Features Permissions": "Functietoestemmingen",
 	"February": "februari",
@@ -693,14 +1011,32 @@
 	"File": "Bestand",
 	"File browser": "Bestandsverkenner",
 	"File Context": "Bestandscontext",
+<<<<<<< HEAD
+=======
+	"File deleted successfully.": "Bestand succesvol verwijderd.",
+	"File Extensions": "",
+>>>>>>> upstream/main
 	"File Mode": "Bestandsmodus",
+	"File moved.": "",
 	"File name": "Bestandsnaam",
 	"File not found.": "Bestand niet gevonden.",
+<<<<<<< HEAD
 	"File size should not exceed {{maxSize}} MB.": "Bestandsgrootte mag niet groter zijn dan {{maxSize}} MB.",
 	"File Upload": "Bestandsupload",
 	"Filename": "Bestandsnaam",
 	"Files": "Bestanden",
 	"Fill name + base model to create": "",
+=======
+	"File removed successfully.": "Bestand succesvol verwijderd.",
+	"File renamed.": "",
+	"File size should not exceed {{maxSize}} MB.": "Bestandsgrootte mag niet groter zijn dan {{maxSize}} MB.",
+	"File Upload": "Bestandsupload",
+	"File uploaded successfully": "Bestand succesvol geüpload",
+	"Filename": "Bestandsnaam",
+	"Files": "Bestanden",
+	"Fill the required fields first.": "",
+	"Fill the source fields and test query first.": "",
+>>>>>>> upstream/main
 	"Filter": "Filter",
 	"Filters": "Filters",
 	"Filters, valves, and middleware workflows.": "",
@@ -718,8 +1054,12 @@
 	"Folder name cannot be empty.": "Mapnaam kan niet leeg zijn",
 	"Folder options": "Mapopties",
 	"Folders": "Mappen",
+<<<<<<< HEAD
 	"folio": "",
 	"folios": "",
+=======
+	"Folders Sharing": "",
+>>>>>>> upstream/main
 	"Follow up": "Vervolg",
 	"Follow Up Generation": "Vervolggeneratie",
 	"Follow Up Generation Prompt": "Prompt voor vervolggeneratie",
@@ -747,6 +1087,11 @@
 	"Function imported successfully": "Functie succesvol geimporteerd",
 	"Function Name": "Functienaam",
 	"Function Name Filter List": "Filterlijst voor functienamen",
+<<<<<<< HEAD
+=======
+	"Function starter": "",
+	"Function updated successfully": "Functienaam succesvol aangepast",
+>>>>>>> upstream/main
 	"Functions": "Functies",
 	"Functions allow arbitrary code execution.": "Functies staan willekeurige code-uitvoering toe",
 	"Gather a quire": "",
@@ -774,6 +1119,15 @@
 	"Google PSE Engine Id": "Google PSE-engine-ID",
 	"Gravatar": "Gravatar",
 	"Grokipedia": "Grokipedia",
+<<<<<<< HEAD
+=======
+	"group": "",
+	"Group": "",
+	"Group Channel": "Groepskanaal",
+	"Group Claim": "",
+	"Group created successfully": "Groep succesvol aangemaakt",
+	"Group deleted successfully": "Groep succesvol verwijderd",
+>>>>>>> upstream/main
 	"Group Description": "Groepsbeschrijving",
 	"Group Name": "Groepsnaam",
 	"groups": "groepen",
@@ -781,6 +1135,11 @@
 	"H1": "H1",
 	"H2": "H2",
 	"H3": "H3",
+<<<<<<< HEAD
+=======
+	"Haptic Feedback": "Haptische feedback",
+	"Header variables": "",
+>>>>>>> upstream/main
 	"Headers": "headers",
 	"Headers must be a valid JSON object": "Headers moeten een geldig JSON-object zijn",
 	"Hello, {{name}}": "Hallo, {{name}}",
@@ -809,6 +1168,12 @@
 	"I acknowledge that I have read and I understand the implications of my action. I am aware of the risks associated with executing arbitrary code and I have verified the trustworthiness of the source.": "Ik bevestig dat ik de implicaties van mijn actie heb gelezen en begrepen. Ik ben me bewust van de risico's die gepaard gaan met het uitvoeren van willekeurige code en ik heb de betrouwbaarheid van de bron gecontroleerd.",
 	"ID": "ID",
 	"ID cannot contain \":\" or \"|\" characters": "ID mag geen tekens \":\" of \"|\" bevatten",
+<<<<<<< HEAD
+=======
+	"ID copied to clipboard": "ID gekopieerd naar klembord",
+	"Identity audit": "",
+	"Idle only": "",
+>>>>>>> upstream/main
 	"Idle Timeout": "Inactiviteitstime-out",
 	"Ignite curiosity": "Wakker nieuwsgierigheid aan",
 	"Image": "Afbeelding",
@@ -828,6 +1193,12 @@
 	"Import Config": "Configuratie importeren",
 	"Import From Link": "Importeren via link",
 	"Import Models": "Modellen importeren",
+<<<<<<< HEAD
+=======
+	"Import Prompts": "Prompts importeren",
+	"Import Skills": "",
+	"Import successful": "Importeren geslaagd",
+>>>>>>> upstream/main
 	"Import Tools": "Tools importeren",
 	"Important Update": "Belangrijke update",
 	"Imported": "",
@@ -864,6 +1235,11 @@
 	"Jina API Key": "Jina API-sleutel",
 	"join our Discord for help.": "word lid van onze Discord voor hulp.",
 	"JSON": "JSON",
+<<<<<<< HEAD
+=======
+	"JSON Base64": "",
+	"JSON Preview": "JSON-voorbeeld",
+>>>>>>> upstream/main
 	"JSON Spec": "JSON-specificatie",
 	"July": "juli",
 	"June": "juni",
@@ -874,9 +1250,26 @@
 	"Keep in Sidebar": "In zijbalk houden",
 	"Key": "Sleutel",
 	"Key is required": "Sleutel is vereist",
-	"Keyboard shortcuts": "Toetsenbordsnelkoppelingen",
 	"Keyboard Shortcuts": "Toetsenbordsnelkoppelingen",
 	"Knowledge": "Kennis",
+<<<<<<< HEAD
+=======
+	"Knowledge Access": "Kennistoegang",
+	"Knowledge Base": "Kennisbank",
+	"Knowledge base has been reset": "",
+	"Knowledge created successfully.": "Kennis succesvol aangemaakt",
+	"Knowledge deleted successfully.": "Kennis succesvol verwijderd",
+	"Knowledge Description": "Kennisbeschrijving",
+	"Knowledge exported successfully": "Kennis succesvol geexporteerd",
+	"Knowledge Name": "Kennisnaam",
+	"Knowledge Public Sharing": "Publieke kennisdeling",
+	"Knowledge Sharing": "Kennisdeling",
+	"Knowledge source created.": "",
+	"Knowledge source updated.": "",
+	"Knowledge updated successfully": "Kennis succesvol bijgewerkt",
+	"Kokoro.js (Browser)": "Kokoro.js (Browser)",
+	"Kokoro.js Dtype": "Kokoro.js Dtype",
+>>>>>>> upstream/main
 	"Label": "Label",
 	"Language Locales": "Taallocaties",
 	"Last 24 hours": "Laatste 24 uur",
@@ -905,9 +1298,18 @@
 	"Leave model field empty to use the default model.": "Laat modelveld leeg om het standaardmodel te gebruiken.",
 	"lexical": "lexicaal",
 	"License": "Licentie",
+	"Lifecycle JSON": "",
 	"Lift List": "Lift-lijst",
 	"Limit concurrent search queries. 0 = unlimited (default). Set to 1 for sequential execution (recommended for APIs with strict rate limits like Brave free tier).": "Beperk gelijktijdige zoekopdrachten. 0 = onbeperkt (standaard). Stel in op 1 voor sequentiele uitvoering (aanbevolen voor API's met strikte rate limits, zoals Brave free tier).",
 	"Limits the number of concurrent embedding requests. Set to 0 for unlimited.": "Beperkt het aantal gelijktijdige embeddingverzoeken. Stel in op 0 voor onbeperkt.",
+<<<<<<< HEAD
+=======
+	"Linkup API Key": "",
+	"List": "Lijst",
+	"List calendars, search, create, update, and delete calendar events": "Agenda's weergeven, zoeken, maken, bijwerken en agenda-afspraken verwijderen",
+	"Listening...": "Aan het luisteren...",
+	"Live": "Live",
+>>>>>>> upstream/main
 	"llama.cpp": "",
 	"Llama.cpp": "Llama.cpp",
 	"Loaded": "",
@@ -918,6 +1320,11 @@
 	"Local Task Model": "Lokaal taakmodel",
 	"Lost": "Verloren",
 	"Low": "Laag",
+<<<<<<< HEAD
+=======
+	"Lower the context compaction token threshold for this model. The global context compaction threshold remains the maximum.": "",
+	"LTR": "LNR",
+>>>>>>> upstream/main
 	"Made by Open WebUI Community": "Gemaakt door OpenWebUI Community",
 	"Make password visible in the user interface": "Maak wachtwoord zichtbaar in de gebruikersinterface",
 	"Make sure to export a workflow.json file as API format from ComfyUI.": "Zorg ervoor dat je een workflow.json-bestand als API-formaat exporteert vanuit ComfyUI.",
@@ -929,7 +1336,12 @@
 	"Manage OpenAI API Connections": "Beheer OpenAI API-verbindingen",
 	"Manage Pipelines": "Pijplijnen beheren",
 	"Manage Tool Servers": "Beheer gereedschapservers",
+<<<<<<< HEAD
 	"Manage, import, and configure the models available to users.": "",
+=======
+	"Manage your account information.": "Beheer je accountinformatie.",
+	"Mapped Source": "",
+>>>>>>> upstream/main
 	"March": "maart",
 	"Markdown": "Markdown",
 	"Markdown Header Text Splitter": "Markdown-koptekstsplitser",
@@ -950,6 +1362,15 @@
 	"Members": "Leden",
 	"Memories": "Geheugen",
 	"Memory": "Geheugen",
+<<<<<<< HEAD
+=======
+	"Memory added successfully": "Geheugen succesvol toegevoegd",
+	"Memory cleared successfully": "Geheugen succesvol vrijgemaakt",
+	"Memory deleted successfully": "Geheugen succesvol verwijderd",
+	"Memory System Context": "",
+	"Memory updated successfully": "Geheugen succesvol bijgewerkt",
+	"Merge Accounts by Email": "",
+>>>>>>> upstream/main
 	"Merge Responses": "Voeg antwoorden samen",
 	"Merged Response": "Samengevoegd antwoord",
 	"Message": "Bericht",
@@ -959,6 +1380,16 @@
 	"Message text...": "",
 	"messages": "berichten",
 	"Messages": "Berichten",
+<<<<<<< HEAD
+=======
+	"Messages you send after creating your link won't be shared. Users with the URL will be able to view the shared chat.": "Berichten die je verzendt nadat je jouw link hebt gemaakt, worden niet gedeeld. Gebruikers met de URL kunnen de gedeelde chat bekijken.",
+	"Metadata Field": "",
+	"Microsoft OneDrive": "Microsoft OneDrive",
+	"Microsoft OneDrive (personal)": "Microsoft OneDrive (persoonlijk)",
+	"Microsoft OneDrive (work/school)": "Microsoft OneDrive (werk/opleiding)",
+	"Microsoft Web IQ API Base URL": "",
+	"Microsoft Web IQ API Key": "",
+>>>>>>> upstream/main
 	"min": "min",
 	"MinerU": "MinerU",
 	"MinerU API Key required for Cloud API mode.": "MinerU API-sleutel vereist voor Cloud API-modus.",
@@ -1000,18 +1431,42 @@
 	"Models Sharing": "Modellen delen",
 	"Mojeek": "Mojeek",
 	"Mojeek Search API Key": "Mojeek Search API-sleutel",
+<<<<<<< HEAD
+=======
+	"Monday – Friday": "",
+	"Month": "Maand",
+	"Monthly": "Maandelijks",
+>>>>>>> upstream/main
 	"More": "Meer",
 	"More Concise": "Meer beknopt",
 	"More Options": "Meer opties",
 	"Move": "Verplaatsen",
+<<<<<<< HEAD
+=======
+	"Moved {{name}}": "{{name}} verplaatst",
+	"Multipart Upload": "",
+	"Mute": "",
+	"Muted": "",
+>>>>>>> upstream/main
 	"My Terminal": "Mijn terminal",
 	"Name": "Naam",
 	"Name and ID are required, please fill them out": "Naam en ID zijn vereist, vul deze in",
 	"Name this model…": "",
 	"Name your model": "",
 	"Native": "Native",
+<<<<<<< HEAD
+=======
+	"Native mode (default) leverages the model's built-in tool-calling capabilities. Legacy mode works with a wider range of models by calling tools once before execution via prompt injection.": "",
+	"Never": "Nooit",
+>>>>>>> upstream/main
 	"New": "Nieuw",
 	"New Chat": "Nieuwe Chat",
+<<<<<<< HEAD
+=======
+	"New directory": "",
+	"New Directory": "",
+	"New Event": "Nieuwe gebeurtenis",
+>>>>>>> upstream/main
 	"New File": "Nieuw bestand",
 	"New Folder": "Nieuwe map",
 	"New Function": "Nieuwe functie",
@@ -1026,6 +1481,7 @@
 	"Next message": "Volgend bericht",
 	"No access grants. Private to you.": "Geen toegangsrechten. Alleen privé voor jou.",
 	"No activity data": "Geen activiteitsgegevens",
+	"No additional headers are sent unless configured.": "",
 	"No authentication": "Geen authenticatie",
 	"No chats found": "Geen chats gevonden",
 	"No chats found for this user.": "Geen chats gevonden voor deze gebruiker.",
@@ -1034,7 +1490,13 @@
 	"No data": "Geen gegevens",
 	"No data found": "Geen gegevens gevonden",
 	"No distance available": "Geen afstand beschikbaar",
+<<<<<<< HEAD
+=======
+	"No event webhooks configured.": "",
+	"No execution logs available yet": "Geen uitvoerlogs beschikbaar",
+>>>>>>> upstream/main
 	"No expiration can pose security risks.": "Geen vervaldatum kan veiligheidsrisico's opleveren.",
+	"No external knowledge sources configured.": "",
 	"No feedback found": "Geen feedback gevonden",
 	"No file selected": "Geen bestand geselecteerd",
 	"No files found": "Geen bestanden gevonden",
@@ -1044,14 +1506,27 @@
 	"No HTML, CSS, or JavaScript content found.": "Geen HTML, CSS, of JavaScript inhoud gevonden",
 	"No inference engine with management support found": "Geen inferentie-engine met beheerondersteuning gevonden",
 	"No kernel": "Geen kernel",
+<<<<<<< HEAD
+=======
+	"No knowledge bases accessible": "",
+	"No knowledge bases found.": "Geen kennisbanken gevonden.",
+	"No knowledge found": "Geen kennis gevonden",
+>>>>>>> upstream/main
 	"No limit": "Geen limiet",
 	"No model IDs": "Geen model-ID's",
+	"No models accessible": "",
 	"No models available": "Geen modellen beschikbaar",
 	"No models found": "Geen modellen gevonden",
 	"No models match your search.": "",
 	"No models selected": "Geen modellen geselecteerd",
 	"No one": "Niemand",
 	"No output items": "",
+<<<<<<< HEAD
+=======
+	"No pinned messages": "Geen vastgemaakte berichten",
+	"No prompts found": "Geen prompts gevonden",
+	"No Repeat": "",
+>>>>>>> upstream/main
 	"No results": "Geen resultaten gevonden",
 	"No results found": "Geen resultaten gevonden",
 	"No search query generated": "Geen zoekopdracht gegenereerd",
@@ -1063,12 +1538,18 @@
 	"No Terminal connection configured.": "Geen terminalverbinding geconfigureerd.",
 	"No terminal connections configured.": "Geen terminalverbindingen geconfigureerd.",
 	"No tool server connections configured.": "Geen toolserververbindingen geconfigureerd.",
+<<<<<<< HEAD
 	"No tools match your search.": "",
+=======
+	"No tools accessible": "",
+	"No tools found": "Geen tools gevonden",
+>>>>>>> upstream/main
 	"No users were found.": "Geen gebruikers gevonden",
 	"No valves": "Geen kleppen",
 	"No valves to update": "Geen kleppen om bij te werken",
 	"Node Ids": "Node-ID's",
 	"None": "Geen",
+	"Not configured": "",
 	"Not factually correct": "Niet feitelijk juist",
 	"Not helpful": "Niet nuttig",
 	"Not Registered": "Niet geregistreerd",
@@ -1078,21 +1559,31 @@
 	"Nothing has been rehearsed yet.": "",
 	"November": "november",
 	"OAuth": "OAuth",
+	"OAuth / OIDC": "",
 	"OAuth 2.1": "OAuth 2.1",
 	"OAuth 2.1 (Static)": "OAuth 2.1 (Statisch)",
 	"OAuth ID": "OAuth ID",
+	"OAuth Resource Parameter": "",
+	"OAuth Scopes": "",
 	"OAuth Server URL": "",
 	"October": "oktober",
 	"Off": "Uit",
 	"Okay, Let's Go!": "Oké, laten we gaan!",
+<<<<<<< HEAD
+=======
+	"Older messages are summarized when estimated context exceeds this token limit.": "",
+	"OLED Dark": "OLED Donker",
+>>>>>>> upstream/main
 	"Ollama": "Ollama",
 	"Ollama API": "Ollama API",
 	"Ollama Cloud API Key": "Ollama Cloud API-sleutel",
 	"Ollama Version": "Ollama Versie",
+	"Omit": "",
 	"On": "Aan",
 	"On by default": "",
 	"On by default for new chats": "",
 	"OneDrive": "OneDrive",
+	"Only active during Voice Mode.": "",
 	"Only active when \"Paste Large Text as File\" setting is toggled on.": "Alleen actief wanneer de instelling \"Grote tekst als bestand plakken\" is ingeschakeld.",
 	"Only active when the chat input is in focus and an LLM is generating a response.": "Alleen actief wanneer de chatinvoer focus heeft en een LLM een antwoord genereert.",
 	"Only active when the chat input is in focus.": "Alleen actief wanneer de chatinvoer focus heeft.",
@@ -1162,21 +1653,39 @@
 	"Participate in community leaderboards and evaluations! Syncing aggregated usage stats helps drive research and improvements to Open WebUI. Your privacy is paramount: no message content is ever shared.": "Neem deel aan communityranglijsten en evaluaties! Het synchroniseren van geaggregeerde gebruiksstatistieken helpt onderzoek en verbeteringen aan Open WebUI te stimuleren. Je privacy staat voorop: er wordt nooit berichtinhoud gedeeld.",
 	"Password": "Wachtwoord",
 	"Passwords do not match.": "Wachtwoorden komen niet overeen.",
+<<<<<<< HEAD
 	"PDF document (.pdf)": "PDF document (.pdf)",
 	"PDF Extract Images (OCR)": "PDF extraheer afbeeldingen (OCR)",
 	"PDF Loader Mode": "PDF-loadermodus",
 	"Penalties & Mirostat": "",
+=======
+	"Paste Large Text as File": "Plak grote tekst als bestand",
+	"Path": "",
+	"Path copied": "Pad gekopieerd",
+	"Paused": "Gepauzeerd",
+	"PDF document (.pdf)": "PDF document (.pdf)",
+	"PDF Extract Images (OCR)": "PDF extraheer afbeeldingen (OCR)",
+	"PDF Loader Mode": "PDF-loadermodus",
+	"pdf, docx, pptx, xlsx": "",
+>>>>>>> upstream/main
 	"pending": "wachtend",
 	"Pending": "In afwachting",
+	"Pending Accounts": "",
 	"Pending User Overlay Content": "Inhoud van overlay voor wachtende gebruiker",
 	"Pending User Overlay Title": "Titel van overlay voor wachtende gebruiker",
 	"Permissions": "Toestemmingen",
+	"Permissions reset to defaults": "",
 	"Perplexity API Key": "Perplexity API-sleutel",
 	"Perplexity Model": "Perplexity-model",
 	"Perplexity Search API URL": "Perplexity Search API-URL",
 	"Perplexity Search Context Usage": "Gebruik van zoekcontext voor Perplexity",
 	"Persistent": "Persistent",
+<<<<<<< HEAD
 	"Pick an icon or emoji": "",
+=======
+	"Personalization": "Personalisatie",
+	"Picture Claim": "",
+>>>>>>> upstream/main
 	"Pin": "Zet vast",
 	"Pinned Models": "Vastgemaakte modellen",
 	"Pioneer insights": "Verken inzichten",
@@ -1199,9 +1708,14 @@
 	"Please enter Client ID and Client Secret": "Voer Client ID en Client Secret in",
 	"Please register the OAuth client": "Registreer de OAuth-client",
 	"Please save the connection to persist the OAuth client information and do not change the ID": "Sla de verbinding op om de OAuth-clientinformatie te bewaren en wijzig de ID niet",
+<<<<<<< HEAD
+=======
+	"Please select a model.": "Selecteer een model",
+>>>>>>> upstream/main
 	"Please select a reason": "Voer een reden in",
 	"Please select a valid JSON file": "Selecteer een geldig JSON-bestand",
 	"Policy ID": "Beleid-ID",
+	"Policy ID is required": "",
 	"Port": "Poort",
 	"Ports": "Poorten",
 	"Positive attitude": "Positieve houding",
@@ -1209,6 +1723,7 @@
 	"Prefix ID is used to avoid conflicts with other connections by adding a prefix to the model IDs - leave empty to disable": "Voorvoegsel-ID wordt gebruikt om conflicten met andere verbindingen te vermijden door een voorvoegsel aan het model-ID toe te voegen - laat leeg om uit te schakelen",
 	"Prevent File Creation": "Bestandsaanmaak voorkomen",
 	"Preview": "Voorvertoning",
+	"Preview Access": "",
 	"Previous 30 days": "Afgelopen 30 dagen",
 	"Previous 7 days": "Afgelopen 7 dagen",
 	"Previous message": "Vorige bericht",
@@ -1217,6 +1732,8 @@
 	"Prompt": "Prompt",
 	"Prompt Template": "",
 	"Provider": "",
+	"Provider Name": "",
+	"Provider URL": "",
 	"Public": "Publiek",
 	"Public shared chat links are disabled for this workspace.": "",
 	"Pull \"{{searchValue}}\" from Ollama.com": "Haal \"{{searchValue}}\" uit Ollama.com",
@@ -1239,18 +1756,38 @@
 	"Read": "Voorlezen",
 	"Read Aloud": "Voorlezen",
 	"Read more →": "Lees meer →",
+<<<<<<< HEAD
 	"read only": "",
+=======
+	"Read only": "",
+>>>>>>> upstream/main
 	"Read Only": "Alleen lezen",
 	"Read, write, and diff-edit durable notes for the current chat Scratchboard": "",
 	"Reason": "Reden",
 	"Reasoning Effort": "Redeneerinspanning",
 	"Reasoning Tags": "Redeneertags",
 	"Reasoning text...": "",
+	"Receives matching events across the instance, including system/config events and events associated with any user.": "",
+	"Receives matching events that are not associated with a user.": "",
+	"Receives matching user-associated events only when the actor, user subject, or user data matches these users or current group members. System/config events are not sent.": "",
 	"Recently Used": "Onlangs gebruikt",
 	"Reconnected": "Opnieuw verbonden",
+<<<<<<< HEAD
 	"Redirecting you to Open WebUI Community": "Je wordt doorgestuurd naar OpenWebUI Community",
 	"Reduces the probability of generating nonsense. A higher value (e.g. 100) will give more diverse answers, while a lower value (e.g. 10) will be more conservative.": "Vermindert de kans op het genereren van onzin. Een hogere waarde (bijv. 100) zal meer diverse antwoorden geven, terwijl een lagere waarde (bijv. 10) conservatiever zal zijn.",
+=======
+	"Record": "Opnemen",
+	"Record voice": "Neem stem op",
+	"Redirect URI": "",
+	"Redirecting you to Open WebUI Community": "Je wordt doorgestuurd naar OpenWebUI Community",
+	"Reduces the probability of generating nonsense. A higher value (e.g. 100) will give more diverse answers, while a lower value (e.g. 10) will be more conservative.": "Vermindert de kans op het genereren van onzin. Een hogere waarde (bijv. 100) zal meer diverse antwoorden geven, terwijl een lagere waarde (bijv. 10) conservatiever zal zijn.",
+	"Reference Chats": "Referentiechats",
+>>>>>>> upstream/main
 	"Refresh": "Verversen",
+	"Refresh requested: {{count}} terminal(s)_one": "",
+	"Refresh requested: {{count}} terminal(s)_other": "",
+	"Refresh Terminals": "",
+	"Refreshing...": "",
 	"Refused when it shouldn't have": "Geweigerd terwijl dat niet had mogen gebeuren",
 	"Regenerate": "Regenereren",
 	"Regenerate Response": "Antwoord opnieuw genereren",
@@ -1269,15 +1806,38 @@
 	"Remove from favorites": "Verwijderen uit favorieten",
 	"Remove image": "Afbeelding verwijderen",
 	"Remove Model": "Verwijder model",
+	"Removing {{count}} stale files..._one": "",
+	"Removing {{count}} stale files..._other": "",
 	"Rename": "Hernoemen",
 	"Reorder Models": "Herschik modellen",
+<<<<<<< HEAD
+=======
+	"Repeat": "",
+	"Repeats": "Herhalingen",
+	"Reply": "Antwoorden",
+	"Reply in Thread": "Antwoord in draad",
+	"Reply to thread...": "Reageren op draad...",
+	"Replying to {{NAME}}": "Reageren op {{NAME}}",
+	"Request Format": "",
+	"Require users to confirm before using Web Search.": "",
+	"required": "vereist",
+>>>>>>> upstream/main
 	"Reranking Batch Size": "Batchgrootte voor herordenen",
 	"Reranking Engine": "Herschikkingsengine",
 	"Reranking Model": "Reranking Model",
+	"Research Knowledge": "",
 	"Reset": "Herstellen",
 	"Reset All Models": "Herstel alle modellen",
+	"Reset all permissions to their initial configuration values": "",
+	"Reset group permissions to match the current default user permissions": "",
 	"Reset Image": "Afbeelding resetten",
+<<<<<<< HEAD
 	"Reset to default": "",
+=======
+	"Reset knowledge base?": "",
+	"Reset persisted files": "",
+	"Reset to Defaults": "",
+>>>>>>> upstream/main
 	"Reset Upload Directory": "Herstel Uploadmap",
 	"Reset Vector Storage/Knowledge": "Herstel Vectoropslag/-kennis",
 	"Reset view": "Herstel zicht",
@@ -1298,6 +1858,11 @@
 	"Return token usage information in the response when supported": "",
 	"Reusable instruction packs that teach your models a procedure or domain — import a markdown skill or write your own, then enable it where you need it.": "",
 	"Role": "Rol",
+<<<<<<< HEAD
+=======
+	"Roles Claim": "",
+	"RTL": "RNL",
+>>>>>>> upstream/main
 	"Run": "Uitvoeren",
 	"Run All": "Alles uitvoeren",
 	"Running": "Aan het uitvoeren",
@@ -1310,10 +1875,18 @@
 	"Save As Copy": "Bewaar als kopie",
 	"Saved": "Opgeslagen",
 	"Saving chat logs directly to your browser's storage is no longer supported. Please take a moment to download and delete your chat logs by clicking the button below. Don't worry, you can easily re-import your chat logs to the backend through": "Chat logs direct opslaan in de opslag van je browser wordt niet langer ondersteund. Neem even de tijd om je chat logs te downloaden en te verwijderen door op de knop hieronder te klikken. Maak je geen zorgen, je kunt je chat logs eenvoudig opnieuw importeren naar de backend via",
+<<<<<<< HEAD
 	"Scratchboard": "",
+=======
+	"Schedule": "Planning",
+	"Scheduled time must be in the future": "Ingeplande tijd moet in de toekomst liggen",
+	"Scopes": "",
+	"Scroll On Branch Change": "Scrollen bij wijziging van branch",
+>>>>>>> upstream/main
 	"Scroll to Top": "",
 	"Search": "Zoeken",
 	"Search a model": "Zoek een model",
+	"Search actions": "",
 	"Search all emojis": "Alle emoji's zoeken",
 	"Search and manage user memories": "Gebruikersherinneringen zoeken en beheren",
 	"Search and view user chat history": "Gebruikerschatgeschiedenis zoeken en bekijken",
@@ -1321,6 +1894,7 @@
 	"Search Chats": "Chats zoeken",
 	"Search engines and web content loaders for live results.": "",
 	"Search Files": "Bestanden zoeken",
+	"Search filters": "",
 	"Search Filters": "Zoek naar filters",
 	"search for archived chats": "zoek naar gearchiveerde chats",
 	"search for folders": "zoek naar mappen",
@@ -1332,10 +1906,22 @@
 	"Search In Models": "Zoeken in modellen",
 	"Search Models": "Modellen zoeken",
 	"Search options": "Opties zoeken",
+<<<<<<< HEAD
+=======
+	"Search or add pattern": "",
+	"Search Prompts": "Prompts zoeken",
+>>>>>>> upstream/main
 	"Search Result Count": "Aantal zoekresultaten",
+	"Search skills": "",
 	"Search Skills": "Vaardigheden zoeken",
 	"Search the web and fetch URLs": "Doorzoek het web en haal URL's op",
+	"Search tools": "",
 	"Search Tools": "Zoek gereedschappen",
+<<<<<<< HEAD
+=======
+	"Search users or groups": "",
+	"Search, view, and manage user notes": "Gebruikersnotities zoeken, bekijken en beheren",
+>>>>>>> upstream/main
 	"SearchApi API Key": "SearchApi API-sleutel",
 	"SearchApi Engine": "SearchApi Engine",
 	"Searched {{count}} sites": "Zocht op {{count}} sites",
@@ -1350,7 +1936,12 @@
 	"Seed": "Seed",
 	"Select": "Selecteren",
 	"Select {{modelName}} model": "Selecteer {{modelName}}-model",
+<<<<<<< HEAD
 	"Select a base model": "Selecteer een basismodel",
+=======
+	"Select a base model (e.g. llama3, gpt-4o)": "Selecteer een basismodel (bijv. llama3, gpt-4o)",
+	"Select a conversation to preview": "Selecteer een gesprek om te bekijken",
+>>>>>>> upstream/main
 	"Select a engine": "Selecteer een engine",
 	"Select a function": "Selecteer een functie",
 	"Select a group": "Selecteer een groep",
@@ -1380,15 +1971,36 @@
 	"Selected Models": "Geselecteerde modellen",
 	"semantic": "semantisch",
 	"Send": "Verzenden",
+<<<<<<< HEAD
+=======
+	"Send a Message": "Stuur een bericht",
+	"Send events for": "",
+	"Send message": "Stuur bericht",
+	"Send now": "Nu verzenden",
+	"Send product events as JSON to external services. Chat destinations receive readable messages.": "",
+	"Send the PDF as a base64 data URL instead of uploading it first.": "",
+	"Sends `stream_options: { include_usage: true }` in the request.\nSupported providers will return token usage information in the response when set.": "Stuurt `stream_options: { include_usage: true }` in het verzoek. \nOndersteunde providers zullen informatie over tokengebruik in het antwoord terugsturen als dit aan staat.",
+>>>>>>> upstream/main
 	"September": "september",
 	"sequences that end a response — comma separated": "",
 	"SerpApi API Key": "SerpApi API-sleutel",
 	"SerpApi Engine": "SerpApi-engine",
 	"Serper API Key": "Serper API-sleutel",
+	"SERPHouse API Key": "",
+	"SERPHouse Domain": "",
 	"Serply API Key": "Serply API-sleutel",
 	"Serpstack API Key": "Serpstack API-sleutel",
 	"Server connection failed": "Serververbinding mislukt",
+<<<<<<< HEAD
 	"Session": "Sessie",
+=======
+	"Server connection verified": "Server verbinding geverifieerd",
+	"Service Account": "",
+	"Session": "Sessie",
+	"Session expired. Please sign in again.": "",
+	"Set as default": "Stel in als standaard",
+	"Set as Production": "Instellen als productie",
+>>>>>>> upstream/main
 	"Set embedding model": "Stel embedding-model in",
 	"Set embedding model (e.g. {{model}})": "Stel embedding-model in (bv. {{model}})",
 	"Set reranking model (e.g. {{model}})": "Stel reranking-model in (bv. {{model}})",
@@ -1412,13 +2024,28 @@
 	"Share": "Delen",
 	"Share Chat": "Deel chat",
 	"Share to Open WebUI Community": "Deel naar OpenWebUI-community",
+<<<<<<< HEAD
+=======
+	"Share your background and interests": "Deel je achtergrond en interesses",
+	"Shared": "",
+>>>>>>> upstream/main
 	"Shared Chats": "Gedeelde chats",
 	"Shared with you": "Gedeeld met jou",
 	"Sharing Permissions": "Deeltoestemmingen",
 	"Show": "Toon",
+<<<<<<< HEAD
 	"Show Admin Details in Account Pending Overlay": "Admin-details weergeven in overlay in afwachting van account",
 	"Show All": "Alles tonen",
 	"Show all ({{COUNT}} characters)": "Alles tonen ({{COUNT}} tekens)",
+=======
+	"Show \"What's New\" Modal on Login": "Toon \"Wat is nieuw\" bij inloggen",
+	"Show Admin Details in Account Pending Overlay": "Admin-details weergeven in overlay in afwachting van account",
+	"Show All": "Alles tonen",
+	"Show all ({{COUNT}} characters)": "Alles tonen ({{COUNT}} tekens)",
+	"Show Files": "Bestanden tonen",
+	"Show Files on Terminal Select": "",
+	"Show Formatting Toolbar": "Opmaakwerkbalk tonen",
+>>>>>>> upstream/main
 	"Show image preview": "Afbeeldingsvoorvertoning tonen",
 	"Show Model": "Toon model",
 	"Show Shortcuts": "Sneltoetsen tonen",
@@ -1460,7 +2087,13 @@
 	"Sougou Search API sID": "Sougou Search API sID",
 	"Sougou Search API SK": "Sougou Search API SK",
 	"Source": "Bron",
+<<<<<<< HEAD
 	"Sources used": "",
+=======
+	"Specific users or groups": "",
+	"Speech Playback Speed": "Afspeelsnelheid spraak",
+	"Speech recognition error: {{error}}": "Spraakherkenning fout: {{error}}",
+>>>>>>> upstream/main
 	"Speech-to-Text": "Spraak-naar-tekst",
 	"Speech-to-Text Engine": "Spraak-naar-tekst Engine",
 	"Split documents by markdown headers before applying character/token splitting.": "Splits documenten op basis van markdown-koppen voordat teken-/token-splitsing wordt toegepast.",
@@ -1484,6 +2117,13 @@
 	"Strip Existing OCR": "Bestaande OCR verwijderen",
 	"Strip existing OCR text from the PDF and re-run OCR. Ignored if Force OCR is enabled. Defaults to False.": "Verwijder bestaande OCR-tekst uit de PDF en voer OCR opnieuw uit. Wordt genegeerd als Force OCR is ingeschakeld. Standaard is False.",
 	"STT Model": "STT Model",
+<<<<<<< HEAD
+=======
+	"STT Settings": "STT Instellingen",
+	"Stylized PDF Export": "Gestileerde PDF-export",
+	"Su_day_of_week": "zo",
+	"Sub Claim": "",
+>>>>>>> upstream/main
 	"Submit question": "Vraag indienen",
 	"Submit suggestion": "Suggestie indienen",
 	"Subtitle": "Ondertitel",
@@ -1497,13 +2137,22 @@
 	"Switch to JSON editor": "",
 	"Switch to visual editor": "",
 	"Sync": "Synchroniseren",
+	"Sync a local directory with this knowledge base. Only new and modified files will be uploaded. The directory structure will be mirrored.": "",
+	"Sync complete: {{added}} added, {{modified}} modified, {{deleted}} deleted, {{unmodified}} unmodified": "",
 	"Sync Complete!": "Synchronisatie voltooid!",
 	"Sync Failed": "Synchronisatie mislukt",
 	"Sync Usage Stats": "Gebruiksstatistieken synchroniseren",
 	"Syncing stats...": "Statistieken synchroniseren...",
 	"Syncing...": "Synchroniseren...",
 	"Syncs only chats with updates after your last sync timestamp. Disable to re-sync all chats.": "Synchroniseert alleen chats met wijzigingen na je laatste synchronisatietijdstip. Schakel dit uit om alle chats opnieuw te synchroniseren.",
+<<<<<<< HEAD
+=======
+	"System": "Systeem",
+	"System events only": "",
+	"System Instructions": "Systeem instructies",
+>>>>>>> upstream/main
 	"System Prompt": "Systeem prompt",
+	"Table": "",
 	"Tag": "Tag",
 	"Tags": "Tags",
 	"Tags Generation": "Taggeneratie",
@@ -1523,6 +2172,16 @@
 	"Temperature": "Temperatuur",
 	"Temporary Chat": "Tijdelijke chat",
 	"Terminal": "Terminal",
+<<<<<<< HEAD
+=======
+	"Terminal servers saved": "Terminalservers opgeslagen",
+	"Test": "",
+	"Test Query": "",
+	"Test returned no results.": "",
+	"Test succeeded.": "",
+	"Test the source before creating it.": "",
+	"Test the source before saving it.": "",
+>>>>>>> upstream/main
 	"Text Splitter": "Tekst splitser",
 	"Text-to-Speech": "Tekst-naar-spraak",
 	"Text-to-Speech Engine": "Tekst-naar-Spraak Engine",
@@ -1537,8 +2196,11 @@
 	"The height in pixels to compress images to. Leave empty for no compression.": "De hoogte in pixels waarnaar afbeeldingen moeten worden gecomprimeerd. Laat leeg voor geen compressie.",
 	"The LDAP attribute that maps to the mail that users use to sign in.": "Het LDAP-attribuut dat verwijst naar de e-mail waarmee gebruikers zich aanmelden.",
 	"The LDAP attribute that maps to the username that users use to sign in.": "Het LDAP-attribuut dat verwijst naar de gebruikersnaam die gebruikers gebruiken om in te loggen.",
+<<<<<<< HEAD
 	"The leaderboard is currently in beta, and we may adjust the rating calculations as we refine the algorithm.": "Het leaderboard is momenteel in bèta en we kunnen de ratingberekeningen aanpassen naarmate we het algoritme verfijnen.",
 	"the longest single response it may set": "",
+=======
+>>>>>>> upstream/main
 	"The maximum file size in MB. If the file size exceeds this limit, the file will not be uploaded.": "De maximale bestandsgrootte in MB. Als het bestand groter is dan deze limiet, wordt het bestand niet geüpload.",
 	"The maximum number of files that can be used at once in chat. If the number of files exceeds this limit, the files will not be uploaded.": "Het maximum aantal bestanden dat in één keer kan worden gebruikt in de chat. Als het aantal bestanden deze limiet overschrijdt, worden de bestanden niet geüpload.",
 	"The only required step — refine everything else now or later.": "",
@@ -1564,6 +2226,11 @@
 	"This feature is currently experimental and may not work as expected.": "Deze functie is momenteel experimenteel en werkt mogelijk niet zoals verwacht.",
 	"This folder is empty": "Deze map is leeg",
 	"This is a default user permission and will remain enabled.": "Dit is een standaardgebruikersrecht en blijft ingeschakeld.",
+<<<<<<< HEAD
+=======
+	"This is an experimental feature, it may not function as expected and is subject to change at any time.": "Dit is een experimentele functie, het werkt mogelijk niet zoals verwacht en kan op elk moment worden gewijzigd.",
+	"This knowledge base retrieves from a connected source. Open WebUI can query it, but cannot upload, sync, edit, delete, reset, or reindex its source data.": "",
+>>>>>>> upstream/main
 	"This model is not publicly available. Please select another model.": "Dit model is niet publiek beschikbaar. Selecteer een ander model.",
 	"This option controls how long the model will stay loaded into memory following the request (default: 5m)": "Deze optie bepaalt hoe lang het model na het verzoek in het geheugen geladen blijft (standaard: 5m)",
 	"This option controls how many tokens are preserved when refreshing the context. For example, if set to 2, the last 2 tokens of the conversation context will be retained. Preserving context can help maintain the continuity of a conversation, but it may reduce the ability to respond to new topics.": "Deze optie bepaalt hoeveel tokens bewaard blijven bij het verversen van de context. Als deze bijvoorbeeld op 2 staat, worden de laatste 2 tekens van de context van het gesprek bewaard. Het behouden van de context kan helpen om de continuïteit van een gesprek te behouden, maar het kan de mogelijkheid om te reageren op nieuwe onderwerpen verminderen.",
@@ -1575,6 +2242,11 @@
 	"This will delete <strong>{{NAME}}</strong> and <strong>all its contents</strong>.": "Dit zal <strong>{{NAME}}</strong> verwijderen en <strong>al zijn inhoud</strong>.",
 	"This will delete all models including custom models": "Dit zal alle modellen, ook aangepaste modellen, verwijderen",
 	"This will delete all models including custom models and cannot be undone.": "Dit zal alle modellen, ook aangepaste modellen, verwijderen en kan niet ongedaan worden gemaakt",
+<<<<<<< HEAD
+=======
+	"This will permanently delete the calendar \"{{name}}\" and all its events. This action cannot be undone.": "Dit zal de kalender \"{{name}}\" en alle gebeurtenissen permanent verwijderen. Deze actie kan niet ongedaan worden gemaakt.",
+	"This will remove all files and directories from this knowledge base. This action cannot be undone.": "",
+>>>>>>> upstream/main
 	"Thorough explanation": "Grondige uitleg",
 	"Thought": "Gedachte",
 	"Thought for {{DURATION}}": "Dacht {{DURATION}} na",
@@ -1597,12 +2269,23 @@
 	"To learn more about available endpoints, visit our documentation.": "Om meer over beschikbare endpoints te leren, bezoek onze documentatie.",
 	"To select skills here, add them to the \"Skills\" workspace first.": "Om hier vaardigheden te selecteren, voeg ze eerst toe aan de \"Vaardigheden\"-werkruimte.",
 	"To select toolkits here, add them to the \"Tools\" workspace first.": "Om hier gereedschapssets te selecteren, voeg ze eerst aan de \"Gereedschappen\" Werkplaats toe.",
+<<<<<<< HEAD
+=======
+	"Toast Notifications for New Updates": "Toon notificaties voor nieuwe updates",
+>>>>>>> upstream/main
 	"Today": "Vandaag",
 	"Toggle details": "Details omzetten",
+<<<<<<< HEAD
+=======
+	"Toggle Dictation": "Dicteren omzetten",
+	"Toggle Mute": "",
+>>>>>>> upstream/main
 	"Toggle Sidebar": "Zijbalk omzetten",
 	"Toggle whether current connection is active.": "Schakel in of de huidige verbinding actief is.",
 	"Token": "Token",
 	"Token counts are estimates and may not reflect actual API usage": "Tokenaantallen zijn schattingen en komen mogelijk niet overeen met het werkelijke API-gebruik",
+	"Token Threshold": "",
+	"Tokenizer Model": "",
 	"tokens": "tokens",
 	"Tokens": "Tokens",
 	"Too verbose": "Te langdradig",
@@ -1647,10 +2330,25 @@
 	"Unlock mysteries": "Ontsleutel mysteries",
 	"Unpin": "Losmaken",
 	"Unravel secrets": "Ontrafel geheimen",
+	"Unshare All": "",
+	"Unshare All Shared Chats": "",
 	"Unshare Chat": "Chat delen opheffen",
 	"Untagged": "Ongemarkeerd",
+<<<<<<< HEAD
 	"Untitled folio": "",
 	"Update for the latest features and improvements.": "Bijwerken voor de nieuwste functies en verbeteringen",
+=======
+	"Untitled": "Zonder titel",
+	"Update": "Bijwerken",
+	"Update and Copy Link": "Bijwerken en kopieer link",
+	"Update Email": "",
+	"Update for the latest features and improvements.": "Bijwerken voor de nieuwste functies en verbeteringen",
+	"Update Name": "",
+	"Update password": "Wijzig wachtwoord",
+	"Update Picture": "",
+	"Update your status": "Werk je status bij",
+	"Updated": "Bijgewerkt",
+>>>>>>> upstream/main
 	"Updated at": "Bijgewerkt om",
 	"Updated At": "Bijgewerkt om",
 	"Upgrade to a licensed plan for enhanced capabilities, including custom theming and branding, and dedicated support.": "Upgrade naar een licentie voor meer mogelijkheden, waaronder aangepaste thematisering en branding, en speciale ondersteuning.",
@@ -1662,24 +2360,40 @@
 	"Upload profile image": "Profielafbeelding uploaden",
 	"Upload Progress": "Upload Voortgang",
 	"Uploaded files or images": "Geüploade bestanden of afbeeldingen",
+<<<<<<< HEAD
+=======
+	"Uploading {{current}}/{{total}}: {{file}}": "",
+>>>>>>> upstream/main
 	"Uploading...": "Aan het uploaden...",
 	"URL": "URL",
 	"URL is required": "URL is vereist",
 	"URL Mode": "URL-modus",
 	"Usage": "Gebruik",
 	"Use /v1/chat/completions endpoint instead of /v1/audio/transcriptions for potentially better accuracy.": "Gebruik het /v1/chat/completions-endpoint in plaats van /v1/audio/transcriptions voor mogelijk betere nauwkeurigheid.",
+	"Use a valid event name or pattern like user.*": "",
+	"Use Base64": "",
 	"Use Chat Completions API": "Gebruik Chat Completions API",
+	"Use discovered scopes": "",
 	"Use groups to organize your users and assign permissions.": "Gebruik groepen om je gebruikers te organiseren en machtigingen toe te kennen.",
 	"Use LLM": "LLM gebruiken",
 	"Use no proxy to fetch page contents.": "Gebruik geen proxy om paginainhoud op te halen.",
 	"Use proxy designated by http_proxy and https_proxy environment variables to fetch page contents.": "Gebruik de proxy die is opgegeven door de omgevingsvariabelen http_proxy en https_proxy om paginainhoud op te halen.",
+	"Use Web Search?": "",
 	"user": "gebruiker",
 	"User": "Gebruiker",
+	"User Access": "",
 	"User Activity": "Gebruikersactiviteit",
 	"User Groups": "Gebruikersgroepen",
+<<<<<<< HEAD
+=======
+	"User location successfully retrieved.": "Gebruikerslocatie succesvol opgehaald",
+	"User menu": "Gebruikersmenu",
+	"User Preview": "",
+>>>>>>> upstream/main
 	"User ratings (thumbs up/down)": "Gebruikersbeoordelingen (duim omhoog/omlaag)",
 	"User Webhooks": "Gebruiker-webhooks",
 	"Username": "Gebruikersnaam",
+	"Username Claim": "",
 	"users": "gebruikers",
 	"Users": "Gebruikers",
 	"Uses DefaultAzureCredential to authenticate": "Gebruikt DefaultAzureCredential voor authenticatie",
@@ -1690,7 +2404,14 @@
 	"Valid time units:": "Geldige tijdseenheden:",
 	"Validate certificate": "Certificaat valideren",
 	"Valves": "Kleppen",
+<<<<<<< HEAD
 	"Verified": "",
+=======
+	"Valves updated": "Kleppen bijgewerkt",
+	"Valves updated successfully": "Kleppen succesvol bijgewerkt",
+	"variable": "variabele",
+	"Vector Field": "",
+>>>>>>> upstream/main
 	"Verify Connection": "Controleer verbinding",
 	"Verify SSL Certificate": "SSL-certificaat verifiëren",
 	"Version": "Versie",
@@ -1711,9 +2432,20 @@
 	"Web API": "Web-API",
 	"Web Loader Engine": "Webloader-engine",
 	"Web Search": "Zoeken op het web",
+	"Web Search Confirmation": "",
+	"Web Search Confirmation Content": "",
 	"Web Search Engine": "Zoekmachine op het web",
 	"Web Search Query Generation": "Zoekopdracht generatie",
+<<<<<<< HEAD
 	"Webhook URL": "Webhook URL",
+=======
+	"Webhook deleted": "",
+	"Webhook Name": "Webhooknaam",
+	"Webhook saved": "",
+	"Webhooks": "Webhooks",
+	"Webpage URLs": "Webpagina-URL's",
+	"WebUI Settings": "WebUI Instellingen",
+>>>>>>> upstream/main
 	"WebUI URL": "WebUI-URL",
 	"WebUI will make requests to \"{{url}}\"": "WebUI zal verzoeken doen aan \"{{url}}\"",
 	"WebUI will make requests to \"{{url}}/api/chat\"": "WebUI zal verzoeken doen aan \"{{url}}/api/chat\"",
@@ -1744,6 +2476,7 @@
 	"Yandex Web Search API Key": "Yandex Web Search API-sleutel",
 	"Yandex Web Search config": "Yandex Web Search-configuratie",
 	"Yandex Web Search URL": "Yandex Web Search-URL",
+	"Yearly": "",
 	"Yesterday": "Gisteren",
 	"You": "Jij",
 	"You are a careful editor: terse, concrete, kind…": "",
@@ -1763,6 +2496,7 @@
 	"Your browser does not support the video tag.": "Je browser ondersteunt de video-tag niet.",
 	"Your entire contribution will go directly to the plugin developer; Open WebUI does not take any percentage. However, the chosen funding platform might have its own fees.": "Je volledige bijdrage gaat direct naar de ontwikkelaar van de plugin; Open WebUI neemt hier geen deel van. Het gekozen financieringsplatform kan echter wel zijn eigen kosten hebben.",
 	"Your message text or inputs": "Je berichttekst of invoer",
+	"Your query will be sent to the configured web search provider.": "",
 	"Your usage stats have been successfully synced.": "Je gebruiksstatistieken zijn succesvol gesynchroniseerd.",
 	"Youtube Language": "Youtube-taal",
 	"Youtube Proxy URL": "Youtube-proxy-URL"

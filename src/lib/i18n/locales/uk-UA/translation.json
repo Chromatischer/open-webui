@@ -5,23 +5,79 @@
 	"(e.g. `sh webui.sh --api`)": "(напр. `sh webui.sh --api`)",
 	"(latest)": "(остання)",
 	"(leave blank for to use commercial endpoint)": "",
+<<<<<<< HEAD
 	"{{COUNT}} extracted lines": "",
 	"{{COUNT}} hidden lines": "{{COUNT}} прихованих рядків",
 	"{{COUNT}} members": "",
+=======
+	"[Last] dddd [at] h:mm A": "",
+	"[Today at] h:mm A": "",
+	"[Yesterday at] h:mm A": "",
+	"{{ models }}": "{{ models }}",
+	"{{COUNT}} Available Skills": "",
+	"{{COUNT}} Available Tools": "",
+	"{{COUNT}} characters": "",
+	"{{COUNT}} extracted lines": "",
+	"{{COUNT}} files": "",
+	"{{count}} files selected. Only new and modified files will be uploaded. Deleted files will be removed. The folder structure will be mirrored. Continue?_one": "",
+	"{{count}} files selected. Only new and modified files will be uploaded. Deleted files will be removed. The folder structure will be mirrored. Continue?_few": "",
+	"{{count}} files selected. Only new and modified files will be uploaded. Deleted files will be removed. The folder structure will be mirrored. Continue?_many": "",
+	"{{count}} files selected. Only new and modified files will be uploaded. Deleted files will be removed. The folder structure will be mirrored. Continue?_other": "",
+	"{{count}} filters_one": "",
+	"{{count}} filters_few": "",
+	"{{count}} filters_many": "",
+	"{{count}} filters_other": "",
+	"{{count}} groups_one": "",
+	"{{count}} groups_few": "",
+	"{{count}} groups_many": "",
+	"{{count}} groups_other": "",
+	"{{COUNT}} hidden lines": "{{COUNT}} прихованих рядків",
+	"{{COUNT}} members": "",
+	"{{count}} of {{total}} accessible_one": "",
+	"{{count}} of {{total}} accessible_few": "",
+	"{{count}} of {{total}} accessible_many": "",
+	"{{count}} of {{total}} accessible_other": "",
+	"{{COUNT}} Replies": "{{COUNT}} Відповіді",
+>>>>>>> upstream/main
 	"{{COUNT}} Rows": "",
 	"{{count}} selected_one": "",
 	"{{count}} selected_few": "",
 	"{{count}} selected_many": "",
 	"{{count}} selected_other": "",
+<<<<<<< HEAD
+=======
+	"{{COUNT}} Sources": "",
+	"{{count}} users_one": "",
+	"{{count}} users_few": "",
+	"{{count}} users_many": "",
+	"{{count}} users_other": "",
+	"{{COUNT}} words": "",
+>>>>>>> upstream/main
 	"{{COUNT}}d_time_ago": "",
 	"{{COUNT}}h_time_ago": "",
 	"{{COUNT}}m_time_ago": "",
 	"{{COUNT}}w_time_ago": "",
 	"{{COUNT}}y_time_ago": "",
+<<<<<<< HEAD
+=======
+	"{{label}} contains invalid JSON": "",
+	"{{label}} must be a JSON object": "",
+	"{{LOCALIZED_DATE}} at {{LOCALIZED_TIME}}": "",
+	"{{model}} download has been canceled": "",
+>>>>>>> upstream/main
 	"{{modelName}} profile image": "",
 	"{{user}}'s Chats": "Чати {{user}}а",
 	"{{webUIName}} Backend Required": "Необхідно підключення бекенду {{webUIName}}",
 	"*Prompt node ID(s) are required for image generation": "*Для генерації зображення потрібно вказати ідентифікатор(и) вузла(ів)",
+<<<<<<< HEAD
+=======
+	"1 group": "",
+	"1 hour before": "",
+	"1 Source": "",
+	"1 user": "",
+	"10 minutes before": "",
+	"15 minutes before": "",
+>>>>>>> upstream/main
 	"1m_time_ago": "",
 	"a line about what this model is for…": "",
 	"A model binds a base mind to a system prompt, tools and knowledge — compose one and summon it in any chat.": "",
@@ -33,6 +89,11 @@
 	"Access Control": "Контроль доступу",
 	"Access Grants": "",
 	"Access List": "",
+<<<<<<< HEAD
+=======
+	"Access prohibited": "",
+	"Access updated": "",
+>>>>>>> upstream/main
 	"Accessible to all users": "Доступно всім користувачам",
 	"Account Activation Pending": "Очікування активації облікового запису",
 	"Accurate information": "Точна інформація",
@@ -43,6 +104,7 @@
 	"Activity": "",
 	"Add": "Додати",
 	"Add a model ID": "Додайти ID моделі",
+	"Add a preference, fact, or instruction about you": "",
 	"Add a short description about what this model does": "Додайте короткий опис того, що робить ця модель",
 	"Add a tag": "Додайти тег",
 	"Add a tag...": "",
@@ -52,7 +114,17 @@
 	"Add Custom Parameter": "",
 	"Add Custom Prompt": "",
 	"Add Details": "",
+	"Add durable context for future chats": "",
 	"Add Files": "Додати файли",
+<<<<<<< HEAD
+=======
+	"Add Image": "",
+	"Add Knowledge Connection": "",
+	"Add location": "",
+	"Add Member": "",
+	"Add Members": "",
+	"Add Memory": "Додати пам'ять",
+>>>>>>> upstream/main
 	"Add Model": "Додати модель",
 	"Add tag": "",
 	"Add Tag": "Додати тег",
@@ -60,6 +132,11 @@
 	"Add to favorites": "",
 	"Add User": "Додати користувача",
 	"Add User Group": "Додати групу користувачів",
+<<<<<<< HEAD
+=======
+	"Add webhook": "",
+	"Add webpage": "",
+>>>>>>> upstream/main
 	"Add your Open Terminal URL and API key in Settings → Integrations.": "",
 	"Additional Config": "",
 	"Additional configuration options for marker. This should be a JSON string with key-value pairs. For example, '{\"key\": \"value\"}'. Supported keys include: disable_links, keep_pageheader_in_output, keep_pagefooter_in_output, filter_blank_pages, drop_repeated_text, layout_coverage_threshold, merge_threshold, height_tolerance, gap_threshold, image_threshold, min_line_length, level_count, default_level": "",
@@ -70,18 +147,40 @@
 	"Admin": "Адмін",
 	"Admin Contact Email": "",
 	"Admin Panel": "Адмін-панель",
+<<<<<<< HEAD
+=======
+	"Admin Roles": "",
+	"Admin Settings": "Адмін-панель",
+	"Admin-managed service account": "",
+>>>>>>> upstream/main
 	"Admins have access to all tools at all times; users need tools assigned per model in the workspace.": "Адміністратори мають доступ до всіх інструментів у будь-який час; користувачам потрібні інструменти, призначені для кожної моделі в робочій області.",
 	"Advanced": "",
 	"Advanced parameters for MinerU parsing (enable_ocr, enable_formula, enable_table, language, model_version, page_ranges)": "",
 	"Advanced Params": "Розширені параметри",
 	"After updating or changing the embedding model, you must reindex the knowledge base for the changes to take effect. You can do this using the \"Reindex\" button below.": "",
 	"All": "Усі",
+<<<<<<< HEAD
 	"All time": "",
 	"All Users": "",
+=======
+	"All chats have been unarchived.": "",
+	"All day": "",
+	"All events": "",
+	"All models are now hidden": "",
+	"All models are now visible": "",
+	"All models deleted successfully": "Усі моделі видалені успішно",
+	"All shared chats have been unshared.": "",
+	"All Sources": "",
+	"All time": "",
+	"All Users": "",
+	"All users and system events": "",
+	"Allow Call": "",
+>>>>>>> upstream/main
 	"Allow Chat Controls": "Дозволити керування чатом",
 	"Allow Chat Delete": "Дозволити видалення чату",
 	"Allow Chat Edit": "Дозволити редагування чату",
 	"Allow Chat Export": "",
+	"Allow Chat Import": "",
 	"Allow Chat Params": "",
 	"Allow Chat Share": "",
 	"Allow Chat System Prompt": "",
@@ -96,9 +195,11 @@
 	"Allow Sharing With Users": "",
 	"Allow Text to Speech": "",
 	"Allow Web Upload": "",
+	"Allowed Domains": "",
 	"Allowed Endpoints": "Дозволені кінцеві точки",
 	"Allowed File Extensions": "",
 	"Allowed file extensions for upload. Separate multiple extensions with commas. Leave empty for all file types.": "",
+	"Allowed Roles": "",
 	"Already have an account?": "Вже є обліковий запис?",
 	"Alternative to the top_p, and aims to ensure a balance of quality and variety. The parameter p represents the minimum probability for a token to be considered, relative to the probability of the most likely token. For example, with p=0.05 and the most likely token having a probability of 0.9, logits with a value less than 0.045 are filtered out.": "Альтернатива top_p, що спрямована на забезпечення балансу між якістю та різноманітністю. Параметр p представляє мінімальну ймовірність для врахування токена відносно ймовірності найбільш ймовірного токена. Наприклад, при p=0.05 і ймовірності найбільш ймовірного токена 0.9, логіти зі значенням менше 0.045 відфільтровуються.",
 	"Amazing": "Чудово",
@@ -110,6 +211,11 @@
 	"API Base URL": "URL-адреса API",
 	"API Base URL for Datalab Marker service. Defaults to: https://www.datalab.to/api/v1/marker": "",
 	"API Key": "Ключ API",
+<<<<<<< HEAD
+=======
+	"API Key / Token": "",
+	"API Key created.": "Ключ API створено.",
+>>>>>>> upstream/main
 	"API Key Endpoint Restrictions": "Обмеження кінцевої точки ключа API",
 	"API Keys": "",
 	"API Mode": "",
@@ -126,13 +232,31 @@
 	"Are you sure you want to delete \"{{NAME}}\"?": "",
 	"Are you sure you want to delete **{{modelName}}**?": "",
 	"Are you sure you want to delete this connection? This action cannot be undone.": "",
+<<<<<<< HEAD
 	"Are you sure you want to delete this?": "",
 	"Arena": "",
+=======
+	"Are you sure you want to delete this directory?": "",
+	"Are you sure you want to delete this memory? This action cannot be undone.": "",
+	"Are you sure you want to delete this message?": "Ви впевнені, що хочете видалити це повідомлення?",
+	"Are you sure you want to delete this version? Child versions will be relinked to this version's parent.": "",
+	"Are you sure you want to delete this webhook? This action cannot be undone.": "",
+	"Are you sure you want to delete this?": "",
+	"Are you sure you want to reset all permissions to their default values? You will still need to save to apply the changes.": "",
+	"Are you sure you want to unarchive all archived chats?": "Ви впевнені, що хочете розархівувати усі архівовані чати?",
+	"Are you sure you want to unshare all shared chats? This will remove all share links.": "",
+>>>>>>> upstream/main
 	"Arena Models": "Моделі Arena",
 	"Artifacts": "Артефакти",
 	"Ask": "Запитати",
 	"Ask a question": "Задати питання",
+<<<<<<< HEAD
 	"Ask the User": "",
+=======
+	"Ask a test question": "",
+	"Ask this knowledge source a test question": "",
+	"Assistant": "Асистент",
+>>>>>>> upstream/main
 	"Async Embedding Processing": "",
 	"Attach File From Knowledge": "",
 	"Attention to detail": "Увага до деталей",
@@ -141,20 +265,33 @@
 	"Audience": "",
 	"August": "Серпень",
 	"Auth": "",
+	"Auth Mode": "",
+	"Auth required": "",
 	"Authenticate": "Автентифікувати",
 	"Authentication": "Аутентифікація",
 	"Auto (Random)": "",
+<<<<<<< HEAD
 	"Auto-inject system tools for Agents (timestamps, memory, notes, etc.)": "",
+=======
+	"Auto Redirect": "",
+	"Auto-Copy Response to Clipboard": "Автокопіювання відповіді в буфер обміну",
+	"Auto-Create Groups": "",
+	"Auto-Playback Response": "Автоматичне відтворення відповіді",
+>>>>>>> upstream/main
 	"Autocomplete Generation": "Генерація автозаповнення",
 	"Autocomplete Generation Input Max Length": "Максимальна довжина введення для генерації автозаповнення",
+	"Autocomplete Generation Prompt": "",
+	"Automatic": "",
 	"Automatic1111": "Automatic1111",
 	"AUTOMATIC1111 Api Auth String": "AUTOMATIC1111 Рядок авторизації API",
 	"AUTOMATIC1111 Base URL": "URL-адреса AUTOMATIC1111",
 	"AUTOMATIC1111 Base URL is required.": "Необхідна URL-адреса AUTOMATIC1111.",
 	"Available list": "Список доступності",
 	"Available models": "",
+	"Available Skills": "",
 	"Available Tools": "",
 	"available users": "доступні користувачі",
+	"Available variables": "",
 	"available!": "доступно!",
 	"Awful": "Жахливо",
 	"Azure AI Speech": "Мовлення Azure AI",
@@ -165,16 +302,30 @@
 	"Backup, export, and import instance data.": "",
 	"Bad Response": "Неправильна відповідь",
 	"Banners": "Прапори",
+<<<<<<< HEAD
 	"Base model": "",
+=======
+	"Base Model (From)": "Базова модель (від)",
+	"Base Model is required.": "",
+>>>>>>> upstream/main
 	"Base Model List Cache speeds up access by fetching base models only at startup or on settings save—faster, but may not show recent base model changes.": "",
 	"Bearer": "",
 	"Begin a new folio": "",
 	"Being lazy": "Не поспішати",
+<<<<<<< HEAD
 	"Beta": "Beta",
 	"Bind the model": "",
 	"Bing": "",
 	"Bing Search V7 Endpoint": "Точка доступу Bing Search V7",
 	"Bing Search V7 Subscription Key": "Ключ підписки Bing Search V7",
+=======
+	"Bing": "",
+	"Bing Search V7 Endpoint": "Точка доступу Bing Search V7",
+	"Bing Search V7 Subscription Key": "Ключ підписки Bing Search V7",
+	"Bio": "",
+	"Birth Date": "",
+	"Blocked Groups": "",
+>>>>>>> upstream/main
 	"BM25 Weight": "",
 	"Bocha Search API Key": "Ключ API пошуку Bocha",
 	"Bold": "",
@@ -202,6 +353,12 @@
 	"Chat": "Чат",
 	"Chat Completions": "",
 	"Chat Conversation": "",
+<<<<<<< HEAD
+=======
+	"Chat deleted.": "",
+	"Chat Direction": "Напрям чату",
+	"Chat exported successfully": "",
+>>>>>>> upstream/main
 	"Chat History": "",
 	"Chat ID": "",
 	"Chat moved successfully": "",
@@ -261,6 +418,11 @@
 	"Code Interpreter Prompt Template": "Шаблон запиту інтерпретатора коду",
 	"Collapse": "Згорнути",
 	"Collection": "Колекція",
+<<<<<<< HEAD
+=======
+	"Collection Field": "",
+	"Collections": "",
+>>>>>>> upstream/main
 	"Color": "Колір",
 	"ComfyUI": "ComfyUI",
 	"ComfyUI API Key": "ComfyUI API ключ",
@@ -269,9 +431,27 @@
 	"ComfyUI Workflow": "ComfyUI Workflow",
 	"ComfyUI Workflow Nodes": "Вузли Workflow в ComfyUI",
 	"Comma separated Node Ids (e.g. 1 or 1,2)": "",
+<<<<<<< HEAD
+=======
+	"Comma-separated group names": "",
+	"Comma-separated list of file extensions MinerU will handle (e.g. pdf, docx, pptx, xlsx)": "",
+	"command": "",
+	"Command": "Команда",
+>>>>>>> upstream/main
 	"Comment": "",
 	"Community Reviews": "",
+<<<<<<< HEAD
 	"Compose your first model": "",
+=======
+	"Compacting context": "",
+	"Comparing with knowledge base...": "",
+	"Completions": "Завершення",
+	"Compress Images in Channels": "",
+	"Computing checksums ({{count}} files)_one": "",
+	"Computing checksums ({{count}} files)_few": "",
+	"Computing checksums ({{count}} files)_many": "",
+	"Computing checksums ({{count}} files)_other": "",
+>>>>>>> upstream/main
 	"Concurrent Requests": "Одночасні запити",
 	"Config": "",
 	"Configure": "Налаштувати",
@@ -284,6 +464,10 @@
 	"Connect to Open Terminal instances. All users will have access to file browsing and terminal tools through these servers.": "",
 	"Connect to your own OpenAPI compatible external tool servers.": "Підключіться до своїх власних зовнішніх серверів інструментів, сумісних з OpenAPI.",
 	"Connected": "",
+<<<<<<< HEAD
+=======
+	"Connected ({{type}})": "",
+>>>>>>> upstream/main
 	"Connection failed": "",
 	"Connection lost. Reconnecting...": "",
 	"Connection Type": "",
@@ -292,8 +476,16 @@
 	"Contact Admin for WebUI Access": "Зверніться до адміна для отримання доступу до WebUI",
 	"Content": "Зміст",
 	"Content Extraction Engine": "Рушій вилучення контенту",
+	"Content Field": "",
 	"Content lengths (character counts only)": "",
+	"Context": "",
+	"Context compacted": "",
+	"Context Compaction": "",
+	"Context compaction failed": "",
+	"Context Compaction Prompt": "",
+	"Context Compaction Threshold": "",
 	"Context Tokens": "",
+	"Continue": "",
 	"Continue Response": "Продовжити відповідь",
 	"Continue with {{provider}}": "Продовжити з {{provider}}",
 	"Continue with Email": "Продовжити з електронною поштою",
@@ -324,6 +516,16 @@
 	"Create Image": "",
 	"Create model": "",
 	"Create Model": "",
+<<<<<<< HEAD
+=======
+	"Create new key": "Створити новий ключ",
+	"Create new secret key": "Створити новий секретний ключ",
+	"Create note": "",
+	"Create Note": "",
+	"Create one read-only Knowledge source per external collection. Test must pass before the source is created.": "",
+	"Create scheduled prompts that run automatically on a recurring basis.": "",
+	"Create your first note by clicking on the plus button below.": "",
+>>>>>>> upstream/main
 	"Created at": "Створено у",
 	"Created At": "Створено у",
 	"Created by": "Створено",
@@ -334,7 +536,12 @@
 	"Custom color": "",
 	"Custom Parameter Name": "",
 	"Custom Parameter Value": "",
+<<<<<<< HEAD
 	"Custom presets that pair a base model with a system prompt, tools, knowledge and capabilities — build your own assistants and reuse them anywhere in chat.": "",
+=======
+	"Custom range": "",
+	"Daily": "",
+>>>>>>> upstream/main
 	"Daily Messages": "",
 	"Danger Zone": "Зона небезпеки",
 	"Database": "База даних",
@@ -350,7 +557,6 @@
 	"Default Features": "",
 	"Default Filters": "",
 	"Default Group": "",
-	"Default mode works with a wider range of models by calling tools once before execution. Native mode leverages the model's built-in tool-calling capabilities, but requires the model to inherently support this feature.": "Режим за замовчуванням працює з ширшим діапазоном моделей, викликаючи інструменти один раз перед виконанням. Рідний режим використовує вбудовані можливості виклику інструментів моделі, але вимагає, щоб модель спочатку підтримувала цю функцію.",
 	"Default Model": "Модель за замовчуванням",
 	"Default permissions": "Дозволи за замовчуванням",
 	"Default Prompt Suggestions": "Пропозиції промтів замовчуванням",
@@ -358,13 +564,25 @@
 	"Default to ALL": "За замовчуванням — УСІ.",
 	"Default to segmented retrieval for focused and relevant content extraction, this is recommended for most cases.": "За замовчуванням використовувати сегментований пошук для зосередженого та релевантного вилучення контенту, це рекомендується у більшості випадків.",
 	"Default User Role": "Роль користувача за замовчуванням",
+	"Default webhook": "",
 	"Defaults": "",
 	"Delete": "Видалити",
 	"Delete {{name}}": "",
 	"Delete a model": "Видалити модель",
+<<<<<<< HEAD
+=======
+	"Delete All": "",
+	"Delete All Chats": "Видалити усі чати",
+	"Delete all contents inside this directory": "",
+>>>>>>> upstream/main
 	"Delete all contents inside this folder": "",
 	"Delete Chat": "Видалити чат",
 	"Delete chat?": "Видалити чат?",
+<<<<<<< HEAD
+=======
+	"Delete directory?": "",
+	"Delete Event": "",
+>>>>>>> upstream/main
 	"Delete File": "",
 	"Delete folder?": "Видалити папку?",
 	"Delete function?": "Видалити функцію?",
@@ -385,9 +603,20 @@
 	"Direct Connections": "Прямі з'єднання",
 	"Direct Connections allow users to connect to their own OpenAI compatible API endpoints.": "Прямі з'єднання дозволяють користувачам підключатися до своїх власних API-кінцевих точок, сумісних з OpenAI.",
 	"Direct Tool Servers": "",
+<<<<<<< HEAD
+=======
+	"Directory created.": "",
+	"Directory deleted.": "",
+	"Directory moved.": "",
+	"Directory name": "",
+	"Directory renamed.": "",
+	"Directory selection was cancelled": "",
+>>>>>>> upstream/main
 	"Disable All": "",
 	"Disable Image Extraction": "",
 	"Disable image extraction from the PDF. If Use LLM is enabled, images will be automatically captioned. Defaults to False.": "",
+	"Disable Image Generation": "",
+	"Disable Web Search": "",
 	"Disabled": "Вимкнено",
 	"Discard this folio": "",
 	"Discarded": "",
@@ -396,6 +625,13 @@
 	"Discover wonders": "Відкривайте чудеса",
 	"Discover, download, and explore custom functions": "Знайдіть, завантажте та досліджуйте налаштовані функції",
 	"Display": "Відображення",
+<<<<<<< HEAD
+=======
+	"Display Chat Title in Tab": "",
+	"Display Emoji in Call": "Відображати емодзі у викликах",
+	"Display Multi-model Responses in Tabs": "",
+	"Display the Username Instead of You in the Chat": "Показувати ім'я користувача замість 'Ви' в чаті",
+>>>>>>> upstream/main
 	"Displays citations in the response": "Показує посилання у відповіді",
 	"Displays status updates (e.g., web search progress) in the response": "",
 	"Dissolve": "",
@@ -408,6 +644,7 @@
 	"Docling Parameters": "",
 	"Docling Server URL required.": "Потрібна URL-адреса сервера Docling.",
 	"Document": "Документ",
+	"Document ID Field": "",
 	"Document Intelligence": "Інтелект документа",
 	"Document Intelligence endpoint required.": "",
 	"Document Intelligence Model": "",
@@ -461,41 +698,60 @@
 	"Edit Default Permissions": "Редагувати дозволи за замовчуванням",
 	"Edit Folder": "",
 	"Edit Image": "",
+	"Edit Knowledge Connection": "",
 	"Edit Last Message": "",
 	"Edit Model": "",
 	"Edit Terminal Connection": "",
 	"Edit User": "Редагувати користувача",
 	"Edit User Group": "Редагувати групу користувачів",
+	"Edit webhook": "",
 	"Edit workflow.json content": "",
 	"Eject": "",
 	"Eject model": "",
 	"ElevenLabs": "ElevenLabs",
 	"Email": "Ел. пошта",
+	"Email Claim": "",
 	"Embark on adventures": "Вирушайте в пригоди",
 	"Embedding": "Вбудовування",
 	"Embedding Batch Size": "Розмір пакету під час вбудовування",
 	"Embedding Concurrent Requests": "",
 	"Embedding Model": "Модель вбудовування",
 	"Embedding Model Engine": "Рушій моделі вбудовування ",
+	"Emoji": "",
 	"Emojis": "",
+<<<<<<< HEAD
+=======
+	"Empty": "",
+	"Empty message": "",
+>>>>>>> upstream/main
 	"Enable All": "",
 	"Enable API Keys": "",
 	"Enable autocomplete generation for chat messages": "Увімкнути генерацію автозаповнення для повідомлень чату",
 	"Enable Code Execution": "Увімкнути виконання коду",
 	"Enable Code Interpreter": "Увімкнути інтерпретатор коду",
 	"Enable Community Sharing": "Увімкнути спільний доступ",
+	"Enable Group Mapping": "",
+	"Enable Image Generation": "",
 	"Enable Memory Locking (mlock) to prevent model data from being swapped out of RAM. This option locks the model's working set of pages into RAM, ensuring that they will not be swapped out to disk. This can help maintain performance by avoiding page faults and ensuring fast data access.": "Увімкнути блокування пам'яті (mlock), щоб запобігти виведенню даних моделі з оперативної пам'яті. Цей параметр блокує робочий набір сторінок моделі в оперативній пам'яті, гарантуючи, що вони не будуть виведені на диск. Це може допомогти підтримувати продуктивність, уникати помилок сторінок та забезпечувати швидкий доступ до даних.",
 	"Enable Memory Mapping (mmap) to load model data. This option allows the system to use disk storage as an extension of RAM by treating disk files as if they were in RAM. This can improve model performance by allowing for faster data access. However, it may not work correctly with all systems and can consume a significant amount of disk space.": "Увімкнути відображення пам'яті (mmap) для завантаження даних моделі. Цей параметр дозволяє системі використовувати дискове сховище як розширення оперативної пам'яті, трактуючи файли на диску, як ніби вони знаходяться в RAM. Це може покращити продуктивність моделі, дозволяючи швидший доступ до даних. Однак, він може не працювати коректно на всіх системах і може споживати значну кількість дискового простору.",
 	"Enable Message Rating": "Увімкнути оцінку повідомлень",
 	"Enable Mirostat sampling for controlling perplexity.": "Увімкнути вибірку Mirostat для контролю перплексії.",
 	"Enable New Sign Ups": "Дозволити нові реєстрації",
+	"Enable OAuth Signup": "",
+	"Enable Role Mapping": "",
+	"Enable Web Search": "",
 	"Enable, disable, or customize the reasoning tags used by the model. \"Enabled\" uses default tags, \"Disabled\" turns off reasoning tags, and \"Custom\" lets you specify your own start and end tags.": "",
 	"Enabled": "Увімкнено",
 	"End Tag": "",
+	"Endpoint": "",
 	"Endpoint URL": "",
 	"Enrich Hybrid Search Text": "",
 	"Ensure your CSV file includes 4 columns in this order: Name, Email, Password, Role.": "Переконайтеся, що ваш CSV-файл містить 4 колонки в такому порядку: Ім'я, Email, Пароль, Роль.",
+<<<<<<< HEAD
 	"Enter a name first": "",
+=======
+	"Enter {{role}} message here": "Введіть повідомлення {{role}} тут",
+>>>>>>> upstream/main
 	"Enter a title for the pending user info overlay. Leave empty for default.": "",
 	"Enter a watermark for the response. Leave empty for none.": "",
 	"Enter additional headers in JSON format": "",
@@ -512,6 +768,8 @@
 	"Enter Chunk Min Size Target": "",
 	"Enter Chunk Overlap": "Введіть перекриття фрагменту",
 	"Enter Chunk Size": "Введіть розмір фрагменту",
+	"Enter Client ID": "",
+	"Enter Client Secret": "",
 	"Enter comma-separated \"token:bias_value\" pairs (example: 5432:100, 413:-100)": "Введіть пари \"токен:значення_зміщення\", розділені комами (напр.: 5432:100, 413:-100)",
 	"Enter content for the pending user info overlay. Leave empty for default.": "",
 	"Enter coordinates (e.g. 51.505, -0.09)": "",
@@ -548,7 +806,15 @@
 	"Enter Jupyter Token": "Введіть токен Jupyter",
 	"Enter Jupyter URL": "Введіть URL Jupyter",
 	"Enter Kagi Search API Key": "Введіть ключ API Kagi Search",
+<<<<<<< HEAD
+=======
+	"Enter Key Behavior": "Введіть поведінку клавіші",
+	"Enter language": "",
+>>>>>>> upstream/main
 	"Enter language codes": "Введіть мовні коди",
+	"Enter Linkup API Key": "",
+	"Enter Microsoft Web IQ API Base URL": "",
+	"Enter Microsoft Web IQ API Key": "",
 	"Enter MinerU API Key": "",
 	"Enter Mistral API Base URL": "",
 	"Enter Mistral API Key": "",
@@ -567,6 +833,7 @@
 	"Enter Playwright WebSocket URL": "",
 	"Enter proxy URL (e.g. https://user:password@host:port)": "Введіть URL проксі (напр., https://user:password@host:port)",
 	"Enter reasoning effort": "Введіть зусилля на міркування",
+	"Enter Redirect URI": "",
 	"Enter Score": "Введіть бал",
 	"Enter SearchApi API Key": "Введіть ключ API для SearchApi",
 	"Enter SearchApi Engine": "Введіть SearchApi рушія",
@@ -576,6 +843,7 @@
 	"Enter SerpApi API Key": "Введіть ключ API для SerpApi",
 	"Enter SerpApi Engine": "Введіть рушій SerpApi",
 	"Enter Serper API Key": "Введіть ключ API Serper",
+	"Enter SERPHouse API Key": "",
 	"Enter Serply API Key": "Введіть ключ API Serply",
 	"Enter Serpstack API Key": "Введіть ключ API Serpstack",
 	"Enter server host": "Введіть хост сервера",
@@ -593,6 +861,12 @@
 	"Enter the URL to import": "",
 	"Enter Tika Server URL": "Введіть URL-адресу сервера Tika",
 	"Enter timeout in seconds": "Введіть тайм-аут у секундах",
+<<<<<<< HEAD
+=======
+	"Enter to Send": "Введіть для відправки",
+	"Enter token threshold": "",
+	"Enter Tokenizer Model": "",
+>>>>>>> upstream/main
 	"Enter Top K": "Введіть Top K",
 	"Enter Top K Reranker": "Введіть Top K Реранкер",
 	"Enter URL (e.g. http://127.0.0.1:7860/)": "Введіть URL-адресу (напр., http://127.0.0.1:7860/)",
@@ -622,8 +896,19 @@
 	"Error: A model with the ID '{{modelId}}' already exists. Please select a different ID to proceed.": "",
 	"Error: Model ID cannot be empty. Please enter a valid ID to proceed.": "",
 	"Evaluations": "Оцінювання",
+<<<<<<< HEAD
 	"Every craft begins bare-handed.": "",
+=======
+	"Event": "",
+	"Event created": "",
+	"Event deleted": "",
+	"Event names may change as Open WebUI evolves. Use broad patterns like user.* for integrations that should continue across new related events.": "",
+	"Event title": "",
+	"Event updated": "",
+	"Events": "",
+>>>>>>> upstream/main
 	"Exa API Key": "Exa API ключ",
+	"Example": "",
 	"Example: (&(objectClass=inetOrgPerson)(uid=%s))": "Приклад: (&(objectClass=inetOrgPerson)(uid=%s))",
 	"Example: ALL": "Приклад: УСІ",
 	"Example: mail": "Приклад: пошта",
@@ -645,18 +930,29 @@
 	"Export chat (.json)": "Експорт чату (.json)",
 	"Export Config": "",
 	"Export Models": "",
+<<<<<<< HEAD
+=======
+	"Export Prompts": "",
+	"Export Skills": "",
+>>>>>>> upstream/main
 	"Export to CSV": "Експорт в CSV",
 	"Export Tools": "",
 	"Export Users": "",
 	"External": "Зовнішній",
+	"External connection not found.": "",
 	"External Document Loader URL required.": "",
+	"External Knowledge Source": "",
+	"External Knowledge Sources": "",
 	"External Task Model": "",
+	"External Tool Servers": "",
+	"External vectors must be generated with the same embedding model configured in Open WebUI.": "",
 	"External Web Loader API Key": "",
 	"External Web Loader URL": "",
 	"External Web Search API Key": "",
 	"External Web Search URL": "",
 	"Faculties": "",
 	"Failed to archive chat.": "",
+<<<<<<< HEAD
 	"Failed to connect to {{URL}} OpenAPI tool server": "Не вдалося підключитися до серверу інструментів OpenAPI {{URL}}",
 	"Failed to connect to {{URL}} terminal server": "",
 	"Failed to copy link": "",
@@ -666,11 +962,39 @@
 	"Failed to extract content from the file: {{error}}": "",
 	"Failed to extract content from the file.": "",
 	"Failed to fetch models": "Не вдалося отримати моделі",
+=======
+	"Failed to attach file": "",
+	"Failed to clear status": "",
+	"Failed to compare files.": "",
+	"Failed to connect to {{URL}} OpenAPI tool server": "Не вдалося підключитися до серверу інструментів OpenAPI {{URL}}",
+	"Failed to connect to {{URL}} terminal server": "",
+	"Failed to copy link": "",
+	"Failed to create API Key.": "Не вдалося створити API ключ.",
+	"Failed to delete calendar": "",
+	"Failed to delete note": "",
+	"Failed to delete webhook": "",
+	"Failed to disconnect": "",
+	"Failed to download image": "",
+	"Failed to extract content from the file: {{error}}": "",
+	"Failed to extract content from the file.": "",
+	"Failed to fetch models": "Не вдалося отримати моделі",
+	"Failed to generate title": "",
+	"Failed to import models": "",
+	"Failed to load chat": "",
+	"Failed to load chat preview": "",
+>>>>>>> upstream/main
 	"Failed to load DOCX file. Please try downloading it instead.": "",
 	"Failed to load Excel/CSV file. Please try downloading it instead.": "",
 	"Failed to load Interface settings": "",
 	"Failed to load PPTX file. Please try downloading it instead.": "",
 	"Failed to move chat": "",
+<<<<<<< HEAD
+=======
+	"Failed to process URL: {{url}}": "",
+	"Failed to read clipboard contents": "Не вдалося прочитати вміст буфера обміну",
+	"Failed to refresh terminals: {{error}}": "",
+	"Failed to remove member": "",
+>>>>>>> upstream/main
 	"Failed to render diagram": "",
 	"Failed to render visualization": "",
 	"Failed to save": "",
@@ -679,10 +1003,16 @@
 	"Failed to save models configuration": "Не вдалося зберегти конфігурацію моделей",
 	"Failed to save policy: {{error}}": "",
 	"Failed to save terminal servers": "",
+	"Failed to save webhook": "",
 	"Failed to unshare chat.": "",
 	"Failed to update settings": "Не вдалося оновити налаштування",
 	"Failed to update status": "",
+<<<<<<< HEAD
 	"Favicons": "",
+=======
+	"Failed to update webhook": "",
+	"Failed to upload file.": "Не вдалося завантажити файл.",
+>>>>>>> upstream/main
 	"Features": "Особливості",
 	"Features Permissions": "Дозволи функцій",
 	"February": "Лютий",
@@ -695,14 +1025,32 @@
 	"File": "Файл",
 	"File browser": "",
 	"File Context": "",
+<<<<<<< HEAD
+=======
+	"File deleted successfully.": "",
+	"File Extensions": "",
+>>>>>>> upstream/main
 	"File Mode": "Файловий режим",
+	"File moved.": "",
 	"File name": "",
 	"File not found.": "Файл не знайдено.",
+<<<<<<< HEAD
 	"File size should not exceed {{maxSize}} MB.": "Розмір файлу не повинен перевищувати {{maxSize}} МБ.",
 	"File Upload": "",
 	"Filename": "",
 	"Files": "Файли",
 	"Fill name + base model to create": "",
+=======
+	"File removed successfully.": "Файл успішно видалено.",
+	"File renamed.": "",
+	"File size should not exceed {{maxSize}} MB.": "Розмір файлу не повинен перевищувати {{maxSize}} МБ.",
+	"File Upload": "",
+	"File uploaded successfully": "Файл успішно завантажено",
+	"Filename": "",
+	"Files": "Файли",
+	"Fill the required fields first.": "",
+	"Fill the source fields and test query first.": "",
+>>>>>>> upstream/main
 	"Filter": "",
 	"Filters": "Фільтри",
 	"Filters, valves, and middleware workflows.": "",
@@ -720,8 +1068,12 @@
 	"Folder name cannot be empty.": "Назва папки не може бути порожньою.",
 	"Folder options": "",
 	"Folders": "",
+<<<<<<< HEAD
 	"folio": "",
 	"folios": "",
+=======
+	"Folders Sharing": "",
+>>>>>>> upstream/main
 	"Follow up": "",
 	"Follow Up Generation": "",
 	"Follow Up Generation Prompt": "",
@@ -749,6 +1101,11 @@
 	"Function imported successfully": "",
 	"Function Name": "Назва функції",
 	"Function Name Filter List": "",
+<<<<<<< HEAD
+=======
+	"Function starter": "",
+	"Function updated successfully": "Функцію успішно оновлено",
+>>>>>>> upstream/main
 	"Functions": "Функції",
 	"Functions allow arbitrary code execution.": "Функції дозволяють виконання довільного коду.",
 	"Gather a quire": "",
@@ -776,6 +1133,15 @@
 	"Google PSE Engine Id": "Id рушія Google PSE",
 	"Gravatar": "",
 	"Grokipedia": "",
+<<<<<<< HEAD
+=======
+	"group": "",
+	"Group": "",
+	"Group Channel": "",
+	"Group Claim": "",
+	"Group created successfully": "Групу успішно створено",
+	"Group deleted successfully": "Групу успішно видалено",
+>>>>>>> upstream/main
 	"Group Description": "Опис групи",
 	"Group Name": "Назва групи",
 	"groups": "",
@@ -783,6 +1149,11 @@
 	"H1": "",
 	"H2": "",
 	"H3": "",
+<<<<<<< HEAD
+=======
+	"Haptic Feedback": "Тактильний зворотній зв'язок",
+	"Header variables": "",
+>>>>>>> upstream/main
 	"Headers": "",
 	"Headers must be a valid JSON object": "",
 	"Hello, {{name}}": "Привіт, {{name}}",
@@ -811,6 +1182,12 @@
 	"I acknowledge that I have read and I understand the implications of my action. I am aware of the risks associated with executing arbitrary code and I have verified the trustworthiness of the source.": "Я підтверджую, що прочитав і розумію наслідки своїх дій. Я усвідомлюю ризики, пов'язані з виконанням довільного коду, і перевірив надійність джерела.",
 	"ID": "ID",
 	"ID cannot contain \":\" or \"|\" characters": "",
+<<<<<<< HEAD
+=======
+	"ID copied to clipboard": "",
+	"Identity audit": "",
+	"Idle only": "",
+>>>>>>> upstream/main
 	"Idle Timeout": "",
 	"Ignite curiosity": "Запаліть цікавість",
 	"Image": "Зображення",
@@ -830,6 +1207,12 @@
 	"Import Config": "",
 	"Import From Link": "",
 	"Import Models": "",
+<<<<<<< HEAD
+=======
+	"Import Prompts": "",
+	"Import Skills": "",
+	"Import successful": "",
+>>>>>>> upstream/main
 	"Import Tools": "",
 	"Important Update": "Важливе оновлення",
 	"Imported": "",
@@ -866,6 +1249,11 @@
 	"Jina API Key": "Ключ API для Jina",
 	"join our Discord for help.": "приєднуйтеся до нашого Discord для допомоги.",
 	"JSON": "JSON",
+<<<<<<< HEAD
+=======
+	"JSON Base64": "",
+	"JSON Preview": "Перегляд JSON",
+>>>>>>> upstream/main
 	"JSON Spec": "",
 	"July": "Липень",
 	"June": "Червень",
@@ -876,9 +1264,26 @@
 	"Keep in Sidebar": "",
 	"Key": "Ключ",
 	"Key is required": "",
-	"Keyboard shortcuts": "Клавіатурні скорочення",
 	"Keyboard Shortcuts": "",
 	"Knowledge": "Знання",
+<<<<<<< HEAD
+=======
+	"Knowledge Access": "Доступ до знань",
+	"Knowledge Base": "",
+	"Knowledge base has been reset": "",
+	"Knowledge created successfully.": "Знання успішно створено.",
+	"Knowledge deleted successfully.": "Знання успішно видалено.",
+	"Knowledge Description": "",
+	"Knowledge exported successfully": "",
+	"Knowledge Name": "",
+	"Knowledge Public Sharing": "Публічний обмін знаннями",
+	"Knowledge Sharing": "",
+	"Knowledge source created.": "",
+	"Knowledge source updated.": "",
+	"Knowledge updated successfully": "Знання успішно оновлено",
+	"Kokoro.js (Browser)": "Kokoro.js (Браузер)",
+	"Kokoro.js Dtype": "Kokoro.js Dtype",
+>>>>>>> upstream/main
 	"Label": "Мітка",
 	"Language Locales": "",
 	"Last 24 hours": "",
@@ -907,9 +1312,18 @@
 	"Leave model field empty to use the default model.": "Залиште поле моделі порожнім, щоб використовувати модель за замовчуванням.",
 	"lexical": "",
 	"License": "Ліцензія",
+	"Lifecycle JSON": "",
 	"Lift List": "",
 	"Limit concurrent search queries. 0 = unlimited (default). Set to 1 for sequential execution (recommended for APIs with strict rate limits like Brave free tier).": "",
 	"Limits the number of concurrent embedding requests. Set to 0 for unlimited.": "",
+<<<<<<< HEAD
+=======
+	"Linkup API Key": "",
+	"List": "",
+	"List calendars, search, create, update, and delete calendar events": "",
+	"Listening...": "Слухаю...",
+	"Live": "",
+>>>>>>> upstream/main
 	"llama.cpp": "",
 	"Llama.cpp": "Llama.cpp",
 	"Loaded": "",
@@ -920,6 +1334,11 @@
 	"Local Task Model": "",
 	"Lost": "Втрачене",
 	"Low": "",
+<<<<<<< HEAD
+=======
+	"Lower the context compaction token threshold for this model. The global context compaction threshold remains the maximum.": "",
+	"LTR": "LTR",
+>>>>>>> upstream/main
 	"Made by Open WebUI Community": "Зроблено спільнотою OpenWebUI",
 	"Make password visible in the user interface": "",
 	"Make sure to export a workflow.json file as API format from ComfyUI.": "Обов'язково експортуйте файл workflow.json у форматі API з ComfyUI.",
@@ -931,7 +1350,12 @@
 	"Manage OpenAI API Connections": "Керувати з'єднаннями OpenAI API",
 	"Manage Pipelines": "Керування конвеєрами",
 	"Manage Tool Servers": "Керувати серверами інструментів",
+<<<<<<< HEAD
 	"Manage, import, and configure the models available to users.": "",
+=======
+	"Manage your account information.": "",
+	"Mapped Source": "",
+>>>>>>> upstream/main
 	"March": "Березень",
 	"Markdown": "",
 	"Markdown Header Text Splitter": "",
@@ -952,6 +1376,15 @@
 	"Members": "",
 	"Memories": "",
 	"Memory": "Пам'ять",
+<<<<<<< HEAD
+=======
+	"Memory added successfully": "Пам'ять додано успішно",
+	"Memory cleared successfully": "Пам'ять успішно очищено",
+	"Memory deleted successfully": "Пам'ять успішно видалено",
+	"Memory System Context": "",
+	"Memory updated successfully": "Пам'ять успішно оновлено",
+	"Merge Accounts by Email": "",
+>>>>>>> upstream/main
 	"Merge Responses": "Об'єднати відповіді",
 	"Merged Response": "Об'єднана відповідь",
 	"Message": "",
@@ -961,6 +1394,16 @@
 	"Message text...": "",
 	"messages": "",
 	"Messages": "",
+<<<<<<< HEAD
+=======
+	"Messages you send after creating your link won't be shared. Users with the URL will be able to view the shared chat.": "Повідомлення, які ви надішлете після створення посилання, не будуть доступні для інших. Користувачі, які мають URL, зможуть переглядати спільний чат.",
+	"Metadata Field": "",
+	"Microsoft OneDrive": "",
+	"Microsoft OneDrive (personal)": "",
+	"Microsoft OneDrive (work/school)": "",
+	"Microsoft Web IQ API Base URL": "",
+	"Microsoft Web IQ API Key": "",
+>>>>>>> upstream/main
 	"min": "",
 	"MinerU": "",
 	"MinerU API Key required for Cloud API mode.": "",
@@ -1002,18 +1445,42 @@
 	"Models Sharing": "",
 	"Mojeek": "",
 	"Mojeek Search API Key": "API ключ для пошуку Mojeek",
+<<<<<<< HEAD
+=======
+	"Monday – Friday": "",
+	"Month": "",
+	"Monthly": "",
+>>>>>>> upstream/main
 	"More": "Більше",
 	"More Concise": "",
 	"More Options": "",
 	"Move": "",
+<<<<<<< HEAD
+=======
+	"Moved {{name}}": "",
+	"Multipart Upload": "",
+	"Mute": "",
+	"Muted": "",
+>>>>>>> upstream/main
 	"My Terminal": "",
 	"Name": "Ім'я",
 	"Name and ID are required, please fill them out": "",
 	"Name this model…": "",
 	"Name your model": "",
 	"Native": "Рідний",
+<<<<<<< HEAD
+=======
+	"Native mode (default) leverages the model's built-in tool-calling capabilities. Legacy mode works with a wider range of models by calling tools once before execution via prompt injection.": "",
+	"Never": "",
+>>>>>>> upstream/main
 	"New": "",
 	"New Chat": "Новий чат",
+<<<<<<< HEAD
+=======
+	"New directory": "",
+	"New Directory": "",
+	"New Event": "",
+>>>>>>> upstream/main
 	"New File": "",
 	"New Folder": "Нова папка",
 	"New Function": "",
@@ -1028,6 +1495,7 @@
 	"Next message": "",
 	"No access grants. Private to you.": "",
 	"No activity data": "",
+	"No additional headers are sent unless configured.": "",
 	"No authentication": "",
 	"No chats found": "",
 	"No chats found for this user.": "",
@@ -1036,7 +1504,13 @@
 	"No data": "",
 	"No data found": "",
 	"No distance available": "Відстань недоступна",
+<<<<<<< HEAD
+=======
+	"No event webhooks configured.": "",
+	"No execution logs available yet": "",
+>>>>>>> upstream/main
 	"No expiration can pose security risks.": "",
+	"No external knowledge sources configured.": "",
 	"No feedback found": "",
 	"No file selected": "Файл не обрано",
 	"No files found": "",
@@ -1046,14 +1520,27 @@
 	"No HTML, CSS, or JavaScript content found.": "HTML, CSS або JavaScript контент не знайдено.",
 	"No inference engine with management support found": "Не знайдено двигуна висновків з підтримкою керування",
 	"No kernel": "",
+<<<<<<< HEAD
+=======
+	"No knowledge bases accessible": "",
+	"No knowledge bases found.": "",
+	"No knowledge found": "Знання не знайдено.",
+>>>>>>> upstream/main
 	"No limit": "",
 	"No model IDs": "Немає ID моделей",
+	"No models accessible": "",
 	"No models available": "",
 	"No models found": "Моделей не знайдено",
 	"No models match your search.": "",
 	"No models selected": "Моделі не вибрано",
 	"No one": "",
 	"No output items": "",
+<<<<<<< HEAD
+=======
+	"No pinned messages": "",
+	"No prompts found": "",
+	"No Repeat": "",
+>>>>>>> upstream/main
 	"No results": "Не знайдено жодного результату",
 	"No results found": "Не знайдено жодного результату",
 	"No search query generated": "Пошуковий запит не сформовано",
@@ -1065,12 +1552,18 @@
 	"No Terminal connection configured.": "",
 	"No terminal connections configured.": "",
 	"No tool server connections configured.": "",
+<<<<<<< HEAD
 	"No tools match your search.": "",
+=======
+	"No tools accessible": "",
+	"No tools found": "",
+>>>>>>> upstream/main
 	"No users were found.": "Користувачів не знайдено.",
 	"No valves": "",
 	"No valves to update": "Немає клапанів для оновлення",
 	"Node Ids": "",
 	"None": "Нема",
+	"Not configured": "",
 	"Not factually correct": "Не відповідає дійсності",
 	"Not helpful": "Не корисно",
 	"Not Registered": "",
@@ -1080,21 +1573,31 @@
 	"Nothing has been rehearsed yet.": "",
 	"November": "Листопад",
 	"OAuth": "",
+	"OAuth / OIDC": "",
 	"OAuth 2.1": "",
 	"OAuth 2.1 (Static)": "",
 	"OAuth ID": "OAuth ID",
+	"OAuth Resource Parameter": "",
+	"OAuth Scopes": "",
 	"OAuth Server URL": "",
 	"October": "Жовтень",
 	"Off": "Вимк",
 	"Okay, Let's Go!": "Гаразд, давайте почнемо!",
+<<<<<<< HEAD
+=======
+	"Older messages are summarized when estimated context exceeds this token limit.": "",
+	"OLED Dark": "Темний OLED",
+>>>>>>> upstream/main
 	"Ollama": "Ollama",
 	"Ollama API": "Ollama API",
 	"Ollama Cloud API Key": "",
 	"Ollama Version": "Версія Ollama",
+	"Omit": "",
 	"On": "Увімк",
 	"On by default": "",
 	"On by default for new chats": "",
 	"OneDrive": "OneDrive",
+	"Only active during Voice Mode.": "",
 	"Only active when \"Paste Large Text as File\" setting is toggled on.": "",
 	"Only active when the chat input is in focus and an LLM is generating a response.": "",
 	"Only active when the chat input is in focus.": "",
@@ -1164,21 +1667,39 @@
 	"Participate in community leaderboards and evaluations! Syncing aggregated usage stats helps drive research and improvements to Open WebUI. Your privacy is paramount: no message content is ever shared.": "",
 	"Password": "Пароль",
 	"Passwords do not match.": "",
+<<<<<<< HEAD
 	"PDF document (.pdf)": "PDF документ (.pdf)",
 	"PDF Extract Images (OCR)": "Розпізнавання зображень з PDF (OCR)",
 	"PDF Loader Mode": "",
 	"Penalties & Mirostat": "",
+=======
+	"Paste Large Text as File": "Вставити великий текст як файл",
+	"Path": "",
+	"Path copied": "",
+	"Paused": "",
+	"PDF document (.pdf)": "PDF документ (.pdf)",
+	"PDF Extract Images (OCR)": "Розпізнавання зображень з PDF (OCR)",
+	"PDF Loader Mode": "",
+	"pdf, docx, pptx, xlsx": "",
+>>>>>>> upstream/main
 	"pending": "на розгляді",
 	"Pending": "",
+	"Pending Accounts": "",
 	"Pending User Overlay Content": "",
 	"Pending User Overlay Title": "",
 	"Permissions": "Дозволи",
+	"Permissions reset to defaults": "",
 	"Perplexity API Key": "Ключ API для Perplexity",
 	"Perplexity Model": "",
 	"Perplexity Search API URL": "",
 	"Perplexity Search Context Usage": "",
 	"Persistent": "",
+<<<<<<< HEAD
 	"Pick an icon or emoji": "",
+=======
+	"Personalization": "Персоналізація",
+	"Picture Claim": "",
+>>>>>>> upstream/main
 	"Pin": "Зачепити",
 	"Pinned Models": "",
 	"Pioneer insights": "Прокладайте нові шляхи до знань",
@@ -1201,9 +1722,14 @@
 	"Please enter Client ID and Client Secret": "",
 	"Please register the OAuth client": "",
 	"Please save the connection to persist the OAuth client information and do not change the ID": "",
+<<<<<<< HEAD
+=======
+	"Please select a model.": "Будь ласка, виберіть модель.",
+>>>>>>> upstream/main
 	"Please select a reason": "Будь ласка, виберіть причину",
 	"Please select a valid JSON file": "",
 	"Policy ID": "",
+	"Policy ID is required": "",
 	"Port": "Порт",
 	"Ports": "",
 	"Positive attitude": "Позитивне ставлення",
@@ -1211,6 +1737,7 @@
 	"Prefix ID is used to avoid conflicts with other connections by adding a prefix to the model IDs - leave empty to disable": "ID префікса використовується для уникнення конфліктів з іншими підключеннями шляхом додавання префікса до ID моделей — залиште порожнім, щоб вимкнути",
 	"Prevent File Creation": "",
 	"Preview": "",
+	"Preview Access": "",
 	"Previous 30 days": "Попередні 30 днів",
 	"Previous 7 days": "Попередні 7 днів",
 	"Previous message": "",
@@ -1219,6 +1746,8 @@
 	"Prompt": "Підказка",
 	"Prompt Template": "",
 	"Provider": "",
+	"Provider Name": "",
+	"Provider URL": "",
 	"Public": "Публічний",
 	"Public shared chat links are disabled for this workspace.": "",
 	"Pull \"{{searchValue}}\" from Ollama.com": "Завантажити \"{{searchValue}}\" з Ollama.com",
@@ -1241,18 +1770,40 @@
 	"Read": "Читати",
 	"Read Aloud": "Читати вголос",
 	"Read more →": "",
+<<<<<<< HEAD
 	"read only": "",
+=======
+	"Read only": "",
+>>>>>>> upstream/main
 	"Read Only": "",
 	"Read, write, and diff-edit durable notes for the current chat Scratchboard": "",
 	"Reason": "",
 	"Reasoning Effort": "Зусилля на міркування",
 	"Reasoning Tags": "",
 	"Reasoning text...": "",
+	"Receives matching events across the instance, including system/config events and events associated with any user.": "",
+	"Receives matching events that are not associated with a user.": "",
+	"Receives matching user-associated events only when the actor, user subject, or user data matches these users or current group members. System/config events are not sent.": "",
 	"Recently Used": "",
 	"Reconnected": "",
+<<<<<<< HEAD
 	"Redirecting you to Open WebUI Community": "Перенаправляємо вас до спільноти OpenWebUI",
 	"Reduces the probability of generating nonsense. A higher value (e.g. 100) will give more diverse answers, while a lower value (e.g. 10) will be more conservative.": "Зменшує ймовірність генерування нісенітниць. Вищий показник (напр., 100) забезпечить більше різноманітних відповідей, тоді як нижчий показник (напр., 10) буде більш обережним.",
+=======
+	"Record": "",
+	"Record voice": "Записати голос",
+	"Redirect URI": "",
+	"Redirecting you to Open WebUI Community": "Перенаправляємо вас до спільноти OpenWebUI",
+	"Reduces the probability of generating nonsense. A higher value (e.g. 100) will give more diverse answers, while a lower value (e.g. 10) will be more conservative.": "Зменшує ймовірність генерування нісенітниць. Вищий показник (напр., 100) забезпечить більше різноманітних відповідей, тоді як нижчий показник (напр., 10) буде більш обережним.",
+	"Reference Chats": "",
+>>>>>>> upstream/main
 	"Refresh": "",
+	"Refresh requested: {{count}} terminal(s)_one": "",
+	"Refresh requested: {{count}} terminal(s)_few": "",
+	"Refresh requested: {{count}} terminal(s)_many": "",
+	"Refresh requested: {{count}} terminal(s)_other": "",
+	"Refresh Terminals": "",
+	"Refreshing...": "",
 	"Refused when it shouldn't have": "Відмовив, коли не мав би",
 	"Regenerate": "Регенерувати",
 	"Regenerate Response": "",
@@ -1271,15 +1822,40 @@
 	"Remove from favorites": "",
 	"Remove image": "",
 	"Remove Model": "Видалити модель",
+	"Removing {{count}} stale files..._one": "",
+	"Removing {{count}} stale files..._few": "",
+	"Removing {{count}} stale files..._many": "",
+	"Removing {{count}} stale files..._other": "",
 	"Rename": "Переназвати",
 	"Reorder Models": "Переставити моделі",
+<<<<<<< HEAD
+=======
+	"Repeat": "",
+	"Repeats": "",
+	"Reply": "",
+	"Reply in Thread": "Відповісти в потоці",
+	"Reply to thread...": "",
+	"Replying to {{NAME}}": "",
+	"Request Format": "",
+	"Require users to confirm before using Web Search.": "",
+	"required": "",
+>>>>>>> upstream/main
 	"Reranking Batch Size": "",
 	"Reranking Engine": "",
 	"Reranking Model": "Модель переранжування",
+	"Research Knowledge": "",
 	"Reset": "Скидання",
 	"Reset All Models": "Скинути усі моделі",
+	"Reset all permissions to their initial configuration values": "",
+	"Reset group permissions to match the current default user permissions": "",
 	"Reset Image": "Скинути зображення",
+<<<<<<< HEAD
 	"Reset to default": "",
+=======
+	"Reset knowledge base?": "",
+	"Reset persisted files": "",
+	"Reset to Defaults": "",
+>>>>>>> upstream/main
 	"Reset Upload Directory": "Скинути каталог завантажень",
 	"Reset Vector Storage/Knowledge": "Скинути векторне сховище/Знання",
 	"Reset view": "Скинути вигляд",
@@ -1302,6 +1878,11 @@
 	"Return token usage information in the response when supported": "",
 	"Reusable instruction packs that teach your models a procedure or domain — import a markdown skill or write your own, then enable it where you need it.": "",
 	"Role": "Роль",
+<<<<<<< HEAD
+=======
+	"Roles Claim": "",
+	"RTL": "RTL",
+>>>>>>> upstream/main
 	"Run": "Запустити",
 	"Run All": "",
 	"Running": "Виконується",
@@ -1314,10 +1895,18 @@
 	"Save As Copy": "Зберегти як копію",
 	"Saved": "Збережено",
 	"Saving chat logs directly to your browser's storage is no longer supported. Please take a moment to download and delete your chat logs by clicking the button below. Don't worry, you can easily re-import your chat logs to the backend through": "Збереження журналів чату безпосередньо в сховище вашого браузера більше не підтримується. Будь ласка, завантажте та видаліть журнали чату, натиснувши кнопку нижче. Не хвилюйтеся, ви можете легко повторно імпортувати журнали чату до бекенду через",
+<<<<<<< HEAD
 	"Scratchboard": "",
+=======
+	"Schedule": "",
+	"Scheduled time must be in the future": "",
+	"Scopes": "",
+	"Scroll On Branch Change": "",
+>>>>>>> upstream/main
 	"Scroll to Top": "",
 	"Search": "Пошук",
 	"Search a model": "Шукати модель",
+	"Search actions": "",
 	"Search all emojis": "",
 	"Search and manage user memories": "",
 	"Search and view user chat history": "",
@@ -1325,6 +1914,7 @@
 	"Search Chats": "Пошук в чатах",
 	"Search engines and web content loaders for live results.": "",
 	"Search Files": "",
+	"Search filters": "",
 	"Search Filters": "Фільтри пошуку",
 	"search for archived chats": "",
 	"search for folders": "",
@@ -1336,10 +1926,22 @@
 	"Search In Models": "",
 	"Search Models": "Пошук моделей",
 	"Search options": "Опції пошуку",
+<<<<<<< HEAD
+=======
+	"Search or add pattern": "",
+	"Search Prompts": "Пошук промтів",
+>>>>>>> upstream/main
 	"Search Result Count": "Кількість результатів пошуку",
+	"Search skills": "",
 	"Search Skills": "",
 	"Search the web and fetch URLs": "",
+	"Search tools": "",
 	"Search Tools": "Пошуку інструментів",
+<<<<<<< HEAD
+=======
+	"Search users or groups": "",
+	"Search, view, and manage user notes": "",
+>>>>>>> upstream/main
 	"SearchApi API Key": "Ключ API для SearchApi",
 	"SearchApi Engine": "Рушій SearchApi",
 	"Searched {{count}} sites": "Шукалося {{count}} сайтів",
@@ -1354,7 +1956,12 @@
 	"Seed": "Сід",
 	"Select": "",
 	"Select {{modelName}} model": "",
+<<<<<<< HEAD
 	"Select a base model": "Обрати базову модель",
+=======
+	"Select a base model (e.g. llama3, gpt-4o)": "",
+	"Select a conversation to preview": "",
+>>>>>>> upstream/main
 	"Select a engine": "Оберіть рушій",
 	"Select a function": "Оберіть функцію",
 	"Select a group": "Вибрати групу",
@@ -1384,15 +1991,36 @@
 	"Selected Models": "",
 	"semantic": "",
 	"Send": "Надіслати",
+<<<<<<< HEAD
+=======
+	"Send a Message": "Надіслати повідомлення",
+	"Send events for": "",
+	"Send message": "Надіслати повідомлення",
+	"Send now": "",
+	"Send product events as JSON to external services. Chat destinations receive readable messages.": "",
+	"Send the PDF as a base64 data URL instead of uploading it first.": "",
+	"Sends `stream_options: { include_usage: true }` in the request.\nSupported providers will return token usage information in the response when set.": "Відправляє `stream_options: { include_usage: true }` у запиті.\nПідтримувані постачальники повернуть інформацію про використання токену у відповіді, якщо вона встановлена.",
+>>>>>>> upstream/main
 	"September": "Вересень",
 	"sequences that end a response — comma separated": "",
 	"SerpApi API Key": "Ключ API SerpApi",
 	"SerpApi Engine": "Рушій SerpApi",
 	"Serper API Key": "Ключ API Serper",
+	"SERPHouse API Key": "",
+	"SERPHouse Domain": "",
 	"Serply API Key": "Ключ API Serply",
 	"Serpstack API Key": "Ключ API Serpstack",
 	"Server connection failed": "",
+<<<<<<< HEAD
 	"Session": "",
+=======
+	"Server connection verified": "З'єднання з сервером підтверджено",
+	"Service Account": "",
+	"Session": "",
+	"Session expired. Please sign in again.": "",
+	"Set as default": "Встановити за замовчуванням",
+	"Set as Production": "",
+>>>>>>> upstream/main
 	"Set embedding model": "Встановити модель вбудовування",
 	"Set embedding model (e.g. {{model}})": "Встановити модель вбудовування (напр, {{model}})",
 	"Set reranking model (e.g. {{model}})": "Встановити модель переранжування (напр., {{model}})",
@@ -1416,13 +2044,28 @@
 	"Share": "Поділитися",
 	"Share Chat": "Поділитися чатом",
 	"Share to Open WebUI Community": "Поділитися зі спільнотою OpenWebUI",
+<<<<<<< HEAD
+=======
+	"Share your background and interests": "",
+	"Shared": "",
+>>>>>>> upstream/main
 	"Shared Chats": "",
 	"Shared with you": "",
 	"Sharing Permissions": "Дозволи на обмін",
 	"Show": "Показати",
+<<<<<<< HEAD
 	"Show Admin Details in Account Pending Overlay": "Відобразити дані адміна у вікні очікування облікового запису",
 	"Show All": "",
 	"Show all ({{COUNT}} characters)": "",
+=======
+	"Show \"What's New\" Modal on Login": "Показати модальне вікно \"Що нового\" під час входу",
+	"Show Admin Details in Account Pending Overlay": "Відобразити дані адміна у вікні очікування облікового запису",
+	"Show All": "",
+	"Show all ({{COUNT}} characters)": "",
+	"Show Files": "",
+	"Show Files on Terminal Select": "",
+	"Show Formatting Toolbar": "",
+>>>>>>> upstream/main
 	"Show image preview": "",
 	"Show Model": "Показати модель",
 	"Show Shortcuts": "",
@@ -1464,7 +2107,13 @@
 	"Sougou Search API sID": "",
 	"Sougou Search API SK": "",
 	"Source": "Джерело",
+<<<<<<< HEAD
 	"Sources used": "",
+=======
+	"Specific users or groups": "",
+	"Speech Playback Speed": "Швидкість відтворення мовлення",
+	"Speech recognition error: {{error}}": "Помилка розпізнавання мови: {{error}}",
+>>>>>>> upstream/main
 	"Speech-to-Text": "",
 	"Speech-to-Text Engine": "Система розпізнавання мови",
 	"Split documents by markdown headers before applying character/token splitting.": "",
@@ -1488,6 +2137,13 @@
 	"Strip Existing OCR": "",
 	"Strip existing OCR text from the PDF and re-run OCR. Ignored if Force OCR is enabled. Defaults to False.": "",
 	"STT Model": "Модель STT ",
+<<<<<<< HEAD
+=======
+	"STT Settings": "Налаштування STT",
+	"Stylized PDF Export": "",
+	"Su_day_of_week": "",
+	"Sub Claim": "",
+>>>>>>> upstream/main
 	"Submit question": "",
 	"Submit suggestion": "",
 	"Subtitle": "",
@@ -1501,13 +2157,22 @@
 	"Switch to JSON editor": "",
 	"Switch to visual editor": "",
 	"Sync": "",
+	"Sync a local directory with this knowledge base. Only new and modified files will be uploaded. The directory structure will be mirrored.": "",
+	"Sync complete: {{added}} added, {{modified}} modified, {{deleted}} deleted, {{unmodified}} unmodified": "",
 	"Sync Complete!": "",
 	"Sync Failed": "",
 	"Sync Usage Stats": "",
 	"Syncing stats...": "",
 	"Syncing...": "",
 	"Syncs only chats with updates after your last sync timestamp. Disable to re-sync all chats.": "",
+<<<<<<< HEAD
+=======
+	"System": "Система",
+	"System events only": "",
+	"System Instructions": "Системні інструкції",
+>>>>>>> upstream/main
 	"System Prompt": "Системний промт",
+	"Table": "",
 	"Tag": "",
 	"Tags": "Теги",
 	"Tags Generation": "Генерація тегів",
@@ -1527,6 +2192,16 @@
 	"Temperature": "Температура",
 	"Temporary Chat": "Тимчасовий чат",
 	"Terminal": "",
+<<<<<<< HEAD
+=======
+	"Terminal servers saved": "",
+	"Test": "",
+	"Test Query": "",
+	"Test returned no results.": "",
+	"Test succeeded.": "",
+	"Test the source before creating it.": "",
+	"Test the source before saving it.": "",
+>>>>>>> upstream/main
 	"Text Splitter": "Роздільник тексту",
 	"Text-to-Speech": "",
 	"Text-to-Speech Engine": "Система синтезу мови",
@@ -1541,8 +2216,11 @@
 	"The height in pixels to compress images to. Leave empty for no compression.": "",
 	"The LDAP attribute that maps to the mail that users use to sign in.": "LDAP-атрибут, який відповідає за пошту, яку користувачі використовують для входу.",
 	"The LDAP attribute that maps to the username that users use to sign in.": "LDAP-атрибут, який відповідає за ім'я користувача, яке використовують користувачі для входу.",
+<<<<<<< HEAD
 	"The leaderboard is currently in beta, and we may adjust the rating calculations as we refine the algorithm.": "Таблиця лідерів наразі в бета-версії, і ми можемо коригувати розрахунки рейтингів у міру вдосконалення алгоритму.",
 	"the longest single response it may set": "",
+=======
+>>>>>>> upstream/main
 	"The maximum file size in MB. If the file size exceeds this limit, the file will not be uploaded.": "Максимальний розмір файлу в МБ. Якщо розмір файлу перевищує цей ліміт, файл не буде завантажено.",
 	"The maximum number of files that can be used at once in chat. If the number of files exceeds this limit, the files will not be uploaded.": "Максимальна кількість файлів, які можна використати одночасно в чаті. Якщо кількість файлів перевищує цей ліміт, файли не будуть завантажені.",
 	"The only required step — refine everything else now or later.": "",
@@ -1568,6 +2246,11 @@
 	"This feature is currently experimental and may not work as expected.": "",
 	"This folder is empty": "",
 	"This is a default user permission and will remain enabled.": "",
+<<<<<<< HEAD
+=======
+	"This is an experimental feature, it may not function as expected and is subject to change at any time.": "Це експериментальна функція, вона може працювати не так, як очікувалося, і може бути змінена в будь-який час.",
+	"This knowledge base retrieves from a connected source. Open WebUI can query it, but cannot upload, sync, edit, delete, reset, or reindex its source data.": "",
+>>>>>>> upstream/main
 	"This model is not publicly available. Please select another model.": "",
 	"This option controls how long the model will stay loaded into memory following the request (default: 5m)": "",
 	"This option controls how many tokens are preserved when refreshing the context. For example, if set to 2, the last 2 tokens of the conversation context will be retained. Preserving context can help maintain the continuity of a conversation, but it may reduce the ability to respond to new topics.": "Ця опція контролює, скільки токенів зберігається при оновленні контексту. Наприклад, якщо встановити значення 2, останні 2 токени контексту розмови будуть збережені. Збереження контексту допомагає підтримувати послідовність розмови, але може зменшити здатність реагувати на нові теми.",
@@ -1579,6 +2262,11 @@
 	"This will delete <strong>{{NAME}}</strong> and <strong>all its contents</strong>.": "Це видалить <strong>{{NAME}}</strong> та <strong>усі його вмісти</strong>.",
 	"This will delete all models including custom models": "Це видалить усі моделі, включаючи користувацькі моделі",
 	"This will delete all models including custom models and cannot be undone.": "Це видалить усі моделі, включаючи користувацькі моделі, і не може бути скасовано.",
+<<<<<<< HEAD
+=======
+	"This will permanently delete the calendar \"{{name}}\" and all its events. This action cannot be undone.": "",
+	"This will remove all files and directories from this knowledge base. This action cannot be undone.": "",
+>>>>>>> upstream/main
 	"Thorough explanation": "Детальне пояснення",
 	"Thought": "",
 	"Thought for {{DURATION}}": "Думка для {{DURATION}}",
@@ -1601,12 +2289,23 @@
 	"To learn more about available endpoints, visit our documentation.": "Щоб дізнатися більше про доступні кінцеві точки, відвідайте нашу документацію.",
 	"To select skills here, add them to the \"Skills\" workspace first.": "",
 	"To select toolkits here, add them to the \"Tools\" workspace first.": "Щоб обрати тут набори інструментів, спочатку додайте їх до робочої області \"Інструменти\".",
+<<<<<<< HEAD
+=======
+	"Toast Notifications for New Updates": "Сповіщення Toast про нові оновлення",
+>>>>>>> upstream/main
 	"Today": "Сьогодні",
 	"Toggle details": "",
+<<<<<<< HEAD
+=======
+	"Toggle Dictation": "",
+	"Toggle Mute": "",
+>>>>>>> upstream/main
 	"Toggle Sidebar": "",
 	"Toggle whether current connection is active.": "",
 	"Token": "Токен",
 	"Token counts are estimates and may not reflect actual API usage": "",
+	"Token Threshold": "",
+	"Tokenizer Model": "",
 	"tokens": "",
 	"Tokens": "",
 	"Too verbose": "Занадто докладно",
@@ -1651,10 +2350,25 @@
 	"Unlock mysteries": "Розкрийте таємниці",
 	"Unpin": "Відчепити",
 	"Unravel secrets": "Розплутуйте секрети",
+	"Unshare All": "",
+	"Unshare All Shared Chats": "",
 	"Unshare Chat": "",
 	"Untagged": "Без тегів",
+<<<<<<< HEAD
 	"Untitled folio": "",
 	"Update for the latest features and improvements.": "Оновіть програми для нових функцій та покращень.",
+=======
+	"Untitled": "",
+	"Update": "Оновлення",
+	"Update and Copy Link": "Оновлення та копіювання посилання",
+	"Update Email": "",
+	"Update for the latest features and improvements.": "Оновіть програми для нових функцій та покращень.",
+	"Update Name": "",
+	"Update password": "Оновити пароль",
+	"Update Picture": "",
+	"Update your status": "",
+	"Updated": "Оновлено",
+>>>>>>> upstream/main
 	"Updated at": "Оновлено на",
 	"Updated At": "Оновлено на",
 	"Upgrade to a licensed plan for enhanced capabilities, including custom theming and branding, and dedicated support.": "Оновіть до ліцензованого плану для розширених можливостей, включаючи кастомізацію теми та брендування, а також спеціалізовану підтримку.",
@@ -1666,24 +2380,40 @@
 	"Upload profile image": "",
 	"Upload Progress": "Прогрес завантаження",
 	"Uploaded files or images": "",
+<<<<<<< HEAD
+=======
+	"Uploading {{current}}/{{total}}: {{file}}": "",
+>>>>>>> upstream/main
 	"Uploading...": "",
 	"URL": "URL",
 	"URL is required": "",
 	"URL Mode": "Режим URL-адреси",
 	"Usage": "",
 	"Use /v1/chat/completions endpoint instead of /v1/audio/transcriptions for potentially better accuracy.": "",
+	"Use a valid event name or pattern like user.*": "",
+	"Use Base64": "",
 	"Use Chat Completions API": "",
+	"Use discovered scopes": "",
 	"Use groups to organize your users and assign permissions.": "",
 	"Use LLM": "",
 	"Use no proxy to fetch page contents.": "",
 	"Use proxy designated by http_proxy and https_proxy environment variables to fetch page contents.": "",
+	"Use Web Search?": "",
 	"user": "користувач",
 	"User": "Користувач",
+	"User Access": "",
 	"User Activity": "",
 	"User Groups": "",
+<<<<<<< HEAD
+=======
+	"User location successfully retrieved.": "Місцезнаходження користувача успішно знайдено.",
+	"User menu": "",
+	"User Preview": "",
+>>>>>>> upstream/main
 	"User ratings (thumbs up/down)": "",
 	"User Webhooks": "Вебхуки користувача",
 	"Username": "Ім'я користувача",
+	"Username Claim": "",
 	"users": "",
 	"Users": "Користувачі",
 	"Uses DefaultAzureCredential to authenticate": "",
@@ -1694,7 +2424,14 @@
 	"Valid time units:": "Дійсні одиниці часу:",
 	"Validate certificate": "",
 	"Valves": "Клапани",
+<<<<<<< HEAD
 	"Verified": "",
+=======
+	"Valves updated": "Клапани оновлено",
+	"Valves updated successfully": "Клапани успішно оновлено",
+	"variable": "змінна",
+	"Vector Field": "",
+>>>>>>> upstream/main
 	"Verify Connection": "Перевірити з'єднання",
 	"Verify SSL Certificate": "",
 	"Version": "Версія",
@@ -1715,9 +2452,20 @@
 	"Web API": "Веб-API",
 	"Web Loader Engine": "",
 	"Web Search": "Веб-Пошук",
+	"Web Search Confirmation": "",
+	"Web Search Confirmation Content": "",
 	"Web Search Engine": "Веб-пошукова система",
 	"Web Search Query Generation": "Генерація запиту для пошуку в мережі",
+<<<<<<< HEAD
 	"Webhook URL": "Webhook URL",
+=======
+	"Webhook deleted": "",
+	"Webhook Name": "",
+	"Webhook saved": "",
+	"Webhooks": "",
+	"Webpage URLs": "",
+	"WebUI Settings": "Налаштування WebUI",
+>>>>>>> upstream/main
 	"WebUI URL": "WebUI URL",
 	"WebUI will make requests to \"{{url}}\"": "",
 	"WebUI will make requests to \"{{url}}/api/chat\"": "WebUI надсилатиме запити до \"{{url}}/api/chat\"",
@@ -1748,6 +2496,7 @@
 	"Yandex Web Search API Key": "",
 	"Yandex Web Search config": "",
 	"Yandex Web Search URL": "",
+	"Yearly": "",
 	"Yesterday": "Вчора",
 	"You": "Ви",
 	"You are a careful editor: terse, concrete, kind…": "",
@@ -1767,6 +2516,7 @@
 	"Your browser does not support the video tag.": "",
 	"Your entire contribution will go directly to the plugin developer; Open WebUI does not take any percentage. However, the chosen funding platform might have its own fees.": "Весь ваш внесок піде безпосередньо розробнику плагіна; Open WebUI не бере жодних відсотків. Однак, обрана платформа фінансування може мати свої власні збори.",
 	"Your message text or inputs": "",
+	"Your query will be sent to the configured web search provider.": "",
 	"Your usage stats have been successfully synced.": "",
 	"Youtube Language": "Мова YouTube",
 	"Youtube Proxy URL": "URL проксі-сервера YouTube"

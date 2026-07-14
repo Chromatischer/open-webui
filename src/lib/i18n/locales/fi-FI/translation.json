@@ -5,32 +5,89 @@
 	"(e.g. `sh webui.sh --api`)": "(esim. `sh webui.sh --api`)",
 	"(latest)": "(uusin)",
 	"(leave blank for to use commercial endpoint)": "(Jätä tyhjäksi, jos haluat käyttää kaupallista päätettä)",
+<<<<<<< HEAD
 	"{{COUNT}} extracted lines": "{{COUNT}} poimittua riviä",
 	"{{COUNT}} hidden lines": "{{COUNT}} piilotettua riviä",
 	"{{COUNT}} members": "{{COUNT}} jäsentä",
 	"{{COUNT}} Rows": "{{COUNT}} riviä",
 	"{{count}} selected_one": "",
 	"{{count}} selected_other": "",
+=======
+	"[Last] dddd [at] h:mm A": "[Viimeisin] dddd h:mm A",
+	"[Today at] h:mm A": "[Tänään] h:mm A",
+	"[Yesterday at] h:mm A": "[Eilen] h:mm A",
+	"{{ models }}": "{{ mallit }}",
+	"{{COUNT}} Available Skills": "{{COUNT}} taitoa käytettävissä",
+	"{{COUNT}} Available Tools": "{{COUNT}} työkalua käytettävissä",
+	"{{COUNT}} characters": "{{COUNT}} kirjainta",
+	"{{COUNT}} extracted lines": "{{COUNT}} poimittua riviä",
+	"{{COUNT}} files": "{{COUNT}} tiedostoa",
+	"{{count}} files selected. Only new and modified files will be uploaded. Deleted files will be removed. The folder structure will be mirrored. Continue?_one": "{{count}} tiedostoa on valittu. Vain uudet ja muokatut tiedostot ladataan. Poistetut tiedostot poistetaan. Hakemistorakenne peilataan. Haluatko jatkaa?_one",
+	"{{count}} files selected. Only new and modified files will be uploaded. Deleted files will be removed. The folder structure will be mirrored. Continue?_other": "{{count}} tiedostoa on valittu. Vain uudet ja muokatut tiedostot ladataan. Poistetut tiedostot poistetaan. Hakemistorakenne peilataan. Haluatko jatkaa?_other",
+	"{{count}} filters_one": "",
+	"{{count}} filters_other": "",
+	"{{count}} groups_one": "",
+	"{{count}} groups_other": "",
+	"{{COUNT}} hidden lines": "{{COUNT}} piilotettua riviä",
+	"{{COUNT}} members": "{{COUNT}} jäsentä",
+	"{{count}} of {{total}} accessible_one": "{{count}}/{{total}} käytettävissä_one",
+	"{{count}} of {{total}} accessible_other": "{{count}}/{{total}} käytettävissä_other",
+	"{{COUNT}} Replies": "{{COUNT}} vastausta",
+	"{{COUNT}} Rows": "{{COUNT}} riviä",
+	"{{count}} selected_one": "",
+	"{{count}} selected_other": "",
+	"{{COUNT}} Sources": "{{COUNT}} lähdettä",
+	"{{count}} users_one": "",
+	"{{count}} users_other": "",
+	"{{COUNT}} words": "{{COUNT}} sanaa",
+>>>>>>> upstream/main
 	"{{COUNT}}d_time_ago": "",
 	"{{COUNT}}h_time_ago": "",
 	"{{COUNT}}m_time_ago": "",
 	"{{COUNT}}w_time_ago": "",
 	"{{COUNT}}y_time_ago": "",
+<<<<<<< HEAD
+=======
+	"{{label}} contains invalid JSON": "",
+	"{{label}} must be a JSON object": "",
+	"{{LOCALIZED_DATE}} at {{LOCALIZED_TIME}}": "{{LOCALIZED_DATE}} {{LOCALIZED_TIME}}",
+	"{{model}} download has been canceled": "{{model}} lataus peruttu",
+>>>>>>> upstream/main
 	"{{modelName}} profile image": "{{modelName}} profiilikuva",
 	"{{user}}'s Chats": "{{user}}:n keskustelut",
 	"{{webUIName}} Backend Required": "{{webUIName}}-backend vaaditaan",
 	"*Prompt node ID(s) are required for image generation": "Kuvan luomiseen vaaditaan kehote-solmun ID(t)",
+<<<<<<< HEAD
+=======
+	"1 group": "",
+	"1 hour before": "1 tunti ennen",
+	"1 Source": "1 lähde",
+	"1 user": "",
+	"10 minutes before": "10 minuuttia ennen",
+	"15 minutes before": "15 minuuttia ennen",
+>>>>>>> upstream/main
 	"1m_time_ago": "",
 	"a line about what this model is for…": "",
 	"A model binds a base mind to a system prompt, tools and knowledge — compose one and summon it in any chat.": "",
 	"A name and a base model, and it can be bound.": "",
 	"A new version (v{{LATEST_VERSION}}) is now available.": "Uusi versio (v{{LATEST_VERSION}}) on nyt saatavilla.",
 	"A task model is used when performing tasks such as generating titles for chats and web search queries": "Tehtävämallia käytetään tehtävien suorittamiseen, kuten otsikoiden luomiseen keskusteluille ja verkkohakukyselyille",
+<<<<<<< HEAD
 	"Accept Autocomplete Generation\nJump to Prompt Variable": "Hyväksy automaattiset täydennykset\n Siirry kehoitteen muuttujaan",
+=======
+	"a user": "käyttäjä",
+	"About": "Tietoja",
+	"Accept Autocomplete Generation\nJump to Prompt Variable": "Hyväksy automaattiset täydennykset\n Siirry kehotteen muuttujaan",
+>>>>>>> upstream/main
 	"Access": "Pääsy",
 	"Access Control": "Käyttöoikeuksien hallinta",
 	"Access Grants": "Käyttöoikeudet",
 	"Access List": "Pääsylista",
+<<<<<<< HEAD
+=======
+	"Access prohibited": "",
+	"Access updated": "Käyttöoikeus päivitetty",
+>>>>>>> upstream/main
 	"Accessible to all users": "Käytettävissä kaikille käyttäjille",
 	"Account Activation Pending": "Tilin aktivointi odottaa",
 	"Accurate information": "Tarkkaa tietoa",
@@ -41,6 +98,7 @@
 	"Activity": "Toiminta",
 	"Add": "Lisää",
 	"Add a model ID": "Lisää mallitunnus",
+	"Add a preference, fact, or instruction about you": "",
 	"Add a short description about what this model does": "Lisää lyhyt kuvaus siitä, mitä tämä malli tekee",
 	"Add a tag": "Lisää tagi",
 	"Add a tag...": "Lisää tagi...",
@@ -50,7 +108,17 @@
 	"Add Custom Parameter": "Lisää mukautettu parametri",
 	"Add Custom Prompt": "Lisää mukautettu kehote",
 	"Add Details": "Lisää yksityiskohtia",
+	"Add durable context for future chats": "",
 	"Add Files": "Lisää tiedostoja",
+<<<<<<< HEAD
+=======
+	"Add Image": "Lisää kuva",
+	"Add Knowledge Connection": "",
+	"Add location": "Lisää sijainti",
+	"Add Member": "Lisää jäsen",
+	"Add Members": "Lisää jäseniä",
+	"Add Memory": "Lisää muistiin",
+>>>>>>> upstream/main
 	"Add Model": "Lisää malli",
 	"Add tag": "Lisää tagi",
 	"Add Tag": "Lisää tagi",
@@ -58,6 +126,11 @@
 	"Add to favorites": "Lisää suosikkeihin",
 	"Add User": "Lisää käyttäjä",
 	"Add User Group": "Lisää käyttäjäryhmä",
+<<<<<<< HEAD
+=======
+	"Add webhook": "",
+	"Add webpage": "Lisää verkkosivu",
+>>>>>>> upstream/main
 	"Add your Open Terminal URL and API key in Settings → Integrations.": "Lisää Open Terminal verkko-osoite ja API-avain Asetukset → Integraatiot",
 	"Additional Config": "Lisäasetukset",
 	"Additional configuration options for marker. This should be a JSON string with key-value pairs. For example, '{\"key\": \"value\"}'. Supported keys include: disable_links, keep_pageheader_in_output, keep_pagefooter_in_output, filter_blank_pages, drop_repeated_text, layout_coverage_threshold, merge_threshold, height_tolerance, gap_threshold, image_threshold, min_line_length, level_count, default_level": "Lisäasetukset merkille. Tämä tulisi olla JSON-merkkijono, jossa on avain-arvo-pareja. Esimerkiksi '{\"key\": \"value\"}'. Tuetut avaimet sisältävät: disable_links, keep_pageheader_in_output, keep_pagefooter_in_output, filter_blank_pages, drop_repeated_text, layout_coverage_threshold, merge_threshold, height_tolerance, gap_threshold, image_threshold, min_line_length, level_count, default_level.",
@@ -68,21 +141,43 @@
 	"Admin": "Ylläpito",
 	"Admin Contact Email": "Ylläpidon sähköposti",
 	"Admin Panel": "Ylläpitopaneeli",
+<<<<<<< HEAD
+=======
+	"Admin Roles": "",
+	"Admin Settings": "Ylläpitoasetukset",
+	"Admin-managed service account": "",
+>>>>>>> upstream/main
 	"Admins have access to all tools at all times; users need tools assigned per model in the workspace.": "Ylläpitäjillä on pääsy kaikkiin työkaluihin koko ajan; käyttäjät tarvitsevat työkaluja mallille määritettynä työtilassa.",
 	"Advanced": "Edistynyt",
 	"Advanced parameters for MinerU parsing (enable_ocr, enable_formula, enable_table, language, model_version, page_ranges)": "Edistyneet parametrit MinerU-jäsennykseen (enable_ocr, enable_formula, enable_table, language, model_version, page_ranges)",
 	"Advanced Params": "Edistyneet parametrit",
 	"After updating or changing the embedding model, you must reindex the knowledge base for the changes to take effect. You can do this using the \"Reindex\" button below.": "Upotusmallin päivittämisen, tai vaihtamisen jälkeen sinun tulee indeksoida tietämys uudelleen ottaaksesi muutokset käyttöön. Voit tehdä tämän alla olevasta \"Indeksoi uudelleen\" napista.",
 	"All": "Kaikki",
+<<<<<<< HEAD
 	"All time": "Kokoajalta",
 	"All Users": "Kaikki käyttäjät",
+=======
+	"All chats have been unarchived.": "Kaikki keskustelut poistettu arkistosta.",
+	"All day": "Koko päivä",
+	"All events": "",
+	"All models are now hidden": "Kaikki mallit ovat nyt piilotettu",
+	"All models are now visible": "Kaikki mallit ovat nyt näkyvissä",
+	"All models deleted successfully": "Kaikki mallit poistettu onnistuneesti",
+	"All shared chats have been unshared.": "",
+	"All Sources": "",
+	"All time": "Kokoajalta",
+	"All Users": "Kaikki käyttäjät",
+	"All users and system events": "",
+	"Allow Call": "Salli puhelut",
+>>>>>>> upstream/main
 	"Allow Chat Controls": "Salli keskustelujen hallinta",
 	"Allow Chat Delete": "Salli keskustelujen poisto",
 	"Allow Chat Edit": "Salli keskustelujen muokkaus",
 	"Allow Chat Export": "Salli keskustelujen vienti",
+	"Allow Chat Import": "",
 	"Allow Chat Params": "Salli keskustelujen parametrit",
 	"Allow Chat Share": "Salli keskustelujen jako",
-	"Allow Chat System Prompt": "Salli keskustelujen järjestelmä kehoitteet",
+	"Allow Chat System Prompt": "Salli keskustelujen järjestelmä kehotteet",
 	"Allow Chat Valves": "Salli keskustelu venttiilit",
 	"Allow Continue Response": "Salli jatka vastausta",
 	"Allow Delete Messages": "Salli viestien poisto",
@@ -94,9 +189,11 @@
 	"Allow Sharing With Users": "Salli jakaminen käyttäjien kesken",
 	"Allow Text to Speech": "Salli teksti puheeksi",
 	"Allow Web Upload": "Salli verkko lataukset",
+	"Allowed Domains": "",
 	"Allowed Endpoints": "Hyväksytyt päätepisteet",
 	"Allowed File Extensions": "Hyväksytyt tiedostomuodot",
-	"Allowed file extensions for upload. Separate multiple extensions with commas. Leave empty for all file types.": "Hyväksyty tiedostomuodot. Erittele tiedostomuodot pilkulla. Jätä tyhjäksi kaikille tiedostomuodoille.",
+	"Allowed file extensions for upload. Separate multiple extensions with commas. Leave empty for all file types.": "Hyväksytyt tiedostomuodot. Erittele tiedostomuodot pilkulla. Jätä tyhjäksi kaikille tiedostomuodoille.",
+	"Allowed Roles": "",
 	"Already have an account?": "Onko sinulla jo tili?",
 	"Alternative to the top_p, and aims to ensure a balance of quality and variety. The parameter p represents the minimum probability for a token to be considered, relative to the probability of the most likely token. For example, with p=0.05 and the most likely token having a probability of 0.9, logits with a value less than 0.045 are filtered out.": "Vaihtoehto top_p:lle, ja sen tavoitteena on varmistaa laadun ja monimuotoisuuden tasapaino. Parametri p edustaa vähimmäistodennäköisyyttä, jonka on oltava tokenin huomioimiseksi suhteessa todennäköisimmän tokenin todennäköisyyteen. Esimerkiksi, kun p=0.05 ja todennäköisin tokenilla on todennäköisyys 0.9, logitit, joiden arvo on alle 0.045, suodatetaan pois.",
 	"Amazing": "Hämmästyttävä",
@@ -108,6 +205,11 @@
 	"API Base URL": "API:n verkko-osoite",
 	"API Base URL for Datalab Marker service. Defaults to: https://www.datalab.to/api/v1/marker": "API verkko-osoite Datalabb Marker palveluun. Oletuksena: https://www.datalab.to/api/v1/marker",
 	"API Key": "API-avain",
+<<<<<<< HEAD
+=======
+	"API Key / Token": "",
+	"API Key created.": "API-avain luotu.",
+>>>>>>> upstream/main
 	"API Key Endpoint Restrictions": "API-avaimen päätepiste rajoitukset",
 	"API Keys": "API-avaimet",
 	"API Mode": "API-moodi",
@@ -124,13 +226,31 @@
 	"Are you sure you want to delete \"{{NAME}}\"?": "Haluatko varmasti poistaa \"{{NAME}}\"?",
 	"Are you sure you want to delete **{{modelName}}**?": "Haluatko varmasti poistaa **{{modelName}}**?",
 	"Are you sure you want to delete this connection? This action cannot be undone.": "Haluatko varmasti poistaa yhteyden? Tätä toimintoa ei voi peruuttaa.",
+<<<<<<< HEAD
 	"Are you sure you want to delete this?": "Haluatko varmasti poistää tämän?",
 	"Arena": "",
+=======
+	"Are you sure you want to delete this directory?": "Haluatko varmasti poistaa tämän hakemiston?",
+	"Are you sure you want to delete this memory? This action cannot be undone.": "Haluatko varmasti poistaa muiston? Tätä toimintoa ei voi peruuttaa.",
+	"Are you sure you want to delete this message?": "Haluatko varmasti poistaa tämän viestin?",
+	"Are you sure you want to delete this version? Child versions will be relinked to this version's parent.": "Haluatko varmasti poistaa tämän version? Alaversiot linkitetään uudelleen tämän version ylätason versioon.",
+	"Are you sure you want to delete this webhook? This action cannot be undone.": "",
+	"Are you sure you want to delete this?": "Haluatko varmasti poistää tämän?",
+	"Are you sure you want to reset all permissions to their default values? You will still need to save to apply the changes.": "",
+	"Are you sure you want to unarchive all archived chats?": "Haluatko varmasti purkaa kaikkien arkistoitujen keskustelujen arkistoinnin?",
+	"Are you sure you want to unshare all shared chats? This will remove all share links.": "",
+>>>>>>> upstream/main
 	"Arena Models": "Arena-mallit",
 	"Artifacts": "Artefaktit",
 	"Ask": "Kysy",
 	"Ask a question": "Kysy kysymys",
+<<<<<<< HEAD
 	"Ask the User": "",
+=======
+	"Ask a test question": "",
+	"Ask this knowledge source a test question": "",
+	"Assistant": "Avustaja",
+>>>>>>> upstream/main
 	"Async Embedding Processing": "Asynkroninen upotus prosessointi",
 	"Attach File From Knowledge": "Liitä tiedosto tietämyksestä",
 	"Attention to detail": "Huomio yksityiskohtiin",
@@ -139,20 +259,33 @@
 	"Audience": "",
 	"August": "elokuu",
 	"Auth": "Todennus",
+	"Auth Mode": "",
+	"Auth required": "",
 	"Authenticate": "Todentaa",
 	"Authentication": "Todennus",
 	"Auto (Random)": "Automaattinen (satunnainen)",
+<<<<<<< HEAD
 	"Auto-inject system tools for Agents (timestamps, memory, notes, etc.)": "",
+=======
+	"Auto Redirect": "",
+	"Auto-Copy Response to Clipboard": "Kopioi vastaus automaattisesti leikepöydälle",
+	"Auto-Create Groups": "",
+	"Auto-Playback Response": "Toista vastaus automaattisesti",
+>>>>>>> upstream/main
 	"Autocomplete Generation": "Automaattisen täydennyksen luonti",
 	"Autocomplete Generation Input Max Length": "Automaattisen täydennyksen syötteen enimmäispituus",
+	"Autocomplete Generation Prompt": "",
+	"Automatic": "",
 	"Automatic1111": "Automatic1111",
 	"AUTOMATIC1111 Api Auth String": "AUTOMATIC1111 API:n todennusmerkkijono",
 	"AUTOMATIC1111 Base URL": "AUTOMATIC1111 verkko-osoite",
 	"AUTOMATIC1111 Base URL is required.": "AUTOMATIC1111 verkko-osoite vaaditaan.",
 	"Available list": "Käytettävissä oleva luettelo",
 	"Available models": "Käytettävissä olevat mallit",
+	"Available Skills": "Käytettävissä olevat taidot",
 	"Available Tools": "Käytettävissä olevat työkalut",
 	"available users": "käytettävissä olevat käyttäjät",
+	"Available variables": "",
 	"available!": "saatavilla!",
 	"Awful": "Kauhea",
 	"Azure AI Speech": "Azure AI Speech",
@@ -163,16 +296,30 @@
 	"Backup, export, and import instance data.": "",
 	"Bad Response": "Huono vastaus",
 	"Banners": "Bannerit",
+<<<<<<< HEAD
 	"Base model": "",
+=======
+	"Base Model (From)": "Perusmalli (alkaen)",
+	"Base Model is required.": "",
+>>>>>>> upstream/main
 	"Base Model List Cache speeds up access by fetching base models only at startup or on settings save—faster, but may not show recent base model changes.": "Malliluettelon välimuisti nopeuttaa käyttöä hakemalla mallit vain käynnistyksen yhteydessä, tai asetusten tallentamisen yhteydessä - nopeampaa, mutta ei välttämättä näytä viimeisimpiä malli muutoksia.",
 	"Bearer": "Bearer",
 	"Begin a new folio": "",
 	"Being lazy": "Oli laiska",
+<<<<<<< HEAD
 	"Beta": "Beta",
 	"Bind the model": "",
 	"Bing": "",
 	"Bing Search V7 Endpoint": "Bing Search V7 -päätepisteen osoite",
 	"Bing Search V7 Subscription Key": "Bing Search V7 -tilauskäyttäjäavain",
+=======
+	"Bing": "",
+	"Bing Search V7 Endpoint": "Bing Search V7 -päätepisteen osoite",
+	"Bing Search V7 Subscription Key": "Bing Search V7 -tilauskäyttäjäavain",
+	"Bio": "Elämänkerta",
+	"Birth Date": "Syntymäpäivä",
+	"Blocked Groups": "",
+>>>>>>> upstream/main
 	"BM25 Weight": "BM25 paino",
 	"Bocha Search API Key": "Bocha Search API -avain",
 	"Bold": "Lihavointi",
@@ -187,6 +334,18 @@
 	"Bypass Embedding and Retrieval": "Ohita upotus ja haku",
 	"Bypass Web Loader": "Ohita verkkolataaja",
 	"Cache Base Model List": "Malli luettelon välimuisti",
+<<<<<<< HEAD
+=======
+	"Calendar": "Kalenteri",
+	"Calendar created": "Kalenteri luotu",
+	"Calendar deleted": "Kalenteri poistettu",
+	"Calendar name": "Kalenterin nimi",
+	"Calendars": "Kalenterit",
+	"Calendars Public Sharing": "Kalenterien julkinen jakaminen",
+	"Call": "Puhelu",
+	"Call feature is not supported when using Web STT engine": "Puhelutoimintoa ei tueta käytettäessä web-puheentunnistusmoottoria",
+	"Camera": "Kamera",
+>>>>>>> upstream/main
 	"Cancel": "Peruuta",
 	"Cancel download of {{model}}": "Keskeytä {{model}} lataus",
 	"Capabilities": "Ominaisuudet",
@@ -200,13 +359,19 @@
 	"Chat": "Keskustelu",
 	"Chat Completions": "",
 	"Chat Conversation": "Chat-keskustelut",
+<<<<<<< HEAD
+=======
+	"Chat deleted.": "Keskustelu poistettu.",
+	"Chat Direction": "Keskustelun suunta",
+	"Chat exported successfully": "Keskustelut viety onnistuneesti",
+>>>>>>> upstream/main
 	"Chat History": "Keskusteluhistoria",
 	"Chat ID": "Keskustelu ID",
 	"Chat moved successfully": "Keskustelu siirrettiin onnistuneesti",
 	"Chat Permissions": "Keskustelun käyttöoikeudet",
 	"chats": "keskustelut",
 	"Chats": "Keskustelut",
-	"Chats Public Sharing": "",
+	"Chats Public Sharing": "Keskustelujen julkinen jakaminen",
 	"Check Again": "Tarkista uudelleen",
 	"Check for updates": "Tarkista päivitykset",
 	"Checking for updates...": "Tarkistetaan päivityksiä...",
@@ -228,11 +393,19 @@
 	"Click here to select": "Klikkaa tästä valitaksesi",
 	"Click here to select a csv file.": "Klikkaa tästä valitaksesi CSV-tiedosto.",
 	"Click here to select a py file.": "Klikkaa tästä valitaksesi py-tiedosto.",
-	"Click here to upload a workflow.json file.": "Klikkaa tästä ladataksesi workflow.json-tiedosto.",
+	"Click here to upload a workflow.json file.": "Lataa workflow.json-tiedosto klikkaamalla tätä.",
 	"click here.": "klikkaa tästä.",
 	"Click on the user role button to change a user's role.": "Klikkaa käyttäjän roolipainiketta vaihtaaksesi käyttäjän roolia.",
+<<<<<<< HEAD
 	"Client ID": "",
 	"Client Secret": "",
+=======
+	"Click to connect": "Klikkaa yhdistääksesi",
+	"Click to copy ID": "Klikkaa kopioidaksesi ID",
+	"Client ID": "Client ID",
+	"Client Secret": "Client Secret",
+	"Clipboard write permission denied. Please check your browser settings to grant the necessary access.": "Leikepöydälle kirjoitusoikeus evätty. Tarkista selaimesi asetukset ja myönnä tarvittavat käyttöoikeudet.",
+>>>>>>> upstream/main
 	"Clone": "Kloonaa",
 	"Clone of {{TITLE}}": "{{TITLE}} klooni",
 	"Close": "Sulje",
@@ -259,6 +432,11 @@
 	"Code Interpreter Prompt Template": "Ohjelmatulkin kehotemalli",
 	"Collapse": "Pienennä",
 	"Collection": "Kokoelma",
+<<<<<<< HEAD
+=======
+	"Collection Field": "",
+	"Collections": "Kokoelmat",
+>>>>>>> upstream/main
 	"Color": "Väri",
 	"ComfyUI": "ComfyUI",
 	"ComfyUI API Key": "ComfyUI API -avain",
@@ -267,9 +445,25 @@
 	"ComfyUI Workflow": "ComfyUI-työnkulku",
 	"ComfyUI Workflow Nodes": "ComfyUI-työnkulun solmut",
 	"Comma separated Node Ids (e.g. 1 or 1,2)": "Pilkulla erotellut Node Id:t (esim. 1 tai 1,2)",
+<<<<<<< HEAD
+=======
+	"Comma-separated group names": "",
+	"Comma-separated list of file extensions MinerU will handle (e.g. pdf, docx, pptx, xlsx)": "Pilkulla eroteltu luettelo tiedostomuodoista, joita MinerU käsittelee (esim. pdf, docx, pptx, xlsx)",
+	"command": "komento",
+	"Command": "Komento",
+>>>>>>> upstream/main
 	"Comment": "Kommentti",
 	"Community Reviews": "Yhteisön arvostelut",
+<<<<<<< HEAD
 	"Compose your first model": "",
+=======
+	"Compacting context": "",
+	"Comparing with knowledge base...": "Vertaillaan tietokantaan...",
+	"Completions": "Täydennykset",
+	"Compress Images in Channels": "Pakkaa kuvat kanavissa",
+	"Computing checksums ({{count}} files)_one": "Tarkistussummien laskenta ({{count}} tiedostoa)_one",
+	"Computing checksums ({{count}} files)_other": "Tarkistussummien laskenta ({{count}} tiedostoa)_other",
+>>>>>>> upstream/main
 	"Concurrent Requests": "Samanaikaiset pyynnöt",
 	"Config": "Määritykset",
 	"Configure": "Määritä",
@@ -282,6 +476,10 @@
 	"Connect to Open Terminal instances. All users will have access to file browsing and terminal tools through these servers.": "Yhdistä Open Terminal -instansseihin. Kaikilla käyttäjillä on pääsy tiedostojen selaamiseen ja päätetyökaluihin näiden palvelimien kautta.",
 	"Connect to your own OpenAPI compatible external tool servers.": "Yhdistä omat ulkopuoliset OpenAPI yhteensopivat työkalu palvelimet.",
 	"Connected": "",
+<<<<<<< HEAD
+=======
+	"Connected ({{type}})": "Yhdistetty ({{type}})",
+>>>>>>> upstream/main
 	"Connection failed": "Yhteys epäonnistui",
 	"Connection lost. Reconnecting...": "Yhteys katkaistu. Yhdistetään uudelleen...",
 	"Connection Type": "Yhteystyyppi",
@@ -290,14 +488,22 @@
 	"Contact Admin for WebUI Access": "Ota yhteyttä ylläpitäjään WebUI-käyttöä varten",
 	"Content": "Sisältö",
 	"Content Extraction Engine": "Sisällönpoimintamoottori",
+	"Content Field": "",
 	"Content lengths (character counts only)": "Sisällön pituus (vain merkkimäärä)",
-	"Context Tokens": "",
+	"Context": "",
+	"Context compacted": "",
+	"Context Compaction": "",
+	"Context compaction failed": "",
+	"Context Compaction Prompt": "",
+	"Context Compaction Threshold": "",
+	"Context Tokens": "Konteksti tokenit",
+	"Continue": "",
 	"Continue Response": "Jatka vastausta",
 	"Continue with {{provider}}": "Jatka palvelulla {{provider}}",
 	"Continue with Email": "Jatka sähköpostilla",
 	"Continue with LDAP": "Jatka LDAP:illa",
 	"Control how message text is split for TTS requests. 'Punctuation' splits into sentences, 'paragraphs' splits into paragraphs, and 'none' keeps the message as a single string.": "Muokkaa, miten viestin teksti jaetaan puhesynteesipyyntöjä varten. 'Välimerkit' jakaa lauseisiin, 'kappaleet' jakaa kappaleisiin ja 'ei mitään' pitää viestin yhtenä merkkijonona.",
-	"Control the repetition of token sequences in the generated text. A higher value (e.g., 1.5) will penalize repetitions more strongly, while a lower value (e.g., 1.1) will be more lenient. At 1, it is disabled.": "",
+	"Control the repetition of token sequences in the generated text. A higher value (e.g., 1.5) will penalize repetitions more strongly, while a lower value (e.g., 1.1) will be more lenient. At 1, it is disabled.": "Säätelee generoidun tekstin token-jaksojen toistumista. Korkeampi arvo (esim. 1.5) rankaisee toistoja voimakkaammin, kun taas matalampi arvo (esim. 1.1) on lievempi. Arvolla 1 se on pois päältä.",
 	"Controls": "Ohjaimet",
 	"Controls the balance between coherence and diversity of the output. A lower value will result in more focused and coherent text.": "Kontrolloi yhtenäisyyden ja monimuotoisuuden tasapainoa tuloksessa. Pienempi arvo tuottaa kohdennetumman ja johdonmukaisemman tekstin.",
 	"Copied": "Kopioitu",
@@ -322,22 +528,52 @@
 	"Create Image": "Luo kuva",
 	"Create model": "",
 	"Create Model": "Luo malli",
+<<<<<<< HEAD
+=======
+	"Create new key": "Luo uusi avain",
+	"Create new secret key": "Luo uusi salainen avain",
+	"Create note": "Luo muistiinpano",
+	"Create Note": "Luo muistiinpano",
+	"Create one read-only Knowledge source per external collection. Test must pass before the source is created.": "",
+	"Create scheduled prompts that run automatically on a recurring basis.": "Luo aikataulutettuja kehotteita, jotka suoritetaan automaattisesti toistuvasti.",
+	"Create your first note by clicking on the plus button below.": "Luo ensimmäinen muistiinpanosi painamalla alla olevaa plus painiketta.",
+>>>>>>> upstream/main
 	"Created at": "Luotu",
 	"Created At": "Luotu",
 	"Created by": "Luonut",
 	"Created by you": "Sinun luomasi",
 	"CSV Import": "CSV-tuonti",
+<<<<<<< HEAD
+=======
+	"Ctrl+Enter to Send": "Ctrl+Enter lähetys",
+>>>>>>> upstream/main
 	"Current Model": "Nykyinen malli",
 	"Custom": "Mukautettu",
+<<<<<<< HEAD
 	"Custom color": "",
 	"Custom Parameter Name": "Mukautetun parametrin nimi",
 	"Custom Parameter Value": "Mukautetun parametrin arvo",
 	"Custom presets that pair a base model with a system prompt, tools, knowledge and capabilities — build your own assistants and reuse them anywhere in chat.": "",
+=======
+	"Custom color": "Mukautettu väri",
+	"Custom description enabled": "Muokautetut kuvaukset käytössä",
+	"Custom Gender": "Muu sukupuoli",
+	"Custom Parameter Name": "Mukautetun parametrin nimi",
+	"Custom Parameter Value": "Mukautetun parametrin arvo",
+	"Custom range": "",
+	"Daily": "Päivittäin",
+>>>>>>> upstream/main
 	"Daily Messages": "Päivittäiset viestit",
 	"Danger Zone": "Vaara-alue",
 	"Database": "Tietokanta",
 	"Datalab Marker API": "Datalab Marker API",
+<<<<<<< HEAD
 	"Date Modified": "",
+=======
+	"Date Modified": "Muokkauspäivämäärä",
+	"Day": "Päivä",
+	"DD/MM/YYYY": "DD/MM/YYYY",
+>>>>>>> upstream/main
 	"DDGS Backend": "DDGS-taustajärjestelmä",
 	"December": "joulukuu",
 	"Deepgram": "Deepgram",
@@ -348,7 +584,6 @@
 	"Default Features": "Oletus ominaisuudet",
 	"Default Filters": "Oletus suodattimet",
 	"Default Group": "Oletusryhmä",
-	"Default mode works with a wider range of models by calling tools once before execution. Native mode leverages the model's built-in tool-calling capabilities, but requires the model to inherently support this feature.": "Oletustila toimii laajemman mallivalikoiman kanssa kutsumalla työkaluja kerran ennen suorittamista. Natiivitila hyödyntää mallin sisäänrakennettuja työkalujen kutsumisominaisuuksia, mutta edellyttää, että malli tukee tätä ominaisuutta.",
 	"Default Model": "Oletusmalli",
 	"Default permissions": "Oletuskäyttöoikeudet",
 	"Default Prompt Suggestions": "Oletuskehotteiden ehdotukset",
@@ -356,13 +591,25 @@
 	"Default to ALL": "Oletus KAIKKI",
 	"Default to segmented retrieval for focused and relevant content extraction, this is recommended for most cases.": "Segmentoitu haku on oletuksena kohdennettua ja relevanttia sisällön poimimista varten. Tätä suositellaan useimmissa tapauksissa.",
 	"Default User Role": "Oletuskäyttäjärooli",
+	"Default webhook": "",
 	"Defaults": "Oletukset",
 	"Delete": "Poista",
 	"Delete {{name}}": "Poista {{name}}",
 	"Delete a model": "Poista malli",
+<<<<<<< HEAD
+=======
+	"Delete All": "Poista kaikki",
+	"Delete All Chats": "Poista kaikki keskustelut",
+	"Delete all contents inside this directory": "Poista kaikki sisällöt tästä hakemistosta",
+>>>>>>> upstream/main
 	"Delete all contents inside this folder": "Poista kaikki sisällöt tästä kansiosta",
 	"Delete Chat": "Poista keskustelu",
 	"Delete chat?": "Haluatko varmasti poistaa tämän keskustelun?",
+<<<<<<< HEAD
+=======
+	"Delete directory?": "Poista hakemiston?",
+	"Delete Event": "Poista tapahtuma?",
+>>>>>>> upstream/main
 	"Delete File": "Poista tiedosto",
 	"Delete folder?": "Haluatko varmasti poistaa tämän kansion?",
 	"Delete function?": "Haluatko varmasti poistaa tämän toiminnon?",
@@ -383,17 +630,39 @@
 	"Direct Connections": "Suorat yhteydet",
 	"Direct Connections allow users to connect to their own OpenAI compatible API endpoints.": "Suorat yhteydet mahdollistavat käyttäjien yhdistää omia OpenAI-yhteensopivia API-päätepisteitä.",
 	"Direct Tool Servers": "Suorat työkalu palvelimet",
+<<<<<<< HEAD
+=======
+	"Directory created.": "Hakemisto luotu.",
+	"Directory deleted.": "Hakemisto poistettu.",
+	"Directory moved.": "Hakemisto siirretty.",
+	"Directory name": "Hakemiston nimi",
+	"Directory renamed.": "Hakemisto uudelleennimetty.",
+	"Directory selection was cancelled": "Hakemiston valinta keskeytettiin",
+>>>>>>> upstream/main
 	"Disable All": "Poista kaikki käytöstä",
 	"Disable Image Extraction": "Poista kuvien poiminta käytöstä",
 	"Disable image extraction from the PDF. If Use LLM is enabled, images will be automatically captioned. Defaults to False.": "Poista kuvien poiminta käytöstä PDF tiedostoista. Jos LLM on käytössä, kuvat tekstitetään automaattisesti. Oletuksena ei käytössä.",
+	"Disable Image Generation": "",
+	"Disable Web Search": "",
 	"Disabled": "Ei käytössä",
+<<<<<<< HEAD
 	"Discard this folio": "",
 	"Discarded": "",
+=======
+	"Disconnect OAuth": "Katkaise OAuth",
+>>>>>>> upstream/main
 	"Discover a function": "Löydä toiminto",
 	"Discover how to use Open WebUI and seek support from the community.": "Tutustu Open WebUI:n käyttöön ja pyydä tukea yhteisöltä.",
 	"Discover wonders": "Löydä ihmeellisiä asioita",
 	"Discover, download, and explore custom functions": "Etsi, lataa ja tutki mukautettuja toimintoja",
 	"Display": "Näytä",
+<<<<<<< HEAD
+=======
+	"Display Chat Title in Tab": "Näytä keskustelu otiskko välilehdessä",
+	"Display Emoji in Call": "Näytä hymiöitä puhelussa",
+	"Display Multi-model Responses in Tabs": "Näytä usean mallin vastaukset välilehdissä",
+	"Display the Username Instead of You in the Chat": "Näytä käyttäjänimi keskustelussa \"Sinä\" -tekstin sijaan",
+>>>>>>> upstream/main
 	"Displays citations in the response": "Näyttää lähdeviitteet vastauksessa",
 	"Displays status updates (e.g., web search progress) in the response": "Näyttä tilapäivityksiä (esim. verkkohaku) vastauksissa",
 	"Dissolve": "",
@@ -406,6 +675,7 @@
 	"Docling Parameters": "Docling parametrit",
 	"Docling Server URL required.": "Docling palvelimen verkko-osoite vaaditaan.",
 	"Document": "Asiakirja",
+	"Document ID Field": "",
 	"Document Intelligence": "Document Intelligence",
 	"Document Intelligence endpoint required.": "Document Intelligence pääte vaaditaan",
 	"Document Intelligence Model": "Document Intelligence malli",
@@ -459,41 +729,60 @@
 	"Edit Default Permissions": "Muokkaa oletuskäyttöoikeuksia",
 	"Edit Folder": "Muokkaa kansiota",
 	"Edit Image": "Kuvan muokkaus",
+	"Edit Knowledge Connection": "",
 	"Edit Last Message": "Muokkaa viimeisintä viestiä",
 	"Edit Model": "",
 	"Edit Terminal Connection": "Muokkaa pääteyhteyttä",
 	"Edit User": "Muokkaa käyttäjää",
 	"Edit User Group": "Muokkaa käyttäjäryhmää",
+	"Edit webhook": "",
 	"Edit workflow.json content": "Muokkaa workflow.json sisältöä",
 	"Eject": "Poista",
 	"Eject model": "Irroita malli",
 	"ElevenLabs": "ElevenLabs",
 	"Email": "Sähköposti",
+	"Email Claim": "",
 	"Embark on adventures": "Lähde seikkailuille",
 	"Embedding": "Upotus",
 	"Embedding Batch Size": "Upotuksen eräkoko",
 	"Embedding Concurrent Requests": "Samanaikaiset upotuspyynnöt",
 	"Embedding Model": "Upotusmalli",
 	"Embedding Model Engine": "Upotusmallin moottori",
+	"Emoji": "Emoji",
 	"Emojis": "Emojit",
+<<<<<<< HEAD
+=======
+	"Empty": "",
+	"Empty message": "Tyhjä viesti",
+>>>>>>> upstream/main
 	"Enable All": "Ota kaikki käyttöön",
 	"Enable API Keys": "Ota API-avaimet käyttöön",
 	"Enable autocomplete generation for chat messages": "Ota automaattinen täydennys käyttöön keskusteluviesteissä",
 	"Enable Code Execution": "Ota koodin suoritus käyttöön",
 	"Enable Code Interpreter": "Ota ohjelmatulkki käyttöön",
 	"Enable Community Sharing": "Ota yhteisön jakaminen käyttöön",
+	"Enable Group Mapping": "",
+	"Enable Image Generation": "",
 	"Enable Memory Locking (mlock) to prevent model data from being swapped out of RAM. This option locks the model's working set of pages into RAM, ensuring that they will not be swapped out to disk. This can help maintain performance by avoiding page faults and ensuring fast data access.": "Ota Memory Locking (mlock) käyttöön estääksesi mallidatan vaihtamisen pois RAM-muistista. Tämä lukitsee mallin työsivut RAM-muistiin, varmistaen että niitä ei vaihdeta levylle. Tämä voi parantaa suorituskykyä välttämällä sivuvikoja ja varmistamalla nopean tietojen käytön.",
 	"Enable Memory Mapping (mmap) to load model data. This option allows the system to use disk storage as an extension of RAM by treating disk files as if they were in RAM. This can improve model performance by allowing for faster data access. However, it may not work correctly with all systems and can consume a significant amount of disk space.": "Ota Memory Mapping (mmap) käyttöön ladataksesi mallidataa. Tämä vaihtoehto sallii järjestelmän käyttää levytilaa RAM-laajennuksena käsittelemällä levytiedostoja kuin ne olisivat RAM-muistissa. Tämä voi parantaa mallin suorituskykyä sallimalla nopeamman tietojen käytön. Kuitenkin se ei välttämättä toimi oikein kaikissa järjestelmissä ja voi kuluttaa huomattavasti levytilaa.",
 	"Enable Message Rating": "Ota viestiarviointi käyttöön",
 	"Enable Mirostat sampling for controlling perplexity.": "",
 	"Enable New Sign Ups": "Salli uudet rekisteröitymiset",
+	"Enable OAuth Signup": "",
+	"Enable Role Mapping": "",
+	"Enable Web Search": "",
 	"Enable, disable, or customize the reasoning tags used by the model. \"Enabled\" uses default tags, \"Disabled\" turns off reasoning tags, and \"Custom\" lets you specify your own start and end tags.": "Käytä, poista käytöstä, tai kustomoi mallin päättely tageja. \"Käytä\" käyttää oletus tageja, \"Ei käytössä\" ottaa päätely tagit pois käytöstä, ja \"Mukautettu\" antaa sinun määritellä aloitus ja lopetus tagit.",
 	"Enabled": "Käytössä",
 	"End Tag": "Lopetus tagi",
+	"Endpoint": "",
 	"Endpoint URL": "Päätepiste verkko-osoite",
 	"Enrich Hybrid Search Text": "Rikasta hybridihakutekstiä",
 	"Ensure your CSV file includes 4 columns in this order: Name, Email, Password, Role.": "Varmista, että CSV-tiedostossasi on 4 saraketta tässä järjestyksessä: Nimi, Sähköposti, Salasana, Rooli.",
+<<<<<<< HEAD
 	"Enter a name first": "",
+=======
+	"Enter {{role}} message here": "Kirjoita {{role}}-viesti tähän",
+>>>>>>> upstream/main
 	"Enter a title for the pending user info overlay. Leave empty for default.": "Kirjoita infon otsikko odottaville käyttäjille. Käytä oletusta jättämällä tyhjäksi.",
 	"Enter a watermark for the response. Leave empty for none.": "Kirjoita vastauksen vesileima. Jätä tyhjäksi, jos et halua mitään.",
 	"Enter additional headers in JSON format": "Kirjoita lisä ylätunnisteita JSON muodossa",
@@ -510,6 +799,8 @@
 	"Enter Chunk Min Size Target": "Kirjoita osien vähimmäiskoko",
 	"Enter Chunk Overlap": "Syötä osien päällekkäisyys",
 	"Enter Chunk Size": "Syötä osien koko",
+	"Enter Client ID": "",
+	"Enter Client Secret": "",
 	"Enter comma-separated \"token:bias_value\" pairs (example: 5432:100, 413:-100)": "Syötä pilkulla erottaen \"token:bias_value\" parit (esim. 5432:100, 413:-100)",
 	"Enter content for the pending user info overlay. Leave empty for default.": "Kirjoita odottavien käyttäjien infon tekstisisältö. Käytä oletusta jättämällä tyhjäksi.",
 	"Enter coordinates (e.g. 51.505, -0.09)": "Kirjoita kordinaatit (esim. 51.505, -0.09)",
@@ -546,7 +837,15 @@
 	"Enter Jupyter Token": "Kirjoita Juypyter token",
 	"Enter Jupyter URL": "Kirjoita Jupyter verkko-osoite",
 	"Enter Kagi Search API Key": "Kirjoita Kagi Search API -avain",
+<<<<<<< HEAD
+=======
+	"Enter Key Behavior": "Enter näppäimen käyttäytyminen",
+	"Enter language": "",
+>>>>>>> upstream/main
 	"Enter language codes": "Kirjoita kielikoodit",
+	"Enter Linkup API Key": "Kirjoita Linkup API-avain",
+	"Enter Microsoft Web IQ API Base URL": "",
+	"Enter Microsoft Web IQ API Key": "",
 	"Enter MinerU API Key": "Kirjoita MinerU API-avain",
 	"Enter Mistral API Base URL": "Kirjoita Mistral API verkko-osoite",
 	"Enter Mistral API Key": "Kirjoita Mistral API-avain",
@@ -557,14 +856,15 @@
 	"Enter New Password": "Kirjoita uusi salasana",
 	"Enter Number of Steps (e.g. 50)": "Kirjoita askelten määrä (esim. 50)",
 	"Enter Ollama Cloud API Key": "Kirjoita Ollama Cloud API avain",
-	"Enter PaddleOCR-vl API Base URL": "",
-	"Enter PaddleOCR-vl API Token": "",
+	"Enter PaddleOCR-vl API Base URL": "Kirjoita PaddleOCR-vl API verkko-osoite",
+	"Enter PaddleOCR-vl API Token": "Kirjoita PaddleOCR-vl API token",
 	"Enter Perplexity API Key": "Aseta Perplexity API-avain",
 	"Enter Perplexity Search API URL": "Aseta Perplexity Search API verkko-osoite",
 	"Enter Playwright Timeout": "Aseta Playwright aikakatkaisu",
 	"Enter Playwright WebSocket URL": "Aseta Playwright WebSocket-aikakatkaisu",
 	"Enter proxy URL (e.g. https://user:password@host:port)": "Kirjoita välityspalvelimen verkko-osoite (esim. https://käyttäjä:salasana@host:portti)",
 	"Enter reasoning effort": "Kirjoita päättelyn määrä",
+	"Enter Redirect URI": "",
 	"Enter Score": "Kirjoita pistemäärä",
 	"Enter SearchApi API Key": "Kirjoita SearchApi API -avain",
 	"Enter SearchApi Engine": "Kirjoita SearchApi-moottori",
@@ -574,6 +874,7 @@
 	"Enter SerpApi API Key": "Kirjoita SerpApi API -avain",
 	"Enter SerpApi Engine": "Valitse SerpApi Moottori",
 	"Enter Serper API Key": "Kirjoita Serper API -avain",
+	"Enter SERPHouse API Key": "",
 	"Enter Serply API Key": "Kirjoita Serply API -avain",
 	"Enter Serpstack API Key": "Kirjoita Serpstack API -avain",
 	"Enter server host": "Kirjoita palvelimen isäntänimi",
@@ -591,6 +892,12 @@
 	"Enter the URL to import": "Kirjoita tuotavan verkko-osoite",
 	"Enter Tika Server URL": "Kirjoita Tika Server URL",
 	"Enter timeout in seconds": "Aseta aikakatkaisu sekunneissa",
+<<<<<<< HEAD
+=======
+	"Enter to Send": "Enter lähetys",
+	"Enter token threshold": "",
+	"Enter Tokenizer Model": "",
+>>>>>>> upstream/main
 	"Enter Top K": "Kirjoita Top K",
 	"Enter Top K Reranker": "Kirjoita Top K uudelleen sijoittaja",
 	"Enter URL (e.g. http://127.0.0.1:7860/)": "Kirjoita verkko-osoite (esim. http://127.0.0.1:7860/)",
@@ -620,8 +927,19 @@
 	"Error: A model with the ID '{{modelId}}' already exists. Please select a different ID to proceed.": "Virhe: Malli '{{modelId}}' on jo käytössä. Valitse toinen ID jatkaaksesi.",
 	"Error: Model ID cannot be empty. Please enter a valid ID to proceed.": "Virhe: Mallin ID ei voi olla tyhjä. Kirjoita ID jatkaaksesi.",
 	"Evaluations": "Arvioinnit",
+<<<<<<< HEAD
 	"Every craft begins bare-handed.": "",
+=======
+	"Event": "",
+	"Event created": "Tapahtuma luotu",
+	"Event deleted": "Tapahtuma poistettu",
+	"Event names may change as Open WebUI evolves. Use broad patterns like user.* for integrations that should continue across new related events.": "",
+	"Event title": "Tapahtuman otsikko",
+	"Event updated": "Tapahtuma päivitetty",
+	"Events": "",
+>>>>>>> upstream/main
 	"Exa API Key": "Exa API -avain",
+	"Example": "",
 	"Example: (&(objectClass=inetOrgPerson)(uid=%s))": "Esimerkki: (&(objectClass=inetOrgPerson)(uid=%s))",
 	"Example: ALL": "Esimerkki: KAIKKI",
 	"Example: mail": "Esimerkki: posti",
@@ -643,18 +961,29 @@
 	"Export chat (.json)": "Vie keskustelu (.json)",
 	"Export Config": "Vie asetukset",
 	"Export Models": "Vie mallit",
+<<<<<<< HEAD
+=======
+	"Export Prompts": "Vie kehotteet",
+	"Export Skills": "",
+>>>>>>> upstream/main
 	"Export to CSV": "Vie CSV-tiedostoon",
 	"Export Tools": "Vie työkalut",
 	"Export Users": "Vie käyttäjät",
 	"External": "Ulkoiset",
+	"External connection not found.": "",
 	"External Document Loader URL required.": "Ulkoisen Document Loader:n verkko-osoite on vaaditaan.",
+	"External Knowledge Source": "",
+	"External Knowledge Sources": "",
 	"External Task Model": "Ulkoinen työmalli",
+	"External Tool Servers": "",
+	"External vectors must be generated with the same embedding model configured in Open WebUI.": "",
 	"External Web Loader API Key": "Ulkoinen Web Loader API-avain",
 	"External Web Loader URL": "Ulkoinen Web Loader verkko-osoite",
 	"External Web Search API Key": "Ulkoinen Web Search API-avain",
 	"External Web Search URL": "Ulkoinen Web Search verkko-osoite",
 	"Faculties": "",
 	"Failed to archive chat.": "Keskustelun arkistointi epäonnistui.",
+<<<<<<< HEAD
 	"Failed to connect to {{URL}} OpenAPI tool server": "Yhdistäminen {{URL}} OpenAPI työkalu palvelimeen epäonnistui",
 	"Failed to connect to {{URL}} terminal server": "Yhdistäminen {{URL}} päätepalvelimeen epäonnistui",
 	"Failed to copy link": "Linkin kopiointi epäonnistui",
@@ -664,11 +993,39 @@
 	"Failed to extract content from the file: {{error}}": "Tiedoston sisällön pomiminen epäonnistui: {{error}}",
 	"Failed to extract content from the file.": "Tiedoston sisällön pomiminen epäonnistui.",
 	"Failed to fetch models": "Mallien hakeminen epäonnistui",
+=======
+	"Failed to attach file": "Tiedoston liittäminen epäonnistui",
+	"Failed to clear status": "Tilan tyhjentäminen epäonnistui",
+	"Failed to compare files.": "Tiedostojen vertaaminen epäonnistui.",
+	"Failed to connect to {{URL}} OpenAPI tool server": "Yhdistäminen {{URL}} OpenAPI työkalu palvelimeen epäonnistui",
+	"Failed to connect to {{URL}} terminal server": "Yhdistäminen {{URL}} päätepalvelimeen epäonnistui",
+	"Failed to copy link": "Linkin kopiointi epäonnistui",
+	"Failed to create API Key.": "API-avaimen luonti epäonnistui.",
+	"Failed to delete calendar": "Kalenterin poistaminen epäonnistui",
+	"Failed to delete note": "Muistiinpanon poistaminen epäonnistui",
+	"Failed to delete webhook": "",
+	"Failed to disconnect": "Yhteyden katkaiseminen epäonnistui",
+	"Failed to download image": "Kuvan lataaminen epäonnistui",
+	"Failed to extract content from the file: {{error}}": "Tiedoston sisällön pomiminen epäonnistui: {{error}}",
+	"Failed to extract content from the file.": "Tiedoston sisällön pomiminen epäonnistui.",
+	"Failed to fetch models": "Mallien hakeminen epäonnistui",
+	"Failed to generate title": "Otsikon luonti epäonnistui",
+	"Failed to import models": "Mallien tuonti epäonnistui",
+	"Failed to load chat": "",
+	"Failed to load chat preview": "Keskustelun esikatselun lataaminen epäonnistui",
+>>>>>>> upstream/main
 	"Failed to load DOCX file. Please try downloading it instead.": "DOCX-tiedoston avaaminen epäonnistui. Yritä ladata se sen sijaan.",
 	"Failed to load Excel/CSV file. Please try downloading it instead.": "Excel/CSV tiedoston lataaminen epäonnistui. Yritä ladata se sen sijaan.",
 	"Failed to load Interface settings": "Käyttöliittymän asetusten lataaminen epäonnistui",
 	"Failed to load PPTX file. Please try downloading it instead.": "PPTX-tiedoston lataaminen epäonnistui. Yritä ladata se sen sijaan.",
 	"Failed to move chat": "Keskustelun siirto epäonnistui",
+<<<<<<< HEAD
+=======
+	"Failed to process URL: {{url}}": "Verkko-osoitteen käsittely epäonnistui: {{url}}",
+	"Failed to read clipboard contents": "Leikepöydän sisällön lukeminen epäonnistui",
+	"Failed to refresh terminals: {{error}}": "",
+	"Failed to remove member": "Jäsenen poistaminen epäonnistui",
+>>>>>>> upstream/main
 	"Failed to render diagram": "Diagrammin renderöinti epäonnistui",
 	"Failed to render visualization": "Visualisoinnin renderöinti epäonnistui",
 	"Failed to save": "",
@@ -677,10 +1034,16 @@
 	"Failed to save models configuration": "Mallien määrityksen tallentaminen epäonnistui",
 	"Failed to save policy: {{error}}": "Käytännön tallentaminen epäonnistui: {{error}}",
 	"Failed to save terminal servers": "Päätepalvelimien tallennus epäonnistui",
+	"Failed to save webhook": "",
 	"Failed to unshare chat.": "Jaon lopettaminen epäonnistui.",
 	"Failed to update settings": "Asetusten päivittäminen epäonnistui",
 	"Failed to update status": "Tilan päivittäminen epäonnistui",
+<<<<<<< HEAD
 	"Favicons": "",
+=======
+	"Failed to update webhook": "",
+	"Failed to upload file.": "Tiedoston lataaminen epäonnistui.",
+>>>>>>> upstream/main
 	"Features": "Ominaisuudet",
 	"Features Permissions": "Ominaisuuksien käyttöoikeudet",
 	"February": "helmikuu",
@@ -693,14 +1056,32 @@
 	"File": "Tiedosto",
 	"File browser": "Tiedostoselain",
 	"File Context": "Tiedoston konteksti",
+<<<<<<< HEAD
+=======
+	"File deleted successfully.": "Tiedosto poistettiin onnistuneesti.",
+	"File Extensions": "Tiedostomuodot",
+>>>>>>> upstream/main
 	"File Mode": "Tiedostotila",
+	"File moved.": "Tiedosto siirretty.",
 	"File name": "Tiedostonimi",
 	"File not found.": "Tiedostoa ei löytynyt.",
+<<<<<<< HEAD
 	"File size should not exceed {{maxSize}} MB.": "Tiedoston koko ei saa ylittää {{maxSize}} MB.",
 	"File Upload": "Tiedoston lataus",
 	"Filename": "Tiedostonimi",
 	"Files": "Tiedostot",
 	"Fill name + base model to create": "",
+=======
+	"File removed successfully.": "Tiedosto poistettu onnistuneesti.",
+	"File renamed.": "Tiedosto uudelleennimetty.",
+	"File size should not exceed {{maxSize}} MB.": "Tiedoston koko ei saa ylittää {{maxSize}} MB.",
+	"File Upload": "Tiedoston lataus",
+	"File uploaded successfully": "Tiedosto ladattiin onnistuneesti",
+	"Filename": "Tiedostonimi",
+	"Files": "Tiedostot",
+	"Fill the required fields first.": "",
+	"Fill the source fields and test query first.": "",
+>>>>>>> upstream/main
 	"Filter": "Suodata",
 	"Filters": "Suodattimet",
 	"Filters, valves, and middleware workflows.": "",
@@ -718,8 +1099,12 @@
 	"Folder name cannot be empty.": "Kansion nimi ei voi olla tyhjä.",
 	"Folder options": "Kansion asetukset",
 	"Folders": "Kansiot",
+<<<<<<< HEAD
 	"folio": "",
 	"folios": "",
+=======
+	"Folders Sharing": "",
+>>>>>>> upstream/main
 	"Follow up": "Jatkokysymykset",
 	"Follow Up Generation": "Jatkokysymysten luonti",
 	"Follow Up Generation Prompt": "Jatkokysymysten luonti kehote",
@@ -747,6 +1132,11 @@
 	"Function imported successfully": "Toiminnon tuonti onnistui",
 	"Function Name": "Toiminnon nimi",
 	"Function Name Filter List": "Toiminnon nimi Suodatinluettelo",
+<<<<<<< HEAD
+=======
+	"Function starter": "",
+	"Function updated successfully": "Toiminto päivitetty onnistuneesti",
+>>>>>>> upstream/main
 	"Functions": "Toiminnot",
 	"Functions allow arbitrary code execution.": "Toiminnot sallivat mielivaltaisen koodin suorittamisen.",
 	"Gather a quire": "",
@@ -774,6 +1164,15 @@
 	"Google PSE Engine Id": "Google PSE -moottorin tunnus",
 	"Gravatar": "Gravatar",
 	"Grokipedia": "",
+<<<<<<< HEAD
+=======
+	"group": "",
+	"Group": "",
+	"Group Channel": "Ryhmäkanava",
+	"Group Claim": "",
+	"Group created successfully": "Ryhmä luotu onnistuneesti",
+	"Group deleted successfully": "Ryhmä poistettu onnistuneesti",
+>>>>>>> upstream/main
 	"Group Description": "Ryhmän kuvaus",
 	"Group Name": "Ryhmän nimi",
 	"groups": "ryhmät",
@@ -781,6 +1180,11 @@
 	"H1": "H1",
 	"H2": "H2",
 	"H3": "H3",
+<<<<<<< HEAD
+=======
+	"Haptic Feedback": "Haptinen palaute",
+	"Header variables": "",
+>>>>>>> upstream/main
 	"Headers": "Ylätunnisteet",
 	"Headers must be a valid JSON object": "Ylätunnisteet täytyy olla kelvollisia JSON-objekteja",
 	"Hello, {{name}}": "Hei, {{name}}",
@@ -809,6 +1213,12 @@
 	"I acknowledge that I have read and I understand the implications of my action. I am aware of the risks associated with executing arbitrary code and I have verified the trustworthiness of the source.": "Vahvistan, että olen lukenut ja ymmärrän toimintani seuraukset. Olen tietoinen mielivaltaisen koodin suorittamiseen liittyvistä riskeistä ja olen varmistanut lähteen luotettavuuden.",
 	"ID": "Tunnus",
 	"ID cannot contain \":\" or \"|\" characters": "ID ei voi sisältää \":\" tai \"|\" kirjaimia",
+<<<<<<< HEAD
+=======
+	"ID copied to clipboard": "ID kopioitu leikepöydälle",
+	"Identity audit": "",
+	"Idle only": "",
+>>>>>>> upstream/main
 	"Idle Timeout": "Aikakatkaisu",
 	"Ignite curiosity": "Sytytä uteliaisuus",
 	"Image": "Kuva",
@@ -828,6 +1238,12 @@
 	"Import Config": "Tuo asetukset",
 	"Import From Link": "Tuo verkko-osoitteesta",
 	"Import Models": "Tuo mallit",
+<<<<<<< HEAD
+=======
+	"Import Prompts": "Tuo kehotteet",
+	"Import Skills": "",
+	"Import successful": "Tuonti onnistui",
+>>>>>>> upstream/main
 	"Import Tools": "Tuo työkalut",
 	"Important Update": "Tärkeä päivitys",
 	"Imported": "",
@@ -843,7 +1259,11 @@
 	"Input": "Tekstikenttä",
 	"Input Key (e.g. text, unet_name, steps)": "Syötteen arvo (esim. text, unet_namme, steps)",
 	"Install from Github URL": "Asenna Github-URL:stä",
+<<<<<<< HEAD
 	"Instance defaults, authentication, and feature toggles.": "",
+=======
+	"Instant Auto-Send After Voice Transcription": "Automaattinen lähetys äänitunnistuksen jälkeen",
+>>>>>>> upstream/main
 	"Instructions": "Ohjeistukset",
 	"Instruments": "",
 	"Integration": "Integrointi",
@@ -864,6 +1284,11 @@
 	"Jina API Key": "Jina API -avain",
 	"join our Discord for help.": "liity Discordiimme saadaksesi apua.",
 	"JSON": "JSON",
+<<<<<<< HEAD
+=======
+	"JSON Base64": "",
+	"JSON Preview": "JSON-esikatselu",
+>>>>>>> upstream/main
 	"JSON Spec": "JSON Spec",
 	"July": "heinäkuu",
 	"June": "kesäkuu",
@@ -871,12 +1296,33 @@
 	"Jupyter URL": "Jupyter verkko-osoite",
 	"JWT Expiration": "JWT-vanheneminen",
 	"Kagi Search API Key": "Kagi Search API -avain",
+<<<<<<< HEAD
+=======
+	"Keep Follow-Up Prompts in Chat": "Säilytä jatkokysymys kehotteet keskustelussa",
+>>>>>>> upstream/main
 	"Keep in Sidebar": "Pidä sivupalkissa",
 	"Key": "Avain",
 	"Key is required": "Avain vaaditaan",
-	"Keyboard shortcuts": "Pikanäppäimet",
 	"Keyboard Shortcuts": "Pikanäppäimet",
 	"Knowledge": "Tietämys",
+<<<<<<< HEAD
+=======
+	"Knowledge Access": "Tiedon käyttöoikeus",
+	"Knowledge Base": "Tietokanta",
+	"Knowledge base has been reset": "Tietokanta on nollattu",
+	"Knowledge created successfully.": "Tietokanta luotu onnistuneesti.",
+	"Knowledge deleted successfully.": "Tietokanta poistettu onnistuneesti.",
+	"Knowledge Description": "Tietokannan kuvaus",
+	"Knowledge exported successfully": "Tietokanta viety onnistuneesti",
+	"Knowledge Name": "Tietokannan nimi",
+	"Knowledge Public Sharing": "Tietokannan julkinen jakaminen",
+	"Knowledge Sharing": "Tietokannan jakaminen",
+	"Knowledge source created.": "",
+	"Knowledge source updated.": "",
+	"Knowledge updated successfully": "Tietokanta päivitetty onnistuneesti",
+	"Kokoro.js (Browser)": "Kokoro.js (selain)",
+	"Kokoro.js Dtype": "Kokoro.js Dtype",
+>>>>>>> upstream/main
 	"Label": "Tunniste",
 	"Language Locales": "Kielialueet",
 	"Last 24 hours": "Viimeiset 24 tuntia",
@@ -905,12 +1351,25 @@
 	"Leave model field empty to use the default model.": "Jätä malli kenttä tyhjäksi käyttääksesi oletus mallia.",
 	"lexical": "leksikaalinen",
 	"License": "Lisenssi",
+	"Lifecycle JSON": "",
 	"Lift List": "Nostolista",
 	"Limit concurrent search queries. 0 = unlimited (default). Set to 1 for sequential execution (recommended for APIs with strict rate limits like Brave free tier).": "Rajoita samanaikaisia hakukyselyitä. 0 = rajoittamaton (oletus). Aseta arvoon 1 peräkkäistä suoritusta varten (suositellaan API-rajapinnoille, joilla on tiukat nopeusrajoitukset, kuten Brave-ilmaistaso).",
 	"Limits the number of concurrent embedding requests. Set to 0 for unlimited.": "Rajoittaa samanaikaisten upotuspyyntöjen määrää. Arvolla 0 ei rajoituksia.",
+<<<<<<< HEAD
 	"llama.cpp": "",
 	"Llama.cpp": "Llama.cpp",
 	"Loaded": "",
+=======
+	"Linkup API Key": "Linkup API-avain",
+	"List": "Lista",
+	"List calendars, search, create, update, and delete calendar events": "Listaa kalenterit, hae, luo, päivitä ja poista kalenteritapahtumia",
+	"Listening...": "Kuuntelee...",
+	"Live": "Live",
+	"llama.cpp": "",
+	"Llama.cpp": "Llama.cpp",
+	"LLMs can make mistakes. Verify important information.": "Kielimallit voivat tehdä virheitä. Tarkista tärkeät tiedot.",
+	"Loaded": "Ladattu",
+>>>>>>> upstream/main
 	"Loader": "Lataaja",
 	"Loading...": "Ladataan...",
 	"local": "paikallinen",
@@ -918,6 +1377,11 @@
 	"Local Task Model": "Paikallinen työmalli",
 	"Lost": "Mennyt",
 	"Low": "Matala",
+<<<<<<< HEAD
+=======
+	"Lower the context compaction token threshold for this model. The global context compaction threshold remains the maximum.": "",
+	"LTR": "LTR",
+>>>>>>> upstream/main
 	"Made by Open WebUI Community": "Tehnyt OpenWebUI-yhteisö",
 	"Make password visible in the user interface": "Näytä salasana käyttöliittymässä",
 	"Make sure to export a workflow.json file as API format from ComfyUI.": "Muista viedä workflow.json-tiedosto API-muodossa ComfyUI:sta.",
@@ -929,13 +1393,22 @@
 	"Manage OpenAI API Connections": "Hallitse OpenAI API -yhteyksiä",
 	"Manage Pipelines": "Hallitse putkia",
 	"Manage Tool Servers": "Hallitse työkalu palvelimia",
+<<<<<<< HEAD
 	"Manage, import, and configure the models available to users.": "",
+=======
+	"Manage your account information.": "Hallitse tilitietojasi",
+	"Mapped Source": "",
+>>>>>>> upstream/main
 	"March": "maaliskuu",
 	"Markdown": "Markdown",
 	"Markdown Header Text Splitter": "Markdown-otsikkotekstin jakaja",
 	"Max Speakers": "Puhujien enimmäismäärä",
+<<<<<<< HEAD
 	"Max Tokens": "",
 	"Max tokens to retrieve (1024-32768, default 8192)": "",
+=======
+	"Max tokens to retrieve (1024-32768, default 8192)": "Haettavien tokenien enimmäismäärä (1024–32768, oletus 8192)",
+>>>>>>> upstream/main
 	"Max Upload Count": "Latausten enimmäismäärä",
 	"Max Upload Size": "Latausten enimmäiskoko",
 	"Maximum characters to return from fetched URLs. Leave empty for no limit.": "Maksimimerkkimäärä haetuista URL-osoitteista. Jätä tyhjäksi, jos et halua rajoitusta.",
@@ -950,15 +1423,34 @@
 	"Members": "Jäsenet",
 	"Memories": "Muistot",
 	"Memory": "Muisti",
+<<<<<<< HEAD
+=======
+	"Memory added successfully": "Muisti lisätty onnistuneesti",
+	"Memory cleared successfully": "Muisti tyhjennetty onnistuneesti",
+	"Memory deleted successfully": "Muisti poistettu onnistuneesti",
+	"Memory System Context": "",
+	"Memory updated successfully": "Muisti päivitetty onnistuneesti",
+	"Merge Accounts by Email": "",
+>>>>>>> upstream/main
 	"Merge Responses": "Yhdistä vastaukset",
 	"Merged Response": "Yhdistetty vastaus",
 	"Message": "Viesti",
 	"Message counts and response timestamps": "Viestien määrä ja vastausten aikaleimat",
 	"Message counts are based on assistant responses.": "Viestien määrä perustuu avustajan vastauksiin.",
 	"Message rating should be enabled to use this feature": "Tämän toiminnon käyttämiseksi viestiarviointi on otettava käyttöön",
-	"Message text...": "",
+	"Message text...": "Viestin teksti...",
 	"messages": "viestit",
 	"Messages": "Viestit",
+<<<<<<< HEAD
+=======
+	"Messages you send after creating your link won't be shared. Users with the URL will be able to view the shared chat.": "Linkin luomisen jälkeen lähettämäsi viestit eivät ole jaettuja. Käyttäjät, joilla on verkko-osoite, voivat tarkastella jaettua keskustelua.",
+	"Metadata Field": "",
+	"Microsoft OneDrive": "",
+	"Microsoft OneDrive (personal)": "",
+	"Microsoft OneDrive (work/school)": "",
+	"Microsoft Web IQ API Base URL": "",
+	"Microsoft Web IQ API Key": "",
+>>>>>>> upstream/main
 	"min": "",
 	"MinerU": "MinerU",
 	"MinerU API Key required for Cloud API mode.": "MinerU API-avain vaaditaan pilvi API:ssa",
@@ -1000,10 +1492,17 @@
 	"Models Sharing": "Mallien jako",
 	"Mojeek": "",
 	"Mojeek Search API Key": "Mojeek Search API -avain",
+<<<<<<< HEAD
+=======
+	"Monday – Friday": "",
+	"Month": "Kuukausi",
+	"Monthly": "Kuukausittain",
+>>>>>>> upstream/main
 	"More": "Lisää",
 	"More Concise": "Lyhyemmin",
 	"More Options": "Lisää vaihtoehtoja",
 	"Move": "Siirrä",
+<<<<<<< HEAD
 	"My Terminal": "Minun pääte",
 	"Name": "Nimi",
 	"Name and ID are required, please fill them out": "Nimi ja ID vaaditaan, täytä puuttuvat kentät",
@@ -1012,6 +1511,30 @@
 	"Native": "Natiivi",
 	"New": "Uusi",
 	"New Chat": "Uusi keskustelu",
+=======
+	"Moved {{name}}": "Siirretty {{name}}",
+	"Multipart Upload": "",
+	"Mute": "Mykistä",
+	"Muted": "Mykistetty",
+	"My Terminal": "Minun pääte",
+	"Name": "Nimi",
+	"Name and ID are required, please fill them out": "Nimi ja ID vaaditaan, täytä puuttuvat kentät",
+	"Name is required": "Nimi vaaditaan",
+	"Name your knowledge base": "Anna tietokannalle nimi",
+	"Name, prompt, and model are required": "Nimi, kehote ja malli ovat pakollisia",
+	"Native": "Natiivi",
+	"Native mode (default) leverages the model's built-in tool-calling capabilities. Legacy mode works with a wider range of models by calling tools once before execution via prompt injection.": "",
+	"Never": "Ei koskaan",
+	"New": "Uusi",
+	"New Automation": "Uusi automaatio",
+	"New Button": "Uusi painike",
+	"New calendar": "Uusi kalenteri",
+	"New Calendar": "Uusi kalenteri",
+	"New Chat": "Uusi keskustelu",
+	"New directory": "Uusi hakemisto",
+	"New Directory": "Uusi hakemisto",
+	"New Event": "Uusi tapahtuma",
+>>>>>>> upstream/main
 	"New File": "Uusi tiedosto",
 	"New Folder": "Uusi kansio",
 	"New Function": "Uusi toiminto",
@@ -1026,6 +1549,7 @@
 	"Next message": "Seuraava viesti",
 	"No access grants. Private to you.": "Ei käyttöoikeuksia. Yksityinen sinulle.",
 	"No activity data": "Ei aktiivisuustietoja",
+	"No additional headers are sent unless configured.": "",
 	"No authentication": "Ei todennusta",
 	"No chats found": "Keskuteluja ei löytynyt",
 	"No chats found for this user.": "Käyttäjän keskusteluja ei löytynyt.",
@@ -1034,24 +1558,44 @@
 	"No data": "Ei dataa",
 	"No data found": "Dataa ei löytynyt",
 	"No distance available": "Etäisyyttä ei saatavilla",
+<<<<<<< HEAD
+=======
+	"No event webhooks configured.": "",
+	"No execution logs available yet": "Suorituslokeja ei saatavilla",
+>>>>>>> upstream/main
 	"No expiration can pose security risks.": "Vanhenemisen laittamatta jättäminen voi altistaa tietoturvariskeille.",
+	"No external knowledge sources configured.": "",
 	"No feedback found": "Ei palautetta",
 	"No file selected": "Tiedostoa ei ole valittu",
 	"No files found": "Tiedostoja ei löytynyt",
 	"No files yet. Upload files or run Python code to create them.": "Ei vielä tiedostoja. Lataa tiedostoja tai suorita Python-koodia niiden luomiseksi.",
-	"No functions found": "Funktioita ei löytynyt",
+	"No functions found": "Toimintoja ei löytynyt",
 	"No groups found": "Ryhmiä ei löytynyt",
 	"No HTML, CSS, or JavaScript content found.": "HTML-, CSS- tai JavaScript-sisältöä ei löytynyt.",
 	"No inference engine with management support found": "",
 	"No kernel": "Ei kerneliä",
+<<<<<<< HEAD
+=======
+	"No knowledge bases accessible": "Tietokantoihin ei ole käyttöoikeutta.",
+	"No knowledge bases found.": "Tietokantoja ei löytynyt.",
+	"No knowledge found": "Tietoa ei löytynyt",
+>>>>>>> upstream/main
 	"No limit": "Ei rajoituksia",
 	"No model IDs": "Ei mallitunnuksia",
+	"No models accessible": "Malleihin ei ole käyttöoikeutta.",
 	"No models available": "Malleja ei saatavilla",
 	"No models found": "Malleja ei löytynyt",
 	"No models match your search.": "",
 	"No models selected": "Malleja ei ole valittu",
 	"No one": "Kukaan",
+<<<<<<< HEAD
 	"No output items": "",
+=======
+	"No output items": "Ei tulosteita",
+	"No pinned messages": "Ei kiinnitettyjä viestejä",
+	"No prompts found": "Kehotteita ei löytynyt",
+	"No Repeat": "",
+>>>>>>> upstream/main
 	"No results": "Ei tuloksia",
 	"No results found": "Ei tuloksia",
 	"No search query generated": "Hakukyselyä ei luotu",
@@ -1063,12 +1607,18 @@
 	"No Terminal connection configured.": "Ei pääteyhteyttä määritettynä.",
 	"No terminal connections configured.": "Ei pääteyhteyksiä määritettynä.",
 	"No tool server connections configured.": "Työkalupalvelinyhteyksiä ei ole määritetty.",
+<<<<<<< HEAD
 	"No tools match your search.": "",
+=======
+	"No tools accessible": "Työkaluihin ei ole käyttöoikeutta.",
+	"No tools found": "Työkaluja ei löytynyt",
+>>>>>>> upstream/main
 	"No users were found.": "Käyttäjiä ei löytynyt.",
 	"No valves": "Ei venttiileitä",
 	"No valves to update": "Ei venttiileitä päivitettäväksi",
 	"Node Ids": "Node id:t",
 	"None": "Ei mikään",
+	"Not configured": "",
 	"Not factually correct": "Ei faktuaalisesti oikein",
 	"Not helpful": "Ei hyödyllinen",
 	"Not Registered": "Ei kirjautunut",
@@ -1078,21 +1628,41 @@
 	"Nothing has been rehearsed yet.": "",
 	"November": "marraskuu",
 	"OAuth": "OAuth",
+	"OAuth / OIDC": "",
 	"OAuth 2.1": "OAuth 2.1",
 	"OAuth 2.1 (Static)": "OAuth 2.1 (Staattinen)",
 	"OAuth ID": "OAuth-tunnus",
+<<<<<<< HEAD
 	"OAuth Server URL": "",
+=======
+	"OAuth Resource Parameter": "",
+	"OAuth Scopes": "",
+	"OAuth Server URL": "OAuth palvelimen verkko-osoite",
+	"OAuth session disconnected": "OAuth-istunto katkaistu",
+>>>>>>> upstream/main
 	"October": "lokakuu",
-	"Off": "Pois päältä",
+	"Off": "Ei käytössä",
 	"Okay, Let's Go!": "Okei, mennään!",
+<<<<<<< HEAD
+=======
+	"Older messages are summarized when estimated context exceeds this token limit.": "",
+	"OLED Dark": "OLED-tumma",
+>>>>>>> upstream/main
 	"Ollama": "Ollama",
 	"Ollama API": "Ollama API",
 	"Ollama Cloud API Key": "Ollama Cloud API avain",
 	"Ollama Version": "Ollama-versio",
+<<<<<<< HEAD
 	"On": "Päällä",
 	"On by default": "",
 	"On by default for new chats": "",
+=======
+	"Omit": "",
+	"On": "Käytössä",
+	"Once": "Kerran",
+>>>>>>> upstream/main
 	"OneDrive": "OneDrive",
+	"Only active during Voice Mode.": "Aktiivinen vain Puhetilassa.",
 	"Only active when \"Paste Large Text as File\" setting is toggled on.": "Aktiivinen vain, kun \"Liitä suuri teksti tiedostona\" -asetus on käytössä.",
 	"Only active when the chat input is in focus and an LLM is generating a response.": "Aktiivinen vain, kun tekstikenttä on kohdistettuna ja LLM luo vastausta.",
 	"Only active when the chat input is in focus.": "Aktiivinen vain, kun tekstikenttä on valittuna.",
@@ -1152,7 +1722,7 @@
 	"Output Format": "Tulosteen muoto",
 	"Overview": "Yleiskatsaus",
 	"PaddleOCR-vl": "",
-	"PaddleOCR-vl API URL required.": "",
+	"PaddleOCR-vl API URL required.": "PaddleOCR-vl API verkko-osoite vaaditaan.",
 	"page": "sivu",
 	"Page": "Sivu",
 	"Page mode creates one document per page. Single mode combines all pages into one document for better chunking across page boundaries.": "Sivutila luo yhden dokumentin sivua kohden. Yksittäistila yhdistää kaikki sivut yhdeksi dokumentiksi, mikä parantaa paloittelua sivurajojen yli.",
@@ -1162,21 +1732,39 @@
 	"Participate in community leaderboards and evaluations! Syncing aggregated usage stats helps drive research and improvements to Open WebUI. Your privacy is paramount: no message content is ever shared.": "Osallistu yhteisön tulostaulukoihin ja arviointeihin! Koottujen käyttötilastojen synkronointi auttaa edistämään Open WebUI:n tutkimuksia ja parannuksia. Tietosuojasi on ensiarvoisen tärkeää: viestien sisältöä ei koskaan jaeta.",
 	"Password": "Salasana",
 	"Passwords do not match.": "Salasanat eivät täsmää",
+<<<<<<< HEAD
 	"PDF document (.pdf)": "PDF-asiakirja (.pdf)",
 	"PDF Extract Images (OCR)": "Poimi kuvat PDF:stä (OCR)",
 	"PDF Loader Mode": "PDF latausmoodi",
 	"Penalties & Mirostat": "",
+=======
+	"Paste Large Text as File": "Liitä suuri teksti tiedostona",
+	"Path": "",
+	"Path copied": "Polku kopioitu",
+	"Paused": "Keskeytetty",
+	"PDF document (.pdf)": "PDF-asiakirja (.pdf)",
+	"PDF Extract Images (OCR)": "Poimi kuvat PDF:stä (OCR)",
+	"PDF Loader Mode": "PDF latausmoodi",
+	"pdf, docx, pptx, xlsx": "",
+>>>>>>> upstream/main
 	"pending": "odottaa",
 	"Pending": "Odottaa",
+	"Pending Accounts": "",
 	"Pending User Overlay Content": "Odottavien käyttäjien sisältö",
 	"Pending User Overlay Title": "Odottavien käyttäjien otsikko",
 	"Permissions": "Käyttöoikeudet",
+	"Permissions reset to defaults": "",
 	"Perplexity API Key": "Perplexity API-avain",
 	"Perplexity Model": "Perplexity malli",
 	"Perplexity Search API URL": "Perplexity Search API verkko-osoite",
 	"Perplexity Search Context Usage": "Perplexity Search kontekstin käyttö",
 	"Persistent": "Pysyvä",
+<<<<<<< HEAD
 	"Pick an icon or emoji": "",
+=======
+	"Personalization": "Personointi",
+	"Picture Claim": "",
+>>>>>>> upstream/main
 	"Pin": "Kiinnitä",
 	"Pinned Models": "Kiinnitetyt mallit",
 	"Pioneer insights": "Pioneerin oivalluksia",
@@ -1199,9 +1787,14 @@
 	"Please enter Client ID and Client Secret": "Kirjoita Client ID ja Client Secret",
 	"Please register the OAuth client": "Rekisteröi OAuth asiakasohjelma",
 	"Please save the connection to persist the OAuth client information and do not change the ID": "Tallenna yhteys, jotta OAuth-asiakastiedot säilyvät, äläkä muuta tunnusta.",
+<<<<<<< HEAD
+=======
+	"Please select a model.": "Valitse malli.",
+>>>>>>> upstream/main
 	"Please select a reason": "Valitse syy",
 	"Please select a valid JSON file": "Valitse kelvollinen JSON-tiedosto",
 	"Policy ID": "Käytännön ID",
+	"Policy ID is required": "",
 	"Port": "Portti",
 	"Ports": "Portit",
 	"Positive attitude": "Positiivinen asenne",
@@ -1209,14 +1802,32 @@
 	"Prefix ID is used to avoid conflicts with other connections by adding a prefix to the model IDs - leave empty to disable": "Etuliite-ID:tä käytetään välttämään ristiriidat muiden yhteyksien kanssa lisäämällä etuliite mallitunnuksiin - jätä tyhjäksi, jos haluat ottaa sen pois käytöstä",
 	"Prevent File Creation": "Estä tiedostojen luonti",
 	"Preview": "Esikatselu",
+	"Preview Access": "Esikatsele käyttöoikeuksia",
 	"Previous 30 days": "Edelliset 30 päivää",
 	"Previous 7 days": "Edelliset 7 päivää",
 	"Previous message": "Edellinen viesti",
 	"Private": "Yksityinen",
 	"Profile": "Profiili",
 	"Prompt": "Kehote",
+<<<<<<< HEAD
 	"Prompt Template": "",
 	"Provider": "",
+=======
+	"Prompt Autocompletion": "Kehotteen automaattinen täydennys",
+	"Prompt Content": "Kehotteen sisältö",
+	"Prompt created successfully": "Kehote luotu onnistuneesti",
+	"Prompt Name": "Kehoteen nimi",
+	"Prompt Suggestions": "Kehotusehdotukset",
+	"Prompt Template": "Kehotepohja",
+	"Prompt updated successfully": "Kehote päivitetty onnistuneesti",
+	"Prompts": "Kehotteet",
+	"Prompts Access": "Kehotteiden käyttöoikeudet",
+	"Prompts Public Sharing": "Kehotteiden julkinen jakaminen",
+	"Prompts Sharing": "Kehotteiden jako",
+	"Provider": "Palveluntarjoaja",
+	"Provider Name": "",
+	"Provider URL": "",
+>>>>>>> upstream/main
 	"Public": "Julkinen",
 	"Public shared chat links are disabled for this workspace.": "",
 	"Pull \"{{searchValue}}\" from Ollama.com": "Lataa \"{{searchValue}}\" Ollama.comista",
@@ -1239,18 +1850,38 @@
 	"Read": "Lue",
 	"Read Aloud": "Lue ääneen",
 	"Read more →": "Lue lisää →",
+<<<<<<< HEAD
 	"read only": "",
+=======
+	"Read only": "",
+>>>>>>> upstream/main
 	"Read Only": "Vain luku",
 	"Read, write, and diff-edit durable notes for the current chat Scratchboard": "",
 	"Reason": "Päättely",
 	"Reasoning Effort": "Päättelyn määrä",
 	"Reasoning Tags": "Päättely tagit",
-	"Reasoning text...": "",
+	"Reasoning text...": "Päättely teksti...",
+	"Receives matching events across the instance, including system/config events and events associated with any user.": "",
+	"Receives matching events that are not associated with a user.": "",
+	"Receives matching user-associated events only when the actor, user subject, or user data matches these users or current group members. System/config events are not sent.": "",
 	"Recently Used": "Viimeeksi käytetty",
 	"Reconnected": "Yhdistetty",
+<<<<<<< HEAD
 	"Redirecting you to Open WebUI Community": "Ohjataan sinut OpenWebUI-yhteisöön",
 	"Reduces the probability of generating nonsense. A higher value (e.g. 100) will give more diverse answers, while a lower value (e.g. 10) will be more conservative.": "Vähentää hölynpölyn tuottamisen todennäköisyyttä. Korkeampi arvo (esim. 100) antaa monipuolisempia vastauksia, kun taas matalampi arvo (esim. 10) on varovaisempi.",
+=======
+	"Record": "Nauhoita",
+	"Record voice": "Nauhoita ääntä",
+	"Redirect URI": "",
+	"Redirecting you to Open WebUI Community": "Ohjataan sinut OpenWebUI-yhteisöön",
+	"Reduces the probability of generating nonsense. A higher value (e.g. 100) will give more diverse answers, while a lower value (e.g. 10) will be more conservative.": "Vähentää hölynpölyn tuottamisen todennäköisyyttä. Korkeampi arvo (esim. 100) antaa monipuolisempia vastauksia, kun taas matalampi arvo (esim. 10) on varovaisempi.",
+	"Reference Chats": "Liitä keskustelu",
+>>>>>>> upstream/main
 	"Refresh": "Päivitä",
+	"Refresh requested: {{count}} terminal(s)_one": "",
+	"Refresh requested: {{count}} terminal(s)_other": "",
+	"Refresh Terminals": "",
+	"Refreshing...": "",
 	"Refused when it shouldn't have": "Kieltäytyi, vaikka ei olisi pitänyt",
 	"Regenerate": "Regeneroi",
 	"Regenerate Response": "Regeneroi vastaus",
@@ -1269,15 +1900,44 @@
 	"Remove from favorites": "Poista suosikeista",
 	"Remove image": "Poista kuva",
 	"Remove Model": "Poista malli",
+	"Removing {{count}} stale files..._one": "Poistetaan {{count}} vanhentunutta tiedostoa..._one",
+	"Removing {{count}} stale files..._other": "Poistetaan {{count}} vanhentuneita tiedostoja..._other",
 	"Rename": "Nimeä uudelleen",
+<<<<<<< HEAD
 	"Reorder Models": "Uudelleenjärjestä malleja",
 	"Reranking Batch Size": "",
+=======
+	"Renamed to {{name}}": "Nimetty uudelleen {{name}}",
+	"Render Markdown in Assistant Messages": "Renderöi Markdown avustajan viesteissä",
+	"Render Markdown in Previews": "Renderöi Markdown esikatseluissa",
+	"Render Markdown in User Messages": "Renderöi Markdown käyttäjän viesteissä",
+	"Reorder Models": "Uudelleenjärjestä malleja",
+	"Repeat": "",
+	"Repeats": "Toistot",
+	"Reply": "Vastaa",
+	"Reply in Thread": "Vastaa ketjussa",
+	"Reply to thread...": "Vastaa ketjussa...",
+	"Replying to {{NAME}}": "Vastaa {{NAME}}",
+	"Request Format": "",
+	"Require users to confirm before using Web Search.": "",
+	"required": "vaaditaan",
+	"Reranking Batch Size": "Uudelleenpisteytyksen eräkoko",
+>>>>>>> upstream/main
 	"Reranking Engine": "Uudelleenpisteytymismallin moottori",
 	"Reranking Model": "Uudelleenpisteytymismalli",
+	"Research Knowledge": "",
 	"Reset": "Palauta",
 	"Reset All Models": "Palauta kaikki mallit",
+	"Reset all permissions to their initial configuration values": "",
+	"Reset group permissions to match the current default user permissions": "",
 	"Reset Image": "Palauta kuva",
+<<<<<<< HEAD
 	"Reset to default": "",
+=======
+	"Reset knowledge base?": "Nollataanko tietokanta?",
+	"Reset persisted files": "",
+	"Reset to Defaults": "",
+>>>>>>> upstream/main
 	"Reset Upload Directory": "Palauta latauspolku",
 	"Reset Vector Storage/Knowledge": "Tyhjennä vektoritallennukset/tietämys",
 	"Reset view": "Palauta näkymä",
@@ -1298,6 +1958,11 @@
 	"Return token usage information in the response when supported": "",
 	"Reusable instruction packs that teach your models a procedure or domain — import a markdown skill or write your own, then enable it where you need it.": "",
 	"Role": "Rooli",
+<<<<<<< HEAD
+=======
+	"Roles Claim": "",
+	"RTL": "RTL",
+>>>>>>> upstream/main
 	"Run": "Suorita",
 	"Run All": "Suorita kaikki",
 	"Running": "Käynnissä",
@@ -1310,10 +1975,19 @@
 	"Save As Copy": "Tallenna kopiona",
 	"Saved": "Tallennettu",
 	"Saving chat logs directly to your browser's storage is no longer supported. Please take a moment to download and delete your chat logs by clicking the button below. Don't worry, you can easily re-import your chat logs to the backend through": "Keskustelulokien tallentaminen suoraan selaimen tallennustilaan ei ole enää tuettu. Lataa ja poista keskustelulokit napsauttamalla alla olevaa painiketta. Älä huoli, voit helposti tuoda keskustelulokit takaisin backendiin",
+<<<<<<< HEAD
 	"Scratchboard": "",
 	"Scroll to Top": "",
+=======
+	"Schedule": "Aikataulu",
+	"Scheduled time must be in the future": "Aikataulutetun ajan on oltava tulevaisuudessa",
+	"Scopes": "",
+	"Scroll On Branch Change": "Vieritä haaran vaihtoon",
+	"Scroll to Top": "Vieritä ylös",
+>>>>>>> upstream/main
 	"Search": "Haku",
 	"Search a model": "Hae mallia",
+	"Search actions": "",
 	"Search all emojis": "Hae emojeista",
 	"Search and manage user memories": "Hae ja hallinnoi käyttäjien muistoja",
 	"Search and view user chat history": "Hae ja tarkastele käyttäjän keskusteluhistoriaa",
@@ -1321,6 +1995,7 @@
 	"Search Chats": "Hae keskusteluja",
 	"Search engines and web content loaders for live results.": "",
 	"Search Files": "Hae tiedostoja",
+	"Search filters": "",
 	"Search Filters": "Hakusuodattimet",
 	"search for archived chats": "Hae arkistoiduista keskusteluista",
 	"search for folders": "Hae kansioista",
@@ -1332,10 +2007,22 @@
 	"Search In Models": "Hae mallleista",
 	"Search Models": "Hae malleja",
 	"Search options": "Hakuvaihtoehdot",
+<<<<<<< HEAD
+=======
+	"Search or add pattern": "",
+	"Search Prompts": "Hae kehotteita",
+>>>>>>> upstream/main
 	"Search Result Count": "Hakutulosten määrä",
+	"Search skills": "",
 	"Search Skills": "Etsi taitoja",
 	"Search the web and fetch URLs": "Hae verkosta ja hae URL-osoitteita",
+	"Search tools": "",
 	"Search Tools": "Hae työkaluja",
+<<<<<<< HEAD
+=======
+	"Search users or groups": "",
+	"Search, view, and manage user notes": "Hae, tarkastele ja hallinnoi käyttäjämuistiinpanoja",
+>>>>>>> upstream/main
 	"SearchApi API Key": "SearchApi API -avain",
 	"SearchApi Engine": "SearchApi-moottori",
 	"Searched {{count}} sites": "Etsitty {{count}} sivulta",
@@ -1350,7 +2037,12 @@
 	"Seed": "Siemenluku",
 	"Select": "Valitse",
 	"Select {{modelName}} model": "Valitse {{modelName}} malli",
+<<<<<<< HEAD
 	"Select a base model": "Valitse perusmalli",
+=======
+	"Select a base model (e.g. llama3, gpt-4o)": "Valitse perusmalli (esim. llama3, gtp-4o)",
+	"Select a conversation to preview": "Valitse keskustelun esikatselu",
+>>>>>>> upstream/main
 	"Select a engine": "Valitse moottori",
 	"Select a function": "Valitse toiminto",
 	"Select a group": "Valitse ryhmä",
@@ -1380,15 +2072,36 @@
 	"Selected Models": "Valitut mallit",
 	"semantic": "Semaattinen",
 	"Send": "Lähetä",
+<<<<<<< HEAD
+=======
+	"Send a Message": "Lähetä viesti",
+	"Send events for": "",
+	"Send message": "Lähetä viesti",
+	"Send now": "Lähetä nyt",
+	"Send product events as JSON to external services. Chat destinations receive readable messages.": "",
+	"Send the PDF as a base64 data URL instead of uploading it first.": "",
+	"Sends `stream_options: { include_usage: true }` in the request.\nSupported providers will return token usage information in the response when set.": "Lähettää `stream_options: { include_usage: true }` pyynnössä.\nTuetut tarjoajat palauttavat tokenkäyttötiedot vastauksessa, kun se on asetettu.",
+>>>>>>> upstream/main
 	"September": "syyskuu",
 	"sequences that end a response — comma separated": "",
 	"SerpApi API Key": "SerpApi API -avain",
 	"SerpApi Engine": "SerpApi moottori",
 	"Serper API Key": "Serper API -avain",
+	"SERPHouse API Key": "",
+	"SERPHouse Domain": "",
 	"Serply API Key": "Serply API -avain",
 	"Serpstack API Key": "Serpstack API -avain",
 	"Server connection failed": "Palvelinyhteys epäonnistui",
+<<<<<<< HEAD
 	"Session": "Istunto",
+=======
+	"Server connection verified": "Palvelinyhteys vahvistettu",
+	"Service Account": "",
+	"Session": "Istunto",
+	"Session expired. Please sign in again.": "",
+	"Set as default": "Aseta oletukseksi",
+	"Set as Production": "Aseta tuotantokäyttöön",
+>>>>>>> upstream/main
 	"Set embedding model": "Aseta upotelmamalli",
 	"Set embedding model (e.g. {{model}})": "Aseta upotelmamalli (esim. {{model}})",
 	"Set reranking model (e.g. {{model}})": "Aseta uudelleenpisteytymismalli (esim. {{model}})",
@@ -1400,8 +2113,8 @@
 	"set upon": "",
 	"Set whisper model": "Aseta whisper-malli",
 	"Set your status": "Aseta tilasi",
-	"Sets a flat bias against tokens that have appeared at least once. A higher value (e.g., 1.5) will penalize repetitions more strongly, while a lower value (e.g., 0.9) will be more lenient. At 0, it is disabled.": "",
-	"Sets a scaling bias against tokens to penalize repetitions, based on how many times they have appeared. A higher value (e.g., 1.5) will penalize repetitions more strongly, while a lower value (e.g., 0.9) will be more lenient. At 0, it is disabled.": "",
+	"Sets a flat bias against tokens that have appeared at least once. A higher value (e.g., 1.5) will penalize repetitions more strongly, while a lower value (e.g., 0.9) will be more lenient. At 0, it is disabled.": "Asettaa tasaisen vinouman niitä tokeneita kohtaan, jotka ovat esiintyneet vähintään kerran. Korkeampi arvo (esim. 1.5) rankaisee toistoja voimakkaammin, kun taas matalampi arvo (esim. 0.9) on lievempi. Arvolla 0 se on pois päältä.",
+	"Sets a scaling bias against tokens to penalize repetitions, based on how many times they have appeared. A higher value (e.g., 1.5) will penalize repetitions more strongly, while a lower value (e.g., 0.9) will be more lenient. At 0, it is disabled.": "Asettaa skaalaavan vinouman niitä tokeneita kohtaan toistojen rankaisemiseksi niiden esiintymiskertojen perusteella. Korkeampi arvo (esim. 1.5) rankaisee toistoja voimakkaammin, kun taas matalampi arvo (esim. 0.9) on lievempi. Arvolla 0 se on pois päältä.",
 	"Sets how far back for the model to look back to prevent repetition.": "Määrittää kuinka kauas taaksepäin malli katsoo toistumisen estämiseksi.",
 	"Sets the random number seed to use for generation. Setting this to a specific number will make the model generate the same text for the same prompt.": "Määrittä satunnainen siemenluku luomista varten. Jos asetat siemenluvun, malli tuottaa saman vastauksen samalle kehotteelle.",
 	"Sets the size of the context window used to generate the next token.": "Määrittää konteksti-ikkunan koon seuraavaksi luotavalle tokenille.",
@@ -1412,13 +2125,28 @@
 	"Share": "Jaa",
 	"Share Chat": "Jaa keskustelu",
 	"Share to Open WebUI Community": "Jaa OpenWebUI-yhteisöön",
+<<<<<<< HEAD
+=======
+	"Share your background and interests": "Jaa taustasi ja kiinnostuksen kohteesi",
+	"Shared": "",
+>>>>>>> upstream/main
 	"Shared Chats": "Jaetut keskustelut",
 	"Shared with you": "Jaettu kanssasi",
 	"Sharing Permissions": "Jako oikeudet",
 	"Show": "Näytä",
+<<<<<<< HEAD
 	"Show Admin Details in Account Pending Overlay": "Näytä ylläpitäjän tiedot odottavan tilin päällä",
 	"Show All": "Näytä kaikki",
 	"Show all ({{COUNT}} characters)": "Näytä kaikki ({{COUNT}} merkkiä)",
+=======
+	"Show \"What's New\" Modal on Login": "Näytä \"Mitä uutta\" -modaali kirjautumisen yhteydessä",
+	"Show Admin Details in Account Pending Overlay": "Näytä ylläpitäjän tiedot odottavan tilin päällä",
+	"Show All": "Näytä kaikki",
+	"Show all ({{COUNT}} characters)": "Näytä kaikki ({{COUNT}} merkkiä)",
+	"Show Files": "Näytä tiedostot",
+	"Show Files on Terminal Select": "",
+	"Show Formatting Toolbar": "Näytä muotoilupalkki",
+>>>>>>> upstream/main
 	"Show image preview": "Näytä kuvan esikatselu",
 	"Show Model": "Näytä malli",
 	"Show Shortcuts": "Näytä pikakomennot",
@@ -1460,7 +2188,13 @@
 	"Sougou Search API sID": "Sougou Search API sID",
 	"Sougou Search API SK": "Sougou Search API SK",
 	"Source": "Lähde",
+<<<<<<< HEAD
 	"Sources used": "",
+=======
+	"Specific users or groups": "",
+	"Speech Playback Speed": "Puhetoiston nopeus",
+	"Speech recognition error: {{error}}": "Puheentunnistusvirhe: {{error}}",
+>>>>>>> upstream/main
 	"Speech-to-Text": "Puheentunnistus",
 	"Speech-to-Text Engine": "Puheentunnistusmoottori",
 	"Split documents by markdown headers before applying character/token splitting.": "Jaa dokumentit Markdown-otsikoiden mukaan ennen merkki-/tunnusjaon käyttöä",
@@ -1484,6 +2218,13 @@
 	"Strip Existing OCR": "Poista olemassa oleva OCR",
 	"Strip existing OCR text from the PDF and re-run OCR. Ignored if Force OCR is enabled. Defaults to False.": "Poista olemassa oleva OCR-teksti PDF-tiedostosta ja suorita OCR uudelleen. Ohitetaan, jos pakota OCR -asetus on käytössä. Oletusarvo ei käytössä.",
 	"STT Model": "Puheentunnistusmalli",
+<<<<<<< HEAD
+=======
+	"STT Settings": "Puheentunnistuksen asetukset",
+	"Stylized PDF Export": "Muotoiltun PDF-vienti",
+	"Su_day_of_week": "",
+	"Sub Claim": "",
+>>>>>>> upstream/main
 	"Submit question": "Lähetä kysymys",
 	"Submit suggestion": "Lähetä ehdotus",
 	"Subtitle": "Alaotsikko",
@@ -1494,21 +2235,34 @@
 	"Support": "Tuki",
 	"Support this plugin:": "Tue tätä lisäosaa:",
 	"Supported MIME Types": "Tuetut MIME-tyypit",
-	"Switch to JSON editor": "",
-	"Switch to visual editor": "",
+	"Switch to JSON editor": "Vaihda JSON-editoriin",
+	"Switch to visual editor": "Vaihda visuaaliseen editoriin",
 	"Sync": "Synkronoi",
+	"Sync a local directory with this knowledge base. Only new and modified files will be uploaded. The directory structure will be mirrored.": "Synkronoi paikallinen hakemisto tämän tietokannan kanssa. Vain uudet ja muokatut tiedostot ladataan. Hakemistorakenne peilataan.",
+	"Sync complete: {{added}} added, {{modified}} modified, {{deleted}} deleted, {{unmodified}} unmodified": "Synkronointi valmis: {{added}} lisättyä, {{modified}} muokattua, {{deleted}} poistettua, {{unmodified}} muuttumatonta",
 	"Sync Complete!": "Synkronointi valmis!",
+<<<<<<< HEAD
+=======
+	"Sync directory": "Sykronoi hakemisto",
+>>>>>>> upstream/main
 	"Sync Failed": "Synkronointi epäonnistui",
 	"Sync Usage Stats": "Synkronoinnin käyttötilastot",
 	"Syncing stats...": "Synkronoidaan tilastoja...",
 	"Syncing...": "Synkronoidaan...",
 	"Syncs only chats with updates after your last sync timestamp. Disable to re-sync all chats.": "Synkronoi vain keskustelut, joihin on tehty päivityksiä viimeisen synkronoinnin aikaleiman jälkeen. Poista käytöstä synkronoidaksesi kaikki keskustelut uudelleen.",
+<<<<<<< HEAD
+=======
+	"System": "Järjestelmä",
+	"System events only": "",
+	"System Instructions": "Järjestelmäohjeet",
+>>>>>>> upstream/main
 	"System Prompt": "Järjestelmäkehote",
+	"Table": "",
 	"Tag": "Tagi",
 	"Tags": "Tagit",
 	"Tags Generation": "Tagien luonti",
 	"Tags Generation Prompt": "Tagien luontikehote",
-	"Tail free sampling is used to reduce the impact of less probable tokens from the output. A higher value (e.g., 2.0) will reduce the impact more, while a value of 1.0 disables this setting.": "",
+	"Tail free sampling is used to reduce the impact of less probable tokens from the output. A higher value (e.g., 2.0) will reduce the impact more, while a value of 1.0 disables this setting.": "Tail free -otantaa käytetään vähentämään vähemmän todennäköisten tokenien vaikutusta tulosteessa. Korkeampi arvo (esim. 2.0) vähentää vaikutusta enemmän, kun taas arvo 1.0 poistaa tämän asetuksen käytöstä.",
 	"Talk to Model": "Puhu mallille",
 	"Task List": "Tehtävälista",
 	"Task Management": "Tehtävien hallinta",
@@ -1523,6 +2277,16 @@
 	"Temperature": "Lämpötila",
 	"Temporary Chat": "Väliaikainen keskustelu",
 	"Terminal": "Pääte",
+<<<<<<< HEAD
+=======
+	"Terminal servers saved": "Päätepalvelimet tallennettu",
+	"Test": "",
+	"Test Query": "",
+	"Test returned no results.": "",
+	"Test succeeded.": "",
+	"Test the source before creating it.": "",
+	"Test the source before saving it.": "",
+>>>>>>> upstream/main
 	"Text Splitter": "Tekstin jakaja",
 	"Text-to-Speech": "Puhesynteesi",
 	"Text-to-Speech Engine": "Puhesynteesimoottori",
@@ -1537,8 +2301,11 @@
 	"The height in pixels to compress images to. Leave empty for no compression.": "Kuvien pakkauskorkeus pikseleinä. Jätä tyhjäksi, jos et halua pakata kuvia.",
 	"The LDAP attribute that maps to the mail that users use to sign in.": "LDAP-määrite, joka yhdistää käyttäjien kirjautumiseen käyttämään sähköpostiin.",
 	"The LDAP attribute that maps to the username that users use to sign in.": "LDAP-määrite, joka vastaa käyttäjien kirjautumiskäyttäjänimeä.",
+<<<<<<< HEAD
 	"The leaderboard is currently in beta, and we may adjust the rating calculations as we refine the algorithm.": "Tulosluettelo on tällä hetkellä beta-vaiheessa, ja voimme säätää pisteytyksen laskentaa hienostaessamme algoritmia.",
 	"the longest single response it may set": "",
+=======
+>>>>>>> upstream/main
 	"The maximum file size in MB. If the file size exceeds this limit, the file will not be uploaded.": "Enimmäistiedostokoko megatavuissa. Jos tiedoston koko ylittää tämän rajan, tiedostoa ei ladata.",
 	"The maximum number of files that can be used at once in chat. If the number of files exceeds this limit, the files will not be uploaded.": "Suurin sallittu tiedostojen määrä käytettäväksi kerralla chatissa. Jos tiedostojen määrä ylittää tämän rajan, niitä ei ladata.",
 	"The only required step — refine everything else now or later.": "",
@@ -1564,17 +2331,27 @@
 	"This feature is currently experimental and may not work as expected.": "Tämä ominaisuus on tällä hetkellä kokeellinen eikä välttämättä toimi odotetulla tavalla.",
 	"This folder is empty": "Tämä kansio on tyhjä",
 	"This is a default user permission and will remain enabled.": "Tämä on oletusarvoinen käyttäjäoikeus ja pysyy käytössä.",
+<<<<<<< HEAD
+=======
+	"This is an experimental feature, it may not function as expected and is subject to change at any time.": "Tämä on kokeellinen ominaisuus, se ei välttämättä toimi odotetulla tavalla ja se voi muuttua milloin tahansa.",
+	"This knowledge base retrieves from a connected source. Open WebUI can query it, but cannot upload, sync, edit, delete, reset, or reindex its source data.": "",
+>>>>>>> upstream/main
 	"This model is not publicly available. Please select another model.": "Tämä malli ei ole julkisesti saatavilla. Valitse toinen malli.",
 	"This option controls how long the model will stay loaded into memory following the request (default: 5m)": "Tämä asetus määrittää kuinka kauan malli pysyy ladattuna muistissa pyynnön jälkeen (oletusarvo: 5m)",
 	"This option controls how many tokens are preserved when refreshing the context. For example, if set to 2, the last 2 tokens of the conversation context will be retained. Preserving context can help maintain the continuity of a conversation, but it may reduce the ability to respond to new topics.": "Tämä asetus määrittää, kuinka monta tokenia säilytetään kontekstia päivitettäessä. Jos arvoksi on asetettu esimerkiksi 2, keskustelukontekstin kaksi viimeistä tokenia säilytetään. Kontekstin säilyttäminen voi auttaa ylläpitämään keskustelun jatkuvuutta, mutta se voi heikentää kykyä vastata uusiin aiheisiin.",
 	"This option enables or disables the use of the reasoning feature in Ollama, which allows the model to think before generating a response. When enabled, the model can take a moment to process the conversation context and generate a more thoughtful response.": "Tämä vaihtoehto mahdollistaa tai estää päättelyominaisuuden käytön Ollama:ssa, mikä antaa mallille mahdollisuuden miettiä ennen vastauksen tuottamista. Kun se on käytössä, malli voi ottaa hetken aikaa käsitellä keskustelun kontekstia ja tuottaa ajatellumman vastauksen.",
 	"This option sets the maximum number of tokens the model can generate in its response. Increasing this limit allows the model to provide longer answers, but it may also increase the likelihood of unhelpful or irrelevant content being generated.": "Tämä vaihtoehto asettaa mallin vastauksessaan luomien tokenien enimmäismäärän. Tämän rajan nostaminen antaa mallille mahdollisuuden tarjota pidempiä vastauksia, mutta se voi myös lisätä hyödyttömän tai epäolennaisen sisällön luomisen todennäköisyyttä.",
 	"This response was generated by \"{{model}}\"": "Tämän vastauksen tuotti \"{{model}}\"",
-	"This template contains multiple context placeholders ([context] or {{CONTEXT}}). Context will be injected at each occurrence.": "",
+	"This template contains multiple context placeholders ([context] or {{CONTEXT}}). Context will be injected at each occurrence.": "Tämä mallipohja sisältää useita kontekstipaikkamerkkejä ([context] tai {{CONTEXT}}). Konteksti lisätään jokaiseen esiintymään.",
 	"This will delete": "Tämä poistaa",
 	"This will delete <strong>{{NAME}}</strong> and <strong>all its contents</strong>.": "Tämä poistaa <strong>{{NAME}}</strong> ja <strong>kaikki sen sisällöt</strong>.",
 	"This will delete all models including custom models": "Tämä poistaa kaikki mallit mukaan lukien mukautetut mallit",
 	"This will delete all models including custom models and cannot be undone.": "Tämä poistaa kaikki mallit, mukaan lukien mukautetut mallit, eikä sitä voi peruuttaa.",
+<<<<<<< HEAD
+=======
+	"This will permanently delete the calendar \"{{name}}\" and all its events. This action cannot be undone.": "Tämä poistaa pysyvästi kalenterin \"{{name}}\" ja kaikki sen tapahtumat. Tätä toimintoa ei voi peruuttaa.",
+	"This will remove all files and directories from this knowledge base. This action cannot be undone.": "Tämä poistaa kaikki tiedostot ja hakemistot tästä tietokannasta. Tätä toimintoa ei voi peruuttaa.",
+>>>>>>> upstream/main
 	"Thorough explanation": "Perusteellinen selitys",
 	"Thought": "Ajatus",
 	"Thought for {{DURATION}}": "Ajatteli {{DURATION}}",
@@ -1597,12 +2374,23 @@
 	"To learn more about available endpoints, visit our documentation.": "Jos haluat lisätietoja käytettävissä olevista päätepisteistä, tutustu dokumentaatioomme.",
 	"To select skills here, add them to the \"Skills\" workspace first.": "Jos haluat valita taitoja tässä, lisää ne ensin \"Taidot\"-työtilaan.",
 	"To select toolkits here, add them to the \"Tools\" workspace first.": "Valitaksesi työkalusettejä tässä, lisää ne ensin \"Työkalut\"-työtilaan.",
+<<<<<<< HEAD
+=======
+	"Toast Notifications for New Updates": "Ilmoituspopuppien näyttäminen uusista päivityksistä",
+>>>>>>> upstream/main
 	"Today": "Tänään",
 	"Toggle details": "Näytä/piilota yksityiskohdat",
+<<<<<<< HEAD
+=======
+	"Toggle Dictation": "Sanelu päälle/pois",
+	"Toggle Mute": "Mykistys päälle/pois",
+>>>>>>> upstream/main
 	"Toggle Sidebar": "Näytä/piilota sivupalkki",
 	"Toggle whether current connection is active.": "Vaihda, onko nykyinen yhteys aktiivinen",
 	"Token": "Token",
 	"Token counts are estimates and may not reflect actual API usage": "Tokenmäärät ovat arvioita eivätkä välttämättä vastaa todellista API-käyttöä",
+	"Token Threshold": "",
+	"Tokenizer Model": "",
 	"tokens": "tokenit",
 	"Tokens": "Tokenit",
 	"Too verbose": "Liian puhelias",
@@ -1645,16 +2433,35 @@
 	"Unknown": "Tuntematon",
 	"Unloads {{FROM_NOW}}": "Purkuja {{FROM_NOW}}",
 	"Unlock mysteries": "Selvitä arvoituksia",
+<<<<<<< HEAD
+=======
+	"Unmute": "Poista mykistys",
+>>>>>>> upstream/main
 	"Unpin": "Irrota kiinnitys",
 	"Unravel secrets": "Avaa salaisuuksia",
+	"Unshare All": "",
+	"Unshare All Shared Chats": "",
 	"Unshare Chat": "Lopeta keskustelun jakaminen",
 	"Untagged": "Ei tageja",
+<<<<<<< HEAD
 	"Untitled folio": "",
 	"Update for the latest features and improvements.": "Päivitä uusimpiin ominaisuuksiin ja parannuksiin.",
+=======
+	"Untitled": "Nimetön",
+	"Update": "Päivitä",
+	"Update and Copy Link": "Päivitä ja kopioi linkki",
+	"Update Email": "",
+	"Update for the latest features and improvements.": "Päivitä uusimpiin ominaisuuksiin ja parannuksiin.",
+	"Update Name": "",
+	"Update password": "Päivitä salasana",
+	"Update Picture": "",
+	"Update your status": "Päivitä tilasi",
+	"Updated": "Päivitetty",
+>>>>>>> upstream/main
 	"Updated at": "Päivitetty",
 	"Updated At": "Päivitetty",
 	"Upgrade to a licensed plan for enhanced capabilities, including custom theming and branding, and dedicated support.": "Päivitä lisenssi saadaksesi parempia ominaisuuksia, mukaan lukien mukautetun teeman ja brändäyksen sekä yksilöllistä tukea.",
-	"Upload": "Lataa",
+	"Upload": "Lähetä",
 	"Upload a GGUF model": "Lataa GGUF-malli",
 	"Upload image": "",
 	"Upload Model": "Lataa malli",
@@ -1662,24 +2469,40 @@
 	"Upload profile image": "Lataa profiilikuva",
 	"Upload Progress": "Latauksen edistyminen",
 	"Uploaded files or images": "Ladatut tiedostot tai kuvat",
+<<<<<<< HEAD
+=======
+	"Uploading {{current}}/{{total}}: {{file}}": "Ladataan {{current}}/{{total}}: {{file}}",
+>>>>>>> upstream/main
 	"Uploading...": "Ladataan...",
 	"URL": "URL",
 	"URL is required": "URL vaaditaan",
 	"URL Mode": "URL-tila",
 	"Usage": "Käyttö",
 	"Use /v1/chat/completions endpoint instead of /v1/audio/transcriptions for potentially better accuracy.": "Käytä /v1/chat/completions-päätteitä/v1/audio/transcriptions-pääteen sijaan mahdollisesti paremman tarkkuuden saavuttamiseksi.",
+	"Use a valid event name or pattern like user.*": "",
+	"Use Base64": "",
 	"Use Chat Completions API": "Käytä Chat Completions API:a",
+	"Use discovered scopes": "",
 	"Use groups to organize your users and assign permissions.": "Käytä ryhmiä käyttäjien järjestämiseen ja käyttöoikeuksien määrittämiseen.",
 	"Use LLM": "Käytä LLM:ää",
 	"Use no proxy to fetch page contents.": "Älä käytä välityspalvelinta sivun tietoja haettaessa.",
 	"Use proxy designated by http_proxy and https_proxy environment variables to fetch page contents.": "Käytä http_proxy- ja https_proxy-ympäristömuuttujien määrittämää välityspalvelinta sivun sisällön hakemiseen.",
+	"Use Web Search?": "",
 	"user": "käyttäjä",
 	"User": "Käyttäjä",
+	"User Access": "",
 	"User Activity": "Käyttäjätoiminta",
 	"User Groups": "Käyttäjäryhmät",
+<<<<<<< HEAD
+=======
+	"User location successfully retrieved.": "Käyttäjän sijainti haettu onnistuneesti.",
+	"User menu": "Käyttäjävalikko",
+	"User Preview": "Käyttäjän esikatselu",
+>>>>>>> upstream/main
 	"User ratings (thumbs up/down)": "Käyttäjien arviot (peukku ylös/alas)",
 	"User Webhooks": "Käyttäjän Webhook:it",
 	"Username": "Käyttäjätunnus",
+	"Username Claim": "",
 	"users": "käyttäjät",
 	"Users": "Käyttäjät",
 	"Uses DefaultAzureCredential to authenticate": "Käyttää DefaultAzureCredential todentamiseen",
@@ -1690,7 +2513,14 @@
 	"Valid time units:": "Kelvolliset aikayksiköt:",
 	"Validate certificate": "Tarkista sertifikaatti",
 	"Valves": "Venttiilit",
+<<<<<<< HEAD
 	"Verified": "",
+=======
+	"Valves updated": "Venttiilit päivitetty",
+	"Valves updated successfully": "Venttiilit päivitetty onnistuneesti",
+	"variable": "muuttuja",
+	"Vector Field": "",
+>>>>>>> upstream/main
 	"Verify Connection": "Tarkista yhteys",
 	"Verify SSL Certificate": "Tarkista SSL-varmenne",
 	"Version": "Versio",
@@ -1702,7 +2532,14 @@
 	"Visible": "Näkyvillä",
 	"Visible to all users": "Näkyy kaikille käyttäjille",
 	"Vision": "Visio",
+<<<<<<< HEAD
 	"Visual": "",
+=======
+	"Visual": "Visuaalinen",
+	"Voice": "Ääni",
+	"Voice Input": "Äänitulolaitteen käyttö",
+	"Voice mode": "Puhetila",
+>>>>>>> upstream/main
 	"Voice Mode Prompt": "Puhetilan kehote",
 	"Warning": "Varoitus",
 	"Warning:": "Varoitus:",
@@ -1711,9 +2548,20 @@
 	"Web API": "Web-API",
 	"Web Loader Engine": "Verkkolataaja moottori",
 	"Web Search": "Verkkohaku",
+	"Web Search Confirmation": "",
+	"Web Search Confirmation Content": "",
 	"Web Search Engine": "Hakukoneet",
 	"Web Search Query Generation": "Verkkohakukyselyn luonti",
+<<<<<<< HEAD
 	"Webhook URL": "Webhook verkko-osoite",
+=======
+	"Webhook deleted": "",
+	"Webhook Name": "Webhook nimi",
+	"Webhook saved": "",
+	"Webhooks": "Webhookit",
+	"Webpage URLs": "Verkkosivujen verkko-osoitteet",
+	"WebUI Settings": "WebUI-asetukset",
+>>>>>>> upstream/main
 	"WebUI URL": "WebUI-osoite",
 	"WebUI will make requests to \"{{url}}\"": "WebUI lähettää pyyntöjä osoitteeseen \"{{url}}\"",
 	"WebUI will make requests to \"{{url}}/api/chat\"": "WebUI lähettää pyyntöjä osoitteeseen \"{{url}}/api/chat\"",
@@ -1744,6 +2592,7 @@
 	"Yandex Web Search API Key": "Yandex Web Search API -avain",
 	"Yandex Web Search config": "Yandex Web Search asetukset",
 	"Yandex Web Search URL": "Yandex Web Search verkko-osoite",
+	"Yearly": "",
 	"Yesterday": "Eilen",
 	"You": "Sinä",
 	"You are a careful editor: terse, concrete, kind…": "",
@@ -1763,6 +2612,7 @@
 	"Your browser does not support the video tag.": "Selaimesi ei tue video-tagia.",
 	"Your entire contribution will go directly to the plugin developer; Open WebUI does not take any percentage. However, the chosen funding platform might have its own fees.": "Koko panoksesi menee suoraan lisäosan kehittäjälle; Open WebUI ei pidätä prosenttiosuutta. Valittu rahoitusalusta voi kuitenkin periä omia maksujaan.",
 	"Your message text or inputs": "Viestisi teksti tai syöteet",
+	"Your query will be sent to the configured web search provider.": "",
 	"Your usage stats have been successfully synced.": "Käyttötilastosi on synkronoitu onnistuneesti.",
 	"Youtube Language": "Youtube kieli",
 	"Youtube Proxy URL": "Youtube-välityspalvelimen verkko-osoite"

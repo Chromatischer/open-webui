@@ -5,21 +5,67 @@
 	"(e.g. `sh webui.sh --api`)": "(pl. `sh webui.sh --api`)",
 	"(latest)": "(legújabb)",
 	"(leave blank for to use commercial endpoint)": "",
+<<<<<<< HEAD
 	"{{COUNT}} extracted lines": "",
 	"{{COUNT}} hidden lines": "{{COUNT}} rejtett sor",
 	"{{COUNT}} members": "",
 	"{{COUNT}} Rows": "",
 	"{{count}} selected_one": "",
 	"{{count}} selected_other": "",
+=======
+	"[Last] dddd [at] h:mm A": "",
+	"[Today at] h:mm A": "",
+	"[Yesterday at] h:mm A": "",
+	"{{ models }}": "{{ modellek }}",
+	"{{COUNT}} Available Skills": "",
+	"{{COUNT}} Available Tools": "{{COUNT}} Elérhető eszköz",
+	"{{COUNT}} characters": "",
+	"{{COUNT}} extracted lines": "",
+	"{{COUNT}} files": "",
+	"{{count}} files selected. Only new and modified files will be uploaded. Deleted files will be removed. The folder structure will be mirrored. Continue?_one": "",
+	"{{count}} files selected. Only new and modified files will be uploaded. Deleted files will be removed. The folder structure will be mirrored. Continue?_other": "",
+	"{{count}} filters_one": "",
+	"{{count}} filters_other": "",
+	"{{count}} groups_one": "",
+	"{{count}} groups_other": "",
+	"{{COUNT}} hidden lines": "{{COUNT}} rejtett sor",
+	"{{COUNT}} members": "",
+	"{{count}} of {{total}} accessible_one": "",
+	"{{count}} of {{total}} accessible_other": "",
+	"{{COUNT}} Replies": "{{COUNT}} Válasz",
+	"{{COUNT}} Rows": "",
+	"{{count}} selected_one": "",
+	"{{count}} selected_other": "",
+	"{{COUNT}} Sources": "",
+	"{{count}} users_one": "",
+	"{{count}} users_other": "",
+	"{{COUNT}} words": "",
+>>>>>>> upstream/main
 	"{{COUNT}}d_time_ago": "",
 	"{{COUNT}}h_time_ago": "",
 	"{{COUNT}}m_time_ago": "",
 	"{{COUNT}}w_time_ago": "",
 	"{{COUNT}}y_time_ago": "",
+<<<<<<< HEAD
+=======
+	"{{label}} contains invalid JSON": "",
+	"{{label}} must be a JSON object": "",
+	"{{LOCALIZED_DATE}} at {{LOCALIZED_TIME}}": "",
+	"{{model}} download has been canceled": "",
+>>>>>>> upstream/main
 	"{{modelName}} profile image": "",
 	"{{user}}'s Chats": "{{user}} beszélgetései",
 	"{{webUIName}} Backend Required": "{{webUIName}} Backend szükséges",
 	"*Prompt node ID(s) are required for image generation": "*Prompt node ID(k) szükségesek a képgeneráláshoz",
+<<<<<<< HEAD
+=======
+	"1 group": "",
+	"1 hour before": "",
+	"1 Source": "",
+	"1 user": "",
+	"10 minutes before": "",
+	"15 minutes before": "",
+>>>>>>> upstream/main
 	"1m_time_ago": "",
 	"a line about what this model is for…": "",
 	"A model binds a base mind to a system prompt, tools and knowledge — compose one and summon it in any chat.": "",
@@ -31,6 +77,11 @@
 	"Access Control": "Hozzáférés-vezérlés",
 	"Access Grants": "",
 	"Access List": "",
+<<<<<<< HEAD
+=======
+	"Access prohibited": "",
+	"Access updated": "",
+>>>>>>> upstream/main
 	"Accessible to all users": "Minden felhasználó számára elérhető",
 	"Account Activation Pending": "Fiók aktiválása folyamatban",
 	"Accurate information": "Pontos információ",
@@ -41,6 +92,7 @@
 	"Activity": "",
 	"Add": "Hozzáadás",
 	"Add a model ID": "Modell azonosító hozzáadása",
+	"Add a preference, fact, or instruction about you": "",
 	"Add a short description about what this model does": "Adj hozzá egy rövid leírást arról, hogy mit csinál ez a modell",
 	"Add a tag": "Címke hozzáadása",
 	"Add a tag...": "",
@@ -50,7 +102,17 @@
 	"Add Custom Parameter": "",
 	"Add Custom Prompt": "",
 	"Add Details": "",
+	"Add durable context for future chats": "",
 	"Add Files": "Fájlok hozzáadása",
+<<<<<<< HEAD
+=======
+	"Add Image": "",
+	"Add Knowledge Connection": "",
+	"Add location": "",
+	"Add Member": "",
+	"Add Members": "",
+	"Add Memory": "Memória hozzáadása",
+>>>>>>> upstream/main
 	"Add Model": "Modell hozzáadása",
 	"Add tag": "",
 	"Add Tag": "Címke hozzáadása",
@@ -58,6 +120,11 @@
 	"Add to favorites": "",
 	"Add User": "Felhasználó hozzáadása",
 	"Add User Group": "Felhasználói csoport hozzáadása",
+<<<<<<< HEAD
+=======
+	"Add webhook": "",
+	"Add webpage": "",
+>>>>>>> upstream/main
 	"Add your Open Terminal URL and API key in Settings → Integrations.": "",
 	"Additional Config": "",
 	"Additional configuration options for marker. This should be a JSON string with key-value pairs. For example, '{\"key\": \"value\"}'. Supported keys include: disable_links, keep_pageheader_in_output, keep_pagefooter_in_output, filter_blank_pages, drop_repeated_text, layout_coverage_threshold, merge_threshold, height_tolerance, gap_threshold, image_threshold, min_line_length, level_count, default_level": "",
@@ -68,18 +135,40 @@
 	"Admin": "Admin",
 	"Admin Contact Email": "",
 	"Admin Panel": "Admin Panel",
+<<<<<<< HEAD
+=======
+	"Admin Roles": "",
+	"Admin Settings": "Admin beállítások",
+	"Admin-managed service account": "",
+>>>>>>> upstream/main
 	"Admins have access to all tools at all times; users need tools assigned per model in the workspace.": "Az adminok mindig hozzáférnek minden eszközhöz; a felhasználóknak modellenként kell eszközöket hozzárendelni a munkaterületen.",
 	"Advanced": "",
 	"Advanced parameters for MinerU parsing (enable_ocr, enable_formula, enable_table, language, model_version, page_ranges)": "",
 	"Advanced Params": "Haladó paraméterek",
 	"After updating or changing the embedding model, you must reindex the knowledge base for the changes to take effect. You can do this using the \"Reindex\" button below.": "",
 	"All": "Mind",
+<<<<<<< HEAD
 	"All time": "",
 	"All Users": "",
+=======
+	"All chats have been unarchived.": "",
+	"All day": "",
+	"All events": "",
+	"All models are now hidden": "",
+	"All models are now visible": "",
+	"All models deleted successfully": "Minden modell sikeresen törölve",
+	"All shared chats have been unshared.": "",
+	"All Sources": "",
+	"All time": "",
+	"All Users": "",
+	"All users and system events": "",
+	"Allow Call": "",
+>>>>>>> upstream/main
 	"Allow Chat Controls": "Csevegésvezérlők engedélyezése",
 	"Allow Chat Delete": "Csevegés törlésének engedélyezése",
 	"Allow Chat Edit": "Csevegés szerkesztésének engedélyezése",
 	"Allow Chat Export": "",
+	"Allow Chat Import": "",
 	"Allow Chat Params": "",
 	"Allow Chat Share": "",
 	"Allow Chat System Prompt": "",
@@ -94,9 +183,11 @@
 	"Allow Sharing With Users": "",
 	"Allow Text to Speech": "",
 	"Allow Web Upload": "",
+	"Allowed Domains": "",
 	"Allowed Endpoints": "Engedélyezett végpontok",
 	"Allowed File Extensions": "",
 	"Allowed file extensions for upload. Separate multiple extensions with commas. Leave empty for all file types.": "",
+	"Allowed Roles": "",
 	"Already have an account?": "Már van fiókod?",
 	"Alternative to the top_p, and aims to ensure a balance of quality and variety. The parameter p represents the minimum probability for a token to be considered, relative to the probability of the most likely token. For example, with p=0.05 and the most likely token having a probability of 0.9, logits with a value less than 0.045 are filtered out.": "Alternatíva a top_p helyett, célja a minőség és változatosság egyensúlyának biztosítása. A p paraméter a token figyelembevételének minimális valószínűségét jelzi a legvalószínűbb token valószínűségéhez képest. Például, ha p=0,05 és a legvalószínűbb token valószínűsége 0,9, a 0,045-nél kisebb értékű logitok kiszűrésre kerülnek.",
 	"Amazing": "Csodálatos",
@@ -108,6 +199,11 @@
 	"API Base URL": "API alap URL",
 	"API Base URL for Datalab Marker service. Defaults to: https://www.datalab.to/api/v1/marker": "",
 	"API Key": "API kulcs",
+<<<<<<< HEAD
+=======
+	"API Key / Token": "",
+	"API Key created.": "API kulcs létrehozva.",
+>>>>>>> upstream/main
 	"API Key Endpoint Restrictions": "API kulcs végpont korlátozások",
 	"API Keys": "",
 	"API Mode": "",
@@ -124,13 +220,31 @@
 	"Are you sure you want to delete \"{{NAME}}\"?": "",
 	"Are you sure you want to delete **{{modelName}}**?": "",
 	"Are you sure you want to delete this connection? This action cannot be undone.": "",
+<<<<<<< HEAD
 	"Are you sure you want to delete this?": "",
 	"Arena": "",
+=======
+	"Are you sure you want to delete this directory?": "",
+	"Are you sure you want to delete this memory? This action cannot be undone.": "",
+	"Are you sure you want to delete this message?": "Biztosan törölni szeretnéd ezt az üzenetet?",
+	"Are you sure you want to delete this version? Child versions will be relinked to this version's parent.": "",
+	"Are you sure you want to delete this webhook? This action cannot be undone.": "",
+	"Are you sure you want to delete this?": "",
+	"Are you sure you want to reset all permissions to their default values? You will still need to save to apply the changes.": "",
+	"Are you sure you want to unarchive all archived chats?": "Biztosan vissza szeretnéd állítani az összes archivált csevegést?",
+	"Are you sure you want to unshare all shared chats? This will remove all share links.": "",
+>>>>>>> upstream/main
 	"Arena Models": "Arena modellek",
 	"Artifacts": "Műtermékek",
 	"Ask": "Kérdezz",
 	"Ask a question": "Kérdezz valamit",
+<<<<<<< HEAD
 	"Ask the User": "",
+=======
+	"Ask a test question": "",
+	"Ask this knowledge source a test question": "",
+	"Assistant": "Asszisztens",
+>>>>>>> upstream/main
 	"Async Embedding Processing": "",
 	"Attach File From Knowledge": "",
 	"Attention to detail": "Részletekre való odafigyelés",
@@ -139,20 +253,33 @@
 	"Audience": "",
 	"August": "Augusztus",
 	"Auth": "Hitelesítés",
+	"Auth Mode": "",
+	"Auth required": "",
 	"Authenticate": "Hitelesítés",
 	"Authentication": "Hitelesítés",
 	"Auto (Random)": "",
+<<<<<<< HEAD
 	"Auto-inject system tools for Agents (timestamps, memory, notes, etc.)": "",
+=======
+	"Auto Redirect": "",
+	"Auto-Copy Response to Clipboard": "Válasz automatikus másolása a vágólapra",
+	"Auto-Create Groups": "",
+	"Auto-Playback Response": "Automatikus válasz lejátszás",
+>>>>>>> upstream/main
 	"Autocomplete Generation": "Automatikus kiegészítés generálása",
 	"Autocomplete Generation Input Max Length": "Automatikus kiegészítés bemenet maximális hossza",
+	"Autocomplete Generation Prompt": "",
+	"Automatic": "",
 	"Automatic1111": "Automatic1111",
 	"AUTOMATIC1111 Api Auth String": "AUTOMATIC1111 Api hitelesítési karakterlánc",
 	"AUTOMATIC1111 Base URL": "AUTOMATIC1111 alap URL",
 	"AUTOMATIC1111 Base URL is required.": "AUTOMATIC1111 alap URL szükséges.",
 	"Available list": "Elérhető lista",
 	"Available models": "",
+	"Available Skills": "",
 	"Available Tools": "Elérhető eszközök",
 	"available users": "elérhető felhasználók",
+	"Available variables": "",
 	"available!": "elérhető!",
 	"Awful": "Szörnyű",
 	"Azure AI Speech": "Azure AI beszéd",
@@ -163,16 +290,30 @@
 	"Backup, export, and import instance data.": "",
 	"Bad Response": "Rossz válasz",
 	"Banners": "Bannerek",
+<<<<<<< HEAD
 	"Base model": "",
+=======
+	"Base Model (From)": "Alap modell (Forrás)",
+	"Base Model is required.": "",
+>>>>>>> upstream/main
 	"Base Model List Cache speeds up access by fetching base models only at startup or on settings save—faster, but may not show recent base model changes.": "",
 	"Bearer": "",
 	"Begin a new folio": "",
 	"Being lazy": "Lustaság",
+<<<<<<< HEAD
 	"Beta": "Béta",
 	"Bind the model": "",
 	"Bing": "",
 	"Bing Search V7 Endpoint": "Bing Search V7 végpont",
 	"Bing Search V7 Subscription Key": "Bing Search V7 előfizetési kulcs",
+=======
+	"Bing": "",
+	"Bing Search V7 Endpoint": "Bing Search V7 végpont",
+	"Bing Search V7 Subscription Key": "Bing Search V7 előfizetési kulcs",
+	"Bio": "",
+	"Birth Date": "",
+	"Blocked Groups": "",
+>>>>>>> upstream/main
 	"BM25 Weight": "",
 	"Bocha Search API Key": "Bocha Search API kulcs",
 	"Bold": "",
@@ -200,6 +341,12 @@
 	"Chat": "Beszélgetés",
 	"Chat Completions": "",
 	"Chat Conversation": "",
+<<<<<<< HEAD
+=======
+	"Chat deleted.": "",
+	"Chat Direction": "Beszélgetés iránya",
+	"Chat exported successfully": "",
+>>>>>>> upstream/main
 	"Chat History": "",
 	"Chat ID": "",
 	"Chat moved successfully": "",
@@ -259,6 +406,11 @@
 	"Code Interpreter Prompt Template": "Kód értelmező prompt sablon",
 	"Collapse": "Összecsukás",
 	"Collection": "Gyűjtemény",
+<<<<<<< HEAD
+=======
+	"Collection Field": "",
+	"Collections": "",
+>>>>>>> upstream/main
 	"Color": "Szín",
 	"ComfyUI": "ComfyUI",
 	"ComfyUI API Key": "ComfyUI API kulcs",
@@ -267,9 +419,25 @@
 	"ComfyUI Workflow": "ComfyUI munkafolyamat",
 	"ComfyUI Workflow Nodes": "ComfyUI munkafolyamat csomópontok",
 	"Comma separated Node Ids (e.g. 1 or 1,2)": "",
+<<<<<<< HEAD
+=======
+	"Comma-separated group names": "",
+	"Comma-separated list of file extensions MinerU will handle (e.g. pdf, docx, pptx, xlsx)": "",
+	"command": "",
+	"Command": "Parancs",
+>>>>>>> upstream/main
 	"Comment": "",
 	"Community Reviews": "",
+<<<<<<< HEAD
 	"Compose your first model": "",
+=======
+	"Compacting context": "",
+	"Comparing with knowledge base...": "",
+	"Completions": "Kiegészítések",
+	"Compress Images in Channels": "",
+	"Computing checksums ({{count}} files)_one": "",
+	"Computing checksums ({{count}} files)_other": "",
+>>>>>>> upstream/main
 	"Concurrent Requests": "Párhuzamos kérések",
 	"Config": "",
 	"Configure": "Konfigurálás",
@@ -282,6 +450,10 @@
 	"Connect to Open Terminal instances. All users will have access to file browsing and terminal tools through these servers.": "",
 	"Connect to your own OpenAPI compatible external tool servers.": "Csatlakozz saját OpenAPI kompatibilis külső eszköszervereidhez.",
 	"Connected": "",
+<<<<<<< HEAD
+=======
+	"Connected ({{type}})": "",
+>>>>>>> upstream/main
 	"Connection failed": "Kapcsolat sikertelen",
 	"Connection lost. Reconnecting...": "",
 	"Connection Type": "",
@@ -290,8 +462,16 @@
 	"Contact Admin for WebUI Access": "Lépj kapcsolatba az adminnal a WebUI hozzáférésért",
 	"Content": "Tartalom",
 	"Content Extraction Engine": "Tartalom kinyerési motor",
+	"Content Field": "",
 	"Content lengths (character counts only)": "",
+	"Context": "",
+	"Context compacted": "",
+	"Context Compaction": "",
+	"Context compaction failed": "",
+	"Context Compaction Prompt": "",
+	"Context Compaction Threshold": "",
 	"Context Tokens": "",
+	"Continue": "",
 	"Continue Response": "Válasz folytatása",
 	"Continue with {{provider}}": "Folytatás {{provider}} szolgáltatóval",
 	"Continue with Email": "Folytatás emaillel",
@@ -322,6 +502,16 @@
 	"Create Image": "",
 	"Create model": "",
 	"Create Model": "",
+<<<<<<< HEAD
+=======
+	"Create new key": "Új kulcs létrehozása",
+	"Create new secret key": "Új titkos kulcs létrehozása",
+	"Create note": "",
+	"Create Note": "",
+	"Create one read-only Knowledge source per external collection. Test must pass before the source is created.": "",
+	"Create scheduled prompts that run automatically on a recurring basis.": "",
+	"Create your first note by clicking on the plus button below.": "",
+>>>>>>> upstream/main
 	"Created at": "Létrehozva",
 	"Created At": "Létrehozva",
 	"Created by": "Létrehozta",
@@ -332,7 +522,12 @@
 	"Custom color": "",
 	"Custom Parameter Name": "",
 	"Custom Parameter Value": "",
+<<<<<<< HEAD
 	"Custom presets that pair a base model with a system prompt, tools, knowledge and capabilities — build your own assistants and reuse them anywhere in chat.": "",
+=======
+	"Custom range": "",
+	"Daily": "",
+>>>>>>> upstream/main
 	"Daily Messages": "",
 	"Danger Zone": "Veszélyzóna",
 	"Database": "Adatbázis",
@@ -348,7 +543,6 @@
 	"Default Features": "",
 	"Default Filters": "",
 	"Default Group": "",
-	"Default mode works with a wider range of models by calling tools once before execution. Native mode leverages the model's built-in tool-calling capabilities, but requires the model to inherently support this feature.": "Az alapértelmezett mód szélesebb modellválasztékkal működik az eszközök egyszeri meghívásával a végrehajtás előtt. A natív mód a modell beépített eszközhívási képességeit használja ki, de ehhez a modellnek eredendően támogatnia kell ezt a funkciót.",
 	"Default Model": "Alapértelmezett modell",
 	"Default permissions": "Alapértelmezett engedélyek",
 	"Default Prompt Suggestions": "Alapértelmezett prompt javaslatok",
@@ -356,13 +550,25 @@
 	"Default to ALL": "Alapértelmezés szerint MIND",
 	"Default to segmented retrieval for focused and relevant content extraction, this is recommended for most cases.": "Alapértelmezés szerint szegmentált visszakeresés a fókuszált és releváns tartalom kinyeréséhez, ez a legtöbb esetben ajánlott.",
 	"Default User Role": "Alapértelmezett felhasználói szerep",
+	"Default webhook": "",
 	"Defaults": "",
 	"Delete": "Törlés",
 	"Delete {{name}}": "",
 	"Delete a model": "Modell törlése",
+<<<<<<< HEAD
+=======
+	"Delete All": "",
+	"Delete All Chats": "Minden beszélgetés törlése",
+	"Delete all contents inside this directory": "",
+>>>>>>> upstream/main
 	"Delete all contents inside this folder": "",
 	"Delete Chat": "Beszélgetés törlése",
 	"Delete chat?": "Törli a beszélgetést?",
+<<<<<<< HEAD
+=======
+	"Delete directory?": "",
+	"Delete Event": "",
+>>>>>>> upstream/main
 	"Delete File": "",
 	"Delete folder?": "Törli a mappát?",
 	"Delete function?": "Törli a funkciót?",
@@ -383,9 +589,20 @@
 	"Direct Connections": "Közvetlen kapcsolatok",
 	"Direct Connections allow users to connect to their own OpenAI compatible API endpoints.": "A közvetlen kapcsolatok lehetővé teszik a felhasználók számára, hogy saját OpenAI kompatibilis API végpontjaikhoz csatlakozzanak.",
 	"Direct Tool Servers": "Közvetlen eszköszerverek",
+<<<<<<< HEAD
+=======
+	"Directory created.": "",
+	"Directory deleted.": "",
+	"Directory moved.": "",
+	"Directory name": "",
+	"Directory renamed.": "",
+	"Directory selection was cancelled": "",
+>>>>>>> upstream/main
 	"Disable All": "",
 	"Disable Image Extraction": "",
 	"Disable image extraction from the PDF. If Use LLM is enabled, images will be automatically captioned. Defaults to False.": "",
+	"Disable Image Generation": "",
+	"Disable Web Search": "",
 	"Disabled": "Letiltva",
 	"Discard this folio": "",
 	"Discarded": "",
@@ -394,6 +611,13 @@
 	"Discover wonders": "Csodák felfedezése",
 	"Discover, download, and explore custom functions": "Fedezz fel, tölts le és fedezz fel egyéni funkciókat",
 	"Display": "Megjelenítés",
+<<<<<<< HEAD
+=======
+	"Display Chat Title in Tab": "",
+	"Display Emoji in Call": "Emoji megjelenítése hívásban",
+	"Display Multi-model Responses in Tabs": "",
+	"Display the Username Instead of You in the Chat": "Felhasználónév megjelenítése a 'Te' helyett a beszélgetésben",
+>>>>>>> upstream/main
 	"Displays citations in the response": "Idézetek megjelenítése a válaszban",
 	"Displays status updates (e.g., web search progress) in the response": "",
 	"Dissolve": "",
@@ -406,6 +630,7 @@
 	"Docling Parameters": "",
 	"Docling Server URL required.": "Docling szerver URL szükséges.",
 	"Document": "Dokumentum",
+	"Document ID Field": "",
 	"Document Intelligence": "Dokumentum intelligencia",
 	"Document Intelligence endpoint required.": "",
 	"Document Intelligence Model": "",
@@ -459,41 +684,60 @@
 	"Edit Default Permissions": "Alapértelmezett engedélyek szerkesztése",
 	"Edit Folder": "",
 	"Edit Image": "",
+	"Edit Knowledge Connection": "",
 	"Edit Last Message": "",
 	"Edit Model": "",
 	"Edit Terminal Connection": "",
 	"Edit User": "Felhasználó szerkesztése",
 	"Edit User Group": "Felhasználói csoport szerkesztése",
+	"Edit webhook": "",
 	"Edit workflow.json content": "",
 	"Eject": "",
 	"Eject model": "",
 	"ElevenLabs": "ElevenLabs",
 	"Email": "Email",
+	"Email Claim": "",
 	"Embark on adventures": "Vágj bele kalandokba",
 	"Embedding": "Beágyazás",
 	"Embedding Batch Size": "Beágyazási köteg méret",
 	"Embedding Concurrent Requests": "",
 	"Embedding Model": "Beágyazási modell",
 	"Embedding Model Engine": "Beágyazási modell motor",
+	"Emoji": "",
 	"Emojis": "",
+<<<<<<< HEAD
+=======
+	"Empty": "",
+	"Empty message": "",
+>>>>>>> upstream/main
 	"Enable All": "",
 	"Enable API Keys": "",
 	"Enable autocomplete generation for chat messages": "Automatikus kiegészítés engedélyezése csevegőüzenetekhez",
 	"Enable Code Execution": "Kód végrehajtás engedélyezése",
 	"Enable Code Interpreter": "Kód értelmező engedélyezése",
 	"Enable Community Sharing": "Közösségi megosztás engedélyezése",
+	"Enable Group Mapping": "",
+	"Enable Image Generation": "",
 	"Enable Memory Locking (mlock) to prevent model data from being swapped out of RAM. This option locks the model's working set of pages into RAM, ensuring that they will not be swapped out to disk. This can help maintain performance by avoiding page faults and ensuring fast data access.": "Engedélyezd a memória zárolást (mlock), hogy a modell adatai ne kerüljenek ki a RAM-ból. Ez az opció a modell munkakészletének oldalait a RAM-ban rögzíti, így nem kerülnek a lemezre. Ez segíthet a teljesítmény fenntartásában az oldalhibák elkerülésével és a gyors adathozzáférés biztosításával.",
 	"Enable Memory Mapping (mmap) to load model data. This option allows the system to use disk storage as an extension of RAM by treating disk files as if they were in RAM. This can improve model performance by allowing for faster data access. However, it may not work correctly with all systems and can consume a significant amount of disk space.": "Engedélyezd a memória leképezést (mmap) a modell adatainak betöltéséhez. Ez az opció lehetővé teszi a rendszer számára, hogy a lemeztárolót a RAM kiterjesztéseként használja, a lemezfájlokat RAM-ban lévőként kezelve. Ez javíthatja a modell teljesítményét a gyorsabb adathozzáférés révén. Azonban nem minden rendszerrel működik megfelelően és jelentős lemezterületet foglalhat.",
 	"Enable Message Rating": "Üzenet értékelés engedélyezése",
 	"Enable Mirostat sampling for controlling perplexity.": "Engedélyezd a Mirostat mintavételezést a perplexitás szabályozásához.",
 	"Enable New Sign Ups": "Új regisztrációk engedélyezése",
+	"Enable OAuth Signup": "",
+	"Enable Role Mapping": "",
+	"Enable Web Search": "",
 	"Enable, disable, or customize the reasoning tags used by the model. \"Enabled\" uses default tags, \"Disabled\" turns off reasoning tags, and \"Custom\" lets you specify your own start and end tags.": "",
 	"Enabled": "Engedélyezve",
 	"End Tag": "",
+	"Endpoint": "",
 	"Endpoint URL": "",
 	"Enrich Hybrid Search Text": "",
 	"Ensure your CSV file includes 4 columns in this order: Name, Email, Password, Role.": "Győződj meg róla, hogy a CSV fájl tartalmazza ezt a 4 oszlopot ebben a sorrendben: Név, Email, Jelszó, Szerep.",
+<<<<<<< HEAD
 	"Enter a name first": "",
+=======
+	"Enter {{role}} message here": "Írd ide a {{role}} üzenetet",
+>>>>>>> upstream/main
 	"Enter a title for the pending user info overlay. Leave empty for default.": "",
 	"Enter a watermark for the response. Leave empty for none.": "",
 	"Enter additional headers in JSON format": "",
@@ -510,6 +754,8 @@
 	"Enter Chunk Min Size Target": "",
 	"Enter Chunk Overlap": "Add meg a darab átfedést",
 	"Enter Chunk Size": "Add meg a darab méretet",
+	"Enter Client ID": "",
+	"Enter Client Secret": "",
 	"Enter comma-separated \"token:bias_value\" pairs (example: 5432:100, 413:-100)": "Add meg vesszővel elválasztott \"token:bias_érték\" párokat (példa: 5432:100, 413:-100)",
 	"Enter content for the pending user info overlay. Leave empty for default.": "",
 	"Enter coordinates (e.g. 51.505, -0.09)": "",
@@ -546,7 +792,15 @@
 	"Enter Jupyter Token": "Add meg a Jupyter tokent",
 	"Enter Jupyter URL": "Add meg a Jupyter URL-t",
 	"Enter Kagi Search API Key": "Add meg a Kagi Search API kulcsot",
+<<<<<<< HEAD
+=======
+	"Enter Key Behavior": "Add meg a kulcs viselkedését",
+	"Enter language": "",
+>>>>>>> upstream/main
 	"Enter language codes": "Add meg a nyelvi kódokat",
+	"Enter Linkup API Key": "",
+	"Enter Microsoft Web IQ API Base URL": "",
+	"Enter Microsoft Web IQ API Key": "",
 	"Enter MinerU API Key": "",
 	"Enter Mistral API Base URL": "",
 	"Enter Mistral API Key": "Add meg a Mistral API kulcsot",
@@ -565,6 +819,7 @@
 	"Enter Playwright WebSocket URL": "",
 	"Enter proxy URL (e.g. https://user:password@host:port)": "Add meg a proxy URL-t (pl. https://user:password@host:port)",
 	"Enter reasoning effort": "Add meg az érvelési erőfeszítést",
+	"Enter Redirect URI": "",
 	"Enter Score": "Add meg a pontszámot",
 	"Enter SearchApi API Key": "Add meg a SearchApi API kulcsot",
 	"Enter SearchApi Engine": "Add meg a SearchApi motort",
@@ -574,6 +829,7 @@
 	"Enter SerpApi API Key": "Add meg a SerpApi API kulcsot",
 	"Enter SerpApi Engine": "Add meg a SerpApi motort",
 	"Enter Serper API Key": "Add meg a Serper API kulcsot",
+	"Enter SERPHouse API Key": "",
 	"Enter Serply API Key": "Add meg a Serply API kulcsot",
 	"Enter Serpstack API Key": "Add meg a Serpstack API kulcsot",
 	"Enter server host": "Add meg a szerver hosztot",
@@ -591,6 +847,12 @@
 	"Enter the URL to import": "",
 	"Enter Tika Server URL": "Add meg a Tika szerver URL-t",
 	"Enter timeout in seconds": "Add meg az időtúllépést másodpercekben",
+<<<<<<< HEAD
+=======
+	"Enter to Send": "Enter a küldéshez",
+	"Enter token threshold": "",
+	"Enter Tokenizer Model": "",
+>>>>>>> upstream/main
 	"Enter Top K": "Add meg a Top K értéket",
 	"Enter Top K Reranker": "Add meg a Top K újrarangsorolót",
 	"Enter URL (e.g. http://127.0.0.1:7860/)": "Add meg az URL-t (pl. http://127.0.0.1:7860/)",
@@ -620,8 +882,19 @@
 	"Error: A model with the ID '{{modelId}}' already exists. Please select a different ID to proceed.": "",
 	"Error: Model ID cannot be empty. Please enter a valid ID to proceed.": "",
 	"Evaluations": "Értékelések",
+<<<<<<< HEAD
 	"Every craft begins bare-handed.": "",
+=======
+	"Event": "",
+	"Event created": "",
+	"Event deleted": "",
+	"Event names may change as Open WebUI evolves. Use broad patterns like user.* for integrations that should continue across new related events.": "",
+	"Event title": "",
+	"Event updated": "",
+	"Events": "",
+>>>>>>> upstream/main
 	"Exa API Key": "Exa API kulcs",
+	"Example": "",
 	"Example: (&(objectClass=inetOrgPerson)(uid=%s))": "Példa: (&(objectClass=inetOrgPerson)(uid=%s))",
 	"Example: ALL": "Példa: MIND",
 	"Example: mail": "Példa: email",
@@ -643,18 +916,29 @@
 	"Export chat (.json)": "Beszélgetés exportálása (.json)",
 	"Export Config": "",
 	"Export Models": "",
+<<<<<<< HEAD
+=======
+	"Export Prompts": "",
+	"Export Skills": "",
+>>>>>>> upstream/main
 	"Export to CSV": "Exportálás CSV-be",
 	"Export Tools": "",
 	"Export Users": "",
 	"External": "Külső",
+	"External connection not found.": "",
 	"External Document Loader URL required.": "",
+	"External Knowledge Source": "",
+	"External Knowledge Sources": "",
 	"External Task Model": "",
+	"External Tool Servers": "",
+	"External vectors must be generated with the same embedding model configured in Open WebUI.": "",
 	"External Web Loader API Key": "",
 	"External Web Loader URL": "",
 	"External Web Search API Key": "",
 	"External Web Search URL": "",
 	"Faculties": "",
 	"Failed to archive chat.": "",
+<<<<<<< HEAD
 	"Failed to connect to {{URL}} OpenAPI tool server": "Nem sikerült csatlakozni a {{URL}} OpenAPI eszköszerverhez",
 	"Failed to connect to {{URL}} terminal server": "",
 	"Failed to copy link": "",
@@ -664,11 +948,39 @@
 	"Failed to extract content from the file: {{error}}": "",
 	"Failed to extract content from the file.": "",
 	"Failed to fetch models": "Nem sikerült lekérni a modelleket",
+=======
+	"Failed to attach file": "",
+	"Failed to clear status": "",
+	"Failed to compare files.": "",
+	"Failed to connect to {{URL}} OpenAPI tool server": "Nem sikerült csatlakozni a {{URL}} OpenAPI eszköszerverhez",
+	"Failed to connect to {{URL}} terminal server": "",
+	"Failed to copy link": "",
+	"Failed to create API Key.": "Nem sikerült létrehozni az API kulcsot.",
+	"Failed to delete calendar": "",
+	"Failed to delete note": "",
+	"Failed to delete webhook": "",
+	"Failed to disconnect": "",
+	"Failed to download image": "",
+	"Failed to extract content from the file: {{error}}": "",
+	"Failed to extract content from the file.": "",
+	"Failed to fetch models": "Nem sikerült lekérni a modelleket",
+	"Failed to generate title": "",
+	"Failed to import models": "",
+	"Failed to load chat": "",
+	"Failed to load chat preview": "",
+>>>>>>> upstream/main
 	"Failed to load DOCX file. Please try downloading it instead.": "",
 	"Failed to load Excel/CSV file. Please try downloading it instead.": "",
 	"Failed to load Interface settings": "",
 	"Failed to load PPTX file. Please try downloading it instead.": "",
 	"Failed to move chat": "",
+<<<<<<< HEAD
+=======
+	"Failed to process URL: {{url}}": "",
+	"Failed to read clipboard contents": "Nem sikerült olvasni a vágólap tartalmát",
+	"Failed to refresh terminals: {{error}}": "",
+	"Failed to remove member": "",
+>>>>>>> upstream/main
 	"Failed to render diagram": "",
 	"Failed to render visualization": "",
 	"Failed to save": "",
@@ -677,10 +989,16 @@
 	"Failed to save models configuration": "Nem sikerült menteni a modellek konfigurációját",
 	"Failed to save policy: {{error}}": "",
 	"Failed to save terminal servers": "",
+	"Failed to save webhook": "",
 	"Failed to unshare chat.": "",
 	"Failed to update settings": "Nem sikerült frissíteni a beállításokat",
 	"Failed to update status": "",
+<<<<<<< HEAD
 	"Favicons": "",
+=======
+	"Failed to update webhook": "",
+	"Failed to upload file.": "Nem sikerült feltölteni a fájlt.",
+>>>>>>> upstream/main
 	"Features": "Funkciók",
 	"Features Permissions": "Funkciók engedélyei",
 	"February": "Február",
@@ -693,14 +1011,32 @@
 	"File": "Fájl",
 	"File browser": "",
 	"File Context": "",
+<<<<<<< HEAD
+=======
+	"File deleted successfully.": "",
+	"File Extensions": "",
+>>>>>>> upstream/main
 	"File Mode": "Fájl mód",
+	"File moved.": "",
 	"File name": "",
 	"File not found.": "Fájl nem található.",
+<<<<<<< HEAD
 	"File size should not exceed {{maxSize}} MB.": "A fájl mérete nem haladhatja meg a {{maxSize}} MB-ot.",
 	"File Upload": "",
 	"Filename": "",
 	"Files": "Fájlok",
 	"Fill name + base model to create": "",
+=======
+	"File removed successfully.": "Fájl sikeresen eltávolítva.",
+	"File renamed.": "",
+	"File size should not exceed {{maxSize}} MB.": "A fájl mérete nem haladhatja meg a {{maxSize}} MB-ot.",
+	"File Upload": "",
+	"File uploaded successfully": "Fájl sikeresen feltöltve",
+	"Filename": "",
+	"Files": "Fájlok",
+	"Fill the required fields first.": "",
+	"Fill the source fields and test query first.": "",
+>>>>>>> upstream/main
 	"Filter": "",
 	"Filters": "Szűrők",
 	"Filters, valves, and middleware workflows.": "",
@@ -718,8 +1054,12 @@
 	"Folder name cannot be empty.": "A mappa neve nem lehet üres.",
 	"Folder options": "",
 	"Folders": "",
+<<<<<<< HEAD
 	"folio": "",
 	"folios": "",
+=======
+	"Folders Sharing": "",
+>>>>>>> upstream/main
 	"Follow up": "",
 	"Follow Up Generation": "",
 	"Follow Up Generation Prompt": "",
@@ -747,6 +1087,11 @@
 	"Function imported successfully": "",
 	"Function Name": "Funkció neve",
 	"Function Name Filter List": "",
+<<<<<<< HEAD
+=======
+	"Function starter": "",
+	"Function updated successfully": "Funkció sikeresen frissítve",
+>>>>>>> upstream/main
 	"Functions": "Funkciók",
 	"Functions allow arbitrary code execution.": "A funkciók tetszőleges kód végrehajtását teszik lehetővé.",
 	"Gather a quire": "",
@@ -774,6 +1119,15 @@
 	"Google PSE Engine Id": "Google PSE motor azonosító",
 	"Gravatar": "",
 	"Grokipedia": "",
+<<<<<<< HEAD
+=======
+	"group": "",
+	"Group": "",
+	"Group Channel": "",
+	"Group Claim": "",
+	"Group created successfully": "Csoport sikeresen létrehozva",
+	"Group deleted successfully": "Csoport sikeresen törölve",
+>>>>>>> upstream/main
 	"Group Description": "Csoport leírása",
 	"Group Name": "Csoport neve",
 	"groups": "",
@@ -781,6 +1135,11 @@
 	"H1": "",
 	"H2": "",
 	"H3": "",
+<<<<<<< HEAD
+=======
+	"Haptic Feedback": "Tapintási visszajelzés",
+	"Header variables": "",
+>>>>>>> upstream/main
 	"Headers": "",
 	"Headers must be a valid JSON object": "",
 	"Hello, {{name}}": "Helló, {{name}}",
@@ -809,6 +1168,12 @@
 	"I acknowledge that I have read and I understand the implications of my action. I am aware of the risks associated with executing arbitrary code and I have verified the trustworthiness of the source.": "Elismerem, hogy elolvastam és megértem a cselekedetem következményeit. Tisztában vagyok a tetszőleges kód végrehajtásával járó kockázatokkal, és ellenőriztem a forrás megbízhatóságát.",
 	"ID": "Azonosító",
 	"ID cannot contain \":\" or \"|\" characters": "",
+<<<<<<< HEAD
+=======
+	"ID copied to clipboard": "",
+	"Identity audit": "",
+	"Idle only": "",
+>>>>>>> upstream/main
 	"Idle Timeout": "",
 	"Ignite curiosity": "Kíváncsiság felkeltése",
 	"Image": "Kép",
@@ -828,6 +1193,12 @@
 	"Import Config": "",
 	"Import From Link": "",
 	"Import Models": "",
+<<<<<<< HEAD
+=======
+	"Import Prompts": "",
+	"Import Skills": "",
+	"Import successful": "",
+>>>>>>> upstream/main
 	"Import Tools": "",
 	"Important Update": "Fontos frissítés",
 	"Imported": "",
@@ -864,6 +1235,11 @@
 	"Jina API Key": "Jina API kulcs",
 	"join our Discord for help.": "Csatlakozz a Discord szerverünkhöz segítségért.",
 	"JSON": "JSON",
+<<<<<<< HEAD
+=======
+	"JSON Base64": "",
+	"JSON Preview": "JSON előnézet",
+>>>>>>> upstream/main
 	"JSON Spec": "",
 	"July": "Július",
 	"June": "Június",
@@ -874,9 +1250,26 @@
 	"Keep in Sidebar": "",
 	"Key": "Kulcs",
 	"Key is required": "",
-	"Keyboard shortcuts": "Billentyűparancsok",
 	"Keyboard Shortcuts": "",
 	"Knowledge": "Tudásbázis",
+<<<<<<< HEAD
+=======
+	"Knowledge Access": "Tudásbázis hozzáférés",
+	"Knowledge Base": "",
+	"Knowledge base has been reset": "",
+	"Knowledge created successfully.": "Tudásbázis sikeresen létrehozva.",
+	"Knowledge deleted successfully.": "Tudásbázis sikeresen törölve.",
+	"Knowledge Description": "",
+	"Knowledge exported successfully": "",
+	"Knowledge Name": "",
+	"Knowledge Public Sharing": "Tudásbázis nyilvános megosztása",
+	"Knowledge Sharing": "",
+	"Knowledge source created.": "",
+	"Knowledge source updated.": "",
+	"Knowledge updated successfully": "Tudásbázis sikeresen frissítve",
+	"Kokoro.js (Browser)": "Kokoro.js (Böngésző)",
+	"Kokoro.js Dtype": "Kokoro.js Dtype",
+>>>>>>> upstream/main
 	"Label": "Címke",
 	"Language Locales": "",
 	"Last 24 hours": "",
@@ -905,9 +1298,18 @@
 	"Leave model field empty to use the default model.": "Hagyja üresen a modell mezőt az alapértelmezett modell használatához.",
 	"lexical": "",
 	"License": "Licenc",
+	"Lifecycle JSON": "",
 	"Lift List": "",
 	"Limit concurrent search queries. 0 = unlimited (default). Set to 1 for sequential execution (recommended for APIs with strict rate limits like Brave free tier).": "",
 	"Limits the number of concurrent embedding requests. Set to 0 for unlimited.": "",
+<<<<<<< HEAD
+=======
+	"Linkup API Key": "",
+	"List": "",
+	"List calendars, search, create, update, and delete calendar events": "",
+	"Listening...": "Hallgatás...",
+	"Live": "",
+>>>>>>> upstream/main
 	"llama.cpp": "",
 	"Llama.cpp": "Llama.cpp",
 	"Loaded": "",
@@ -918,6 +1320,11 @@
 	"Local Task Model": "",
 	"Lost": "Elveszett",
 	"Low": "",
+<<<<<<< HEAD
+=======
+	"Lower the context compaction token threshold for this model. The global context compaction threshold remains the maximum.": "",
+	"LTR": "LTR",
+>>>>>>> upstream/main
 	"Made by Open WebUI Community": "Az OpenWebUI közösség által készítve",
 	"Make password visible in the user interface": "",
 	"Make sure to export a workflow.json file as API format from ComfyUI.": "Győződjön meg róla, hogy exportál egy workflow.json fájlt API formátumban a ComfyUI-ból.",
@@ -929,7 +1336,12 @@
 	"Manage OpenAI API Connections": "OpenAI API kapcsolatok kezelése",
 	"Manage Pipelines": "Folyamatok kezelése",
 	"Manage Tool Servers": "Eszközszerverek kezelése",
+<<<<<<< HEAD
 	"Manage, import, and configure the models available to users.": "",
+=======
+	"Manage your account information.": "",
+	"Mapped Source": "",
+>>>>>>> upstream/main
 	"March": "Március",
 	"Markdown": "",
 	"Markdown Header Text Splitter": "",
@@ -950,6 +1362,15 @@
 	"Members": "",
 	"Memories": "",
 	"Memory": "Memória",
+<<<<<<< HEAD
+=======
+	"Memory added successfully": "Memória sikeresen hozzáadva",
+	"Memory cleared successfully": "Memória sikeresen törölve",
+	"Memory deleted successfully": "Memória sikeresen törölve",
+	"Memory System Context": "",
+	"Memory updated successfully": "Memória sikeresen frissítve",
+	"Merge Accounts by Email": "",
+>>>>>>> upstream/main
 	"Merge Responses": "Válaszok egyesítése",
 	"Merged Response": "Összevont válasz",
 	"Message": "",
@@ -959,6 +1380,16 @@
 	"Message text...": "",
 	"messages": "",
 	"Messages": "",
+<<<<<<< HEAD
+=======
+	"Messages you send after creating your link won't be shared. Users with the URL will be able to view the shared chat.": "A link létrehozása után küldött üzenetei nem lesznek megosztva. A URL-lel rendelkező felhasználók megtekinthetik a megosztott beszélgetést.",
+	"Metadata Field": "",
+	"Microsoft OneDrive": "",
+	"Microsoft OneDrive (personal)": "",
+	"Microsoft OneDrive (work/school)": "",
+	"Microsoft Web IQ API Base URL": "",
+	"Microsoft Web IQ API Key": "",
+>>>>>>> upstream/main
 	"min": "",
 	"MinerU": "",
 	"MinerU API Key required for Cloud API mode.": "",
@@ -1000,18 +1431,42 @@
 	"Models Sharing": "",
 	"Mojeek": "",
 	"Mojeek Search API Key": "Mojeek Search API kulcs",
+<<<<<<< HEAD
+=======
+	"Monday – Friday": "",
+	"Month": "",
+	"Monthly": "",
+>>>>>>> upstream/main
 	"More": "Több",
 	"More Concise": "",
 	"More Options": "",
 	"Move": "",
+<<<<<<< HEAD
+=======
+	"Moved {{name}}": "",
+	"Multipart Upload": "",
+	"Mute": "",
+	"Muted": "",
+>>>>>>> upstream/main
 	"My Terminal": "",
 	"Name": "Név",
 	"Name and ID are required, please fill them out": "",
 	"Name this model…": "",
 	"Name your model": "",
 	"Native": "Natív",
+<<<<<<< HEAD
+=======
+	"Native mode (default) leverages the model's built-in tool-calling capabilities. Legacy mode works with a wider range of models by calling tools once before execution via prompt injection.": "",
+	"Never": "",
+>>>>>>> upstream/main
 	"New": "",
 	"New Chat": "Új beszélgetés",
+<<<<<<< HEAD
+=======
+	"New directory": "",
+	"New Directory": "",
+	"New Event": "",
+>>>>>>> upstream/main
 	"New File": "",
 	"New Folder": "Új mappa",
 	"New Function": "",
@@ -1026,6 +1481,7 @@
 	"Next message": "",
 	"No access grants. Private to you.": "",
 	"No activity data": "",
+	"No additional headers are sent unless configured.": "",
 	"No authentication": "",
 	"No chats found": "",
 	"No chats found for this user.": "",
@@ -1034,7 +1490,13 @@
 	"No data": "",
 	"No data found": "",
 	"No distance available": "Nincs elérhető távolság",
+<<<<<<< HEAD
+=======
+	"No event webhooks configured.": "",
+	"No execution logs available yet": "",
+>>>>>>> upstream/main
 	"No expiration can pose security risks.": "",
+	"No external knowledge sources configured.": "",
 	"No feedback found": "",
 	"No file selected": "Nincs kiválasztva fájl",
 	"No files found": "",
@@ -1044,14 +1506,27 @@
 	"No HTML, CSS, or JavaScript content found.": "Nem található HTML, CSS vagy JavaScript tartalom.",
 	"No inference engine with management support found": "Nem található kezelést támogató következtetési motor",
 	"No kernel": "",
+<<<<<<< HEAD
+=======
+	"No knowledge bases accessible": "",
+	"No knowledge bases found.": "",
+	"No knowledge found": "Nem található tudásbázis",
+>>>>>>> upstream/main
 	"No limit": "",
 	"No model IDs": "Nincs modell azonosító",
+	"No models accessible": "",
 	"No models available": "",
 	"No models found": "Nem található modell",
 	"No models match your search.": "",
 	"No models selected": "Nincs kiválasztott modell",
 	"No one": "",
 	"No output items": "",
+<<<<<<< HEAD
+=======
+	"No pinned messages": "",
+	"No prompts found": "",
+	"No Repeat": "",
+>>>>>>> upstream/main
 	"No results": "Nincs találat",
 	"No results found": "Nincs találat",
 	"No search query generated": "Nem generálódott keresési lekérdezés",
@@ -1063,12 +1538,18 @@
 	"No Terminal connection configured.": "",
 	"No terminal connections configured.": "",
 	"No tool server connections configured.": "",
+<<<<<<< HEAD
 	"No tools match your search.": "",
+=======
+	"No tools accessible": "",
+	"No tools found": "",
+>>>>>>> upstream/main
 	"No users were found.": "Nem található felhasználó.",
 	"No valves": "",
 	"No valves to update": "Nincs frissítendő szelep",
 	"Node Ids": "",
 	"None": "Nincs",
+	"Not configured": "",
 	"Not factually correct": "Tényszerűen nem helyes",
 	"Not helpful": "Nem segítőkész",
 	"Not Registered": "",
@@ -1078,21 +1559,31 @@
 	"Nothing has been rehearsed yet.": "",
 	"November": "November",
 	"OAuth": "",
+	"OAuth / OIDC": "",
 	"OAuth 2.1": "",
 	"OAuth 2.1 (Static)": "",
 	"OAuth ID": "OAuth azonosító",
+	"OAuth Resource Parameter": "",
+	"OAuth Scopes": "",
 	"OAuth Server URL": "",
 	"October": "Október",
 	"Off": "Ki",
 	"Okay, Let's Go!": "Rendben, kezdjük!",
+<<<<<<< HEAD
+=======
+	"Older messages are summarized when estimated context exceeds this token limit.": "",
+	"OLED Dark": "OLED sötét",
+>>>>>>> upstream/main
 	"Ollama": "Ollama",
 	"Ollama API": "Ollama API",
 	"Ollama Cloud API Key": "",
 	"Ollama Version": "Ollama verzió",
+	"Omit": "",
 	"On": "Be",
 	"On by default": "",
 	"On by default for new chats": "",
 	"OneDrive": "OneDrive",
+	"Only active during Voice Mode.": "",
 	"Only active when \"Paste Large Text as File\" setting is toggled on.": "",
 	"Only active when the chat input is in focus and an LLM is generating a response.": "",
 	"Only active when the chat input is in focus.": "",
@@ -1162,21 +1653,39 @@
 	"Participate in community leaderboards and evaluations! Syncing aggregated usage stats helps drive research and improvements to Open WebUI. Your privacy is paramount: no message content is ever shared.": "",
 	"Password": "Jelszó",
 	"Passwords do not match.": "",
+<<<<<<< HEAD
 	"PDF document (.pdf)": "PDF dokumentum (.pdf)",
 	"PDF Extract Images (OCR)": "PDF képek kinyerése (OCR)",
 	"PDF Loader Mode": "",
 	"Penalties & Mirostat": "",
+=======
+	"Paste Large Text as File": "Nagy szöveg beillesztése fájlként",
+	"Path": "",
+	"Path copied": "",
+	"Paused": "",
+	"PDF document (.pdf)": "PDF dokumentum (.pdf)",
+	"PDF Extract Images (OCR)": "PDF képek kinyerése (OCR)",
+	"PDF Loader Mode": "",
+	"pdf, docx, pptx, xlsx": "",
+>>>>>>> upstream/main
 	"pending": "függőben",
 	"Pending": "",
+	"Pending Accounts": "",
 	"Pending User Overlay Content": "",
 	"Pending User Overlay Title": "",
 	"Permissions": "Engedélyek",
+	"Permissions reset to defaults": "",
 	"Perplexity API Key": "Perplexity API kulcs",
 	"Perplexity Model": "",
 	"Perplexity Search API URL": "",
 	"Perplexity Search Context Usage": "",
 	"Persistent": "",
+<<<<<<< HEAD
 	"Pick an icon or emoji": "",
+=======
+	"Personalization": "Személyre szabás",
+	"Picture Claim": "",
+>>>>>>> upstream/main
 	"Pin": "Rögzítés",
 	"Pinned Models": "",
 	"Pioneer insights": "Úttörő betekintések",
@@ -1199,9 +1708,14 @@
 	"Please enter Client ID and Client Secret": "",
 	"Please register the OAuth client": "",
 	"Please save the connection to persist the OAuth client information and do not change the ID": "",
+<<<<<<< HEAD
+=======
+	"Please select a model.": "Kérjük, válasszon egy modellt.",
+>>>>>>> upstream/main
 	"Please select a reason": "Kérjük, válasszon egy okot",
 	"Please select a valid JSON file": "",
 	"Policy ID": "",
+	"Policy ID is required": "",
 	"Port": "Port",
 	"Ports": "",
 	"Positive attitude": "Pozitív hozzáállás",
@@ -1209,6 +1723,7 @@
 	"Prefix ID is used to avoid conflicts with other connections by adding a prefix to the model IDs - leave empty to disable": "Az előtag azonosító a modell azonosítókhoz hozzáadott előtag segítségével elkerüli az egyéb kapcsolatokkal való ütközéseket - hagyja üresen a letiltáshoz",
 	"Prevent File Creation": "",
 	"Preview": "",
+	"Preview Access": "",
 	"Previous 30 days": "Előző 30 nap",
 	"Previous 7 days": "Előző 7 nap",
 	"Previous message": "",
@@ -1217,6 +1732,8 @@
 	"Prompt": "Prompt",
 	"Prompt Template": "",
 	"Provider": "",
+	"Provider Name": "",
+	"Provider URL": "",
 	"Public": "Nyilvános",
 	"Public shared chat links are disabled for this workspace.": "",
 	"Pull \"{{searchValue}}\" from Ollama.com": "\"{{searchValue}}\" letöltése az Ollama.com-ról",
@@ -1239,18 +1756,38 @@
 	"Read": "Olvasás",
 	"Read Aloud": "Felolvasás",
 	"Read more →": "",
+<<<<<<< HEAD
 	"read only": "",
+=======
+	"Read only": "",
+>>>>>>> upstream/main
 	"Read Only": "",
 	"Read, write, and diff-edit durable notes for the current chat Scratchboard": "",
 	"Reason": "",
 	"Reasoning Effort": "Érvelési erőfeszítés",
 	"Reasoning Tags": "",
 	"Reasoning text...": "",
+	"Receives matching events across the instance, including system/config events and events associated with any user.": "",
+	"Receives matching events that are not associated with a user.": "",
+	"Receives matching user-associated events only when the actor, user subject, or user data matches these users or current group members. System/config events are not sent.": "",
 	"Recently Used": "",
 	"Reconnected": "",
+<<<<<<< HEAD
 	"Redirecting you to Open WebUI Community": "Átirányítás az OpenWebUI közösséghez",
 	"Reduces the probability of generating nonsense. A higher value (e.g. 100) will give more diverse answers, while a lower value (e.g. 10) will be more conservative.": "Csökkenti a ostobaság generálásának valószínűségét. Magasabb érték (pl. 100) változatosabb válaszokat ad, míg alacsonyabb érték (pl. 10) konzervatívabb lesz.",
+=======
+	"Record": "",
+	"Record voice": "Hang rögzítése",
+	"Redirect URI": "",
+	"Redirecting you to Open WebUI Community": "Átirányítás az OpenWebUI közösséghez",
+	"Reduces the probability of generating nonsense. A higher value (e.g. 100) will give more diverse answers, while a lower value (e.g. 10) will be more conservative.": "Csökkenti a ostobaság generálásának valószínűségét. Magasabb érték (pl. 100) változatosabb válaszokat ad, míg alacsonyabb érték (pl. 10) konzervatívabb lesz.",
+	"Reference Chats": "",
+>>>>>>> upstream/main
 	"Refresh": "",
+	"Refresh requested: {{count}} terminal(s)_one": "",
+	"Refresh requested: {{count}} terminal(s)_other": "",
+	"Refresh Terminals": "",
+	"Refreshing...": "",
 	"Refused when it shouldn't have": "Elutasítva, amikor nem kellett volna",
 	"Regenerate": "Újragenerálás",
 	"Regenerate Response": "",
@@ -1269,15 +1806,38 @@
 	"Remove from favorites": "",
 	"Remove image": "",
 	"Remove Model": "Modell eltávolítása",
+	"Removing {{count}} stale files..._one": "",
+	"Removing {{count}} stale files..._other": "",
 	"Rename": "Átnevezés",
 	"Reorder Models": "Modellek átrendezése",
+<<<<<<< HEAD
+=======
+	"Repeat": "",
+	"Repeats": "",
+	"Reply": "",
+	"Reply in Thread": "Válasz szálban",
+	"Reply to thread...": "",
+	"Replying to {{NAME}}": "",
+	"Request Format": "",
+	"Require users to confirm before using Web Search.": "",
+	"required": "",
+>>>>>>> upstream/main
 	"Reranking Batch Size": "",
 	"Reranking Engine": "",
 	"Reranking Model": "Újrarangsoroló modell",
+	"Research Knowledge": "",
 	"Reset": "Visszaállítás",
 	"Reset All Models": "Minden modell visszaállítása",
+	"Reset all permissions to their initial configuration values": "",
+	"Reset group permissions to match the current default user permissions": "",
 	"Reset Image": "Kép visszaállítása",
+<<<<<<< HEAD
 	"Reset to default": "",
+=======
+	"Reset knowledge base?": "",
+	"Reset persisted files": "",
+	"Reset to Defaults": "",
+>>>>>>> upstream/main
 	"Reset Upload Directory": "Feltöltési könyvtár visszaállítása",
 	"Reset Vector Storage/Knowledge": "Vektor tárhely/tudásbázis visszaállítása",
 	"Reset view": "Nézet visszaállítása",
@@ -1298,6 +1858,11 @@
 	"Return token usage information in the response when supported": "",
 	"Reusable instruction packs that teach your models a procedure or domain — import a markdown skill or write your own, then enable it where you need it.": "",
 	"Role": "Szerep",
+<<<<<<< HEAD
+=======
+	"Roles Claim": "",
+	"RTL": "RTL",
+>>>>>>> upstream/main
 	"Run": "Futtatás",
 	"Run All": "",
 	"Running": "Fut",
@@ -1310,10 +1875,18 @@
 	"Save As Copy": "Mentés másolatként",
 	"Saved": "Mentve",
 	"Saving chat logs directly to your browser's storage is no longer supported. Please take a moment to download and delete your chat logs by clicking the button below. Don't worry, you can easily re-import your chat logs to the backend through": "A csevegési naplók közvetlen mentése a böngésző tárolójába már nem támogatott. Kérjük, szánjon egy percet a csevegési naplók letöltésére és törlésére az alábbi gomb megnyomásával. Ne aggódjon, könnyen újra importálhatja a csevegési naplókat a backend-be",
+<<<<<<< HEAD
 	"Scratchboard": "",
+=======
+	"Schedule": "",
+	"Scheduled time must be in the future": "",
+	"Scopes": "",
+	"Scroll On Branch Change": "",
+>>>>>>> upstream/main
 	"Scroll to Top": "",
 	"Search": "Keresés",
 	"Search a model": "Modell keresése",
+	"Search actions": "",
 	"Search all emojis": "",
 	"Search and manage user memories": "",
 	"Search and view user chat history": "",
@@ -1321,6 +1894,7 @@
 	"Search Chats": "Beszélgetések keresése",
 	"Search engines and web content loaders for live results.": "",
 	"Search Files": "",
+	"Search filters": "",
 	"Search Filters": "Keresési szűrők",
 	"search for archived chats": "",
 	"search for folders": "",
@@ -1332,10 +1906,22 @@
 	"Search In Models": "",
 	"Search Models": "Modellek keresése",
 	"Search options": "Keresési opciók",
+<<<<<<< HEAD
+=======
+	"Search or add pattern": "",
+	"Search Prompts": "Promptok keresése",
+>>>>>>> upstream/main
 	"Search Result Count": "Keresési találatok száma",
+	"Search skills": "",
 	"Search Skills": "",
 	"Search the web and fetch URLs": "",
+	"Search tools": "",
 	"Search Tools": "Eszközök keresése",
+<<<<<<< HEAD
+=======
+	"Search users or groups": "",
+	"Search, view, and manage user notes": "",
+>>>>>>> upstream/main
 	"SearchApi API Key": "SearchApi API kulcs",
 	"SearchApi Engine": "SearchApi motor",
 	"Searched {{count}} sites": "{{count}} oldal keresése megtörtént",
@@ -1350,7 +1936,12 @@
 	"Seed": "Seed",
 	"Select": "",
 	"Select {{modelName}} model": "",
+<<<<<<< HEAD
 	"Select a base model": "Válasszon egy alapmodellt",
+=======
+	"Select a base model (e.g. llama3, gpt-4o)": "",
+	"Select a conversation to preview": "",
+>>>>>>> upstream/main
 	"Select a engine": "Válasszon egy motort",
 	"Select a function": "Válasszon egy funkciót",
 	"Select a group": "Válasszon egy csoportot",
@@ -1380,15 +1971,36 @@
 	"Selected Models": "",
 	"semantic": "",
 	"Send": "Küldés",
+<<<<<<< HEAD
+=======
+	"Send a Message": "Üzenet küldése",
+	"Send events for": "",
+	"Send message": "Üzenet küldése",
+	"Send now": "",
+	"Send product events as JSON to external services. Chat destinations receive readable messages.": "",
+	"Send the PDF as a base64 data URL instead of uploading it first.": "",
+	"Sends `stream_options: { include_usage: true }` in the request.\nSupported providers will return token usage information in the response when set.": "A kérésben elküldi a `stream_options: { include_usage: true }` opciót.\nA támogatott szolgáltatók token használati információt küldenek vissza a válaszban, ha be van állítva.",
+>>>>>>> upstream/main
 	"September": "Szeptember",
 	"sequences that end a response — comma separated": "",
 	"SerpApi API Key": "SerpApi API kulcs",
 	"SerpApi Engine": "SerpApi motor",
 	"Serper API Key": "Serper API kulcs",
+	"SERPHouse API Key": "",
+	"SERPHouse Domain": "",
 	"Serply API Key": "Serply API kulcs",
 	"Serpstack API Key": "Serpstack API kulcs",
 	"Server connection failed": "",
+<<<<<<< HEAD
 	"Session": "",
+=======
+	"Server connection verified": "Szerverkapcsolat ellenőrizve",
+	"Service Account": "",
+	"Session": "",
+	"Session expired. Please sign in again.": "",
+	"Set as default": "Beállítás alapértelmezettként",
+	"Set as Production": "",
+>>>>>>> upstream/main
 	"Set embedding model": "Beágyazási modell beállítása",
 	"Set embedding model (e.g. {{model}})": "Beágyazási modell beállítása (pl. {{model}})",
 	"Set reranking model (e.g. {{model}})": "Újrarangsoroló modell beállítása (pl. {{model}})",
@@ -1412,13 +2024,28 @@
 	"Share": "Megosztás",
 	"Share Chat": "Beszélgetés megosztása",
 	"Share to Open WebUI Community": "Megosztás az OpenWebUI közösséggel",
+<<<<<<< HEAD
+=======
+	"Share your background and interests": "",
+	"Shared": "",
+>>>>>>> upstream/main
 	"Shared Chats": "",
 	"Shared with you": "",
 	"Sharing Permissions": "Megosztási engedélyek",
 	"Show": "Mutat",
+<<<<<<< HEAD
 	"Show Admin Details in Account Pending Overlay": "Admin részletek megjelenítése a függő fiók átfedésben",
 	"Show All": "",
 	"Show all ({{COUNT}} characters)": "",
+=======
+	"Show \"What's New\" Modal on Login": "\"Mi újság\" modal megjelenítése bejelentkezéskor",
+	"Show Admin Details in Account Pending Overlay": "Admin részletek megjelenítése a függő fiók átfedésben",
+	"Show All": "",
+	"Show all ({{COUNT}} characters)": "",
+	"Show Files": "",
+	"Show Files on Terminal Select": "",
+	"Show Formatting Toolbar": "",
+>>>>>>> upstream/main
 	"Show image preview": "",
 	"Show Model": "Modell megjelenítése",
 	"Show Shortcuts": "",
@@ -1460,7 +2087,13 @@
 	"Sougou Search API sID": "",
 	"Sougou Search API SK": "",
 	"Source": "Forrás",
+<<<<<<< HEAD
 	"Sources used": "",
+=======
+	"Specific users or groups": "",
+	"Speech Playback Speed": "Beszéd lejátszási sebesség",
+	"Speech recognition error: {{error}}": "Beszédfelismerési hiba: {{error}}",
+>>>>>>> upstream/main
 	"Speech-to-Text": "",
 	"Speech-to-Text Engine": "Beszéd-szöveg motor",
 	"Split documents by markdown headers before applying character/token splitting.": "",
@@ -1484,6 +2117,13 @@
 	"Strip Existing OCR": "",
 	"Strip existing OCR text from the PDF and re-run OCR. Ignored if Force OCR is enabled. Defaults to False.": "",
 	"STT Model": "STT modell",
+<<<<<<< HEAD
+=======
+	"STT Settings": "STT beállítások",
+	"Stylized PDF Export": "",
+	"Su_day_of_week": "",
+	"Sub Claim": "",
+>>>>>>> upstream/main
 	"Submit question": "",
 	"Submit suggestion": "",
 	"Subtitle": "",
@@ -1497,13 +2137,22 @@
 	"Switch to JSON editor": "",
 	"Switch to visual editor": "",
 	"Sync": "",
+	"Sync a local directory with this knowledge base. Only new and modified files will be uploaded. The directory structure will be mirrored.": "",
+	"Sync complete: {{added}} added, {{modified}} modified, {{deleted}} deleted, {{unmodified}} unmodified": "",
 	"Sync Complete!": "",
 	"Sync Failed": "",
 	"Sync Usage Stats": "",
 	"Syncing stats...": "",
 	"Syncing...": "",
 	"Syncs only chats with updates after your last sync timestamp. Disable to re-sync all chats.": "",
+<<<<<<< HEAD
+=======
+	"System": "Rendszer",
+	"System events only": "",
+	"System Instructions": "Rendszer utasítások",
+>>>>>>> upstream/main
 	"System Prompt": "Rendszer prompt",
+	"Table": "",
 	"Tag": "",
 	"Tags": "Címkék",
 	"Tags Generation": "Címke generálás",
@@ -1523,6 +2172,16 @@
 	"Temperature": "Hőmérséklet",
 	"Temporary Chat": "Ideiglenes csevegés",
 	"Terminal": "",
+<<<<<<< HEAD
+=======
+	"Terminal servers saved": "",
+	"Test": "",
+	"Test Query": "",
+	"Test returned no results.": "",
+	"Test succeeded.": "",
+	"Test the source before creating it.": "",
+	"Test the source before saving it.": "",
+>>>>>>> upstream/main
 	"Text Splitter": "Szöveg felosztó",
 	"Text-to-Speech": "",
 	"Text-to-Speech Engine": "Szöveg-beszéd motor",
@@ -1537,8 +2196,11 @@
 	"The height in pixels to compress images to. Leave empty for no compression.": "",
 	"The LDAP attribute that maps to the mail that users use to sign in.": "Az LDAP attribútum, amely a felhasználók bejelentkezéshez használt emailjéhez kapcsolódik.",
 	"The LDAP attribute that maps to the username that users use to sign in.": "Az LDAP attribútum, amely a felhasználók bejelentkezéshez használt felhasználónevéhez kapcsolódik.",
+<<<<<<< HEAD
 	"The leaderboard is currently in beta, and we may adjust the rating calculations as we refine the algorithm.": "A ranglista jelenleg béta verzióban van, és az algoritmus finomítása során módosíthatjuk az értékelési számításokat.",
 	"the longest single response it may set": "",
+=======
+>>>>>>> upstream/main
 	"The maximum file size in MB. If the file size exceeds this limit, the file will not be uploaded.": "A maximális fájlméret MB-ban. Ha a fájlméret meghaladja ezt a limitet, a fájl nem lesz feltöltve.",
 	"The maximum number of files that can be used at once in chat. If the number of files exceeds this limit, the files will not be uploaded.": "A csevegésben egyszerre használható fájlok maximális száma. Ha a fájlok száma meghaladja ezt a limitet, a fájlok nem lesznek feltöltve.",
 	"The only required step — refine everything else now or later.": "",
@@ -1564,6 +2226,11 @@
 	"This feature is currently experimental and may not work as expected.": "",
 	"This folder is empty": "",
 	"This is a default user permission and will remain enabled.": "",
+<<<<<<< HEAD
+=======
+	"This is an experimental feature, it may not function as expected and is subject to change at any time.": "Ez egy kísérleti funkció, lehet, hogy nem a várt módon működik és bármikor változhat.",
+	"This knowledge base retrieves from a connected source. Open WebUI can query it, but cannot upload, sync, edit, delete, reset, or reindex its source data.": "",
+>>>>>>> upstream/main
 	"This model is not publicly available. Please select another model.": "",
 	"This option controls how long the model will stay loaded into memory following the request (default: 5m)": "",
 	"This option controls how many tokens are preserved when refreshing the context. For example, if set to 2, the last 2 tokens of the conversation context will be retained. Preserving context can help maintain the continuity of a conversation, but it may reduce the ability to respond to new topics.": "Ez az opció szabályozza, hány token marad meg a kontextus frissítésekor. Például, ha 2-re van állítva, a beszélgetés kontextusának utolsó 2 tokenje megmarad. A kontextus megőrzése segíthet a beszélgetés folytonosságának fenntartásában, de csökkentheti az új témákra való reagálás képességét.",
@@ -1575,6 +2242,11 @@
 	"This will delete <strong>{{NAME}}</strong> and <strong>all its contents</strong>.": "Ez törölni fogja a <strong>{{NAME}}</strong>-t és <strong>minden tartalmát</strong>.",
 	"This will delete all models including custom models": "Ez törölni fogja az összes modellt, beleértve az egyéni modelleket is",
 	"This will delete all models including custom models and cannot be undone.": "Ez törölni fogja az összes modellt, beleértve az egyéni modelleket is, és nem vonható vissza.",
+<<<<<<< HEAD
+=======
+	"This will permanently delete the calendar \"{{name}}\" and all its events. This action cannot be undone.": "",
+	"This will remove all files and directories from this knowledge base. This action cannot be undone.": "",
+>>>>>>> upstream/main
 	"Thorough explanation": "Alapos magyarázat",
 	"Thought": "",
 	"Thought for {{DURATION}}": "Gondolkodott {{DURATION}} ideig",
@@ -1597,12 +2269,23 @@
 	"To learn more about available endpoints, visit our documentation.": "Az elérhető végpontokról további információért látogassa meg dokumentációnkat.",
 	"To select skills here, add them to the \"Skills\" workspace first.": "",
 	"To select toolkits here, add them to the \"Tools\" workspace first.": "Az eszközkészletek kiválasztásához először adja hozzá őket a \"Tools\" munkaterülethez.",
+<<<<<<< HEAD
+=======
+	"Toast Notifications for New Updates": "Felugró értesítések az új frissítésekről",
+>>>>>>> upstream/main
 	"Today": "Ma",
 	"Toggle details": "",
+<<<<<<< HEAD
+=======
+	"Toggle Dictation": "",
+	"Toggle Mute": "",
+>>>>>>> upstream/main
 	"Toggle Sidebar": "",
 	"Toggle whether current connection is active.": "",
 	"Token": "Token",
 	"Token counts are estimates and may not reflect actual API usage": "",
+	"Token Threshold": "",
+	"Tokenizer Model": "",
 	"tokens": "",
 	"Tokens": "",
 	"Too verbose": "Túl bőbeszédű",
@@ -1647,10 +2330,25 @@
 	"Unlock mysteries": "Titkok feloldása",
 	"Unpin": "Rögzítés feloldása",
 	"Unravel secrets": "Titkok megfejtése",
+	"Unshare All": "",
+	"Unshare All Shared Chats": "",
 	"Unshare Chat": "",
 	"Untagged": "Címkézetlen",
+<<<<<<< HEAD
 	"Untitled folio": "",
 	"Update for the latest features and improvements.": "Frissítsen a legújabb funkciókért és fejlesztésekért.",
+=======
+	"Untitled": "",
+	"Update": "Frissítés",
+	"Update and Copy Link": "Frissítés és link másolása",
+	"Update Email": "",
+	"Update for the latest features and improvements.": "Frissítsen a legújabb funkciókért és fejlesztésekért.",
+	"Update Name": "",
+	"Update password": "Jelszó frissítése",
+	"Update Picture": "",
+	"Update your status": "",
+	"Updated": "Frissítve",
+>>>>>>> upstream/main
 	"Updated at": "Frissítve ekkor",
 	"Updated At": "Frissítve ekkor",
 	"Upgrade to a licensed plan for enhanced capabilities, including custom theming and branding, and dedicated support.": "Frissítsen licencelt csomagra a bővített képességekért, beleértve az egyéni témázást és márkázást, valamint dedikált támogatást.",
@@ -1662,24 +2360,40 @@
 	"Upload profile image": "",
 	"Upload Progress": "Feltöltési folyamat",
 	"Uploaded files or images": "",
+<<<<<<< HEAD
+=======
+	"Uploading {{current}}/{{total}}: {{file}}": "",
+>>>>>>> upstream/main
 	"Uploading...": "",
 	"URL": "URL",
 	"URL is required": "",
 	"URL Mode": "URL mód",
 	"Usage": "",
 	"Use /v1/chat/completions endpoint instead of /v1/audio/transcriptions for potentially better accuracy.": "",
+	"Use a valid event name or pattern like user.*": "",
+	"Use Base64": "",
 	"Use Chat Completions API": "",
+	"Use discovered scopes": "",
 	"Use groups to organize your users and assign permissions.": "",
 	"Use LLM": "",
 	"Use no proxy to fetch page contents.": "",
 	"Use proxy designated by http_proxy and https_proxy environment variables to fetch page contents.": "",
+	"Use Web Search?": "",
 	"user": "felhasználó",
 	"User": "Felhasználó",
+	"User Access": "",
 	"User Activity": "",
 	"User Groups": "",
+<<<<<<< HEAD
+=======
+	"User location successfully retrieved.": "Felhasználó helye sikeresen lekérve.",
+	"User menu": "",
+	"User Preview": "",
+>>>>>>> upstream/main
 	"User ratings (thumbs up/down)": "",
 	"User Webhooks": "Felhasználói webhookok",
 	"Username": "Felhasználónév",
+	"Username Claim": "",
 	"users": "",
 	"Users": "Felhasználók",
 	"Uses DefaultAzureCredential to authenticate": "",
@@ -1690,7 +2404,14 @@
 	"Valid time units:": "Érvényes időegységek:",
 	"Validate certificate": "",
 	"Valves": "Szelepek",
+<<<<<<< HEAD
 	"Verified": "",
+=======
+	"Valves updated": "Szelepek frissítve",
+	"Valves updated successfully": "Szelepek sikeresen frissítve",
+	"variable": "változó",
+	"Vector Field": "",
+>>>>>>> upstream/main
 	"Verify Connection": "Kapcsolat ellenőrzése",
 	"Verify SSL Certificate": "",
 	"Version": "Verzió",
@@ -1711,9 +2432,20 @@
 	"Web API": "Web API",
 	"Web Loader Engine": "",
 	"Web Search": "Webes keresés",
+	"Web Search Confirmation": "",
+	"Web Search Confirmation Content": "",
 	"Web Search Engine": "Webes keresőmotor",
 	"Web Search Query Generation": "Webes keresési lekérdezés generálása",
+<<<<<<< HEAD
 	"Webhook URL": "Webhook URL",
+=======
+	"Webhook deleted": "",
+	"Webhook Name": "",
+	"Webhook saved": "",
+	"Webhooks": "",
+	"Webpage URLs": "",
+	"WebUI Settings": "WebUI beállítások",
+>>>>>>> upstream/main
 	"WebUI URL": "WebUI URL",
 	"WebUI will make requests to \"{{url}}\"": "A WebUI kéréseket küld a \"{{url}}\" címre",
 	"WebUI will make requests to \"{{url}}/api/chat\"": "A WebUI kéréseket küld a \"{{url}}/api/chat\" címre",
@@ -1744,6 +2476,7 @@
 	"Yandex Web Search API Key": "",
 	"Yandex Web Search config": "",
 	"Yandex Web Search URL": "",
+	"Yearly": "",
 	"Yesterday": "Tegnap",
 	"You": "Ön",
 	"You are a careful editor: terse, concrete, kind…": "",
@@ -1763,6 +2496,7 @@
 	"Your browser does not support the video tag.": "",
 	"Your entire contribution will go directly to the plugin developer; Open WebUI does not take any percentage. However, the chosen funding platform might have its own fees.": "A teljes hozzájárulása közvetlenül a bővítmény fejlesztőjéhez kerül; az Open WebUI nem vesz le százalékot. Azonban a választott támogatási platformnak lehetnek saját díjai.",
 	"Your message text or inputs": "",
+	"Your query will be sent to the configured web search provider.": "",
 	"Your usage stats have been successfully synced.": "",
 	"Youtube Language": "YouTube nyelv",
 	"Youtube Proxy URL": "YouTube proxy URL"

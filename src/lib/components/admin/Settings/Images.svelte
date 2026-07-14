@@ -237,6 +237,10 @@
 				config = res;
 			}
 
+			if (!config) {
+				return;
+			}
+
 			if (config.ENABLE_IMAGE_GENERATION) {
 				getModels();
 			}

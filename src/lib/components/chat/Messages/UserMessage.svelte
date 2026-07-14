@@ -154,6 +154,7 @@
 		{#if !($settings?.chatBubble ?? true)}
 			<div class="meta-line">
 				<Name>
+<<<<<<< HEAD
 					<span class="meta-role">
 						{#if message.user}
 							{$i18n.t('You')}
@@ -166,6 +167,38 @@
 							{$i18n.t('You')}
 						{/if}
 					</span>
+=======
+					{#if message.user}
+						{$i18n.t('You')}
+						<span class=" text-gray-500 text-sm font-medium">{message?.user ?? ''}</span>
+					{:else if $settings.showUsername || $_user?.name !== user?.name}
+						{user?.name ?? $i18n.t('You')}
+					{:else}
+						{$i18n.t('You')}
+					{/if}
+
+					{#if message.timestamp}
+						<div
+							class="self-center text-xs font-medium first-letter:capitalize ml-0.5 translate-y-[1px] {($settings?.highContrastMode ??
+							false)
+								? 'dark:text-gray-100 text-gray-900'
+								: 'invisible group-hover:visible transition'}"
+						>
+							<Tooltip content={dayjs(message.timestamp * 1000).format('LLLL')}>
+								<!-- $i18n.t('Today at {{LOCALIZED_TIME}}') -->
+								<!-- $i18n.t('Yesterday at {{LOCALIZED_TIME}}') -->
+								<!-- $i18n.t('{{LOCALIZED_DATE}} at {{LOCALIZED_TIME}}') -->
+
+								<span class="line-clamp-1"
+									>{$i18n.t(formatDate(message.timestamp * 1000), {
+										LOCALIZED_TIME: dayjs(message.timestamp * 1000).format('LT'),
+										LOCALIZED_DATE: dayjs(message.timestamp * 1000).format('L')
+									})}</span
+								>
+							</Tooltip>
+						</div>
+					{/if}
+>>>>>>> upstream/main
 				</Name>
 			</div>
 		{:else}

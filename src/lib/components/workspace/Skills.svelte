@@ -87,18 +87,20 @@
 		}
 	};
 
-	// Debounce only query changes
-	$: if (query !== undefined) {
+	const handleSearchInput = () => {
 		loading = true;
 		clearTimeout(searchDebounceTimer);
 		searchDebounceTimer = setTimeout(() => {
-			page = 1;
-			loadSkillItems();
+			if (page !== 1) {
+				page = 1;
+			} else {
+				loadSkillItems();
+			}
 		}, 300);
-	}
+	};
 
 	// Immediate response to page/filter changes
-	$: if (page && viewOption !== undefined) {
+	$: if (loaded && page && viewOption !== undefined) {
 		loadSkillItems();
 	}
 
@@ -165,13 +167,13 @@
 
 		window.addEventListener('keydown', onKeyDown);
 		window.addEventListener('keyup', onKeyUp);
-		window.addEventListener('blur-sm', onBlur);
+		window.addEventListener('blur', onBlur);
 
 		return () => {
 			clearTimeout(searchDebounceTimer);
 			window.removeEventListener('keydown', onKeyDown);
 			window.removeEventListener('keyup', onKeyUp);
-			window.removeEventListener('blur-sm', onBlur);
+			window.removeEventListener('blur', onBlur);
 		};
 	});
 
@@ -222,6 +224,7 @@
 							} catch (e) {
 								toast.error($i18n.t('Invalid JSON file'));
 							}
+<<<<<<< HEAD
 						};
 						reader.readAsText(file);
 					} else {
@@ -241,6 +244,38 @@
 									content: mdContent,
 									is_active: true,
 									access_grants: []
+=======
+
+							importInputElement.value = '';
+						}
+					}}
+				/>
+
+				{#if $user?.role === 'admin' || $user?.permissions?.workspace?.skills_import}
+					<button
+						class="flex text-xs items-center space-x-1 px-3 py-1.5 rounded-xl bg-gray-50 hover:bg-gray-100 dark:bg-gray-850 dark:hover:bg-gray-800 dark:text-gray-200 transition"
+						on:click={() => {
+							importInputElement.click();
+						}}
+					>
+						<div class=" self-center font-medium line-clamp-1">
+							{$i18n.t('Import')}
+						</div>
+					</button>
+				{/if}
+
+				{#if total && ($user?.role === 'admin' || $user?.permissions?.workspace?.skills_export)}
+					<button
+						class="flex text-xs items-center space-x-1 px-3 py-1.5 rounded-xl bg-gray-50 hover:bg-gray-100 dark:bg-gray-850 dark:hover:bg-gray-800 dark:text-gray-200 transition"
+						on:click={async () => {
+							const _skills = await exportSkills(localStorage.token).catch((error) => {
+								toast.error(`${error}`);
+								return null;
+							});
+							if (_skills) {
+								let blob = new Blob([JSON.stringify(_skills)], {
+									type: 'application/json'
+>>>>>>> upstream/main
 								});
 								goto('/workspace/skills/create');
 							}
@@ -268,10 +303,12 @@
 				<Search className="size-3.5" />
 				<input
 					bind:value={query}
+					on:input={handleSearchInput}
 					aria-label={$i18n.t('Search Skills')}
 					placeholder={$i18n.t('Search Skills')}
 				/>
 				{#if query}
+<<<<<<< HEAD
 					<button
 						class="btn-clear p-0.5"
 						aria-label={$i18n.t('Clear search')}
@@ -281,6 +318,20 @@
 					>
 						<XMark className="size-3" strokeWidth="2" />
 					</button>
+=======
+					<div class="self-center pl-1.5 translate-y-[0.5px] rounded-l-xl bg-transparent">
+						<button
+							class="p-0.5 rounded-full hover:bg-gray-100 dark:hover:bg-gray-900 transition"
+							aria-label={$i18n.t('Clear search')}
+							on:click={() => {
+								query = '';
+								handleSearchInput();
+							}}
+						>
+							<XMark className="size-3" strokeWidth="2" />
+						</button>
+					</div>
+>>>>>>> upstream/main
 				{/if}
 			</div>
 

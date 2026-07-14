@@ -21,6 +21,7 @@
 		// Advanced
 		stream_response: null, // Set stream responses for this model individually
 		stream_delta_chunk_size: null, // Set the chunk size for streaming responses
+		compact_token_threshold: null,
 		function_calling: null,
 		reasoning_tags: null,
 		seed: null,
@@ -59,6 +60,7 @@
 </script>
 
 <div class=" space-y-1 text-xs pb-safe-bottom">
+<<<<<<< HEAD
 	{#if grouped}
 		<button type="button" class="apg-group" on:click={() => (openGroups.gen = !openGroups.gen)}>
 			<span class="apg-chevron {openGroups.gen ? 'open' : ''}">⌄</span>
@@ -101,6 +103,180 @@
 						</button>
 					</div>
 				</Tooltip>
+=======
+	<div>
+		<Tooltip
+			content={$i18n.t(
+				'When enabled, the model will respond to each chat message in real-time, generating a response as soon as the user sends a message. This mode is useful for live chat applications, but may impact performance on slower hardware.'
+			)}
+			placement="top-start"
+			className="inline-tooltip"
+		>
+			<div class=" py-0.5 flex w-full justify-between">
+				<div class=" self-center text-xs">
+					{$i18n.t('Stream Chat Response')}
+				</div>
+				<button
+					class="p-1 px-3 text-xs flex rounded-sm transition"
+					on:click={() => {
+						params.stream_response =
+							(params?.stream_response ?? null) === null
+								? true
+								: params.stream_response
+									? false
+									: null;
+					}}
+					type="button"
+				>
+					{#if params.stream_response === true}
+						<span class="ml-2 self-center">{$i18n.t('On')}</span>
+					{:else if params.stream_response === false}
+						<span class="ml-2 self-center">{$i18n.t('Off')}</span>
+					{:else}
+						<span class="ml-2 self-center">{$i18n.t('Default')}</span>
+					{/if}
+				</button>
+			</div>
+		</Tooltip>
+	</div>
+
+	{#if admin}
+		<div>
+			<Tooltip
+				content={$i18n.t(
+					'The stream delta chunk size for the model. Increasing the chunk size will make the model respond with larger pieces of text at once.'
+				)}
+				placement="top-start"
+				className="inline-tooltip"
+			>
+				<div class="flex w-full justify-between">
+					<div class=" self-center text-xs">
+						{$i18n.t('Stream Delta Chunk Size')}
+					</div>
+					<button
+						class="p-1 px-3 text-xs flex rounded-sm transition shrink-0 outline-hidden"
+						type="button"
+						on:click={() => {
+							params.stream_delta_chunk_size =
+								(params?.stream_delta_chunk_size ?? null) === null ? 1 : null;
+						}}
+					>
+						{#if (params?.stream_delta_chunk_size ?? null) === null}
+							<span class="ml-2 self-center"> {$i18n.t('Default')} </span>
+						{:else}
+							<span class="ml-2 self-center"> {$i18n.t('Custom')} </span>
+						{/if}
+					</button>
+				</div>
+			</Tooltip>
+
+			{#if (params?.stream_delta_chunk_size ?? null) !== null}
+				<div class="flex mt-0.5 space-x-2">
+					<div class=" flex-1">
+						<input
+							id="steps-range"
+							type="range"
+							min="1"
+							max="128"
+							step="1"
+							bind:value={params.stream_delta_chunk_size}
+							class="w-full h-2 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
+						/>
+					</div>
+					<div>
+						<input
+							bind:value={params.stream_delta_chunk_size}
+							type="number"
+							class=" bg-transparent text-center w-14"
+							min="1"
+							step="any"
+						/>
+					</div>
+				</div>
+			{/if}
+		</div>
+
+		<div>
+			<Tooltip
+				content={$i18n.t(
+					'Lower the context compaction token threshold for this model. The global context compaction threshold remains the maximum.'
+				)}
+				placement="top-start"
+				className="inline-tooltip"
+			>
+				<div class="flex w-full justify-between">
+					<div class=" self-center text-xs">
+						{$i18n.t('Context Compaction Threshold')}
+					</div>
+					<button
+						class="p-1 px-3 text-xs flex rounded-sm transition shrink-0 outline-hidden"
+						type="button"
+						on:click={() => {
+							params.compact_token_threshold =
+								(params?.compact_token_threshold ?? null) === null ? 80000 : null;
+						}}
+					>
+						{#if (params?.compact_token_threshold ?? null) === null}
+							<span class="ml-2 self-center"> {$i18n.t('Default')} </span>
+						{:else}
+							<span class="ml-2 self-center"> {$i18n.t('Custom')} </span>
+						{/if}
+					</button>
+				</div>
+			</Tooltip>
+
+			{#if (params?.compact_token_threshold ?? null) !== null}
+				<div class="flex mt-0.5 space-x-2">
+					<div class=" flex-1">
+						<input
+							class="text-sm w-full bg-transparent outline-hidden outline-none"
+							type="number"
+							placeholder={$i18n.t('Enter token threshold')}
+							bind:value={params.compact_token_threshold}
+							autocomplete="off"
+							min="1"
+							step="1"
+						/>
+					</div>
+				</div>
+			{/if}
+		</div>
+	{/if}
+
+	<div>
+		<Tooltip
+			content={$i18n.t(
+				"Native mode (default) leverages the model's built-in tool-calling capabilities. Legacy mode works with a wider range of models by calling tools once before execution via prompt injection."
+			)}
+			placement="top-start"
+			className="inline-tooltip"
+		>
+			<div class=" py-0.5 flex w-full justify-between">
+				<div class=" self-center text-xs">
+					{$i18n.t('Function Calling')}
+				</div>
+				<button
+					class="p-1 px-3 text-xs flex rounded-sm transition"
+					on:click={() => {
+						if ((params?.function_calling ?? null) === null) {
+							params.function_calling = 'native';
+						} else if (params.function_calling === 'native') {
+							params.function_calling = 'legacy';
+						} else {
+							params.function_calling = null;
+						}
+					}}
+					type="button"
+				>
+					{#if params.function_calling === 'native'}
+						<span class="ml-2 self-center">{$i18n.t('Native')}</span>
+					{:else if params.function_calling === 'legacy'}
+						<span class="ml-2 self-center">{$i18n.t('Legacy')}</span>
+					{:else}
+						<span class="ml-2 self-center">{$i18n.t('Default')}</span>
+					{/if}
+				</button>
+>>>>>>> upstream/main
 			</div>
 
 			{#if admin}
