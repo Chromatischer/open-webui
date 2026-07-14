@@ -212,7 +212,6 @@
 	let generating = false;
 	let dragged = false;
 	let generationController = null;
-	let contextCompactionToastId = null;
 
 	let chat = null;
 	let tags = [];
@@ -553,41 +552,24 @@
 		}
 	};
 
-	const dismissContextCompactionToast = () => {
-		if (contextCompactionToastId !== null) {
-			toast.dismiss(contextCompactionToastId);
-			contextCompactionToastId = null;
-		}
-	};
-
-	const handleContextCompactionStatus = (status) => {
+	const handleContextCompactionStatus = (message, status) => {
 		if (status?.action !== 'context_compaction') {
 			return;
 		}
 
-		if (status?.done) {
-			if (contextCompactionToastId !== null) {
-				if (status?.error) {
-					toast.error($i18n.t('Context compaction failed'), {
-						id: contextCompactionToastId,
-						duration: 3000
-					});
-				} else {
-					toast.success($i18n.t('Context compacted'), {
-						id: contextCompactionToastId,
-						duration: 1800
-					});
-				}
-				contextCompactionToastId = null;
-			}
-			return;
-		}
-
-		if (contextCompactionToastId === null) {
-			contextCompactionToastId = toast.loading($i18n.t('Compacting context'), {
-				duration: Infinity
-			});
-		}
+		// Compaction is part of the response's work, not a global interruption.
+		// Keep one ledger entry and replace it as the server reports progress/completion.
+		const entries = message.statusHistory ?? [];
+		const index = entries.findIndex((entry) => entry?.action === 'context_compaction');
+		const entry = {
+			...status,
+			action: 'context_compaction',
+			description: status?.error ? 'Context compaction failed' : 'Conversation context'
+		};
+		message.statusHistory =
+			index === -1
+				? [...entries, entry]
+				: entries.map((current, entryIndex) => (entryIndex === index ? entry : current));
 	};
 
 	const chatEventHandler = async (event, cb) => {
@@ -608,7 +590,7 @@
 						message.statusHistory = [data];
 					}
 				} else if (type === 'context_compaction') {
-					handleContextCompactionStatus(data);
+					handleContextCompactionStatus(message, data);
 				} else if (type === 'chat:active') {
 					if (!data?.active) {
 						taskIds = null;
@@ -619,7 +601,6 @@
 				} else if (type === 'chat:completion') {
 					chatCompletionEventHandler(data, message, event.chat_id);
 				} else if (type === 'chat:tasks:cancel') {
-					dismissContextCompactionToast();
 					if (event.message_id === history.currentId) {
 						taskIds = null;
 						// Set all response messages to done
@@ -1029,7 +1010,6 @@
 				window.removeEventListener('message', onMessageHandler);
 				$socket?.off('events', chatEventHandler);
 				$socket?.off('connect', handleSocketConnect);
-				dismissContextCompactionToast();
 				audioQueueInstance?.destroy();
 				audioQueue.set(null);
 			} catch (e) {
