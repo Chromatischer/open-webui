@@ -3,7 +3,6 @@ import { type Writable, writable } from 'svelte/store';
 import type { ModelConfig } from '$lib/apis';
 import type { Banner } from '$lib/types';
 import type { Socket } from 'socket.io-client';
-import type { AudioQueue } from '$lib/utils/audio';
 
 import emojiShortCodes from '$lib/emoji-shortcodes.json';
 
@@ -50,8 +49,6 @@ export const shortCodesToEmojis = writable(
 	}, {})
 );
 
-export const TTSWorker = writable(null);
-
 export const chatId = writable('');
 export const chatTitle = writable('');
 export const scratchboardContent = writable('');
@@ -73,7 +70,6 @@ export const models: Writable<Model[]> = writable([]);
 
 export const knowledge: Writable<null | Document[]> = writable(null);
 export const tools = writable(null);
-export const skills = writable(null);
 export const functions = writable(null);
 
 export const toolServers = writable([]);
@@ -86,7 +82,6 @@ export const banners: Writable<Banner[]> = writable([]);
 
 export const settings: Writable<Settings> = writable({});
 
-export const audioQueue = writable<AudioQueue | null>(null);
 export const chatRequestQueues: Writable<
 	Record<string, { id: string; prompt: string; files: any[] }[]>
 > = writable({});
@@ -188,8 +183,6 @@ type Settings = {
 	detectArtifacts?: boolean;
 	showUpdateToast?: boolean;
 	showChangelog?: boolean;
-	showEmojiInCall?: boolean;
-	voiceInterruption?: boolean;
 	collapseCodeBlocks?: boolean;
 	expandDetails?: boolean;
 	notificationSound?: boolean;
@@ -222,10 +215,6 @@ type Settings = {
 	chatBubble?: boolean;
 	copyFormatted?: boolean;
 	models?: string[];
-	conversationMode?: boolean;
-	speechAutoSend?: boolean;
-	responseAutoPlayback?: boolean;
-	audio?: AudioSettings;
 	showUsername?: boolean;
 	notificationEnabled?: boolean;
 	highContrastMode?: boolean;
@@ -257,16 +246,6 @@ type Settings = {
 
 type ModelOptions = {
 	stop?: boolean;
-};
-
-type AudioSettings = {
-	stt: any;
-	tts: any;
-	STTEngine?: string;
-	TTSEngine?: string;
-	speaker?: string;
-	model?: string;
-	nonLocalVoices?: boolean;
 };
 
 type TitleSettings = {
