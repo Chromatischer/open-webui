@@ -413,22 +413,6 @@
 		<div class="flex flex-col w-full">
 			<div class="flex w-full justify-between my-1">
 				<div class=" self-center text-xs font-medium">
-					{$i18n.t('Allow Rate Response')}
-				</div>
-				<Switch bind:state={permissions.chat.rate_response} />
-			</div>
-			{#if defaultPermissions?.chat?.rate_response && !permissions.chat.rate_response}
-				<div>
-					<div class="text-xs text-gray-500">
-						{$i18n.t('This is a default user permission and will remain enabled.')}
-					</div>
-				</div>
-			{/if}
-		</div>
-
-		<div class="flex flex-col w-full">
-			<div class="flex w-full justify-between my-1">
-				<div class=" self-center text-xs font-medium">
 					{$i18n.t('Allow Chat Share')}
 				</div>
 				<Switch bind:state={permissions.chat.share} />
