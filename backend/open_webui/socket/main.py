@@ -421,6 +421,15 @@ async def chat_events(sid, data):
         await Chats.update_chat_last_read_at_by_id(data['chat_id'], user['id'])
 
 
+def normalize_document_id(document_id: str) -> str:
+    """Return the canonical ID used by the remaining generic Yjs handlers.
+
+    Retired workspace products previously rewrote their own ID prefixes here.
+    Document IDs are now opaque, so no product-specific normalization remains.
+    """
+    return document_id
+
+
 @sio.on('ydoc:document:state')
 async def yjs_document_state(sid, data):
     """Send the current state of the Yjs document to the user"""

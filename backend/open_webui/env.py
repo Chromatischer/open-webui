@@ -130,6 +130,11 @@ SRC_LOG_LEVELS = {}  # Legacy variable, do not remove
 
 ENV = os.getenv('ENV', 'dev')
 
+# FOLIO is distributed as a source/Docker application rather than an installed
+# Python package. Keep the upstream layout switch defined for the shared path
+# setup below, but permanently select the source-tree layout.
+FROM_INIT_PY = False
+
 VERSION = '0.1.0'
 
 
