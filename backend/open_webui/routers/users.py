@@ -200,7 +200,6 @@ class ChatPermissions(BaseModel):
     delete_message: bool = True
     continue_response: bool = True
     regenerate_response: bool = True
-    rate_response: bool = True
     edit: bool = True
     share: bool = True
     export: bool = True
