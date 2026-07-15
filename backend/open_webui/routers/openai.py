@@ -1,24 +1,18 @@
 from __future__ import annotations
 
 import asyncio
-import hashlib
 import json
 import logging
 import re
-from typing import Optional
 from urllib.parse import quote, urlparse
 
 import aiohttp
 from aiocache import cached
 from fastapi import APIRouter, Depends, HTTPException, Request, status
 from fastapi.responses import (
-    FileResponse,
     JSONResponse,
     PlainTextResponse,
     StreamingResponse,
-)
-from open_webui.config import (
-    CACHE_DIR,
 )
 from open_webui.constants import ERROR_MESSAGES
 from open_webui.events import EVENTS, publish_event, publish_model_provider_request_failed
@@ -32,13 +26,12 @@ from open_webui.env import (
     FORWARD_SESSION_INFO_HEADER_CHAT_ID,
     MODELS_CACHE_TTL,
 )
-from open_webui.internal.db import get_async_session
 from open_webui.models.access_grants import AccessGrants
 from open_webui.models.config import Config
 from open_webui.models.groups import Groups
 from open_webui.models.models import Models
 from open_webui.models.users import UserModel
-from open_webui.utils.access_control import check_model_access, has_connection_access, has_permission
+from open_webui.utils.access_control import check_model_access
 from open_webui.utils.anthropic import get_anthropic_models, is_anthropic_url
 from open_webui.utils.auth import get_admin_user, get_verified_user
 from open_webui.utils.headers import get_custom_headers, include_user_info_headers
@@ -56,7 +49,6 @@ from open_webui.utils.session_pool import (
     stream_wrapper,
 )
 from pydantic import BaseModel, ConfigDict
-from sqlalchemy.ext.asyncio import AsyncSession
 
 log = logging.getLogger(__name__)
 
@@ -333,6 +325,129 @@ async def update_config(request: Request, form_data: OpenAIConfigForm, user=Depe
         'OPENAI_API_KEYS': api_keys,
         'OPENAI_API_CONFIGS': api_configs,
     }
+
+
+async def get_all_models_responses(request: Request, user: UserModel) -> list:
+    enable_openai_api, api_base_urls, api_keys, api_configs = await get_openai_runtime_config()
+    if not enable_openai_api:
+        return []
+
+    if len(api_keys) != len(api_base_urls):
+        api_keys = await normalize_openai_api_keys(api_base_urls, api_keys)
+
+    request_tasks = []
+    for idx, url in enumerate(api_base_urls):
+        api_config = api_configs.get(str(idx), api_configs.get(url, {}))
+        if not api_config.get('enable', True):
+            request_tasks.append(asyncio.ensure_future(asyncio.sleep(0, None)))
+            continue
+
+        model_ids = api_config.get('model_ids', [])
+        if model_ids:
+            model_list = {
+                'object': 'list',
+                'data': [
+                    {
+                        'id': model_id,
+                        'name': model_id,
+                        'owned_by': 'openai',
+                        'openai': {'id': model_id},
+                        'urlIdx': idx,
+                    }
+                    for model_id in model_ids
+                ],
+            }
+            request_tasks.append(asyncio.ensure_future(asyncio.sleep(0, model_list)))
+        else:
+            request_tasks.append(get_models_request(request, url, api_keys[idx], user=user, config=api_config))
+
+    responses = await asyncio.gather(*request_tasks)
+    for idx, response in enumerate(responses):
+        if not response:
+            continue
+        url = api_base_urls[idx]
+        api_config = api_configs.get(str(idx), api_configs.get(url, {}))
+        model_list = response if isinstance(response, list) else response.get('data', [])
+        if not isinstance(model_list, list):
+            continue
+        for model in model_list:
+            if model.get('name') is None:
+                model.pop('name', None)
+            if prefix_id := api_config.get('prefix_id'):
+                model['id'] = f'{prefix_id}.{model.get("id", model.get("name", ""))}'
+            if tags := api_config.get('tags', []):
+                model['tags'] = tags
+            if connection_type := api_config.get('connection_type', 'external'):
+                model['connection_type'] = connection_type
+            if provider := api_config.get('provider', ''):
+                model['provider'] = provider
+
+    return responses
+
+
+async def get_filtered_models(models, user, db=None):
+    model_ids = [model['id'] for model in models.get('data', [])]
+    model_infos = {model.id: model for model in await Models.get_models_by_ids(model_ids, db=db)}
+    user_group_ids = {group.id for group in await Groups.get_groups_by_member_id(user.id, db=db)}
+    accessible_model_ids = await AccessGrants.get_accessible_resource_ids(
+        user_id=user.id,
+        resource_type='model',
+        resource_ids=list(model_infos),
+        permission='read',
+        user_group_ids=user_group_ids,
+        db=db,
+    )
+    return [
+        model
+        for model in models.get('data', [])
+        if (model_info := model_infos.get(model['id']))
+        and (user.id == model_info.user_id or model_info.id in accessible_model_ids)
+    ]
+
+
+@cached(
+    ttl=MODELS_CACHE_TTL,
+    key_builder=lambda _func, request, user=None: f'openai_all_models_{user.id}' if user else 'openai_all_models',
+)
+async def get_all_models(request: Request, user: UserModel) -> dict[str, list]:
+    enable_openai_api, api_base_urls, _, api_configs = await get_openai_runtime_config()
+    if not enable_openai_api:
+        return {'data': []}
+
+    responses = await get_all_models_responses(request, user=user)
+    models = {}
+    excluded_openai_models = ('babbage', 'dall-e', 'davinci', 'embedding', 'tts', 'whisper')
+    for idx, response in enumerate(responses):
+        model_list = response if isinstance(response, list) else response.get('data', []) if response else []
+        for model in model_list:
+            model_id = model.get('id') or model.get('name')
+            base_url = api_base_urls[idx]
+            if urlparse(base_url).hostname == 'api.openai.com' and any(
+                name in model_id for name in excluded_openai_models
+            ):
+                continue
+            if not model_id or model_id in models:
+                continue
+            api_config = api_configs.get(str(idx), api_configs.get(base_url, {}))
+            provider = model.get('provider', '')
+            merged = {
+                **model,
+                'name': model.get('name', model_id),
+                'owned_by': 'openai',
+                'openai': model,
+                'connection_type': model.get('connection_type', 'external'),
+                'provider': provider,
+                'urlIdx': idx,
+            }
+            loaded = get_llamacpp_model_loaded_state(
+                model, provider, manual_model_ids=bool(api_config.get('model_ids'))
+            )
+            if loaded is not None:
+                merged['loaded'] = loaded
+            models[model_id] = merged
+
+    request.app.state.OPENAI_MODELS = models
+    return {'data': list(models.values())}
 
 
 @router.get('/models')

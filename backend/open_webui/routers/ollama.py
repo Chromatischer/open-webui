@@ -8,7 +8,7 @@ import random
 import re
 import time
 from datetime import datetime
-from typing import Optional, Union
+from typing import Union
 from urllib.parse import urlparse
 
 import aiohttp
@@ -99,6 +99,7 @@ async def send_request(
     stream: bool = False,
     content_type: str | None = None,
     metadata: dict | None = None,
+    request: Request | None = None,
 ):
     r = None
     streaming = False
