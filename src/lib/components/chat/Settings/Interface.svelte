@@ -211,7 +211,6 @@
 		showUpdateToast = $settings?.showUpdateToast ?? true;
 		showChangelog = $settings?.showChangelog ?? true;
 
-
 		displayMultiModelResponsesInTabs = $settings?.displayMultiModelResponsesInTabs ?? false;
 		chatFadeStreamingText = $settings?.chatFadeStreamingText ?? true;
 

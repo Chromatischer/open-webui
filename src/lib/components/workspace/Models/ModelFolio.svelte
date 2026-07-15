@@ -1065,7 +1065,6 @@
 						<div class="mf-rule" aria-hidden="true"></div>
 					</div>
 				</div>
-
 			</div>
 
 			<div class="mf-fullcase">

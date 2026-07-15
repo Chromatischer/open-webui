@@ -12,14 +12,7 @@
 
 	const dispatch = createEventDispatcher();
 
-
-	import {
-		config,
-		models,
-		settings,
-		temporaryChatEnabled,
-		user
-	} from '$lib/stores';
+	import { config, models, settings, temporaryChatEnabled, user } from '$lib/stores';
 	import { imageGenerations } from '$lib/apis/images';
 	import {
 		copyToClipboard as _copyToClipboard,
@@ -945,7 +938,6 @@
 								{/if}
 
 								{#if !readOnly}
-
 									{#if isLastMessage && ($user?.role === 'admin' || ($user?.permissions?.chat?.continue_response ?? true))}
 										<Tooltip content={$i18n.t('Continue Response')} placement="bottom">
 											<button
@@ -989,7 +981,7 @@
 												type="button"
 												class="hidden regenerate-response-button"
 												on:click={() => {
-											regenerateResponse(message);
+													regenerateResponse(message);
 
 													(model?.actions ?? []).forEach((action) => {
 														dispatch('action', {
@@ -1007,7 +999,7 @@
 
 											<RegenerateMenu
 												onRegenerate={(prompt = null) => {
-											regenerateResponse(message, prompt);
+													regenerateResponse(message, prompt);
 
 													(model?.actions ?? []).forEach((action) => {
 														dispatch('action', {
@@ -1056,7 +1048,7 @@
 														? 'visible'
 														: 'invisible group-hover:visible'} p-1.5 hover:bg-black/5 dark:hover:bg-white/5 rounded-lg dark:hover:text-white hover:text-black transition regenerate-response-button"
 													on:click={() => {
-												regenerateResponse(message);
+														regenerateResponse(message);
 
 														(model?.actions ?? []).forEach((action) => {
 															dispatch('action', {

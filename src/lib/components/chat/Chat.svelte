@@ -728,7 +728,6 @@
 					console.error('Failed to refresh banners:', e);
 				}
 			}
-
 		});
 
 		const showControlsSubscribe = showControls.subscribe(async (value) => {
@@ -2931,7 +2930,6 @@
 			: `${$WEBUI_NAME}`}
 	</title>
 </svelte:head>
-
 
 <DeleteConfirmDialog
 	bind:show={showDeleteConfirm}

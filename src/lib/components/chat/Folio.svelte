@@ -839,9 +839,9 @@
 									{#each sec.assistants as a (a.id)}
 										{@const entries = a.entries}
 										{#if entries.length > 0}
-										<div class="ledger" role="log" aria-label="Agent actions">
-											{#each entries as en}
-												<div class="entry" class:failed={en.error}>
+											<div class="ledger" role="log" aria-label="Agent actions">
+												{#each entries as en}
+													<div class="entry" class:failed={en.error}>
 														<span class="stamp" class:done={en.done} aria-hidden="true">
 															{#if en.done}
 																<svg
@@ -871,7 +871,7 @@
 														<span class="verb">{ledgerVerb(en.action)}</span>
 														<span class="object">{ledgerObject(en)}</span>
 														<span class="dotfill" aria-hidden="true"></span>
-													<span class="note">{ledgerNote(en)}</span>
+														<span class="note">{ledgerNote(en)}</span>
 													</div>
 												{/each}
 											</div>
