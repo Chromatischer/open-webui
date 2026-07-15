@@ -11,6 +11,15 @@ FRONTEND_HOST="${FRONTEND_HOST:-0.0.0.0}"
 
 PYTHONPATH_VALUE="${PYTHONPATH:-backend}"
 CORS_ALLOW_ORIGIN_VALUE="${CORS_ALLOW_ORIGIN:-http://localhost:${FRONTEND_PORT};http://localhost:${BACKEND_PORT}}"
+SECRET_KEY_FILE="${WEBUI_SECRET_KEY_FILE:-$ROOT_DIR/.webui_secret_key}"
+
+if [[ -z "${WEBUI_SECRET_KEY:-}" ]]; then
+	if [[ ! -s "$SECRET_KEY_FILE" ]]; then
+		umask 077
+		python -c 'import secrets; print(secrets.token_hex(32))' >"$SECRET_KEY_FILE"
+	fi
+	WEBUI_SECRET_KEY="$(<"$SECRET_KEY_FILE")"
+fi
 
 if [[ ! -x ".venv/bin/uvicorn" ]]; then
 	echo "Missing .venv/bin/uvicorn. Run: uv venv --python 3.12.13 && uv pip install -r backend/requirements.txt" >&2
@@ -42,6 +51,7 @@ trap cleanup EXIT INT TERM
 echo "Starting backend: http://localhost:${BACKEND_PORT}"
 PYTHONPATH="$PYTHONPATH_VALUE" \
 CORS_ALLOW_ORIGIN="$CORS_ALLOW_ORIGIN_VALUE" \
+	WEBUI_SECRET_KEY="$WEBUI_SECRET_KEY" \
 	.venv/bin/uvicorn open_webui.main:app \
 		--host "$BACKEND_HOST" \
 		--port "$BACKEND_PORT" \

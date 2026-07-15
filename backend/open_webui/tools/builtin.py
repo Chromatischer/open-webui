@@ -6,40 +6,70 @@ These tools are automatically available when native function calling is enabled.
 IMPORTANT: DO NOT IMPORT THIS MODULE DIRECTLY IN OTHER PARTS OF THE CODEBASE.
 """
 
+import asyncio
 import json
 import logging
 import time
-import asyncio
 from typing import Optional
 
 from fastapi import Request
 
-from open_webui.models.users import UserModel
-from open_webui.routers.retrieval import search_web as _search_web
-from open_webui.retrieval.utils import get_content_from_url
-from open_webui.routers.images import (
-    image_generations,
-    image_edits,
-    CreateImageForm,
-    EditImageForm,
-)
-from open_webui.routers.memories import (
-    query_memory,
-    add_memory as _add_memory,
-    update_memory_by_id,
-    QueryMemoryForm,
-    AddMemoryForm,
-    MemoryUpdateModel,
-)
 from open_webui.models.chats import Chats
+from open_webui.models.config import Config
 from open_webui.models.groups import Groups
 from open_webui.models.memories import Memories
+from open_webui.models.users import UserModel
+from open_webui.retrieval.utils import get_content_from_url
 from open_webui.retrieval.vector.async_client import ASYNC_VECTOR_DB_CLIENT
+from open_webui.routers.images import (
+    CreateImageForm,
+    EditImageForm,
+    image_edits,
+    image_generations,
+)
+from open_webui.routers.memories import (
+    AddMemoryForm,
+    ListMemoryPathsForm,
+    MemoryUpdateModel,
+    ReadMemoryPathForm,
+    SearchMemoriesForm,
+    UpdateMemoriesForm,
+    list_memory_paths as _list_memory_paths,
+    read_memory_path as _read_memory_path,
+    search_memories as _search_memories,
+    update_memories as _update_memories,
+    update_memory_by_id,
+)
+from open_webui.routers.memories import (
+    add_memory as _add_memory,
+)
+from open_webui.routers.retrieval import search_web as _search_web
 from open_webui.utils.sanitize import sanitize_code
 
 log = logging.getLogger(__name__)
 
 MAX_KNOWLEDGE_BASE_SEARCH_ITEMS = 10_000
+
+
+async def _has_read_access_to_file(
+    file,
+    user_id: str,
+    user_role: str,
+    model_knowledge: Optional[list[dict]] = None,
+) -> bool:
+    """Check if a user can read a file via ownership, admin role, model attachment, or access grants."""
+    if file.user_id == user_id or user_role == 'admin':
+        return True
+    if model_knowledge and any(item.get('type') == 'file' and item.get('id') == file.id for item in model_knowledge):
+        return True
+    from open_webui.utils.access_control.files import has_access_to_file
+
+    return await has_access_to_file(
+        file_id=file.id,
+        access_type='read',
+        user=UserModel(**{'id': user_id, 'role': user_role}),
+    )
+
 
 # =============================================================================
 # TIME UTILITIES
@@ -103,6 +133,7 @@ async def calculate_timestamp(
     """
     try:
         import datetime
+
         from dateutil.relativedelta import relativedelta
 
         now = datetime.datetime.now(datetime.timezone.utc)
@@ -196,14 +227,14 @@ async def search_web(
         return json.dumps({'error': 'Request context not available'})
 
     try:
-        engine = __request__.app.state.config.WEB_SEARCH_ENGINE
+        engine = await Config.get('web.search.engine')
         user = UserModel(**__user__) if __user__ else None
 
-        configured = __request__.app.state.config.WEB_SEARCH_RESULT_COUNT
+        configured = await Config.get('web.search.result_count')
         max_count = 5 if configured is None else configured
         count = max(1, min(count, max_count)) if count is not None else max_count
 
-        results = await asyncio.to_thread(_search_web, __request__, engine, query, user)
+        results = await _search_web(__request__, engine, query, user)
 
         # Limit results
         results = results[:count] if results else []
@@ -232,12 +263,12 @@ async def fetch_url(
         return json.dumps({'error': 'Request context not available'})
 
     try:
-        content, _ = await asyncio.to_thread(get_content_from_url, __request__, url)
+        content, _ = await get_content_from_url(__request__, url)
 
         # Truncate if configured (WEB_FETCH_MAX_CONTENT_LENGTH)
         # Guard: content may be None if the web loader silently failed
         if content is not None:
-            max_length = getattr(__request__.app.state.config, 'WEB_FETCH_MAX_CONTENT_LENGTH', None)
+            max_length = await Config.get('web.fetch.max_content_length')
             if max_length and max_length > 0 and len(content) > max_length:
                 content = content[:max_length] + '\n\n[Content truncated...]'
         else:
@@ -245,7 +276,7 @@ async def fetch_url(
 
         return content
     except Exception as e:
-        log.exception(f'fetch_url error: {e}')
+        log.warning(f'fetch_url error: {e}')
         return json.dumps({'error': str(e)})
 
 
@@ -329,10 +360,11 @@ async def edit_image(
     __message_id__: str = None,
 ) -> str:
     """
-    Edit existing images based on a text prompt.
+    Transform one or more existing images according to a text prompt.
+    Supports targeted edits such as adding, removing, replacing, inpainting, extending, or compositing image content.
 
-    :param prompt: A description of the changes to make to the images
-    :param image_urls: A list of URLs of the images to edit
+    :param prompt: A description of the transformation to apply to the provided images
+    :param image_urls: Source image URLs to modify or use as composition inputs
     :return: Confirmation that the images were edited, or an error message
     """
     if __request__ is None:
@@ -446,7 +478,7 @@ async def execute_code(
             )
             code = blocking_code + '\n' + code
 
-        engine = getattr(__request__.app.state.config, 'CODE_INTERPRETER_ENGINE', 'pyodide')
+        engine = await Config.get('code_interpreter.engine', 'pyodide')
         if engine == 'pyodide':
             # Execute via frontend pyodide using bidirectional event call
             if __event_call__ is None:
@@ -485,20 +517,14 @@ async def execute_code(
         elif engine == 'jupyter':
             from open_webui.utils.code_interpreter import execute_code_jupyter
 
+            jupyter_auth = await Config.get('code_interpreter.jupyter.auth')
+
             output = await execute_code_jupyter(
-                __request__.app.state.config.CODE_INTERPRETER_JUPYTER_URL,
+                await Config.get('code_interpreter.jupyter.url'),
                 code,
-                (
-                    __request__.app.state.config.CODE_INTERPRETER_JUPYTER_AUTH_TOKEN
-                    if __request__.app.state.config.CODE_INTERPRETER_JUPYTER_AUTH == 'token'
-                    else None
-                ),
-                (
-                    __request__.app.state.config.CODE_INTERPRETER_JUPYTER_AUTH_PASSWORD
-                    if __request__.app.state.config.CODE_INTERPRETER_JUPYTER_AUTH == 'password'
-                    else None
-                ),
-                __request__.app.state.config.CODE_INTERPRETER_JUPYTER_TIMEOUT,
+                (await Config.get('code_interpreter.jupyter.auth_token') if jupyter_auth == 'token' else None),
+                (await Config.get('code_interpreter.jupyter.auth_password') if jupyter_auth == 'password' else None),
+                await Config.get('code_interpreter.jupyter.timeout'),
             )
 
             stdout = output.get('stdout', '')
@@ -560,129 +586,92 @@ async def execute_code(
 
 
 # =============================================================================
-# USER INTERACTION TOOLS
-# =============================================================================
-
-from pydantic import BaseModel as _BaseModel, Field as _Field
-from typing import List as _List
-
-
-class AskUserOption(_BaseModel):
-    title: str = _Field(..., description='Short answer label shown to the user (a few words).')
-    explain: Optional[str] = _Field(None, description='Optional one-sentence clarification of this option.')
-    recommend: Optional[bool] = _Field(False, description='Set true on the single option you recommend.')
-
-
-class AskUserQuestion(_BaseModel):
-    prompt: str = _Field(..., description='The question to put to the user.')
-    options: _List[AskUserOption] = _Field(..., description='Between 2 and 5 answer options.')
-    multi: Optional[bool] = _Field(
-        False,
-        description='True for multiple-choice (the user may pick several); false for single-choice.',
-    )
-    allow_custom: Optional[bool] = _Field(True, description='Allow the user to write their own answer.')
-    allow_skip: Optional[bool] = _Field(True, description='Allow the user to skip / pick none of the options.')
-
-
-async def ask_user(
-    questions: _List[AskUserQuestion],
-    __event_call__: callable = None,
-    __metadata__: dict = None,
-) -> str:
-    """
-    Ask the user one to three structured multiple-choice questions and wait for
-    their answer. Use this whenever you need a decision or preference from the
-    user before continuing, instead of guessing. The question replaces the
-    user's input box; they pick options, write their own answer, or skip.
-
-    :param questions: 1–3 questions. Each: prompt (string), options (2–5 items, each with a `title` and optional one-sentence `explain`, optionally `recommend: true` on the one you advise), `multi` (bool, default false), `allow_custom` (bool, default true), `allow_skip` (bool, default true).
-    :return: The user's answer(s) as text.
-    """
-    if __event_call__ is None:
-        return json.dumps({'error': 'Interactive session not available; cannot ask the user.'})
-
-    # Normalise to plain dicts and clamp to the UI limits (max 3 questions, 5 options each)
-    norm = []
-    for q in (questions or [])[:3]:
-        d = q.model_dump(exclude_none=True) if hasattr(q, 'model_dump') else dict(q)
-        opts = []
-        for o in (d.get('options') or [])[:5]:
-            od = (
-                o if isinstance(o, dict) else (o.model_dump(exclude_none=True) if hasattr(o, 'model_dump') else dict(o))
-            )
-            title = str(od.get('title', '')).strip()
-            if not title:
-                continue
-            opt = {'title': title}
-            if od.get('explain'):
-                opt['explain'] = str(od['explain']).strip()
-            if od.get('recommend'):
-                opt['recommend'] = True
-            opts.append(opt)
-        if not str(d.get('prompt', '')).strip() or len(opts) < 2:
-            continue
-        norm.append(
-            {
-                'prompt': str(d['prompt']).strip(),
-                'options': opts,
-                'multi': bool(d.get('multi', False)),
-                'allowCustom': bool(d.get('allow_custom', True)),
-                'allowSkip': bool(d.get('allow_skip', True)),
-            }
-        )
-
-    if not norm:
-        return json.dumps({'error': 'Provide 1–3 questions, each with at least 2 options.'})
-
-    try:
-        result = await __event_call__(
-            {
-                'type': 'question',
-                'data': {
-                    'questions': norm,
-                    'session_id': (__metadata__.get('session_id') if __metadata__ else None),
-                },
-            }
-        )
-    except Exception as e:
-        log.exception(f'ask_user error: {e}')
-        return json.dumps({'error': str(e)})
-
-    if not isinstance(result, dict):
-        return str(result) if result else 'The user dismissed the question without answering.'
-
-    # Build a clear, readable transcript of the answer for the model
-    responses = result.get('responses') or []
-    lines = []
-    for i, q in enumerate(norm):
-        resp = responses[i] if i < len(responses) else {}
-        if resp.get('skipped'):
-            lines.append(f'Q: {q["prompt"]}\nA: (skipped)')
-            continue
-        parts = list(resp.get('selected') or [])
-        if resp.get('custom'):
-            parts.append(f'"{resp["custom"]}"')
-        lines.append(f'Q: {q["prompt"]}\nA: {", ".join(parts) if parts else "(no preference)"}')
-
-    return '\n\n'.join(lines) if lines else (result.get('text') or 'No answer provided.')
-
-
-# =============================================================================
 # MEMORY TOOLS
 # =============================================================================
 
 
-async def search_memories(
-    query: str,
-    count: int = 5,
+async def list_memory_paths(
+    query: str = '',
+    count: int = 100,
+    type: str = 'all',
     __request__: Request = None,
     __user__: dict = None,
 ) -> str:
     """
-    Search the user's stored memories for relevant information.
+    List saved memory paths to find existing memory groups before writing or moving memories.
 
-    :param query: The search query to find relevant memories
+    :param query: Optional query to filter memory paths or contents
+    :param count: Maximum number of paths to return
+    :param type: "user", "context", or "all"
+    :return: JSON with memory paths, counts, children, and update times
+    """
+    try:
+        user = UserModel(**__user__) if __user__ else None
+        result = await _list_memory_paths(
+            ListMemoryPathsForm(
+                query=query or None,
+                type=type if type in {'user', 'context', 'all'} else 'all',
+                limit=count,
+            ),
+            user,
+        )
+        return json.dumps(result, ensure_ascii=False)
+    except Exception as e:
+        log.exception(f'list_memory_paths error: {e}')
+        return json.dumps({'error': str(e)})
+
+
+async def read_memory_path(
+    path: str,
+    count: int = 50,
+    type: str = 'all',
+    include_children: bool = True,
+    __request__: Request = None,
+    __user__: dict = None,
+) -> str:
+    """
+    Read saved memories at a memory path, including nearby parent and child paths.
+
+    :param path: Memory path to read
+    :param count: Maximum number of memories to return
+    :param type: "user", "context", or "all"
+    :param include_children: Include memories under child paths
+    :return: JSON with parent paths, child paths, and memories at the path
+    """
+    try:
+        user = UserModel(**__user__) if __user__ else None
+        result = await _read_memory_path(
+            ReadMemoryPathForm(
+                path=path,
+                type=type if type in {'user', 'context', 'all'} else 'all',
+                include_children=include_children,
+                limit=count,
+            ),
+            user,
+        )
+        return json.dumps(result, ensure_ascii=False)
+    except Exception as e:
+        log.exception(f'read_memory_path error: {e}')
+        return json.dumps({'error': str(e)})
+
+
+async def search_memories(
+    query: str = '',
+    count: int = 5,
+    type: str = 'all',
+    path: Optional[str] = None,
+    memory_id: Optional[str] = None,
+    __request__: Request = None,
+    __user__: dict = None,
+) -> str:
+    """
+    Search or browse saved memories by content, path, type, or memory ID.
+
+    :param query: Optional query to search memory content and path
     :param count: Number of memories to return (default 5)
+    :param type: "user", "context", or "all"
+    :param path: Optional memory path to search around
+    :param memory_id: Optional exact memory ID to read
     :return: JSON with matching memories and their dates
     """
     if __request__ is None:
@@ -691,28 +680,34 @@ async def search_memories(
     try:
         user = UserModel(**__user__) if __user__ else None
 
-        results = await query_memory(
-            __request__,
-            QueryMemoryForm(content=query, k=count),
+        memories = await _search_memories(
+            SearchMemoriesForm(
+                query=query or None,
+                type=type if type in {'user', 'context', 'all'} else 'all',
+                path=path,
+                memory_id=memory_id,
+                limit=count,
+            ),
             user,
         )
 
-        if results and hasattr(results, 'documents') and results.documents:
-            memories = []
-            for doc_idx, doc in enumerate(results.documents[0]):
-                memory_id = None
-                if results.ids and results.ids[0]:
-                    memory_id = results.ids[0][doc_idx]
-                created_at = 'Unknown'
-                if results.metadatas and results.metadatas[0][doc_idx].get('created_at'):
-                    created_at = time.strftime(
-                        '%Y-%m-%d',
-                        time.localtime(results.metadatas[0][doc_idx]['created_at']),
-                    )
-                memories.append({'id': memory_id, 'date': created_at, 'content': doc})
-            return json.dumps(memories, ensure_ascii=False)
-        else:
+        if not memories:
             return json.dumps([])
+
+        return json.dumps(
+            [
+                {
+                    'id': memory.id,
+                    'type': memory.type,
+                    'path': memory.path,
+                    'content': memory.content,
+                    'created_at': time.strftime('%Y-%m-%d', time.localtime(memory.created_at)),
+                    'updated_at': time.strftime('%Y-%m-%d', time.localtime(memory.updated_at)),
+                }
+                for memory in memories
+            ],
+            ensure_ascii=False,
+        )
     except Exception as e:
         log.exception(f'search_memories error: {e}')
         return json.dumps({'error': str(e)})
@@ -720,13 +715,21 @@ async def search_memories(
 
 async def add_memory(
     content: str,
+    type: str = 'user',
+    path: Optional[str] = None,
     __request__: Request = None,
     __user__: dict = None,
 ) -> str:
     """
-    Store a new memory for the user.
+    Save enduring information that can improve future chats.
+
+    Save stable preferences, goals, projects, relationships, habits, and standing instructions.
+    Do not save one-off activity, meals, routine daily events, temporary mood, or other short-lived details
+    unless the user explicitly asks you to remember them.
 
     :param content: The memory content to store
+    :param type: Use "user" for facts/preferences about the user, or "context" for other durable context
+    :param path: Optional stable memory address for grouping related memories
     :return: Confirmation that the memory was stored
     """
     if __request__ is None:
@@ -737,27 +740,75 @@ async def add_memory(
 
         memory = await _add_memory(
             __request__,
-            AddMemoryForm(content=content),
+            AddMemoryForm(content=content, type=Memories.normalize_memory_type(type), path=path),
             user,
         )
 
-        return json.dumps({'status': 'success', 'id': memory.id}, ensure_ascii=False)
+        return json.dumps(
+            {'status': 'success', 'id': memory.id, 'type': memory.type, 'path': memory.path},
+            ensure_ascii=False,
+        )
     except Exception as e:
         log.exception(f'add_memory error: {e}')
+        return json.dumps({'error': str(e)})
+
+
+async def update_memory(
+    operations: list[dict],
+    __request__: Request = None,
+    __user__: dict = None,
+) -> str:
+    """
+    Apply a batch of memory changes after learning enduring information.
+
+    Use type "user" for facts, preferences, or instructions about the user.
+    Use type "context" for other durable context that may help future chats.
+    Do not save one-off activity, meals, routine daily events, temporary mood, or other short-lived details
+    unless the user explicitly asks you to remember them.
+    Path is optional. Use it as a stable memory address to group related memories.
+    Prefer an existing path from list_memory_paths when one fits.
+    Leave path empty when no useful grouping is clear.
+
+    Operation shapes:
+    - {"action": "add", "content": "...", "type": "user"|"context", "path": "..."}
+    - {"action": "replace", "id": "...", "content": "...", "type": "user"|"context", "path": "..."}
+    - {"action": "move", "id": "...", "path": "..."}
+    - {"action": "remove", "id": "..."}
+
+    :param operations: Memory operations to apply in one request
+    :return: JSON with operation results
+    """
+    if __request__ is None:
+        return json.dumps({'error': 'Request context not available'})
+
+    try:
+        user = UserModel(**__user__) if __user__ else None
+        operation_results = await _update_memories(
+            __request__,
+            UpdateMemoriesForm(operations=operations),
+            user,
+        )
+        return json.dumps(operation_results, ensure_ascii=False)
+    except Exception as e:
+        log.exception(f'update_memory error: {e}')
         return json.dumps({'error': str(e)})
 
 
 async def replace_memory_content(
     memory_id: str,
     content: str,
+    type: Optional[str] = None,
+    path: Optional[str] = None,
     __request__: Request = None,
     __user__: dict = None,
 ) -> str:
     """
-    Update the content of an existing memory by its ID.
+    Update an existing saved memory by its ID when its content needs correction.
 
     :param memory_id: The ID of the memory to update
     :param content: The new content for the memory
+    :param type: Optional "user" or "context" type for the updated memory
+    :param path: Optional stable memory address for grouping related memories
     :return: Confirmation that the memory was updated
     """
     if __request__ is None:
@@ -769,12 +820,22 @@ async def replace_memory_content(
         memory = await update_memory_by_id(
             memory_id=memory_id,
             request=__request__,
-            form_data=MemoryUpdateModel(content=content),
+            form_data=MemoryUpdateModel(
+                content=content,
+                type=Memories.normalize_memory_type(type) if type else None,
+                path=path,
+            ),
             user=user,
         )
 
         return json.dumps(
-            {'status': 'success', 'id': memory.id, 'content': memory.content},
+            {
+                'status': 'success',
+                'id': memory.id,
+                'type': memory.type,
+                'path': memory.path,
+                'content': memory.content,
+            },
             ensure_ascii=False,
         )
     except Exception as e:
@@ -788,7 +849,7 @@ async def delete_memory(
     __user__: dict = None,
 ) -> str:
     """
-    Delete a memory by its ID.
+    Delete a saved memory by its ID.
 
     :param memory_id: The ID of the memory to delete
     :return: Confirmation that the memory was deleted
@@ -819,7 +880,7 @@ async def list_memories(
     __user__: dict = None,
 ) -> str:
     """
-    List all stored memories for the user.
+    List all stored memories for the user, including IDs and timestamps.
 
     :return: JSON list of all memories with id, content, and dates
     """
@@ -832,16 +893,18 @@ async def list_memories(
         memories = await Memories.get_memories_by_user_id(user.id)
 
         if memories:
-            result = [
+            memory_rows = [
                 {
                     'id': m.id,
+                    'type': m.type,
+                    'path': m.path,
                     'content': m.content,
                     'created_at': time.strftime('%Y-%m-%d %H:%M', time.localtime(m.created_at)),
                     'updated_at': time.strftime('%Y-%m-%d %H:%M', time.localtime(m.updated_at)),
                 }
                 for m in memories
             ]
-            return json.dumps(result, ensure_ascii=False)
+            return json.dumps(memory_rows, ensure_ascii=False)
         else:
             return json.dumps([])
     except Exception as e:
@@ -865,6 +928,7 @@ async def search_chats(
 ) -> str:
     """
     Search the user's previous chat conversations by title and message content.
+    Helpful for finding details from earlier conversations.
 
     :param query: The search query to find matching chats
     :param count: Maximum number of results to return (default: 5)
@@ -903,7 +967,7 @@ async def search_chats(
 
             # Find a matching message snippet
             snippet = ''
-            messages = chat.chat.get('history', {}).get('messages', {})
+            messages = (getattr(chat, 'chat', None) or {}).get('history', {}).get('messages', {})
             lower_query = query.lower()
 
             for msg_id, msg in messages.items():
@@ -942,7 +1006,8 @@ async def view_chat(
     __user__: dict = None,
 ) -> str:
     """
-    Get the full conversation history of a chat by its ID.
+    Get the full conversation history of a chat by its ID after a relevant
+    previous chat has been identified.
 
     :param chat_id: The ID of the chat to retrieve
     :return: JSON with the chat's id, title, and messages
@@ -1001,270 +1066,12 @@ async def view_chat(
 
 
 # =============================================================================
-# SKILLS TOOLS
-# =============================================================================
-
-
-async def view_skill(
-    id: str,
-    __request__: Request = None,
-    __user__: dict = None,
-) -> str:
-    """
-    Load the full instructions of a skill by its id from the available skills manifest.
-    Use this when you need detailed instructions for a skill listed in <available_skills>.
-
-    :param id: The id of the skill to load (as shown in the manifest)
-    :return: The full skill instructions as markdown content
-    """
-    if __request__ is None:
-        return json.dumps({'error': 'Request context not available'})
-
-    if not __user__:
-        return json.dumps({'error': 'User context not available'})
-
-    try:
-        from open_webui.models.skills import Skills
-        from open_webui.models.access_grants import AccessGrants
-
-        user_id = __user__.get('id')
-
-        # Direct DB lookup by id (case-insensitive since IDs are stored lowercase)
-        skill = await Skills.get_skill_by_id(id.lower())
-
-        if not skill or not skill.is_active:
-            return json.dumps({'error': f"Skill '{id}' not found"})
-
-        # Check user access
-        user_role = __user__.get('role', 'user')
-        if user_role != 'admin' and skill.user_id != user_id:
-            user_group_ids = [group.id for group in await Groups.get_groups_by_member_id(user_id)]
-            if not await AccessGrants.has_access(
-                user_id=user_id,
-                resource_type='skill',
-                resource_id=skill.id,
-                permission='read',
-                user_group_ids=set(user_group_ids),
-            ):
-                return json.dumps({'error': 'Access denied'})
-
-        return json.dumps(
-            {
-                'name': skill.name,
-                'content': skill.content,
-            },
-            ensure_ascii=False,
-        )
-    except Exception as e:
-        log.exception(f'view_skill error: {e}')
-        return json.dumps({'error': str(e)})
-
-
-# =============================================================================
-# SCRATCHBOARD TOOLS
-# =============================================================================
-
-
-async def _emit_scratchboard(event_emitter, content: str):
-    """Persist scratchboard state to the UI."""
-    if event_emitter:
-        await event_emitter(
-            {
-                'type': 'chat:message:scratchboard',
-                'data': {
-                    'content': content,
-                },
-            }
-        )
-
-
-async def read_scratchboard(
-    start: int = 0,
-    length: int = None,
-    __chat_id__: str = None,
-    __request__: Request = None,
-    __user__: dict = None,
-) -> str:
-    """
-    Read the current chat's Scratchboard content, optionally a line range.
-
-    Use this before relying on Scratchboard notes, plans, constraints, or implementation context.
-
-    The Scratchboard can grow large. To avoid wasting tokens, read only the lines
-    you need by passing `start` and `length`. The returned `total_lines` tells you
-    the full size so you can page through it (e.g. start=0 length=40, then start=40).
-
-    :param start: Zero-based line number to start reading from (default 0)
-    :param length: Number of lines to read from `start`. Omit to read to the end.
-    :return: JSON with the requested lines plus total_lines, start, returned_lines, and truncated flag
-    """
-    if __chat_id__ is None:
-        return json.dumps({'error': 'Chat context not available'})
-
-    if not __user__:
-        return json.dumps({'error': 'User context not available'})
-
-    try:
-        content = await Chats.get_chat_scratchboard_by_id(__chat_id__, __user__.get('id'))
-        if content is None:
-            return json.dumps({'error': 'Chat not found or access denied'})
-
-        lines = content.splitlines()
-        total_lines = len(lines)
-
-        try:
-            start = int(start)
-        except (TypeError, ValueError):
-            start = 0
-        if start < 0:
-            start = 0
-
-        if length is None:
-            end = total_lines
-        else:
-            try:
-                length = int(length)
-            except (TypeError, ValueError):
-                length = 0
-            if length < 0:
-                length = 0
-            end = start + length
-
-        selected = lines[start:end]
-        returned_content = '\n'.join(selected)
-
-        return json.dumps(
-            {
-                'content': returned_content,
-                'total_lines': total_lines,
-                'start': start,
-                'returned_lines': len(selected),
-                'truncated': end < total_lines or start > 0,
-            },
-            ensure_ascii=False,
-        )
-    except Exception as e:
-        log.exception(f'read_scratchboard error: {e}')
-        return json.dumps({'error': str(e)})
-
-
-async def write_scratchboard(
-    content: str,
-    __chat_id__: str = None,
-    __message_id__: str = None,
-    __event_emitter__: callable = None,
-    __request__: Request = None,
-    __user__: dict = None,
-) -> str:
-    """
-    Replace the current chat's Scratchboard content with markdown.
-
-    Use this to save durable notes, plans, constraints, intermediate findings, or follow-up context for this chat.
-
-    :param content: The full markdown content to store in the Scratchboard
-    :return: JSON with success status (does not echo back the Scratchboard content)
-    """
-    if __chat_id__ is None:
-        return json.dumps({'error': 'Chat context not available'})
-
-    if not __user__:
-        return json.dumps({'error': 'User context not available'})
-
-    try:
-        updated_chat = await Chats.update_chat_scratchboard_by_id(__chat_id__, __user__.get('id'), content)
-        if not updated_chat:
-            return json.dumps({'error': 'Chat not found or access denied'})
-
-        await _emit_scratchboard(__event_emitter__, content)
-
-        return json.dumps(
-            {
-                'status': 'success',
-                'updated_at': updated_chat.updated_at,
-            },
-            ensure_ascii=False,
-        )
-    except Exception as e:
-        log.exception(f'write_scratchboard error: {e}')
-        return json.dumps({'error': str(e)})
-
-
-async def edit_scratchboard(
-    old_string: str,
-    new_string: str,
-    replace_all: bool = False,
-    __chat_id__: str = None,
-    __message_id__: str = None,
-    __event_emitter__: callable = None,
-    __request__: Request = None,
-    __user__: dict = None,
-) -> str:
-    """
-    Apply a targeted find-and-replace edit to the current chat's Scratchboard.
-
-    Prefer this over write_scratchboard for small changes: it only sends the
-    text that changes instead of the whole document, saving tokens and time.
-
-    :param old_string: The exact existing text to replace. Must match the current Scratchboard content verbatim (including whitespace). Unless replace_all is true, it must be unique within the document.
-    :param new_string: The text to replace old_string with. Use an empty string to delete old_string.
-    :param replace_all: When true, replace every occurrence of old_string. When false (default), old_string must match exactly once.
-    :return: JSON with success status and the number of replacements (does not echo back the full Scratchboard content)
-    """
-    if __chat_id__ is None:
-        return json.dumps({'error': 'Chat context not available'})
-
-    if not __user__:
-        return json.dumps({'error': 'User context not available'})
-
-    if old_string == new_string:
-        return json.dumps({'error': 'old_string and new_string are identical; nothing to edit'})
-
-    try:
-        content = await Chats.get_chat_scratchboard_by_id(__chat_id__, __user__.get('id'))
-        if content is None:
-            return json.dumps({'error': 'Chat not found or access denied'})
-
-        occurrences = content.count(old_string)
-        if occurrences == 0:
-            return json.dumps({'error': 'old_string not found in Scratchboard content'})
-        if not replace_all and occurrences > 1:
-            return json.dumps(
-                {
-                    'error': f'old_string is not unique ({occurrences} matches found). '
-                    'Provide a larger, unique old_string or set replace_all to true.'
-                }
-            )
-
-        if replace_all:
-            updated_content = content.replace(old_string, new_string)
-        else:
-            updated_content = content.replace(old_string, new_string, 1)
-
-        updated_chat = await Chats.update_chat_scratchboard_by_id(__chat_id__, __user__.get('id'), updated_content)
-        if not updated_chat:
-            return json.dumps({'error': 'Chat not found or access denied'})
-
-        await _emit_scratchboard(__event_emitter__, updated_content)
-
-        return json.dumps(
-            {
-                'status': 'success',
-                'replacements': occurrences if replace_all else 1,
-                'updated_at': updated_chat.updated_at,
-            },
-            ensure_ascii=False,
-        )
-    except Exception as e:
-        log.exception(f'edit_scratchboard error: {e}')
-        return json.dumps({'error': str(e)})
-
-
-# =============================================================================
 # TASK MANAGEMENT TOOLS
 # =============================================================================
 
-from pydantic import BaseModel, Field
 from typing import Literal
+
+from pydantic import BaseModel, Field
 
 VALID_TASK_STATUSES = {'pending', 'in_progress', 'completed', 'cancelled'}
 
@@ -1312,9 +1119,7 @@ async def create_tasks(
     __user__: dict = None,
 ) -> str:
     """
-    Create a task checklist to track progress on multi-step work.
-    Call this once at the start to define all steps, then use
-    update_task to mark each task as you complete it.
+    Create a visible task checklist for multi-step work so progress can be shown in chat.
 
     :param tasks: List of task items. Each item: content (string, required), status (pending|in_progress|completed|cancelled, default pending), id (optional, auto-generated).
     :return: JSON with the full task list and summary counts
@@ -1365,9 +1170,7 @@ async def update_task(
     __user__: dict = None,
 ) -> str:
     """
-    Mark a single task as completed, in_progress, pending, or cancelled.
-    Call this after finishing each step. You MUST call this for every
-    task, including the very last one.
+    Mark a single visible task item as completed, in_progress, pending, or cancelled.
 
     :param id: The task ID to update
     :param status: New status: completed, in_progress, pending, or cancelled (default: completed)

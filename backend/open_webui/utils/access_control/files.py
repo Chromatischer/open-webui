@@ -1,11 +1,11 @@
 import logging
 
-from open_webui.models.users import UserModel
-from open_webui.models.files import Files
-from open_webui.models.chats import Chats
-from open_webui.models.groups import Groups
 from open_webui.models.access_grants import AccessGrants
-
+from open_webui.models.chats import Chats
+from open_webui.models.files import Files
+from open_webui.models.groups import Groups
+from open_webui.models.models import Models
+from open_webui.models.users import UserModel
 from sqlalchemy.ext.asyncio import AsyncSession
 
 log = logging.getLogger(__name__)
@@ -19,6 +19,7 @@ async def has_access_to_file(
 ) -> bool:
     """
     Check if a user has the specified access to a file through any of:
+    - Shared workspace models that attach the file directly
     - Shared chats
 
     NOTE: This does NOT check direct file ownership — callers should check
@@ -37,7 +38,7 @@ async def has_access_to_file(
 
     # Check if the file is associated with any chats the user has access to
     shared_chat_ids = await Chats.get_shared_chat_ids_by_file_id(file_id, db=db)
-    if shared_chat_ids:
+    if access_type == 'read' and shared_chat_ids:
         accessible_ids = await AccessGrants.get_accessible_resource_ids(
             user_id=user.id,
             resource_type='shared_chat',
@@ -48,6 +49,15 @@ async def has_access_to_file(
         )
         if accessible_ids:
             return True
+
+    # Check if the file is directly attached to a shared workspace model (per the ownership
+    # note above, model write is conferred only for files the model owner owns).
+    for model in await Models.get_models_by_user_id(user.id, permission=access_type, db=db):
+        knowledge_items = getattr(model.meta, 'knowledge', None) or []
+        for item in knowledge_items:
+            if isinstance(item, dict) and item.get('type') == 'file' and item.get('id') == file.id:
+                if access_type == 'read' or model.user_id == file.user_id:
+                    return True
 
     return False
 
@@ -79,6 +89,8 @@ async def get_accessible_folder_files(
         if entry_type == 'file':
             if await has_access_to_file(entry_id, 'read', user, db=db):
                 accessible.append(entry)
+        elif entry_type == 'collection':
+            continue
         else:
             accessible.append(entry)
     return accessible

@@ -47,7 +47,7 @@
 	});
 </script>
 
-<div id="tab-about" class="flex flex-col h-full justify-between space-y-3 text-sm mb-6">
+<div id="tab-about" class="flex flex-col h-full justify-between space-y-3 text-sm">
 	<div class=" space-y-3 overflow-y-scroll max-h-[28rem] md:max-h-full">
 		{#if $user?.role === 'admin'}
 			<div class="flex flex-col gap-2">

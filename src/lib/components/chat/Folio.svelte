@@ -611,6 +611,7 @@
 		web: 'M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20zM2 12h20M12 2a15 15 0 0 1 0 20a15 15 0 0 1 0-20z',
 		profile: 'M22 12h-4l-3 9L9 3l-3 9H2',
 		draft: 'M20.2 12.2a6 6 0 0 0-8.4-8.4L5 10.5V19h8.5l6.7-6.8zM16 8L2 22M17.5 15H9',
+		condense: 'M4 8h16M7 12h10M10 16h4',
 		run: 'M5 3l14 9-14 9V3z',
 		knowledge:
 			'M4 19.5A2.5 2.5 0 0 1 6.5 17H20M4 19.5A2.5 2.5 0 0 0 6.5 22H20V2H6.5A2.5 2.5 0 0 0 4 4.5v15z'
@@ -620,6 +621,7 @@
 	// Map a raw status action onto a short ledger verb + its icon
 	function ledgerVerb(action = '') {
 		const a = String(action).toLowerCase();
+		if (a.includes('compact')) return 'condense';
 		if (a.includes('web')) return 'search';
 		if (a.includes('search')) return 'search';
 		if (a.includes('knowledge') || a.includes('retriev')) return 'read';
@@ -634,6 +636,8 @@
 		return en?.query || en?.description || (en?.action ?? '').replace(/_/g, ' ');
 	}
 	function ledgerNote(en) {
+		if (en?.error) return 'failed';
+		if (en?.action === 'context_compaction') return en?.done ? 'context ready' : 'in progress';
 		if (en?.urls?.length) return `${en.urls.length} source${en.urls.length === 1 ? '' : 's'}`;
 		return 'done';
 	}
@@ -837,7 +841,7 @@
 										{#if entries.length > 0}
 											<div class="ledger" role="log" aria-label="Agent actions">
 												{#each entries as en}
-													<div class="entry">
+													<div class="entry" class:failed={en.error}>
 														<span class="stamp" class:done={en.done} aria-hidden="true">
 															{#if en.done}
 																<svg
@@ -867,7 +871,7 @@
 														<span class="verb">{ledgerVerb(en.action)}</span>
 														<span class="object">{ledgerObject(en)}</span>
 														<span class="dotfill" aria-hidden="true"></span>
-														<span class="note">{en.done ? ledgerNote(en) : '…'}</span>
+														<span class="note">{ledgerNote(en)}</span>
 													</div>
 												{/each}
 											</div>
@@ -2198,6 +2202,14 @@
 	}
 	.entry:hover .vicon {
 		transform: rotate(-10deg) scale(1.15);
+	}
+	.entry.failed .stamp {
+		border-color: var(--danger);
+		color: var(--danger);
+	}
+	.entry.failed .verb,
+	.entry.failed .note {
+		color: var(--danger);
 	}
 	.verb {
 		flex: none;

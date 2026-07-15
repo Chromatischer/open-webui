@@ -2,7 +2,6 @@ export const DEFAULT_PERMISSIONS = {
 	workspace: {
 		models: false,
 		tools: false,
-		skills: false,
 		models_import: false,
 		models_export: false,
 		tools_import: false,
@@ -13,8 +12,6 @@ export const DEFAULT_PERMISSIONS = {
 		public_models: false,
 		tools: false,
 		public_tools: false,
-		skills: false,
-		public_skills: false,
 		public_chats: false
 	},
 	access_grants: {
@@ -31,13 +28,10 @@ export const DEFAULT_PERMISSIONS = {
 		delete_message: true,
 		continue_response: true,
 		regenerate_response: true,
-		rate_response: true,
 		edit: true,
 		share: true,
 		export: true,
-		stt: true,
-		tts: true,
-		call: true,
+		import: true,
 		multiple_models: true,
 		temporary: true,
 		temporary_enforced: false
@@ -49,7 +43,8 @@ export const DEFAULT_PERMISSIONS = {
 		web_search: true,
 		image_generation: true,
 		code_interpreter: true,
-		memories: true
+		memories: true,
+		webhooks: false
 	},
 	settings: {
 		interface: true

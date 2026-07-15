@@ -42,7 +42,8 @@
 		provider === 'azure' ||
 		((url.includes('azure.') || url.includes('cognitive.microsoft.com')) &&
 			!direct &&
-			provider === '');
+			provider === '' &&
+			!/\/openai\/v1(\/|$)/.test(url));
 
 	let prefixId = '';
 	let enable = true;
@@ -105,7 +106,8 @@
 				key,
 				config: {
 					auth_type,
-					...(provider ? { provider } : azure ? { azure: true } : {}),
+					...(provider ? { provider } : {}),
+					...(azure ? { azure: true } : {}),
 					api_version: apiVersion,
 					...(_headers ? { headers: _headers } : {})
 				}
@@ -152,7 +154,7 @@
 				return;
 			}
 
-			if (!key && !['azure_ad', 'microsoft_entra_id'].includes(auth_type)) {
+			if (!key) {
 				loading = false;
 
 				inlineError(saveBtn, $i18n.t('Key is required'));
@@ -193,7 +195,8 @@
 				connection_type: connectionType,
 				auth_type,
 				headers: headers ? JSON.parse(headers) : undefined,
-				...(provider ? { provider } : !ollama && azure ? { azure: true } : {}),
+				...(provider ? { provider } : {}),
+				...(!ollama && azure ? { azure: true } : {}),
 				...(azure ? { api_version: apiVersion } : {}),
 				...(apiType ? { api_type: apiType } : {})
 			}
@@ -395,9 +398,6 @@
 												<option value="session">{$i18n.t('Session')}</option>
 												{#if !direct}
 													<option value="system_oauth">{$i18n.t('OAuth')}</option>
-													{#if azure}
-														<option value="microsoft_entra_id">{$i18n.t('Entra ID')}</option>
-													{/if}
 												{/if}
 											{/if}
 										</select>
@@ -428,19 +428,13 @@
 											>
 												{$i18n.t('Forwards system user OAuth access token to authenticate')}
 											</div>
-										{:else if ['azure_ad', 'microsoft_entra_id'].includes(auth_type)}
-											<div
-												class={`text-xs self-center translate-y-[1px] ${($settings?.highContrastMode ?? false) ? 'text-gray-800 dark:text-gray-100' : 'text-gray-500'}`}
-											>
-												{$i18n.t('Uses DefaultAzureCredential to authenticate')}
-											</div>
 										{/if}
 									</div>
 								</div>
 							</div>
 						</div>
 
-						{#if !ollama && !direct}
+						{#if !direct}
 							<div class="flex gap-2 mt-2">
 								<div class="flex flex-col w-full">
 									<label
@@ -526,7 +520,7 @@
 									<label
 										for="api-version-input"
 										class={`mb-0.5 text-xs text-gray-500
-								${($settings?.highContrastMode ?? false) ? 'text-gray-800 dark:text-gray-100' : ''}`}
+										${($settings?.highContrastMode ?? false) ? 'text-gray-800 dark:text-gray-100' : ''}`}
 										>{$i18n.t('API Version')}</label
 									>
 

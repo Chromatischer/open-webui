@@ -16,6 +16,7 @@
 	import { getBanners } from '$lib/apis/configs';
 	import { getTerminalServers } from '$lib/apis/terminal';
 	import { getUserSettings } from '$lib/apis/users';
+	import { setTextScale } from '$lib/utils/text-scale';
 
 	import { WEBUI_VERSION, WEBUI_API_BASE_URL } from '$lib/constants';
 	import { compareVersion } from '$lib/utils';
@@ -26,7 +27,6 @@
 		user,
 		settings,
 		models,
-		knowledge,
 		tools,
 		functions,
 		tags,
@@ -218,7 +218,7 @@
 		}
 	};
 
-	const setUserSettings = async (cb: () => Promise<void>) => {
+	const setUserSettings = async (cb?: () => Promise<void>) => {
 		let userSettings = await getUserSettings(localStorage.token).catch((error) => {
 			console.error(error);
 			return null;
@@ -236,6 +236,8 @@
 		if (userSettings?.ui) {
 			settings.set(userSettings.ui);
 		}
+
+		setTextScale($settings?.textScale ?? 1);
 
 		if (cb) {
 			await cb();
@@ -346,12 +348,12 @@
 			setBanners().catch((e) => console.error('Failed to load banners:', e)),
 			setTools().catch((e) => console.error('Failed to load tools:', e)),
 			setUserSettings(async () => {
-				await Promise.all([
-					setModels().catch((e) => console.error('Failed to load models:', e)),
-					setToolServers().catch((e) => console.error('Failed to load tool servers:', e))
-				]);
+				await setModels().catch((e) => console.error('Failed to load models:', e));
 			}).catch((e) => console.error('Failed to load user settings:', e))
 		]);
+
+		// Tool servers can be slow or unreachable; they are not needed to initialize chat.
+		setToolServers().catch((e) => console.error('Failed to load tool servers:', e));
 
 		// Helper function to check if the pressed keys match the shortcut definition
 		const isShortcutMatch = (event: KeyboardEvent, shortcut): boolean => {

@@ -11,6 +11,7 @@ import uvicorn
 app = typer.Typer()
 
 KEY_FILE = Path.cwd() / '.webui_secret_key'
+DEFAULT_SECRET_KEY_LENGTH = 24
 
 
 def version_callback(value: bool) -> None:
@@ -38,7 +39,7 @@ def serve(
         typer.echo('Loading WEBUI_SECRET_KEY from file, not provided as an environment variable.')
         if not KEY_FILE.exists():
             typer.echo(f'Generating a new secret key and saving it to {KEY_FILE}')
-            KEY_FILE.write_bytes(base64.b64encode(random.randbytes(12)))
+            KEY_FILE.write_bytes(base64.b64encode(random.randbytes(DEFAULT_SECRET_KEY_LENGTH)))
         typer.echo(f'Loading WEBUI_SECRET_KEY from {KEY_FILE}')
         os.environ['WEBUI_SECRET_KEY'] = KEY_FILE.read_text()
 

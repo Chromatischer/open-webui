@@ -8,7 +8,6 @@
 	import { getTools } from '$lib/apis/tools';
 	import { getFunctions } from '$lib/apis/functions';
 	import { getModelsDefaults } from '$lib/apis/configs';
-	import { getSkillItems } from '$lib/apis/skills';
 
 	import AdvancedParams from '$lib/components/chat/Settings/Advanced/AdvancedParams.svelte';
 	import Tags from '$lib/components/common/Tags.svelte';
@@ -126,7 +125,6 @@
 	};
 
 	let toolIds = [];
-	let skillIds = [];
 
 	let filterIds = [];
 	let defaultFilterIds = [];
@@ -138,9 +136,6 @@
 	let actionIds = [];
 	let accessGrants = [];
 	let terminalId = '';
-	let tts = { voice: '' };
-
-	let skillsList = [];
 	let showType = false;
 	let fullCase = false;
 
@@ -302,12 +297,6 @@
 			delete info.meta.toolIds;
 		}
 
-		if (skillIds.length > 0) {
-			info.meta.skillIds = skillIds;
-		} else if (info.meta.skillIds) {
-			delete info.meta.skillIds;
-		}
-
 		if (filterIds.length > 0) {
 			info.meta.filterIds = filterIds;
 		} else if (info.meta.filterIds) {
@@ -342,16 +331,6 @@
 			info.meta.terminalId = terminalId;
 		} else if (info.meta.terminalId) {
 			delete info.meta.terminalId;
-		}
-
-		if (tts.voice !== '') {
-			if (!info.meta.tts) info.meta.tts = {};
-			info.meta.tts.voice = tts.voice;
-		} else if (info.meta.tts?.voice) {
-			delete info.meta.tts.voice;
-			if (Object.keys(info.meta.tts).length === 0) {
-				delete info.meta.tts;
-			}
 		}
 
 		info.params.system = system.trim() === '' ? null : system;
@@ -449,9 +428,6 @@
 		await tools.set(await getTools(localStorage.token));
 		await functions.set(await getFunctions(localStorage.token));
 
-		const skillsRes = await getSkillItems(localStorage.token).catch(() => null);
-		skillsList = skillsRes?.items ?? [];
-
 		const modelsConfig = await getModelsDefaults(localStorage.token).catch(() => null);
 		const defaultMeta = modelsConfig?.DEFAULT_MODEL_METADATA ?? {};
 
@@ -493,7 +469,6 @@
 				: null;
 
 			toolIds = model?.meta?.toolIds ?? [];
-			skillIds = model?.meta?.skillIds ?? [];
 			filterIds = model?.meta?.filterIds ?? [];
 			defaultFilterIds = model?.meta?.defaultFilterIds ?? [];
 			actionIds = model?.meta?.actionIds ?? [];
@@ -502,7 +477,6 @@
 			defaultFeatureIds = model?.meta?.defaultFeatureIds ?? defaultFeatureIds;
 			builtinTools = model?.meta?.builtinTools ?? builtinTools;
 			terminalId = model?.meta?.terminalId ?? '';
-			tts = { voice: model?.meta?.tts?.voice ?? '' };
 
 			accessGrants = model?.access_grants ?? [];
 
@@ -692,7 +666,7 @@
 				<h2 class="mf-sec-title">{$i18n.t('Instruments')}</h2>
 			</div>
 			<p class="mf-sec-sub">
-				{$i18n.t('Tools, skills and filters the model may take up mid-conversation.')}
+				{$i18n.t('Tools and filters the model may take up mid-conversation.')}
 			</p>
 
 			{#if ($tools ?? []).length > 0}
@@ -731,40 +705,6 @@
 				<p class="mf-quiet">
 					{$i18n.t('To select toolkits here, add them to the "Tools" workspace first.')}
 				</p>
-			{/if}
-
-			{#if skillsList.length > 0}
-				<div class="mf-group">
-					<span class="mf-group-label">{$i18n.t('Skills')}</span>
-					<div class="mf-stamps">
-						{#each skillsList as skill (skill.id)}
-							<Tooltip content={skill?.description ?? skill.id}>
-								<button
-									type="button"
-									class="mf-stamp"
-									class:on={skillIds.includes(skill.id)}
-									on:click={() => (skillIds = toggleIn(skillIds, skill.id))}
-								>
-									<span class="seal" aria-hidden="true">
-										{#if skillIds.includes(skill.id)}
-											<svg
-												width="8"
-												height="8"
-												viewBox="0 0 10 10"
-												fill="none"
-												stroke="currentColor"
-												stroke-width="2"
-												stroke-linecap="round"
-												stroke-linejoin="round"><path d="M1.5 5.5 4 8l4.5-6" /></svg
-											>
-										{/if}
-									</span>
-									{skill.name}
-								</button>
-							</Tooltip>
-						{/each}
-					</div>
-				</div>
 			{/if}
 
 			{#if filtersList.length > 0}
@@ -1121,24 +1061,6 @@
 							value={params.stop ?? ''}
 							on:input={(e) =>
 								(params.stop = e.currentTarget.value === '' ? null : e.currentTarget.value)}
-						/>
-						<div class="mf-rule" aria-hidden="true"></div>
-					</div>
-				</div>
-
-				<div class="mf-dial">
-					<div class="mf-dial-top">
-						<span class="mf-dial-label">{$i18n.t('TTS Voice')}</span>
-					</div>
-					<p class="mf-dial-hint">
-						{$i18n.t('the voice it speaks aloud with — e.g. alloy, echo, shimmer')}
-					</p>
-					<div class="mf-line">
-						<input
-							class="mf-input"
-							type="text"
-							placeholder={$i18n.t('default')}
-							bind:value={tts.voice}
 						/>
 						<div class="mf-rule" aria-hidden="true"></div>
 					</div>

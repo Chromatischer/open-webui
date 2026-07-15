@@ -309,6 +309,7 @@ dist
 cypress/videos
 cypress/screenshots
 .vscode/settings.json
+<<<<<<< HEAD
 
 # Playwright MCP snapshots
 .playwright-mcp/
@@ -318,3 +319,6 @@ cypress/screenshots
 
 # Root-level screenshot dumps
 /*.png
+=======
+.cptr
+>>>>>>> upstream/main

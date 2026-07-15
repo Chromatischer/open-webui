@@ -2,7 +2,6 @@
 	import Modal from '$lib/components/common/Modal.svelte';
 	import { getContext } from 'svelte';
 	import { getModelChats, getModelOverview } from '$lib/apis/analytics';
-	import ModelActivityChart from '$lib/components/admin/Evaluations/ModelActivityChart.svelte';
 	import ChatList from '$lib/components/common/ChatList.svelte';
 	import XMark from '$lib/components/icons/XMark.svelte';
 	import Tooltip from '$lib/components/common/Tooltip.svelte';
@@ -17,19 +16,11 @@
 	const i18n = getContext('i18n');
 
 	type Tab = 'overview' | 'chats';
+	type ChatSortKey = 'title' | 'updated_at' | 'user_name';
 	let selectedTab: Tab = 'overview';
 
 	// Overview tab state
-	type TimeRange = '30d' | '1y' | 'all';
-	const TIME_RANGES: { key: TimeRange; label: string; days: number }[] = [
-		{ key: '30d', label: '30D', days: 30 },
-		{ key: '1y', label: '1Y', days: 365 },
-		{ key: 'all', label: 'All', days: 0 }
-	];
-	let selectedRange: TimeRange = '30d';
-	let history: Array<{ date: string; won: number; lost: number }> = [];
 	let tags: Array<{ tag: string; count: number }> = [];
-	let loadingOverview = false;
 
 	// Chats tab state
 	let chatList: Array<{
@@ -41,6 +32,8 @@
 	}> = [];
 	let chatListLoading = false;
 	let allChatsLoaded = false;
+	let chatOrderBy: ChatSortKey = 'updated_at';
+	let chatDirection: 'asc' | 'desc' = 'desc';
 	const PAGE_SIZE = 50;
 
 	const close = () => {
@@ -48,31 +41,20 @@
 		selectedTab = 'overview';
 		chatList = [];
 		allChatsLoaded = false;
-		history = [];
+		chatOrderBy = 'updated_at';
+		chatDirection = 'desc';
 		tags = [];
 		onClose();
 	};
 
-	const loadOverview = async (days: number) => {
+	const loadOverview = async () => {
 		if (!model?.id) return;
-		loadingOverview = true;
 		try {
-			const result = await getModelOverview(localStorage.token, model.id, days);
-			history = result?.history ?? [];
+			const result = await getModelOverview(localStorage.token, model.id);
 			tags = result?.tags ?? [];
 		} catch (err) {
 			console.error('Failed to load overview:', err);
-			history = [];
 			tags = [];
-		}
-		loadingOverview = false;
-	};
-
-	const selectRange = (range: TimeRange) => {
-		selectedRange = range;
-		const config = TIME_RANGES.find((r) => r.key === range);
-		if (config) {
-			loadOverview(config.days);
 		}
 	};
 
@@ -88,7 +70,9 @@
 				startDate,
 				endDate,
 				0,
-				PAGE_SIZE
+				PAGE_SIZE,
+				chatOrderBy,
+				chatDirection
 			);
 			const chats = res?.chats ?? [];
 			chatList = chats.map((c: any) => ({
@@ -98,7 +82,7 @@
 				user_id: c.user_id,
 				user_name: c.user_name
 			}));
-			allChatsLoaded = chats.length < PAGE_SIZE;
+			allChatsLoaded = chatList.length >= (res?.total ?? chats.length);
 		} catch (err) {
 			console.error('Failed to load chats:', err);
 			chatList = [];
@@ -118,7 +102,9 @@
 				startDate,
 				endDate,
 				skip,
-				PAGE_SIZE
+				PAGE_SIZE,
+				chatOrderBy,
+				chatDirection
 			);
 			const chats = res?.chats ?? [];
 			const newChats = chats.map((c: any) => ({
@@ -131,11 +117,21 @@
 			const existingIds = new Set(chatList.map((c) => c.id));
 			const uniqueNewChats = newChats.filter((c) => !existingIds.has(c.id));
 			chatList = [...chatList, ...uniqueNewChats];
-			allChatsLoaded = chats.length < PAGE_SIZE;
+			allChatsLoaded = chatList.length >= (res?.total ?? chatList.length);
 		} catch (err) {
 			console.error('Failed to load more chats:', err);
 		}
 		chatListLoading = false;
+	};
+
+	const setChatSort = (key: ChatSortKey) => {
+		if (chatOrderBy === key) {
+			chatDirection = chatDirection === 'asc' ? 'desc' : 'asc';
+		} else {
+			chatOrderBy = key;
+			chatDirection = key === 'updated_at' ? 'desc' : 'asc';
+		}
+		loadChats();
 	};
 
 	const selectTab = (tab: Tab) => {
@@ -150,7 +146,9 @@
 		selectedTab = 'overview';
 		chatList = [];
 		allChatsLoaded = false;
-		selectRange(selectedRange);
+		chatOrderBy = 'updated_at';
+		chatDirection = 'desc';
+		loadOverview();
 	}
 </script>
 
@@ -193,38 +191,6 @@
 
 		<div class="px-5 pb-4 dark:text-gray-200">
 			{#if selectedTab === 'overview'}
-				<!-- Activity Chart -->
-				<div class="mb-4 mt-3">
-					<div class="flex items-center justify-between mb-2">
-						<Tooltip content={$i18n.t('Thumbs up/down ratings from users on model responses')}>
-							<div class="text-xs text-gray-500 font-medium uppercase tracking-wide cursor-help">
-								{$i18n.t('Feedback Activity')}
-							</div>
-						</Tooltip>
-						<div
-							class="inline-flex rounded-full bg-gray-100/80 p-0.5 dark:bg-gray-800/80 backdrop-blur-sm"
-						>
-							{#each TIME_RANGES as range}
-								<button
-									type="button"
-									class="rounded-full transition-all duration-200 px-2.5 py-0.5 text-xs font-medium {selectedRange ===
-									range.key
-										? 'bg-white text-gray-900 shadow-sm dark:bg-gray-700 dark:text-white'
-										: 'text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200'}"
-									on:click={() => selectRange(range.key)}
-								>
-									{range.label}
-								</button>
-							{/each}
-						</div>
-					</div>
-					<ModelActivityChart
-						{history}
-						loading={loadingOverview}
-						aggregateWeekly={selectedRange === '1y' || selectedRange === 'all'}
-					/>
-				</div>
-
 				<!-- Tags -->
 				<div class="mb-4">
 					<div class="text-xs text-gray-500 mb-2 font-medium uppercase tracking-wide">
@@ -250,6 +216,9 @@
 						allLoaded={allChatsLoaded}
 						showUserInfo={true}
 						shareUrl={true}
+						orderBy={chatOrderBy}
+						direction={chatDirection}
+						onSort={setChatSort}
 						onLoadMore={loadMoreChats}
 						onChatClick={() => (show = false)}
 					/>
