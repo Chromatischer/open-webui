@@ -126,6 +126,15 @@ jobs:
             BUILD_HASH=${{ github.sha }}
             ${{ matrix.variant.build_args }}
 
+      - name: Smoke-test backend import
+        run: |
+          docker run --rm \
+            --entrypoint python \
+            -e ENABLE_DB_MIGRATIONS=false \
+            -e WEBUI_SECRET_KEY=ci-import-smoke-test \
+            "${{ env.FULL_IMAGE_NAME }}@${{ steps.build.outputs.digest }}" \
+            -c "import open_webui.main"
+
       - name: Export digest
         run: |
           mkdir -p /tmp/digests
