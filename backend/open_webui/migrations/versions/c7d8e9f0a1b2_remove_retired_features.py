@@ -147,7 +147,8 @@ def upgrade() -> None:
         grant = sa.table('access_grant', sa.column('resource_type', sa.Text()))
         bind.execute(sa.delete(grant).where(sa.func.lower(grant.c.resource_type).in_(_RETIRED_NAMES)))
 
-    if 'config' in existing:
+    config_columns = {column['name'] for column in inspector.get_columns('config')} if 'config' in existing else set()
+    if 'key' in config_columns:
         config = sa.table('config', sa.column('key', sa.Text()))
         conditions = [sa.func.lower(config.c.key).like(f'{prefix}%') for prefix in _CONFIG_PREFIXES]
         bind.execute(sa.delete(config).where(sa.or_(*conditions)))

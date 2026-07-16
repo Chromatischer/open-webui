@@ -23,6 +23,14 @@ def upgrade() -> None:
     inspector = sa.inspect(conn)
     existing_tables = set(inspector.get_table_names())
 
+    # The other side of the forked migration graph may already have removed
+    # the retired Knowledge feature before this branch is applied. In that
+    # case there is nothing left to extend, and trying to inspect
+    # ``knowledge_file`` aborts the entire upgrade before the branches can
+    # converge.
+    if not {'knowledge', 'knowledge_file'}.issubset(existing_tables):
+        return
+
     if 'knowledge_directory' not in existing_tables:
         # Create knowledge_directory table
         op.create_table(
