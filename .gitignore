@@ -322,3 +322,4 @@ cypress/screenshots
 =======
 .cptr
 >>>>>>> upstream/main
+.webui_secret_key
