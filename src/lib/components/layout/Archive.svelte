@@ -1,8 +1,26 @@
 <script lang="ts">
-	import { onMount, tick } from 'svelte';
+	import { onMount, tick, untrack } from 'svelte';
 	import { goto } from '$app/navigation';
-	import { chats, chatId, currentChatPage, user, config, showSidebar, mobile } from '$lib/stores';
-	import { getChatList, getChatListByFolderId, updateChatFolderIdById } from '$lib/apis/chats';
+	import {
+		chats,
+		chatId,
+		chatTitle,
+		currentChatPage,
+		user,
+		config,
+		showSidebar,
+		mobile,
+		selectedFolder
+	} from '$lib/stores';
+	import {
+		getChatList,
+		getChatListByFolderId,
+		updateChatFolderIdById,
+		updateChatById,
+		cloneChatById,
+		archiveChatById,
+		deleteChatById
+	} from '$lib/apis/chats';
 	import {
 		getFolders,
 		createNewFolder,
@@ -10,6 +28,8 @@
 		deleteFolderById,
 		updateFolderIsExpandedById
 	} from '$lib/apis/folders';
+	import { downloadChatJSON, downloadChatTxt, downloadChatPdf } from '$lib/utils/chat-export';
+	import ContextMenu, { deferToNative } from '$lib/components/common/ContextMenu.svelte';
 	import UserMenu from './Sidebar/UserMenu.svelte';
 
 	/*
@@ -36,8 +56,15 @@
 	let chatsByFolder = $state<Record<string, any[]>>({}); // folder id → filed chats
 	let openMap = $state<Record<string, boolean>>({}); // folder id → expanded
 	let renamingQuire = $state<string | null>(null);
+	let renamingFolio = $state<string | null>(null);
 	let dragId = $state<string | null>(null);
 	let dropQuire = $state<string | null>(null); // a quire id, or 'new' over the gather button
+
+	// ─── The binder's menu (right-click) ───
+	let ctxMenu = $state<any>(null);
+	let ctx = $state<any>(null); // { kind: 'folio', f, q } | { kind: 'quire', q } | { kind: 'list' }
+	let armed = $state<string | null>(null); // a destructive item waiting for its second click
+	let sub = $state<string | null>(null); // 'move' | 'download' — the unfolded inline submenu
 
 	const token = () => localStorage.token;
 
@@ -200,29 +227,28 @@
 		}
 	};
 
+	// file a folio into a quire (or back to the loose leaves) — drag and menu share this
+	const fileChat = async (id: string, folderId?: string) => {
+		const res = await updateChatFolderIdById(token(), id, folderId).catch(() => null);
+		if (res !== null) {
+			if (folderId) openMap[folderId] = true;
+			for (const f of folders) await loadFolderChats(f.id);
+			await refreshLoose();
+		}
+	};
+
 	const fileInto = async (folderId: string) => {
 		const id = dragId;
 		dragId = null;
 		dropQuire = null;
-		if (!id) return;
-		const res = await updateChatFolderIdById(token(), id, folderId).catch(() => null);
-		if (res !== null) {
-			openMap[folderId] = true;
-			await loadFolderChats(folderId);
-			await refreshLoose();
-		}
+		if (id) await fileChat(id, folderId);
 	};
 
 	const unfile = async () => {
 		const id = dragId;
 		dragId = null;
 		dropQuire = null;
-		if (!id) return;
-		const res = await updateChatFolderIdById(token(), id, undefined).catch(() => null);
-		if (res !== null) {
-			for (const f of folders) await loadFolderChats(f.id);
-			await refreshLoose();
-		}
+		if (id) await fileChat(id, undefined);
 	};
 
 	const gatherInto = async () => {
@@ -240,6 +266,136 @@
 			if (!id) startRenameQuire(res.id);
 		}
 	};
+
+	// ─── Folios: rename inline, the quire way ───
+	const startRenameFolio = async (id: string) => {
+		renamingFolio = id;
+		await tick();
+		const el = document.getElementById('fn-' + id);
+		if (el) {
+			el.focus();
+			const r = document.createRange();
+			r.selectNodeContents(el);
+			const s = window.getSelection();
+			s?.removeAllRanges();
+			s?.addRange(r);
+		}
+	};
+
+	const commitRenameFolio = async (id: string, raw: string) => {
+		renamingFolio = null;
+		const title = (raw || '').trim();
+		const current =
+			($chats ?? []).find((c: any) => c.id === id) ??
+			folders.flatMap((f) => chatsByFolder[f.id] ?? []).find((c: any) => c.id === id);
+		if (!title || title === current?.title) return;
+		const res = await updateChatById(token(), id, { title }).catch(() => null);
+		if (res) {
+			if (id === $chatId) chatTitle.set(title);
+			for (const f of folders) await loadFolderChats(f.id);
+			await refreshLoose();
+		}
+	};
+
+	// ─── The binder's menu: what the right hand asks of a row ───
+	const openCtx = (e: MouseEvent, target: any) => {
+		if ($mobile) return;
+		if (deferToNative(e)) return;
+		e.preventDefault();
+		e.stopPropagation();
+		ctx = target;
+		armed = null;
+		sub = null;
+		ctxMenu?.openAt(e);
+	};
+
+	const refreshAll = async () => {
+		for (const f of folders) await loadFolderChats(f.id);
+		await refreshLoose();
+	};
+
+	const ctxRenameFolio = () => {
+		const f = ctx?.f;
+		ctxMenu?.close();
+		if (f) startRenameFolio(f.id);
+	};
+
+	const ctxMove = async (folderId?: string) => {
+		const f = ctx?.f;
+		ctxMenu?.close();
+		if (f) await fileChat(f.id, folderId);
+	};
+
+	const ctxClone = async () => {
+		const f = ctx?.f;
+		ctxMenu?.close();
+		if (!f) return;
+		const res = await cloneChatById(token(), f.id).catch(() => null);
+		if (res) {
+			await refreshAll();
+			await selectFolio(res.id);
+		}
+	};
+
+	const ctxArchive = async () => {
+		const f = ctx?.f;
+		ctxMenu?.close();
+		if (!f) return;
+		const res = await archiveChatById(token(), f.id).catch(() => null);
+		if (res !== null) {
+			await refreshAll();
+			if (f.id === $chatId) await goto('/');
+		}
+	};
+
+	const ctxDelete = async () => {
+		if (armed !== 'delete') {
+			armed = 'delete';
+			return;
+		}
+		const f = ctx?.f;
+		ctxMenu?.close();
+		if (!f) return;
+		const res = await deleteChatById(token(), f.id).catch(() => null);
+		if (res) {
+			await refreshAll();
+			if (f.id === $chatId) await goto('/');
+		}
+	};
+
+	const ctxDissolve = async () => {
+		if (armed !== 'dissolve') {
+			armed = 'dissolve';
+			return;
+		}
+		const q = ctx?.q;
+		ctxMenu?.close();
+		if (q) await dissolveQuire(q.id);
+	};
+
+	const ctxNewFolioInQuire = async () => {
+		const q = ctx?.q;
+		ctxMenu?.close();
+		if (!q) return;
+		selectedFolder.set(q);
+		if ($mobile) showSidebar.set(false);
+		await goto('/');
+	};
+
+	const toggleSub = (which: string) => {
+		sub = sub === which ? null : which;
+		ctxMenu?.reposition();
+	};
+
+	// A chat created elsewhere (e.g. filed straight into a quire) only shows up in
+	// the folder lists after a reload — refresh them whenever the loose list moves.
+	$effect(() => {
+		const list = $chats;
+		if (!list) return;
+		untrack(() => {
+			for (const f of folders) loadFolderChats(f.id);
+		});
+	});
 </script>
 
 <aside class="archive" class:revealed aria-label="The archive">
@@ -310,6 +466,7 @@
 			e.preventDefault();
 			unfile();
 		}}
+		oncontextmenu={(e) => openCtx(e, { kind: 'list' })}
 	>
 		{#each archRows as row, i (row.key)}
 			{#if row.kind === 'quire'}
@@ -338,6 +495,7 @@
 						e.stopPropagation();
 						fileInto(row.q.id);
 					}}
+					oncontextmenu={(e) => openCtx(e, { kind: 'quire', q: row.q })}
 				>
 					<svg
 						class="quire-chev"
@@ -437,18 +595,26 @@
 						e.stopPropagation();
 						fileInto(row.q.id);
 					}}
+					oncontextmenu={(e) => openCtx(e, { kind: 'quire', q: row.q })}
 				>
 					nothing gathered yet — drag a folio in
 				</div>
 			{:else}
-				<button
+				<!-- svelte-ignore a11y_no_static_element_interactions -->
+				<div
 					class="arch-item"
 					class:current={row.f.id === $chatId}
 					class:filed={!!row.q}
 					class:dragging={dragId === row.f.id}
 					style:--i={i}
-					draggable="true"
-					onclick={() => selectFolio(row.f.id)}
+					role="button"
+					tabindex="0"
+					draggable={renamingFolio !== row.f.id}
+					onclick={() => renamingFolio !== row.f.id && selectFolio(row.f.id)}
+					onkeydown={(e) => {
+						if (e.key === 'Enter' && e.target === e.currentTarget) selectFolio(row.f.id);
+					}}
+					oncontextmenu={(e) => openCtx(e, { kind: 'folio', f: row.f, q: row.q })}
 					ondragstart={(e) => {
 						dragId = row.f.id;
 						e.dataTransfer?.setData('text/plain', row.f.id);
@@ -480,7 +646,29 @@
 				>
 					<span class="arch-no">№{pad(noById[row.f.id])}</span>
 					<span class="arch-body">
-						<span class="arch-title">{row.f.title || 'Untitled folio'}</span>
+						{#if renamingFolio === row.f.id}
+							<!-- svelte-ignore a11y_no_static_element_interactions -->
+							<span
+								id="fn-{row.f.id}"
+								class="arch-title editing"
+								contenteditable="plaintext-only"
+								spellcheck="false"
+								onclick={(e) => e.stopPropagation()}
+								onkeydown={(e) => {
+									e.stopPropagation();
+									if (e.key === 'Enter') {
+										e.preventDefault();
+										e.currentTarget.blur();
+									} else if (e.key === 'Escape') {
+										renamingFolio = null;
+									}
+								}}
+								onblur={(e) => commitRenameFolio(row.f.id, e.currentTarget.textContent ?? '')}
+								>{row.f.title || 'Untitled folio'}</span
+							>
+						{:else}
+							<span class="arch-title">{row.f.title || 'Untitled folio'}</span>
+						{/if}
 						<span class="arch-meta">{relTime(row.f.updated_at)}</span>
 					</span>
 					<svg
@@ -495,7 +683,7 @@
 						stroke-linejoin="round"
 						aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg
 					>
-				</button>
+				</div>
 			{/if}
 		{/each}
 	</div>
@@ -522,6 +710,295 @@
 	</div>
 </aside>
 
+<ContextMenu
+	bind:this={ctxMenu}
+	onOpenChange={(open) => {
+		if (!open) {
+			armed = null;
+			sub = null;
+		}
+	}}
+>
+	{#if ctx?.kind === 'folio'}
+		<button
+			class="ctx-item"
+			onclick={() => {
+				const f = ctx.f;
+				ctxMenu?.close();
+				selectFolio(f.id);
+			}}
+		>
+			<svg
+				width="13"
+				height="13"
+				viewBox="0 0 24 24"
+				fill="none"
+				stroke="currentColor"
+				stroke-width="1.8"
+				stroke-linecap="round"
+				stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg
+			>
+			<span class="ctx-label">Open</span>
+		</button>
+		<button class="ctx-item" onclick={ctxRenameFolio}>
+			<svg
+				width="13"
+				height="13"
+				viewBox="0 0 24 24"
+				fill="none"
+				stroke="currentColor"
+				stroke-width="1.8"
+				stroke-linecap="round"
+				stroke-linejoin="round"
+				><path d="M17 3a2.8 2.8 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z" /></svg
+			>
+			<span class="ctx-label">Rename</span>
+		</button>
+		{#if foldersEnabled && (folders.some((q) => q.id !== ctx.q?.id) || ctx.q)}
+			<button class="ctx-item" class:unfolded={sub === 'move'} onclick={() => toggleSub('move')}>
+				<svg
+					width="13"
+					height="13"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="1.8"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					><path
+						d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"
+					/></svg
+				>
+				<span class="ctx-label">Move to…</span>
+				<svg
+					class="ctx-caret"
+					width="10"
+					height="10"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2.2"
+					stroke-linecap="round"
+					stroke-linejoin="round"><path d="M9 6l6 6-6 6" /></svg
+				>
+			</button>
+			{#if sub === 'move'}
+				<div class="ctx-sub">
+					{#each folders.filter((q) => q.id !== ctx.q?.id) as q (q.id)}
+						<button class="ctx-item" onclick={() => ctxMove(q.id)}>
+							<span class="ctx-label">{q.name}</span>
+						</button>
+					{/each}
+					{#if ctx.q}
+						<button class="ctx-item" onclick={() => ctxMove(undefined)}>
+							<span class="ctx-label">Unfile</span>
+						</button>
+					{/if}
+				</div>
+			{/if}
+		{/if}
+		<button class="ctx-item" onclick={ctxClone}>
+			<svg
+				width="13"
+				height="13"
+				viewBox="0 0 24 24"
+				fill="none"
+				stroke="currentColor"
+				stroke-width="1.8"
+				stroke-linecap="round"
+				stroke-linejoin="round"
+				><rect x="9" y="9" width="12" height="12" rx="2" /><path
+					d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+				/></svg
+			>
+			<span class="ctx-label">Clone</span>
+		</button>
+		<button
+			class="ctx-item"
+			class:unfolded={sub === 'download'}
+			onclick={() => toggleSub('download')}
+		>
+			<svg
+				width="13"
+				height="13"
+				viewBox="0 0 24 24"
+				fill="none"
+				stroke="currentColor"
+				stroke-width="1.8"
+				stroke-linecap="round"
+				stroke-linejoin="round"
+				><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" /></svg
+			>
+			<span class="ctx-label">Download…</span>
+			<svg
+				class="ctx-caret"
+				width="10"
+				height="10"
+				viewBox="0 0 24 24"
+				fill="none"
+				stroke="currentColor"
+				stroke-width="2.2"
+				stroke-linecap="round"
+				stroke-linejoin="round"><path d="M9 6l6 6-6 6" /></svg
+			>
+		</button>
+		{#if sub === 'download'}
+			<div class="ctx-sub">
+				<button
+					class="ctx-item"
+					onclick={() => {
+						const f = ctx.f;
+						ctxMenu?.close();
+						downloadChatJSON(token(), f.id);
+					}}
+				>
+					<span class="ctx-label">Export (.json)</span>
+				</button>
+				<button
+					class="ctx-item"
+					onclick={() => {
+						const f = ctx.f;
+						ctxMenu?.close();
+						downloadChatTxt(token(), f.id);
+					}}
+				>
+					<span class="ctx-label">Plain text (.txt)</span>
+				</button>
+				<button
+					class="ctx-item"
+					onclick={() => {
+						const f = ctx.f;
+						ctxMenu?.close();
+						downloadChatPdf(token(), f.id);
+					}}
+				>
+					<span class="ctx-label">PDF (.pdf)</span>
+				</button>
+			</div>
+		{/if}
+		<div class="ctx-rule"></div>
+		<button class="ctx-item" onclick={ctxArchive}>
+			<svg
+				width="13"
+				height="13"
+				viewBox="0 0 24 24"
+				fill="none"
+				stroke="currentColor"
+				stroke-width="1.8"
+				stroke-linecap="round"
+				stroke-linejoin="round"><path d="M21 8v13H3V8M1 3h22v5H1zM10 12h4" /></svg
+			>
+			<span class="ctx-label">Archive</span>
+		</button>
+		<button class="ctx-item" class:armed={armed === 'delete'} onclick={ctxDelete}>
+			<svg
+				width="13"
+				height="13"
+				viewBox="0 0 24 24"
+				fill="none"
+				stroke="currentColor"
+				stroke-width="1.8"
+				stroke-linecap="round"
+				stroke-linejoin="round"
+				><path
+					d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m3 0v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6h14z"
+				/></svg
+			>
+			<span class="ctx-label">{armed === 'delete' ? 'Confirm delete' : 'Delete'}</span>
+		</button>
+	{:else if ctx?.kind === 'quire'}
+		<button class="ctx-item" onclick={ctxNewFolioInQuire}>
+			<svg
+				width="13"
+				height="13"
+				viewBox="0 0 14 14"
+				fill="none"
+				stroke="currentColor"
+				stroke-width="1.6"
+				stroke-linecap="round"><path d="M7 2.5v9M2.5 7h9" /></svg
+			>
+			<span class="ctx-label">New folio in this quire</span>
+		</button>
+		<button
+			class="ctx-item"
+			onclick={() => {
+				const q = ctx.q;
+				ctxMenu?.close();
+				startRenameQuire(q.id);
+			}}
+		>
+			<svg
+				width="13"
+				height="13"
+				viewBox="0 0 24 24"
+				fill="none"
+				stroke="currentColor"
+				stroke-width="1.8"
+				stroke-linecap="round"
+				stroke-linejoin="round"
+				><path d="M17 3a2.8 2.8 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z" /></svg
+			>
+			<span class="ctx-label">Rename</span>
+		</button>
+		<div class="ctx-rule"></div>
+		<button class="ctx-item" class:armed={armed === 'dissolve'} onclick={ctxDissolve}>
+			<svg
+				width="13"
+				height="13"
+				viewBox="0 0 24 24"
+				fill="none"
+				stroke="currentColor"
+				stroke-width="1.8"
+				stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12" /></svg
+			>
+			<span class="ctx-label">{armed === 'dissolve' ? 'Confirm dissolve' : 'Dissolve'}</span>
+		</button>
+	{:else if ctx?.kind === 'list'}
+		<button
+			class="ctx-item"
+			onclick={() => {
+				ctxMenu?.close();
+				newFolio();
+			}}
+		>
+			<svg
+				width="13"
+				height="13"
+				viewBox="0 0 14 14"
+				fill="none"
+				stroke="currentColor"
+				stroke-width="1.6"
+				stroke-linecap="round"><path d="M7 2.5v9M2.5 7h9" /></svg
+			>
+			<span class="ctx-label">New folio</span>
+		</button>
+		{#if foldersEnabled}
+			<button
+				class="ctx-item"
+				onclick={() => {
+					ctxMenu?.close();
+					newQuire();
+				}}
+			>
+				<svg
+					width="13"
+					height="13"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="1.8"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					><path
+						d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"
+					/></svg
+				>
+				<span class="ctx-label">New quire</span>
+			</button>
+		{/if}
+	{/if}
+</ContextMenu>
+
 <style>
 	.archive {
 		position: relative;
@@ -542,9 +1019,12 @@
 		display: flex;
 		align-items: baseline;
 		justify-content: space-between;
+		gap: 10px;
 		padding: 0 8px 14px;
 	}
 	.arch-kicker {
+		flex: none;
+		white-space: nowrap;
 		font-size: 12px;
 		font-weight: 650;
 		letter-spacing: 0.22em;
@@ -552,6 +1032,9 @@
 		color: var(--ink-2);
 	}
 	.arch-count {
+		min-width: 0;
+		overflow: hidden;
+		text-overflow: ellipsis;
 		font-family: var(--mono);
 		font-size: 12px;
 		color: var(--ink-3);
@@ -743,6 +1226,7 @@
 		background: transparent;
 		text-align: left;
 		cursor: pointer;
+		user-select: none;
 		color: var(--ink-2);
 		opacity: 0;
 		transform: translateX(-12px);
@@ -808,6 +1292,13 @@
 		white-space: nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;
+	}
+	.arch-title.editing {
+		outline: none;
+		user-select: text;
+		caret-color: var(--vermilion);
+		border-bottom: 1px dashed var(--rule);
+		min-width: 40px;
 	}
 	.arch-item.current .arch-title {
 		color: var(--ink);

@@ -1,9 +1,13 @@
 <script>
 	import { tick } from 'svelte';
 	import { browser } from '$app/environment';
-	import { theme, showSidebar, settings, models as modelsStore } from '$lib/stores';
+	import { theme, showSidebar, settings, models as modelsStore, mobile } from '$lib/stores';
 	import { deleteFileById } from '$lib/apis/files';
+	import { copyToClipboard } from '$lib/utils';
+	import { downloadChatJSON, downloadChatTxt, downloadChatPdf } from '$lib/utils/chat-export';
+	import ContextMenu, { deferToNative } from '$lib/components/common/ContextMenu.svelte';
 	import Markdown from './Messages/Markdown.svelte';
+	import { getOutputText } from './Messages/structuredOutput';
 	import QuerySlip from './QuerySlip.svelte';
 
 	/*
@@ -30,6 +34,11 @@
 		onEditPrompt = (messageId, content) => {},
 		onRenameChat = (title) => {},
 		onNewChat = () => {},
+		onContinue = null,
+		onStop = null,
+		onSwitchBranch = null,
+		onShareChat = null,
+		onArchiveChat = null,
 		query = null,
 		onQueryAnswer = (result) => {}
 	} = $props();
@@ -280,6 +289,10 @@
 		if (Array.isArray(c)) return c.map((p) => p?.text ?? '').join(' ');
 		return '';
 	}
+	// Assistant text lives in `content` pre-0.10, in OR-aligned `output` items after.
+	function messageText(m) {
+		return contentToText(m?.content) || getOutputText(m?.output);
+	}
 	function fmtTime(ts) {
 		if (!ts) return '';
 		const d = new Date(ts < 1e12 ? ts * 1000 : ts);
@@ -322,7 +335,7 @@
 				// the message in place, and identical references would never repaint.
 				cur.assistants.push({
 					id: m.id,
-					content: contentToText(m.content),
+					content: messageText(m),
 					done: m.done ?? true,
 					entries: m.statusHistory ?? (m.status ? [m.status] : []),
 					message: m
@@ -603,6 +616,66 @@
 		else e.currentTarget.textContent = sec.prompt;
 	}
 
+	// ─── Forks: sibling branches of a section, shown as split nodes on the spine ───
+	// A section forks when its prompt was edited (user-message siblings) or its
+	// response was set again (assistant siblings). Prompt forks take precedence.
+	function siblingIdsOf(id) {
+		const m = history?.messages?.[id];
+		if (!m) return [];
+		if (m.parentId && history.messages[m.parentId]) {
+			return history.messages[m.parentId].childrenIds.filter(
+				(cid) => history.messages[cid]?.role === m.role
+			);
+		}
+		return Object.values(history.messages)
+			.filter((x) => x?.parentId === null && x.role === m.role)
+			.sort((a, b) => (a.timestamp ?? 0) - (b.timestamp ?? 0))
+			.map((x) => x.id);
+	}
+	function variantsOf(sec) {
+		if (sec.userId) {
+			const u = siblingIdsOf(sec.userId);
+			if (u.length > 1) return { ids: u, activeId: sec.userId };
+		}
+		const last = sec.assistants.at(-1);
+		if (last) {
+			const a = siblingIdsOf(last.id);
+			if (a.length > 1) return { ids: a, activeId: last.id };
+		}
+		return null;
+	}
+
+	// ─── The binder's menu (right-click): sections and the letterhead ───
+	let ctxMenu = $state(null);
+	let ctx = $state(null); // { kind: 'sec', sec, si } | { kind: 'letterhead' }
+	let ctxSub = $state(null); // 'download' — the unfolded inline submenu
+
+	// a chat that actually lives on the server (not unsent, not a temporary local: one)
+	let realChat = $derived(!!chatId && !String(chatId).startsWith('local:'));
+
+	function openCtx(e, target) {
+		if ($mobile) return;
+		if (deferToNative(e)) return;
+		e.preventDefault();
+		e.stopPropagation();
+		ctx = target;
+		ctxSub = null;
+		ctxMenu?.openAt(e);
+	}
+
+	async function startRenameTitle() {
+		ctxMenu?.close();
+		const el = scroller?.querySelector('.letterhead .title');
+		if (el) {
+			el.focus();
+			const r = document.createRange();
+			r.selectNodeContents(el);
+			const s = window.getSelection();
+			s.removeAllRanges();
+			s.addRange(r);
+		}
+	}
+
 	// ─── The ledger: the agent's tool runs, stamped into the record ───
 	const VERB_ICONS = {
 		read: 'M4 19.5A2.5 2.5 0 0 1 6.5 17H20M4 19.5A2.5 2.5 0 0 0 6.5 22H20V2H6.5A2.5 2.5 0 0 0 4 4.5v15z',
@@ -662,16 +735,36 @@
 					<div class="thread-fill" style:height="{Math.round(progress * 100)}%"></div>
 				</div>
 				{#each sections as sec, i (sec.id)}
-					<button
-						class="node"
-						class:visited={i < activeIdx}
-						class:active={i === activeIdx}
-						onclick={() => scrollToSection(sec.id)}
-						aria-label="Go to section {i + 1}"
-					>
-						<span class="node-dot"></span>
-						<span class="node-tip"><em>§{i + 1}</em>{sec.prompt.slice(0, 44)}…</span>
-					</button>
+					{@const forks = variantsOf(sec)}
+					<div class="node-row">
+						<button
+							class="node"
+							class:visited={i < activeIdx}
+							class:active={i === activeIdx}
+							onclick={() => scrollToSection(sec.id)}
+							aria-label="Go to section {i + 1}"
+						>
+							<span class="node-dot"></span>
+							<span class="node-tip"><em>§{i + 1}</em>{sec.prompt.slice(0, 44)}…</span>
+						</button>
+						{#if forks && onSwitchBranch}
+							{#each forks.ids.filter((id) => id !== forks.activeId) as forkId, fi (forkId)}
+								<button
+									class="node fork"
+									style:left="{24 + fi * 18}px"
+									onclick={() => onSwitchBranch(forkId)}
+									aria-label="Switch section {i + 1} to another branch"
+								>
+									<span class="node-dot"></span>
+									<span class="node-tip"
+										><em>⑂</em>{(
+											messageText(history?.messages?.[forkId]) || 'another branch'
+										).slice(0, 44)}…</span
+									>
+								</button>
+							{/each}
+						{/if}
+					</div>
 				{/each}
 				<button
 					class="node now"
@@ -720,7 +813,12 @@
 
 						{@render edge()}
 					{:else}
-						<header class="letterhead reveal" style:--d="0s">
+						<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
+						<header
+							class="letterhead reveal"
+							style:--d="0s"
+							oncontextmenu={(e) => openCtx(e, { kind: 'letterhead' })}
+						>
 							<div class="kicker-row">
 								<span class="kicker">Folio · №{folioNo}</span>
 								<span class="lh-actions">{@render actions()}</span>
@@ -757,7 +855,14 @@
 						</header>
 
 						{#each sections as sec, si (sec.id)}
-							<section class="sec reveal" style:--d="{0.12 + si * 0.1}s" id="sec-{sec.id}" data-sec>
+							<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
+							<section
+								class="sec reveal"
+								style:--d="{0.12 + si * 0.1}s"
+								id="sec-{sec.id}"
+								data-sec
+								oncontextmenu={(e) => openCtx(e, { kind: 'sec', sec, si })}
+							>
 								{#if si > 0}
 									<div class="asterism dim" aria-hidden="true"><span>⁂</span></div>
 								{/if}
@@ -825,6 +930,26 @@
 													><path d="M23 4v6h-6M20.49 15a9 9 0 1 1-2.12-9.36L23 10" /></svg
 												>
 											</button>
+											{#if onContinue && si === sections.length - 1 && sec.assistants.length > 0}
+												<button
+													class="rail-btn"
+													title="Continue the response"
+													aria-label="Continue the response"
+													disabled={generating}
+													onclick={() => onContinue()}
+												>
+													<svg
+														width="12"
+														height="12"
+														viewBox="0 0 24 24"
+														fill="none"
+														stroke="currentColor"
+														stroke-width="1.8"
+														stroke-linecap="round"
+														stroke-linejoin="round"><path d="M5 3l14 9-14 9V3z" /></svg
+													>
+												</button>
+											{/if}
 										</div>
 									</div>
 								</header>
@@ -904,6 +1029,256 @@
 	</div>
 </div>
 
+<ContextMenu
+	bind:this={ctxMenu}
+	onOpenChange={(open) => {
+		if (!open) ctxSub = null;
+	}}
+>
+	{#if ctx?.kind === 'sec'}
+		{@const lastAssistant = ctx.sec.assistants.at(-1)}
+		{#if ctx.sec.userId}
+			<button
+				class="ctx-item"
+				onclick={() => {
+					const sec = ctx.sec;
+					ctxMenu?.close();
+					startEditPrompt(sec);
+				}}
+			>
+				<svg
+					width="13"
+					height="13"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="1.8"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					><path d="M17 3a2.8 2.8 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z" /></svg
+				>
+				<span class="ctx-label">Edit prompt</span>
+			</button>
+			<button
+				class="ctx-item"
+				onclick={() => {
+					const sec = ctx.sec;
+					ctxMenu?.close();
+					copyToClipboard(sec.prompt);
+				}}
+			>
+				<svg
+					width="13"
+					height="13"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="1.8"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					><rect x="9" y="9" width="12" height="12" rx="2" /><path
+						d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+					/></svg
+				>
+				<span class="ctx-label">Copy prompt</span>
+			</button>
+		{/if}
+		{#if lastAssistant}
+			<button
+				class="ctx-item"
+				onclick={() => {
+					const a = lastAssistant;
+					ctxMenu?.close();
+					copyToClipboard(a.content);
+				}}
+			>
+				<svg
+					width="13"
+					height="13"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="1.8"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					><rect x="9" y="9" width="12" height="12" rx="2" /><path
+						d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+					/></svg
+				>
+				<span class="ctx-label">Copy response</span>
+			</button>
+			<div class="ctx-rule"></div>
+			<button
+				class="ctx-item"
+				disabled={generating}
+				onclick={() => {
+					const a = lastAssistant;
+					ctxMenu?.close();
+					onRegenerate(a.message);
+				}}
+			>
+				<svg
+					width="13"
+					height="13"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="1.8"
+					stroke-linecap="round"
+					stroke-linejoin="round"><path d="M23 4v6h-6M20.49 15a9 9 0 1 1-2.12-9.36L23 10" /></svg
+				>
+				<span class="ctx-label">Regenerate</span>
+			</button>
+			{#if onContinue && ctx.si === sections.length - 1}
+				<button
+					class="ctx-item"
+					disabled={generating}
+					onclick={() => {
+						ctxMenu?.close();
+						onContinue();
+					}}
+				>
+					<svg
+						width="13"
+						height="13"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="1.8"
+						stroke-linecap="round"
+						stroke-linejoin="round"><path d="M5 3l14 9-14 9V3z" /></svg
+					>
+					<span class="ctx-label">Continue response</span>
+				</button>
+			{/if}
+		{/if}
+	{:else if ctx?.kind === 'letterhead'}
+		<button class="ctx-item" onclick={startRenameTitle}>
+			<svg
+				width="13"
+				height="13"
+				viewBox="0 0 24 24"
+				fill="none"
+				stroke="currentColor"
+				stroke-width="1.8"
+				stroke-linecap="round"
+				stroke-linejoin="round"
+				><path d="M17 3a2.8 2.8 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z" /></svg
+			>
+			<span class="ctx-label">Rename</span>
+		</button>
+		{#if realChat}
+			{#if onShareChat}
+				<button
+					class="ctx-item"
+					onclick={() => {
+						ctxMenu?.close();
+						onShareChat();
+					}}
+				>
+					<svg
+						width="13"
+						height="13"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="1.8"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8M16 6l-4-4-4 4M12 2v13" /></svg
+					>
+					<span class="ctx-label">Share</span>
+				</button>
+			{/if}
+			<button
+				class="ctx-item"
+				class:unfolded={ctxSub === 'download'}
+				onclick={() => {
+					ctxSub = ctxSub === 'download' ? null : 'download';
+					ctxMenu?.reposition();
+				}}
+			>
+				<svg
+					width="13"
+					height="13"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="1.8"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+					><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" /></svg
+				>
+				<span class="ctx-label">Download…</span>
+				<svg
+					class="ctx-caret"
+					width="10"
+					height="10"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2.2"
+					stroke-linecap="round"
+					stroke-linejoin="round"><path d="M9 6l6 6-6 6" /></svg
+				>
+			</button>
+			{#if ctxSub === 'download'}
+				<div class="ctx-sub">
+					<button
+						class="ctx-item"
+						onclick={() => {
+							ctxMenu?.close();
+							downloadChatJSON(localStorage.token, chatId);
+						}}
+					>
+						<span class="ctx-label">Export (.json)</span>
+					</button>
+					<button
+						class="ctx-item"
+						onclick={() => {
+							ctxMenu?.close();
+							downloadChatTxt(localStorage.token, chatId);
+						}}
+					>
+						<span class="ctx-label">Plain text (.txt)</span>
+					</button>
+					<button
+						class="ctx-item"
+						onclick={() => {
+							ctxMenu?.close();
+							downloadChatPdf(localStorage.token, chatId);
+						}}
+					>
+						<span class="ctx-label">PDF (.pdf)</span>
+					</button>
+				</div>
+			{/if}
+			{#if onArchiveChat}
+				<div class="ctx-rule"></div>
+				<button
+					class="ctx-item"
+					onclick={() => {
+						ctxMenu?.close();
+						onArchiveChat();
+					}}
+				>
+					<svg
+						width="13"
+						height="13"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="1.8"
+						stroke-linecap="round"
+						stroke-linejoin="round"><path d="M21 8v13H3V8M1 3h22v5H1zM10 12h4" /></svg
+					>
+					<span class="ctx-label">Archive</span>
+				</button>
+			{/if}
+		{/if}
+	{/if}
+</ContextMenu>
+
 {#snippet edge()}
 	<div class="edge-slot">
 		{#if query}
@@ -973,27 +1348,36 @@
 						></textarea>
 						<div class="rule" aria-hidden="true"></div>
 					</div>
-					<button
-						class="set-btn"
-						class:ready={composerText.trim().length > 0}
-						onclick={doSend}
-						disabled={generating}
-						title="Set in type (Enter)"
-					>
-						<span class="set-label">Set in type</span>
-						<svg
-							width="14"
-							height="14"
-							viewBox="0 0 24 24"
-							fill="none"
-							stroke="currentColor"
-							stroke-width="2.2"
-							stroke-linecap="round"
-							stroke-linejoin="round"
+					{#if generating && onStop}
+						<button class="set-btn stop ready" onclick={() => onStop()} title="Stop">
+							<span class="set-label">Stop</span>
+							<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+								<rect x="6" y="6" width="12" height="12" rx="2" />
+							</svg>
+						</button>
+					{:else}
+						<button
+							class="set-btn"
+							class:ready={composerText.trim().length > 0}
+							onclick={doSend}
+							disabled={generating}
+							title="Set in type (Enter)"
 						>
-							<path d="M12 19V5M5 12l7-7 7 7" />
-						</svg>
-					</button>
+							<span class="set-label">Set in type</span>
+							<svg
+								width="14"
+								height="14"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2.2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+							>
+								<path d="M12 19V5M5 12l7-7 7 7" />
+							</svg>
+						</button>
+					{/if}
 				</div>
 
 				<div class="edge-tools" class:held-open={typecaseOpen}>
@@ -2488,6 +2872,18 @@
 	.set-btn:active {
 		transform: scale(0.92);
 	}
+	/* while the press runs, the seal turns into a stop — breathing, pressable */
+	.set-btn.stop {
+		animation: stopBreath 2.2s ease-in-out infinite;
+	}
+	.set-btn.stop:hover svg {
+		transform: none;
+	}
+	@keyframes stopBreath {
+		50% {
+			box-shadow: 0 0 0 6px var(--vermilion-soft);
+		}
+	}
 
 	/* ── Enclosures: clippings pinned above the line ── */
 	.clippings {
@@ -3002,6 +3398,27 @@
 			box-shadow: 0 0 0 5px var(--vermilion-soft);
 		}
 	}
+	/* a forked section: the main node keeps the thread, branches hang beside it */
+	.node-row {
+		position: relative;
+		width: 22px;
+		height: 22px;
+	}
+	.node-row > .node {
+		position: absolute;
+		left: 0;
+		top: 0;
+	}
+	.node.fork .node-dot {
+		background: transparent;
+		border-style: dashed;
+		border-color: var(--ink-3);
+	}
+	.node.fork:hover .node-dot {
+		border-color: var(--vermilion);
+		border-style: solid;
+	}
+
 	.node-tip {
 		position: absolute;
 		left: 26px;

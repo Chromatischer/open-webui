@@ -97,6 +97,8 @@
 	import { updateFolderById } from '$lib/apis/folders';
 
 	import Folio from '$lib/components/chat/Folio.svelte';
+	import { getOutputText } from '$lib/components/chat/Messages/structuredOutput';
+	import ShareChatModal from './ShareChatModal.svelte';
 	import EventConfirmDialog from '../common/ConfirmDialog.svelte';
 	import DeleteConfirmDialog from '../common/ConfirmDialog.svelte';
 	import FilesOverlay from './MessageInput/FilesOverlay.svelte';
@@ -469,6 +471,10 @@
 				} else if (type === 'chat:message:tasks') {
 					chatTasks = data.tasks;
 				} else if (type === 'chat:message:scratchboard') {
+					const turnId = turnIdFor(event.message_id ?? message?.id ?? null);
+					if (turnId) {
+						recordMarginWrite(turnId, get(scratchboardContentStore), data?.content ?? '');
+					}
 					scratchboardContentStore.set(data?.content ?? '');
 					if (chat?.chat) {
 						chat.chat = { ...chat.chat, scratchboard: data?.content ?? '' };
@@ -1555,6 +1561,7 @@
 				if (chatContent?.scratchboard !== undefined) {
 					scratchboardContentStore.set(chatContent.scratchboard ?? '');
 				}
+				marginLedger = chatContent?.margin_ledger ?? [];
 
 				await tick();
 
@@ -1642,11 +1649,12 @@
 	};
 
 	let marginWriteToken = 0;
-	const writeMarginNote = (text: string) => {
+	const writeMarginNote = (text: string, turnId: string | null = null) => {
 		const token = ++marginWriteToken;
 		scratchboardAgentWriting.set(true);
 		showScratchboard.set(true);
 		let buf = get(scratchboardContentStore);
+		if (turnId) recordMarginWrite(turnId, buf, buf + text);
 		let i = 0;
 		const step = () => {
 			if (token !== marginWriteToken) return; // superseded by a newer note
@@ -1663,6 +1671,48 @@
 		setTimeout(step, 300);
 	};
 
+	// ─── The margin ledger: every agent write to the scratchboard, in order ───
+	// Each entry remembers which turn (user message) it happened under, so a fork
+	// can undo the margin back to how it stood before that turn ran.
+	let marginLedger: { turnId: string; before: string; after: string }[] = [];
+
+	const turnIdFor = (messageId: string | null): string | null => {
+		let m = messageId ? history?.messages?.[messageId] : null;
+		while (m && m.role !== 'user') {
+			m = m.parentId ? history.messages[m.parentId] : null;
+		}
+		return m?.id ?? null;
+	};
+
+	const recordMarginWrite = (turnId: string, before: string, after: string) => {
+		if (before === after) return;
+		marginLedger = [...marginLedger, { turnId, before, after }];
+	};
+
+	// Undo, newest first, every margin write recorded since the given turn began.
+	// Exact-match reverts when the chain is intact; if the user edited the margin
+	// in between, appended text is stripped where possible, else the write's
+	// recorded before-state wins.
+	const revertMarginFrom = (userMessageId: string) => {
+		const idx = marginLedger.findIndex((e) => e.turnId === userMessageId);
+		if (idx === -1) return;
+		marginWriteToken++; // cancel any in-flight margin typing
+		scratchboardAgentWriting.set(false);
+		let content = get(scratchboardContentStore);
+		for (let i = marginLedger.length - 1; i >= idx; i--) {
+			const e = marginLedger[i];
+			if (content === e.after) {
+				content = e.before;
+			} else {
+				const added = e.after.startsWith(e.before) ? e.after.slice(e.before.length) : null;
+				if (added && content.includes(added)) content = content.replace(added, '');
+				else content = e.before;
+			}
+		}
+		marginLedger = marginLedger.slice(0, idx);
+		scratchboardContentStore.set(content);
+	};
+
 	const chatCompletedHandler = async (_chatId, modelId, responseMessageId, messages) => {
 		// Backend handles outlet filters and persistence inline.
 		// Just refresh the sidebar chat list.
@@ -1674,9 +1724,12 @@
 
 		// The agent writes the response's follow-ups into the margin
 		const completed = history?.messages?.[responseMessageId];
-		const followups = extractFollowups(completed?.content);
+		const followups = extractFollowups(completed?.content || getOutputText(completed?.output));
 		if (followups.length >= 2 && !get(scratchboardAgentWriting)) {
-			writeMarginNote(`\n\n## Follow-ups\n${followups.map((f) => `- ${f}`).join('\n')}`);
+			writeMarginNote(
+				`\n\n## Follow-ups\n${followups.map((f) => `- ${f}`).join('\n')}`,
+				turnIdFor(responseMessageId)
+			);
 		}
 	};
 
@@ -2659,6 +2712,55 @@
 		await sendMessage(history, userMessageId);
 	};
 
+	// ─── Forks: editing a prompt starts a new branch; the old one is kept ───
+	const forkEditPromptHandler = async (messageId, content) => {
+		const original = history?.messages?.[messageId];
+		if (!original || !content) return;
+
+		// the margin rewinds to how it stood before this turn ran
+		revertMarginFrom(messageId);
+
+		const newId = uuidv4();
+		history.messages[newId] = {
+			id: newId,
+			parentId: original.parentId,
+			childrenIds: [],
+			role: 'user',
+			content,
+			files: original.files ? structuredClone(original.files) : undefined,
+			timestamp: Math.floor(Date.now() / 1000),
+			models: original.models ?? selectedModels
+		};
+		if (original.parentId !== null && history.messages[original.parentId]) {
+			history.messages[original.parentId].childrenIds = [
+				...history.messages[original.parentId].childrenIds,
+				newId
+			];
+		}
+		history.currentId = newId;
+		history = history;
+		await tick();
+
+		// persist the new branch before generating, so it survives a failed response
+		await saveChatHandler($chatId, history);
+		await sendMessage(history, newId);
+	};
+
+	// Jump to a sibling branch: land on its deepest descendant along last-children
+	const switchBranchHandler = async (messageId) => {
+		if (!history?.messages?.[messageId]) return;
+		let leafId = messageId;
+		while (history.messages[leafId]?.childrenIds?.length) {
+			const next = history.messages[leafId].childrenIds.at(-1);
+			if (!history.messages[next]) break;
+			leafId = next;
+		}
+		history.currentId = leafId;
+		history = history;
+		await tick();
+		await saveChatHandler($chatId, history);
+	};
+
 	const regenerateResponse = async (message, suggestionPrompt = null) => {
 		console.log('regenerateResponse');
 
@@ -2821,6 +2923,7 @@
 					messages: createMessagesList(history, history.currentId),
 					params: params,
 					scratchboard: get(scratchboardContentStore),
+					margin_ledger: marginLedger,
 					files: chatFiles
 				});
 			}
@@ -2897,6 +3000,7 @@
 	};
 
 	let showDeleteConfirm = false;
+	let showShareChatModal = false;
 
 	const deleteChatHandler = async (id: string) => {
 		showDeleteConfirm = true;
@@ -2930,6 +3034,8 @@
 			: `${$WEBUI_NAME}`}
 	</title>
 </svelte:head>
+
+<ShareChatModal bind:show={showShareChatModal} chatId={$chatId} />
 
 <DeleteConfirmDialog
 	bind:show={showDeleteConfirm}
@@ -3023,6 +3129,11 @@
 							onSubmit={(text) => submitHandler(text)}
 							onNewChat={initNewChat}
 							onRegenerate={(m) => regenerateResponse(m)}
+							onContinue={continueResponse}
+							onStop={() => stopResponse()}
+							onSwitchBranch={switchBranchHandler}
+							onShareChat={() => (showShareChatModal = true)}
+							onArchiveChat={() => archiveChatHandler($chatId)}
 							onRenameChat={async (t) => {
 								chatTitle.set(t);
 								if ($chatId && !$temporaryChatEnabled) {
@@ -3031,12 +3142,7 @@
 									await chats.set(await getChatList(localStorage.token, $currentChatPage));
 								}
 							}}
-							onEditPrompt={(id, content) => {
-								if (history.messages[id]) {
-									history.messages[id].content = content;
-									history = history;
-								}
-							}}
+							onEditPrompt={(id, content) => forkEditPromptHandler(id, content)}
 						/>
 					</div>
 				</div>
