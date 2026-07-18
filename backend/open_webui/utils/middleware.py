@@ -2466,8 +2466,17 @@ async def process_chat_payload(request, form_data, user, metadata, model):
     # Otherwise, save any tools that filter inlets added for merging later.
     inlet_filter_tools = None if payload_tools is not None else form_data.get('tools', None)
 
+    # Identify UI/interactive requests by chat_id (falling back to session_id)
+    # rather than the live socket session_id alone. session_id is the websocket
+    # connection id, which is empty whenever the socket hasn't connected yet or
+    # is blocked (e.g. a reverse proxy that doesn't upgrade /ws/socket.io). In
+    # that case responses still stream via the event_emitter (which only needs
+    # chat_id + message_id), so the chat looks healthy while every built-in tool
+    # silently vanishes. chat_id is the same durable signal event_emitter uses to
+    # treat a request as interactive, so gate built-in tools on it too. Raw API
+    # callers that pass neither still opt out, preserving the original intent.
     use_builtin_tools = (
-        bool(metadata.get('session_id'))
+        bool(metadata.get('chat_id') or metadata.get('session_id'))
         and metadata.get('params', {}).get('function_calling') != 'legacy'
         and (model.get('info', {}).get('meta', {}).get('capabilities') or {}).get('builtin_tools', True)
     )
