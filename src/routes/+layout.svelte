@@ -116,7 +116,12 @@
 			reconnectionDelayMax: 5000,
 			randomizationFactor: 0.5,
 			path: '/ws/socket.io',
-			transports: enableWebsocket ? ['websocket'] : ['polling', 'websocket'],
+			// Always keep polling as a fallback. Websocket-only silently fails
+			// behind a reverse proxy that doesn't upgrade /ws/socket.io, leaving
+			// the socket without a session id — which in turn disables built-in
+			// tools server-side. Preferring websocket but falling back to polling
+			// keeps the session (and tools) working in that setup.
+			transports: enableWebsocket ? ['websocket', 'polling'] : ['polling', 'websocket'],
 			auth: { token: localStorage.token }
 		});
 		await socket.set(_socket);
