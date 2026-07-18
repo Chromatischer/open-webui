@@ -7,6 +7,7 @@
 	import { downloadChatJSON, downloadChatTxt, downloadChatPdf } from '$lib/utils/chat-export';
 	import ContextMenu, { deferToNative } from '$lib/components/common/ContextMenu.svelte';
 	import Markdown from './Messages/Markdown.svelte';
+	import StructuredOutputRenderer from './Messages/StructuredOutputRenderer.svelte';
 	import { getOutputText } from './Messages/structuredOutput';
 	import QuerySlip from './QuerySlip.svelte';
 
@@ -312,6 +313,36 @@
 		return out.reverse();
 	}
 	let messages = $derived(buildList(history));
+
+	/** @param {Record<string, any> | null | undefined} usage */
+	function usageContextTokens(usage) {
+		if (!usage || typeof usage !== 'object') return null;
+		const context = Number(usage.context_tokens);
+		if (Number.isFinite(context) && context > 0) return context;
+
+		const input = Number(usage.input_tokens ?? usage.prompt_tokens ?? usage.prompt_eval_count ?? 0);
+		const output = Number(usage.output_tokens ?? usage.completion_tokens ?? usage.eval_count ?? 0);
+		const total = input + output;
+		return Number.isFinite(total) && total > 0 ? total : null;
+	}
+	let contextTokens = $derived.by(() => {
+		for (let i = messages.length - 1; i >= 0; i--) {
+			const message = messages[i];
+			if (message?.role !== 'assistant') continue;
+			const tokens = usageContextTokens(message.usage ?? message.info?.usage);
+			if (tokens) return tokens;
+		}
+		return null;
+	});
+	/** @param {number} value */
+	function formatTokenCount(value) {
+		return new Intl.NumberFormat('en-GB', {
+			notation: 'compact',
+			maximumFractionDigits: 1
+		})
+			.format(value)
+			.toLowerCase();
+	}
 
 	let sections = $derived.by(() => {
 		const secs = [];
@@ -1001,8 +1032,16 @@
 												{/each}
 											</div>
 										{/if}
-										<div class="passage markdown-prose">
-											<Markdown id={`${chatId}-${a.id}`} content={a.content} done={a.done} />
+										<div class="passage" class:markdown-prose={!a.message.output?.length}>
+											{#if a.message.output?.length}
+												<StructuredOutputRenderer
+													id={`${chatId}-${a.id}`}
+													output={a.message.output}
+													done={a.done}
+												/>
+											{:else}
+												<Markdown id={`${chatId}-${a.id}`} content={a.content} done={a.done} />
+											{/if}
 										</div>
 										{#if a.message.error}
 											<div class="response-error" role="alert">
@@ -1507,6 +1546,11 @@
 							</div>
 						{/if}
 					</div>
+					{#if contextTokens}
+						<span class="context-mark" title="Context occupied after the latest response">
+							context <strong>{formatTokenCount(contextTokens)}</strong>
+						</span>
+					{/if}
 				</div>
 
 				<input type="file" multiple hidden bind:this={fileInputEl} onchange={onFilesPicked} />
@@ -3020,6 +3064,9 @@
 		gap: 2px;
 		margin-left: 30px;
 		min-height: 26px;
+		min-width: 0;
+	}
+	.edge-tools > :not(.context-mark) {
 		opacity: 0;
 		transform: translateY(5px);
 		pointer-events: none;
@@ -3027,11 +3074,33 @@
 			opacity 0.3s var(--out),
 			transform 0.35s var(--out);
 	}
-	.edge:focus-within .edge-tools,
-	.edge-tools.held-open {
+	.edge:focus-within .edge-tools > :not(.context-mark),
+	.edge-tools.held-open > :not(.context-mark) {
 		opacity: 1;
 		transform: translateY(0);
 		pointer-events: auto;
+	}
+	.context-mark {
+		flex: none;
+		margin-left: auto;
+		padding-right: 4px;
+		color: var(--ink-3);
+		font-family: var(--sans);
+		font-size: 10px;
+		font-weight: 520;
+		letter-spacing: 0.08em;
+		line-height: 1;
+		text-transform: uppercase;
+		opacity: 0.62;
+		white-space: nowrap;
+		user-select: none;
+	}
+	.context-mark strong {
+		color: var(--ink-2);
+		font-family: var(--mono);
+		font-size: 10.5px;
+		font-weight: 560;
+		letter-spacing: 0.02em;
 	}
 	.tool {
 		display: inline-flex;

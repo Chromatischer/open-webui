@@ -2332,7 +2332,7 @@ async def process_chat_payload(request, form_data, user, metadata, model):
             if 'files' in folder.data:
                 # Defensive: filter to entries the caller can still read.
                 allowed_files = await get_accessible_folder_files(folder.data['files'], user)
-                if metadata.get('params', {}).get('function_calling') == 'legacy':
+                if metadata.get('params', {}).get('function_calling') != 'native':
                     form_data['files'] = [
                         *allowed_files,
                         *form_data.get('files', []),
@@ -2346,7 +2346,7 @@ async def process_chat_payload(request, form_data, user, metadata, model):
     user_message = get_last_user_message(form_data['messages'])
     model_knowledge = model.get('info', {}).get('meta', {}).get('knowledge', False)
 
-    if model_knowledge and metadata.get('params', {}).get('function_calling') == 'legacy':
+    if model_knowledge and metadata.get('params', {}).get('function_calling') != 'native':
         await event_emitter(
             {
                 'type': 'status',
@@ -2415,12 +2415,12 @@ async def process_chat_payload(request, form_data, user, metadata, model):
 
         if 'web_search' in features and features['web_search']:
             # Skip forced RAG web search when native FC is enabled - model can use web_search tool
-            if metadata.get('params', {}).get('function_calling') == 'legacy':
+            if metadata.get('params', {}).get('function_calling') != 'native':
                 form_data = await chat_web_search_handler(request, form_data, extra_params, user)
 
         if 'image_generation' in features and features['image_generation']:
             # Skip forced image generation when native FC is enabled - model can use generate_image tool
-            if metadata.get('params', {}).get('function_calling') == 'legacy':
+            if metadata.get('params', {}).get('function_calling') != 'native':
                 form_data = await chat_image_generation_handler(request, form_data, extra_params, user)
 
         if 'code_interpreter' in features and features['code_interpreter']:
@@ -2428,7 +2428,7 @@ async def process_chat_payload(request, form_data, user, metadata, model):
 
             # Skip XML-tag prompt injection when native FC is enabled —
             # execute_code will be injected as a builtin tool instead
-            if metadata.get('params', {}).get('function_calling') == 'legacy':
+            if metadata.get('params', {}).get('function_calling') != 'native':
                 prompt = (
                     await Config.get('code_interpreter.prompt_template')
                     if await Config.get('code_interpreter.prompt_template') != ''
@@ -2475,11 +2475,9 @@ async def process_chat_payload(request, form_data, user, metadata, model):
     # silently vanishes. chat_id is the same durable signal event_emitter uses to
     # treat a request as interactive, so gate built-in tools on it too. Raw API
     # callers that pass neither still opt out, preserving the original intent.
-    use_builtin_tools = (
-        bool(metadata.get('chat_id') or metadata.get('session_id'))
-        and metadata.get('params', {}).get('function_calling') != 'legacy'
-        and (model.get('info', {}).get('meta', {}).get('capabilities') or {}).get('builtin_tools', True)
-    )
+    use_builtin_tools = bool(metadata.get('chat_id') or metadata.get('session_id')) and (
+        model.get('info', {}).get('meta', {}).get('capabilities') or {}
+    ).get('builtin_tools', True)
 
     prompt = get_last_user_message(form_data['messages'])
     # TODO: re-enable URL extraction from prompt
@@ -2649,13 +2647,14 @@ async def process_chat_payload(request, form_data, user, metadata, model):
         if mcp_clients:
             metadata['mcp_clients'] = mcp_clients
 
-        # Inject builtin tools for native function calling based on enabled features and model capability.
-        # Only inject when the request originates from the UI (identified by session_id).
+        # Inject builtins for interactive UI requests. Native mode receives the
+        # full set; prompt-based modes retain only the Scratchboard tools.
         # API callers don't expect hidden tools; they can explicitly request tools via tool_ids.
         if use_builtin_tools:
-            # Add file context to user messages
-            chat_id = metadata.get('chat_id')
-            form_data['messages'] = await add_file_context(form_data.get('messages', []), chat_id, user)
+            native_function_calling = metadata.get('params', {}).get('function_calling') == 'native'
+            if native_function_calling:
+                chat_id = metadata.get('chat_id')
+                form_data['messages'] = await add_file_context(form_data.get('messages', []), chat_id, user)
             builtin_tools = await get_builtin_tools(
                 request,
                 {
@@ -2665,16 +2664,32 @@ async def process_chat_payload(request, form_data, user, metadata, model):
                 features,
                 model,
             )
+            if not native_function_calling:
+                builtin_tools = {
+                    name: tool_dict
+                    for name, tool_dict in builtin_tools.items()
+                    if name in ('read_scratchboard', 'write_scratchboard', 'edit_scratchboard')
+                }
             for name, tool_dict in builtin_tools.items():
                 if name not in tools_dict:
                     tools_dict[name] = tool_dict
+
+            if builtin_tools.get('read_scratchboard') and builtin_tools.get('write_scratchboard'):
+                form_data['messages'] = add_or_update_system_message(
+                    "You have access to this chat's Scratchboard as auxiliary working memory. Read it at most "
+                    'once per turn, prefer one small targeted edit over repeated rewrites, and use write_scratchboard '
+                    'only for an intentional whole-document replacement. Scratchboard updates are not the answer: '
+                    'after using these tools, always finish with a user-facing response in the chat.',
+                    form_data['messages'],
+                    append=True,
+                )
 
         if tools_dict:
             # Always store resolved tools in metadata so downstream consumers
             # (e.g. pipe functions) can access all tools including MCP and builtins.
             metadata['tools'] = tools_dict
 
-            if metadata.get('params', {}).get('function_calling') != 'legacy':
+            if metadata.get('params', {}).get('function_calling') == 'native':
                 # If the function calling is native, then call the tools function calling handler
                 form_data['tools'] = [
                     {'type': 'function', 'function': tool.get('spec', {})} for tool in tools_dict.values()
@@ -2835,6 +2850,128 @@ def build_response_object(response, response_data):
             status_code=response.status_code,
         )
     return response
+
+
+def _get_output_message_text(output: list[dict]) -> str:
+    return ''.join(
+        str(part.get('text', ''))
+        for item in output
+        if isinstance(item, dict) and item.get('type') == 'message'
+        for part in item.get('content', [])
+        if isinstance(part, dict) and part.get('text') is not None
+    )
+
+
+def _parse_non_streaming_tool_followup(response) -> dict:
+    """Normalize a provider's non-streaming response inside the tool loop."""
+    _, response_data = get_response_data(response)
+    empty_error = {
+        'code': 502,
+        'message': 'Provider returned an empty response',
+        'metadata': {'error_type': 'provider_unavailable'},
+    }
+
+    if not isinstance(response_data, dict):
+        return {'output': [], 'tool_calls': [], 'usage': None, 'error': empty_error}
+
+    if response_data.get('error'):
+        return {
+            'output': [],
+            'tool_calls': [],
+            'usage': None,
+            'error': response_data['error'],
+        }
+
+    usage = normalize_usage(response_data.get('usage', {}) or {}) or None
+    response_output = response_data.get('output')
+    if isinstance(response_output, list) and response_output:
+        tool_calls = []
+        for item in response_output:
+            if item.get('type') != 'function_call':
+                continue
+            arguments = item.get('arguments', '{}')
+            tool_calls.append(
+                {
+                    'id': item.get('call_id') or item.get('id', ''),
+                    'index': len(tool_calls),
+                    'function': {
+                        'name': item.get('name', ''),
+                        'arguments': arguments if isinstance(arguments, str) else json.dumps(arguments),
+                    },
+                }
+            )
+        return {
+            'output': response_output,
+            'tool_calls': tool_calls,
+            'usage': usage,
+            'error': None,
+        }
+
+    choices = response_data.get('choices') or []
+    if not choices:
+        return {'output': [], 'tool_calls': [], 'usage': usage, 'error': empty_error}
+
+    message = choices[0].get('message') or {}
+    output = []
+
+    reasoning_content = message.get('reasoning_content') or message.get('reasoning')
+    reasoning_details = message.get('reasoning_details')
+    if reasoning_content or reasoning_details:
+        reasoning_item = {
+            'type': 'reasoning',
+            'id': output_id('r'),
+            'status': 'completed',
+            'start_tag': '<think>',
+            'end_tag': '</think>',
+            'attributes': {'type': 'reasoning_content'},
+            'content': ([{'type': 'output_text', 'text': reasoning_content}] if reasoning_content else []),
+            'summary': None,
+        }
+        if reasoning_details:
+            reasoning_item['reasoning_details'] = (
+                reasoning_details if isinstance(reasoning_details, list) else [reasoning_details]
+            )
+        output.append(reasoning_item)
+
+    content = message.get('content')
+    if isinstance(content, list):
+        content = ''.join(
+            str(part.get('text', '')) for part in content if isinstance(part, dict) and part.get('text') is not None
+        )
+    if content:
+        output.append(
+            {
+                'type': 'message',
+                'id': output_id('msg'),
+                'status': 'completed',
+                'role': 'assistant',
+                'content': [{'type': 'output_text', 'text': str(content)}],
+            }
+        )
+
+    tool_calls = message.get('tool_calls') or []
+    for tool_call in tool_calls:
+        function = tool_call.get('function', {})
+        output.append(
+            {
+                'type': 'function_call',
+                'id': tool_call.get('id') or output_id('fc'),
+                'call_id': tool_call.get('id', ''),
+                'name': function.get('name', ''),
+                'arguments': function.get('arguments', '{}'),
+                'status': 'in_progress',
+            }
+        )
+
+    if not output:
+        return {'output': [], 'tool_calls': [], 'usage': usage, 'error': empty_error}
+
+    return {
+        'output': output,
+        'tool_calls': tool_calls,
+        'usage': usage,
+        'error': None,
+    }
 
 
 def update_assistant_message_from_stream(assistant_message, raw):
@@ -3808,9 +3945,30 @@ async def streaming_chat_response_handler(response, ctx):
             usage = None
             prior_output = []
             last_response_id = None
+            terminal_error = None
 
             def full_output():
                 return prior_output + output if prior_output else output
+
+            async def emit_terminal_error(error):
+                nonlocal terminal_error
+                if terminal_error is not None:
+                    return
+
+                terminal_error = error
+                log.error('Provider returned error during tool continuation: %s', error)
+                if not metadata.get('chat_id', '').startswith('channel:'):
+                    await Chats.upsert_message_to_chat_by_id_and_message_id(
+                        metadata['chat_id'],
+                        metadata['message_id'],
+                        {'error': {'content': error}},
+                    )
+                await event_emitter(
+                    {
+                        'type': 'chat:completion',
+                        'data': {'error': error},
+                    }
+                )
 
             reasoning_tags_param = metadata.get('params', {}).get('reasoning_tags')
             DETECT_REASONING_TAGS = reasoning_tags_param is not False
@@ -3925,17 +4083,7 @@ async def streaming_chat_response_handler(response, ctx):
                                 raw_obj = json.loads(data)
                                 raw_error = raw_obj.get('error') if isinstance(raw_obj, dict) else None
                                 if raw_error:
-                                    try:
-                                        Chats.upsert_message_to_chat_by_id_and_message_id(
-                                            metadata['chat_id'],
-                                            metadata['message_id'],
-                                            {
-                                                'error': {'content': raw_error},
-                                            },
-                                        )
-                                    except Exception:
-                                        pass
-                                    await event_emitter({'type': 'chat:completion', 'data': {'error': raw_error}})
+                                    await emit_terminal_error(raw_error)
                             except Exception:
                                 pass
                             continue
@@ -4034,6 +4182,10 @@ async def streaming_chat_response_handler(response, ctx):
                                             if response_id:
                                                 last_response_id = response_id
 
+                                        response_error = response_metadata.pop('error', None)
+                                        if response_error:
+                                            await emit_terminal_error(response_error)
+
                                         # Normalize and capture usage for DB persistence
                                         if response_metadata.get('usage'):
                                             usage = merge_usage(usage, response_metadata['usage'])
@@ -4078,25 +4230,7 @@ async def streaming_chat_response_handler(response, ctx):
                                     if not choices:
                                         error = data.get('error', {})
                                         if error:
-                                            log.error('Provider returned error (streaming): %s', error)
-                                            try:
-                                                await Chats.upsert_message_to_chat_by_id_and_message_id(
-                                                    metadata['chat_id'],
-                                                    metadata['message_id'],
-                                                    {
-                                                        'error': {'content': error},
-                                                    },
-                                                )
-                                            except Exception:
-                                                pass
-                                            await event_emitter(
-                                                {
-                                                    'type': 'chat:completion',
-                                                    'data': {
-                                                        'error': error,
-                                                    },
-                                                }
-                                            )
+                                            await emit_terminal_error(error)
                                         continue
 
                                     delta = choices[0].get('delta', {})
@@ -4925,9 +5059,35 @@ async def streaming_chat_response_handler(response, ctx):
                             output[:0] = prior_output
                             prior_output = []
                         else:
-                            break
-                    except Exception as e:
-                        log.debug(e)
+                            followup = _parse_non_streaming_tool_followup(res)
+                            if followup['usage']:
+                                usage = merge_usage(usage, followup['usage'])
+                            if followup['error']:
+                                await emit_terminal_error(followup['error'])
+                                break
+
+                            if (
+                                output
+                                and output[-1].get('type') == 'message'
+                                and output[-1].get('status') == 'in_progress'
+                            ):
+                                msg_parts = output[-1].get('content', [])
+                                if not msg_parts or (len(msg_parts) == 1 and not msg_parts[0].get('text', '').strip()):
+                                    output.pop()
+
+                            followup_output = followup['output']
+                            output.extend(followup_output)
+                            content += _get_output_message_text(followup_output)
+                            if followup['tool_calls']:
+                                tool_calls.append(_split_tool_calls(followup['tool_calls']))
+                    except Exception:
+                        log.exception('Tool continuation failed')
+                        await emit_terminal_error(
+                            {
+                                'message': 'Tool continuation failed before a final response.',
+                                'metadata': {'error_type': 'tool_continuation_error'},
+                            }
+                        )
                         break
 
                 if (
@@ -5114,11 +5274,37 @@ async def streaming_chat_response_handler(response, ctx):
                             if isinstance(res, StreamingResponse):
                                 await stream_body_handler(res, new_form_data)
                             else:
-                                break
-                        except Exception as e:
-                            log.debug(e)
-                            break
+                                followup = _parse_non_streaming_tool_followup(res)
+                                if followup['usage']:
+                                    usage = merge_usage(usage, followup['usage'])
+                                if followup['error']:
+                                    await emit_terminal_error(followup['error'])
+                                    break
 
+                                if (
+                                    output
+                                    and output[-1].get('type') == 'message'
+                                    and output[-1].get('status') == 'in_progress'
+                                ):
+                                    msg_parts = output[-1].get('content', [])
+                                    if not msg_parts or (
+                                        len(msg_parts) == 1 and not msg_parts[0].get('text', '').strip()
+                                    ):
+                                        output.pop()
+
+                                followup_output = followup['output']
+                                output.extend(followup_output)
+                                content += _get_output_message_text(followup_output)
+                                break
+                        except Exception:
+                            log.exception('Code interpreter continuation failed')
+                            await emit_terminal_error(
+                                {
+                                    'message': 'Code interpreter continuation failed before a final response.',
+                                    'metadata': {'error_type': 'tool_continuation_error'},
+                                }
+                            )
+                            break
                 # Mark all in-progress items as completed
                 for item in output:
                     if item.get('status') == 'in_progress':

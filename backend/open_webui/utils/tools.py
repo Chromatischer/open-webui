@@ -50,6 +50,7 @@ from open_webui.tools.builtin import (
     create_tasks,
     delete_memory,
     edit_image,
+    edit_scratchboard,
     execute_code,
     fetch_url,
     generate_image,
@@ -57,6 +58,7 @@ from open_webui.tools.builtin import (
     list_memories,
     list_memory_paths,
     read_memory_path,
+    read_scratchboard,
     replace_memory_content,
     search_chats,
     search_memories,
@@ -64,6 +66,7 @@ from open_webui.tools.builtin import (
     update_memory,
     update_task,
     view_chat,
+    write_scratchboard,
 )
 from open_webui.utils.access_control import has_access, has_connection_access, has_permission
 from open_webui.utils.headers import get_custom_headers, include_user_info_headers
@@ -481,6 +484,10 @@ async def get_builtin_tools(
     # Chats tools - search and fetch user's chat history
     if is_builtin_tool_enabled('chats'):
         builtin_functions.extend([search_chats, view_chat])
+
+    # Durable, per-chat working notes shared with the Scratchboard UI.
+    if is_builtin_tool_enabled('scratchboard'):
+        builtin_functions.extend([read_scratchboard, write_scratchboard, edit_scratchboard])
 
     # Add memory tools when memory is enabled and the model allows this builtin category.
     if (

@@ -19,6 +19,7 @@ def normalize_usage(usage: dict) -> dict:
     - input_tokens: Number of tokens in the prompt
     - output_tokens: Number of tokens generated
     - total_tokens: Sum of input and output tokens
+    - context_tokens: Context occupied after this response
     """
     if not usage:
         return {}
@@ -41,12 +42,14 @@ def normalize_usage(usage: dict) -> dict:
     )
 
     total_tokens = usage.get('total_tokens') or (input_tokens + output_tokens)
+    context_tokens = usage.get('context_tokens') or (input_tokens + output_tokens)
 
     # Add standardized fields to original data
     result = dict(usage)
     result['input_tokens'] = int(input_tokens)
     result['output_tokens'] = int(output_tokens)
     result['total_tokens'] = int(total_tokens)
+    result['context_tokens'] = int(context_tokens)
 
     return result
 
@@ -105,7 +108,7 @@ def merge_usage(current: dict | None, incoming: dict | None) -> dict:
     """
     Merge usage payloads from multiple model calls into one cumulative usage dict.
 
-    Token fields are additive; non-numeric metadata keeps the latest provider value.
+    Billing token fields are additive; context_tokens and other metadata keep the latest value.
     """
     current_usage = normalize_usage(current or {}) if current else {}
     incoming_usage = normalize_usage(incoming or {}) if incoming else {}
