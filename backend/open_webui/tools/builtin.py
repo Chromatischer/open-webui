@@ -51,6 +51,147 @@ log = logging.getLogger(__name__)
 MAX_KNOWLEDGE_BASE_SEARCH_ITEMS = 10_000
 
 
+# =============================================================================
+# SCRATCHBOARD TOOLS
+# =============================================================================
+
+
+async def _emit_scratchboard(event_emitter, content: str):
+    """Send persisted Scratchboard state to the active chat UI."""
+    if event_emitter:
+        await event_emitter({'type': 'chat:message:scratchboard', 'data': {'content': content}})
+
+
+async def read_scratchboard(
+    __chat_id__: str = None,
+    __request__: Request = None,
+    __user__: dict = None,
+) -> str:
+    """
+    Read the current chat's Scratchboard content.
+
+    Use this once before relying on Scratchboard notes, plans, constraints, or implementation context.
+    The Scratchboard is auxiliary working state; after using it, still answer the user in the chat.
+
+    :return: JSON with the current markdown content of the Scratchboard
+    """
+    if __chat_id__ is None:
+        return json.dumps({'error': 'Chat context not available'})
+    if not __user__:
+        return json.dumps({'error': 'User context not available'})
+
+    try:
+        content = await Chats.get_chat_scratchboard_by_id(__chat_id__, __user__.get('id'))
+        if content is None:
+            return json.dumps({'error': 'Chat not found or access denied'})
+        return json.dumps({'content': content}, ensure_ascii=False)
+    except Exception as e:
+        log.exception(f'read_scratchboard error: {e}')
+        return json.dumps({'error': str(e)})
+
+
+async def write_scratchboard(
+    content: str,
+    __chat_id__: str = None,
+    __message_id__: str = None,
+    __event_emitter__: callable = None,
+    __request__: Request = None,
+    __user__: dict = None,
+) -> str:
+    """
+    Replace the current chat's Scratchboard content with markdown.
+
+    Use this for intentional whole-document replacements. Do not call it repeatedly when a small,
+    targeted edit will do. The Scratchboard is auxiliary working state; still answer the user afterward.
+
+    :param content: The full markdown content to store in the Scratchboard
+    :return: JSON with concise success metadata; the updated content is sent directly to the UI
+    """
+    if __chat_id__ is None:
+        return json.dumps({'error': 'Chat context not available'})
+    if not __user__:
+        return json.dumps({'error': 'User context not available'})
+
+    try:
+        updated_chat = await Chats.update_chat_scratchboard_by_id(__chat_id__, __user__.get('id'), content)
+        if not updated_chat:
+            return json.dumps({'error': 'Chat not found or access denied'})
+        await _emit_scratchboard(__event_emitter__, content)
+        return json.dumps(
+            {
+                'status': 'success',
+                'characters': len(content),
+                'updated_at': updated_chat.updated_at,
+            }
+        )
+    except Exception as e:
+        log.exception(f'write_scratchboard error: {e}')
+        return json.dumps({'error': str(e)})
+
+
+async def edit_scratchboard(
+    old_string: str,
+    new_string: str,
+    replace_all: bool = False,
+    __chat_id__: str = None,
+    __message_id__: str = None,
+    __event_emitter__: callable = None,
+    __request__: Request = None,
+    __user__: dict = None,
+) -> str:
+    """
+    Apply a targeted find-and-replace edit to the current chat's Scratchboard.
+
+    Keep old_string as short as possible while still unique. For broad rewrites, use write_scratchboard
+    once instead of chaining large replacements. The Scratchboard is auxiliary working state; still
+    answer the user afterward.
+
+    :param old_string: The smallest exact unique text span to replace; unless replace_all is true, it must be unique
+    :param new_string: The replacement text; use an empty string to delete old_string
+    :param replace_all: Replace every occurrence instead of requiring a unique match
+    :return: JSON with concise success metadata; the updated content is sent directly to the UI
+    """
+    if __chat_id__ is None:
+        return json.dumps({'error': 'Chat context not available'})
+    if not __user__:
+        return json.dumps({'error': 'User context not available'})
+    if old_string == new_string:
+        return json.dumps({'error': 'old_string and new_string are identical; nothing to edit'})
+
+    try:
+        content = await Chats.get_chat_scratchboard_by_id(__chat_id__, __user__.get('id'))
+        if content is None:
+            return json.dumps({'error': 'Chat not found or access denied'})
+
+        occurrences = content.count(old_string)
+        if occurrences == 0:
+            return json.dumps({'error': 'old_string not found in Scratchboard content'})
+        if not replace_all and occurrences > 1:
+            return json.dumps(
+                {
+                    'error': f'old_string is not unique ({occurrences} matches found). '
+                    'Provide a larger, unique old_string or set replace_all to true.'
+                }
+            )
+
+        updated_content = content.replace(old_string, new_string, -1 if replace_all else 1)
+        updated_chat = await Chats.update_chat_scratchboard_by_id(__chat_id__, __user__.get('id'), updated_content)
+        if not updated_chat:
+            return json.dumps({'error': 'Chat not found or access denied'})
+        await _emit_scratchboard(__event_emitter__, updated_content)
+        return json.dumps(
+            {
+                'status': 'success',
+                'replacements': occurrences if replace_all else 1,
+                'characters': len(updated_content),
+                'updated_at': updated_chat.updated_at,
+            }
+        )
+    except Exception as e:
+        log.exception(f'edit_scratchboard error: {e}')
+        return json.dumps({'error': str(e)})
+
+
 async def _has_read_access_to_file(
     file,
     user_id: str,
