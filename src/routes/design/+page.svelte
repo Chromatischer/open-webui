@@ -51,7 +51,7 @@
 			date: 'today',
 			quire: 'q-design',
 			scratch:
-				'# Margin notes\n\n- bubbles → headings: decided\n- one nav axis, the spine\n- agent works in the open, on the page\n\n— next: palette tokens into app.css',
+				'# Scratchboard\n\n- bubbles → headings: decided\n- one nav axis, the spine\n- agent works in the open, on the page\n\n— next: palette tokens into app.css',
 			sections: [
 				{
 					id: 's1',
@@ -148,7 +148,7 @@
 			date: 'May 30',
 			quire: 'q-design',
 			scratch:
-				'# Margin notes\n\n- one gesture grammar for both drawers\n- velocity > distance for commit',
+				'# Scratchboard\n\n- one gesture grammar for both drawers\n- velocity > distance for commit',
 			sections: [
 				{
 					id: 'f6s1',
@@ -170,7 +170,7 @@
 			title: 'RAG Chunking Strategy',
 			date: 'May 18',
 			scratch:
-				'# Margin notes\n\n- recursive 0.82 / semantic 0.87 precision\n- overlap sweep: 48 / 64 / 96 tokens',
+				'# Scratchboard\n\n- recursive 0.82 / semantic 0.87 precision\n- overlap sweep: 48 / 64 / 96 tokens',
 			sections: [
 				{
 					id: 'f4s1',
@@ -203,7 +203,7 @@
 			title: 'Server Migration Notes',
 			date: 'Apr 02',
 			scratch:
-				'# Margin notes\n\n- volumes snapshotted before cutover\n- rollback: compose down, retag, up',
+				'# Scratchboard\n\n- volumes snapshotted before cutover\n- rollback: compose down, retag, up',
 			sections: [
 				{
 					id: 'f1s1',
@@ -343,7 +343,7 @@
 			no,
 			title: 'Untitled folio',
 			date: 'today',
-			scratch: '# Margin notes\n',
+			scratch: '# Scratchboard\n',
 			sections: []
 		};
 		folios.push(folio);
@@ -458,12 +458,12 @@
 						note: '3 found',
 						status: 'run'
 					},
-					{ verb: 'draft', object: 'follow-ups → margin notes', note: 'autosaved', status: 'run' }
+					{ verb: 'draft', object: 'notes → scratchboard', note: 'autosaved', status: 'run' }
 				]
 			},
 			{
 				type: 'p',
-				text: 'Done — and look to the margin: I’ve written the follow-ups onto our shared scratchboard, where they’ll keep. That is the agent-first bargain. I work in the open, on the page, where my edits can be audited and reversed like anyone else’s.'
+				text: 'Done — and look to the margin: I’ve written these notes onto our shared scratchboard, where they’ll keep. That is the agent-first bargain. I work in the open, on the page, where my edits can be audited and reversed like anyone else’s.'
 			}
 		]
 	];
@@ -1317,7 +1317,7 @@
 				style:height="{notchHR}px"
 				style:border-radius="{notchWR}px 0 0 {notchWR}px"
 				onclick={() => (marginDrawer = true)}
-				aria-label="Open the margin"
+				aria-label="Open the scratchboard"
 			>
 				<svg
 					width="6"
@@ -1667,7 +1667,7 @@
 										</div>
 									</header>
 
-									<div class="prose">
+									<div class="folio-prose">
 										{#if sec.blocks.length === 0 && generating}
 											<div class="typesetting">
 												<span class="ts-label">setting type</span>
@@ -2029,7 +2029,7 @@
 				>
 					<path d={VERB_ICONS.draft} />
 				</svg>
-				<span class="margin-kicker">Margin notes</span>
+				<span class="margin-kicker">Scratchboard</span>
 				{#if agentWriting}
 					<span class="agent-writing">
 						<i></i>
@@ -2082,7 +2082,7 @@
 					onkeydown={(e) => e.key === 'Enter' && startScratchEdit()}
 					role="button"
 					tabindex="0"
-					aria-label="Edit margin notes"
+					aria-label="Edit the scratchboard"
 				>
 					{#each scratchLines(current.scratch) as line}
 						{#if line.t === 'h'}
@@ -2106,7 +2106,7 @@
 			<button
 				class="margin-spineb"
 				onclick={() => (scratchOpen = true)}
-				aria-label="Unfold the margin"
+				aria-label="Unfold the scratchboard"
 			>
 				<svg
 					width="12"
@@ -2121,7 +2121,7 @@
 				>
 					<path d="M15 6l-6 6 6 6" />
 				</svg>
-				<span class="margin-vlabel">Margin notes</span>
+				<span class="margin-vlabel">Scratchboard</span>
 				{#if agentWriting}<i class="vdot"></i>{/if}
 			</button>
 		{/if}
@@ -3062,7 +3062,7 @@
 	}
 
 	/* ── Prose ── */
-	.prose {
+	.folio-prose {
 		margin-top: 16px;
 	}
 	.pgraph {

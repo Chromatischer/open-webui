@@ -975,6 +975,7 @@ PIP_PACKAGE_INDEX_OPTIONS = os.getenv('PIP_PACKAGE_INDEX_OPTIONS', '').split()
 ####################################
 
 ENABLE_VERSION_UPDATE_CHECK = os.getenv('ENABLE_VERSION_UPDATE_CHECK', 'true').lower() == 'true'
+VERSION_UPDATE_CHECK_REPO = os.getenv('VERSION_UPDATE_CHECK_REPO', 'Chromatischer/open-webui')
 OFFLINE_MODE = os.getenv('OFFLINE_MODE', 'false').lower() == 'true'
 
 if OFFLINE_MODE:

@@ -8,10 +8,10 @@
 	import { acceptCompletion } from '@codemirror/autocomplete';
 	import { indentWithTab } from '@codemirror/commands';
 
-	import { indentUnit } from '@codemirror/language';
+	import { indentUnit, HighlightStyle, syntaxHighlighting } from '@codemirror/language';
 	import { languages } from '@codemirror/language-data';
 
-	import { oneDark } from '@codemirror/theme-one-dark';
+	import { tags as t } from '@lezer/highlight';
 
 	import { onMount, createEventDispatcher, getContext, tick, onDestroy } from 'svelte';
 
@@ -83,9 +83,45 @@
 		codeEditor?.focus();
 	};
 
-	let isDarkMode = false;
-	let editorTheme = new Compartment();
 	let editorLanguage = new Compartment();
+
+	/* FOLIO editor theme — every colour reads a CSS token, so one theme
+	   serves both the day and night desks and flips live with .dark. */
+	const folioTheme = EditorView.theme({
+		'&': { backgroundColor: 'transparent', color: 'var(--text)' },
+		'.cm-content': { fontFamily: 'var(--mono)', caretColor: 'var(--vermilion)' },
+		'.cm-cursor, .cm-dropCursor': { borderLeftColor: 'var(--vermilion)' },
+		'&.cm-focused .cm-selectionBackground, .cm-selectionBackground, .cm-content ::selection': {
+			backgroundColor: 'color-mix(in srgb, var(--ultramarine) 18%, transparent)'
+		},
+		'.cm-activeLine': { backgroundColor: 'var(--surface)' },
+		'.cm-gutters': {
+			backgroundColor: 'transparent',
+			color: 'var(--text-tertiary)',
+			border: 'none',
+			fontFamily: 'var(--mono)'
+		},
+		'.cm-activeLineGutter': { backgroundColor: 'transparent', color: 'var(--text)' },
+		'&.cm-focused .cm-matchingBracket': {
+			backgroundColor: 'var(--surface-active)',
+			outline: 'none'
+		}
+	});
+
+	const folioHighlight = HighlightStyle.define([
+		{ tag: [t.keyword, t.moduleKeyword, t.operatorKeyword], color: 'var(--ultramarine)' },
+		{ tag: [t.typeName, t.tagName], color: 'var(--ultramarine)' },
+		{ tag: [t.string, t.special(t.string)], color: 'var(--ok)' },
+		{ tag: [t.number, t.bool, t.null, t.atom], color: 'var(--vermilion)' },
+		{
+			tag: [t.function(t.variableName), t.function(t.propertyName), t.className],
+			color: 'var(--syn-fn)'
+		},
+		{ tag: t.comment, color: 'var(--text-tertiary)', fontStyle: 'italic' },
+		{ tag: [t.propertyName, t.attributeName], color: 'var(--text-secondary)' },
+		{ tag: t.meta, color: 'var(--text-secondary)' },
+		{ tag: t.invalid, color: 'var(--err)' }
+	]);
 
 	const getLang = async () => {
 		const language = languages.find((l) => l.alias.includes(lang));
@@ -215,7 +251,8 @@ print("${endTag}")
 				onChange(_value);
 			}
 		}),
-		editorTheme.of([]),
+		folioTheme,
+		syntaxHighlighting(folioHighlight),
 		editorLanguage.of([])
 	];
 
@@ -239,9 +276,6 @@ print("${endTag}")
 
 		_value = value;
 
-		// Check if html class has dark mode
-		isDarkMode = document.documentElement.classList.contains('dark');
-
 		// python code editor, highlight python code
 		codeEditor = new EditorView({
 			state: EditorState.create({
@@ -249,39 +283,6 @@ print("${endTag}")
 				extensions: extensions
 			}),
 			parent: document.getElementById(`code-textarea-${id}`)
-		});
-
-		if (isDarkMode) {
-			codeEditor.dispatch({
-				effects: editorTheme.reconfigure(oneDark)
-			});
-		}
-
-		// listen to html class changes this should fire only when dark mode is toggled
-		const observer = new MutationObserver((mutations) => {
-			mutations.forEach((mutation) => {
-				if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
-					const _isDarkMode = document.documentElement.classList.contains('dark');
-
-					if (_isDarkMode !== isDarkMode) {
-						isDarkMode = _isDarkMode;
-						if (_isDarkMode) {
-							codeEditor.dispatch({
-								effects: editorTheme.reconfigure(oneDark)
-							});
-						} else {
-							codeEditor.dispatch({
-								effects: editorTheme.reconfigure()
-							});
-						}
-					}
-				}
-			});
-		});
-
-		observer.observe(document.documentElement, {
-			attributes: true,
-			attributeFilter: ['class']
 		});
 
 		const keydownHandler = async (e) => {
@@ -301,7 +302,6 @@ print("${endTag}")
 		document.addEventListener('keydown', keydownHandler);
 
 		return () => {
-			observer.disconnect();
 			document.removeEventListener('keydown', keydownHandler);
 			// Must destroy EditorView so CodeMirror releases internal DOMObserver and DOM refs
 			if (codeEditor) {

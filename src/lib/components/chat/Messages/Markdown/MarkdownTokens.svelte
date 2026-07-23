@@ -134,7 +134,7 @@
 			{/each}
 		</div>
 	{:else if token.type === 'hr'}
-		<hr class=" border-gray-100/30 dark:border-gray-850/30" />
+		<hr />
 	{:else if token.type === 'heading'}
 		<svelte:element this={headerComponent(token.depth)} dir="auto">
 			<MarkdownInlineTokens
@@ -174,18 +174,12 @@
 	{:else if token.type === 'table'}
 		<div class="relative w-full group mb-2">
 			<div class="scrollbar-hidden relative overflow-x-auto max-w-full">
-				<table
-					class=" w-full text-sm text-start text-gray-500 dark:text-gray-400 max-w-full rounded-xl"
-					dir="auto"
-				>
-					<thead
-						class="text-xs text-gray-700 uppercase bg-white dark:bg-gray-900 dark:text-gray-400 border-none"
-					>
-						<tr class="">
+				<table class="folio-table" dir="auto">
+					<thead>
+						<tr>
 							{#each token.header as header, headerIdx}
 								<th
 									scope="col"
-									class="px-2.5! py-2! cursor-pointer border-b border-gray-100! dark:border-gray-800!"
 									style={token.align[headerIdx] ? `text-align: ${token.align[headerIdx]}` : ''}
 								>
 									<div class="gap-1.5 text-start">
@@ -205,14 +199,9 @@
 					</thead>
 					<tbody>
 						{#each token.rows as row, rowIdx}
-							<tr class="bg-white dark:bg-gray-900 text-xs">
+							<tr>
 								{#each row ?? [] as cell, cellIdx}
 									<td
-										class="px-3! py-2! text-gray-900 dark:text-white w-max {token.rows.length -
-											1 ===
-										rowIdx
-											? ''
-											: 'border-b border-gray-50! dark:border-gray-850!'}"
 										style={token.align[cellIdx] ? `text-align: ${token.align[cellIdx]}` : ''}
 									>
 										<div class="break-normal">

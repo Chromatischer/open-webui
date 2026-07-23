@@ -94,6 +94,7 @@ from open_webui.env import (
     ENABLE_STAR_SESSIONS_MIDDLEWARE,
     ENABLE_PYODIDE_FILE_PERSISTENCE,
     ENABLE_VERSION_UPDATE_CHECK,
+    VERSION_UPDATE_CHECK_REPO,
     ENABLE_WEBSOCKET_SUPPORT,
     GLOBAL_LOG_LEVEL,
     INSTANCE_ID,
@@ -2077,7 +2078,7 @@ async def get_app_latest_release_version(user=Depends(get_verified_user)):
         timeout = aiohttp.ClientTimeout(total=1)
         async with aiohttp.ClientSession(timeout=timeout, trust_env=True) as session:
             async with session.get(
-                'https://api.github.com/repos/open-webui/open-webui/releases/latest',
+                f'https://api.github.com/repos/{VERSION_UPDATE_CHECK_REPO}/releases/latest',
                 ssl=AIOHTTP_CLIENT_SESSION_SSL,
             ) as response:
                 response.raise_for_status()

@@ -12,6 +12,7 @@
 	import Image from './Image.svelte';
 	import FullHeightIframe from './FullHeightIframe.svelte';
 	import { settings } from '$lib/stores';
+	import { VERB_ICONS, dotIcon, resolveTool, toolObject } from '$lib/utils/ledger';
 
 	export let id: string = '';
 	export let attributes: {
@@ -102,15 +103,13 @@
 		return cleaned.length > 80 ? cleaned.slice(0, 80) + '…' : cleaned;
 	})();
 
+	// The ledger "verb" and its mark — `write_scratchboard` reads as "write ✎"
+	$: entry = resolveTool(attributes?.name ?? '');
+	$: icon = VERB_ICONS[entry.icon] ?? dotIcon;
+
 	// Compact arguments summary — the ledger "object" (the target of the verb)
 	$: argsSummary = (() => {
-		if (parsedArgs) {
-			const parts = Object.values(parsedArgs).map((v) =>
-				typeof v === 'object' && v !== null ? JSON.stringify(v) : String(v)
-			);
-			const joined = parts.join(', ').replace(/\s+/g, ' ').trim();
-			return joined.length > 64 ? joined.slice(0, 64) + '…' : joined;
-		}
+		if (parsedArgs) return toolObject(attributes?.name ?? '', parsedArgs);
 		const raw = (args ?? '').replace(/\s+/g, ' ').trim();
 		return raw.length > 64 ? raw.slice(0, 64) + '…' : raw;
 	})();
@@ -177,12 +176,10 @@
 				stroke-linejoin="round"
 				aria-hidden="true"
 			>
-				<path
-					d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"
-				/>
+				<path d={icon} />
 			</svg>
 
-			<span class="verb">{attributes.name}</span>
+			<span class="verb">{entry.verb}</span>
 			{#if argsSummary}
 				<span class="object">{argsSummary}</span>
 			{/if}
