@@ -1,7 +1,17 @@
 <script>
 	import { tick } from 'svelte';
 	import { browser } from '$app/environment';
-	import { theme, showSidebar, settings, models as modelsStore, mobile } from '$lib/stores';
+	import { get } from 'svelte/store';
+	import {
+		theme,
+		showSidebar,
+		settings,
+		models as modelsStore,
+		mobile,
+		pendingAnnotations,
+		annotationSendRequest
+	} from '$lib/stores';
+	import { composeAnnotatedPrompt } from '$lib/utils/annotations';
 	import { deleteFileById } from '$lib/apis/files';
 	import { copyToClipboard } from '$lib/utils';
 	import { VERB_ICONS, dotIcon } from '$lib/utils/ledger';
@@ -11,6 +21,7 @@
 	import StructuredOutputRenderer from './Messages/StructuredOutputRenderer.svelte';
 	import { getOutputText } from './Messages/structuredOutput';
 	import QuerySlip from './QuerySlip.svelte';
+	import AnnotationPopup from './AnnotationPopup.svelte';
 
 	/*
 	 * FOLIO — the live conversation as a manuscript.
@@ -401,7 +412,8 @@
 	let pilcrowHop = $state(false);
 	function doSend() {
 		const text = composerText.trim();
-		if (!text || generating) return;
+		const slips = get(pendingAnnotations);
+		if ((!text && slips.length === 0) || generating) return;
 		resumeFollowing();
 		composerText = '';
 		if (composerEl) {
@@ -410,8 +422,62 @@
 		}
 		pilcrowHop = true;
 		setTimeout(() => (pilcrowHop = false), 550);
-		onSubmit(text);
+		onSubmit(composeAnnotatedPrompt(slips, text));
+		pendingAnnotations.set([]);
 	}
+
+	// ─── Annotations (select prose → pen a note in a slip) ───
+	let anno = $state(null); // { quote, source, x, y }
+	// Plain dismiss keeps the selection alive — copying it must keep working.
+	function dismissAnno() {
+		anno = null;
+	}
+	function onProseMouseUp(e) {
+		if ($mobile || e.button !== 0) return;
+		// let the browser finalize the selection before reading it
+		setTimeout(() => {
+			const sel = window.getSelection();
+			const text = sel?.toString().trim();
+			if (!text || sel.isCollapsed) return;
+			let node = sel.anchorNode;
+			if (node && node.nodeType !== 1) node = node.parentElement;
+			if (!node || node.closest('[contenteditable]')) return;
+			const host = node.closest('.sec-title, .passage');
+			if (!host) return;
+			const rect = sel.getRangeAt(0).getBoundingClientRect();
+			anno = {
+				quote: text,
+				source: host.classList.contains('sec-title') ? 'user' : 'assistant',
+				x: rect.left,
+				y: rect.bottom + 6
+			};
+		}, 0);
+	}
+	function addAnno(note, sendNow = false) {
+		pendingAnnotations.update((l) => [...l, { quote: anno.quote, source: anno.source, note }]);
+		dismissAnno();
+		window.getSelection()?.removeAllRanges();
+		if (sendNow) annotationSendRequest.update((n) => n + 1);
+	}
+
+	// The scratchboard (or our own popup) asked for an immediate send.
+	let lastSendReq = get(annotationSendRequest);
+	$effect(() => {
+		if ($annotationSendRequest !== lastSendReq) {
+			lastSendReq = $annotationSendRequest;
+			if (get(pendingAnnotations).length > 0 && !generating) doSend();
+		}
+	});
+
+	// Slips are session-scoped: leaving the folio drops them.
+	let lastAnnoChat = chatId;
+	$effect(() => {
+		if (chatId !== lastAnnoChat) {
+			lastAnnoChat = chatId;
+			pendingAnnotations.set([]);
+			anno = null;
+		}
+	});
 	function onComposerKey(e) {
 		if (e.key !== 'Enter') return;
 		const ctrlSend = $settings?.ctrlEnterToSend ?? false;
@@ -810,7 +876,7 @@
 		{/if}
 
 		<div class="desk-grid">
-			<div class="scroll" bind:this={scroller} onscroll={onScroll}>
+			<div class="scroll" bind:this={scroller} onscroll={onScroll} onmouseup={onProseMouseUp}>
 				<main
 					bind:this={pageEl}
 					class="page"
@@ -976,7 +1042,7 @@
 
 								<!-- "folio-prose", not "prose": the bare name would activate
 							     Tailwind Typography's gray palette over the manuscript -->
-							<div class="folio-prose">
+								<div class="folio-prose">
 									{#if (sec.assistants.length === 0 && generating) || sec.assistants.some((a) => !a.done && a.content === '' && a.entries.length === 0)}
 										<div class="typesetting">
 											<span class="ts-label">setting type</span>
@@ -1309,6 +1375,17 @@
 	{/if}
 </ContextMenu>
 
+{#if anno}
+	<AnnotationPopup
+		x={anno.x}
+		y={anno.y}
+		quote={anno.quote}
+		onAdd={(note) => addAnno(note)}
+		onSend={(note) => addAnno(note, true)}
+		onClose={dismissAnno}
+	/>
+{/if}
+
 {#snippet edge()}
 	<div class="edge-slot">
 		{#if query}
@@ -1322,6 +1399,42 @@
 				in:swap={{ duration: 300 }}
 				out:swap={{ duration: 170 }}
 			>
+				{#if $pendingAnnotations.length > 0}
+					<div class="anno-slips" role="list" aria-label="Pending annotations">
+						{#each $pendingAnnotations as s, i (i)}
+							<div class="anno-slip" role="listitem">
+								<span class="slip-src"
+									>{s.source === 'assistant'
+										? 'reply'
+										: s.source === 'user'
+											? 'prompt'
+											: 'scratchboard'}</span
+								>
+								<span class="slip-quote"
+									>“{s.quote.length > 56 ? s.quote.slice(0, 56) + '…' : s.quote}”</span
+								>
+								<span class="slip-note">{s.note}</span>
+								<button
+									class="slip-x"
+									title="Remove the annotation"
+									aria-label="Remove annotation"
+									onclick={() => pendingAnnotations.update((l) => l.filter((_, j) => j !== i))}
+								>
+									<svg
+										width="9"
+										height="9"
+										viewBox="0 0 12 12"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2"
+										stroke-linecap="round"><path d="M2.5 2.5l7 7M9.5 2.5l-7 7" /></svg
+									>
+								</button>
+							</div>
+						{/each}
+					</div>
+				{/if}
+
 				{#if files.length > 0}
 					<div class="clippings" role="list" aria-label="Enclosures">
 						{#each files as f, i (f.itemId ?? f.id ?? `${f.name}-${i}`)}
@@ -1388,7 +1501,7 @@
 					{:else}
 						<button
 							class="set-btn"
-							class:ready={composerText.trim().length > 0}
+							class:ready={composerText.trim().length > 0 || $pendingAnnotations.length > 0}
 							onclick={doSend}
 							disabled={generating}
 							title="Set in type (Enter)"
@@ -2928,6 +3041,77 @@
 		50% {
 			box-shadow: 0 0 0 6px var(--vermilion-soft);
 		}
+	}
+
+	/* ── Annotation slips: quiet single lines above the composer ── */
+	.anno-slips {
+		display: flex;
+		flex-direction: column;
+		gap: 3px;
+		padding: 4px 0 2px 38px;
+	}
+	.anno-slip {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		min-width: 0;
+		padding: 4px 9px;
+		background: var(--bg-elevated);
+		border: 1px solid var(--rule-faint);
+		border-radius: 8px;
+	}
+	.slip-src {
+		flex: none;
+		font-family: var(--mono);
+		font-size: 14px;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		color: var(--vermilion);
+	}
+	.slip-quote {
+		flex: none;
+		max-width: 40%;
+		font-family: var(--serif);
+		font-style: italic;
+		font-size: 14px;
+		color: var(--ink-3);
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+	.slip-note {
+		flex: 1;
+		min-width: 0;
+		font-size: 14px;
+		color: var(--ink);
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+	.slip-x {
+		flex: none;
+		display: grid;
+		place-items: center;
+		width: 18px;
+		height: 18px;
+		border: none;
+		border-radius: 50%;
+		background: transparent;
+		color: var(--ink-3);
+		cursor: pointer;
+		opacity: 0;
+		transition:
+			opacity 0.18s,
+			color 0.15s,
+			background 0.15s;
+	}
+	.anno-slip:hover .slip-x,
+	.slip-x:focus-visible {
+		opacity: 1;
+	}
+	.slip-x:hover {
+		color: var(--vermilion);
+		background: var(--vermilion-soft);
 	}
 
 	/* ── Enclosures: clippings pinned above the line ── */

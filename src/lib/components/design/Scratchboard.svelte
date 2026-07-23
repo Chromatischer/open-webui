@@ -1,7 +1,8 @@
 <script>
 	import { onDestroy, tick } from 'svelte';
-	import { scratchboardAgentWriting } from '$lib/stores';
+	import { scratchboardAgentWriting, pendingAnnotations, annotationSendRequest } from '$lib/stores';
 	import Markdown from '$lib/components/chat/Messages/Markdown.svelte';
+	import AnnotationPopup from '$lib/components/chat/AnnotationPopup.svelte';
 
 	/*
 	 * THE MARGIN — the shared scratchboard, set to match the /design prototype:
@@ -42,8 +43,36 @@
 		el.style.height = el.scrollHeight + 'px';
 	}
 
+	// ─── Annotations (select a rendered note → slip it into the composer) ───
+	let anno = $state(null); // { quote, x, y }
+	// Plain dismiss keeps the selection alive — copying it must keep working.
+	function dismissAnno() {
+		anno = null;
+	}
+	function onProseMouseUp(e) {
+		if (mobile || e.button !== 0) return;
+		setTimeout(() => {
+			const sel = window.getSelection();
+			const text = sel?.toString().trim();
+			if (!text || sel.isCollapsed) return;
+			let node = sel.anchorNode;
+			if (node && node.nodeType !== 1) node = node.parentElement;
+			if (!node?.closest('.margin-prose')) return;
+			const rect = sel.getRangeAt(0).getBoundingClientRect();
+			anno = { quote: text, x: rect.left, y: rect.bottom + 6 };
+		}, 0);
+	}
+	function addAnno(note, sendNow = false) {
+		pendingAnnotations.update((l) => [...l, { quote: anno.quote, source: 'scratchboard', note }]);
+		dismissAnno();
+		window.getSelection()?.removeAllRanges();
+		if (sendNow) annotationSendRequest.update((n) => n + 1);
+	}
+
 	async function startEditing() {
 		if ($scratchboardAgentWriting) return;
+		// A drag-selection ends in a click — don't let it swallow the annotation.
+		if (anno || window.getSelection()?.toString()) return;
 		editing = true;
 		await tick();
 		if (textareaEl) {
@@ -144,6 +173,7 @@
 			<div
 				class="margin-body margin-prose"
 				onclick={startEditing}
+				onmouseup={onProseMouseUp}
 				onkeydown={(e) => e.key === 'Enter' && startEditing()}
 				role="button"
 				tabindex="0"
@@ -186,6 +216,17 @@
 		</button>
 	{/if}
 </aside>
+
+{#if anno}
+	<AnnotationPopup
+		x={anno.x}
+		y={anno.y}
+		quote={anno.quote}
+		onAdd={(note) => addAnno(note)}
+		onSend={(note) => addAnno(note, true)}
+		onClose={dismissAnno}
+	/>
+{/if}
 
 <style>
 	.margin {

@@ -2,6 +2,7 @@ import { APP_NAME } from '$lib/constants';
 import { type Writable, writable } from 'svelte/store';
 import type { ModelConfig } from '$lib/apis';
 import type { Banner } from '$lib/types';
+import type { Annotation } from '$lib/utils/annotations';
 import type { Socket } from 'socket.io-client';
 
 import emojiShortCodes from '$lib/emoji-shortcodes.json';
@@ -54,6 +55,12 @@ export const chatTitle = writable('');
 export const scratchboardContent = writable('');
 // True while the agent is live-streaming notes into the margin (FOLIO)
 export const scratchboardAgentWriting = writable(false);
+
+// Annotation slips pending in the composer — pushed from Folio prose or the
+// scratchboard, consumed by Folio's send path.
+export const pendingAnnotations: Writable<Annotation[]> = writable([]);
+// Bumped to ask Folio (which owns the send path) to flush pending slips now.
+export const annotationSendRequest = writable(0);
 
 export const channels = writable([]);
 export const channelId = writable(null);
