@@ -7,12 +7,11 @@
 	import ChevronUp from '$lib/components/icons/ChevronUp.svelte';
 	import ChevronDown from '$lib/components/icons/ChevronDown.svelte';
 	import Spinner from '$lib/components/common/Spinner.svelte';
-	import WrenchSolid from '$lib/components/icons/WrenchSolid.svelte';
 	import Sparkles from '$lib/components/icons/Sparkles.svelte';
-	import CheckCircle from '$lib/components/icons/CheckCircle.svelte';
 	import FullHeightIframe from '$lib/components/common/FullHeightIframe.svelte';
 
 	import { settings } from '$lib/stores';
+	import { VERB_ICONS, ledgerCounts, ledgerHeadline, toolObject } from '$lib/utils/ledger';
 
 	const i18n = getContext('i18n');
 
@@ -35,11 +34,18 @@
 	let open = $settings?.expandDetails ?? false;
 
 	function parseJSONString(str: string) {
-		try {
-			return parseJSONString(JSON.parse(str));
-		} catch (e) {
-			return str;
+		// Iteratively unwrap nested JSON-encoded strings; the recursive form
+		// self-recurses forever on scalars (JSON.parse('5') -> 5 -> 5 -> …).
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		let value: any = str;
+		while (typeof value === 'string') {
+			try {
+				value = JSON.parse(value);
+			} catch {
+				break;
+			}
 		}
+		return value;
 	}
 
 	$: toolCallCount = tokens.filter((t) => t?.attributes?.type === 'tool_calls').length;
@@ -74,39 +80,53 @@
 		return result;
 	})();
 
+	$: toolNames = tokens
+		.filter((t) => t?.attributes?.type === 'tool_calls')
+		.map((t) => t?.attributes?.name ?? '');
+
+	// The headline names what the run actually did — "Wrote", "Remembered",
+	// "Looked at the clock" — falling back to "Exploring / Explored" only when
+	// the calls have nothing in common. Reasoning-only runs read as "Thought".
+	$: headline = (() => {
+		if (toolNames.length === 0 && codeInterpreterCount === 0 && reasoningCount > 0) {
+			return {
+				text: hasPending ? 'Thinking' : 'Thought',
+				icon: VERB_ICONS.think
+			};
+		}
+		if (toolNames.length === 0 && codeInterpreterCount > 0) {
+			return { text: hasPending ? 'Running code' : 'Ran code', icon: VERB_ICONS.run };
+		}
+		return ledgerHeadline(toolNames, hasPending);
+	})();
+
+	$: prefixText = $i18n.t(headline.text);
+
 	$: summaryText = (() => {
 		const parts = [];
 
-		if (toolCallCount > 0) {
-			// Group by tool name and show counts
-			const nameCounts = {};
-			tokens
-				.filter((t) => t?.attributes?.type === 'tool_calls')
-				.forEach((t) => {
-					const name = t?.attributes?.name ?? 'tool';
-					nameCounts[name] = (nameCounts[name] || 0) + 1;
-				});
-
-			const toolParts = Object.entries(nameCounts).map(([name, count]) =>
-				count > 1 ? `${count} ${name}` : name
+		// A single call is more useful named than counted: "Wrote  # Notes".
+		if (toolNames.length === 1) {
+			const only = tokens.find((t) => t?.attributes?.type === 'tool_calls');
+			const object = toolObject(
+				toolNames[0],
+				parseJSONString(decode(only?.attributes?.arguments ?? ''))
 			);
-			parts.push(...toolParts);
+			if (object) parts.push(object);
+		} else if (toolNames.length > 1) {
+			parts.push(ledgerCounts(toolNames));
 		}
 
 		if (codeInterpreterCount > 0) {
-			if (codeInterpreterCount === 1) {
-				parts.push($i18n.t('Ran {{COUNT}} analysis', { COUNT: codeInterpreterCount }));
-			} else {
-				parts.push($i18n.t('Ran {{COUNT}} analyses', { COUNT: codeInterpreterCount }));
-			}
+			parts.push(
+				codeInterpreterCount === 1
+					? $i18n.t('Ran {{COUNT}} analysis', { COUNT: codeInterpreterCount })
+					: $i18n.t('Ran {{COUNT}} analyses', { COUNT: codeInterpreterCount })
+			);
 		}
 
-		const prefix = hasPending ? $i18n.t('Exploring') : $i18n.t('Explored');
-		const detail = parts.join(', ');
-		return detail;
+		return parts.join(', ');
 	})();
-
-	$: prefixText = hasPending ? $i18n.t('Exploring') : $i18n.t('Explored');
 </script>
 
 <div {id} class="w-full">
@@ -120,14 +140,26 @@
 		}}
 	>
 		<div class="flex items-center gap-1.5">
-			<!-- Status icon -->
+			<!-- Status icon: the resolved verb's own mark once the run has settled -->
 			{#if hasPending}
 				<div>
 					<Spinner className="size-4" />
 				</div>
-			{:else if toolCallCount > 0}
+			{:else if toolCallCount > 0 || codeInterpreterCount > 0}
 				<div class="toolcard-icon-done">
-					<CheckCircle className="size-4" strokeWidth="2" />
+					<svg
+						width="16"
+						height="16"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="1.8"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						aria-hidden="true"
+					>
+						<path d={headline.icon} />
+					</svg>
 				</div>
 			{:else}
 				<div class="toolcard-icon-muted">

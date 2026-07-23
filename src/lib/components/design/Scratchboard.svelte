@@ -94,7 +94,7 @@
 			>
 				<path d="M20.2 12.2a6 6 0 0 0-8.4-8.4L5 10.5V19h8.5l6.7-6.8zM16 8L2 22M17.5 15H9" />
 			</svg>
-			<span class="margin-kicker">Margin notes</span>
+			<span class="margin-kicker">Scratchboard</span>
 			{#if $scratchboardAgentWriting}
 				<span class="agent-writing">
 					<i></i>
@@ -111,7 +111,7 @@
 			<button
 				class="ghost fold"
 				onclick={() => (collapsed = true)}
-				aria-label="Fold the margin away"
+				aria-label="Fold the scratchboard away"
 			>
 				<svg
 					width="12"
@@ -147,7 +147,7 @@
 				onkeydown={(e) => e.key === 'Enter' && startEditing()}
 				role="button"
 				tabindex="0"
-				aria-label="Edit margin notes"
+				aria-label="Edit the scratchboard"
 			>
 				{#if draft.trim()}
 					<Markdown
@@ -166,7 +166,7 @@
 		<button
 			class="margin-spineb"
 			onclick={() => (collapsed = false)}
-			aria-label="Unfold the margin"
+			aria-label="Unfold the scratchboard"
 		>
 			<svg
 				width="12"
@@ -181,7 +181,7 @@
 			>
 				<path d="M15 6l-6 6 6 6" />
 			</svg>
-			<span class="margin-vlabel">Margin notes</span>
+			<span class="margin-vlabel">Scratchboard</span>
 			{#if $scratchboardAgentWriting}<i class="vdot"></i>{/if}
 		</button>
 	{/if}

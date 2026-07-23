@@ -46,9 +46,7 @@
 		showFileNavDir,
 		chatRequestQueues,
 		desktopEvent,
-		scratchboardContent as scratchboardContentStore,
-		scratchboardAgentWriting,
-		showScratchboard
+		scratchboardContent as scratchboardContentStore
 	} from '$lib/stores';
 
 	import { WEBUI_API_BASE_URL } from '$lib/constants';
@@ -97,7 +95,6 @@
 	import { updateFolderById } from '$lib/apis/folders';
 
 	import Folio from '$lib/components/chat/Folio.svelte';
-	import { getOutputText } from '$lib/components/chat/Messages/structuredOutput';
 	import ShareChatModal from './ShareChatModal.svelte';
 	import EventConfirmDialog from '../common/ConfirmDialog.svelte';
 	import DeleteConfirmDialog from '../common/ConfirmDialog.svelte';
@@ -1633,45 +1630,7 @@
 		}
 	};
 
-	// ─── The Margin: the agent writes follow-ups onto the shared scratchboard ───
-	// When a finished response carries a list (a plan / next steps), the agent
-	// streams those items into the margin live — the FOLIO "draft → margin notes".
-	const extractFollowups = (content: string): string[] => {
-		const items: string[] = [];
-		for (const ln of String(content ?? '').split('\n')) {
-			const m = ln.match(/^\s*(?:[-*]|\d+\.)\s+(.+)/);
-			if (m) {
-				const text = m[1].replace(/[*_`]/g, '').trim();
-				if (text) items.push(text.length > 90 ? `${text.slice(0, 88)}…` : text);
-			}
-		}
-		return items.slice(0, 4);
-	};
-
-	let marginWriteToken = 0;
-	const writeMarginNote = (text: string, turnId: string | null = null) => {
-		const token = ++marginWriteToken;
-		scratchboardAgentWriting.set(true);
-		showScratchboard.set(true);
-		let buf = get(scratchboardContentStore);
-		if (turnId) recordMarginWrite(turnId, buf, buf + text);
-		let i = 0;
-		const step = () => {
-			if (token !== marginWriteToken) return; // superseded by a newer note
-			if (i >= text.length) {
-				scratchboardAgentWriting.set(false);
-				return;
-			}
-			const n = 1 + Math.floor(Math.random() * 2);
-			buf += text.slice(i, i + n);
-			i += n;
-			scratchboardContentStore.set(buf);
-			setTimeout(step, 16 + Math.random() * 26);
-		};
-		setTimeout(step, 300);
-	};
-
-	// ─── The margin ledger: every agent write to the scratchboard, in order ───
+	// ─── The scratchboard ledger: every agent write to the scratchboard, in order ───
 	// Each entry remembers which turn (user message) it happened under, so a fork
 	// can undo the margin back to how it stood before that turn ran.
 	let marginLedger: { turnId: string; before: string; after: string }[] = [];
@@ -1696,8 +1655,6 @@
 	const revertMarginFrom = (userMessageId: string) => {
 		const idx = marginLedger.findIndex((e) => e.turnId === userMessageId);
 		if (idx === -1) return;
-		marginWriteToken++; // cancel any in-flight margin typing
-		scratchboardAgentWriting.set(false);
 		let content = get(scratchboardContentStore);
 		for (let i = marginLedger.length - 1; i >= idx; i--) {
 			const e = marginLedger[i];
@@ -1721,16 +1678,6 @@
 			await chats.set(await getChatList(localStorage.token, $currentChatPage));
 		}
 		taskIds = null;
-
-		// The agent writes the response's follow-ups into the margin
-		const completed = history?.messages?.[responseMessageId];
-		const followups = extractFollowups(completed?.content || getOutputText(completed?.output));
-		if (followups.length >= 2 && !get(scratchboardAgentWriting)) {
-			writeMarginNote(
-				`\n\n## Follow-ups\n${followups.map((f) => `- ${f}`).join('\n')}`,
-				turnIdFor(responseMessageId)
-			);
-		}
 	};
 
 	const chatActionHandler = async (_chatId, actionId, modelId, responseMessageId, event = null) => {

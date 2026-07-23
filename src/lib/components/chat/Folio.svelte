@@ -4,6 +4,7 @@
 	import { theme, showSidebar, settings, models as modelsStore, mobile } from '$lib/stores';
 	import { deleteFileById } from '$lib/apis/files';
 	import { copyToClipboard } from '$lib/utils';
+	import { VERB_ICONS, dotIcon } from '$lib/utils/ledger';
 	import { downloadChatJSON, downloadChatTxt, downloadChatPdf } from '$lib/utils/chat-export';
 	import ContextMenu, { deferToNative } from '$lib/components/common/ContextMenu.svelte';
 	import Markdown from './Messages/Markdown.svelte';
@@ -707,20 +708,8 @@
 		}
 	}
 
-	// ─── The ledger: the agent's tool runs, stamped into the record ───
-	const VERB_ICONS = {
-		read: 'M4 19.5A2.5 2.5 0 0 1 6.5 17H20M4 19.5A2.5 2.5 0 0 0 6.5 22H20V2H6.5A2.5 2.5 0 0 0 4 4.5v15z',
-		grep: 'M21 21l-4.35-4.35M11 19a8 8 0 1 1 0-16 8 8 0 0 1 0 16z',
-		search: 'M21 21l-4.35-4.35M11 19a8 8 0 1 1 0-16 8 8 0 0 1 0 16z',
-		web: 'M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20zM2 12h20M12 2a15 15 0 0 1 0 20a15 15 0 0 1 0-20z',
-		profile: 'M22 12h-4l-3 9L9 3l-3 9H2',
-		draft: 'M20.2 12.2a6 6 0 0 0-8.4-8.4L5 10.5V19h8.5l6.7-6.8zM16 8L2 22M17.5 15H9',
-		condense: 'M4 8h16M7 12h10M10 16h4',
-		run: 'M5 3l14 9-14 9V3z',
-		knowledge:
-			'M4 19.5A2.5 2.5 0 0 1 6.5 17H20M4 19.5A2.5 2.5 0 0 0 6.5 22H20V2H6.5A2.5 2.5 0 0 0 4 4.5v15z'
-	};
-	const dotIcon = 'M12 11a1 1 0 1 0 0 2 1 1 0 0 0 0-2z';
+	// ─── The ledger: the agent's status events, stamped into the record ───
+	// Icons are shared with the tool-call ledger (see $lib/utils/ledger).
 
 	// Map a raw status action onto a short ledger verb + its icon
 	function ledgerVerb(action = '') {
@@ -985,7 +974,9 @@
 									</div>
 								</header>
 
-								<div class="prose">
+								<!-- "folio-prose", not "prose": the bare name would activate
+							     Tailwind Typography's gray palette over the manuscript -->
+							<div class="folio-prose">
 									{#if (sec.assistants.length === 0 && generating) || sec.assistants.some((a) => !a.done && a.content === '' && a.entries.length === 0)}
 										<div class="typesetting">
 											<span class="ts-label">setting type</span>
@@ -1032,7 +1023,7 @@
 												{/each}
 											</div>
 										{/if}
-										<div class="passage" class:markdown-prose={!a.message.output?.length}>
+										<div class="passage markdown-prose">
 											{#if a.message.output?.length}
 												<StructuredOutputRenderer
 													id={`${chatId}-${a.id}`}
@@ -2374,7 +2365,7 @@
 	}
 
 	/* ── Prose ── */
-	.prose {
+	.folio-prose {
 		margin-top: 16px;
 	}
 	.pgraph {
@@ -2408,8 +2399,8 @@
 
 	/* Live passages come from the Markdown pipeline: set them in the manuscript
 	   body, and illuminate the opening letter of the document's first passage. */
-	.prose .passage,
-	.prose .passage :global(:is(p, li, blockquote)) {
+	.folio-prose .passage,
+	.folio-prose .passage :global(:is(p, li):not(blockquote *)) {
 		font-family: var(--body);
 		font-size: 15.5px;
 		font-weight: 430;
@@ -2423,6 +2414,16 @@
 		float: left;
 		padding: 4px 8px 0 0;
 		color: var(--ultramarine);
+	}
+	/* the illuminated letter belongs to the document's opening passage only —
+	   never to quoted or listed matter */
+	.sec:first-of-type .passage :global(:is(blockquote, li) p:first-of-type::first-letter) {
+		font-family: inherit;
+		font-size: inherit;
+		line-height: inherit;
+		float: none;
+		padding: 0;
+		color: inherit;
 	}
 	/* drop caps are a setting — reset the illuminated letter when turned off */
 	.folio.no-dropcap .sec:first-of-type .passage :global(p:first-of-type::first-letter) {

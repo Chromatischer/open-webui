@@ -84,6 +84,9 @@
 	--rule-faint: rgba(38, 34, 27, 0.07);
 	--ok: #3d7a46;
 	--err: #8c2f24;
+	/* Syntax ink that has no direct token: burnt-gold for titles/functions
+	   (gold leaf itself is too pale against light paper) */
+	--syn-fn: #8f6a1c;
 
 	/* FOLIO easings */
 	--out: cubic-bezier(0.16, 1, 0.3, 1);
@@ -159,6 +162,7 @@
 	--rule-faint: rgba(236, 229, 212, 0.07);
 	--ok: #7dc287;
 	--err: #c75a4a;
+	--syn-fn: var(--gold);
 
 	--bg-sidebar: var(--paper-deep);
 	--bg-base: var(--paper);
@@ -361,6 +365,15 @@ code {
 	line-height: 0.72;
 	margin: 0.02em 0.09em 0 0;
 	color: var(--vermilion);
+}
+/* No drop cap inside quoted or listed matter */
+.message-group.ai .chat-assistant :is(blockquote, li) p:first-of-type::first-letter {
+	float: none;
+	font-family: inherit;
+	font-size: inherit;
+	line-height: inherit;
+	margin: 0;
+	color: inherit;
 }
 /* No drop cap when the answer opens with a reasoning trace */
 .message-group.ai .chat-assistant .thinking ~ p:first-of-type::first-letter {
@@ -587,19 +600,210 @@ textarea::placeholder {
 }
 
 .markdown-prose {
-	@apply prose dark:prose-invert prose-blockquote:border-s-gray-100 prose-blockquote:dark:border-gray-800 prose-blockquote:border-s-2 prose-blockquote:not-italic prose-blockquote:font-normal  prose-headings:font-semibold prose-hr:my-4 prose-hr:border-gray-50 prose-hr:dark:border-gray-850 prose-p:my-0 prose-img:my-1 prose-headings:my-1 prose-pre:my-0 prose-table:my-0 prose-blockquote:my-0 prose-ul:-my-0 prose-ol:-my-0 prose-li:-my-0 whitespace-pre-line;
+	@apply prose prose-p:my-0 prose-img:my-1 prose-headings:my-1 prose-pre:my-0 prose-table:my-0 prose-blockquote:my-0 prose-ul:-my-0 prose-ol:-my-0 prose-li:-my-0 whitespace-pre-line;
 }
 
 .markdown-prose-sm {
-	@apply text-sm prose dark:prose-invert prose-blockquote:border-s-gray-100 prose-blockquote:dark:border-gray-800 prose-blockquote:border-s-2 prose-blockquote:not-italic prose-blockquote:font-normal  prose-headings:font-semibold prose-hr:my-2  prose-hr:border-gray-50 prose-hr:dark:border-gray-850 prose-p:my-0 prose-img:my-1 prose-headings:my-1 prose-pre:my-0 prose-table:my-0 prose-blockquote:my-0 prose-ul:-my-0 prose-ol:-my-0 prose-li:-my-0 whitespace-pre-line;
+	@apply text-sm prose prose-p:my-0 prose-img:my-1 prose-headings:my-1 prose-pre:my-0 prose-table:my-0 prose-blockquote:my-0 prose-ul:-my-0 prose-ol:-my-0 prose-li:-my-0 whitespace-pre-line;
 }
 
 .markdown-prose-xs {
-	@apply text-xs prose dark:prose-invert prose-blockquote:border-s-gray-100 prose-blockquote:dark:border-gray-800 prose-blockquote:border-s-2 prose-blockquote:not-italic prose-blockquote:font-normal  prose-headings:font-semibold prose-hr:my-0.5  prose-hr:border-gray-50 prose-hr:dark:border-gray-850 prose-p:my-0 prose-img:my-1 prose-headings:my-1 prose-pre:my-0 prose-table:my-0 prose-blockquote:my-0 prose-ul:-my-0 prose-ol:-my-0 prose-li:-my-0 whitespace-pre-line;
+	@apply text-xs prose prose-p:my-0 prose-img:my-1 prose-headings:my-1 prose-pre:my-0 prose-table:my-0 prose-blockquote:my-0 prose-ul:-my-0 prose-ol:-my-0 prose-li:-my-0 whitespace-pre-line;
 }
 
 .markdown a {
 	@apply underline;
+}
+
+/* ═══ FOLIO manuscript prose ══════════════════════════════════════
+   Message markdown set as manuscript matter: rubricated serif heads,
+   ultramarine links, gold-leaf citation bars, ruled ledger tables and
+   an asterism for the section break. Every colour is re-inked from the
+   FOLIO tokens (which flip with .dark), so rendering never depends on
+   Tailwind's prose-invert grays in either theme. */
+:is(.markdown-prose, .markdown-prose-sm, .markdown-prose-xs, .input-prose, .input-prose-sm) {
+	--tw-prose-body: var(--text);
+	--tw-prose-headings: var(--text);
+	--tw-prose-lead: var(--text-secondary);
+	--tw-prose-links: var(--ultramarine);
+	--tw-prose-bold: var(--text);
+	--tw-prose-counters: var(--text-tertiary);
+	--tw-prose-bullets: var(--text-tertiary);
+	--tw-prose-hr: var(--rule);
+	--tw-prose-quotes: var(--text-secondary);
+	--tw-prose-quote-borders: var(--rule);
+	--tw-prose-captions: var(--text-tertiary);
+	--tw-prose-kbd: var(--text);
+	--tw-prose-code: var(--text);
+	--tw-prose-pre-code: var(--text);
+	--tw-prose-pre-bg: var(--code-bg);
+	--tw-prose-th-borders: var(--rule);
+	--tw-prose-td-borders: var(--rule-faint);
+}
+
+/* Heads in the serif hand, ranked by size and ornament rather than boldness:
+   h1 carries a short vermilion rubric stroke, h2 a hairline base rule,
+   h3 is the italic sub-head, h4+ fall to small-cap side-heads. */
+:is(.markdown-prose, .markdown-prose-sm, .markdown-prose-xs) :is(h1, h2, h3) {
+	font-family: var(--serif);
+	font-weight: 400;
+	letter-spacing: 0.004em;
+	color: var(--text);
+}
+:is(.markdown-prose, .markdown-prose-sm, .markdown-prose-xs) h1 {
+	font-size: 1.6em;
+	line-height: 1.22;
+	margin: 1.15em 0 0.45em;
+}
+:is(.markdown-prose, .markdown-prose-sm, .markdown-prose-xs) h1::after {
+	content: '';
+	display: block;
+	width: 2.4em;
+	border-bottom: 2px solid var(--vermilion);
+	margin-top: 0.22em;
+	opacity: 0.85;
+}
+:is(.markdown-prose, .markdown-prose-sm, .markdown-prose-xs) h2 {
+	font-size: 1.35em;
+	line-height: 1.25;
+	margin: 1.15em 0 0.4em;
+	padding-bottom: 0.18em;
+	border-bottom: 1px solid var(--rule-faint);
+}
+:is(.markdown-prose, .markdown-prose-sm, .markdown-prose-xs) h3 {
+	font-size: 1.16em;
+	font-style: italic;
+	line-height: 1.3;
+	margin: 1.05em 0 0.3em;
+}
+:is(.markdown-prose, .markdown-prose-sm, .markdown-prose-xs) :is(h4, h5, h6) {
+	font-family: var(--font-sans);
+	font-size: 0.78em;
+	font-weight: 650;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+	color: var(--text-secondary);
+	margin: 1.3em 0 0.35em;
+}
+:is(.markdown-prose, .markdown-prose-sm, .markdown-prose-xs)
+	:is(h1, h2, h3, h4, h5, h6):first-child {
+	margin-top: 0.25em;
+}
+/* User prompts are already serif section heads — no in-body ornaments there */
+.chat-user :is(h1, h2, h3) {
+	border: none;
+}
+.chat-user h1::after {
+	content: none;
+}
+
+/* Links: the agent's ultramarine ink, underlined at half strength until hover */
+:is(.markdown-prose, .markdown-prose-sm, .markdown-prose-xs) a {
+	color: var(--ultramarine);
+	text-decoration: underline;
+	text-decoration-color: color-mix(in srgb, var(--ultramarine) 40%, transparent);
+	text-underline-offset: 3px;
+	transition: text-decoration-color 0.15s;
+}
+:is(.markdown-prose, .markdown-prose-sm, .markdown-prose-xs) a:hover {
+	text-decoration-color: var(--ultramarine);
+}
+
+/* Struck matter reads as the corrector's red line */
+:is(.markdown-prose, .markdown-prose-sm, .markdown-prose-xs) del {
+	color: var(--text-tertiary);
+	text-decoration-color: color-mix(in srgb, var(--vermilion) 65%, transparent);
+}
+
+/* Citations: serif italic against a gold-leaf bar; nested quotes fall to a hairline */
+:is(.markdown-prose, .markdown-prose-sm, .markdown-prose-xs) blockquote {
+	font-family: var(--serif);
+	font-style: italic;
+	font-weight: 400;
+	font-size: 1.05em;
+	line-height: 1.5;
+	color: var(--text-secondary);
+	border-inline-start: 2px solid var(--gold);
+	padding-inline-start: 1em;
+	margin: 0.8em 0;
+	quotes: none;
+}
+:is(.markdown-prose, .markdown-prose-sm, .markdown-prose-xs) blockquote blockquote {
+	border-inline-start-color: var(--rule);
+	font-size: 1em;
+	margin: 0.5em 0;
+}
+
+/* The section break is an asterism, not a rule */
+:is(.markdown-prose, .markdown-prose-sm, .markdown-prose-xs) hr {
+	border: none;
+	margin: 1.7em 0;
+	text-align: center;
+	line-height: 1;
+	/* hr defaults to height:0 + overflow:hidden, which clips the glyph */
+	height: 1em;
+	overflow: visible;
+}
+:is(.markdown-prose, .markdown-prose-sm, .markdown-prose-xs) hr::after {
+	content: '⁂';
+	color: var(--text-tertiary);
+	font-size: 0.9em;
+}
+
+/* Task-list checkboxes take the user's vermilion seal */
+:is(.markdown-prose, .markdown-prose-sm, .markdown-prose-xs) input[type='checkbox'] {
+	border-color: var(--rule);
+	background: transparent;
+	border-radius: 4px;
+}
+:is(.markdown-prose, .markdown-prose-sm, .markdown-prose-xs) input[type='checkbox']:checked {
+	background: var(--vermilion);
+	border-color: var(--vermilion);
+}
+
+/* Footnote marks in the rubricator's hand */
+.footnote-ref {
+	font-family: var(--mono);
+	color: var(--vermilion);
+}
+
+/* ── Ledger table: ruled lines on open paper, mono small-cap column heads ── */
+.folio-table {
+	width: 100%;
+	max-width: 100%;
+	border-collapse: collapse;
+	font-size: 0.92em;
+}
+.folio-table th {
+	font-family: var(--mono);
+	font-size: 0.72em;
+	font-weight: 400;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	color: var(--text-secondary);
+	text-align: start;
+	padding: 4px 12px 7px;
+	border-bottom: 1.5px solid var(--rule);
+	background: transparent;
+}
+.folio-table td {
+	padding: 7px 12px;
+	border-bottom: 1px solid var(--rule-faint);
+	vertical-align: top;
+	color: var(--text);
+}
+.folio-table tbody tr {
+	background: transparent;
+	transition: background 0.15s;
+}
+.folio-table tbody tr:hover {
+	background: var(--surface);
+}
+.folio-table :is(th, td):first-child {
+	padding-inline-start: 2px;
+}
+.folio-table :is(th, td):last-child {
+	padding-inline-end: 2px;
 }
 
 /* ── Custom inline text styles (==highlight==, %colour%, &animated&) ── */
@@ -895,12 +1099,14 @@ input[type='number'] {
 	outline: none;
 }
 
+/* CodeMirror sits directly on the paper; the wrapper supplies any tint */
 .cm-gutters {
-	@apply !bg-white dark:!bg-black !border-none;
+	background: transparent !important;
+	border: none !important;
 }
 
 .cm-editor {
-	@apply bg-white dark:bg-black;
+	background: transparent;
 }
 
 .tippy-box[data-theme~='dark'] {
@@ -912,9 +1118,15 @@ input[type='number'] {
 }
 
 .codespan {
-	padding: 0.15rem 0.3rem;
-	font-size: 0.85em;
-	@apply font-mono rounded-md text-gray-800 bg-gray-100 dark:text-gray-200 dark:bg-gray-800 mx-0.5;
+	padding: 0.1rem 0.35rem;
+	margin-inline: 1px;
+	font-size: 0.82em;
+	font-family: var(--mono);
+	border-radius: 5px;
+	color: var(--text);
+	background: var(--code-bg);
+	border: 1px solid var(--rule-faint);
+	box-decoration-break: clone;
 }
 
 .svelte-flow {
@@ -1148,48 +1360,65 @@ input[type='number'] {
 	@apply font-mono rounded-md text-gray-800 bg-gray-50 dark:text-gray-200 dark:bg-gray-800 mx-0.5;
 }
 
-/* Code styling */
+/* ── Code inks: FOLIO syntax palette (highlight.js — chat code blocks & tiptap).
+   Comments annotate in a fainter italic hand; keywords take the agent's
+   ultramarine, literals the user's vermilion, strings the sealing green,
+   and titles the burnt gold. Tokens flip with .dark automatically. */
+.hljs {
+	background: transparent;
+	color: var(--text);
+}
+
 .hljs-comment,
 .hljs-quote {
-	color: #616161;
+	color: var(--text-tertiary);
+	font-style: italic;
 }
 
-.hljs-variable,
-.hljs-template-variable,
-.hljs-attribute,
+.hljs-keyword,
+.hljs-selector-tag,
 .hljs-tag,
-.hljs-regexp,
-.hljs-link,
 .hljs-name,
-.hljs-selector-id,
-.hljs-selector-class {
-	color: #f98181;
-}
-
-.hljs-number,
-.hljs-meta,
-.hljs-built_in,
-.hljs-builtin-name,
-.hljs-literal,
-.hljs-type,
-.hljs-params {
-	color: #fbbc88;
+.hljs-doctag {
+	color: var(--ultramarine);
 }
 
 .hljs-string,
 .hljs-symbol,
-.hljs-bullet {
-	color: #b9f18d;
+.hljs-bullet,
+.hljs-regexp,
+.hljs-link,
+.hljs-addition {
+	color: var(--ok);
+}
+
+.hljs-number,
+.hljs-literal,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-deletion {
+	color: var(--vermilion);
 }
 
 .hljs-title,
-.hljs-section {
-	color: #faf594;
+.hljs-section,
+.hljs-title.class_,
+.hljs-title.function_ {
+	color: var(--syn-fn);
 }
 
-.hljs-keyword,
-.hljs-selector-tag {
-	color: #70cff8;
+.hljs-attr,
+.hljs-attribute,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-type,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-params,
+.hljs-meta {
+	color: var(--text-secondary);
 }
 
 .hljs-emphasis {

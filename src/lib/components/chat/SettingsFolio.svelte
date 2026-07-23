@@ -705,7 +705,7 @@
 						<span class="row-label">
 							Follow-up suggestions
 							{#if stamps.followups}<span class="stamp">saved</span>{/if}
-							<span class="row-hint">suggested next questions, written into the margin notes</span>
+							<span class="row-hint">suggested next questions, offered under the reply</span>
 						</span>
 						<button
 							class="tgl"

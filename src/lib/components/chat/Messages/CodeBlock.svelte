@@ -14,7 +14,6 @@
 		unescapeHtml
 	} from '$lib/utils';
 
-	import 'highlight.js/styles/github-dark.min.css';
 	import equal from 'fast-deep-equal';
 
 	import CodeEditor from '$lib/components/common/CodeEditor.svelte';
@@ -454,22 +453,20 @@
 				</div>
 			{/if}
 		{:else}
+			<!-- Caption line: language at left, quiet mono actions at right -->
 			<div
-				class="codeblock-header sticky {stickyButtonsClassName} left-0 right-0 py-1.5 px-3.5 gap-2 flex items-center justify-end w-full z-10 text-xs"
+				class="codeblock-header sticky {stickyButtonsClassName} left-0 right-0 gap-2 flex items-center w-full z-10"
 			>
 				<div class="flex-1 truncate">
 					<Tooltip content={lang} placement="top-start">
-						<span class=" truncate text-ellipsis">
+						<span class="cb-lang truncate text-ellipsis">
 							{lang}
 						</span>
 					</Tooltip>
 				</div>
 
 				<div class="flex items-center gap-0.5 shrink-0">
-					<button
-						class="flex gap-1 items-center bg-none border-none transition rounded-md px-1.5 py-0.5 codeblock-btn"
-						on:click={collapseCodeBlock}
-					>
+					<button class="cb-act" on:click={collapseCodeBlock}>
 						<div class=" -translate-y-[0.5px]">
 							<ChevronUpDown className="size-3" />
 						</div>
@@ -481,14 +478,12 @@
 
 					{#if ($config?.features?.enable_code_execution ?? true) && (lang.toLowerCase() === 'python' || lang.toLowerCase() === 'py' || (lang === '' && checkPythonCode(code)))}
 						{#if executing}
-							<div
-								class="run-code-button bg-none border-none p-0.5 cursor-not-allowed codeblock-btn"
-							>
+							<div class="run-code-button cb-act busy cursor-not-allowed">
 								{$i18n.t('Running')}
 							</div>
 						{:else if run}
 							<button
-								class="flex gap-1 items-center run-code-button bg-none border-none transition rounded-md px-1.5 py-0.5 codeblock-btn"
+								class="run-code-button cb-act cb-run"
 								on:click={async () => {
 									code = _code;
 									await tick();
@@ -503,24 +498,17 @@
 					{/if}
 
 					{#if save}
-						<button
-							class="save-code-button bg-none border-none transition rounded-md px-1.5 py-0.5 codeblock-btn"
-							on:click={saveCode}
-						>
+						<button class="save-code-button cb-act" on:click={saveCode}>
 							{saved ? $i18n.t('Saved') : $i18n.t('Save')}
 						</button>
 					{/if}
 
-					<button
-						class="copy-code-button bg-none border-none transition rounded-md px-1.5 py-0.5 codeblock-btn"
-						on:click={copyCode}>{copied ? $i18n.t('Copied') : $i18n.t('Copy')}</button
+					<button class="copy-code-button cb-act" on:click={copyCode}
+						>{copied ? $i18n.t('Copied') : $i18n.t('Copy')}</button
 					>
 
 					{#if preview && ['html', 'svg'].includes(lang)}
-						<button
-							class="flex gap-1 items-center run-code-button bg-none border-none transition rounded-md px-1.5 py-0.5 codeblock-btn"
-							on:click={previewCode}
-						>
+						<button class="run-code-button cb-act" on:click={previewCode}>
 							<div>
 								{$i18n.t('Preview')}
 							</div>
@@ -529,37 +517,25 @@
 				</div>
 			</div>
 
-			<div
-				class="language-{lang} rounded-t-2xl -mt-8 {editorClassName
-					? editorClassName
-					: executing || stdout || stderr || result
-						? ''
-						: 'rounded-b-2xl'} overflow-hidden"
-			>
-				<div class=" pt-6.5 codeblock-btn"></div>
-
+			<div class="language-{lang} {editorClassName}">
 				{#if !collapsed}
 					{#if edit}
-						<CodeEditor
-							value={code}
-							{id}
-							{lang}
-							onSave={() => {
-								saveCode();
-							}}
-							onChange={(value) => {
-								_code = value;
-							}}
-						/>
+						<div class="cb-editor">
+							<CodeEditor
+								value={code}
+								{id}
+								{lang}
+								onSave={() => {
+									saveCode();
+								}}
+								onChange={(value) => {
+									_code = value;
+								}}
+							/>
+						</div>
 					{:else}
-						<pre
-							class=" hljs p-4 px-5 overflow-x-auto"
-							style="border-top-left-radius: 0px; border-top-right-radius: 0px; {(executing ||
-								stdout ||
-								stderr ||
-								result) &&
-								'border-bottom-left-radius: 0px; border-bottom-right-radius: 0px;'}"><code
-								class="language-{lang} rounded-t-none whitespace-pre text-sm"
+						<pre class="hljs cb-pre overflow-x-auto"><code
+								class="language-{lang} whitespace-pre"
 								>{#if lang && hljs.getLanguage(lang)}{@html hljs.highlight(code, {
 										language: lang,
 										ignoreIllegals: true
@@ -567,39 +543,30 @@
 							></pre>
 					{/if}
 				{:else}
-					<div
-						class="codeblock-btn dark:text-white rounded-b-2xl! pt-1 pb-2 px-4 flex flex-col gap-2 text-xs"
-					>
-						<span class="text-gray-500 italic">
-							{$i18n.t('{{COUNT}} hidden lines', {
-								COUNT: code.split('\n').length
-							})}
-						</span>
+					<div class="cb-folded">
+						{$i18n.t('{{COUNT}} hidden lines', {
+							COUNT: code.split('\n').length
+						})}
 					</div>
 				{/if}
 			</div>
 
 			{#if !collapsed}
-				<div
-					id="plt-canvas-{id}"
-					class="codeblock-output dark:text-white max-w-full overflow-x-auto scrollbar-hidden"
-				/>
+				<div id="plt-canvas-{id}" class="max-w-full overflow-x-auto scrollbar-hidden" />
 
 				{#if executing || stdout || stderr || result || files}
-					<div
-						class="codeblock-output dark:text-white rounded-b-2xl! pt-2 pb-3 px-3.5 flex flex-col gap-2"
-					>
+					<div class="codeblock-output flex flex-col gap-2">
 						{#if executing}
-							<div class=" ">
-								<div class=" text-gray-500 text-xs mb-1">{$i18n.t('STDOUT/STDERR')}</div>
+							<div>
+								<div class="cb-stamp">{$i18n.t('STDOUT/STDERR')}</div>
 								<div class="text-sm">{$i18n.t('Running...')}</div>
 							</div>
 						{:else}
 							{#if stdout || stderr}
-								<div class=" ">
-									<div class=" text-gray-500 text-xs mb-1">{$i18n.t('STDOUT/STDERR')}</div>
+								<div>
+									<div class="cb-stamp">{$i18n.t('STDOUT/STDERR')}</div>
 									<div
-										class="text-sm font-mono whitespace-pre-wrap {stdout?.split('\n')?.length > 100
+										class="cb-out whitespace-pre-wrap {stdout?.split('\n')?.length > 100
 											? `max-h-96`
 											: ''}  overflow-y-auto"
 									>
@@ -608,10 +575,10 @@
 								</div>
 							{/if}
 							{#if result || files}
-								<div class=" ">
-									<div class=" text-gray-500 text-xs mb-1">{$i18n.t('RESULT')}</div>
+								<div>
+									<div class="cb-stamp">{$i18n.t('RESULT')}</div>
 									{#if result}
-										<div class="text-sm">{`${JSON.stringify(result)}`}</div>
+										<div class="cb-out">{`${JSON.stringify(result)}`}</div>
 									{/if}
 									{#if files}
 										<div class="flex flex-col gap-2">
@@ -633,31 +600,91 @@
 </div>
 
 <style>
+	/* ── The code plate ─────────────────────────────────────────────
+	   Code joins the manuscript's ruled-margin family: blockquotes take
+	   the gold bar, the tool ledger the ultramarine one — code is set
+	   against an iron-gall rule on a faint field, captioned by a mono
+	   language line with quiet actions that only ink on hover. */
 	.codeblock-wrapper {
-		border-radius: 10px;
-		border: 1px solid var(--border);
+		border-inline-start: 2px solid var(--rule);
+		border-radius: 0 12px 12px 0;
 		background: var(--code-bg);
-		overflow: hidden;
 	}
 	.codeblock-header {
-		background: var(--code-bg);
-		color: var(--text-secondary);
-		border-bottom: 1px solid var(--border);
+		/* flattened paper+tint so code scrolls cleanly beneath when stuck */
+		background: color-mix(in srgb, var(--ink) 6%, var(--bg-base));
+		border-radius: 0 12px 0 0;
+		border-bottom: 1px solid var(--rule-faint);
+		padding: 5px 10px 5px 14px;
 	}
-	.codeblock-btn {
+	.cb-lang {
+		font-family: var(--mono);
+		font-size: 12px;
+		font-weight: 400;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		color: var(--text-tertiary);
+	}
+	.cb-act {
+		display: inline-flex;
+		align-items: center;
+		gap: 4px;
+		padding: 2px 7px;
+		border: none;
+		border-radius: 5px;
 		background: transparent;
-		color: var(--text-secondary);
+		font-family: var(--mono);
+		font-size: 12.5px;
+		color: var(--text-tertiary);
 		transition:
-			background 0.15s,
-			color 0.15s;
+			color 0.15s,
+			background 0.15s;
 	}
-	.codeblock-btn:hover {
-		background: var(--surface-hover);
+	.cb-act:hover {
 		color: var(--text);
+		background: var(--surface-hover);
+	}
+	.cb-run:hover {
+		color: var(--vermilion);
+	}
+	.cb-act.busy:hover {
+		color: var(--text-tertiary);
+		background: transparent;
+	}
+	.cb-editor {
+		padding: 6px 4px 8px 2px;
+	}
+	.cb-pre {
+		background: transparent;
+		padding: 10px 16px 12px;
+		font-family: var(--mono);
+		font-size: 14px;
+		line-height: 1.6;
+	}
+	/* Folded plates read as a manuscript aside */
+	.cb-folded {
+		font-family: var(--serif);
+		font-style: italic;
+		font-size: 13px;
+		color: var(--text-tertiary);
+		padding: 6px 14px 9px;
 	}
 	.codeblock-output {
-		background: var(--code-bg);
+		border-top: 1px solid var(--rule-faint);
+		padding: 8px 14px 10px;
 		color: var(--text);
-		border-top: 1px solid var(--border);
+	}
+	.cb-stamp {
+		font-family: var(--mono);
+		font-size: 11.5px;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		color: var(--text-tertiary);
+		margin-bottom: 3px;
+	}
+	.cb-out {
+		font-family: var(--mono);
+		font-size: 13.5px;
+		line-height: 1.55;
 	}
 </style>
